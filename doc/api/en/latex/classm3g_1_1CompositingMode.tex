@@ -1,21 +1,21 @@
 \hypertarget{classm3g_1_1CompositingMode}{
-\section{クラス CompositingMode}
+\section{CompositingMode Class Reference}
 \label{classm3g_1_1CompositingMode}\index{m3g::CompositingMode@{m3g::CompositingMode}}
 }
 {\tt \#include $<$CompositingMode.hpp$>$}
 
-CompositingModeに対する継承グラフ:\begin{figure}[H]
+Inheritance diagram for CompositingMode::\begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[height=2cm]{classm3g_1_1CompositingMode}
 \end{center}
 \end{figure}
-\subsection*{構成}
+\subsection*{Classes}
 \begin{CompactItemize}
 \item 
 struct \hyperlink{structm3g_1_1CompositingMode_1_1DepthOffset}{DepthOffset}
 \end{CompactItemize}
-\subsection*{Public メソッド}
+\subsection*{Public Member Functions}
 \begin{CompactItemize}
 \item 
 \hyperlink{classm3g_1_1CompositingMode_5abfd1a798f1327aac4b92f55d4ecc0c}{CompositingMode} ()
@@ -54,7 +54,7 @@ void \hyperlink{classm3g_1_1CompositingMode_a3275c9589ef319c6ba6f5c22d0b2860}{se
 \item 
 virtual std::ostream \& \hyperlink{classm3g_1_1CompositingMode_6fea17fa1532df3794f8cb39cb4f911f}{print} (std::ostream \&out) const 
 \end{CompactItemize}
-\subsection*{Static Public 変数}
+\subsection*{Static Public Attributes}
 \begin{CompactItemize}
 \item 
 static const int \hyperlink{classm3g_1_1CompositingMode_417581fcde4067111f47320edb2aa378}{ALPHA} = 64
@@ -67,12 +67,12 @@ static const int \hyperlink{classm3g_1_1CompositingMode_cb426684e42a5ae425989c65
 \item 
 static const int \hyperlink{classm3g_1_1CompositingMode_47a00ac5a59817a48db06fb2a538883c}{REPLACE} = 68
 \end{CompactItemize}
-\subsection*{Protected メソッド}
+\subsection*{Protected Member Functions}
 \begin{CompactItemize}
 \item 
 virtual void \hyperlink{classm3g_1_1CompositingMode_1efcb1973989d9963d5bd6d03065d389}{render} (int pass, int index=0) const 
 \end{CompactItemize}
-\subsection*{フレンド}
+\subsection*{Friends}
 \begin{CompactItemize}
 \item 
 \hypertarget{classm3g_1_1CompositingMode_afa5201a494f65c37039281d9b63a2a9}{
@@ -82,10 +82,10 @@ class \textbf{Appearance}}
 \end{CompactItemize}
 
 
-\subsection{説明}
-ピクセルのコンポジットモードをカプセル化したアピアランスの構成要素. 
+\subsection{Detailed Description}
+An \hyperlink{classm3g_1_1Appearance}{Appearance} component encapsulating per-pixel comositing attributes. 
 
-\subsection{コンストラクタとデストラクタ}
+\subsection{Constructor \& Destructor Documentation}
 \hypertarget{classm3g_1_1CompositingMode_5abfd1a798f1327aac4b92f55d4ecc0c}{
 \index{m3g::CompositingMode@{m3g::CompositingMode}!CompositingMode@{CompositingMode}}
 \index{CompositingMode@{CompositingMode}!m3g::CompositingMode@{m3g::CompositingMode}}
@@ -93,16 +93,16 @@ class \textbf{Appearance}}
 \label{classm3g_1_1CompositingMode_5abfd1a798f1327aac4b92f55d4ecc0c}
 
 
-CompositingModeオブジェクトを作成するコンストラクタ. \hypertarget{classm3g_1_1CompositingMode_0bba5b15be7249e946c9aaf94631ce3b}{
+Constructs a \hyperlink{classm3g_1_1CompositingMode}{CompositingMode} object with default values. \hypertarget{classm3g_1_1CompositingMode_0bba5b15be7249e946c9aaf94631ce3b}{
 \index{m3g::CompositingMode@{m3g::CompositingMode}!$\sim$CompositingMode@{$\sim$CompositingMode}}
 \index{$\sim$CompositingMode@{$\sim$CompositingMode}!m3g::CompositingMode@{m3g::CompositingMode}}
 \subsubsection[{$\sim$CompositingMode}]{\setlength{\rightskip}{0pt plus 5cm}$\sim${\bf CompositingMode} ()\hspace{0.3cm}{\tt  \mbox{[}virtual\mbox{]}}}}
 \label{classm3g_1_1CompositingMode_0bba5b15be7249e946c9aaf94631ce3b}
 
 
-このCompositingModeオブジェクトのデストラクタ. 
+Destuct a \hyperlink{classm3g_1_1CompositingMode}{CompositingMode} object. 
 
-\subsection{関数}
+\subsection{Member Function Documentation}
 \hypertarget{classm3g_1_1CompositingMode_19ab71363ea77fa86aa6fafce87f06cb}{
 \index{m3g::CompositingMode@{m3g::CompositingMode}!getAlphaThreshold@{getAlphaThreshold}}
 \index{getAlphaThreshold@{getAlphaThreshold}!m3g::CompositingMode@{m3g::CompositingMode}}
@@ -110,127 +110,127 @@ CompositingModeオブジェクトを作成するコンストラクタ. \hypertar
 \label{classm3g_1_1CompositingMode_19ab71363ea77fa86aa6fafce87f06cb}
 
 
-カレントのαテストの閾値を取得する. \hypertarget{classm3g_1_1CompositingMode_078954de3d786bd11dc98b06f237bbbb}{
+Retrieves the current alpha testing threashold. \hypertarget{classm3g_1_1CompositingMode_078954de3d786bd11dc98b06f237bbbb}{
 \index{m3g::CompositingMode@{m3g::CompositingMode}!getBlending@{getBlending}}
 \index{getBlending@{getBlending}!m3g::CompositingMode@{m3g::CompositingMode}}
 \subsubsection[{getBlending}]{\setlength{\rightskip}{0pt plus 5cm}int getBlending () const}}
 \label{classm3g_1_1CompositingMode_078954de3d786bd11dc98b06f237bbbb}
 
 
-カレントのフレームバッファーのブレンディングモードを取得する. \hypertarget{classm3g_1_1CompositingMode_d24a4116e72678164f31d7a48f74be6b}{
+Retrieves the current frame buffer blending mode. \hypertarget{classm3g_1_1CompositingMode_d24a4116e72678164f31d7a48f74be6b}{
 \index{m3g::CompositingMode@{m3g::CompositingMode}!getDepthOffsetFactor@{getDepthOffsetFactor}}
 \index{getDepthOffsetFactor@{getDepthOffsetFactor}!m3g::CompositingMode@{m3g::CompositingMode}}
 \subsubsection[{getDepthOffsetFactor}]{\setlength{\rightskip}{0pt plus 5cm}float getDepthOffsetFactor () const}}
 \label{classm3g_1_1CompositingMode_d24a4116e72678164f31d7a48f74be6b}
 
 
-カレントの深度オフセットの勾配値を取得する. \hypertarget{classm3g_1_1CompositingMode_add4c6c3bc01c1d0689e0588af79039f}{
+Retrieves the current depth offset slope factor. \hypertarget{classm3g_1_1CompositingMode_add4c6c3bc01c1d0689e0588af79039f}{
 \index{m3g::CompositingMode@{m3g::CompositingMode}!getDepthOffsetUnits@{getDepthOffsetUnits}}
 \index{getDepthOffsetUnits@{getDepthOffsetUnits}!m3g::CompositingMode@{m3g::CompositingMode}}
 \subsubsection[{getDepthOffsetUnits}]{\setlength{\rightskip}{0pt plus 5cm}float getDepthOffsetUnits () const}}
 \label{classm3g_1_1CompositingMode_add4c6c3bc01c1d0689e0588af79039f}
 
 
-カレントの固定深度オフセット値を取得する. \hypertarget{classm3g_1_1CompositingMode_bfcec134f769763d492011fc8ccadcce}{
+Retrieves the current constant depth offset. \hypertarget{classm3g_1_1CompositingMode_bfcec134f769763d492011fc8ccadcce}{
 \index{m3g::CompositingMode@{m3g::CompositingMode}!isAlphaWriteEnabled@{isAlphaWriteEnabled}}
 \index{isAlphaWriteEnabled@{isAlphaWriteEnabled}!m3g::CompositingMode@{m3g::CompositingMode}}
 \subsubsection[{isAlphaWriteEnabled}]{\setlength{\rightskip}{0pt plus 5cm}bool isAlphaWriteEnabled () const}}
 \label{classm3g_1_1CompositingMode_bfcec134f769763d492011fc8ccadcce}
 
 
-αチャンネルへの書き込みが有効かどうかの問い合わせ. \hypertarget{classm3g_1_1CompositingMode_35ffa21944393c774552003dd2cb03ea}{
+Queries whether alpha writing is enabled. \hypertarget{classm3g_1_1CompositingMode_35ffa21944393c774552003dd2cb03ea}{
 \index{m3g::CompositingMode@{m3g::CompositingMode}!isColorWriteEnabled@{isColorWriteEnabled}}
 \index{isColorWriteEnabled@{isColorWriteEnabled}!m3g::CompositingMode@{m3g::CompositingMode}}
 \subsubsection[{isColorWriteEnabled}]{\setlength{\rightskip}{0pt plus 5cm}bool isColorWriteEnabled () const}}
 \label{classm3g_1_1CompositingMode_35ffa21944393c774552003dd2cb03ea}
 
 
-カラーチャンネルへの書き込みが有効かどうかの問い合わせ. \hypertarget{classm3g_1_1CompositingMode_4dd97b29a6e12c5e64477ab1546f93f1}{
+Queries whether color writing is enabled. \hypertarget{classm3g_1_1CompositingMode_4dd97b29a6e12c5e64477ab1546f93f1}{
 \index{m3g::CompositingMode@{m3g::CompositingMode}!isDepthTestEnabled@{isDepthTestEnabled}}
 \index{isDepthTestEnabled@{isDepthTestEnabled}!m3g::CompositingMode@{m3g::CompositingMode}}
 \subsubsection[{isDepthTestEnabled}]{\setlength{\rightskip}{0pt plus 5cm}bool isDepthTestEnabled () const}}
 \label{classm3g_1_1CompositingMode_4dd97b29a6e12c5e64477ab1546f93f1}
 
 
-深度テストが有効かどうかの問い合わせ. \hypertarget{classm3g_1_1CompositingMode_0ee4c812abd4a99e0373158d36dc45d9}{
+Queries whether depth writing is enabled. \hypertarget{classm3g_1_1CompositingMode_0ee4c812abd4a99e0373158d36dc45d9}{
 \index{m3g::CompositingMode@{m3g::CompositingMode}!isDepthWriteEnabled@{isDepthWriteEnabled}}
 \index{isDepthWriteEnabled@{isDepthWriteEnabled}!m3g::CompositingMode@{m3g::CompositingMode}}
 \subsubsection[{isDepthWriteEnabled}]{\setlength{\rightskip}{0pt plus 5cm}bool isDepthWriteEnabled () const}}
 \label{classm3g_1_1CompositingMode_0ee4c812abd4a99e0373158d36dc45d9}
 
 
-深度バッファーへの書き込みが有効かどうかの問い合わせ. \hypertarget{classm3g_1_1CompositingMode_6fea17fa1532df3794f8cb39cb4f911f}{
+Enables or disables writing of fragment depth values into the depth buffer. \hypertarget{classm3g_1_1CompositingMode_6fea17fa1532df3794f8cb39cb4f911f}{
 \index{m3g::CompositingMode@{m3g::CompositingMode}!print@{print}}
 \index{print@{print}!m3g::CompositingMode@{m3g::CompositingMode}}
 \subsubsection[{print}]{\setlength{\rightskip}{0pt plus 5cm}std::ostream \& print (std::ostream \& {\em out}) const\hspace{0.3cm}{\tt  \mbox{[}virtual\mbox{]}}}}
 \label{classm3g_1_1CompositingMode_6fea17fa1532df3794f8cb39cb4f911f}
 
 
-このCompositingModeの情報を表示する。デバッグ用. 
+Print out information of this object, for debug only. 
 
-\hyperlink{classm3g_1_1Object3D_6fea17fa1532df3794f8cb39cb4f911f}{Object3D}を再定義しています。\hypertarget{classm3g_1_1CompositingMode_1efcb1973989d9963d5bd6d03065d389}{
+Reimplemented from \hyperlink{classm3g_1_1Object3D_6fea17fa1532df3794f8cb39cb4f911f}{Object3D}.\hypertarget{classm3g_1_1CompositingMode_1efcb1973989d9963d5bd6d03065d389}{
 \index{m3g::CompositingMode@{m3g::CompositingMode}!render@{render}}
 \index{render@{render}!m3g::CompositingMode@{m3g::CompositingMode}}
 \subsubsection[{render}]{\setlength{\rightskip}{0pt plus 5cm}void render (int {\em pass}, \/  int {\em index} = {\tt 0}) const\hspace{0.3cm}{\tt  \mbox{[}protected, virtual\mbox{]}}}}
 \label{classm3g_1_1CompositingMode_1efcb1973989d9963d5bd6d03065d389}
 
 
-このCompositingModeノードをレンダリングする内部使用の関数.
+Render this object, for inner use.
 
 Note: \hyperlink{classm3g_1_1CompositingMode}{CompositingMode} should be rendered only at second rendering pass(pass=2). In other cases, do nothing. 
 
-\hyperlink{classm3g_1_1Object3D_1efcb1973989d9963d5bd6d03065d389}{Object3D}を再定義しています。\hypertarget{classm3g_1_1CompositingMode_6becafaefd18a2b8b1adeba491576837}{
+Reimplemented from \hyperlink{classm3g_1_1Object3D_1efcb1973989d9963d5bd6d03065d389}{Object3D}.\hypertarget{classm3g_1_1CompositingMode_6becafaefd18a2b8b1adeba491576837}{
 \index{m3g::CompositingMode@{m3g::CompositingMode}!setAlphaThreshold@{setAlphaThreshold}}
 \index{setAlphaThreshold@{setAlphaThreshold}!m3g::CompositingMode@{m3g::CompositingMode}}
 \subsubsection[{setAlphaThreshold}]{\setlength{\rightskip}{0pt plus 5cm}void setAlphaThreshold (float {\em threshold})}}
 \label{classm3g_1_1CompositingMode_6becafaefd18a2b8b1adeba491576837}
 
 
-αテスト閾値の設定. \hypertarget{classm3g_1_1CompositingMode_5204f1acac056f82d322262703be67b0}{
+Sets the threshold value for alpha testing. \hypertarget{classm3g_1_1CompositingMode_5204f1acac056f82d322262703be67b0}{
 \index{m3g::CompositingMode@{m3g::CompositingMode}!setAlphaWriteEnable@{setAlphaWriteEnable}}
 \index{setAlphaWriteEnable@{setAlphaWriteEnable}!m3g::CompositingMode@{m3g::CompositingMode}}
 \subsubsection[{setAlphaWriteEnable}]{\setlength{\rightskip}{0pt plus 5cm}void setAlphaWriteEnable (bool {\em enable})}}
 \label{classm3g_1_1CompositingMode_5204f1acac056f82d322262703be67b0}
 
 
-フラグメントのα成分をカラーバッファーへ書き込む事を許可もしくは不許可にする. \hypertarget{classm3g_1_1CompositingMode_4c09465dfec9efa000c115c5c2867b63}{
+Enables or disables writing of fragment alpha values into the color buffer. \hypertarget{classm3g_1_1CompositingMode_4c09465dfec9efa000c115c5c2867b63}{
 \index{m3g::CompositingMode@{m3g::CompositingMode}!setBlending@{setBlending}}
 \index{setBlending@{setBlending}!m3g::CompositingMode@{m3g::CompositingMode}}
 \subsubsection[{setBlending}]{\setlength{\rightskip}{0pt plus 5cm}void setBlending (int {\em mode})}}
 \label{classm3g_1_1CompositingMode_4c09465dfec9efa000c115c5c2867b63}
 
 
-フレームバッファーのピクセルとのブレンドモードの設定. \hypertarget{classm3g_1_1CompositingMode_84f7cba08f5a2bea05de4fc3154a50b2}{
+Selects a method of combindinnnng the pixel to be rendered with the pixel already inthe frame buffer. \hypertarget{classm3g_1_1CompositingMode_84f7cba08f5a2bea05de4fc3154a50b2}{
 \index{m3g::CompositingMode@{m3g::CompositingMode}!setColorWriteEnable@{setColorWriteEnable}}
 \index{setColorWriteEnable@{setColorWriteEnable}!m3g::CompositingMode@{m3g::CompositingMode}}
 \subsubsection[{setColorWriteEnable}]{\setlength{\rightskip}{0pt plus 5cm}void setColorWriteEnable (bool {\em enable})}}
 \label{classm3g_1_1CompositingMode_84f7cba08f5a2bea05de4fc3154a50b2}
 
 
-カラーバッファーへのフラグメントのカラーの書き込みの許可もしくは不許可の設定. \hypertarget{classm3g_1_1CompositingMode_4c825055ad0b5910ef4f9136d9a8e588}{
+Enables or disables writing of fragment coor values into the color buffer. \hypertarget{classm3g_1_1CompositingMode_4c825055ad0b5910ef4f9136d9a8e588}{
 \index{m3g::CompositingMode@{m3g::CompositingMode}!setDepthOffset@{setDepthOffset}}
 \index{setDepthOffset@{setDepthOffset}!m3g::CompositingMode@{m3g::CompositingMode}}
 \subsubsection[{setDepthOffset}]{\setlength{\rightskip}{0pt plus 5cm}void setDepthOffset (float {\em factor}, \/  float {\em units})}}
 \label{classm3g_1_1CompositingMode_4c825055ad0b5910ef4f9136d9a8e588}
 
 
-深度テストと深度バッファーへの書き込みの直前にスクリーン座標のZ座標にある値を足す. \hypertarget{classm3g_1_1CompositingMode_5f1afccdc51665bb04c971579d8ee05c}{
+Defines a value that is added to the screen space Z coordinate of a pixel immediately. \hypertarget{classm3g_1_1CompositingMode_5f1afccdc51665bb04c971579d8ee05c}{
 \index{m3g::CompositingMode@{m3g::CompositingMode}!setDepthTestEnable@{setDepthTestEnable}}
 \index{setDepthTestEnable@{setDepthTestEnable}!m3g::CompositingMode@{m3g::CompositingMode}}
 \subsubsection[{setDepthTestEnable}]{\setlength{\rightskip}{0pt plus 5cm}void setDepthTestEnable (bool {\em enable})}}
 \label{classm3g_1_1CompositingMode_5f1afccdc51665bb04c971579d8ee05c}
 
 
-深度テストの有効、無効の設定. \hypertarget{classm3g_1_1CompositingMode_a3275c9589ef319c6ba6f5c22d0b2860}{
+Enables or disables depth testing. \hypertarget{classm3g_1_1CompositingMode_a3275c9589ef319c6ba6f5c22d0b2860}{
 \index{m3g::CompositingMode@{m3g::CompositingMode}!setDepthWriteEnable@{setDepthWriteEnable}}
 \index{setDepthWriteEnable@{setDepthWriteEnable}!m3g::CompositingMode@{m3g::CompositingMode}}
 \subsubsection[{setDepthWriteEnable}]{\setlength{\rightskip}{0pt plus 5cm}void setDepthWriteEnable (bool {\em enable})}}
 \label{classm3g_1_1CompositingMode_a3275c9589ef319c6ba6f5c22d0b2860}
 
 
-深度バッファーへフラグメントの深度値を書き込みの許可もしくは不許可. 
+Queries whether depth writing is enabled. 
 
-\subsection{変数}
+\subsection{Member Data Documentation}
 \hypertarget{classm3g_1_1CompositingMode_417581fcde4067111f47320edb2aa378}{
 \index{m3g::CompositingMode@{m3g::CompositingMode}!ALPHA@{ALPHA}}
 \index{ALPHA@{ALPHA}!m3g::CompositingMode@{m3g::CompositingMode}}
@@ -238,37 +238,37 @@ Note: \hyperlink{classm3g_1_1CompositingMode}{CompositingMode} should be rendere
 \label{classm3g_1_1CompositingMode_417581fcde4067111f47320edb2aa378}
 
 
-アルファブレンドを表す定数. \hypertarget{classm3g_1_1CompositingMode_91ac80a5450e5f7f7e382860829030d9}{
+Selects the alpha blend mode. \hypertarget{classm3g_1_1CompositingMode_91ac80a5450e5f7f7e382860829030d9}{
 \index{m3g::CompositingMode@{m3g::CompositingMode}!ALPHA\_\-ADD@{ALPHA\_\-ADD}}
 \index{ALPHA\_\-ADD@{ALPHA\_\-ADD}!m3g::CompositingMode@{m3g::CompositingMode}}
 \subsubsection[{ALPHA\_\-ADD}]{\setlength{\rightskip}{0pt plus 5cm}const int {\bf ALPHA\_\-ADD} = 65\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
 \label{classm3g_1_1CompositingMode_91ac80a5450e5f7f7e382860829030d9}
 
 
-アルファ加算ブレンドを表す定数. \hypertarget{classm3g_1_1CompositingMode_96b64c2847348fb73a90c4a501cda9d1}{
+Selects the additive blend mode. \hypertarget{classm3g_1_1CompositingMode_96b64c2847348fb73a90c4a501cda9d1}{
 \index{m3g::CompositingMode@{m3g::CompositingMode}!MODULATE@{MODULATE}}
 \index{MODULATE@{MODULATE}!m3g::CompositingMode@{m3g::CompositingMode}}
 \subsubsection[{MODULATE}]{\setlength{\rightskip}{0pt plus 5cm}const int {\bf MODULATE} = 66\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
 \label{classm3g_1_1CompositingMode_96b64c2847348fb73a90c4a501cda9d1}
 
 
-モジュロ演算ブレンドを表す定数. \hypertarget{classm3g_1_1CompositingMode_cb426684e42a5ae425989c65fbb7dbc4}{
+Selects the basic modulating blending mode. \hypertarget{classm3g_1_1CompositingMode_cb426684e42a5ae425989c65fbb7dbc4}{
 \index{m3g::CompositingMode@{m3g::CompositingMode}!MODULATE\_\-X2@{MODULATE\_\-X2}}
 \index{MODULATE\_\-X2@{MODULATE\_\-X2}!m3g::CompositingMode@{m3g::CompositingMode}}
 \subsubsection[{MODULATE\_\-X2}]{\setlength{\rightskip}{0pt plus 5cm}const int {\bf MODULATE\_\-X2} = 67\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
 \label{classm3g_1_1CompositingMode_cb426684e42a5ae425989c65fbb7dbc4}
 
 
-より明るいモジュロ演算ブレンドを表す定数 \hypertarget{classm3g_1_1CompositingMode_47a00ac5a59817a48db06fb2a538883c}{
+Selects the brighter modulating blending mode. \hypertarget{classm3g_1_1CompositingMode_47a00ac5a59817a48db06fb2a538883c}{
 \index{m3g::CompositingMode@{m3g::CompositingMode}!REPLACE@{REPLACE}}
 \index{REPLACE@{REPLACE}!m3g::CompositingMode@{m3g::CompositingMode}}
 \subsubsection[{REPLACE}]{\setlength{\rightskip}{0pt plus 5cm}const int {\bf REPLACE} = 68\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
 \label{classm3g_1_1CompositingMode_47a00ac5a59817a48db06fb2a538883c}
 
 
-リプレースを表す定数. 
+Selects the replace mode. 
 
-このクラスの説明は次のファイルから生成されました:\begin{CompactItemize}
+The documentation for this class was generated from the following files:\begin{CompactItemize}
 \item 
 /work/desktop-m3g/src/CompositingMode.hpp\item 
 /work/desktop-m3g/src/CompositingMode.cpp\end{CompactItemize}

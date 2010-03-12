@@ -1,16 +1,16 @@
 \hypertarget{classm3g_1_1Appearance}{
-\section{クラス Appearance}
+\section{Appearance Class Reference}
 \label{classm3g_1_1Appearance}\index{m3g::Appearance@{m3g::Appearance}}
 }
 {\tt \#include $<$Appearance.hpp$>$}
 
-Appearanceに対する継承グラフ:\begin{figure}[H]
+Inheritance diagram for Appearance::\begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[height=2cm]{classm3g_1_1Appearance}
 \end{center}
 \end{figure}
-\subsection*{Public メソッド}
+\subsection*{Public Member Functions}
 \begin{CompactItemize}
 \item 
 \hyperlink{classm3g_1_1Appearance_2e594c7b96cb5cfad839a98b57f5d42f}{Appearance} ()
@@ -25,11 +25,17 @@ virtual int \hyperlink{classm3g_1_1Appearance_8aad1ceab4c2a03609c8a42324ce484d}{
 \item 
 int \hyperlink{classm3g_1_1Appearance_df831e0e0ebf9d7e997150e497e6a6cf}{getLayer} () const 
 \item 
-\hyperlink{classm3g_1_1Material}{Material} $\ast$ \hyperlink{classm3g_1_1Appearance_a412c7074ed5d51f6b8b6fd89275c405}{getMaterial} () const 
+\hypertarget{classm3g_1_1Appearance_a412c7074ed5d51f6b8b6fd89275c405}{
+\hyperlink{classm3g_1_1Material}{Material} $\ast$ \textbf{getMaterial} () const }
+\label{classm3g_1_1Appearance_a412c7074ed5d51f6b8b6fd89275c405}
+
 \item 
-\hyperlink{classm3g_1_1PolygonMode}{PolygonMode} $\ast$ \hyperlink{classm3g_1_1Appearance_dd3ddcefcd18339150d281b155602886}{getPolygonMode} () const 
+PolygonMode $\ast$ \hyperlink{classm3g_1_1Appearance_dd3ddcefcd18339150d281b155602886}{getPolygonMode} () const 
 \item 
-\hyperlink{classm3g_1_1Texture2D}{Texture2D} $\ast$ \hyperlink{classm3g_1_1Appearance_987cc21bd78d0e4e664da717479bdd57}{getTexture} (int index) const 
+\hypertarget{classm3g_1_1Appearance_987cc21bd78d0e4e664da717479bdd57}{
+\hyperlink{classm3g_1_1Texture2D}{Texture2D} $\ast$ \textbf{getTexture} (int index) const }
+\label{classm3g_1_1Appearance_987cc21bd78d0e4e664da717479bdd57}
+
 \item 
 void \hyperlink{classm3g_1_1Appearance_b4dbfc0232132aeb0a7b7c5eaade82e1}{setCompositingMode} (\hyperlink{classm3g_1_1CompositingMode}{CompositingMode} $\ast$compositingMode)
 \item 
@@ -37,20 +43,23 @@ void \hyperlink{classm3g_1_1Appearance_bc1a612006d6b4c3d443ff6ab542c788}{setFog}
 \item 
 void \hyperlink{classm3g_1_1Appearance_fbd2fbd594c8ee140b028f505631f682}{setLayer} (int layer)
 \item 
-void \hyperlink{classm3g_1_1Appearance_1dfd1a55fa3cc625719dab8e95c8a2de}{setMaterial} (\hyperlink{classm3g_1_1Material}{Material} $\ast$material)
+\hypertarget{classm3g_1_1Appearance_1dfd1a55fa3cc625719dab8e95c8a2de}{
+void \textbf{setMaterial} (\hyperlink{classm3g_1_1Material}{Material} $\ast$material)}
+\label{classm3g_1_1Appearance_1dfd1a55fa3cc625719dab8e95c8a2de}
+
 \item 
-void \hyperlink{classm3g_1_1Appearance_cc21fac7868e2ad37e689ac642db1aae}{setPolygonMode} (\hyperlink{classm3g_1_1PolygonMode}{PolygonMode} $\ast$polygonMode)
+void \hyperlink{classm3g_1_1Appearance_cc21fac7868e2ad37e689ac642db1aae}{setPolygonMode} (PolygonMode $\ast$polygonMode)
 \item 
 void \hyperlink{classm3g_1_1Appearance_493e54b1c7ab839b9e76b28e0629cf6a}{setTexture} (int index, \hyperlink{classm3g_1_1Texture2D}{Texture2D} $\ast$texture)
 \item 
 virtual std::ostream \& \hyperlink{classm3g_1_1Appearance_6fea17fa1532df3794f8cb39cb4f911f}{print} (std::ostream \&out) const 
 \end{CompactItemize}
-\subsection*{Protected メソッド}
+\subsection*{Protected Member Functions}
 \begin{CompactItemize}
 \item 
 virtual void \hyperlink{classm3g_1_1Appearance_4dadb21b568b0230fac106f15040138c}{findByObjectType} (int obj\_\-type, std::vector$<$ \hyperlink{classm3g_1_1Object3D}{Object3D} $\ast$ $>$ \&objs) const 
 \end{CompactItemize}
-\subsection*{フレンド}
+\subsection*{Friends}
 \begin{CompactItemize}
 \item 
 \hypertarget{classm3g_1_1Appearance_a41a130f156b145bffb3f4b5172c4c93}{
@@ -65,10 +74,10 @@ class \textbf{Sprite3D}}
 \end{CompactItemize}
 
 
-\subsection{説明}
-set of component objects that define the rendering attributes of a \hyperlink{classm3g_1_1Mesh}{Mesh} or \hyperlink{classm3g_1_1Sprite3D}{Sprite3D}. MeshやSprite3Dのレンダリング属性を定義するコンポーネントオブジェクトの集合. 
+\subsection{Detailed Description}
+set of component objects that define the rendering attributes of a \hyperlink{classm3g_1_1Mesh}{Mesh} or Sprite3D. MeshやSprite3Dのレンダリング属性を定義するコンポーネントオブジェクトの集合. 
 
-\subsection{コンストラクタとデストラクタ}
+\subsection{Constructor \& Destructor Documentation}
 \hypertarget{classm3g_1_1Appearance_2e594c7b96cb5cfad839a98b57f5d42f}{
 \index{m3g::Appearance@{m3g::Appearance}!Appearance@{Appearance}}
 \index{Appearance@{Appearance}!m3g::Appearance@{m3g::Appearance}}
@@ -76,16 +85,16 @@ set of component objects that define the rendering attributes of a \hyperlink{cl
 \label{classm3g_1_1Appearance_2e594c7b96cb5cfad839a98b57f5d42f}
 
 
-Appearanceオブジェクトの作成. \hypertarget{classm3g_1_1Appearance_c05c93d7a0f286cb9471b6c667ffeee1}{
+Constructs an \hyperlink{classm3g_1_1Appearance}{Appearance} object with default values. \hypertarget{classm3g_1_1Appearance_c05c93d7a0f286cb9471b6c667ffeee1}{
 \index{m3g::Appearance@{m3g::Appearance}!$\sim$Appearance@{$\sim$Appearance}}
 \index{$\sim$Appearance@{$\sim$Appearance}!m3g::Appearance@{m3g::Appearance}}
 \subsubsection[{$\sim$Appearance}]{\setlength{\rightskip}{0pt plus 5cm}$\sim${\bf Appearance} ()\hspace{0.3cm}{\tt  \mbox{[}virtual\mbox{]}}}}
 \label{classm3g_1_1Appearance_c05c93d7a0f286cb9471b6c667ffeee1}
 
 
-このAppearanceクラスのデストラクタ. 
+Destruct an \hyperlink{classm3g_1_1Appearance}{Appearance} object. 
 
-\subsection{関数}
+\subsection{Member Function Documentation}
 \hypertarget{classm3g_1_1Appearance_8aad1ceab4c2a03609c8a42324ce484d}{
 \index{m3g::Appearance@{m3g::Appearance}!animate@{animate}}
 \index{animate@{animate}!m3g::Appearance@{m3g::Appearance}}
@@ -93,113 +102,92 @@ Appearanceオブジェクトの作成. \hypertarget{classm3g_1_1Appearance_c05c9
 \label{classm3g_1_1Appearance_8aad1ceab4c2a03609c8a42324ce484d}
 
 
-このノードをアニメーションする. 
+Updates all animated properties in this \hyperlink{classm3g_1_1Object3D}{Object3D} and all Object3Ds that are reachable from this \hyperlink{classm3g_1_1Object3D}{Object3D}. 
 
-\hyperlink{classm3g_1_1Object3D_8aad1ceab4c2a03609c8a42324ce484d}{Object3D}を再定義しています。\hypertarget{classm3g_1_1Appearance_4dadb21b568b0230fac106f15040138c}{
+Reimplemented from \hyperlink{classm3g_1_1Object3D_8aad1ceab4c2a03609c8a42324ce484d}{Object3D}.\hypertarget{classm3g_1_1Appearance_4dadb21b568b0230fac106f15040138c}{
 \index{m3g::Appearance@{m3g::Appearance}!findByObjectType@{findByObjectType}}
 \index{findByObjectType@{findByObjectType}!m3g::Appearance@{m3g::Appearance}}
 \subsubsection[{findByObjectType}]{\setlength{\rightskip}{0pt plus 5cm}void findByObjectType (int {\em obj\_\-type}, \/  std::vector$<$ {\bf Object3D} $\ast$ $>$ \& {\em objs}) const\hspace{0.3cm}{\tt  \mbox{[}protected, virtual\mbox{]}}}}
 \label{classm3g_1_1Appearance_4dadb21b568b0230fac106f15040138c}
 
 
-オブジェクトタイプで検索する内部使用の関数. 
+Find by object type, inner use only. 
 
-\hyperlink{classm3g_1_1Object3D_4dadb21b568b0230fac106f15040138c}{Object3D}を再定義しています。\hypertarget{classm3g_1_1Appearance_e4045934febb56891c15e14486b239a8}{
+Reimplemented from \hyperlink{classm3g_1_1Object3D_4dadb21b568b0230fac106f15040138c}{Object3D}.\hypertarget{classm3g_1_1Appearance_e4045934febb56891c15e14486b239a8}{
 \index{m3g::Appearance@{m3g::Appearance}!getCompositingMode@{getCompositingMode}}
 \index{getCompositingMode@{getCompositingMode}!m3g::Appearance@{m3g::Appearance}}
 \subsubsection[{getCompositingMode}]{\setlength{\rightskip}{0pt plus 5cm}{\bf CompositingMode} $\ast$ getCompositingMode () const}}
 \label{classm3g_1_1Appearance_e4045934febb56891c15e14486b239a8}
 
 
-このアピアランスのCompositingModeの取得. \hypertarget{classm3g_1_1Appearance_93143a921b998ff69576147a59eb44d4}{
+Returns the current CompostingMode for this \hyperlink{classm3g_1_1Appearance}{Appearance}. \hypertarget{classm3g_1_1Appearance_93143a921b998ff69576147a59eb44d4}{
 \index{m3g::Appearance@{m3g::Appearance}!getFog@{getFog}}
 \index{getFog@{getFog}!m3g::Appearance@{m3g::Appearance}}
 \subsubsection[{getFog}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Fog} $\ast$ getFog () const}}
 \label{classm3g_1_1Appearance_93143a921b998ff69576147a59eb44d4}
 
 
-このアピアランスのFogの取得. \hypertarget{classm3g_1_1Appearance_df831e0e0ebf9d7e997150e497e6a6cf}{
+Returns the current foggin attributes for this \hyperlink{classm3g_1_1Appearance}{Appearance}. \hypertarget{classm3g_1_1Appearance_df831e0e0ebf9d7e997150e497e6a6cf}{
 \index{m3g::Appearance@{m3g::Appearance}!getLayer@{getLayer}}
 \index{getLayer@{getLayer}!m3g::Appearance@{m3g::Appearance}}
 \subsubsection[{getLayer}]{\setlength{\rightskip}{0pt plus 5cm}int getLayer () const}}
 \label{classm3g_1_1Appearance_df831e0e0ebf9d7e997150e497e6a6cf}
 
 
-このアピアランスのレンダリングレイヤーの取得. \hypertarget{classm3g_1_1Appearance_a412c7074ed5d51f6b8b6fd89275c405}{
-\index{m3g::Appearance@{m3g::Appearance}!getMaterial@{getMaterial}}
-\index{getMaterial@{getMaterial}!m3g::Appearance@{m3g::Appearance}}
-\subsubsection[{getMaterial}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Material} $\ast$ getMaterial () const}}
-\label{classm3g_1_1Appearance_a412c7074ed5d51f6b8b6fd89275c405}
-
-
-このアピアランスのMaterialの取得 \hypertarget{classm3g_1_1Appearance_dd3ddcefcd18339150d281b155602886}{
+Gets the current rendering layer for this \hyperlink{classm3g_1_1Appearance}{Appearance}. \hypertarget{classm3g_1_1Appearance_dd3ddcefcd18339150d281b155602886}{
 \index{m3g::Appearance@{m3g::Appearance}!getPolygonMode@{getPolygonMode}}
 \index{getPolygonMode@{getPolygonMode}!m3g::Appearance@{m3g::Appearance}}
-\subsubsection[{getPolygonMode}]{\setlength{\rightskip}{0pt plus 5cm}{\bf PolygonMode} $\ast$ getPolygonMode () const}}
+\subsubsection[{getPolygonMode}]{\setlength{\rightskip}{0pt plus 5cm}PolygonMode $\ast$ getPolygonMode () const}}
 \label{classm3g_1_1Appearance_dd3ddcefcd18339150d281b155602886}
 
 
-このアピアランスのPolygonModeの取得. \hypertarget{classm3g_1_1Appearance_987cc21bd78d0e4e664da717479bdd57}{
-\index{m3g::Appearance@{m3g::Appearance}!getTexture@{getTexture}}
-\index{getTexture@{getTexture}!m3g::Appearance@{m3g::Appearance}}
-\subsubsection[{getTexture}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Texture2D} $\ast$ getTexture (int {\em index}) const}}
-\label{classm3g_1_1Appearance_987cc21bd78d0e4e664da717479bdd57}
-
-
-指定されたテクスチャーユニットのテクスチャーイメージとその属性値の取得. \hypertarget{classm3g_1_1Appearance_6fea17fa1532df3794f8cb39cb4f911f}{
+Returns the current PolygonMode for this \hyperlink{classm3g_1_1Appearance}{Appearance}. \hypertarget{classm3g_1_1Appearance_6fea17fa1532df3794f8cb39cb4f911f}{
 \index{m3g::Appearance@{m3g::Appearance}!print@{print}}
 \index{print@{print}!m3g::Appearance@{m3g::Appearance}}
 \subsubsection[{print}]{\setlength{\rightskip}{0pt plus 5cm}std::ostream \& print (std::ostream \& {\em out}) const\hspace{0.3cm}{\tt  \mbox{[}virtual\mbox{]}}}}
 \label{classm3g_1_1Appearance_6fea17fa1532df3794f8cb39cb4f911f}
 
 
-このAppearanceクラスの情報を表示する。デバッグ用. 
+Print out information of this class, for debug only. 
 
-\hyperlink{classm3g_1_1Object3D_6fea17fa1532df3794f8cb39cb4f911f}{Object3D}を再定義しています。\hypertarget{classm3g_1_1Appearance_b4dbfc0232132aeb0a7b7c5eaade82e1}{
+Reimplemented from \hyperlink{classm3g_1_1Object3D_6fea17fa1532df3794f8cb39cb4f911f}{Object3D}.\hypertarget{classm3g_1_1Appearance_b4dbfc0232132aeb0a7b7c5eaade82e1}{
 \index{m3g::Appearance@{m3g::Appearance}!setCompositingMode@{setCompositingMode}}
 \index{setCompositingMode@{setCompositingMode}!m3g::Appearance@{m3g::Appearance}}
 \subsubsection[{setCompositingMode}]{\setlength{\rightskip}{0pt plus 5cm}void setCompositingMode ({\bf CompositingMode} $\ast$ {\em compositingMode})}}
 \label{classm3g_1_1Appearance_b4dbfc0232132aeb0a7b7c5eaade82e1}
 
 
-このアピアランスで使用するCompositingModeの設定. \hypertarget{classm3g_1_1Appearance_bc1a612006d6b4c3d443ff6ab542c788}{
+Sets the \hyperlink{classm3g_1_1CompositingMode}{CompositingMode} to user for this \hyperlink{classm3g_1_1Appearance}{Appearance}. \hypertarget{classm3g_1_1Appearance_bc1a612006d6b4c3d443ff6ab542c788}{
 \index{m3g::Appearance@{m3g::Appearance}!setFog@{setFog}}
 \index{setFog@{setFog}!m3g::Appearance@{m3g::Appearance}}
 \subsubsection[{setFog}]{\setlength{\rightskip}{0pt plus 5cm}void setFog ({\bf Fog} $\ast$ {\em fog})}}
 \label{classm3g_1_1Appearance_bc1a612006d6b4c3d443ff6ab542c788}
 
 
-このアピアランスで使用するFogの設定. \hypertarget{classm3g_1_1Appearance_fbd2fbd594c8ee140b028f505631f682}{
+Sets the fogging attributes to use for this \hyperlink{classm3g_1_1Appearance}{Appearance}. \hypertarget{classm3g_1_1Appearance_fbd2fbd594c8ee140b028f505631f682}{
 \index{m3g::Appearance@{m3g::Appearance}!setLayer@{setLayer}}
 \index{setLayer@{setLayer}!m3g::Appearance@{m3g::Appearance}}
 \subsubsection[{setLayer}]{\setlength{\rightskip}{0pt plus 5cm}void setLayer (int {\em layer})}}
 \label{classm3g_1_1Appearance_fbd2fbd594c8ee140b028f505631f682}
 
 
-このアピアランスのレンダリングレイヤーの設定. \hypertarget{classm3g_1_1Appearance_1dfd1a55fa3cc625719dab8e95c8a2de}{
-\index{m3g::Appearance@{m3g::Appearance}!setMaterial@{setMaterial}}
-\index{setMaterial@{setMaterial}!m3g::Appearance@{m3g::Appearance}}
-\subsubsection[{setMaterial}]{\setlength{\rightskip}{0pt plus 5cm}void setMaterial ({\bf Material} $\ast$ {\em material})}}
-\label{classm3g_1_1Appearance_1dfd1a55fa3cc625719dab8e95c8a2de}
-
-
-このアピアランスのMaterialの設定. \hypertarget{classm3g_1_1Appearance_cc21fac7868e2ad37e689ac642db1aae}{
+Sets the rendering layer for this \hyperlink{classm3g_1_1Appearance}{Appearance}. \hypertarget{classm3g_1_1Appearance_cc21fac7868e2ad37e689ac642db1aae}{
 \index{m3g::Appearance@{m3g::Appearance}!setPolygonMode@{setPolygonMode}}
 \index{setPolygonMode@{setPolygonMode}!m3g::Appearance@{m3g::Appearance}}
-\subsubsection[{setPolygonMode}]{\setlength{\rightskip}{0pt plus 5cm}void setPolygonMode ({\bf PolygonMode} $\ast$ {\em polygonMode})}}
+\subsubsection[{setPolygonMode}]{\setlength{\rightskip}{0pt plus 5cm}void setPolygonMode (PolygonMode $\ast$ {\em polygonMode})}}
 \label{classm3g_1_1Appearance_cc21fac7868e2ad37e689ac642db1aae}
 
 
-このアピアランスのPolygonModeの設定 \hypertarget{classm3g_1_1Appearance_493e54b1c7ab839b9e76b28e0629cf6a}{
+Sets the PolygonMode to use for this \hyperlink{classm3g_1_1Appearance}{Appearance}. \hypertarget{classm3g_1_1Appearance_493e54b1c7ab839b9e76b28e0629cf6a}{
 \index{m3g::Appearance@{m3g::Appearance}!setTexture@{setTexture}}
 \index{setTexture@{setTexture}!m3g::Appearance@{m3g::Appearance}}
 \subsubsection[{setTexture}]{\setlength{\rightskip}{0pt plus 5cm}void setTexture (int {\em index}, \/  {\bf Texture2D} $\ast$ {\em texture})}}
 \label{classm3g_1_1Appearance_493e54b1c7ab839b9e76b28e0629cf6a}
 
 
-指定されたテクスチャーユニットのテクスチャーイメージとその属性値の設定. 
+Sets the texture image and its attributes for the given textureing unit. 
 
-このクラスの説明は次のファイルから生成されました:\begin{CompactItemize}
+The documentation for this class was generated from the following files:\begin{CompactItemize}
 \item 
 /work/desktop-m3g/src/Appearance.hpp\item 
 /work/desktop-m3g/src/Appearance.cpp\end{CompactItemize}

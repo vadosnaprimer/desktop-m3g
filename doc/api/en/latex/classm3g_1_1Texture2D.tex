@@ -1,23 +1,23 @@
 \hypertarget{classm3g_1_1Texture2D}{
-\section{クラス Texture2D}
+\section{Texture2D Class Reference}
 \label{classm3g_1_1Texture2D}\index{m3g::Texture2D@{m3g::Texture2D}}
 }
 {\tt \#include $<$Texture2D.hpp$>$}
 
-Texture2Dに対する継承グラフ:\begin{figure}[H]
+Inheritance diagram for Texture2D::\begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[height=3cm]{classm3g_1_1Texture2D}
 \end{center}
 \end{figure}
-\subsection*{構成}
+\subsection*{Classes}
 \begin{CompactItemize}
 \item 
 struct \textbf{Filter}
 \item 
 struct \textbf{Wrapping}
 \end{CompactItemize}
-\subsection*{Public メソッド}
+\subsection*{Public Member Functions}
 \begin{CompactItemize}
 \item 
 \hyperlink{classm3g_1_1Texture2D_7a8d6431e41022e29ac936afc5e97b8e}{Texture2D} (\hyperlink{classm3g_1_1Image2D}{Image2D} $\ast$image)
@@ -54,7 +54,7 @@ void \hyperlink{classm3g_1_1Texture2D_e676f34bd2f5ee1508ad1cb771702d8f}{setWrapp
 \item 
 virtual std::ostream \& \hyperlink{classm3g_1_1Texture2D_6fea17fa1532df3794f8cb39cb4f911f}{print} (std::ostream \&out) const 
 \end{CompactItemize}
-\subsection*{Static Public 変数}
+\subsection*{Static Public Attributes}
 \begin{CompactItemize}
 \item 
 static const int \hyperlink{classm3g_1_1Texture2D_d1924d32385b5353ad11ecd8b1ec0ad5}{FILTER\_\-BASE\_\-LEVEL} = 208
@@ -77,12 +77,12 @@ static const int \hyperlink{classm3g_1_1Texture2D_e36d8facf5b60eb6c59888121731c4
 \item 
 static const int \hyperlink{classm3g_1_1Texture2D_b37ff061b9fb272284c4c389deec9266}{WRAP\_\-REPEAT} = 241
 \end{CompactItemize}
-\subsection*{Protected メソッド}
+\subsection*{Protected Member Functions}
 \begin{CompactItemize}
 \item 
 virtual void \hyperlink{classm3g_1_1Texture2D_4dadb21b568b0230fac106f15040138c}{findByObjectType} (int obj\_\-type, std::vector$<$ \hyperlink{classm3g_1_1Object3D}{Object3D} $\ast$ $>$ \&objs) const 
 \end{CompactItemize}
-\subsection*{フレンド}
+\subsection*{Friends}
 \begin{CompactItemize}
 \item 
 \hypertarget{classm3g_1_1Texture2D_afa5201a494f65c37039281d9b63a2a9}{
@@ -92,10 +92,10 @@ class \textbf{Appearance}}
 \end{CompactItemize}
 
 
-\subsection{説明}
+\subsection{Detailed Description}
 2Dテクスチャー画像とサブメッシュへの適応方法を指定する属性値をカプセル化したシーングラフノード. 
 
-\subsection{コンストラクタとデストラクタ}
+\subsection{Constructor \& Destructor Documentation}
 \hypertarget{classm3g_1_1Texture2D_7a8d6431e41022e29ac936afc5e97b8e}{
 \index{m3g::Texture2D@{m3g::Texture2D}!Texture2D@{Texture2D}}
 \index{Texture2D@{Texture2D}!m3g::Texture2D@{m3g::Texture2D}}
@@ -112,7 +112,7 @@ class \textbf{Appearance}}
 
 デストラクタ. 
 
-\subsection{関数}
+\subsection{Member Function Documentation}
 \hypertarget{classm3g_1_1Texture2D_415c0b110f95410ded9b85e5d99a496b}{
 \index{m3g::Texture2D@{m3g::Texture2D}!addAnimationTrack@{addAnimationTrack}}
 \index{addAnimationTrack@{addAnimationTrack}!m3g::Texture2D@{m3g::Texture2D}}
@@ -122,7 +122,7 @@ class \textbf{Appearance}}
 
 アニメーショントラックの追加。 既存のトラックの順番とインデックスは変更されるかもしれない. 
 
-\hyperlink{classm3g_1_1Transformable_415c0b110f95410ded9b85e5d99a496b}{Transformable}を再定義しています。\hypertarget{classm3g_1_1Texture2D_82cfeb67ca66b93e2ca7bda9a4f0e2aa}{
+Reimplemented from \hyperlink{classm3g_1_1Transformable_415c0b110f95410ded9b85e5d99a496b}{Transformable}.\hypertarget{classm3g_1_1Texture2D_82cfeb67ca66b93e2ca7bda9a4f0e2aa}{
 \index{m3g::Texture2D@{m3g::Texture2D}!animate@{animate}}
 \index{animate@{animate}!m3g::Texture2D@{m3g::Texture2D}}
 \subsubsection[{animate}]{\setlength{\rightskip}{0pt plus 5cm}int animate (int {\em time})\hspace{0.3cm}{\tt  \mbox{[}virtual\mbox{]}}}}
@@ -131,16 +131,16 @@ class \textbf{Appearance}}
 
 アニメーションの更新. y 
 
-\hyperlink{classm3g_1_1Transformable_8aad1ceab4c2a03609c8a42324ce484d}{Transformable}を再定義しています。\hypertarget{classm3g_1_1Texture2D_4dadb21b568b0230fac106f15040138c}{
+Reimplemented from \hyperlink{classm3g_1_1Transformable_8aad1ceab4c2a03609c8a42324ce484d}{Transformable}.\hypertarget{classm3g_1_1Texture2D_4dadb21b568b0230fac106f15040138c}{
 \index{m3g::Texture2D@{m3g::Texture2D}!findByObjectType@{findByObjectType}}
 \index{findByObjectType@{findByObjectType}!m3g::Texture2D@{m3g::Texture2D}}
 \subsubsection[{findByObjectType}]{\setlength{\rightskip}{0pt plus 5cm}void findByObjectType (int {\em obj\_\-type}, \/  std::vector$<$ {\bf Object3D} $\ast$ $>$ \& {\em objs}) const\hspace{0.3cm}{\tt  \mbox{[}protected, virtual\mbox{]}}}}
 \label{classm3g_1_1Texture2D_4dadb21b568b0230fac106f15040138c}
 
 
-オブジェクトタイプを指定して検索. 
+Find all objects by object type. 
 
-\hyperlink{classm3g_1_1Object3D_4dadb21b568b0230fac106f15040138c}{Object3D}を再定義しています。\hypertarget{classm3g_1_1Texture2D_b7dc7b7bf2934448281894f2c1ef3638}{
+Reimplemented from \hyperlink{classm3g_1_1Object3D_4dadb21b568b0230fac106f15040138c}{Object3D}.\hypertarget{classm3g_1_1Texture2D_b7dc7b7bf2934448281894f2c1ef3638}{
 \index{m3g::Texture2D@{m3g::Texture2D}!getBlendColor@{getBlendColor}}
 \index{getBlendColor@{getBlendColor}!m3g::Texture2D@{m3g::Texture2D}}
 \subsubsection[{getBlendColor}]{\setlength{\rightskip}{0pt plus 5cm}int getBlendColor () const}}
@@ -198,7 +198,7 @@ T方向のテクスチャー座標系のカレントのラッピングモード�
 
 このTexture2Dクラスの情報を表示するデバッグ用の関数. 
 
-\hyperlink{classm3g_1_1Transformable_6fea17fa1532df3794f8cb39cb4f911f}{Transformable}を再定義しています。\hypertarget{classm3g_1_1Texture2D_b5a6333203f443fb1f66ea2e39d4de1b}{
+Reimplemented from \hyperlink{classm3g_1_1Transformable_6fea17fa1532df3794f8cb39cb4f911f}{Transformable}.\hypertarget{classm3g_1_1Texture2D_b5a6333203f443fb1f66ea2e39d4de1b}{
 \index{m3g::Texture2D@{m3g::Texture2D}!setBlendColor@{setBlendColor}}
 \index{setBlendColor@{setBlendColor}!m3g::Texture2D@{m3g::Texture2D}}
 \subsubsection[{setBlendColor}]{\setlength{\rightskip}{0pt plus 5cm}void setBlendColor (int {\em rgb})}}
@@ -235,7 +235,7 @@ T方向のテクスチャー座標系のカレントのラッピングモード�
 
 S,Tテクスチャー座標のラッピングモードの設定. 
 
-\subsection{変数}
+\subsection{Member Data Documentation}
 \hypertarget{classm3g_1_1Texture2D_d1924d32385b5353ad11ecd8b1ec0ad5}{
 \index{m3g::Texture2D@{m3g::Texture2D}!FILTER\_\-BASE\_\-LEVEL@{FILTER\_\-BASE\_\-LEVEL}}
 \index{FILTER\_\-BASE\_\-LEVEL@{FILTER\_\-BASE\_\-LEVEL}!m3g::Texture2D@{m3g::Texture2D}}
@@ -308,7 +308,7 @@ S,Tテクスチャー座標のラッピングモードの設定.
 
 ラップモードを繰り返し(repeat)に設定する定数値. 
 
-このクラスの説明は次のファイルから生成されました:\begin{CompactItemize}
+The documentation for this class was generated from the following files:\begin{CompactItemize}
 \item 
 /work/desktop-m3g/src/Texture2D.hpp\item 
 /work/desktop-m3g/src/Texture2D.cpp\end{CompactItemize}

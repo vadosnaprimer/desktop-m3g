@@ -1,16 +1,16 @@
 \hypertarget{classm3g_1_1World}{
-\section{クラス World}
+\section{World Class Reference}
 \label{classm3g_1_1World}\index{m3g::World@{m3g::World}}
 }
 {\tt \#include $<$World.hpp$>$}
 
-Worldに対する継承グラフ:\begin{figure}[H]
+Inheritance diagram for World::\begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[height=5cm]{classm3g_1_1World}
 \end{center}
 \end{figure}
-\subsection*{Public メソッド}
+\subsection*{Public Member Functions}
 \begin{CompactItemize}
 \item 
 \hyperlink{classm3g_1_1World_75e827b8787e735882f60c266d58e02e}{World} ()
@@ -29,12 +29,12 @@ void \hyperlink{classm3g_1_1World_6193765c76d6dc0450f264918ebe7e1c}{setBackgroun
 \item 
 virtual std::ostream \& \hyperlink{classm3g_1_1World_6fea17fa1532df3794f8cb39cb4f911f}{print} (std::ostream \&out) const 
 \end{CompactItemize}
-\subsection*{Protected メソッド}
+\subsection*{Protected Member Functions}
 \begin{CompactItemize}
 \item 
 virtual void \hyperlink{classm3g_1_1World_1efcb1973989d9963d5bd6d03065d389}{render} (int pass, int index=0) const 
 \end{CompactItemize}
-\subsection*{フレンド}
+\subsection*{Friends}
 \begin{CompactItemize}
 \item 
 \hypertarget{classm3g_1_1World_8174d4c629550c1ee279571250236ef4}{
@@ -44,10 +44,10 @@ class \textbf{Graphics3D}}
 \end{CompactItemize}
 
 
-\subsection{説明}
-シーングラフを保持する最上位の特殊グループノード. 
+\subsection{Detailed Description}
+A special Group node that is a top-level container for scene graphs. 
 
-\subsection{コンストラクタとデストラクタ}
+\subsection{Constructor \& Destructor Documentation}
 \hypertarget{classm3g_1_1World_75e827b8787e735882f60c266d58e02e}{
 \index{m3g::World@{m3g::World}!World@{World}}
 \index{World@{World}!m3g::World@{m3g::World}}
@@ -55,16 +55,16 @@ class \textbf{Graphics3D}}
 \label{classm3g_1_1World_75e827b8787e735882f60c266d58e02e}
 
 
-デフォルト値のWorldオブジェクトの作成. \hypertarget{classm3g_1_1World_bd170ded455f0b2273c1fe06da6ea0cb}{
+Creates an empty \hyperlink{classm3g_1_1World}{World} with default values. \hypertarget{classm3g_1_1World_bd170ded455f0b2273c1fe06da6ea0cb}{
 \index{m3g::World@{m3g::World}!$\sim$World@{$\sim$World}}
 \index{$\sim$World@{$\sim$World}!m3g::World@{m3g::World}}
 \subsubsection[{$\sim$World}]{\setlength{\rightskip}{0pt plus 5cm}$\sim${\bf World} ()\hspace{0.3cm}{\tt  \mbox{[}virtual\mbox{]}}}}
 \label{classm3g_1_1World_bd170ded455f0b2273c1fe06da6ea0cb}
 
 
-このオブジェクトを削除するデストラクタ. 
+Destructs this objects. 
 
-\subsection{関数}
+\subsection{Member Function Documentation}
 \hypertarget{classm3g_1_1World_8aad1ceab4c2a03609c8a42324ce484d}{
 \index{m3g::World@{m3g::World}!animate@{animate}}
 \index{animate@{animate}!m3g::World@{m3g::World}}
@@ -72,59 +72,59 @@ class \textbf{Graphics3D}}
 \label{classm3g_1_1World_8aad1ceab4c2a03609c8a42324ce484d}
 
 
-このObject3D自身とここから到達できるObject3Dのアニメーテッドプロパティを更新する. 
+Updates all animated properties in this \hyperlink{classm3g_1_1Object3D}{Object3D} and all Object3Ds that are reachable from this \hyperlink{classm3g_1_1Object3D}{Object3D}. 
 
-\hyperlink{classm3g_1_1Group_8aad1ceab4c2a03609c8a42324ce484d}{Group}を再定義しています。\hypertarget{classm3g_1_1World_812e01ec4fd0fd872b0ca5ea6a30b2f6}{
+Reimplemented from \hyperlink{classm3g_1_1Node_8aad1ceab4c2a03609c8a42324ce484d}{Node}.\hypertarget{classm3g_1_1World_812e01ec4fd0fd872b0ca5ea6a30b2f6}{
 \index{m3g::World@{m3g::World}!getActiveCamera@{getActiveCamera}}
 \index{getActiveCamera@{getActiveCamera}!m3g::World@{m3g::World}}
 \subsubsection[{getActiveCamera}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Camera} $\ast$ getActiveCamera () const}}
 \label{classm3g_1_1World_812e01ec4fd0fd872b0ca5ea6a30b2f6}
 
 
-カレントのアクティブカメラの取得. \hypertarget{classm3g_1_1World_fb10ab7fd2ad14b7b1d49caf129670e0}{
+Gets the currently active cameara. \hypertarget{classm3g_1_1World_fb10ab7fd2ad14b7b1d49caf129670e0}{
 \index{m3g::World@{m3g::World}!getBackground@{getBackground}}
 \index{getBackground@{getBackground}!m3g::World@{m3g::World}}
 \subsubsection[{getBackground}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Background} $\ast$ getBackground () const}}
 \label{classm3g_1_1World_fb10ab7fd2ad14b7b1d49caf129670e0}
 
 
-このWorldのバックグラウンド設定の取得. \hypertarget{classm3g_1_1World_6fea17fa1532df3794f8cb39cb4f911f}{
+Retrieves the background settings of this \hyperlink{classm3g_1_1World}{World}. \hypertarget{classm3g_1_1World_6fea17fa1532df3794f8cb39cb4f911f}{
 \index{m3g::World@{m3g::World}!print@{print}}
 \index{print@{print}!m3g::World@{m3g::World}}
 \subsubsection[{print}]{\setlength{\rightskip}{0pt plus 5cm}std::ostream \& print (std::ostream \& {\em out}) const\hspace{0.3cm}{\tt  \mbox{[}virtual\mbox{]}}}}
 \label{classm3g_1_1World_6fea17fa1532df3794f8cb39cb4f911f}
 
 
-このWorldクラスの情報を表示する。デバッグ用. 
+Print out information of this object, for debug only. 
 
-\hyperlink{classm3g_1_1Group_6fea17fa1532df3794f8cb39cb4f911f}{Group}を再定義しています。\hypertarget{classm3g_1_1World_1efcb1973989d9963d5bd6d03065d389}{
+Reimplemented from \hyperlink{classm3g_1_1Node_6fea17fa1532df3794f8cb39cb4f911f}{Node}.\hypertarget{classm3g_1_1World_1efcb1973989d9963d5bd6d03065d389}{
 \index{m3g::World@{m3g::World}!render@{render}}
 \index{render@{render}!m3g::World@{m3g::World}}
 \subsubsection[{render}]{\setlength{\rightskip}{0pt plus 5cm}void render (int {\em pass}, \/  int {\em index} = {\tt 0}) const\hspace{0.3cm}{\tt  \mbox{[}protected, virtual\mbox{]}}}}
 \label{classm3g_1_1World_1efcb1973989d9963d5bd6d03065d389}
 
 
-このノードをレンダリングする内部使用の関数.
+Render this object.
 
 Note: \hyperlink{classm3g_1_1World}{World} should be rendered via all rendering pass. pass=0: render background and camera. pass=1: render lights. pass=2: render objets. 
 
-\hyperlink{classm3g_1_1Group_1efcb1973989d9963d5bd6d03065d389}{Group}を再定義しています。\hypertarget{classm3g_1_1World_dd9a82b335e8521592ad410c662a5cfd}{
+Reimplemented from \hyperlink{classm3g_1_1Node_1efcb1973989d9963d5bd6d03065d389}{Node}.\hypertarget{classm3g_1_1World_dd9a82b335e8521592ad410c662a5cfd}{
 \index{m3g::World@{m3g::World}!setActiveCamera@{setActiveCamera}}
 \index{setActiveCamera@{setActiveCamera}!m3g::World@{m3g::World}}
 \subsubsection[{setActiveCamera}]{\setlength{\rightskip}{0pt plus 5cm}void setActiveCamera ({\bf Camera} $\ast$ {\em camera})}}
 \label{classm3g_1_1World_dd9a82b335e8521592ad410c662a5cfd}
 
 
-このWorldをレンダリングするときに使われるカメラの設定. \hypertarget{classm3g_1_1World_6193765c76d6dc0450f264918ebe7e1c}{
+Sets the \hyperlink{classm3g_1_1Camera}{Camera} to use when rendering this \hyperlink{classm3g_1_1World}{World}. \hypertarget{classm3g_1_1World_6193765c76d6dc0450f264918ebe7e1c}{
 \index{m3g::World@{m3g::World}!setBackground@{setBackground}}
 \index{setBackground@{setBackground}!m3g::World@{m3g::World}}
 \subsubsection[{setBackground}]{\setlength{\rightskip}{0pt plus 5cm}void setBackground ({\bf Background} $\ast$ {\em background})}}
 \label{classm3g_1_1World_6193765c76d6dc0450f264918ebe7e1c}
 
 
-このWorldのバックグラウンドオブジェ区の設定. 
+Sets the \hyperlink{classm3g_1_1Background}{Background} object for this \hyperlink{classm3g_1_1World}{World}. 
 
-このクラスの説明は次のファイルから生成されました:\begin{CompactItemize}
+The documentation for this class was generated from the following files:\begin{CompactItemize}
 \item 
 /work/desktop-m3g/src/World.hpp\item 
 /work/desktop-m3g/src/World.cpp\end{CompactItemize}
