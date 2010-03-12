@@ -1,0 +1,88 @@
+\hypertarget{classm3g_1_1Matrix}{
+\section{クラス Matrix}
+\label{classm3g_1_1Matrix}\index{m3g::Matrix@{m3g::Matrix}}
+}
+{\tt \#include $<$Matrix.hpp$>$}
+
+\subsection*{Public メソッド}
+\begin{CompactItemize}
+\item 
+\hypertarget{classm3g_1_1Matrix_04fd433badb74a2d60395217701d4009}{
+\textbf{Matrix} (float $\ast$m4x4)}
+\label{classm3g_1_1Matrix_04fd433badb74a2d60395217701d4009}
+
+\item 
+\hypertarget{classm3g_1_1Matrix_2c2f600f3a4c1db4a0da0b57db8aebca}{
+\textbf{Matrix} (float m00, float m01, float m02, float m03, float m10, float m11, float m12, float m13, float m20, float m21, float m22, float m23, float m30, float m31, float m32, float m33)}
+\label{classm3g_1_1Matrix_2c2f600f3a4c1db4a0da0b57db8aebca}
+
+\item 
+\hypertarget{classm3g_1_1Matrix_ed427d2cd38fe4a0b23f7f80803b7fd5}{
+void \textbf{set} (const float $\ast$mat)}
+\label{classm3g_1_1Matrix_ed427d2cd38fe4a0b23f7f80803b7fd5}
+
+\item 
+\hypertarget{classm3g_1_1Matrix_382e6ad7e6721b121e510959e1011be3}{
+void \textbf{setIdentity} ()}
+\label{classm3g_1_1Matrix_382e6ad7e6721b121e510959e1011be3}
+
+\item 
+\hypertarget{classm3g_1_1Matrix_c4e04770db1fedff14c37b5e4e4a68c6}{
+void \textbf{setRotate} (float angle, float ax, float ay, float az)}
+\label{classm3g_1_1Matrix_c4e04770db1fedff14c37b5e4e4a68c6}
+
+\item 
+\hypertarget{classm3g_1_1Matrix_937d04042c25021532ea2532fe5e3a32}{
+void \textbf{setScale} (float sx, float sy, float sz)}
+\label{classm3g_1_1Matrix_937d04042c25021532ea2532fe5e3a32}
+
+\item 
+\hypertarget{classm3g_1_1Matrix_550cf39dca5ec8d74d719b0dcdecdd4b}{
+void \textbf{setTranslate} (float tx, float ty, float tz)}
+\label{classm3g_1_1Matrix_550cf39dca5ec8d74d719b0dcdecdd4b}
+
+\item 
+\hypertarget{classm3g_1_1Matrix_7fa1616cc61c19a5efcc863c950f7f30}{
+void \textbf{invert} ()}
+\label{classm3g_1_1Matrix_7fa1616cc61c19a5efcc863c950f7f30}
+
+\item 
+\hypertarget{classm3g_1_1Matrix_f3a99ffb20127be48232d12260e934dc}{
+void \textbf{transpose} ()}
+\label{classm3g_1_1Matrix_f3a99ffb20127be48232d12260e934dc}
+
+\item 
+\hypertarget{classm3g_1_1Matrix_5d28596666a27f88d74bacceaef9b326}{
+\hyperlink{classm3g_1_1Matrix}{Matrix} \& \textbf{operator$\ast$=} (const \hyperlink{classm3g_1_1Matrix}{Matrix} \&rhs)}
+\label{classm3g_1_1Matrix_5d28596666a27f88d74bacceaef9b326}
+
+\item 
+std::ostream \& \hyperlink{classm3g_1_1Matrix_6fea17fa1532df3794f8cb39cb4f911f}{print} (std::ostream \&out) const 
+\end{CompactItemize}
+\subsection*{Public 変数}
+\begin{CompactItemize}
+\item 
+\hypertarget{classm3g_1_1Matrix_7cdab8754cd800b1ba4008e559aa314c}{
+float \textbf{m} \mbox{[}4\mbox{]}\mbox{[}4\mbox{]}}
+\label{classm3g_1_1Matrix_7cdab8754cd800b1ba4008e559aa314c}
+
+\end{CompactItemize}
+
+
+\subsection{説明}
+行列クラス。内部使用専用. 
+
+\subsection{関数}
+\hypertarget{classm3g_1_1Matrix_6fea17fa1532df3794f8cb39cb4f911f}{
+\index{m3g::Matrix@{m3g::Matrix}!print@{print}}
+\index{print@{print}!m3g::Matrix@{m3g::Matrix}}
+\subsubsection[{print}]{\setlength{\rightskip}{0pt plus 5cm}std::ostream \& print (std::ostream \& {\em out}) const}}
+\label{classm3g_1_1Matrix_6fea17fa1532df3794f8cb39cb4f911f}
+
+
+このMatrixクラスの情報を表示する。デバッグ用. 
+
+このクラスの説明は次のファイルから生成されました:\begin{CompactItemize}
+\item 
+/work/desktop-m3g/src/Matrix.hpp\item 
+/work/desktop-m3g/src/Matrix.cpp\end{CompactItemize}

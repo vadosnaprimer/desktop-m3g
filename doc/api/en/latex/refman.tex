@@ -1,0 +1,97 @@
+\documentclass[a4paper]{book}
+\usepackage{a4wide}
+\usepackage{makeidx}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{multicol}
+\usepackage{float}
+\usepackage{textcomp}
+\usepackage{alltt}
+\usepackage{times}
+\usepackage{ifpdf}
+\ifpdf
+\usepackage[pdftex,
+            pagebackref=true,
+            colorlinks=true,
+            linkcolor=blue,
+            unicode
+           ]{hyperref}
+\else
+\usepackage[ps2pdf,
+            pagebackref=true,
+            colorlinks=true,
+            linkcolor=blue,
+            unicode
+           ]{hyperref}
+\usepackage{pspicture}
+\fi
+\usepackage[utf8]{inputenc}
+\usepackage{doxygen}
+\makeindex
+\setcounter{tocdepth}{3}
+\renewcommand{\footrulewidth}{0.4pt}
+\begin{document}
+\begin{titlepage}
+\vspace*{7cm}
+\begin{center}
+{\Large リファレンスマニュアル}\\
+\vspace*{1cm}
+{\large 作成： Doxygen 1.5.8}\\
+\vspace*{0.5cm}
+{\small Fri Mar 12 10:06:58 2010}\\
+\end{center}
+\end{titlepage}
+\clearemptydoublepage
+\pagenumbering{roman}
+\tableofcontents
+\clearemptydoublepage
+\pagenumbering{arabic}
+\chapter{構成索引}
+\input{hierarchy}
+\chapter{構成索引}
+\input{annotated}
+\chapter{クラス}
+\input{classm3g_1_1AnimationController}
+\include{classm3g_1_1AnimationTrack}
+\include{classm3g_1_1Appearance}
+\include{classm3g_1_1Background}
+\include{classm3g_1_1Bone}
+\include{classm3g_1_1Camera}
+\include{classm3g_1_1CompositingMode}
+\include{structm3g_1_1CompositingMode_1_1DepthOffset}
+\include{classm3g_1_1Fog}
+\include{classm3g_1_1Graphics}
+\include{classm3g_1_1Graphics3D}
+\include{classm3g_1_1Group}
+\include{classm3g_1_1Image2D}
+\include{classm3g_1_1IndexBuffer}
+\include{classm3g_1_1io__error}
+\include{classm3g_1_1Keyframe}
+\include{classm3g_1_1KeyframeSequence}
+\include{structm3g_1_1KeyframeSequence_1_1ValidRange}
+\include{classm3g_1_1Light}
+\include{classm3g_1_1Loader}
+\include{classm3g_1_1Material}
+\include{classm3g_1_1Matrix}
+\include{classm3g_1_1Mesh}
+\include{classm3g_1_1MorphingMesh}
+\include{classm3g_1_1Node}
+\include{classm3g_1_1not__implemented__error}
+\include{classm3g_1_1null__point__error}
+\include{classm3g_1_1Object3D}
+\include{classm3g_1_1opengl__error}
+\include{classm3g_1_1PolygonMode}
+\include{classm3g_1_1Quaternion}
+\include{classm3g_1_1RayIntersection}
+\include{classm3g_1_1SkinnedMesh}
+\include{classm3g_1_1Sprite3D}
+\include{classm3g_1_1Texture2D}
+\include{classm3g_1_1Transform}
+\include{classm3g_1_1Transformable}
+\include{classm3g_1_1TriangleStripArray}
+\include{classm3g_1_1VertexArray}
+\include{classm3g_1_1VertexBuffer}
+\include{classm3g_1_1World}
+\include{classm3g_1_1zero__division__error}
+\printindex
+\end{document}

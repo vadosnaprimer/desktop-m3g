@@ -1,0 +1,490 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<title>クラス Camera</title>
+<link href="tabs.css" rel="stylesheet" type="text/css">
+<link href="doxygen.css" rel="stylesheet" type="text/css">
+</head><body>
+<!-- 作成： Doxygen 1.5.8 -->
+<div class="navigation" id="top">
+  <div class="tabs">
+    <ul>
+      <li><a href="main.html"><span>メインページ</span></a></li>
+      <li class="current"><a href="annotated.html"><span>クラス</span></a></li>
+      <li><a href="files.html"><span>ファイル</span></a></li>
+    </ul>
+  </div>
+  <div class="tabs">
+    <ul>
+      <li><a href="annotated.html"><span>構成</span></a></li>
+      <li><a href="hierarchy.html"><span>クラス階層</span></a></li>
+      <li><a href="functions.html"><span>構成メンバ</span></a></li>
+    </ul>
+  </div>
+  <div class="navpath"><b>m3g</b>::<a class="el" href="classm3g_1_1Camera.html">Camera</a>
+  </div>
+</div>
+<div class="contents">
+<h1>クラス Camera</h1><!-- doxytag: class="m3g::Camera" --><!-- doxytag: inherits="m3g::Node" --><code>#include &lt;<a class="el" href="Camera_8hpp-source.html">Camera.hpp</a>&gt;</code>
+<p>
+<div class="dynheader">
+Cameraに対する継承グラフ</div>
+<div class="dynsection">
+
+<p><center><img src="classm3g_1_1Camera.png" usemap="#Camera_map" border="0" alt=""></center>
+<map name="Camera_map">
+<area href="classm3g_1_1Node.html" alt="Node" shape="rect" coords="0,112,93,136">
+<area href="classm3g_1_1Transformable.html" alt="Transformable" shape="rect" coords="0,56,93,80">
+<area href="classm3g_1_1Object3D.html" alt="Object3D" shape="rect" coords="0,0,93,24">
+</map>
+</div>
+
+<p>
+<a href="classm3g_1_1Camera-members.html">すべてのメンバ一覧</a><table border="0" cellpadding="0" cellspacing="0">
+<tr><td></td></tr>
+<tr><td colspan="2"><br><h2>Public メソッド</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Camera.html#a3f3efcb2fcc75de885df29041103cd2">Camera</a> ()</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">virtual&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Camera.html#b921e886e6f14e117eb8099ccb0a3775">~Camera</a> ()</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Camera.html#415c0b110f95410ded9b85e5d99a496b">addAnimationTrack</a> (<a class="el" href="classm3g_1_1AnimationTrack.html">AnimationTrack</a> *animation_track)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">virtual int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Camera.html#8aad1ceab4c2a03609c8a42324ce484d">animate</a> (int world_time)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Camera.html#a2ebe46a4e16fee86d4f547588411302">getProjection</a> (float *params) const </td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Camera.html#9e0c204df146342990703acb744954b1">getProjection</a> (<a class="el" href="classm3g_1_1Transform.html">Transform</a> *transform) const </td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Camera.html#51c42821097e90d3f59e87676684f60a">setGeneric</a> (const <a class="el" href="classm3g_1_1Transform.html">Transform</a> &amp;transorm)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Camera.html#88ecc1c18e2d785ca9638e0bec6c5ce2">setParallel</a> (float fovy, float aspect_ratio, float near, float far)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Camera.html#ca92a48ebe3424deac8e54c27550189d">setPerspective</a> (float fovy, float aspect_ratio, float near, float far)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">virtual std::ostream &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Camera.html#6fea17fa1532df3794f8cb39cb4f911f">print</a> (std::ostream &amp;out) const </td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Camera.html#0006b18ae0e27a031d533e987b9756a8">lookAt</a> (float from_x, float from_y, float from_z, float to_x, float to_y, float to_z, float up_x, float up_y, float up_z)</td></tr>
+
+<tr><td colspan="2"><br><h2>Static Public 変数</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">static const int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Camera.html#48a4e153c97a1f4890558a77dfe02ca4">GENERIC</a> = 48</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">static const int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Camera.html#d9630da0e9505afbb107c86229aa2f08">PARALLEL</a> = 49</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">static const int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Camera.html#e62e72bde93e7d7ceb482e7a8c40dcf5">PERSPECTIVE</a> = 50</td></tr>
+
+<tr><td colspan="2"><br><h2>Protected メソッド</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Camera.html#1efcb1973989d9963d5bd6d03065d389">render</a> (int pass, int index=0) const </td></tr>
+
+<tr><td colspan="2"><br><h2>フレンド</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="8174d4c629550c1ee279571250236ef4"></a><!-- doxytag: member="m3g::Camera::Graphics3D" ref="8174d4c629550c1ee279571250236ef4" args="" -->
+class&nbsp;</td><td class="memItemRight" valign="bottom"><b>Graphics3D</b></td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="7b4bcdf992c21ae83363f25df05b1d25"></a><!-- doxytag: member="m3g::Camera::World" ref="7b4bcdf992c21ae83363f25df05b1d25" args="" -->
+class&nbsp;</td><td class="memItemRight" valign="bottom"><b>World</b></td></tr>
+
+</table>
+<hr><a name="_details"></a><h2>説明</h2>
+シーン中のカメラ位置を定義するノード。3Dから2Dへの透視変換を行う. <hr><h2>コンストラクタとデストラクタ</h2>
+<a class="anchor" name="a3f3efcb2fcc75de885df29041103cd2"></a><!-- doxytag: member="m3g::Camera::Camera" ref="a3f3efcb2fcc75de885df29041103cd2" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classm3g_1_1Camera.html">Camera</a>           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Cameraオブジェクトを作成するコンストラクタ. 
+</div>
+</div><p>
+<a class="anchor" name="b921e886e6f14e117eb8099ccb0a3775"></a><!-- doxytag: member="m3g::Camera::~Camera" ref="b921e886e6f14e117eb8099ccb0a3775" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">~<a class="el" href="classm3g_1_1Camera.html">Camera</a>           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Cameraオブジェクトのデストラクタ. 
+</div>
+</div><p>
+<hr><h2>関数</h2>
+<a class="anchor" name="415c0b110f95410ded9b85e5d99a496b"></a><!-- doxytag: member="m3g::Camera::addAnimationTrack" ref="415c0b110f95410ded9b85e5d99a496b" args="(AnimationTrack *animation_track)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void addAnimationTrack           </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classm3g_1_1AnimationTrack.html">AnimationTrack</a> *&nbsp;</td>
+          <td class="paramname"> <em>animation_track</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+アニメーショントラックの追加。 既存のトラックの順番とインデックスは変更されるかもしれない. 
+<p><a class="el" href="classm3g_1_1Node.html#415c0b110f95410ded9b85e5d99a496b">Node</a>を再定義しています。</p>
+
+</div>
+</div><p>
+<a class="anchor" name="8aad1ceab4c2a03609c8a42324ce484d"></a><!-- doxytag: member="m3g::Camera::animate" ref="8aad1ceab4c2a03609c8a42324ce484d" args="(int world_time)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int animate           </td>
+          <td>(</td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>world_time</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+アニメーションの更新. 
+<p><a class="el" href="classm3g_1_1Node.html#8aad1ceab4c2a03609c8a42324ce484d">Node</a>を再定義しています。</p>
+
+</div>
+</div><p>
+<a class="anchor" name="9e0c204df146342990703acb744954b1"></a><!-- doxytag: member="m3g::Camera::getProjection" ref="9e0c204df146342990703acb744954b1" args="(Transform *transform) const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int getProjection           </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classm3g_1_1Transform.html">Transform</a> *&nbsp;</td>
+          <td class="paramname"> <em>transform</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+カレントの透視変換行列と種類の取得. 
+</div>
+</div><p>
+<a class="anchor" name="a2ebe46a4e16fee86d4f547588411302"></a><!-- doxytag: member="m3g::Camera::getProjection" ref="a2ebe46a4e16fee86d4f547588411302" args="(float *params) const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int getProjection           </td>
+          <td>(</td>
+          <td class="paramtype">float *&nbsp;</td>
+          <td class="paramname"> <em>params</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+透視変換パラメーターと種類の取得。 paramsには4要素(fovy,aspect_ratio,near,far)がこの順番で書き込まれる. 
+</div>
+</div><p>
+<a class="anchor" name="0006b18ae0e27a031d533e987b9756a8"></a><!-- doxytag: member="m3g::Camera::lookAt" ref="0006b18ae0e27a031d533e987b9756a8" args="(float from_x, float from_y, float from_z, float to_x, float to_y, float to_z, float up_x, float up_y, float up_z)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void lookAt           </td>
+          <td>(</td>
+          <td class="paramtype">float&nbsp;</td>
+          <td class="paramname"> <em>from_x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&nbsp;</td>
+          <td class="paramname"> <em>from_y</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&nbsp;</td>
+          <td class="paramname"> <em>from_z</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&nbsp;</td>
+          <td class="paramname"> <em>to_x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&nbsp;</td>
+          <td class="paramname"> <em>to_y</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&nbsp;</td>
+          <td class="paramname"> <em>to_z</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&nbsp;</td>
+          <td class="paramname"> <em>up_x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&nbsp;</td>
+          <td class="paramname"> <em>up_y</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&nbsp;</td>
+          <td class="paramname"> <em>up_z</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+glutのlookat()関数と同じ。M3G比標準の関数. 
+</div>
+</div><p>
+<a class="anchor" name="6fea17fa1532df3794f8cb39cb4f911f"></a><!-- doxytag: member="m3g::Camera::print" ref="6fea17fa1532df3794f8cb39cb4f911f" args="(std::ostream &amp;out) const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::ostream &amp; print           </td>
+          <td>(</td>
+          <td class="paramtype">std::ostream &amp;&nbsp;</td>
+          <td class="paramname"> <em>out</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const<code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+このCameraクラスの情報を表示する。デバッグ用. 
+<p><a class="el" href="classm3g_1_1Node.html#6fea17fa1532df3794f8cb39cb4f911f">Node</a>を再定義しています。</p>
+
+</div>
+</div><p>
+<a class="anchor" name="1efcb1973989d9963d5bd6d03065d389"></a><!-- doxytag: member="m3g::Camera::render" ref="1efcb1973989d9963d5bd6d03065d389" args="(int pass, int index=0) const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void render           </td>
+          <td>(</td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>pass</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>index</em> = <code>0</code></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td> const<code> [protected, virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+このCameraをレンダリングする内部使用の関数.<p>
+Note: <a class="el" href="classm3g_1_1Camera.html">Camera</a> should be rendered only at 0th rendering pass(pass=0). In other cases, do nothing. 
+<p><a class="el" href="classm3g_1_1Node.html#1efcb1973989d9963d5bd6d03065d389">Node</a>を再定義しています。</p>
+
+</div>
+</div><p>
+<a class="anchor" name="51c42821097e90d3f59e87676684f60a"></a><!-- doxytag: member="m3g::Camera::setGeneric" ref="51c42821097e90d3f59e87676684f60a" args="(const Transform &amp;transorm)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void setGeneric           </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classm3g_1_1Transform.html">Transform</a> &amp;&nbsp;</td>
+          <td class="paramname"> <em>transorm</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+指定された4x4行列を透視変換行列として設定する. 
+</div>
+</div><p>
+<a class="anchor" name="88ecc1c18e2d785ca9638e0bec6c5ce2"></a><!-- doxytag: member="m3g::Camera::setParallel" ref="88ecc1c18e2d785ca9638e0bec6c5ce2" args="(float fovy, float aspect_ratio, float near, float far)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void setParallel           </td>
+          <td>(</td>
+          <td class="paramtype">float&nbsp;</td>
+          <td class="paramname"> <em>fovy</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&nbsp;</td>
+          <td class="paramname"> <em>aspect_ratio</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&nbsp;</td>
+          <td class="paramname"> <em>near</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&nbsp;</td>
+          <td class="paramname"> <em>far</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+平行投影行列を作成し、カレントの透視変換行列として設定する. 
+</div>
+</div><p>
+<a class="anchor" name="ca92a48ebe3424deac8e54c27550189d"></a><!-- doxytag: member="m3g::Camera::setPerspective" ref="ca92a48ebe3424deac8e54c27550189d" args="(float fovy, float aspect_ratio, float near, float far)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void setPerspective           </td>
+          <td>(</td>
+          <td class="paramtype">float&nbsp;</td>
+          <td class="paramname"> <em>fovy</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&nbsp;</td>
+          <td class="paramname"> <em>aspect_ratio</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&nbsp;</td>
+          <td class="paramname"> <em>near</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&nbsp;</td>
+          <td class="paramname"> <em>far</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+射影投影行列を作成し、カレントの透視変換行列として設定する. 
+</div>
+</div><p>
+<hr><h2>変数</h2>
+<a class="anchor" name="48a4e153c97a1f4890558a77dfe02ca4"></a><!-- doxytag: member="m3g::Camera::GENERIC" ref="48a4e153c97a1f4890558a77dfe02ca4" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const int <a class="el" href="classm3g_1_1Camera.html#48a4e153c97a1f4890558a77dfe02ca4">GENERIC</a> = 48<code> [static]</code>          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+4x4行列で汎用の投影を指定を表す定数. 
+</div>
+</div><p>
+<a class="anchor" name="d9630da0e9505afbb107c86229aa2f08"></a><!-- doxytag: member="m3g::Camera::PARALLEL" ref="d9630da0e9505afbb107c86229aa2f08" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const int <a class="el" href="classm3g_1_1Camera.html#d9630da0e9505afbb107c86229aa2f08">PARALLEL</a> = 49<code> [static]</code>          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+平行投影を指定する定数. 
+</div>
+</div><p>
+<a class="anchor" name="e62e72bde93e7d7ceb482e7a8c40dcf5"></a><!-- doxytag: member="m3g::Camera::PERSPECTIVE" ref="e62e72bde93e7d7ceb482e7a8c40dcf5" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const int <a class="el" href="classm3g_1_1Camera.html#e62e72bde93e7d7ceb482e7a8c40dcf5">PERSPECTIVE</a> = 50<code> [static]</code>          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+透視投影を指定する定数. 
+</div>
+</div><p>
+<hr>このクラスの説明は次のファイルから生成されました:<ul>
+<li>/work/desktop-m3g/src/<a class="el" href="Camera_8hpp-source.html">Camera.hpp</a><li>/work/desktop-m3g/src/Camera.cpp</ul>
+</div>
+<hr size="1"><address style="text-align: right;"><small>Fri Mar 12 10:06:54 2010に生成されました。&nbsp;
+<a href="http://www.doxygen.org/index.html">
+<img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.8 </small></address>
+</body>
+</html>

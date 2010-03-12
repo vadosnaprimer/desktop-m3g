@@ -1,0 +1,254 @@
+\hypertarget{classm3g_1_1KeyframeSequence}{
+\section{クラス KeyframeSequence}
+\label{classm3g_1_1KeyframeSequence}\index{m3g::KeyframeSequence@{m3g::KeyframeSequence}}
+}
+{\tt \#include $<$KeyframeSequence.hpp$>$}
+
+KeyframeSequenceに対する継承グラフ:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2cm]{classm3g_1_1KeyframeSequence}
+\end{center}
+\end{figure}
+\subsection*{構成}
+\begin{CompactItemize}
+\item 
+struct \hyperlink{structm3g_1_1KeyframeSequence_1_1ValidRange}{ValidRange}
+\end{CompactItemize}
+\subsection*{Public メソッド}
+\begin{CompactItemize}
+\item 
+\hyperlink{classm3g_1_1KeyframeSequence_0c07c479375c11ff94cff02c1267f0d0}{KeyframeSequence} (int numKeyframes, int numComponents, int interpolation)
+\item 
+virtual \hyperlink{classm3g_1_1KeyframeSequence_464f5929e3302c788ca626c11ca8d656}{$\sim$KeyframeSequence} ()
+\item 
+int \hyperlink{classm3g_1_1KeyframeSequence_7016f51d2788e78fdd736efd040f5e5e}{getComponentCount} () const 
+\item 
+int \hyperlink{classm3g_1_1KeyframeSequence_995a5ca5c8c3c993ef167f67cbb5fabe}{getDuration} () const 
+\item 
+int \hyperlink{classm3g_1_1KeyframeSequence_0d46321e7f46e037508cce88cdf6a487}{getInterpolationType} () const 
+\item 
+int \hyperlink{classm3g_1_1KeyframeSequence_0fd27047149eedab8b10319768e1fe9a}{getKeyframe} (int index, float $\ast$value) const 
+\item 
+int \hyperlink{classm3g_1_1KeyframeSequence_4d500a603f25adafd8e6f8b68872dbff}{getKeyframeCount} () const 
+\item 
+int \hyperlink{classm3g_1_1KeyframeSequence_a356af60b9759d5d3da833773e3c7b73}{getRepeatMode} () const 
+\item 
+int \hyperlink{classm3g_1_1KeyframeSequence_b7e54386674cefdb8f5fa65ce5435b50}{getValidRangeFirst} () const 
+\item 
+int \hyperlink{classm3g_1_1KeyframeSequence_aa98cc8d698c482c33a3487c33db27d0}{getValidRangeLast} () const 
+\item 
+void \hyperlink{classm3g_1_1KeyframeSequence_d7406d5e0e2f398e05e3563d099dfdf1}{setDuration} (int duration)
+\item 
+void \hyperlink{classm3g_1_1KeyframeSequence_700d02a4ac28514016721e4b1d2bcf96}{setKeyframe} (int index, int time, float $\ast$value)
+\item 
+void \hyperlink{classm3g_1_1KeyframeSequence_e5cd1486fe0a8a61cf96816e976d7f87}{setRepeatMode} (int mode)
+\item 
+void \hyperlink{classm3g_1_1KeyframeSequence_b5a824131cef547816366141afe0339a}{setValidRange} (int first, int last)
+\item 
+virtual std::ostream \& \hyperlink{classm3g_1_1KeyframeSequence_6fea17fa1532df3794f8cb39cb4f911f}{print} (std::ostream \&out) const 
+\end{CompactItemize}
+\subsection*{Public 変数}
+\begin{CompactItemize}
+\item 
+\hypertarget{classm3g_1_1KeyframeSequence_09d77e6556195583218cf7f0bc11ab1c}{
+PRIVATE \textbf{\_\-\_\-pad0\_\-\_\-}: void getFrame (int local\_\-time}
+\label{classm3g_1_1KeyframeSequence_09d77e6556195583218cf7f0bc11ab1c}
+
+\item 
+\hypertarget{classm3g_1_1KeyframeSequence_2216ebfe3179bd5c53663d0780a0a190}{
+PRIVATE float $\ast$value \textbf{const}}
+\label{classm3g_1_1KeyframeSequence_2216ebfe3179bd5c53663d0780a0a190}
+
+\end{CompactItemize}
+\subsection*{Static Public 変数}
+\begin{CompactItemize}
+\item 
+static const int \hyperlink{classm3g_1_1KeyframeSequence_b45ff833865ae8962be27923995f91a3}{CONSTANT} = 192
+\item 
+static const int \hyperlink{classm3g_1_1KeyframeSequence_ecc439231d4f3639e6f6a9625615a0f7}{LOOP} = 193
+\item 
+static const int \hyperlink{classm3g_1_1KeyframeSequence_23ccf193c67257f1be26417041cecb31}{LINEAR} = 176
+\item 
+static const int \hyperlink{classm3g_1_1KeyframeSequence_77ebb943765f530d2883e1c26127d3ce}{SLERP} = 177
+\item 
+static const int \hyperlink{classm3g_1_1KeyframeSequence_fbb002ac924c1349dead17c16b6fa720}{SPLINE} = 178
+\item 
+static const int \hyperlink{classm3g_1_1KeyframeSequence_0ad85e76e101b5eabf5a5c5f48648845}{SQUAD} = 179
+\item 
+static const int \hyperlink{classm3g_1_1KeyframeSequence_07dc1c0bf7f480095150d1b1c34c8218}{STEP} = 180
+\end{CompactItemize}
+
+
+\subsection{説明}
+アニメーションデータをキーフレームとして一連のタイムスタンプ付きベクトルデータで表す。 
+
+\subsection{コンストラクタとデストラクタ}
+\hypertarget{classm3g_1_1KeyframeSequence_0c07c479375c11ff94cff02c1267f0d0}{
+\index{m3g::KeyframeSequence@{m3g::KeyframeSequence}!KeyframeSequence@{KeyframeSequence}}
+\index{KeyframeSequence@{KeyframeSequence}!m3g::KeyframeSequence@{m3g::KeyframeSequence}}
+\subsubsection[{KeyframeSequence}]{\setlength{\rightskip}{0pt plus 5cm}{\bf KeyframeSequence} (int {\em numKeyframes}, \/  int {\em numComponents}, \/  int {\em interpolation})}}
+\label{classm3g_1_1KeyframeSequence_0c07c479375c11ff94cff02c1267f0d0}
+
+
+指定された補間方法、キーフレーム構成、キーフレーム数でキーフレームシーケンスを作成する. \hypertarget{classm3g_1_1KeyframeSequence_464f5929e3302c788ca626c11ca8d656}{
+\index{m3g::KeyframeSequence@{m3g::KeyframeSequence}!$\sim$KeyframeSequence@{$\sim$KeyframeSequence}}
+\index{$\sim$KeyframeSequence@{$\sim$KeyframeSequence}!m3g::KeyframeSequence@{m3g::KeyframeSequence}}
+\subsubsection[{$\sim$KeyframeSequence}]{\setlength{\rightskip}{0pt plus 5cm}$\sim${\bf KeyframeSequence} ()\hspace{0.3cm}{\tt  \mbox{[}virtual\mbox{]}}}}
+\label{classm3g_1_1KeyframeSequence_464f5929e3302c788ca626c11ca8d656}
+
+
+このオブジェクトを削除するデストラクタ. 
+
+\subsection{関数}
+\hypertarget{classm3g_1_1KeyframeSequence_7016f51d2788e78fdd736efd040f5e5e}{
+\index{m3g::KeyframeSequence@{m3g::KeyframeSequence}!getComponentCount@{getComponentCount}}
+\index{getComponentCount@{getComponentCount}!m3g::KeyframeSequence@{m3g::KeyframeSequence}}
+\subsubsection[{getComponentCount}]{\setlength{\rightskip}{0pt plus 5cm}int getComponentCount () const}}
+\label{classm3g_1_1KeyframeSequence_7016f51d2788e78fdd736efd040f5e5e}
+
+
+このシーケンスの1キーフレーム当たりのコンポーネント数を取得. \hypertarget{classm3g_1_1KeyframeSequence_995a5ca5c8c3c993ef167f67cbb5fabe}{
+\index{m3g::KeyframeSequence@{m3g::KeyframeSequence}!getDuration@{getDuration}}
+\index{getDuration@{getDuration}!m3g::KeyframeSequence@{m3g::KeyframeSequence}}
+\subsubsection[{getDuration}]{\setlength{\rightskip}{0pt plus 5cm}int getDuration () const}}
+\label{classm3g_1_1KeyframeSequence_995a5ca5c8c3c993ef167f67cbb5fabe}
+
+
+このシーケンスの期間を取得. \hypertarget{classm3g_1_1KeyframeSequence_0d46321e7f46e037508cce88cdf6a487}{
+\index{m3g::KeyframeSequence@{m3g::KeyframeSequence}!getInterpolationType@{getInterpolationType}}
+\index{getInterpolationType@{getInterpolationType}!m3g::KeyframeSequence@{m3g::KeyframeSequence}}
+\subsubsection[{getInterpolationType}]{\setlength{\rightskip}{0pt plus 5cm}int getInterpolationType () const}}
+\label{classm3g_1_1KeyframeSequence_0d46321e7f46e037508cce88cdf6a487}
+
+
+このシーケンスの補完方式を取得. \hypertarget{classm3g_1_1KeyframeSequence_0fd27047149eedab8b10319768e1fe9a}{
+\index{m3g::KeyframeSequence@{m3g::KeyframeSequence}!getKeyframe@{getKeyframe}}
+\index{getKeyframe@{getKeyframe}!m3g::KeyframeSequence@{m3g::KeyframeSequence}}
+\subsubsection[{getKeyframe}]{\setlength{\rightskip}{0pt plus 5cm}int getKeyframe (int {\em index}, \/  float $\ast$ {\em value}) const}}
+\label{classm3g_1_1KeyframeSequence_0fd27047149eedab8b10319768e1fe9a}
+
+
+１キーフレームのタイムスタンプと値を取得. \hypertarget{classm3g_1_1KeyframeSequence_4d500a603f25adafd8e6f8b68872dbff}{
+\index{m3g::KeyframeSequence@{m3g::KeyframeSequence}!getKeyframeCount@{getKeyframeCount}}
+\index{getKeyframeCount@{getKeyframeCount}!m3g::KeyframeSequence@{m3g::KeyframeSequence}}
+\subsubsection[{getKeyframeCount}]{\setlength{\rightskip}{0pt plus 5cm}int getKeyframeCount () const}}
+\label{classm3g_1_1KeyframeSequence_4d500a603f25adafd8e6f8b68872dbff}
+
+
+このシーケンスのキーフレーム数を取得. \hypertarget{classm3g_1_1KeyframeSequence_a356af60b9759d5d3da833773e3c7b73}{
+\index{m3g::KeyframeSequence@{m3g::KeyframeSequence}!getRepeatMode@{getRepeatMode}}
+\index{getRepeatMode@{getRepeatMode}!m3g::KeyframeSequence@{m3g::KeyframeSequence}}
+\subsubsection[{getRepeatMode}]{\setlength{\rightskip}{0pt plus 5cm}int getRepeatMode () const}}
+\label{classm3g_1_1KeyframeSequence_a356af60b9759d5d3da833773e3c7b73}
+
+
+このキーフレームシーケンスのリピートモードの取得. \hypertarget{classm3g_1_1KeyframeSequence_b7e54386674cefdb8f5fa65ce5435b50}{
+\index{m3g::KeyframeSequence@{m3g::KeyframeSequence}!getValidRangeFirst@{getValidRangeFirst}}
+\index{getValidRangeFirst@{getValidRangeFirst}!m3g::KeyframeSequence@{m3g::KeyframeSequence}}
+\subsubsection[{getValidRangeFirst}]{\setlength{\rightskip}{0pt plus 5cm}int getValidRangeFirst () const}}
+\label{classm3g_1_1KeyframeSequence_b7e54386674cefdb8f5fa65ce5435b50}
+
+
+このシーケンスの有効レンジの最初のフレーム番号の取得. \hypertarget{classm3g_1_1KeyframeSequence_aa98cc8d698c482c33a3487c33db27d0}{
+\index{m3g::KeyframeSequence@{m3g::KeyframeSequence}!getValidRangeLast@{getValidRangeLast}}
+\index{getValidRangeLast@{getValidRangeLast}!m3g::KeyframeSequence@{m3g::KeyframeSequence}}
+\subsubsection[{getValidRangeLast}]{\setlength{\rightskip}{0pt plus 5cm}int getValidRangeLast () const}}
+\label{classm3g_1_1KeyframeSequence_aa98cc8d698c482c33a3487c33db27d0}
+
+
+このシーケンスの有効レンジの最後のフレーム番号の取得. \hypertarget{classm3g_1_1KeyframeSequence_6fea17fa1532df3794f8cb39cb4f911f}{
+\index{m3g::KeyframeSequence@{m3g::KeyframeSequence}!print@{print}}
+\index{print@{print}!m3g::KeyframeSequence@{m3g::KeyframeSequence}}
+\subsubsection[{print}]{\setlength{\rightskip}{0pt plus 5cm}std::ostream \& print (std::ostream \& {\em out}) const\hspace{0.3cm}{\tt  \mbox{[}virtual\mbox{]}}}}
+\label{classm3g_1_1KeyframeSequence_6fea17fa1532df3794f8cb39cb4f911f}
+
+
+このKeyframeSequenceクラスの情報を表示する。デバッグ用. 
+
+\hyperlink{classm3g_1_1Object3D_6fea17fa1532df3794f8cb39cb4f911f}{Object3D}を再定義しています。\hypertarget{classm3g_1_1KeyframeSequence_d7406d5e0e2f398e05e3563d099dfdf1}{
+\index{m3g::KeyframeSequence@{m3g::KeyframeSequence}!setDuration@{setDuration}}
+\index{setDuration@{setDuration}!m3g::KeyframeSequence@{m3g::KeyframeSequence}}
+\subsubsection[{setDuration}]{\setlength{\rightskip}{0pt plus 5cm}void setDuration (int {\em duration})}}
+\label{classm3g_1_1KeyframeSequence_d7406d5e0e2f398e05e3563d099dfdf1}
+
+
+このシーケンスの期間を取得。単位はシーケンス単位. \hypertarget{classm3g_1_1KeyframeSequence_700d02a4ac28514016721e4b1d2bcf96}{
+\index{m3g::KeyframeSequence@{m3g::KeyframeSequence}!setKeyframe@{setKeyframe}}
+\index{setKeyframe@{setKeyframe}!m3g::KeyframeSequence@{m3g::KeyframeSequence}}
+\subsubsection[{setKeyframe}]{\setlength{\rightskip}{0pt plus 5cm}void setKeyframe (int {\em index}, \/  int {\em time}, \/  float $\ast$ {\em value})}}
+\label{classm3g_1_1KeyframeSequence_700d02a4ac28514016721e4b1d2bcf96}
+
+
+指定されたindex番目のキーフレームのローカル時間と値を設定. \hypertarget{classm3g_1_1KeyframeSequence_e5cd1486fe0a8a61cf96816e976d7f87}{
+\index{m3g::KeyframeSequence@{m3g::KeyframeSequence}!setRepeatMode@{setRepeatMode}}
+\index{setRepeatMode@{setRepeatMode}!m3g::KeyframeSequence@{m3g::KeyframeSequence}}
+\subsubsection[{setRepeatMode}]{\setlength{\rightskip}{0pt plus 5cm}void setRepeatMode (int {\em mode})}}
+\label{classm3g_1_1KeyframeSequence_e5cd1486fe0a8a61cf96816e976d7f87}
+
+
+このキーフレームシーケンスのリピートモードの指定. \hypertarget{classm3g_1_1KeyframeSequence_b5a824131cef547816366141afe0339a}{
+\index{m3g::KeyframeSequence@{m3g::KeyframeSequence}!setValidRange@{setValidRange}}
+\index{setValidRange@{setValidRange}!m3g::KeyframeSequence@{m3g::KeyframeSequence}}
+\subsubsection[{setValidRange}]{\setlength{\rightskip}{0pt plus 5cm}void setValidRange (int {\em first}, \/  int {\em last})}}
+\label{classm3g_1_1KeyframeSequence_b5a824131cef547816366141afe0339a}
+
+
+アニメーションを含むキーフレームのレンジを設定. 
+
+\subsection{変数}
+\hypertarget{classm3g_1_1KeyframeSequence_b45ff833865ae8962be27923995f91a3}{
+\index{m3g::KeyframeSequence@{m3g::KeyframeSequence}!CONSTANT@{CONSTANT}}
+\index{CONSTANT@{CONSTANT}!m3g::KeyframeSequence@{m3g::KeyframeSequence}}
+\subsubsection[{CONSTANT}]{\setlength{\rightskip}{0pt plus 5cm}const int {\bf CONSTANT} = 192\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{classm3g_1_1KeyframeSequence_b45ff833865ae8962be27923995f91a3}
+
+
+CONSTANTリピートモードを表す定数 \hypertarget{classm3g_1_1KeyframeSequence_23ccf193c67257f1be26417041cecb31}{
+\index{m3g::KeyframeSequence@{m3g::KeyframeSequence}!LINEAR@{LINEAR}}
+\index{LINEAR@{LINEAR}!m3g::KeyframeSequence@{m3g::KeyframeSequence}}
+\subsubsection[{LINEAR}]{\setlength{\rightskip}{0pt plus 5cm}const int {\bf LINEAR} = 176\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{classm3g_1_1KeyframeSequence_23ccf193c67257f1be26417041cecb31}
+
+
+線形補間を表す定数 \hypertarget{classm3g_1_1KeyframeSequence_ecc439231d4f3639e6f6a9625615a0f7}{
+\index{m3g::KeyframeSequence@{m3g::KeyframeSequence}!LOOP@{LOOP}}
+\index{LOOP@{LOOP}!m3g::KeyframeSequence@{m3g::KeyframeSequence}}
+\subsubsection[{LOOP}]{\setlength{\rightskip}{0pt plus 5cm}const int {\bf LOOP} = 193\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{classm3g_1_1KeyframeSequence_ecc439231d4f3639e6f6a9625615a0f7}
+
+
+LOOPリピートモードを表す定数 \hypertarget{classm3g_1_1KeyframeSequence_77ebb943765f530d2883e1c26127d3ce}{
+\index{m3g::KeyframeSequence@{m3g::KeyframeSequence}!SLERP@{SLERP}}
+\index{SLERP@{SLERP}!m3g::KeyframeSequence@{m3g::KeyframeSequence}}
+\subsubsection[{SLERP}]{\setlength{\rightskip}{0pt plus 5cm}const int {\bf SLERP} = 177\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{classm3g_1_1KeyframeSequence_77ebb943765f530d2883e1c26127d3ce}
+
+
+クォータニオンの球面線形補間を表す定数 \hypertarget{classm3g_1_1KeyframeSequence_fbb002ac924c1349dead17c16b6fa720}{
+\index{m3g::KeyframeSequence@{m3g::KeyframeSequence}!SPLINE@{SPLINE}}
+\index{SPLINE@{SPLINE}!m3g::KeyframeSequence@{m3g::KeyframeSequence}}
+\subsubsection[{SPLINE}]{\setlength{\rightskip}{0pt plus 5cm}const int {\bf SPLINE} = 178\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{classm3g_1_1KeyframeSequence_fbb002ac924c1349dead17c16b6fa720}
+
+
+スプラインの球面線形補間を表す定数 \hypertarget{classm3g_1_1KeyframeSequence_0ad85e76e101b5eabf5a5c5f48648845}{
+\index{m3g::KeyframeSequence@{m3g::KeyframeSequence}!SQUAD@{SQUAD}}
+\index{SQUAD@{SQUAD}!m3g::KeyframeSequence@{m3g::KeyframeSequence}}
+\subsubsection[{SQUAD}]{\setlength{\rightskip}{0pt plus 5cm}const int {\bf SQUAD} = 179\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{classm3g_1_1KeyframeSequence_0ad85e76e101b5eabf5a5c5f48648845}
+
+
+（？）補間を表す定数 \hypertarget{classm3g_1_1KeyframeSequence_07dc1c0bf7f480095150d1b1c34c8218}{
+\index{m3g::KeyframeSequence@{m3g::KeyframeSequence}!STEP@{STEP}}
+\index{STEP@{STEP}!m3g::KeyframeSequence@{m3g::KeyframeSequence}}
+\subsubsection[{STEP}]{\setlength{\rightskip}{0pt plus 5cm}const int {\bf STEP} = 180\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{classm3g_1_1KeyframeSequence_07dc1c0bf7f480095150d1b1c34c8218}
+
+
+ステップ補間を表す定数 
+
+このクラスの説明は次のファイルから生成されました:\begin{CompactItemize}
+\item 
+/work/desktop-m3g/src/KeyframeSequence.hpp\item 
+/work/desktop-m3g/src/KeyframeSequence.cpp\end{CompactItemize}

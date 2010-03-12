@@ -1,0 +1,92 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<title>/work/desktop-m3g/src/Camera.hpp ソースファイル</title>
+<link href="tabs.css" rel="stylesheet" type="text/css">
+<link href="doxygen.css" rel="stylesheet" type="text/css">
+</head><body>
+<!-- 作成： Doxygen 1.5.8 -->
+<div class="navigation" id="top">
+  <div class="tabs">
+    <ul>
+      <li><a href="main.html"><span>メインページ</span></a></li>
+      <li><a href="annotated.html"><span>クラス</span></a></li>
+      <li class="current"><a href="files.html"><span>ファイル</span></a></li>
+    </ul>
+  </div>
+  <div class="tabs">
+    <ul>
+      <li><a href="files.html"><span>ファイル一覧</span></a></li>
+    </ul>
+  </div>
+<h1>/work/desktop-m3g/src/Camera.hpp</h1><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="preprocessor">#ifndef __CAMERA_HPP__</span>
+<a name="l00002"></a>00002 <span class="preprocessor"></span><span class="preprocessor">#define __CAMERA_HPP__</span>
+<a name="l00003"></a>00003 <span class="preprocessor"></span>
+<a name="l00004"></a>00004 <span class="preprocessor">#include &lt;iosfwd&gt;</span>
+<a name="l00005"></a>00005 <span class="preprocessor">#include "Node.hpp"</span>
+<a name="l00006"></a>00006 
+<a name="l00007"></a>00007 
+<a name="l00008"></a>00008 <span class="keyword">namespace </span>m3g {
+<a name="l00009"></a>00009 
+<a name="l00010"></a>00010 
+<a name="l00015"></a><a class="code" href="classm3g_1_1Camera.html">00015</a>   <span class="keyword">class </span><a class="code" href="classm3g_1_1Camera.html">Camera</a> : <span class="keyword">public</span> <a class="code" href="classm3g_1_1Node.html">Node</a>
+<a name="l00016"></a>00016   {
+<a name="l00017"></a>00017     <span class="keyword">friend</span> <span class="keyword">class </span><a class="code" href="classm3g_1_1Graphics3D.html">Graphics3D</a>;  <span class="comment">// for render</span>
+<a name="l00018"></a>00018     <span class="keyword">friend</span> <span class="keyword">class </span><a class="code" href="classm3g_1_1World.html">World</a>;  <span class="comment">// for render</span>
+<a name="l00019"></a>00019 
+<a name="l00020"></a>00020   <span class="keyword">public</span>:
+<a name="l00025"></a><a class="code" href="classm3g_1_1Camera.html#48a4e153c97a1f4890558a77dfe02ca4">00025</a>     <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code" href="classm3g_1_1Camera.html#48a4e153c97a1f4890558a77dfe02ca4">GENERIC</a>     = 48;
+<a name="l00030"></a><a class="code" href="classm3g_1_1Camera.html#d9630da0e9505afbb107c86229aa2f08">00030</a>     <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code" href="classm3g_1_1Camera.html#d9630da0e9505afbb107c86229aa2f08">PARALLEL</a>    = 49;
+<a name="l00035"></a><a class="code" href="classm3g_1_1Camera.html#e62e72bde93e7d7ceb482e7a8c40dcf5">00035</a>     <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code" href="classm3g_1_1Camera.html#e62e72bde93e7d7ceb482e7a8c40dcf5">PERSPECTIVE</a> = 50;
+<a name="l00036"></a>00036 
+<a name="l00037"></a>00037   <span class="keyword">public</span>:
+<a name="l00038"></a>00038     
+<a name="l00043"></a>00043     <a class="code" href="classm3g_1_1Camera.html#a3f3efcb2fcc75de885df29041103cd2">Camera</a> ();
+<a name="l00044"></a>00044 
+<a name="l00049"></a>00049     <span class="keyword">virtual</span> <a class="code" href="classm3g_1_1Camera.html#b921e886e6f14e117eb8099ccb0a3775">~Camera</a> ();
+<a name="l00050"></a>00050 
+<a name="l00057"></a>00057     <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classm3g_1_1Camera.html#415c0b110f95410ded9b85e5d99a496b">addAnimationTrack</a> (<a class="code" href="classm3g_1_1AnimationTrack.html">AnimationTrack</a>* animation_track);
+<a name="l00058"></a>00058 
+<a name="l00063"></a>00063     <span class="keyword">virtual</span> <span class="keywordtype">int</span> <a class="code" href="classm3g_1_1Camera.html#8aad1ceab4c2a03609c8a42324ce484d">animate</a> (<span class="keywordtype">int</span> world_time);
+<a name="l00064"></a>00064 
+<a name="l00070"></a>00070     <span class="keywordtype">int</span> <a class="code" href="classm3g_1_1Camera.html#a2ebe46a4e16fee86d4f547588411302">getProjection</a> (<span class="keywordtype">float</span>* params) <span class="keyword">const</span>;
+<a name="l00071"></a>00071 
+<a name="l00076"></a>00076     <span class="keywordtype">int</span> <a class="code" href="classm3g_1_1Camera.html#a2ebe46a4e16fee86d4f547588411302">getProjection</a> (<a class="code" href="classm3g_1_1Transform.html">Transform</a>* transform) <span class="keyword">const</span>;
+<a name="l00077"></a>00077 
+<a name="l00082"></a>00082     <span class="keywordtype">void</span> <a class="code" href="classm3g_1_1Camera.html#51c42821097e90d3f59e87676684f60a">setGeneric</a> (<span class="keyword">const</span> <a class="code" href="classm3g_1_1Transform.html">Transform</a>&amp; transorm);
+<a name="l00083"></a>00083 
+<a name="l00088"></a>00088     <span class="keywordtype">void</span> <a class="code" href="classm3g_1_1Camera.html#88ecc1c18e2d785ca9638e0bec6c5ce2">setParallel</a> (<span class="keywordtype">float</span> fovy, <span class="keywordtype">float</span> aspect_ratio, <span class="keywordtype">float</span> near, <span class="keywordtype">float</span> far);
+<a name="l00089"></a>00089 
+<a name="l00094"></a>00094     <span class="keywordtype">void</span> <a class="code" href="classm3g_1_1Camera.html#ca92a48ebe3424deac8e54c27550189d">setPerspective</a> (<span class="keywordtype">float</span> fovy, <span class="keywordtype">float</span> aspect_ratio, <span class="keywordtype">float</span> near, <span class="keywordtype">float</span> far);
+<a name="l00095"></a>00095 
+<a name="l00100"></a>00100     <span class="keyword">virtual</span> std::ostream&amp; <a class="code" href="classm3g_1_1Camera.html#6fea17fa1532df3794f8cb39cb4f911f">print</a> (std::ostream&amp; out) <span class="keyword">const</span>;
+<a name="l00101"></a>00101 
+<a name="l00106"></a>00106     <span class="keywordtype">void</span> <a class="code" href="classm3g_1_1Camera.html#0006b18ae0e27a031d533e987b9756a8">lookAt</a> (<span class="keywordtype">float</span> from_x, <span class="keywordtype">float</span> from_y, <span class="keywordtype">float</span> from_z,
+<a name="l00107"></a>00107          <span class="keywordtype">float</span> to_x, <span class="keywordtype">float</span> to_y, <span class="keywordtype">float</span> to_z, 
+<a name="l00108"></a>00108          <span class="keywordtype">float</span> up_x, <span class="keywordtype">float</span> up_y, <span class="keywordtype">float</span> up_z);
+<a name="l00109"></a>00109 
+<a name="l00110"></a>00110   <span class="keyword">protected</span>:
+<a name="l00115"></a>00115     <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classm3g_1_1Camera.html#1efcb1973989d9963d5bd6d03065d389">render</a> (<span class="keywordtype">int</span> pass, <span class="keywordtype">int</span> index=0) <span class="keyword">const</span>;
+<a name="l00116"></a>00116 
+<a name="l00117"></a>00117   <span class="keyword">private</span>:
+<a name="l00118"></a>00118     <span class="keywordtype">int</span>   type;
+<a name="l00119"></a>00119     <span class="keywordtype">float</span> fovy;
+<a name="l00120"></a>00120     <span class="keywordtype">float</span> aspect_ratio;
+<a name="l00121"></a>00121     <span class="keywordtype">float</span> near;
+<a name="l00122"></a>00122     <span class="keywordtype">float</span> far;
+<a name="l00123"></a>00123 
+<a name="l00124"></a>00124     <a class="code" href="classm3g_1_1Transform.html">Transform</a> proj_trans;
+<a name="l00125"></a>00125   };
+<a name="l00126"></a>00126 
+<a name="l00127"></a>00127 
+<a name="l00128"></a>00128 } <span class="comment">// namespace m3g {</span>
+<a name="l00129"></a>00129 
+<a name="l00130"></a>00130 std::ostream&amp; operator&lt;&lt; (std::ostream&amp; out, <span class="keyword">const</span> <a class="code" href="classm3g_1_1Camera.html">m3g::Camera</a>&amp; c);
+<a name="l00131"></a>00131 
+<a name="l00132"></a>00132 
+<a name="l00133"></a>00133 <span class="preprocessor">#endif</span>
+</pre></div></div>
+<hr size="1"><address style="text-align: right;"><small>Fri Mar 12 10:06:58 2010に生成されました。&nbsp;
+<a href="http://www.doxygen.org/index.html">
+<img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.8 </small></address>
+</body>
+</html>

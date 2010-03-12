@@ -1,0 +1,63 @@
+\hypertarget{classm3g_1_1Quaternion}{
+\section{クラス Quaternion}
+\label{classm3g_1_1Quaternion}\index{m3g::Quaternion@{m3g::Quaternion}}
+}
+{\tt \#include $<$Quaternion.hpp$>$}
+
+\subsection*{Public メソッド}
+\begin{CompactItemize}
+\item 
+\hypertarget{classm3g_1_1Quaternion_7a06a28b864e525f73a1bb0eb3e9274e}{
+\textbf{Quaternion} (float angle, float ax, float ay, float az)}
+\label{classm3g_1_1Quaternion_7a06a28b864e525f73a1bb0eb3e9274e}
+
+\item 
+\hypertarget{classm3g_1_1Quaternion_0712dc357557a30ac0da0a9d4cdd278c}{
+void \textbf{set} (float qx, float qy, float qz, float qw)}
+\label{classm3g_1_1Quaternion_0712dc357557a30ac0da0a9d4cdd278c}
+
+\item 
+void \hyperlink{classm3g_1_1Quaternion_3049675269aef6bb333d8f83fdf6eed7}{getAngleAxis} (float $\ast$angle\_\-axis) const 
+\end{CompactItemize}
+\subsection*{Public 変数}
+\begin{CompactItemize}
+\item 
+\hypertarget{classm3g_1_1Quaternion_d0da36b2558901e21e7a30f6c227a45e}{
+float \textbf{x}}
+\label{classm3g_1_1Quaternion_d0da36b2558901e21e7a30f6c227a45e}
+
+\item 
+\hypertarget{classm3g_1_1Quaternion_a4f0d3eebc3c443f9be81bf48561a217}{
+float \textbf{y}}
+\label{classm3g_1_1Quaternion_a4f0d3eebc3c443f9be81bf48561a217}
+
+\item 
+\hypertarget{classm3g_1_1Quaternion_f73583b1e980b0aa03f9884812e9fd4d}{
+float \textbf{z}}
+\label{classm3g_1_1Quaternion_f73583b1e980b0aa03f9884812e9fd4d}
+
+\item 
+\hypertarget{classm3g_1_1Quaternion_56eca241e2896b9f57a79589e76fd24b}{
+float \textbf{w}}
+\label{classm3g_1_1Quaternion_56eca241e2896b9f57a79589e76fd24b}
+
+\end{CompactItemize}
+
+
+\subsection{説明}
+長さが必ず１のクォータニオンクラス。内部使用専用. 
+
+\subsection{関数}
+\hypertarget{classm3g_1_1Quaternion_3049675269aef6bb333d8f83fdf6eed7}{
+\index{m3g::Quaternion@{m3g::Quaternion}!getAngleAxis@{getAngleAxis}}
+\index{getAngleAxis@{getAngleAxis}!m3g::Quaternion@{m3g::Quaternion}}
+\subsubsection[{getAngleAxis}]{\setlength{\rightskip}{0pt plus 5cm}void getAngleAxis (float $\ast$ {\em angle\_\-axis}) const}}
+\label{classm3g_1_1Quaternion_3049675269aef6bb333d8f83fdf6eed7}
+
+
+(補足) 回転角度が0の場合はangle=0,axis=(x,y,z)が返る. 
+
+このクラスの説明は次のファイルから生成されました:\begin{CompactItemize}
+\item 
+/work/desktop-m3g/src/Quaternion.hpp\item 
+/work/desktop-m3g/src/Quaternion.cpp\end{CompactItemize}

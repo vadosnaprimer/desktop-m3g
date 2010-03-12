@@ -1,0 +1,164 @@
+\hypertarget{classm3g_1_1Mesh}{
+\section{クラス Mesh}
+\label{classm3g_1_1Mesh}\index{m3g::Mesh@{m3g::Mesh}}
+}
+{\tt \#include $<$Mesh.hpp$>$}
+
+Meshに対する継承グラフ:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=5cm]{classm3g_1_1Mesh}
+\end{center}
+\end{figure}
+\subsection*{Public メソッド}
+\begin{CompactItemize}
+\item 
+\hyperlink{classm3g_1_1Mesh_2545f0abeee27d408d3129f3a5df40bb}{Mesh} (\hyperlink{classm3g_1_1VertexBuffer}{VertexBuffer} $\ast$vertices, int num\_\-submesh, \hyperlink{classm3g_1_1IndexBuffer}{IndexBuffer} $\ast$$\ast$submeshes, int num\_\-appearance, \hyperlink{classm3g_1_1Appearance}{Appearance} $\ast$$\ast$appearances)
+\item 
+\hyperlink{classm3g_1_1Mesh_2d7766ebbb63eccd77d0dd8b53b400a3}{Mesh} (\hyperlink{classm3g_1_1VertexBuffer}{VertexBuffer} $\ast$vertices, \hyperlink{classm3g_1_1IndexBuffer}{IndexBuffer} $\ast$submesh, \hyperlink{classm3g_1_1Appearance}{Appearance} $\ast$appearance)
+\item 
+virtual \hyperlink{classm3g_1_1Mesh_6e26384cfb03023e7dc2e5419baf813f}{$\sim$Mesh} ()
+\item 
+virtual int \hyperlink{classm3g_1_1Mesh_82cfeb67ca66b93e2ca7bda9a4f0e2aa}{animate} (int time)
+\item 
+\hyperlink{classm3g_1_1Appearance}{Appearance} $\ast$ \hyperlink{classm3g_1_1Mesh_4950a19e02c022dcf41a086117eb8219}{getAppearance} (int index) const 
+\item 
+\hyperlink{classm3g_1_1IndexBuffer}{IndexBuffer} $\ast$ \hyperlink{classm3g_1_1Mesh_ca34a663f46ce20e2b894c046714ea1d}{getIndexBuffer} (int index) const 
+\item 
+int \hyperlink{classm3g_1_1Mesh_5dc5a57ad549eb97504c2a1280a882dd}{getSubmeshCount} () const 
+\item 
+\hyperlink{classm3g_1_1VertexBuffer}{VertexBuffer} $\ast$ \hyperlink{classm3g_1_1Mesh_7602e9bf450fa8b3ec3c60e2e88cba25}{getVertexBuffer} () const 
+\item 
+void \hyperlink{classm3g_1_1Mesh_bb03b872c453c4f8f3fe31e8b54d1b52}{setAppearance} (int index, \hyperlink{classm3g_1_1Appearance}{Appearance} $\ast$appearance)
+\item 
+virtual std::ostream \& \hyperlink{classm3g_1_1Mesh_6fea17fa1532df3794f8cb39cb4f911f}{print} (std::ostream \&out) const 
+\end{CompactItemize}
+\subsection*{Protected メソッド}
+\begin{CompactItemize}
+\item 
+virtual void \hyperlink{classm3g_1_1Mesh_1efcb1973989d9963d5bd6d03065d389}{render} (int pass, int index=0) const 
+\end{CompactItemize}
+\subsection*{Protected 変数}
+\begin{CompactItemize}
+\item 
+\hypertarget{classm3g_1_1Mesh_1a2db0a8bc6986ba148b6b6f5dee271f}{
+\hyperlink{classm3g_1_1VertexBuffer}{VertexBuffer} $\ast$ \textbf{vertices}}
+\label{classm3g_1_1Mesh_1a2db0a8bc6986ba148b6b6f5dee271f}
+
+\item 
+\hypertarget{classm3g_1_1Mesh_7280e670882c2ce658bd600655fb477e}{
+std::vector$<$ \hyperlink{classm3g_1_1IndexBuffer}{IndexBuffer} $\ast$ $>$ \textbf{indices}}
+\label{classm3g_1_1Mesh_7280e670882c2ce658bd600655fb477e}
+
+\item 
+\hypertarget{classm3g_1_1Mesh_6dcb9adb660a04b601286a3ce4500fba}{
+std::vector$<$ \hyperlink{classm3g_1_1Appearance}{Appearance} $\ast$ $>$ \textbf{appearances}}
+\label{classm3g_1_1Mesh_6dcb9adb660a04b601286a3ce4500fba}
+
+\end{CompactItemize}
+
+
+\subsection{説明}
+ポリゴナルサーフェスを定義するシーングラフのノード. 
+
+\subsection{コンストラクタとデストラクタ}
+\hypertarget{classm3g_1_1Mesh_2545f0abeee27d408d3129f3a5df40bb}{
+\index{m3g::Mesh@{m3g::Mesh}!Mesh@{Mesh}}
+\index{Mesh@{Mesh}!m3g::Mesh@{m3g::Mesh}}
+\subsubsection[{Mesh}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Mesh} ({\bf VertexBuffer} $\ast$ {\em vertices}, \/  int {\em num\_\-submesh}, \/  {\bf IndexBuffer} $\ast$$\ast$ {\em submeshes}, \/  int {\em num\_\-appearance}, \/  {\bf Appearance} $\ast$$\ast$ {\em appearances})}}
+\label{classm3g_1_1Mesh_2545f0abeee27d408d3129f3a5df40bb}
+
+
+指定された頂点バッファーとサブメッシュから新しいメッシュを作成する. \hypertarget{classm3g_1_1Mesh_2d7766ebbb63eccd77d0dd8b53b400a3}{
+\index{m3g::Mesh@{m3g::Mesh}!Mesh@{Mesh}}
+\index{Mesh@{Mesh}!m3g::Mesh@{m3g::Mesh}}
+\subsubsection[{Mesh}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Mesh} ({\bf VertexBuffer} $\ast$ {\em vertices}, \/  {\bf IndexBuffer} $\ast$ {\em submesh}, \/  {\bf Appearance} $\ast$ {\em appearance})}}
+\label{classm3g_1_1Mesh_2d7766ebbb63eccd77d0dd8b53b400a3}
+
+
+サブメッシュ1つからなる新しいメッシュを作成する. \hypertarget{classm3g_1_1Mesh_6e26384cfb03023e7dc2e5419baf813f}{
+\index{m3g::Mesh@{m3g::Mesh}!$\sim$Mesh@{$\sim$Mesh}}
+\index{$\sim$Mesh@{$\sim$Mesh}!m3g::Mesh@{m3g::Mesh}}
+\subsubsection[{$\sim$Mesh}]{\setlength{\rightskip}{0pt plus 5cm}$\sim${\bf Mesh} ()\hspace{0.3cm}{\tt  \mbox{[}virtual\mbox{]}}}}
+\label{classm3g_1_1Mesh_6e26384cfb03023e7dc2e5419baf813f}
+
+
+このオブジェクトを削除するデストラクタ. 
+
+\subsection{関数}
+\hypertarget{classm3g_1_1Mesh_82cfeb67ca66b93e2ca7bda9a4f0e2aa}{
+\index{m3g::Mesh@{m3g::Mesh}!animate@{animate}}
+\index{animate@{animate}!m3g::Mesh@{m3g::Mesh}}
+\subsubsection[{animate}]{\setlength{\rightskip}{0pt plus 5cm}int animate (int {\em time})\hspace{0.3cm}{\tt  \mbox{[}virtual\mbox{]}}}}
+\label{classm3g_1_1Mesh_82cfeb67ca66b93e2ca7bda9a4f0e2aa}
+
+
+このObject3D自身とここから到達できるObject3Dのアニメーテッドプロパティを更新する. 
+
+\hyperlink{classm3g_1_1Node_8aad1ceab4c2a03609c8a42324ce484d}{Node}を再定義しています。
+
+\hyperlink{classm3g_1_1MorphingMesh_8aad1ceab4c2a03609c8a42324ce484d}{MorphingMesh}で再定義されています。\hypertarget{classm3g_1_1Mesh_4950a19e02c022dcf41a086117eb8219}{
+\index{m3g::Mesh@{m3g::Mesh}!getAppearance@{getAppearance}}
+\index{getAppearance@{getAppearance}!m3g::Mesh@{m3g::Mesh}}
+\subsubsection[{getAppearance}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Appearance} $\ast$ getAppearance (int {\em index}) const}}
+\label{classm3g_1_1Mesh_4950a19e02c022dcf41a086117eb8219}
+
+
+指定されたサブメッシュのカレントのアピアランスを取得. \hypertarget{classm3g_1_1Mesh_ca34a663f46ce20e2b894c046714ea1d}{
+\index{m3g::Mesh@{m3g::Mesh}!getIndexBuffer@{getIndexBuffer}}
+\index{getIndexBuffer@{getIndexBuffer}!m3g::Mesh@{m3g::Mesh}}
+\subsubsection[{getIndexBuffer}]{\setlength{\rightskip}{0pt plus 5cm}{\bf IndexBuffer} $\ast$ getIndexBuffer (int {\em index}) const}}
+\label{classm3g_1_1Mesh_ca34a663f46ce20e2b894c046714ea1d}
+
+
+指定されたインデックスのサブメッシュを取得. \hypertarget{classm3g_1_1Mesh_5dc5a57ad549eb97504c2a1280a882dd}{
+\index{m3g::Mesh@{m3g::Mesh}!getSubmeshCount@{getSubmeshCount}}
+\index{getSubmeshCount@{getSubmeshCount}!m3g::Mesh@{m3g::Mesh}}
+\subsubsection[{getSubmeshCount}]{\setlength{\rightskip}{0pt plus 5cm}int getSubmeshCount () const}}
+\label{classm3g_1_1Mesh_5dc5a57ad549eb97504c2a1280a882dd}
+
+
+このメッシュのサブメッシュ数を取得. \hypertarget{classm3g_1_1Mesh_7602e9bf450fa8b3ec3c60e2e88cba25}{
+\index{m3g::Mesh@{m3g::Mesh}!getVertexBuffer@{getVertexBuffer}}
+\index{getVertexBuffer@{getVertexBuffer}!m3g::Mesh@{m3g::Mesh}}
+\subsubsection[{getVertexBuffer}]{\setlength{\rightskip}{0pt plus 5cm}{\bf VertexBuffer} $\ast$ getVertexBuffer () const}}
+\label{classm3g_1_1Mesh_7602e9bf450fa8b3ec3c60e2e88cba25}
+
+
+このメッシュの頂点バッファーの取得. \hypertarget{classm3g_1_1Mesh_6fea17fa1532df3794f8cb39cb4f911f}{
+\index{m3g::Mesh@{m3g::Mesh}!print@{print}}
+\index{print@{print}!m3g::Mesh@{m3g::Mesh}}
+\subsubsection[{print}]{\setlength{\rightskip}{0pt plus 5cm}std::ostream \& print (std::ostream \& {\em out}) const\hspace{0.3cm}{\tt  \mbox{[}virtual\mbox{]}}}}
+\label{classm3g_1_1Mesh_6fea17fa1532df3794f8cb39cb4f911f}
+
+
+このMeshクラスの情報を表示する。デバッグ用. 
+
+\hyperlink{classm3g_1_1Node_6fea17fa1532df3794f8cb39cb4f911f}{Node}を再定義しています。
+
+\hyperlink{classm3g_1_1MorphingMesh_6fea17fa1532df3794f8cb39cb4f911f}{MorphingMesh}, と \hyperlink{classm3g_1_1SkinnedMesh_6fea17fa1532df3794f8cb39cb4f911f}{SkinnedMesh}で再定義されています。\hypertarget{classm3g_1_1Mesh_1efcb1973989d9963d5bd6d03065d389}{
+\index{m3g::Mesh@{m3g::Mesh}!render@{render}}
+\index{render@{render}!m3g::Mesh@{m3g::Mesh}}
+\subsubsection[{render}]{\setlength{\rightskip}{0pt plus 5cm}void render (int {\em pass}, \/  int {\em index} = {\tt 0}) const\hspace{0.3cm}{\tt  \mbox{[}protected, virtual\mbox{]}}}}
+\label{classm3g_1_1Mesh_1efcb1973989d9963d5bd6d03065d389}
+
+
+このノードをレンダリングする内部使用の関数.
+
+Note: \hyperlink{classm3g_1_1Mesh}{Mesh} should be rendered only at second rendering pass(pass=2). In other cases, do nothing. 
+
+\hyperlink{classm3g_1_1Node_1efcb1973989d9963d5bd6d03065d389}{Node}を再定義しています。
+
+\hyperlink{classm3g_1_1MorphingMesh_1efcb1973989d9963d5bd6d03065d389}{MorphingMesh}, と \hyperlink{classm3g_1_1SkinnedMesh_1efcb1973989d9963d5bd6d03065d389}{SkinnedMesh}で再定義されています。\hypertarget{classm3g_1_1Mesh_bb03b872c453c4f8f3fe31e8b54d1b52}{
+\index{m3g::Mesh@{m3g::Mesh}!setAppearance@{setAppearance}}
+\index{setAppearance@{setAppearance}!m3g::Mesh@{m3g::Mesh}}
+\subsubsection[{setAppearance}]{\setlength{\rightskip}{0pt plus 5cm}void setAppearance (int {\em index}, \/  {\bf Appearance} $\ast$ {\em appearance})}}
+\label{classm3g_1_1Mesh_bb03b872c453c4f8f3fe31e8b54d1b52}
+
+
+指定されたサブメッシュのアピアランスを設定. 
+
+このクラスの説明は次のファイルから生成されました:\begin{CompactItemize}
+\item 
+/work/desktop-m3g/src/Mesh.hpp\item 
+/work/desktop-m3g/src/Mesh.cpp\end{CompactItemize}

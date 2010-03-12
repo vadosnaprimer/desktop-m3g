@@ -1,0 +1,74 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<title>/work/desktop-m3g/src/MorphingMesh.hpp ソースファイル</title>
+<link href="tabs.css" rel="stylesheet" type="text/css">
+<link href="doxygen.css" rel="stylesheet" type="text/css">
+</head><body>
+<!-- 作成： Doxygen 1.5.8 -->
+<div class="navigation" id="top">
+  <div class="tabs">
+    <ul>
+      <li><a href="main.html"><span>メインページ</span></a></li>
+      <li><a href="annotated.html"><span>クラス</span></a></li>
+      <li class="current"><a href="files.html"><span>ファイル</span></a></li>
+    </ul>
+  </div>
+  <div class="tabs">
+    <ul>
+      <li><a href="files.html"><span>ファイル一覧</span></a></li>
+    </ul>
+  </div>
+<h1>/work/desktop-m3g/src/MorphingMesh.hpp</h1><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="preprocessor">#ifndef __MORPHING_MESH_HPP__</span>
+<a name="l00002"></a>00002 <span class="preprocessor"></span><span class="preprocessor">#define __MORPHING_MESH_HPP__</span>
+<a name="l00003"></a>00003 <span class="preprocessor"></span>
+<a name="l00004"></a>00004 <span class="preprocessor">#include "Mesh.hpp"</span>
+<a name="l00005"></a>00005 <span class="preprocessor">#include &lt;iosfwd&gt;</span>
+<a name="l00006"></a>00006 
+<a name="l00007"></a>00007 
+<a name="l00008"></a>00008 <span class="keyword">namespace </span>m3g {
+<a name="l00009"></a>00009 
+<a name="l00010"></a>00010   <span class="keyword">class </span>VertexBuffer;
+<a name="l00011"></a>00011   <span class="keyword">class </span>IndexBuffer;
+<a name="l00012"></a>00012   <span class="keyword">class </span>Appearance;
+<a name="l00013"></a>00013 
+<a name="l00018"></a><a class="code" href="classm3g_1_1MorphingMesh.html">00018</a>   <span class="keyword">class </span><a class="code" href="classm3g_1_1MorphingMesh.html">MorphingMesh</a> : <span class="keyword">public</span> <a class="code" href="classm3g_1_1Mesh.html">Mesh</a>
+<a name="l00019"></a>00019   {
+<a name="l00020"></a>00020   <span class="keyword">public</span>:
+<a name="l00025"></a>00025     <a class="code" href="classm3g_1_1MorphingMesh.html#34180323c022d357e1d9b55e4df5c544">MorphingMesh</a> (<a class="code" href="classm3g_1_1VertexBuffer.html">VertexBuffer</a>* base, <span class="keywordtype">int</span> num_target, <a class="code" href="classm3g_1_1VertexBuffer.html">VertexBuffer</a>** targets, <span class="keywordtype">int</span> num_submesh, <a class="code" href="classm3g_1_1IndexBuffer.html">IndexBuffer</a>** sumeshes, <span class="keywordtype">int</span> num_appearance, <a class="code" href="classm3g_1_1Appearance.html">Appearance</a>** appearances);
+<a name="l00026"></a>00026 
+<a name="l00031"></a>00031     <a class="code" href="classm3g_1_1MorphingMesh.html#34180323c022d357e1d9b55e4df5c544">MorphingMesh</a> (<a class="code" href="classm3g_1_1VertexBuffer.html">VertexBuffer</a>* base, <span class="keywordtype">int</span> num_target, <a class="code" href="classm3g_1_1VertexBuffer.html">VertexBuffer</a>** targets, <a class="code" href="classm3g_1_1IndexBuffer.html">IndexBuffer</a>* sumeshes, <a class="code" href="classm3g_1_1Appearance.html">Appearance</a>* appearances);
+<a name="l00032"></a>00032 
+<a name="l00037"></a>00037     <span class="keyword">virtual</span> <a class="code" href="classm3g_1_1MorphingMesh.html#cdafafba64a0167f28f3b66ac4b9d7d6">~MorphingMesh</a> ();
+<a name="l00038"></a>00038 
+<a name="l00045"></a>00045     <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classm3g_1_1MorphingMesh.html#415c0b110f95410ded9b85e5d99a496b">addAnimationTrack</a> (<a class="code" href="classm3g_1_1AnimationTrack.html">AnimationTrack</a>* animation_track);
+<a name="l00046"></a>00046 
+<a name="l00051"></a>00051     <span class="keyword">virtual</span> <span class="keywordtype">int</span> <a class="code" href="classm3g_1_1MorphingMesh.html#8aad1ceab4c2a03609c8a42324ce484d">animate</a> (<span class="keywordtype">int</span> world_time);
+<a name="l00052"></a>00052 
+<a name="l00057"></a>00057     <a class="code" href="classm3g_1_1VertexBuffer.html">VertexBuffer</a>* <a class="code" href="classm3g_1_1MorphingMesh.html#44766cc08b595f074d0d698c75f544b4">getMorphTarget</a> (<span class="keywordtype">int</span> index) <span class="keyword">const</span>;
+<a name="l00058"></a>00058 
+<a name="l00063"></a>00063     <span class="keywordtype">int</span> <a class="code" href="classm3g_1_1MorphingMesh.html#620d9684124201f738a28c7c39641541">getMorphTargetCount</a> () <span class="keyword">const</span>;
+<a name="l00064"></a>00064 
+<a name="l00069"></a>00069     <span class="keywordtype">void</span> <a class="code" href="classm3g_1_1MorphingMesh.html#80cef3b2c5e4881567409829de224e46">getWeights</a> (<span class="keywordtype">float</span>* weights) <span class="keyword">const</span>;
+<a name="l00070"></a>00070 
+<a name="l00075"></a>00075     <span class="keywordtype">void</span> <a class="code" href="classm3g_1_1MorphingMesh.html#53e2beef0efdccecfe4d7ab7b719c738">setWeights</a> (<span class="keywordtype">float</span>* weights);
+<a name="l00076"></a>00076 
+<a name="l00081"></a>00081     <span class="keyword">virtual</span> std::ostream&amp; <a class="code" href="classm3g_1_1MorphingMesh.html#6fea17fa1532df3794f8cb39cb4f911f">print</a> (std::ostream&amp; out) <span class="keyword">const</span>;
+<a name="l00082"></a>00082 
+<a name="l00083"></a>00083   <span class="keyword">protected</span>:
+<a name="l00088"></a>00088     <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classm3g_1_1MorphingMesh.html#1efcb1973989d9963d5bd6d03065d389">render</a> (<span class="keywordtype">int</span> pass, <span class="keywordtype">int</span> index=0) <span class="keyword">const</span>;
+<a name="l00089"></a>00089 
+<a name="l00090"></a>00090   };
+<a name="l00091"></a>00091 
+<a name="l00092"></a>00092 } <span class="comment">// namespace m3g {</span>
+<a name="l00093"></a>00093 
+<a name="l00094"></a>00094 std::ostream&amp; operator&lt;&lt; (std::ostream&amp; out, <span class="keyword">const</span> <a class="code" href="classm3g_1_1MorphingMesh.html">m3g::MorphingMesh</a>&amp; m);
+<a name="l00095"></a>00095 
+<a name="l00096"></a>00096 
+<a name="l00097"></a>00097 
+<a name="l00098"></a>00098 <span class="preprocessor">#endif</span>
+</pre></div></div>
+<hr size="1"><address style="text-align: right;"><small>Fri Mar 12 10:06:53 2010に生成されました。&nbsp;
+<a href="http://www.doxygen.org/index.html">
+<img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.8 </small></address>
+</body>
+</html>

@@ -1,0 +1,139 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<title>/work/desktop-m3g/src/Graphics3D.hpp ソースファイル</title>
+<link href="tabs.css" rel="stylesheet" type="text/css">
+<link href="doxygen.css" rel="stylesheet" type="text/css">
+</head><body>
+<!-- 作成： Doxygen 1.5.8 -->
+<div class="navigation" id="top">
+  <div class="tabs">
+    <ul>
+      <li><a href="main.html"><span>メインページ</span></a></li>
+      <li><a href="annotated.html"><span>クラス</span></a></li>
+      <li class="current"><a href="files.html"><span>ファイル</span></a></li>
+    </ul>
+  </div>
+  <div class="tabs">
+    <ul>
+      <li><a href="files.html"><span>ファイル一覧</span></a></li>
+    </ul>
+  </div>
+<h1>/work/desktop-m3g/src/Graphics3D.hpp</h1><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 
+<a name="l00002"></a>00002 <span class="preprocessor">#ifndef __GRAPHICS3D_HPP__</span>
+<a name="l00003"></a>00003 <span class="preprocessor"></span><span class="preprocessor">#define __GRAPHICS3D_HPP__</span>
+<a name="l00004"></a>00004 <span class="preprocessor"></span>
+<a name="l00005"></a>00005 <span class="preprocessor">#include &lt;iosfwd&gt;</span>
+<a name="l00006"></a>00006 <span class="preprocessor">#include &lt;unordered_map&gt;</span>
+<a name="l00007"></a>00007 
+<a name="l00008"></a>00008 <span class="keyword">namespace </span>m3g {
+<a name="l00009"></a>00009 
+<a name="l00010"></a>00010   <span class="keyword">class </span>Light;
+<a name="l00011"></a>00011   <span class="keyword">class </span>Transform;
+<a name="l00012"></a>00012   <span class="keyword">class </span>Graphics;
+<a name="l00013"></a>00013   <span class="keyword">class </span>Image2D;
+<a name="l00014"></a>00014   <span class="keyword">class </span>Background;
+<a name="l00015"></a>00015   <span class="keyword">class </span>Camera;
+<a name="l00016"></a>00016   <span class="keyword">class </span>Node;
+<a name="l00017"></a>00017   <span class="keyword">class </span>VertexBuffer;
+<a name="l00018"></a>00018   <span class="keyword">class </span>IndexBuffer;
+<a name="l00019"></a>00019   <span class="keyword">class </span>Appearance;
+<a name="l00020"></a>00020   <span class="keyword">class </span>World;
+<a name="l00021"></a>00021 
+<a name="l00022"></a>00022 
+<a name="l00027"></a><a class="code" href="classm3g_1_1Graphics3D.html">00027</a>   <span class="keyword">class </span><a class="code" href="classm3g_1_1Graphics3D.html">Graphics3D</a>
+<a name="l00028"></a>00028   {
+<a name="l00033"></a>00033     <span class="keyword">struct </span>Viewport {
+<a name="l00034"></a>00034       Viewport (<span class="keywordtype">float</span> x_, <span class="keywordtype">float</span> y_, <span class="keywordtype">float</span> w_, <span class="keywordtype">float</span> h_) : x(x_), y(y_), width(w_), height(h_) {};
+<a name="l00035"></a>00035       <span class="keywordtype">float</span> x;
+<a name="l00036"></a>00036       <span class="keywordtype">float</span> y;
+<a name="l00037"></a>00037       <span class="keywordtype">float</span> width;
+<a name="l00038"></a>00038       <span class="keywordtype">float</span> height;
+<a name="l00039"></a>00039     };
+<a name="l00040"></a>00040 
+<a name="l00041"></a>00041   <span class="keyword">public</span>:
+<a name="l00042"></a>00042     <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">int</span> ANTIALIAS   = 1&lt;&lt;1;
+<a name="l00043"></a>00043     <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">int</span> DITHER      = 1&lt;&lt;2;
+<a name="l00044"></a>00044     <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">int</span> OVERWRITE   = 1&lt;&lt;4;
+<a name="l00045"></a>00045     <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">int</span> TRUE_COLOR  = 1&lt;&lt;3;
+<a name="l00046"></a>00046 
+<a name="l00047"></a>00047   <span class="keyword">public</span>:
+<a name="l00048"></a>00048 
+<a name="l00053"></a>00053     <a class="code" href="classm3g_1_1Graphics3D.html#9b9347476fc10e57b31694ac8a628511">~Graphics3D</a> ();
+<a name="l00054"></a>00054 
+<a name="l00059"></a>00059     <span class="keywordtype">int</span> <a class="code" href="classm3g_1_1Graphics3D.html#e210cacb72c8540df86a6674e3c2dc4f">addLight</a> (<a class="code" href="classm3g_1_1Light.html">Light</a>* light, <a class="code" href="classm3g_1_1Transform.html">Transform</a>&amp; transform);
+<a name="l00060"></a>00060 
+<a name="l00065"></a>00065     <span class="keywordtype">void</span> <a class="code" href="classm3g_1_1Graphics3D.html#2173e179f4b2d7130cde46a48794ee66">bindTarget</a> (<a class="code" href="classm3g_1_1Graphics.html">Graphics</a>* g, <span class="keywordtype">bool</span> depth_buffer_enabled=<span class="keyword">true</span>, <span class="keywordtype">int</span> hints=0);
+<a name="l00066"></a>00066 
+<a name="l00071"></a>00071     <span class="keywordtype">void</span> <a class="code" href="classm3g_1_1Graphics3D.html#2173e179f4b2d7130cde46a48794ee66">bindTarget</a> (<a class="code" href="classm3g_1_1Image2D.html">Image2D</a>* i, <span class="keywordtype">bool</span> depth_buffer_enabled=<span class="keyword">true</span>, <span class="keywordtype">int</span> hints=0);
+<a name="l00072"></a>00072 
+<a name="l00077"></a>00077     <span class="keywordtype">void</span> <a class="code" href="classm3g_1_1Graphics3D.html#21c4a68a53cfbe0a7cec05d5a56682bf">clear</a> (<a class="code" href="classm3g_1_1Background.html">Background</a>* background);
+<a name="l00078"></a>00078 
+<a name="l00083"></a>00083     <a class="code" href="classm3g_1_1Camera.html">Camera</a>* <a class="code" href="classm3g_1_1Graphics3D.html#570b81f426d1b2b5e8794cffb33422c6">getCamera</a> (<span class="keyword">const</span> <a class="code" href="classm3g_1_1Transform.html">Transform</a>&amp; transform);
+<a name="l00084"></a>00084 
+<a name="l00089"></a>00089     <span class="keywordtype">float</span> <a class="code" href="classm3g_1_1Graphics3D.html#c8c185b99073215202d2e35723f5c470">getDepthRangeFar</a> () <span class="keyword">const</span>;
+<a name="l00090"></a>00090 
+<a name="l00095"></a>00095     <span class="keywordtype">float</span> <a class="code" href="classm3g_1_1Graphics3D.html#60bc116f673bf2782de2df3eebfb2c92">getDepthRangeNear</a> () <span class="keyword">const</span>;
+<a name="l00096"></a>00096 
+<a name="l00101"></a>00101     <span class="keywordtype">int</span> <a class="code" href="classm3g_1_1Graphics3D.html#5837234a23dc5f46d3adec17f521b58e">getHints</a> () <span class="keyword">const</span>;
+<a name="l00102"></a>00102 
+<a name="l00107"></a>00107     <span class="keyword">static</span> <a class="code" href="classm3g_1_1Graphics3D.html">Graphics3D</a>* <a class="code" href="classm3g_1_1Graphics3D.html#da6d71754bfe755dd8204a9332e9ed47">getInstance</a> ();
+<a name="l00108"></a>00108 
+<a name="l00113"></a>00113     <a class="code" href="classm3g_1_1Light.html">Light</a>* <a class="code" href="classm3g_1_1Graphics3D.html#04272e584440c89fb4cb449003a84e7d">getLight</a> (<span class="keywordtype">int</span> index, <span class="keyword">const</span> <a class="code" href="classm3g_1_1Transform.html">Transform</a>&amp; transform) <span class="keyword">const</span>;
+<a name="l00114"></a>00114 
+<a name="l00119"></a>00119     <span class="keywordtype">int</span> <a class="code" href="classm3g_1_1Graphics3D.html#7a08cfeb48d76ad5d8859a1fc0c77d98">getLightCount</a> () <span class="keyword">const</span>;
+<a name="l00120"></a>00120 
+<a name="l00125"></a>00125     std::unordered_map&lt;const char*, int&gt; <a class="code" href="classm3g_1_1Graphics3D.html#a7d4779a1ea7779caf7f409c4d2bb31f">getProperties</a> () <span class="keyword">const</span>;
+<a name="l00126"></a>00126 
+<a name="l00131"></a>00131     <span class="keywordtype">void</span>* <a class="code" href="classm3g_1_1Graphics3D.html#02d0033930c8e68f4d7ebd43abe7980a">getTarget</a> () <span class="keyword">const</span>;
+<a name="l00132"></a>00132 
+<a name="l00137"></a>00137     <span class="keywordtype">int</span> <a class="code" href="classm3g_1_1Graphics3D.html#d51e0c421126f5deb61b359cdb7dab2e">getViewportHeight</a> () <span class="keyword">const</span>;
+<a name="l00138"></a>00138 
+<a name="l00143"></a>00143     <span class="keywordtype">int</span> <a class="code" href="classm3g_1_1Graphics3D.html#768e5c057e2fa4c4b17a67134abbf89f">getViewportWidth</a> () <span class="keyword">const</span>;
+<a name="l00144"></a>00144 
+<a name="l00149"></a>00149     <span class="keywordtype">int</span> <a class="code" href="classm3g_1_1Graphics3D.html#af58b44cc6219f86c40dadb8a9377856">getViewportX</a> () <span class="keyword">const</span>;
+<a name="l00150"></a>00150 
+<a name="l00155"></a>00155     <span class="keywordtype">int</span> <a class="code" href="classm3g_1_1Graphics3D.html#c21665afbf94a8f0153e099833c2b61a">getViewportY</a> () <span class="keyword">const</span>;
+<a name="l00156"></a>00156 
+<a name="l00161"></a>00161     <span class="keywordtype">bool</span> <a class="code" href="classm3g_1_1Graphics3D.html#7f17c6781152840d42e756c27b0fb8c8">isDepthBufferEnabled</a> () <span class="keyword">const</span>;
+<a name="l00162"></a>00162 
+<a name="l00167"></a>00167     <span class="keywordtype">void</span> <a class="code" href="classm3g_1_1Graphics3D.html#3ffaaf0d0f1e97a07c7f30c9b5a5dd32">releaseTarget</a> () <span class="keyword">const</span>;
+<a name="l00168"></a>00168 
+<a name="l00173"></a>00173     <span class="keywordtype">void</span> <a class="code" href="classm3g_1_1Graphics3D.html#9c9ca78b3ce4cc358783a1a2701b9d85">render</a> (<a class="code" href="classm3g_1_1Node.html">Node</a>* node, <a class="code" href="classm3g_1_1Transform.html">Transform</a>* transform) <span class="keyword">const</span>;
+<a name="l00174"></a>00174 
+<a name="l00179"></a>00179     <span class="keywordtype">void</span> <a class="code" href="classm3g_1_1Graphics3D.html#9c9ca78b3ce4cc358783a1a2701b9d85">render</a> (<a class="code" href="classm3g_1_1VertexBuffer.html">VertexBuffer</a>* vertices, <a class="code" href="classm3g_1_1IndexBuffer.html">IndexBuffer</a>* triangles, <a class="code" href="classm3g_1_1Appearance.html">Appearance</a>* apperance, <a class="code" href="classm3g_1_1Transform.html">Transform</a>&amp; transform) <span class="keyword">const</span>;
+<a name="l00180"></a>00180 
+<a name="l00185"></a>00185     <span class="keywordtype">void</span> <a class="code" href="classm3g_1_1Graphics3D.html#9c9ca78b3ce4cc358783a1a2701b9d85">render</a> (<a class="code" href="classm3g_1_1VertexBuffer.html">VertexBuffer</a>* vertices, <a class="code" href="classm3g_1_1IndexBuffer.html">IndexBuffer</a>* triangles, <a class="code" href="classm3g_1_1Appearance.html">Appearance</a>* apperance, <a class="code" href="classm3g_1_1Transform.html">Transform</a>&amp; transform, <span class="keywordtype">int</span> scope) <span class="keyword">const</span>;
+<a name="l00186"></a>00186 
+<a name="l00191"></a>00191     <span class="keywordtype">void</span> <a class="code" href="classm3g_1_1Graphics3D.html#9c9ca78b3ce4cc358783a1a2701b9d85">render</a> (<a class="code" href="classm3g_1_1World.html">World</a>* world) <span class="keyword">const</span>;
+<a name="l00192"></a>00192 
+<a name="l00197"></a>00197     <span class="keywordtype">void</span> <a class="code" href="classm3g_1_1Graphics3D.html#b8821ec231e8ebd939ae0feaaf138542">resetLights</a> ();
+<a name="l00198"></a>00198 
+<a name="l00203"></a>00203     <span class="keywordtype">void</span> <a class="code" href="classm3g_1_1Graphics3D.html#0df7bb61cfeba6626e20fd07ddd1c460">setCamera</a> (<a class="code" href="classm3g_1_1Camera.html">Camera</a>* camera, <span class="keyword">const</span> <a class="code" href="classm3g_1_1Transform.html">Transform</a>&amp; transform);
+<a name="l00204"></a>00204 
+<a name="l00209"></a>00209     <span class="keywordtype">void</span> <a class="code" href="classm3g_1_1Graphics3D.html#6fc3837286f3516aa3320aeec9729495">setDepthRange</a> (<span class="keywordtype">float</span> near, <span class="keywordtype">float</span> far);
+<a name="l00210"></a>00210 
+<a name="l00215"></a>00215     <span class="keywordtype">void</span> <a class="code" href="classm3g_1_1Graphics3D.html#2bf83cb69f50117dd9d5548fe96d0ab0">setLight</a> (<span class="keywordtype">int</span> index, <a class="code" href="classm3g_1_1Light.html">Light</a>* light, <span class="keyword">const</span> <a class="code" href="classm3g_1_1Transform.html">Transform</a>&amp; transform);
+<a name="l00216"></a>00216 
+<a name="l00221"></a>00221     <span class="keywordtype">void</span> <a class="code" href="classm3g_1_1Graphics3D.html#0b4ec48e9c19060e9be5648c118c23b1">setViewport</a> (<span class="keywordtype">int</span> x, <span class="keywordtype">int</span> y, <span class="keywordtype">int</span> width, <span class="keywordtype">int</span> height);
+<a name="l00222"></a>00222 
+<a name="l00223"></a>00223   <span class="keyword">private</span>:
+<a name="l00228"></a>00228     <a class="code" href="classm3g_1_1Graphics3D.html">Graphics3D</a> ();
+<a name="l00229"></a>00229 
+<a name="l00230"></a>00230   <span class="keyword">private</span>:
+<a name="l00231"></a>00231     Viewport viewport;
+<a name="l00232"></a>00232     <span class="keywordtype">bool</span>     depth_buffer_enable;
+<a name="l00233"></a>00233     <span class="keywordtype">int</span>      hints;
+<a name="l00234"></a>00234   };
+<a name="l00235"></a>00235 
+<a name="l00236"></a>00236 } <span class="comment">// namespace m3g {</span>
+<a name="l00237"></a>00237 
+<a name="l00238"></a>00238 std::ostream&amp; operator&lt;&lt; (std::ostream&amp; out, <span class="keyword">const</span> <a class="code" href="classm3g_1_1Graphics3D.html">m3g::Graphics3D</a>&amp; g);
+<a name="l00239"></a>00239 
+<a name="l00240"></a>00240 
+<a name="l00241"></a>00241 <span class="preprocessor">#endif</span>
+</pre></div></div>
+<hr size="1"><address style="text-align: right;"><small>Fri Mar 12 10:06:53 2010に生成されました。&nbsp;
+<a href="http://www.doxygen.org/index.html">
+<img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.8 </small></address>
+</body>
+</html>

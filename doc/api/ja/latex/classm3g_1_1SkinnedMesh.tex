@@ -1,0 +1,136 @@
+\hypertarget{classm3g_1_1SkinnedMesh}{
+\section{クラス SkinnedMesh}
+\label{classm3g_1_1SkinnedMesh}\index{m3g::SkinnedMesh@{m3g::SkinnedMesh}}
+}
+{\tt \#include $<$SkinnedMesh.hpp$>$}
+
+SkinnedMeshに対する継承グラフ:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=5cm]{classm3g_1_1SkinnedMesh}
+\end{center}
+\end{figure}
+\subsection*{Public メソッド}
+\begin{CompactItemize}
+\item 
+\hyperlink{classm3g_1_1SkinnedMesh_9ee04e655db4e2a95a0ab55d8ebb45c8}{SkinnedMesh} (\hyperlink{classm3g_1_1VertexBuffer}{VertexBuffer} $\ast$vertices, int num\_\-submesh, \hyperlink{classm3g_1_1IndexBuffer}{IndexBuffer} $\ast$$\ast$submeshes, int num\_\-appearance, \hyperlink{classm3g_1_1Appearance}{Appearance} $\ast$$\ast$apperarances, \hyperlink{classm3g_1_1Group}{Group} $\ast$skelton)
+\item 
+\hyperlink{classm3g_1_1SkinnedMesh_145692b6dfd3581aae05ef8f5db20a99}{SkinnedMesh} (\hyperlink{classm3g_1_1VertexBuffer}{VertexBuffer} $\ast$vertices, \hyperlink{classm3g_1_1IndexBuffer}{IndexBuffer} $\ast$submeshes, \hyperlink{classm3g_1_1Appearance}{Appearance} $\ast$apperarances, \hyperlink{classm3g_1_1Group}{Group} $\ast$skelton)
+\item 
+virtual \hyperlink{classm3g_1_1SkinnedMesh_c73da5b5c5f8f14fc241328b4b78928c}{$\sim$SkinnedMesh} ()
+\item 
+void \hyperlink{classm3g_1_1SkinnedMesh_4b6fd5f52884251fdda11ad4a40d41d4}{addTransform} (\hyperlink{classm3g_1_1Node}{Node} $\ast$bone, int weight, int firstVertex, int numVertices)
+\item 
+void \hyperlink{classm3g_1_1SkinnedMesh_b0023a2cdce8d562a4988024e8644a13}{getBoneTransorm} (\hyperlink{classm3g_1_1Node}{Node} $\ast$bone, \hyperlink{classm3g_1_1Transform}{Transform} $\ast$transform) const 
+\item 
+int \hyperlink{classm3g_1_1SkinnedMesh_e14038d004d58e797f10fbfa6a9a18d9}{getBoneVertices} (\hyperlink{classm3g_1_1Node}{Node} $\ast$bone, int $\ast$indices, float $\ast$weights) const 
+\item 
+\hyperlink{classm3g_1_1Group}{Group} $\ast$ \hyperlink{classm3g_1_1SkinnedMesh_ce7d69c2b600f6f01a46214db28e6f92}{getSkeleton} () const 
+\item 
+virtual std::ostream \& \hyperlink{classm3g_1_1SkinnedMesh_6fea17fa1532df3794f8cb39cb4f911f}{print} (std::ostream \&out) const 
+\end{CompactItemize}
+\subsection*{Public 変数}
+\begin{CompactItemize}
+\item 
+\hypertarget{classm3g_1_1SkinnedMesh_e7632c37fb719b0740846ec342b2d6bf}{
+\hyperlink{classm3g_1_1Group}{Group} $\ast$ \hyperlink{classm3g_1_1SkinnedMesh_e7632c37fb719b0740846ec342b2d6bf}{root}}
+\label{classm3g_1_1SkinnedMesh_e7632c37fb719b0740846ec342b2d6bf}
+
+\begin{CompactList}\small\item\em skeleton root node. \item\end{CompactList}\item 
+\hypertarget{classm3g_1_1SkinnedMesh_3bf107d6a2cb389a4887fdaa8aaebee6}{
+std::vector$<$ \hyperlink{classm3g_1_1Bone}{Bone} $\ast$ $>$ \textbf{bones}}
+\label{classm3g_1_1SkinnedMesh_3bf107d6a2cb389a4887fdaa8aaebee6}
+
+\item 
+\hypertarget{classm3g_1_1SkinnedMesh_43e75fc18cd8102b1e657fe5620f8f94}{
+\hyperlink{classm3g_1_1VertexBuffer}{VertexBuffer} $\ast$ \textbf{bind\_\-vertices}}
+\label{classm3g_1_1SkinnedMesh_43e75fc18cd8102b1e657fe5620f8f94}
+
+\end{CompactItemize}
+\subsection*{Protected メソッド}
+\begin{CompactItemize}
+\item 
+virtual void \hyperlink{classm3g_1_1SkinnedMesh_1efcb1973989d9963d5bd6d03065d389}{render} (int pass, int index=0) const 
+\end{CompactItemize}
+
+
+\subsection{説明}
+スケレタルアニメーテッドポリゴンメッシュを表すシーングラフノード. 
+
+\subsection{コンストラクタとデストラクタ}
+\hypertarget{classm3g_1_1SkinnedMesh_9ee04e655db4e2a95a0ab55d8ebb45c8}{
+\index{m3g::SkinnedMesh@{m3g::SkinnedMesh}!SkinnedMesh@{SkinnedMesh}}
+\index{SkinnedMesh@{SkinnedMesh}!m3g::SkinnedMesh@{m3g::SkinnedMesh}}
+\subsubsection[{SkinnedMesh}]{\setlength{\rightskip}{0pt plus 5cm}{\bf SkinnedMesh} ({\bf VertexBuffer} $\ast$ {\em vertices}, \/  int {\em num\_\-submesh}, \/  {\bf IndexBuffer} $\ast$$\ast$ {\em submeshes}, \/  int {\em num\_\-appearance}, \/  {\bf Appearance} $\ast$$\ast$ {\em apperarances}, \/  {\bf Group} $\ast$ {\em skelton})}}
+\label{classm3g_1_1SkinnedMesh_9ee04e655db4e2a95a0ab55d8ebb45c8}
+
+
+指定された頂点、サブメッシュ、スケルトンを持つSkinnedMeshを新しく作成する. \hypertarget{classm3g_1_1SkinnedMesh_145692b6dfd3581aae05ef8f5db20a99}{
+\index{m3g::SkinnedMesh@{m3g::SkinnedMesh}!SkinnedMesh@{SkinnedMesh}}
+\index{SkinnedMesh@{SkinnedMesh}!m3g::SkinnedMesh@{m3g::SkinnedMesh}}
+\subsubsection[{SkinnedMesh}]{\setlength{\rightskip}{0pt plus 5cm}{\bf SkinnedMesh} ({\bf VertexBuffer} $\ast$ {\em vertices}, \/  {\bf IndexBuffer} $\ast$ {\em submeshes}, \/  {\bf Appearance} $\ast$ {\em apperarances}, \/  {\bf Group} $\ast$ {\em skelton})}}
+\label{classm3g_1_1SkinnedMesh_145692b6dfd3581aae05ef8f5db20a99}
+
+
+指定された頂点、サブメッシュ、スケルトンを持つSkinnedMeshを新しく作成する. \hypertarget{classm3g_1_1SkinnedMesh_c73da5b5c5f8f14fc241328b4b78928c}{
+\index{m3g::SkinnedMesh@{m3g::SkinnedMesh}!$\sim$SkinnedMesh@{$\sim$SkinnedMesh}}
+\index{$\sim$SkinnedMesh@{$\sim$SkinnedMesh}!m3g::SkinnedMesh@{m3g::SkinnedMesh}}
+\subsubsection[{$\sim$SkinnedMesh}]{\setlength{\rightskip}{0pt plus 5cm}$\sim${\bf SkinnedMesh} ()\hspace{0.3cm}{\tt  \mbox{[}virtual\mbox{]}}}}
+\label{classm3g_1_1SkinnedMesh_c73da5b5c5f8f14fc241328b4b78928c}
+
+
+このオブジェクトを削除するデストラクタ. 
+
+\subsection{関数}
+\hypertarget{classm3g_1_1SkinnedMesh_4b6fd5f52884251fdda11ad4a40d41d4}{
+\index{m3g::SkinnedMesh@{m3g::SkinnedMesh}!addTransform@{addTransform}}
+\index{addTransform@{addTransform}!m3g::SkinnedMesh@{m3g::SkinnedMesh}}
+\subsubsection[{addTransform}]{\setlength{\rightskip}{0pt plus 5cm}void addTransform ({\bf Node} $\ast$ {\em bone}, \/  int {\em weight}, \/  int {\em firstVertex}, \/  int {\em numVertices})}}
+\label{classm3g_1_1SkinnedMesh_4b6fd5f52884251fdda11ad4a40d41d4}
+
+
+このスキンメッシュの頂点配列に対してウェイト付き変形(ボーン)を関連づける. \hypertarget{classm3g_1_1SkinnedMesh_b0023a2cdce8d562a4988024e8644a13}{
+\index{m3g::SkinnedMesh@{m3g::SkinnedMesh}!getBoneTransorm@{getBoneTransorm}}
+\index{getBoneTransorm@{getBoneTransorm}!m3g::SkinnedMesh@{m3g::SkinnedMesh}}
+\subsubsection[{getBoneTransorm}]{\setlength{\rightskip}{0pt plus 5cm}void getBoneTransorm ({\bf Node} $\ast$ {\em bone}, \/  {\bf Transform} $\ast$ {\em transform}) const}}
+\label{classm3g_1_1SkinnedMesh_b0023a2cdce8d562a4988024e8644a13}
+
+
+ボーンノードの基本姿勢の変形(ローカル座標系からボーン座標系への変換行列)を返す. \hypertarget{classm3g_1_1SkinnedMesh_e14038d004d58e797f10fbfa6a9a18d9}{
+\index{m3g::SkinnedMesh@{m3g::SkinnedMesh}!getBoneVertices@{getBoneVertices}}
+\index{getBoneVertices@{getBoneVertices}!m3g::SkinnedMesh@{m3g::SkinnedMesh}}
+\subsubsection[{getBoneVertices}]{\setlength{\rightskip}{0pt plus 5cm}int getBoneVertices ({\bf Node} $\ast$ {\em bone}, \/  int $\ast$ {\em indices}, \/  float $\ast$ {\em weights}) const}}
+\label{classm3g_1_1SkinnedMesh_e14038d004d58e797f10fbfa6a9a18d9}
+
+
+指定されたボーンに影響を受ける頂点の数を返す。与えられた配列に頂点のインデックスとウェイト値が入る. \hypertarget{classm3g_1_1SkinnedMesh_ce7d69c2b600f6f01a46214db28e6f92}{
+\index{m3g::SkinnedMesh@{m3g::SkinnedMesh}!getSkeleton@{getSkeleton}}
+\index{getSkeleton@{getSkeleton}!m3g::SkinnedMesh@{m3g::SkinnedMesh}}
+\subsubsection[{getSkeleton}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Group} $\ast$ getSkeleton () const}}
+\label{classm3g_1_1SkinnedMesh_ce7d69c2b600f6f01a46214db28e6f92}
+
+
+このスキンメッシュのスケルトンGroupを返す. \hypertarget{classm3g_1_1SkinnedMesh_6fea17fa1532df3794f8cb39cb4f911f}{
+\index{m3g::SkinnedMesh@{m3g::SkinnedMesh}!print@{print}}
+\index{print@{print}!m3g::SkinnedMesh@{m3g::SkinnedMesh}}
+\subsubsection[{print}]{\setlength{\rightskip}{0pt plus 5cm}std::ostream \& print (std::ostream \& {\em out}) const\hspace{0.3cm}{\tt  \mbox{[}virtual\mbox{]}}}}
+\label{classm3g_1_1SkinnedMesh_6fea17fa1532df3794f8cb39cb4f911f}
+
+
+このSkinnedMeshクラスの情報を表示する。デバッグ用. 
+
+\hyperlink{classm3g_1_1Mesh_6fea17fa1532df3794f8cb39cb4f911f}{Mesh}を再定義しています。\hypertarget{classm3g_1_1SkinnedMesh_1efcb1973989d9963d5bd6d03065d389}{
+\index{m3g::SkinnedMesh@{m3g::SkinnedMesh}!render@{render}}
+\index{render@{render}!m3g::SkinnedMesh@{m3g::SkinnedMesh}}
+\subsubsection[{render}]{\setlength{\rightskip}{0pt plus 5cm}void render (int {\em pass}, \/  int {\em index} = {\tt 0}) const\hspace{0.3cm}{\tt  \mbox{[}protected, virtual\mbox{]}}}}
+\label{classm3g_1_1SkinnedMesh_1efcb1973989d9963d5bd6d03065d389}
+
+
+このSkinnedMeshをレンダリングする内部使用の関数. 
+
+\hyperlink{classm3g_1_1Mesh_1efcb1973989d9963d5bd6d03065d389}{Mesh}を再定義しています。
+
+このクラスの説明は次のファイルから生成されました:\begin{CompactItemize}
+\item 
+/work/desktop-m3g/src/SkinnedMesh.hpp\item 
+/work/desktop-m3g/src/SkinnedMesh.cpp\end{CompactItemize}

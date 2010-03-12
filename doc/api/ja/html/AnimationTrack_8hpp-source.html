@@ -1,0 +1,92 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<title>/work/desktop-m3g/src/AnimationTrack.hpp ソースファイル</title>
+<link href="tabs.css" rel="stylesheet" type="text/css">
+<link href="doxygen.css" rel="stylesheet" type="text/css">
+</head><body>
+<!-- 作成： Doxygen 1.5.8 -->
+<div class="navigation" id="top">
+  <div class="tabs">
+    <ul>
+      <li><a href="main.html"><span>メインページ</span></a></li>
+      <li><a href="annotated.html"><span>クラス</span></a></li>
+      <li class="current"><a href="files.html"><span>ファイル</span></a></li>
+    </ul>
+  </div>
+  <div class="tabs">
+    <ul>
+      <li><a href="files.html"><span>ファイル一覧</span></a></li>
+    </ul>
+  </div>
+<h1>/work/desktop-m3g/src/AnimationTrack.hpp</h1><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 
+<a name="l00002"></a>00002 <span class="preprocessor">#ifndef __ANIMATION_TRACK_HPP__</span>
+<a name="l00003"></a>00003 <span class="preprocessor"></span><span class="preprocessor">#define __ANIMATION_TRACK_HPP__</span>
+<a name="l00004"></a>00004 <span class="preprocessor"></span>
+<a name="l00005"></a>00005 <span class="preprocessor">#include "Object3D.hpp"</span>
+<a name="l00006"></a>00006 <span class="preprocessor">#include &lt;iosfwd&gt;</span>
+<a name="l00007"></a>00007 
+<a name="l00008"></a>00008 <span class="keyword">namespace </span>m3g {
+<a name="l00009"></a>00009 
+<a name="l00010"></a>00010   <span class="keyword">class </span>KeyframeSequence;
+<a name="l00011"></a>00011   <span class="keyword">class </span>AnimationController;
+<a name="l00012"></a>00012 
+<a name="l00019"></a><a class="code" href="classm3g_1_1AnimationTrack.html">00019</a>   <span class="keyword">class </span><a class="code" href="classm3g_1_1AnimationTrack.html">AnimationTrack</a> : <span class="keyword">public</span> <a class="code" href="classm3g_1_1Object3D.html">Object3D</a>
+<a name="l00020"></a>00020   {
+<a name="l00021"></a>00021   <span class="keyword">public</span>:
+<a name="l00029"></a><a class="code" href="classm3g_1_1AnimationTrack.html#417581fcde4067111f47320edb2aa378">00029</a>     <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code" href="classm3g_1_1AnimationTrack.html#417581fcde4067111f47320edb2aa378">ALPHA</a>             = 256;
+<a name="l00034"></a><a class="code" href="classm3g_1_1AnimationTrack.html#71b6e9c23b95f8011da4565f4a12f677">00034</a>     <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code" href="classm3g_1_1AnimationTrack.html#71b6e9c23b95f8011da4565f4a12f677">AMBIENT_COLOR</a>     = 257;
+<a name="l00042"></a><a class="code" href="classm3g_1_1AnimationTrack.html#a6d8034c897057de595a4511a4e7a837">00042</a>     <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code" href="classm3g_1_1AnimationTrack.html#a6d8034c897057de595a4511a4e7a837">COLOR</a>             = 258;
+<a name="l00049"></a><a class="code" href="classm3g_1_1AnimationTrack.html#91fa562078e577c24d06faf8391b34fe">00049</a>     <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code" href="classm3g_1_1AnimationTrack.html#91fa562078e577c24d06faf8391b34fe">CROP</a>              = 259;
+<a name="l00054"></a><a class="code" href="classm3g_1_1AnimationTrack.html#7d0fe4463930d4a4b24fc47660561899">00054</a>     <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code" href="classm3g_1_1AnimationTrack.html#7d0fe4463930d4a4b24fc47660561899">DENSITY</a>           = 260;
+<a name="l00059"></a><a class="code" href="classm3g_1_1AnimationTrack.html#9631242a611cf95d697c25064dba7c4f">00059</a>     <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code" href="classm3g_1_1AnimationTrack.html#9631242a611cf95d697c25064dba7c4f">DIFFUSE_COLOR</a>     = 261;
+<a name="l00064"></a><a class="code" href="classm3g_1_1AnimationTrack.html#893461d45d084e5db05b159068f945d0">00064</a>     <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code" href="classm3g_1_1AnimationTrack.html#893461d45d084e5db05b159068f945d0">EMISSIVE_COLOR</a>    = 262;
+<a name="l00069"></a><a class="code" href="classm3g_1_1AnimationTrack.html#86457ec0a2799f1f2d7ea8173a644de8">00069</a>     <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code" href="classm3g_1_1AnimationTrack.html#86457ec0a2799f1f2d7ea8173a644de8">FAR_DISTANCE</a>      = 263;
+<a name="l00074"></a><a class="code" href="classm3g_1_1AnimationTrack.html#94c1c1d2f7d48b52e3c2bcd332ed3937">00074</a>     <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code" href="classm3g_1_1AnimationTrack.html#94c1c1d2f7d48b52e3c2bcd332ed3937">FIELD_OF_VIEW</a>     = 264;
+<a name="l00079"></a><a class="code" href="classm3g_1_1AnimationTrack.html#369fe8830f39fe4aec819a371a6c9904">00079</a>     <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code" href="classm3g_1_1AnimationTrack.html#369fe8830f39fe4aec819a371a6c9904">INTENSITY</a>         = 265;
+<a name="l00084"></a><a class="code" href="classm3g_1_1AnimationTrack.html#d75f3e3033e268d0a74f9533cfa9b9d6">00084</a>     <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code" href="classm3g_1_1AnimationTrack.html#d75f3e3033e268d0a74f9533cfa9b9d6">MORPH_WEIGHTS</a>     = 266;
+<a name="l00089"></a><a class="code" href="classm3g_1_1AnimationTrack.html#74f49e3b52778aff378dac012e59cdb2">00089</a>     <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code" href="classm3g_1_1AnimationTrack.html#74f49e3b52778aff378dac012e59cdb2">NEAR_DISTANCE</a>     = 267;
+<a name="l00096"></a><a class="code" href="classm3g_1_1AnimationTrack.html#c7fe423a6a639520b0b3d1c1e663784b">00096</a>     <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code" href="classm3g_1_1AnimationTrack.html#c7fe423a6a639520b0b3d1c1e663784b">ORIENTATION</a>       = 268;
+<a name="l00101"></a><a class="code" href="classm3g_1_1AnimationTrack.html#87fcd8136941a05a8a95c61e499692e0">00101</a>     <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code" href="classm3g_1_1AnimationTrack.html#87fcd8136941a05a8a95c61e499692e0">PICKABILITY</a>       = 269;
+<a name="l00108"></a><a class="code" href="classm3g_1_1AnimationTrack.html#8334f0c0c56b96debb10231b86050ead">00108</a>     <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code" href="classm3g_1_1AnimationTrack.html#8334f0c0c56b96debb10231b86050ead">SCALE</a>             = 270;
+<a name="l00113"></a><a class="code" href="classm3g_1_1AnimationTrack.html#f0b58ddb4173a8d2f5a730dab30e6c6f">00113</a>     <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code" href="classm3g_1_1AnimationTrack.html#f0b58ddb4173a8d2f5a730dab30e6c6f">SHININESS</a>         = 271;
+<a name="l00118"></a><a class="code" href="classm3g_1_1AnimationTrack.html#a0119030157ee8a5ef4f8ce88771447b">00118</a>     <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code" href="classm3g_1_1AnimationTrack.html#a0119030157ee8a5ef4f8ce88771447b">SPECULAR_COLOR</a>    = 272;
+<a name="l00123"></a><a class="code" href="classm3g_1_1AnimationTrack.html#c1d6b5313ef35ef100889ca885901db2">00123</a>     <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code" href="classm3g_1_1AnimationTrack.html#c1d6b5313ef35ef100889ca885901db2">SPOT_ANGLE</a>        = 273;
+<a name="l00128"></a><a class="code" href="classm3g_1_1AnimationTrack.html#90c55bd356e55166244416c6f758ea94">00128</a>     <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code" href="classm3g_1_1AnimationTrack.html#90c55bd356e55166244416c6f758ea94">SPOT_EXPONENT</a>     = 274;
+<a name="l00135"></a><a class="code" href="classm3g_1_1AnimationTrack.html#a691826dccd8c22144e61216de4f680c">00135</a>     <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code" href="classm3g_1_1AnimationTrack.html#a691826dccd8c22144e61216de4f680c">TRANSLATION</a>       = 275;
+<a name="l00140"></a><a class="code" href="classm3g_1_1AnimationTrack.html#f248c44b5d4962472c6533cdeffc6fe9">00140</a>     <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code" href="classm3g_1_1AnimationTrack.html#f248c44b5d4962472c6533cdeffc6fe9">VISIBILITY</a>        = 276;
+<a name="l00141"></a>00141 
+<a name="l00142"></a>00142 
+<a name="l00143"></a>00143   <span class="keyword">public</span>:
+<a name="l00150"></a>00150     <a class="code" href="classm3g_1_1AnimationTrack.html#e27012f60e982597d6e504c488e51106">AnimationTrack</a> (<a class="code" href="classm3g_1_1KeyframeSequence.html">KeyframeSequence</a>* sequence, <span class="keywordtype">int</span> property);
+<a name="l00151"></a>00151 
+<a name="l00156"></a>00156     <span class="keyword">virtual</span> <a class="code" href="classm3g_1_1AnimationTrack.html#f7f1bc360c298d4a2f2436889159205c">~AnimationTrack</a> ();
+<a name="l00157"></a>00157 
+<a name="l00163"></a>00163     <a class="code" href="classm3g_1_1AnimationController.html">AnimationController</a>* <a class="code" href="classm3g_1_1AnimationTrack.html#3a54e89528127de5b4d0a48a2045a91c">getController</a> () <span class="keyword">const</span>;
+<a name="l00164"></a>00164 
+<a name="l00169"></a>00169     <a class="code" href="classm3g_1_1KeyframeSequence.html">KeyframeSequence</a>* <a class="code" href="classm3g_1_1AnimationTrack.html#e83c81771a8329e1e5f978f228c0b308">getKeyframeSequence</a> () <span class="keyword">const</span>;
+<a name="l00170"></a>00170 
+<a name="l00175"></a>00175     <span class="keywordtype">int</span> <a class="code" href="classm3g_1_1AnimationTrack.html#143de0bf90b434f1487caae5b0b66bbf">getTargetProperty</a> () <span class="keyword">const</span>;
+<a name="l00176"></a>00176 
+<a name="l00182"></a>00182     <span class="keywordtype">void</span> <a class="code" href="classm3g_1_1AnimationTrack.html#639279dfdc74095fcb28d0c25aeec6df">setController</a> (<a class="code" href="classm3g_1_1AnimationController.html">AnimationController</a>* controller);
+<a name="l00183"></a>00183 
+<a name="l00188"></a>00188     <span class="keyword">virtual</span> std::ostream&amp; <a class="code" href="classm3g_1_1AnimationTrack.html#6fea17fa1532df3794f8cb39cb4f911f">print</a> (std::ostream&amp; out) <span class="keyword">const</span>;
+<a name="l00189"></a>00189 
+<a name="l00190"></a>00190 
+<a name="l00191"></a>00191   <span class="keyword">private</span>:
+<a name="l00192"></a>00192     <span class="keywordtype">int</span>                  property;
+<a name="l00193"></a>00193     <a class="code" href="classm3g_1_1KeyframeSequence.html">KeyframeSequence</a>*    keyframe_sequence;
+<a name="l00194"></a>00194     <a class="code" href="classm3g_1_1AnimationController.html">AnimationController</a>* animation_controller;
+<a name="l00195"></a>00195   };
+<a name="l00196"></a>00196 
+<a name="l00197"></a>00197 } <span class="comment">// namespase m3g {</span>
+<a name="l00198"></a>00198 
+<a name="l00199"></a>00199 std::ostream&amp; operator&lt;&lt; (std::ostream&amp; out, <span class="keyword">const</span> <a class="code" href="classm3g_1_1AnimationTrack.html">m3g::AnimationTrack</a>&amp; a);
+<a name="l00200"></a>00200 
+<a name="l00201"></a>00201 
+<a name="l00202"></a>00202 <span class="preprocessor">#endif</span>
+</pre></div></div>
+<hr size="1"><address style="text-align: right;"><small>Fri Mar 12 10:06:53 2010に生成されました。&nbsp;
+<a href="http://www.doxygen.org/index.html">
+<img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.8 </small></address>
+</body>
+</html>

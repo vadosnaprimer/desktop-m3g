@@ -1,0 +1,381 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<title>クラス Mesh</title>
+<link href="tabs.css" rel="stylesheet" type="text/css">
+<link href="doxygen.css" rel="stylesheet" type="text/css">
+</head><body>
+<!-- 作成： Doxygen 1.5.8 -->
+<div class="navigation" id="top">
+  <div class="tabs">
+    <ul>
+      <li><a href="main.html"><span>メインページ</span></a></li>
+      <li class="current"><a href="annotated.html"><span>クラス</span></a></li>
+      <li><a href="files.html"><span>ファイル</span></a></li>
+    </ul>
+  </div>
+  <div class="tabs">
+    <ul>
+      <li><a href="annotated.html"><span>構成</span></a></li>
+      <li><a href="hierarchy.html"><span>クラス階層</span></a></li>
+      <li><a href="functions.html"><span>構成メンバ</span></a></li>
+    </ul>
+  </div>
+  <div class="navpath"><b>m3g</b>::<a class="el" href="classm3g_1_1Mesh.html">Mesh</a>
+  </div>
+</div>
+<div class="contents">
+<h1>クラス Mesh</h1><!-- doxytag: class="m3g::Mesh" --><!-- doxytag: inherits="m3g::Node" --><code>#include &lt;<a class="el" href="Mesh_8hpp-source.html">Mesh.hpp</a>&gt;</code>
+<p>
+<div class="dynheader">
+Meshに対する継承グラフ</div>
+<div class="dynsection">
+
+<p><center><img src="classm3g_1_1Mesh.png" usemap="#Mesh_map" border="0" alt=""></center>
+<map name="Mesh_map">
+<area href="classm3g_1_1Node.html" alt="Node" shape="rect" coords="53,112,150,136">
+<area href="classm3g_1_1Transformable.html" alt="Transformable" shape="rect" coords="53,56,150,80">
+<area href="classm3g_1_1Object3D.html" alt="Object3D" shape="rect" coords="53,0,150,24">
+<area href="classm3g_1_1MorphingMesh.html" alt="MorphingMesh" shape="rect" coords="0,224,97,248">
+<area href="classm3g_1_1SkinnedMesh.html" alt="SkinnedMesh" shape="rect" coords="107,224,204,248">
+</map>
+</div>
+
+<p>
+<a href="classm3g_1_1Mesh-members.html">すべてのメンバ一覧</a><table border="0" cellpadding="0" cellspacing="0">
+<tr><td></td></tr>
+<tr><td colspan="2"><br><h2>Public メソッド</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Mesh.html#2545f0abeee27d408d3129f3a5df40bb">Mesh</a> (<a class="el" href="classm3g_1_1VertexBuffer.html">VertexBuffer</a> *vertices, int num_submesh, <a class="el" href="classm3g_1_1IndexBuffer.html">IndexBuffer</a> **submeshes, int num_appearance, <a class="el" href="classm3g_1_1Appearance.html">Appearance</a> **appearances)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Mesh.html#2d7766ebbb63eccd77d0dd8b53b400a3">Mesh</a> (<a class="el" href="classm3g_1_1VertexBuffer.html">VertexBuffer</a> *vertices, <a class="el" href="classm3g_1_1IndexBuffer.html">IndexBuffer</a> *submesh, <a class="el" href="classm3g_1_1Appearance.html">Appearance</a> *appearance)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">virtual&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Mesh.html#6e26384cfb03023e7dc2e5419baf813f">~Mesh</a> ()</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">virtual int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Mesh.html#82cfeb67ca66b93e2ca7bda9a4f0e2aa">animate</a> (int time)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="el" href="classm3g_1_1Appearance.html">Appearance</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Mesh.html#4950a19e02c022dcf41a086117eb8219">getAppearance</a> (int index) const </td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="el" href="classm3g_1_1IndexBuffer.html">IndexBuffer</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Mesh.html#ca34a663f46ce20e2b894c046714ea1d">getIndexBuffer</a> (int index) const </td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Mesh.html#5dc5a57ad549eb97504c2a1280a882dd">getSubmeshCount</a> () const </td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="el" href="classm3g_1_1VertexBuffer.html">VertexBuffer</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Mesh.html#7602e9bf450fa8b3ec3c60e2e88cba25">getVertexBuffer</a> () const </td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Mesh.html#bb03b872c453c4f8f3fe31e8b54d1b52">setAppearance</a> (int index, <a class="el" href="classm3g_1_1Appearance.html">Appearance</a> *appearance)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">virtual std::ostream &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Mesh.html#6fea17fa1532df3794f8cb39cb4f911f">print</a> (std::ostream &amp;out) const </td></tr>
+
+<tr><td colspan="2"><br><h2>Protected メソッド</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Mesh.html#1efcb1973989d9963d5bd6d03065d389">render</a> (int pass, int index=0) const </td></tr>
+
+<tr><td colspan="2"><br><h2>Protected 変数</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="1a2db0a8bc6986ba148b6b6f5dee271f"></a><!-- doxytag: member="m3g::Mesh::vertices" ref="1a2db0a8bc6986ba148b6b6f5dee271f" args="" -->
+<a class="el" href="classm3g_1_1VertexBuffer.html">VertexBuffer</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><b>vertices</b></td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="7280e670882c2ce658bd600655fb477e"></a><!-- doxytag: member="m3g::Mesh::indices" ref="7280e670882c2ce658bd600655fb477e" args="" -->
+std::vector&lt; <a class="el" href="classm3g_1_1IndexBuffer.html">IndexBuffer</a> * &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><b>indices</b></td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="6dcb9adb660a04b601286a3ce4500fba"></a><!-- doxytag: member="m3g::Mesh::appearances" ref="6dcb9adb660a04b601286a3ce4500fba" args="" -->
+std::vector&lt; <a class="el" href="classm3g_1_1Appearance.html">Appearance</a> * &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><b>appearances</b></td></tr>
+
+</table>
+<hr><a name="_details"></a><h2>説明</h2>
+ポリゴナルサーフェスを定義するシーングラフのノード. <hr><h2>コンストラクタとデストラクタ</h2>
+<a class="anchor" name="2545f0abeee27d408d3129f3a5df40bb"></a><!-- doxytag: member="m3g::Mesh::Mesh" ref="2545f0abeee27d408d3129f3a5df40bb" args="(VertexBuffer *vertices, int num_submesh, IndexBuffer **submeshes, int num_appearance, Appearance **appearances)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classm3g_1_1Mesh.html">Mesh</a>           </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classm3g_1_1VertexBuffer.html">VertexBuffer</a> *&nbsp;</td>
+          <td class="paramname"> <em>vertices</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>num_submesh</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classm3g_1_1IndexBuffer.html">IndexBuffer</a> **&nbsp;</td>
+          <td class="paramname"> <em>submeshes</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>num_appearance</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classm3g_1_1Appearance.html">Appearance</a> **&nbsp;</td>
+          <td class="paramname"> <em>appearances</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+指定された頂点バッファーとサブメッシュから新しいメッシュを作成する. 
+</div>
+</div><p>
+<a class="anchor" name="2d7766ebbb63eccd77d0dd8b53b400a3"></a><!-- doxytag: member="m3g::Mesh::Mesh" ref="2d7766ebbb63eccd77d0dd8b53b400a3" args="(VertexBuffer *vertices, IndexBuffer *submesh, Appearance *appearance)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classm3g_1_1Mesh.html">Mesh</a>           </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classm3g_1_1VertexBuffer.html">VertexBuffer</a> *&nbsp;</td>
+          <td class="paramname"> <em>vertices</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classm3g_1_1IndexBuffer.html">IndexBuffer</a> *&nbsp;</td>
+          <td class="paramname"> <em>submesh</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classm3g_1_1Appearance.html">Appearance</a> *&nbsp;</td>
+          <td class="paramname"> <em>appearance</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+サブメッシュ1つからなる新しいメッシュを作成する. 
+</div>
+</div><p>
+<a class="anchor" name="6e26384cfb03023e7dc2e5419baf813f"></a><!-- doxytag: member="m3g::Mesh::~Mesh" ref="6e26384cfb03023e7dc2e5419baf813f" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">~<a class="el" href="classm3g_1_1Mesh.html">Mesh</a>           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+このオブジェクトを削除するデストラクタ. 
+</div>
+</div><p>
+<hr><h2>関数</h2>
+<a class="anchor" name="82cfeb67ca66b93e2ca7bda9a4f0e2aa"></a><!-- doxytag: member="m3g::Mesh::animate" ref="82cfeb67ca66b93e2ca7bda9a4f0e2aa" args="(int time)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int animate           </td>
+          <td>(</td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>time</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+このObject3D自身とここから到達できるObject3Dのアニメーテッドプロパティを更新する. 
+<p><a class="el" href="classm3g_1_1Node.html#8aad1ceab4c2a03609c8a42324ce484d">Node</a>を再定義しています。</p>
+
+<p><a class="el" href="classm3g_1_1MorphingMesh.html#8aad1ceab4c2a03609c8a42324ce484d">MorphingMesh</a>で再定義されています。</p>
+
+</div>
+</div><p>
+<a class="anchor" name="4950a19e02c022dcf41a086117eb8219"></a><!-- doxytag: member="m3g::Mesh::getAppearance" ref="4950a19e02c022dcf41a086117eb8219" args="(int index) const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classm3g_1_1Appearance.html">Appearance</a> * getAppearance           </td>
+          <td>(</td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>index</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+指定されたサブメッシュのカレントのアピアランスを取得. 
+</div>
+</div><p>
+<a class="anchor" name="ca34a663f46ce20e2b894c046714ea1d"></a><!-- doxytag: member="m3g::Mesh::getIndexBuffer" ref="ca34a663f46ce20e2b894c046714ea1d" args="(int index) const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classm3g_1_1IndexBuffer.html">IndexBuffer</a> * getIndexBuffer           </td>
+          <td>(</td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>index</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+指定されたインデックスのサブメッシュを取得. 
+</div>
+</div><p>
+<a class="anchor" name="5dc5a57ad549eb97504c2a1280a882dd"></a><!-- doxytag: member="m3g::Mesh::getSubmeshCount" ref="5dc5a57ad549eb97504c2a1280a882dd" args="() const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int getSubmeshCount           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+このメッシュのサブメッシュ数を取得. 
+</div>
+</div><p>
+<a class="anchor" name="7602e9bf450fa8b3ec3c60e2e88cba25"></a><!-- doxytag: member="m3g::Mesh::getVertexBuffer" ref="7602e9bf450fa8b3ec3c60e2e88cba25" args="() const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classm3g_1_1VertexBuffer.html">VertexBuffer</a> * getVertexBuffer           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+このメッシュの頂点バッファーの取得. 
+</div>
+</div><p>
+<a class="anchor" name="6fea17fa1532df3794f8cb39cb4f911f"></a><!-- doxytag: member="m3g::Mesh::print" ref="6fea17fa1532df3794f8cb39cb4f911f" args="(std::ostream &amp;out) const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::ostream &amp; print           </td>
+          <td>(</td>
+          <td class="paramtype">std::ostream &amp;&nbsp;</td>
+          <td class="paramname"> <em>out</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const<code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+このMeshクラスの情報を表示する。デバッグ用. 
+<p><a class="el" href="classm3g_1_1Node.html#6fea17fa1532df3794f8cb39cb4f911f">Node</a>を再定義しています。</p>
+
+<p><a class="el" href="classm3g_1_1MorphingMesh.html#6fea17fa1532df3794f8cb39cb4f911f">MorphingMesh</a>, と <a class="el" href="classm3g_1_1SkinnedMesh.html#6fea17fa1532df3794f8cb39cb4f911f">SkinnedMesh</a>で再定義されています。</p>
+
+</div>
+</div><p>
+<a class="anchor" name="1efcb1973989d9963d5bd6d03065d389"></a><!-- doxytag: member="m3g::Mesh::render" ref="1efcb1973989d9963d5bd6d03065d389" args="(int pass, int index=0) const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void render           </td>
+          <td>(</td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>pass</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>index</em> = <code>0</code></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td> const<code> [protected, virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+このノードをレンダリングする内部使用の関数.<p>
+Note: <a class="el" href="classm3g_1_1Mesh.html">Mesh</a> should be rendered only at second rendering pass(pass=2). In other cases, do nothing. 
+<p><a class="el" href="classm3g_1_1Node.html#1efcb1973989d9963d5bd6d03065d389">Node</a>を再定義しています。</p>
+
+<p><a class="el" href="classm3g_1_1MorphingMesh.html#1efcb1973989d9963d5bd6d03065d389">MorphingMesh</a>, と <a class="el" href="classm3g_1_1SkinnedMesh.html#1efcb1973989d9963d5bd6d03065d389">SkinnedMesh</a>で再定義されています。</p>
+
+</div>
+</div><p>
+<a class="anchor" name="bb03b872c453c4f8f3fe31e8b54d1b52"></a><!-- doxytag: member="m3g::Mesh::setAppearance" ref="bb03b872c453c4f8f3fe31e8b54d1b52" args="(int index, Appearance *appearance)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void setAppearance           </td>
+          <td>(</td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>index</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classm3g_1_1Appearance.html">Appearance</a> *&nbsp;</td>
+          <td class="paramname"> <em>appearance</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+指定されたサブメッシュのアピアランスを設定. 
+</div>
+</div><p>
+<hr>このクラスの説明は次のファイルから生成されました:<ul>
+<li>/work/desktop-m3g/src/<a class="el" href="Mesh_8hpp-source.html">Mesh.hpp</a><li>/work/desktop-m3g/src/Mesh.cpp</ul>
+</div>
+<hr size="1"><address style="text-align: right;"><small>Fri Mar 12 10:06:55 2010に生成されました。&nbsp;
+<a href="http://www.doxygen.org/index.html">
+<img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.8 </small></address>
+</body>
+</html>

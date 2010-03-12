@@ -1,0 +1,104 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<title>/work/desktop-m3g/src/KeyframeSequence.hpp ソースファイル</title>
+<link href="tabs.css" rel="stylesheet" type="text/css">
+<link href="doxygen.css" rel="stylesheet" type="text/css">
+</head><body>
+<!-- 作成： Doxygen 1.5.8 -->
+<div class="navigation" id="top">
+  <div class="tabs">
+    <ul>
+      <li><a href="main.html"><span>メインページ</span></a></li>
+      <li><a href="annotated.html"><span>クラス</span></a></li>
+      <li class="current"><a href="files.html"><span>ファイル</span></a></li>
+    </ul>
+  </div>
+  <div class="tabs">
+    <ul>
+      <li><a href="files.html"><span>ファイル一覧</span></a></li>
+    </ul>
+  </div>
+<h1>/work/desktop-m3g/src/KeyframeSequence.hpp</h1><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="preprocessor">#ifndef __KEYFRAME_SEQUENCE_HPP__</span>
+<a name="l00002"></a>00002 <span class="preprocessor"></span><span class="preprocessor">#define __KEYFRAME_SEQUENCE_HPP__</span>
+<a name="l00003"></a>00003 <span class="preprocessor"></span>
+<a name="l00004"></a>00004 <span class="preprocessor">#include "Object3D.hpp"</span>
+<a name="l00005"></a>00005 <span class="preprocessor">#include "Keyframe.hpp"</span>
+<a name="l00006"></a>00006 <span class="preprocessor">#include &lt;iosfwd&gt;</span>
+<a name="l00007"></a>00007 
+<a name="l00008"></a>00008 <span class="keyword">namespace </span>m3g {
+<a name="l00009"></a>00009 
+<a name="l00014"></a><a class="code" href="classm3g_1_1KeyframeSequence.html">00014</a> <span class="keyword">class </span><a class="code" href="classm3g_1_1KeyframeSequence.html">KeyframeSequence</a> : <span class="keyword">public</span> <a class="code" href="classm3g_1_1Object3D.html">Object3D</a>
+<a name="l00015"></a>00015 {
+<a name="l00016"></a>00016 <span class="keyword">public</span>:
+<a name="l00021"></a><a class="code" href="classm3g_1_1KeyframeSequence.html#b45ff833865ae8962be27923995f91a3">00021</a>     <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code" href="classm3g_1_1KeyframeSequence.html#b45ff833865ae8962be27923995f91a3">CONSTANT</a> = 192;
+<a name="l00026"></a><a class="code" href="classm3g_1_1KeyframeSequence.html#ecc439231d4f3639e6f6a9625615a0f7">00026</a>     <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code" href="classm3g_1_1KeyframeSequence.html#ecc439231d4f3639e6f6a9625615a0f7">LOOP</a>     = 193;
+<a name="l00031"></a><a class="code" href="classm3g_1_1KeyframeSequence.html#23ccf193c67257f1be26417041cecb31">00031</a>     <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code" href="classm3g_1_1KeyframeSequence.html#23ccf193c67257f1be26417041cecb31">LINEAR</a>   = 176;
+<a name="l00036"></a><a class="code" href="classm3g_1_1KeyframeSequence.html#77ebb943765f530d2883e1c26127d3ce">00036</a>     <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code" href="classm3g_1_1KeyframeSequence.html#77ebb943765f530d2883e1c26127d3ce">SLERP</a>    = 177;
+<a name="l00041"></a><a class="code" href="classm3g_1_1KeyframeSequence.html#fbb002ac924c1349dead17c16b6fa720">00041</a>     <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code" href="classm3g_1_1KeyframeSequence.html#fbb002ac924c1349dead17c16b6fa720">SPLINE</a>   = 178;
+<a name="l00046"></a><a class="code" href="classm3g_1_1KeyframeSequence.html#0ad85e76e101b5eabf5a5c5f48648845">00046</a>     <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code" href="classm3g_1_1KeyframeSequence.html#0ad85e76e101b5eabf5a5c5f48648845">SQUAD</a>    = 179;
+<a name="l00051"></a><a class="code" href="classm3g_1_1KeyframeSequence.html#07dc1c0bf7f480095150d1b1c34c8218">00051</a>     <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code" href="classm3g_1_1KeyframeSequence.html#07dc1c0bf7f480095150d1b1c34c8218">STEP</a>     = 180;
+<a name="l00052"></a>00052 
+<a name="l00057"></a><a class="code" href="structm3g_1_1KeyframeSequence_1_1ValidRange.html">00057</a>   <span class="keyword">struct </span><a class="code" href="structm3g_1_1KeyframeSequence_1_1ValidRange.html">ValidRange</a> {
+<a name="l00058"></a>00058     <a class="code" href="structm3g_1_1KeyframeSequence_1_1ValidRange.html">ValidRange</a> (<span class="keywordtype">int</span> first_, <span class="keywordtype">int</span> last_) : first(first_), last(last_) {};
+<a name="l00059"></a>00059     <span class="keywordtype">int</span> first;
+<a name="l00060"></a>00060     <span class="keywordtype">int</span> last;
+<a name="l00061"></a>00061   };
+<a name="l00062"></a>00062   
+<a name="l00063"></a>00063 
+<a name="l00064"></a>00064 <span class="keyword">public</span>:
+<a name="l00070"></a>00070     <a class="code" href="classm3g_1_1KeyframeSequence.html#0c07c479375c11ff94cff02c1267f0d0">KeyframeSequence</a> (<span class="keywordtype">int</span> numKeyframes, <span class="keywordtype">int</span> numComponents, <span class="keywordtype">int</span> interpolation);
+<a name="l00071"></a>00071 
+<a name="l00076"></a>00076     <span class="keyword">virtual</span> <a class="code" href="classm3g_1_1KeyframeSequence.html#464f5929e3302c788ca626c11ca8d656">~KeyframeSequence</a> ();
+<a name="l00077"></a>00077 
+<a name="l00082"></a>00082     <span class="keywordtype">int</span> <a class="code" href="classm3g_1_1KeyframeSequence.html#7016f51d2788e78fdd736efd040f5e5e">getComponentCount</a> () <span class="keyword">const</span>;
+<a name="l00083"></a>00083 
+<a name="l00088"></a>00088     <span class="keywordtype">int</span> <a class="code" href="classm3g_1_1KeyframeSequence.html#995a5ca5c8c3c993ef167f67cbb5fabe">getDuration</a> () <span class="keyword">const</span>;
+<a name="l00089"></a>00089 
+<a name="l00094"></a>00094     <span class="keywordtype">int</span> <a class="code" href="classm3g_1_1KeyframeSequence.html#0d46321e7f46e037508cce88cdf6a487">getInterpolationType</a> () <span class="keyword">const</span>;
+<a name="l00095"></a>00095 
+<a name="l00096"></a>00096 
+<a name="l00101"></a>00101      <span class="keywordtype">int</span> <a class="code" href="classm3g_1_1KeyframeSequence.html#0fd27047149eedab8b10319768e1fe9a">getKeyframe</a> (<span class="keywordtype">int</span> index, <span class="keywordtype">float</span>* value) <span class="keyword">const</span>;
+<a name="l00102"></a>00102 
+<a name="l00107"></a>00107     <span class="keywordtype">int</span> <a class="code" href="classm3g_1_1KeyframeSequence.html#4d500a603f25adafd8e6f8b68872dbff">getKeyframeCount</a> () <span class="keyword">const</span>;
+<a name="l00108"></a>00108 
+<a name="l00113"></a>00113     <span class="keywordtype">int</span> <a class="code" href="classm3g_1_1KeyframeSequence.html#a356af60b9759d5d3da833773e3c7b73">getRepeatMode</a> () <span class="keyword">const</span>;
+<a name="l00114"></a>00114 
+<a name="l00119"></a>00119     <span class="keywordtype">int</span> <a class="code" href="classm3g_1_1KeyframeSequence.html#b7e54386674cefdb8f5fa65ce5435b50">getValidRangeFirst</a> () <span class="keyword">const</span>;
+<a name="l00120"></a>00120 
+<a name="l00125"></a>00125     <span class="keywordtype">int</span> <a class="code" href="classm3g_1_1KeyframeSequence.html#aa98cc8d698c482c33a3487c33db27d0">getValidRangeLast</a> () <span class="keyword">const</span>;
+<a name="l00126"></a>00126 
+<a name="l00131"></a>00131     <span class="keywordtype">void</span> <a class="code" href="classm3g_1_1KeyframeSequence.html#d7406d5e0e2f398e05e3563d099dfdf1">setDuration</a> (<span class="keywordtype">int</span> duration);
+<a name="l00132"></a>00132 
+<a name="l00137"></a>00137     <span class="keywordtype">void</span> <a class="code" href="classm3g_1_1KeyframeSequence.html#700d02a4ac28514016721e4b1d2bcf96">setKeyframe</a> (<span class="keywordtype">int</span> index, <span class="keywordtype">int</span> time, <span class="keywordtype">float</span>* value);
+<a name="l00138"></a>00138 
+<a name="l00143"></a>00143     <span class="keywordtype">void</span> <a class="code" href="classm3g_1_1KeyframeSequence.html#e5cd1486fe0a8a61cf96816e976d7f87">setRepeatMode</a> (<span class="keywordtype">int</span> mode);
+<a name="l00144"></a>00144 
+<a name="l00149"></a>00149     <span class="keywordtype">void</span> <a class="code" href="classm3g_1_1KeyframeSequence.html#b5a824131cef547816366141afe0339a">setValidRange</a> (<span class="keywordtype">int</span> first, <span class="keywordtype">int</span> last);
+<a name="l00150"></a>00150 
+<a name="l00155"></a>00155   <span class="keyword">virtual</span> std::ostream&amp; <a class="code" href="classm3g_1_1KeyframeSequence.html#6fea17fa1532df3794f8cb39cb4f911f">print</a> (std::ostream&amp; out) <span class="keyword">const</span>;
+<a name="l00156"></a>00156 
+<a name="l00157"></a>00157 PRIVATE:
+<a name="l00162"></a>00162   <span class="keywordtype">void</span> getFrame (<span class="keywordtype">int</span> local_time, <span class="keywordtype">float</span>* value) <span class="keyword">const</span>;
+<a name="l00163"></a>00163 
+<a name="l00164"></a>00164 <span class="keyword">private</span>:
+<a name="l00165"></a>00165   <span class="keywordtype">int</span>        repeat_mode;
+<a name="l00166"></a>00166   <span class="keywordtype">int</span>        interp_type;
+<a name="l00167"></a>00167   <span class="keywordtype">int</span>        duration;
+<a name="l00168"></a>00168   <a class="code" href="structm3g_1_1KeyframeSequence_1_1ValidRange.html">ValidRange</a> valid_range;
+<a name="l00169"></a>00169   <span class="keywordtype">int</span>        component_count;
+<a name="l00170"></a>00170   <span class="keywordtype">int</span>        keyframe_count;
+<a name="l00171"></a>00171   std::vector&lt;Keyframe&gt; keyframes;
+<a name="l00172"></a>00172 };
+<a name="l00173"></a>00173 
+<a name="l00174"></a>00174 } <span class="comment">// namespace m3g {</span>
+<a name="l00175"></a>00175 
+<a name="l00176"></a>00176 std::ostream&amp; operator&lt;&lt; (std::ostream&amp; out, <span class="keyword">const</span> <a class="code" href="classm3g_1_1KeyframeSequence.html">m3g::KeyframeSequence</a>&amp; keys);
+<a name="l00177"></a>00177 
+<a name="l00178"></a>00178 
+<a name="l00179"></a>00179 <span class="preprocessor">#endif</span>
+</pre></div></div>
+<hr size="1"><address style="text-align: right;"><small>Fri Mar 12 10:06:58 2010に生成されました。&nbsp;
+<a href="http://www.doxygen.org/index.html">
+<img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.8 </small></address>
+</body>
+</html>

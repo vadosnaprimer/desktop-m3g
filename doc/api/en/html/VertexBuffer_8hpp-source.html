@@ -1,0 +1,107 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<title>/work/desktop-m3g/src/VertexBuffer.hpp ソースファイル</title>
+<link href="tabs.css" rel="stylesheet" type="text/css">
+<link href="doxygen.css" rel="stylesheet" type="text/css">
+</head><body>
+<!-- 作成： Doxygen 1.5.8 -->
+<div class="navigation" id="top">
+  <div class="tabs">
+    <ul>
+      <li><a href="main.html"><span>メインページ</span></a></li>
+      <li><a href="annotated.html"><span>クラス</span></a></li>
+      <li class="current"><a href="files.html"><span>ファイル</span></a></li>
+    </ul>
+  </div>
+  <div class="tabs">
+    <ul>
+      <li><a href="files.html"><span>ファイル一覧</span></a></li>
+    </ul>
+  </div>
+<h1>/work/desktop-m3g/src/VertexBuffer.hpp</h1><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="preprocessor">#ifndef __VERTEX_BUFFER_HPP__</span>
+<a name="l00002"></a>00002 <span class="preprocessor"></span><span class="preprocessor">#define __VERTEX_BUFFER_HPP__</span>
+<a name="l00003"></a>00003 <span class="preprocessor"></span>
+<a name="l00004"></a>00004 <span class="preprocessor">#include &lt;GL/glew.h&gt;</span>
+<a name="l00005"></a>00005 <span class="preprocessor">#include "Object3D.hpp"</span>
+<a name="l00006"></a>00006 <span class="preprocessor">#include "m3gdef.hpp"</span>
+<a name="l00007"></a>00007 <span class="preprocessor">#include &lt;iosfwd&gt;</span>
+<a name="l00008"></a>00008 
+<a name="l00009"></a>00009 <span class="keyword">namespace </span>m3g {
+<a name="l00010"></a>00010 
+<a name="l00011"></a>00011 <span class="keyword">class </span>VertexArray;
+<a name="l00012"></a>00012 
+<a name="l00016"></a><a class="code" href="classm3g_1_1VertexBuffer.html">00016</a> <span class="keyword">class </span><a class="code" href="classm3g_1_1VertexBuffer.html">VertexBuffer</a> : <span class="keyword">public</span> <a class="code" href="classm3g_1_1Object3D.html">Object3D</a>
+<a name="l00017"></a>00017 {
+<a name="l00018"></a>00018   <span class="keyword">friend</span> <span class="keyword">class </span><a class="code" href="classm3g_1_1Mesh.html">Mesh</a>;  <span class="comment">// for render</span>
+<a name="l00019"></a>00019 
+<a name="l00020"></a>00020 <span class="keyword">public</span>:
+<a name="l00024"></a>00024     <a class="code" href="classm3g_1_1VertexBuffer.html#fd7b13840c99c57d27316c8f8434dc49">VertexBuffer</a> ();
+<a name="l00025"></a>00025 
+<a name="l00029"></a>00029     <span class="keyword">virtual</span> <a class="code" href="classm3g_1_1VertexBuffer.html#0e5e1dbdc4295ff9aa1e15e0ce3624af">~VertexBuffer</a> ();
+<a name="l00030"></a>00030 
+<a name="l00035"></a>00035     <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classm3g_1_1VertexBuffer.html#415c0b110f95410ded9b85e5d99a496b">addAnimationTrack</a> (<a class="code" href="classm3g_1_1AnimationTrack.html">AnimationTrack</a>* animation_track);
+<a name="l00036"></a>00036 
+<a name="l00040"></a>00040     <span class="keyword">virtual</span> <span class="keywordtype">int</span> <a class="code" href="classm3g_1_1VertexBuffer.html#82cfeb67ca66b93e2ca7bda9a4f0e2aa">animate</a> (<span class="keywordtype">int</span> time);
+<a name="l00041"></a>00041 
+<a name="l00045"></a>00045     <a class="code" href="classm3g_1_1VertexArray.html">VertexArray</a>* <a class="code" href="classm3g_1_1VertexBuffer.html#e3bdc8503242a6d278230352d03e5893">getColors</a> () <span class="keyword">const</span>;
+<a name="l00046"></a>00046 
+<a name="l00050"></a>00050     <span class="keywordtype">int</span> <a class="code" href="classm3g_1_1VertexBuffer.html#4e33b93a98ce0632d51e7ae775ae5b1e">getDefaultColor</a> () <span class="keyword">const</span>;
+<a name="l00051"></a>00051 
+<a name="l00055"></a>00055     <a class="code" href="classm3g_1_1VertexArray.html">VertexArray</a>* <a class="code" href="classm3g_1_1VertexBuffer.html#0f4341d1215ff8f4efeaa40a21327c0c">getNormals</a> () <span class="keyword">const</span>;
+<a name="l00056"></a>00056 
+<a name="l00060"></a>00060     <a class="code" href="classm3g_1_1VertexArray.html">VertexArray</a>* <a class="code" href="classm3g_1_1VertexBuffer.html#5ca059361f9f834dd00b5d595bf3df0b">getPositions</a> (<span class="keywordtype">float</span>* scale_bias) <span class="keyword">const</span>;
+<a name="l00061"></a>00061 
+<a name="l00065"></a>00065   <a class="code" href="classm3g_1_1VertexArray.html">VertexArray</a>* <a class="code" href="classm3g_1_1VertexBuffer.html#9015840c09da0691c31a8aab5e09404a">getTexCoords</a> (<span class="keywordtype">int</span> index, <span class="keywordtype">float</span>* scale_bias) <span class="keyword">const</span>;
+<a name="l00066"></a>00066 
+<a name="l00070"></a>00070     <span class="keywordtype">void</span> <a class="code" href="classm3g_1_1VertexBuffer.html#e5a5933252e3ec3afa0a83698b5b3521">setColors</a> (<a class="code" href="classm3g_1_1VertexArray.html">VertexArray</a>* colors);
+<a name="l00071"></a>00071 
+<a name="l00075"></a>00075     <span class="keywordtype">void</span> <a class="code" href="classm3g_1_1VertexBuffer.html#ba88996ea63221b09b9f841aef0270ee">setDefaultColor</a> (<span class="keywordtype">int</span> rgb);
+<a name="l00076"></a>00076 
+<a name="l00080"></a>00080     <span class="keywordtype">void</span> <a class="code" href="classm3g_1_1VertexBuffer.html#4aabe6277538d5aa8285759dab85002a">setNormals</a> (<a class="code" href="classm3g_1_1VertexArray.html">VertexArray</a>* normals);
+<a name="l00081"></a>00081 
+<a name="l00085"></a>00085     <span class="keywordtype">void</span> <a class="code" href="classm3g_1_1VertexBuffer.html#527460407f488d5128bae7d0adb6da43">setPositions</a> (<a class="code" href="classm3g_1_1VertexArray.html">VertexArray</a>* positios, <span class="keywordtype">float</span> scale, <span class="keywordtype">float</span>* bias);
+<a name="l00086"></a>00086 
+<a name="l00090"></a>00090     <span class="keywordtype">void</span> <a class="code" href="classm3g_1_1VertexBuffer.html#626af19bd7702480ac9e8ea4532d27d5">setTexCoords</a> (<span class="keywordtype">int</span> index, <a class="code" href="classm3g_1_1VertexArray.html">VertexArray</a>* texCoords, <span class="keywordtype">float</span> scale, <span class="keywordtype">float</span>* bias);
+<a name="l00091"></a>00091 
+<a name="l00095"></a>00095   <span class="keyword">virtual</span> std::ostream&amp; <a class="code" href="classm3g_1_1VertexBuffer.html#6fea17fa1532df3794f8cb39cb4f911f">print</a> (std::ostream&amp; out) <span class="keyword">const</span>;
+<a name="l00096"></a>00096 
+<a name="l00097"></a>00097 
+<a name="l00098"></a>00098 <span class="keyword">protected</span>:
+<a name="l00099"></a>00099   <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classm3g_1_1VertexBuffer.html#4dadb21b568b0230fac106f15040138c">findByObjectType</a> (<span class="keywordtype">int</span> obj_type, std::vector&lt;Object3D*&gt;&amp; objs) <span class="keyword">const</span>;
+<a name="l00100"></a>00100 
+<a name="l00101"></a>00101 <span class="keyword">private</span>:
+<a name="l00102"></a>00102   <span class="keyword">virtual</span> <span class="keywordtype">void</span> render (<span class="keywordtype">int</span> pass, <span class="keywordtype">int</span> index=0) <span class="keyword">const</span>;
+<a name="l00103"></a>00103 
+<a name="l00104"></a>00104 <span class="keyword">private</span>:
+<a name="l00105"></a>00105   <a class="code" href="classm3g_1_1VertexArray.html">VertexArray</a>* vertex_position_array;
+<a name="l00106"></a>00106   <span class="keywordtype">float</span>        positions_scale;
+<a name="l00107"></a>00107   <span class="keywordtype">float</span>        positions_bias[3];
+<a name="l00108"></a>00108   <a class="code" href="classm3g_1_1VertexArray.html">VertexArray</a>* texture_coordinate_arrays[MAX_TEXTURE_UNITS];
+<a name="l00109"></a>00109   <span class="keywordtype">float</span>        tex_coord_scale[MAX_TEXTURE_UNITS];
+<a name="l00110"></a>00110   <span class="keywordtype">float</span>        tex_coord_bias[MAX_TEXTURE_UNITS][3];
+<a name="l00111"></a>00111   <a class="code" href="classm3g_1_1VertexArray.html">VertexArray</a>* normal_array;
+<a name="l00112"></a>00112   <a class="code" href="classm3g_1_1VertexArray.html">VertexArray</a>* color_array;
+<a name="l00113"></a>00113   <span class="keyword">union </span>{
+<a name="l00114"></a>00114     <span class="keywordtype">int</span> default_color;
+<a name="l00115"></a>00115     <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> argb[4];
+<a name="l00116"></a>00116   };
+<a name="l00117"></a>00117 
+<a name="l00118"></a>00118 <span class="keyword">private</span>:
+<a name="l00119"></a>00119   GLuint vbuf, ibuf, nbuf, tcbuf[MAX_TEXTURE_UNITS];
+<a name="l00120"></a>00120 
+<a name="l00121"></a>00121 };
+<a name="l00122"></a>00122 
+<a name="l00123"></a>00123 
+<a name="l00124"></a>00124 } <span class="comment">// namespace m3g {</span>
+<a name="l00125"></a>00125 
+<a name="l00126"></a>00126 std::ostream&amp; operator&lt;&lt; (std::ostream&amp; out, <span class="keyword">const</span> <a class="code" href="classm3g_1_1VertexBuffer.html">m3g::VertexBuffer</a>&amp; vb);
+<a name="l00127"></a>00127 
+<a name="l00128"></a>00128 
+<a name="l00129"></a>00129 <span class="preprocessor">#endif</span>
+<a name="l00130"></a>00130 <span class="preprocessor"></span>
+</pre></div></div>
+<hr size="1"><address style="text-align: right;"><small>Fri Mar 12 10:06:58 2010に生成されました。&nbsp;
+<a href="http://www.doxygen.org/index.html">
+<img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.8 </small></address>
+</body>
+</html>

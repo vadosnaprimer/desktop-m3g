@@ -1,0 +1,92 @@
+\hypertarget{classm3g_1_1TriangleStripArray}{
+\section{クラス TriangleStripArray}
+\label{classm3g_1_1TriangleStripArray}\index{m3g::TriangleStripArray@{m3g::TriangleStripArray}}
+}
+{\tt \#include $<$TriangleStripArray.hpp$>$}
+
+TriangleStripArrayに対する継承グラフ:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3cm]{classm3g_1_1TriangleStripArray}
+\end{center}
+\end{figure}
+\subsection*{Public メソッド}
+\begin{CompactItemize}
+\item 
+\hyperlink{classm3g_1_1TriangleStripArray_57d4e874819367084aeadb11593c4436}{TriangleStripArray} (int $\ast$indices, int num\_\-strips, int $\ast$strips)
+\item 
+\hyperlink{classm3g_1_1TriangleStripArray_d2ca9884a6ccf32da3cee977549b5ee0}{TriangleStripArray} (int first\_\-index, int num\_\-strips, int $\ast$strips)
+\item 
+virtual \hyperlink{classm3g_1_1TriangleStripArray_1cb3853bf79b7710d57044da818d2cde}{$\sim$TriangleStripArray} ()
+\item 
+virtual std::ostream \& \hyperlink{classm3g_1_1TriangleStripArray_6fea17fa1532df3794f8cb39cb4f911f}{print} (std::ostream \&out) const 
+\end{CompactItemize}
+\subsection*{Protected メソッド}
+\begin{CompactItemize}
+\item 
+virtual void \hyperlink{classm3g_1_1TriangleStripArray_1efcb1973989d9963d5bd6d03065d389}{render} (int pass, int index=0) const 
+\end{CompactItemize}
+\subsection*{Protected 変数}
+\begin{CompactItemize}
+\item 
+\hypertarget{classm3g_1_1TriangleStripArray_09d77e6556195583218cf7f0bc11ab1c}{
+PRIVATE \textbf{\_\-\_\-pad0\_\-\_\-}: std::vector$<$int$>$ strips}
+\label{classm3g_1_1TriangleStripArray_09d77e6556195583218cf7f0bc11ab1c}
+
+\end{CompactItemize}
+
+
+\subsection{説明}
+トライアングルストリップを定義する. 
+
+\subsection{コンストラクタとデストラクタ}
+\hypertarget{classm3g_1_1TriangleStripArray_57d4e874819367084aeadb11593c4436}{
+\index{m3g::TriangleStripArray@{m3g::TriangleStripArray}!TriangleStripArray@{TriangleStripArray}}
+\index{TriangleStripArray@{TriangleStripArray}!m3g::TriangleStripArray@{m3g::TriangleStripArray}}
+\subsubsection[{TriangleStripArray}]{\setlength{\rightskip}{0pt plus 5cm}{\bf TriangleStripArray} (int $\ast$ {\em indices}, \/  int {\em num\_\-strips}, \/  int $\ast$ {\em strips})}}
+\label{classm3g_1_1TriangleStripArray_57d4e874819367084aeadb11593c4436}
+
+
+明示的なインデックスで指定したトライアングルストリップ配列の作成 \hypertarget{classm3g_1_1TriangleStripArray_d2ca9884a6ccf32da3cee977549b5ee0}{
+\index{m3g::TriangleStripArray@{m3g::TriangleStripArray}!TriangleStripArray@{TriangleStripArray}}
+\index{TriangleStripArray@{TriangleStripArray}!m3g::TriangleStripArray@{m3g::TriangleStripArray}}
+\subsubsection[{TriangleStripArray}]{\setlength{\rightskip}{0pt plus 5cm}{\bf TriangleStripArray} (int {\em first\_\-index}, \/  int {\em num\_\-strips}, \/  int $\ast$ {\em strips})}}
+\label{classm3g_1_1TriangleStripArray_d2ca9884a6ccf32da3cee977549b5ee0}
+
+
+暗黙的にインデックスで指定したトライアングルストリップ配列の作成 \hypertarget{classm3g_1_1TriangleStripArray_1cb3853bf79b7710d57044da818d2cde}{
+\index{m3g::TriangleStripArray@{m3g::TriangleStripArray}!$\sim$TriangleStripArray@{$\sim$TriangleStripArray}}
+\index{$\sim$TriangleStripArray@{$\sim$TriangleStripArray}!m3g::TriangleStripArray@{m3g::TriangleStripArray}}
+\subsubsection[{$\sim$TriangleStripArray}]{\setlength{\rightskip}{0pt plus 5cm}$\sim${\bf TriangleStripArray} ()\hspace{0.3cm}{\tt  \mbox{[}virtual\mbox{]}}}}
+\label{classm3g_1_1TriangleStripArray_1cb3853bf79b7710d57044da818d2cde}
+
+
+このオブジェクトを削除するデストラクタ. 
+
+\subsection{関数}
+\hypertarget{classm3g_1_1TriangleStripArray_6fea17fa1532df3794f8cb39cb4f911f}{
+\index{m3g::TriangleStripArray@{m3g::TriangleStripArray}!print@{print}}
+\index{print@{print}!m3g::TriangleStripArray@{m3g::TriangleStripArray}}
+\subsubsection[{print}]{\setlength{\rightskip}{0pt plus 5cm}std::ostream \& print (std::ostream \& {\em out}) const\hspace{0.3cm}{\tt  \mbox{[}virtual\mbox{]}}}}
+\label{classm3g_1_1TriangleStripArray_6fea17fa1532df3794f8cb39cb4f911f}
+
+
+このTriangleStripArrayクラスの情報を表示する。デバッグ用の関数. 
+
+\hyperlink{classm3g_1_1IndexBuffer_6fea17fa1532df3794f8cb39cb4f911f}{IndexBuffer}を再定義しています。\hypertarget{classm3g_1_1TriangleStripArray_1efcb1973989d9963d5bd6d03065d389}{
+\index{m3g::TriangleStripArray@{m3g::TriangleStripArray}!render@{render}}
+\index{render@{render}!m3g::TriangleStripArray@{m3g::TriangleStripArray}}
+\subsubsection[{render}]{\setlength{\rightskip}{0pt plus 5cm}void render (int {\em pass}, \/  int {\em index} = {\tt 0}) const\hspace{0.3cm}{\tt  \mbox{[}protected, virtual\mbox{]}}}}
+\label{classm3g_1_1TriangleStripArray_1efcb1973989d9963d5bd6d03065d389}
+
+
+このオブジェクトのレンダリング.
+
+Note: \hyperlink{classm3g_1_1TriangleStripArray}{TriangleStripArray} should be rendered only at second rendering pass(pass=2). In other cases, do nothing. 
+
+\hyperlink{classm3g_1_1IndexBuffer_1efcb1973989d9963d5bd6d03065d389}{IndexBuffer}を再定義しています。
+
+このクラスの説明は次のファイルから生成されました:\begin{CompactItemize}
+\item 
+/work/desktop-m3g/src/TriangleStripArray.hpp\item 
+/work/desktop-m3g/src/TriangleStripArray.cpp\end{CompactItemize}

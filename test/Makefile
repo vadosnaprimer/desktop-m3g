@@ -68,7 +68,6 @@ test-AnimationController.o: /usr/include/GL/glew.h /usr/include/GL/glu.h
 test-AnimationController.o: /usr/include/GL/gl.h ../src/m3gdef.hpp
 test-AnimationController.o: ../src/m3ginternal.hpp
 test-AnimationController.o: ../src/AnimationController.hpp
-test-AnimationController.o: ../src/ActiveInterval.hpp
 test-AnimationController.o: ../src/KeyframeSequence.hpp ../src/Keyframe.hpp
 test-AnimationTrack.o: /usr/include/unittest++/UnitTest++.h
 test-AnimationTrack.o: /usr/include/unittest++/Config.h
@@ -106,8 +105,7 @@ test-AnimationTrack.o: ../src/AnimationTrack.hpp ../src/Object3D.hpp
 test-AnimationTrack.o: /usr/include/GL/glew.h /usr/include/GL/glu.h
 test-AnimationTrack.o: /usr/include/GL/gl.h ../src/m3gdef.hpp
 test-AnimationTrack.o: ../src/m3ginternal.hpp ../src/AnimationController.hpp
-test-AnimationTrack.o: ../src/ActiveInterval.hpp ../src/KeyframeSequence.hpp
-test-AnimationTrack.o: ../src/Keyframe.hpp
+test-AnimationTrack.o: ../src/KeyframeSequence.hpp ../src/Keyframe.hpp
 test-Appearance.o: /usr/include/unittest++/UnitTest++.h
 test-Appearance.o: /usr/include/unittest++/Config.h
 test-Appearance.o: /usr/include/unittest++/Test.h
@@ -146,8 +144,7 @@ test-Appearance.o: ../src/m3ginternal.hpp ../src/PolygonMode.hpp
 test-Appearance.o: ../src/CompositingMode.hpp ../src/Image2D.hpp
 test-Appearance.o: ../src/Texture2D.hpp ../src/Transformable.hpp
 test-Appearance.o: ../src/Quaternion.hpp ../src/Transform.hpp
-test-Appearance.o: ../src/Matrix.hpp ../src/TextureCoord2D.hpp
-test-Appearance.o: ../src/Material.hpp ../src/Fog.hpp
+test-Appearance.o: ../src/Matrix.hpp ../src/Material.hpp ../src/Fog.hpp
 test-Background.o: /usr/include/unittest++/UnitTest++.h
 test-Background.o: /usr/include/unittest++/Config.h
 test-Background.o: /usr/include/unittest++/Test.h
@@ -250,7 +247,7 @@ test-Camera.o: ../src/Camera.hpp ../src/Node.hpp ../src/Transformable.hpp
 test-Camera.o: ../src/Object3D.hpp /usr/include/GL/glew.h
 test-Camera.o: /usr/include/GL/glu.h /usr/include/GL/gl.h ../src/m3gdef.hpp
 test-Camera.o: ../src/m3ginternal.hpp ../src/Quaternion.hpp
-test-Camera.o: ../src/Transform.hpp ../src/Matrix.hpp ../src/Projection.hpp
+test-Camera.o: ../src/Transform.hpp ../src/Matrix.hpp
 test-CompositingMode.o: /usr/include/unittest++/UnitTest++.h
 test-CompositingMode.o: /usr/include/unittest++/Config.h
 test-CompositingMode.o: /usr/include/unittest++/Test.h
@@ -862,8 +859,7 @@ test-Texture2D.o: /usr/include/GL/glu.h /usr/include/GL/gl.h
 test-Texture2D.o: ../src/Transformable.hpp ../src/Object3D.hpp
 test-Texture2D.o: ../src/m3gdef.hpp ../src/m3ginternal.hpp
 test-Texture2D.o: ../src/Quaternion.hpp ../src/Transform.hpp
-test-Texture2D.o: ../src/Matrix.hpp ../src/TextureCoord2D.hpp
-test-Texture2D.o: ../src/Image2D.hpp ../src/m3gexcept.hpp
+test-Texture2D.o: ../src/Matrix.hpp ../src/Image2D.hpp ../src/m3gexcept.hpp
 test-Transform.o: /usr/include/unittest++/UnitTest++.h
 test-Transform.o: /usr/include/unittest++/Config.h
 test-Transform.o: /usr/include/unittest++/Test.h
@@ -1107,8 +1103,7 @@ test-World.o: ../src/Transformable.hpp ../src/Object3D.hpp
 test-World.o: /usr/include/GL/glew.h /usr/include/GL/glu.h
 test-World.o: /usr/include/GL/gl.h ../src/m3gdef.hpp ../src/m3ginternal.hpp
 test-World.o: ../src/Quaternion.hpp ../src/Transform.hpp ../src/Matrix.hpp
-test-World.o: ../src/Camera.hpp ../src/Projection.hpp ../src/Background.hpp
-test-World.o: ../src/Light.hpp
+test-World.o: ../src/Camera.hpp ../src/Background.hpp ../src/Light.hpp
 test-main.o: /usr/include/unittest++/UnitTest++.h
 test-main.o: /usr/include/unittest++/Config.h /usr/include/unittest++/Test.h
 test-main.o: /usr/include/unittest++/TestDetails.h

@@ -1,0 +1,179 @@
+\hypertarget{classm3g_1_1Material}{
+\section{クラス Material}
+\label{classm3g_1_1Material}\index{m3g::Material@{m3g::Material}}
+}
+{\tt \#include $<$Material.hpp$>$}
+
+Materialに対する継承グラフ:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2cm]{classm3g_1_1Material}
+\end{center}
+\end{figure}
+\subsection*{Public メソッド}
+\begin{CompactItemize}
+\item 
+\hyperlink{classm3g_1_1Material_ade2019060d01e7983e9bc40ea6aa404}{Material} ()
+\item 
+virtual \hyperlink{classm3g_1_1Material_b15b7efa255e5cca9b02a031a783cfe8}{$\sim$Material} ()
+\item 
+\hypertarget{classm3g_1_1Material_415c0b110f95410ded9b85e5d99a496b}{
+virtual void \textbf{addAnimationTrack} (\hyperlink{classm3g_1_1AnimationTrack}{AnimationTrack} $\ast$animation\_\-track)}
+\label{classm3g_1_1Material_415c0b110f95410ded9b85e5d99a496b}
+
+\item 
+virtual int \hyperlink{classm3g_1_1Material_8aad1ceab4c2a03609c8a42324ce484d}{animate} (int world\_\-time)
+\item 
+int \hyperlink{classm3g_1_1Material_d5740043584c6bf87bf014402c5985be}{getColor} (int target) const 
+\item 
+float \hyperlink{classm3g_1_1Material_1bab082fe3510dbe7b98dd07b3976b5b}{getShininess} () const 
+\item 
+bool \hyperlink{classm3g_1_1Material_64fb5d60325fd073ab623d0eb04189d1}{isVertexColorTrackingEnabled} () const 
+\item 
+void \hyperlink{classm3g_1_1Material_5947a525a18bca77aa890971df2ae48a}{setColor} (int target, int argb)
+\item 
+void \hyperlink{classm3g_1_1Material_fb630e98bef48acb3b3c0541ed3615be}{setShininess} (float shininess)
+\item 
+void \hyperlink{classm3g_1_1Material_55778ceeb6408e5db698c793dea1edd6}{setVertexColorTrackingEnable} (bool enable)
+\item 
+virtual std::ostream \& \hyperlink{classm3g_1_1Material_6fea17fa1532df3794f8cb39cb4f911f}{print} (std::ostream \&out) const 
+\end{CompactItemize}
+\subsection*{Static Public 変数}
+\begin{CompactItemize}
+\item 
+static const int \hyperlink{classm3g_1_1Material_4cf648a82d9de62a1fb15f4277049594}{AMBIENT} = 1$<$$<$10
+\item 
+static const int \hyperlink{classm3g_1_1Material_9798073e44254569f47464dc6bf5da89}{DIFFUSE} = 1$<$$<$11
+\item 
+static const int \hyperlink{classm3g_1_1Material_b92d57adf6955eae6adac15e865659cd}{EMISSIVE} = 1$<$$<$12
+\item 
+static const int \hyperlink{classm3g_1_1Material_cac20b25665d9a3713bec3a772a89ede}{SPECULAR} = 1$<$$<$13
+\end{CompactItemize}
+\subsection*{フレンド}
+\begin{CompactItemize}
+\item 
+\hypertarget{classm3g_1_1Material_afa5201a494f65c37039281d9b63a2a9}{
+class \textbf{Appearance}}
+\label{classm3g_1_1Material_afa5201a494f65c37039281d9b63a2a9}
+
+\end{CompactItemize}
+
+
+\subsection{説明}
+ライティング計算のためのマテリアル属性をカプセル化したアピアランスの構成要素. 
+
+\subsection{コンストラクタとデストラクタ}
+\hypertarget{classm3g_1_1Material_ade2019060d01e7983e9bc40ea6aa404}{
+\index{m3g::Material@{m3g::Material}!Material@{Material}}
+\index{Material@{Material}!m3g::Material@{m3g::Material}}
+\subsubsection[{Material}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Material} ()}}
+\label{classm3g_1_1Material_ade2019060d01e7983e9bc40ea6aa404}
+
+
+デフォルト値のコンストラクタ. \hypertarget{classm3g_1_1Material_b15b7efa255e5cca9b02a031a783cfe8}{
+\index{m3g::Material@{m3g::Material}!$\sim$Material@{$\sim$Material}}
+\index{$\sim$Material@{$\sim$Material}!m3g::Material@{m3g::Material}}
+\subsubsection[{$\sim$Material}]{\setlength{\rightskip}{0pt plus 5cm}$\sim${\bf Material} ()\hspace{0.3cm}{\tt  \mbox{[}virtual\mbox{]}}}}
+\label{classm3g_1_1Material_b15b7efa255e5cca9b02a031a783cfe8}
+
+
+このオブジェクトを削除するデストラクタ. 
+
+\subsection{関数}
+\hypertarget{classm3g_1_1Material_8aad1ceab4c2a03609c8a42324ce484d}{
+\index{m3g::Material@{m3g::Material}!animate@{animate}}
+\index{animate@{animate}!m3g::Material@{m3g::Material}}
+\subsubsection[{animate}]{\setlength{\rightskip}{0pt plus 5cm}int animate (int {\em world\_\-time})\hspace{0.3cm}{\tt  \mbox{[}virtual\mbox{]}}}}
+\label{classm3g_1_1Material_8aad1ceab4c2a03609c8a42324ce484d}
+
+
+このMaterialをアニメーションする. 
+
+\hyperlink{classm3g_1_1Object3D_8aad1ceab4c2a03609c8a42324ce484d}{Object3D}を再定義しています。\hypertarget{classm3g_1_1Material_d5740043584c6bf87bf014402c5985be}{
+\index{m3g::Material@{m3g::Material}!getColor@{getColor}}
+\index{getColor@{getColor}!m3g::Material@{m3g::Material}}
+\subsubsection[{getColor}]{\setlength{\rightskip}{0pt plus 5cm}int getColor (int {\em target}) const}}
+\label{classm3g_1_1Material_d5740043584c6bf87bf014402c5985be}
+
+
+このマテリアルの指定されたカラーコンポーネントの取得. \hypertarget{classm3g_1_1Material_1bab082fe3510dbe7b98dd07b3976b5b}{
+\index{m3g::Material@{m3g::Material}!getShininess@{getShininess}}
+\index{getShininess@{getShininess}!m3g::Material@{m3g::Material}}
+\subsubsection[{getShininess}]{\setlength{\rightskip}{0pt plus 5cm}float getShininess () const}}
+\label{classm3g_1_1Material_1bab082fe3510dbe7b98dd07b3976b5b}
+
+
+このマテリアルのカレントのshininessパラメーターの取得. \hypertarget{classm3g_1_1Material_64fb5d60325fd073ab623d0eb04189d1}{
+\index{m3g::Material@{m3g::Material}!isVertexColorTrackingEnabled@{isVertexColorTrackingEnabled}}
+\index{isVertexColorTrackingEnabled@{isVertexColorTrackingEnabled}!m3g::Material@{m3g::Material}}
+\subsubsection[{isVertexColorTrackingEnabled}]{\setlength{\rightskip}{0pt plus 5cm}bool isVertexColorTrackingEnabled () const}}
+\label{classm3g_1_1Material_64fb5d60325fd073ab623d0eb04189d1}
+
+
+頂点カラートラッキングの有効、無効の問い合わせ. \hypertarget{classm3g_1_1Material_6fea17fa1532df3794f8cb39cb4f911f}{
+\index{m3g::Material@{m3g::Material}!print@{print}}
+\index{print@{print}!m3g::Material@{m3g::Material}}
+\subsubsection[{print}]{\setlength{\rightskip}{0pt plus 5cm}std::ostream \& print (std::ostream \& {\em out}) const\hspace{0.3cm}{\tt  \mbox{[}virtual\mbox{]}}}}
+\label{classm3g_1_1Material_6fea17fa1532df3794f8cb39cb4f911f}
+
+
+このObject3Dの情報を表示する。デバッグ用. 
+
+\hyperlink{classm3g_1_1Object3D_6fea17fa1532df3794f8cb39cb4f911f}{Object3D}を再定義しています。\hypertarget{classm3g_1_1Material_5947a525a18bca77aa890971df2ae48a}{
+\index{m3g::Material@{m3g::Material}!setColor@{setColor}}
+\index{setColor@{setColor}!m3g::Material@{m3g::Material}}
+\subsubsection[{setColor}]{\setlength{\rightskip}{0pt plus 5cm}void setColor (int {\em target}, \/  int {\em argb})}}
+\label{classm3g_1_1Material_5947a525a18bca77aa890971df2ae48a}
+
+
+このマテリアルの指定されたカラーコンポーネントの設定. \hypertarget{classm3g_1_1Material_fb630e98bef48acb3b3c0541ed3615be}{
+\index{m3g::Material@{m3g::Material}!setShininess@{setShininess}}
+\index{setShininess@{setShininess}!m3g::Material@{m3g::Material}}
+\subsubsection[{setShininess}]{\setlength{\rightskip}{0pt plus 5cm}void setShininess (float {\em shininess})}}
+\label{classm3g_1_1Material_fb630e98bef48acb3b3c0541ed3615be}
+
+
+このマテリアルのshinessパラメーターの設定. \hypertarget{classm3g_1_1Material_55778ceeb6408e5db698c793dea1edd6}{
+\index{m3g::Material@{m3g::Material}!setVertexColorTrackingEnable@{setVertexColorTrackingEnable}}
+\index{setVertexColorTrackingEnable@{setVertexColorTrackingEnable}!m3g::Material@{m3g::Material}}
+\subsubsection[{setVertexColorTrackingEnable}]{\setlength{\rightskip}{0pt plus 5cm}void setVertexColorTrackingEnable (bool {\em enable})}}
+\label{classm3g_1_1Material_55778ceeb6408e5db698c793dea1edd6}
+
+
+頂点カラートラッキングの有効化、無効化. 
+
+\subsection{変数}
+\hypertarget{classm3g_1_1Material_4cf648a82d9de62a1fb15f4277049594}{
+\index{m3g::Material@{m3g::Material}!AMBIENT@{AMBIENT}}
+\index{AMBIENT@{AMBIENT}!m3g::Material@{m3g::Material}}
+\subsubsection[{AMBIENT}]{\setlength{\rightskip}{0pt plus 5cm}const int {\bf AMBIENT} = 1$<$$<$10\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{classm3g_1_1Material_4cf648a82d9de62a1fb15f4277049594}
+
+
+環境光(アンビエント)を表す定数. \hypertarget{classm3g_1_1Material_9798073e44254569f47464dc6bf5da89}{
+\index{m3g::Material@{m3g::Material}!DIFFUSE@{DIFFUSE}}
+\index{DIFFUSE@{DIFFUSE}!m3g::Material@{m3g::Material}}
+\subsubsection[{DIFFUSE}]{\setlength{\rightskip}{0pt plus 5cm}const int {\bf DIFFUSE} = 1$<$$<$11\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{classm3g_1_1Material_9798073e44254569f47464dc6bf5da89}
+
+
+拡散反射光(ディフューズ)を表す定数. \hypertarget{classm3g_1_1Material_b92d57adf6955eae6adac15e865659cd}{
+\index{m3g::Material@{m3g::Material}!EMISSIVE@{EMISSIVE}}
+\index{EMISSIVE@{EMISSIVE}!m3g::Material@{m3g::Material}}
+\subsubsection[{EMISSIVE}]{\setlength{\rightskip}{0pt plus 5cm}const int {\bf EMISSIVE} = 1$<$$<$12\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{classm3g_1_1Material_b92d57adf6955eae6adac15e865659cd}
+
+
+発光を表す定数. \hypertarget{classm3g_1_1Material_cac20b25665d9a3713bec3a772a89ede}{
+\index{m3g::Material@{m3g::Material}!SPECULAR@{SPECULAR}}
+\index{SPECULAR@{SPECULAR}!m3g::Material@{m3g::Material}}
+\subsubsection[{SPECULAR}]{\setlength{\rightskip}{0pt plus 5cm}const int {\bf SPECULAR} = 1$<$$<$13\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{classm3g_1_1Material_cac20b25665d9a3713bec3a772a89ede}
+
+
+鏡面反射光(スペキュラー)を表す定数. 
+
+このクラスの説明は次のファイルから生成されました:\begin{CompactItemize}
+\item 
+/work/desktop-m3g/src/Material.hpp\item 
+/work/desktop-m3g/src/Material.cpp\end{CompactItemize}

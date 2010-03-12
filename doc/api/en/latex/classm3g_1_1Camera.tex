@@ -1,0 +1,197 @@
+\hypertarget{classm3g_1_1Camera}{
+\section{クラス Camera}
+\label{classm3g_1_1Camera}\index{m3g::Camera@{m3g::Camera}}
+}
+{\tt \#include $<$Camera.hpp$>$}
+
+Cameraに対する継承グラフ:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=4cm]{classm3g_1_1Camera}
+\end{center}
+\end{figure}
+\subsection*{Public メソッド}
+\begin{CompactItemize}
+\item 
+\hyperlink{classm3g_1_1Camera_a3f3efcb2fcc75de885df29041103cd2}{Camera} ()
+\item 
+virtual \hyperlink{classm3g_1_1Camera_b921e886e6f14e117eb8099ccb0a3775}{$\sim$Camera} ()
+\item 
+virtual void \hyperlink{classm3g_1_1Camera_415c0b110f95410ded9b85e5d99a496b}{addAnimationTrack} (\hyperlink{classm3g_1_1AnimationTrack}{AnimationTrack} $\ast$animation\_\-track)
+\item 
+virtual int \hyperlink{classm3g_1_1Camera_8aad1ceab4c2a03609c8a42324ce484d}{animate} (int world\_\-time)
+\item 
+int \hyperlink{classm3g_1_1Camera_a2ebe46a4e16fee86d4f547588411302}{getProjection} (float $\ast$params) const 
+\item 
+int \hyperlink{classm3g_1_1Camera_9e0c204df146342990703acb744954b1}{getProjection} (\hyperlink{classm3g_1_1Transform}{Transform} $\ast$transform) const 
+\item 
+void \hyperlink{classm3g_1_1Camera_51c42821097e90d3f59e87676684f60a}{setGeneric} (const \hyperlink{classm3g_1_1Transform}{Transform} \&transorm)
+\item 
+void \hyperlink{classm3g_1_1Camera_88ecc1c18e2d785ca9638e0bec6c5ce2}{setParallel} (float fovy, float aspect\_\-ratio, float near, float far)
+\item 
+void \hyperlink{classm3g_1_1Camera_ca92a48ebe3424deac8e54c27550189d}{setPerspective} (float fovy, float aspect\_\-ratio, float near, float far)
+\item 
+virtual std::ostream \& \hyperlink{classm3g_1_1Camera_6fea17fa1532df3794f8cb39cb4f911f}{print} (std::ostream \&out) const 
+\item 
+void \hyperlink{classm3g_1_1Camera_0006b18ae0e27a031d533e987b9756a8}{lookAt} (float from\_\-x, float from\_\-y, float from\_\-z, float to\_\-x, float to\_\-y, float to\_\-z, float up\_\-x, float up\_\-y, float up\_\-z)
+\end{CompactItemize}
+\subsection*{Static Public 変数}
+\begin{CompactItemize}
+\item 
+static const int \hyperlink{classm3g_1_1Camera_48a4e153c97a1f4890558a77dfe02ca4}{GENERIC} = 48
+\item 
+static const int \hyperlink{classm3g_1_1Camera_d9630da0e9505afbb107c86229aa2f08}{PARALLEL} = 49
+\item 
+static const int \hyperlink{classm3g_1_1Camera_e62e72bde93e7d7ceb482e7a8c40dcf5}{PERSPECTIVE} = 50
+\end{CompactItemize}
+\subsection*{Protected メソッド}
+\begin{CompactItemize}
+\item 
+virtual void \hyperlink{classm3g_1_1Camera_1efcb1973989d9963d5bd6d03065d389}{render} (int pass, int index=0) const 
+\end{CompactItemize}
+\subsection*{フレンド}
+\begin{CompactItemize}
+\item 
+\hypertarget{classm3g_1_1Camera_8174d4c629550c1ee279571250236ef4}{
+class \textbf{Graphics3D}}
+\label{classm3g_1_1Camera_8174d4c629550c1ee279571250236ef4}
+
+\item 
+\hypertarget{classm3g_1_1Camera_7b4bcdf992c21ae83363f25df05b1d25}{
+class \textbf{World}}
+\label{classm3g_1_1Camera_7b4bcdf992c21ae83363f25df05b1d25}
+
+\end{CompactItemize}
+
+
+\subsection{説明}
+シーン中のカメラ位置を定義するノード。3Dから2Dへの透視変換を行う. 
+
+\subsection{コンストラクタとデストラクタ}
+\hypertarget{classm3g_1_1Camera_a3f3efcb2fcc75de885df29041103cd2}{
+\index{m3g::Camera@{m3g::Camera}!Camera@{Camera}}
+\index{Camera@{Camera}!m3g::Camera@{m3g::Camera}}
+\subsubsection[{Camera}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Camera} ()}}
+\label{classm3g_1_1Camera_a3f3efcb2fcc75de885df29041103cd2}
+
+
+Cameraオブジェクトを作成するコンストラクタ. \hypertarget{classm3g_1_1Camera_b921e886e6f14e117eb8099ccb0a3775}{
+\index{m3g::Camera@{m3g::Camera}!$\sim$Camera@{$\sim$Camera}}
+\index{$\sim$Camera@{$\sim$Camera}!m3g::Camera@{m3g::Camera}}
+\subsubsection[{$\sim$Camera}]{\setlength{\rightskip}{0pt plus 5cm}$\sim${\bf Camera} ()\hspace{0.3cm}{\tt  \mbox{[}virtual\mbox{]}}}}
+\label{classm3g_1_1Camera_b921e886e6f14e117eb8099ccb0a3775}
+
+
+Cameraオブジェクトのデストラクタ. 
+
+\subsection{関数}
+\hypertarget{classm3g_1_1Camera_415c0b110f95410ded9b85e5d99a496b}{
+\index{m3g::Camera@{m3g::Camera}!addAnimationTrack@{addAnimationTrack}}
+\index{addAnimationTrack@{addAnimationTrack}!m3g::Camera@{m3g::Camera}}
+\subsubsection[{addAnimationTrack}]{\setlength{\rightskip}{0pt plus 5cm}void addAnimationTrack ({\bf AnimationTrack} $\ast$ {\em animation\_\-track})\hspace{0.3cm}{\tt  \mbox{[}virtual\mbox{]}}}}
+\label{classm3g_1_1Camera_415c0b110f95410ded9b85e5d99a496b}
+
+
+アニメーショントラックの追加。 既存のトラックの順番とインデックスは変更されるかもしれない. 
+
+\hyperlink{classm3g_1_1Node_415c0b110f95410ded9b85e5d99a496b}{Node}を再定義しています。\hypertarget{classm3g_1_1Camera_8aad1ceab4c2a03609c8a42324ce484d}{
+\index{m3g::Camera@{m3g::Camera}!animate@{animate}}
+\index{animate@{animate}!m3g::Camera@{m3g::Camera}}
+\subsubsection[{animate}]{\setlength{\rightskip}{0pt plus 5cm}int animate (int {\em world\_\-time})\hspace{0.3cm}{\tt  \mbox{[}virtual\mbox{]}}}}
+\label{classm3g_1_1Camera_8aad1ceab4c2a03609c8a42324ce484d}
+
+
+アニメーションの更新. 
+
+\hyperlink{classm3g_1_1Node_8aad1ceab4c2a03609c8a42324ce484d}{Node}を再定義しています。\hypertarget{classm3g_1_1Camera_9e0c204df146342990703acb744954b1}{
+\index{m3g::Camera@{m3g::Camera}!getProjection@{getProjection}}
+\index{getProjection@{getProjection}!m3g::Camera@{m3g::Camera}}
+\subsubsection[{getProjection}]{\setlength{\rightskip}{0pt plus 5cm}int getProjection ({\bf Transform} $\ast$ {\em transform}) const}}
+\label{classm3g_1_1Camera_9e0c204df146342990703acb744954b1}
+
+
+カレントの透視変換行列と種類の取得. \hypertarget{classm3g_1_1Camera_a2ebe46a4e16fee86d4f547588411302}{
+\index{m3g::Camera@{m3g::Camera}!getProjection@{getProjection}}
+\index{getProjection@{getProjection}!m3g::Camera@{m3g::Camera}}
+\subsubsection[{getProjection}]{\setlength{\rightskip}{0pt plus 5cm}int getProjection (float $\ast$ {\em params}) const}}
+\label{classm3g_1_1Camera_a2ebe46a4e16fee86d4f547588411302}
+
+
+透視変換パラメーターと種類の取得。 paramsには4要素(fovy,aspect\_\-ratio,near,far)がこの順番で書き込まれる. \hypertarget{classm3g_1_1Camera_0006b18ae0e27a031d533e987b9756a8}{
+\index{m3g::Camera@{m3g::Camera}!lookAt@{lookAt}}
+\index{lookAt@{lookAt}!m3g::Camera@{m3g::Camera}}
+\subsubsection[{lookAt}]{\setlength{\rightskip}{0pt plus 5cm}void lookAt (float {\em from\_\-x}, \/  float {\em from\_\-y}, \/  float {\em from\_\-z}, \/  float {\em to\_\-x}, \/  float {\em to\_\-y}, \/  float {\em to\_\-z}, \/  float {\em up\_\-x}, \/  float {\em up\_\-y}, \/  float {\em up\_\-z})}}
+\label{classm3g_1_1Camera_0006b18ae0e27a031d533e987b9756a8}
+
+
+glutのlookat()関数と同じ。M3G比標準の関数. \hypertarget{classm3g_1_1Camera_6fea17fa1532df3794f8cb39cb4f911f}{
+\index{m3g::Camera@{m3g::Camera}!print@{print}}
+\index{print@{print}!m3g::Camera@{m3g::Camera}}
+\subsubsection[{print}]{\setlength{\rightskip}{0pt plus 5cm}std::ostream \& print (std::ostream \& {\em out}) const\hspace{0.3cm}{\tt  \mbox{[}virtual\mbox{]}}}}
+\label{classm3g_1_1Camera_6fea17fa1532df3794f8cb39cb4f911f}
+
+
+このCameraクラスの情報を表示する。デバッグ用. 
+
+\hyperlink{classm3g_1_1Node_6fea17fa1532df3794f8cb39cb4f911f}{Node}を再定義しています。\hypertarget{classm3g_1_1Camera_1efcb1973989d9963d5bd6d03065d389}{
+\index{m3g::Camera@{m3g::Camera}!render@{render}}
+\index{render@{render}!m3g::Camera@{m3g::Camera}}
+\subsubsection[{render}]{\setlength{\rightskip}{0pt plus 5cm}void render (int {\em pass}, \/  int {\em index} = {\tt 0}) const\hspace{0.3cm}{\tt  \mbox{[}protected, virtual\mbox{]}}}}
+\label{classm3g_1_1Camera_1efcb1973989d9963d5bd6d03065d389}
+
+
+このCameraをレンダリングする内部使用の関数.
+
+Note: \hyperlink{classm3g_1_1Camera}{Camera} should be rendered only at 0th rendering pass(pass=0). In other cases, do nothing. 
+
+\hyperlink{classm3g_1_1Node_1efcb1973989d9963d5bd6d03065d389}{Node}を再定義しています。\hypertarget{classm3g_1_1Camera_51c42821097e90d3f59e87676684f60a}{
+\index{m3g::Camera@{m3g::Camera}!setGeneric@{setGeneric}}
+\index{setGeneric@{setGeneric}!m3g::Camera@{m3g::Camera}}
+\subsubsection[{setGeneric}]{\setlength{\rightskip}{0pt plus 5cm}void setGeneric (const {\bf Transform} \& {\em transorm})}}
+\label{classm3g_1_1Camera_51c42821097e90d3f59e87676684f60a}
+
+
+指定された4x4行列を透視変換行列として設定する. \hypertarget{classm3g_1_1Camera_88ecc1c18e2d785ca9638e0bec6c5ce2}{
+\index{m3g::Camera@{m3g::Camera}!setParallel@{setParallel}}
+\index{setParallel@{setParallel}!m3g::Camera@{m3g::Camera}}
+\subsubsection[{setParallel}]{\setlength{\rightskip}{0pt plus 5cm}void setParallel (float {\em fovy}, \/  float {\em aspect\_\-ratio}, \/  float {\em near}, \/  float {\em far})}}
+\label{classm3g_1_1Camera_88ecc1c18e2d785ca9638e0bec6c5ce2}
+
+
+平行投影行列を作成し、カレントの透視変換行列として設定する. \hypertarget{classm3g_1_1Camera_ca92a48ebe3424deac8e54c27550189d}{
+\index{m3g::Camera@{m3g::Camera}!setPerspective@{setPerspective}}
+\index{setPerspective@{setPerspective}!m3g::Camera@{m3g::Camera}}
+\subsubsection[{setPerspective}]{\setlength{\rightskip}{0pt plus 5cm}void setPerspective (float {\em fovy}, \/  float {\em aspect\_\-ratio}, \/  float {\em near}, \/  float {\em far})}}
+\label{classm3g_1_1Camera_ca92a48ebe3424deac8e54c27550189d}
+
+
+射影投影行列を作成し、カレントの透視変換行列として設定する. 
+
+\subsection{変数}
+\hypertarget{classm3g_1_1Camera_48a4e153c97a1f4890558a77dfe02ca4}{
+\index{m3g::Camera@{m3g::Camera}!GENERIC@{GENERIC}}
+\index{GENERIC@{GENERIC}!m3g::Camera@{m3g::Camera}}
+\subsubsection[{GENERIC}]{\setlength{\rightskip}{0pt plus 5cm}const int {\bf GENERIC} = 48\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{classm3g_1_1Camera_48a4e153c97a1f4890558a77dfe02ca4}
+
+
+4x4行列で汎用の投影を指定を表す定数. \hypertarget{classm3g_1_1Camera_d9630da0e9505afbb107c86229aa2f08}{
+\index{m3g::Camera@{m3g::Camera}!PARALLEL@{PARALLEL}}
+\index{PARALLEL@{PARALLEL}!m3g::Camera@{m3g::Camera}}
+\subsubsection[{PARALLEL}]{\setlength{\rightskip}{0pt plus 5cm}const int {\bf PARALLEL} = 49\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{classm3g_1_1Camera_d9630da0e9505afbb107c86229aa2f08}
+
+
+平行投影を指定する定数. \hypertarget{classm3g_1_1Camera_e62e72bde93e7d7ceb482e7a8c40dcf5}{
+\index{m3g::Camera@{m3g::Camera}!PERSPECTIVE@{PERSPECTIVE}}
+\index{PERSPECTIVE@{PERSPECTIVE}!m3g::Camera@{m3g::Camera}}
+\subsubsection[{PERSPECTIVE}]{\setlength{\rightskip}{0pt plus 5cm}const int {\bf PERSPECTIVE} = 50\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{classm3g_1_1Camera_e62e72bde93e7d7ceb482e7a8c40dcf5}
+
+
+透視投影を指定する定数. 
+
+このクラスの説明は次のファイルから生成されました:\begin{CompactItemize}
+\item 
+/work/desktop-m3g/src/Camera.hpp\item 
+/work/desktop-m3g/src/Camera.cpp\end{CompactItemize}

@@ -1,0 +1,316 @@
+\hypertarget{classm3g_1_1Graphics3D}{
+\section{クラス Graphics3D}
+\label{classm3g_1_1Graphics3D}\index{m3g::Graphics3D@{m3g::Graphics3D}}
+}
+{\tt \#include $<$Graphics3D.hpp$>$}
+
+\subsection*{構成}
+\begin{CompactItemize}
+\item 
+struct \textbf{Viewport}
+\end{CompactItemize}
+\subsection*{Public メソッド}
+\begin{CompactItemize}
+\item 
+\hyperlink{classm3g_1_1Graphics3D_9b9347476fc10e57b31694ac8a628511}{$\sim$Graphics3D} ()
+\item 
+int \hyperlink{classm3g_1_1Graphics3D_e210cacb72c8540df86a6674e3c2dc4f}{addLight} (\hyperlink{classm3g_1_1Light}{Light} $\ast$light, \hyperlink{classm3g_1_1Transform}{Transform} \&transform)
+\item 
+void \hyperlink{classm3g_1_1Graphics3D_2173e179f4b2d7130cde46a48794ee66}{bindTarget} (\hyperlink{classm3g_1_1Graphics}{Graphics} $\ast$g, bool depth\_\-buffer\_\-enabled=true, int hints=0)
+\item 
+void \hyperlink{classm3g_1_1Graphics3D_e3640472397d2b632496fa37c990b4bb}{bindTarget} (\hyperlink{classm3g_1_1Image2D}{Image2D} $\ast$i, bool depth\_\-buffer\_\-enabled=true, int hints=0)
+\item 
+void \hyperlink{classm3g_1_1Graphics3D_21c4a68a53cfbe0a7cec05d5a56682bf}{clear} (\hyperlink{classm3g_1_1Background}{Background} $\ast$background)
+\item 
+\hyperlink{classm3g_1_1Camera}{Camera} $\ast$ \hyperlink{classm3g_1_1Graphics3D_570b81f426d1b2b5e8794cffb33422c6}{getCamera} (const \hyperlink{classm3g_1_1Transform}{Transform} \&transform)
+\item 
+float \hyperlink{classm3g_1_1Graphics3D_c8c185b99073215202d2e35723f5c470}{getDepthRangeFar} () const 
+\item 
+float \hyperlink{classm3g_1_1Graphics3D_60bc116f673bf2782de2df3eebfb2c92}{getDepthRangeNear} () const 
+\item 
+int \hyperlink{classm3g_1_1Graphics3D_5837234a23dc5f46d3adec17f521b58e}{getHints} () const 
+\item 
+\hyperlink{classm3g_1_1Light}{Light} $\ast$ \hyperlink{classm3g_1_1Graphics3D_04272e584440c89fb4cb449003a84e7d}{getLight} (int index, const \hyperlink{classm3g_1_1Transform}{Transform} \&transform) const 
+\item 
+int \hyperlink{classm3g_1_1Graphics3D_7a08cfeb48d76ad5d8859a1fc0c77d98}{getLightCount} () const 
+\item 
+std::unordered\_\-map$<$ const char $\ast$, int $>$ \hyperlink{classm3g_1_1Graphics3D_a7d4779a1ea7779caf7f409c4d2bb31f}{getProperties} () const 
+\item 
+void $\ast$ \hyperlink{classm3g_1_1Graphics3D_02d0033930c8e68f4d7ebd43abe7980a}{getTarget} () const 
+\item 
+int \hyperlink{classm3g_1_1Graphics3D_d51e0c421126f5deb61b359cdb7dab2e}{getViewportHeight} () const 
+\item 
+int \hyperlink{classm3g_1_1Graphics3D_768e5c057e2fa4c4b17a67134abbf89f}{getViewportWidth} () const 
+\item 
+int \hyperlink{classm3g_1_1Graphics3D_af58b44cc6219f86c40dadb8a9377856}{getViewportX} () const 
+\item 
+int \hyperlink{classm3g_1_1Graphics3D_c21665afbf94a8f0153e099833c2b61a}{getViewportY} () const 
+\item 
+bool \hyperlink{classm3g_1_1Graphics3D_7f17c6781152840d42e756c27b0fb8c8}{isDepthBufferEnabled} () const 
+\item 
+void \hyperlink{classm3g_1_1Graphics3D_3ffaaf0d0f1e97a07c7f30c9b5a5dd32}{releaseTarget} () const 
+\item 
+void \hyperlink{classm3g_1_1Graphics3D_9c9ca78b3ce4cc358783a1a2701b9d85}{render} (\hyperlink{classm3g_1_1Node}{Node} $\ast$node, \hyperlink{classm3g_1_1Transform}{Transform} $\ast$transform) const 
+\item 
+void \hyperlink{classm3g_1_1Graphics3D_dc32291b31d6d3a32037eb9f727f73c0}{render} (\hyperlink{classm3g_1_1VertexBuffer}{VertexBuffer} $\ast$vertices, \hyperlink{classm3g_1_1IndexBuffer}{IndexBuffer} $\ast$triangles, \hyperlink{classm3g_1_1Appearance}{Appearance} $\ast$apperance, \hyperlink{classm3g_1_1Transform}{Transform} \&transform) const 
+\item 
+void \hyperlink{classm3g_1_1Graphics3D_9179d0d886a57cd3234b34f1b59dfc3c}{render} (\hyperlink{classm3g_1_1VertexBuffer}{VertexBuffer} $\ast$vertices, \hyperlink{classm3g_1_1IndexBuffer}{IndexBuffer} $\ast$triangles, \hyperlink{classm3g_1_1Appearance}{Appearance} $\ast$apperance, \hyperlink{classm3g_1_1Transform}{Transform} \&transform, int scope) const 
+\item 
+void \hyperlink{classm3g_1_1Graphics3D_8ef004c92d601203b8c697d441e7713f}{render} (\hyperlink{classm3g_1_1World}{World} $\ast$world) const 
+\item 
+void \hyperlink{classm3g_1_1Graphics3D_b8821ec231e8ebd939ae0feaaf138542}{resetLights} ()
+\item 
+void \hyperlink{classm3g_1_1Graphics3D_0df7bb61cfeba6626e20fd07ddd1c460}{setCamera} (\hyperlink{classm3g_1_1Camera}{Camera} $\ast$camera, const \hyperlink{classm3g_1_1Transform}{Transform} \&transform)
+\item 
+void \hyperlink{classm3g_1_1Graphics3D_6fc3837286f3516aa3320aeec9729495}{setDepthRange} (float near, float far)
+\item 
+void \hyperlink{classm3g_1_1Graphics3D_2bf83cb69f50117dd9d5548fe96d0ab0}{setLight} (int index, \hyperlink{classm3g_1_1Light}{Light} $\ast$light, const \hyperlink{classm3g_1_1Transform}{Transform} \&transform)
+\item 
+void \hyperlink{classm3g_1_1Graphics3D_0b4ec48e9c19060e9be5648c118c23b1}{setViewport} (int x, int y, int width, int height)
+\end{CompactItemize}
+\subsection*{Static Public メソッド}
+\begin{CompactItemize}
+\item 
+static \hyperlink{classm3g_1_1Graphics3D}{Graphics3D} $\ast$ \hyperlink{classm3g_1_1Graphics3D_da6d71754bfe755dd8204a9332e9ed47}{getInstance} ()
+\end{CompactItemize}
+\subsection*{Static Public 変数}
+\begin{CompactItemize}
+\item 
+\hypertarget{classm3g_1_1Graphics3D_9df12c5332904e66a962e1bf2809a812}{
+static const int \textbf{ANTIALIAS} = 1$<$$<$1}
+\label{classm3g_1_1Graphics3D_9df12c5332904e66a962e1bf2809a812}
+
+\item 
+\hypertarget{classm3g_1_1Graphics3D_3750f57b82328be988bdab3b672a64f9}{
+static const int \textbf{DITHER} = 1$<$$<$2}
+\label{classm3g_1_1Graphics3D_3750f57b82328be988bdab3b672a64f9}
+
+\item 
+\hypertarget{classm3g_1_1Graphics3D_f448f7f447a301823af9170bfe84c50e}{
+static const int \textbf{OVERWRITE} = 1$<$$<$4}
+\label{classm3g_1_1Graphics3D_f448f7f447a301823af9170bfe84c50e}
+
+\item 
+\hypertarget{classm3g_1_1Graphics3D_bbd22a6baea672f895d5ef32e2438ec6}{
+static const int \textbf{TRUE\_\-COLOR} = 1$<$$<$3}
+\label{classm3g_1_1Graphics3D_bbd22a6baea672f895d5ef32e2438ec6}
+
+\end{CompactItemize}
+
+
+\subsection{説明}
+レンダリングターゲットをバインドできるシングルトン3Dグラフィックスコンテキスト. 
+
+\subsection{コンストラクタとデストラクタ}
+\hypertarget{classm3g_1_1Graphics3D_9b9347476fc10e57b31694ac8a628511}{
+\index{m3g::Graphics3D@{m3g::Graphics3D}!$\sim$Graphics3D@{$\sim$Graphics3D}}
+\index{$\sim$Graphics3D@{$\sim$Graphics3D}!m3g::Graphics3D@{m3g::Graphics3D}}
+\subsubsection[{$\sim$Graphics3D}]{\setlength{\rightskip}{0pt plus 5cm}$\sim${\bf Graphics3D} ()}}
+\label{classm3g_1_1Graphics3D_9b9347476fc10e57b31694ac8a628511}
+
+
+このオブジェクトを削除するデストラクタ. 
+
+\subsection{関数}
+\hypertarget{classm3g_1_1Graphics3D_e210cacb72c8540df86a6674e3c2dc4f}{
+\index{m3g::Graphics3D@{m3g::Graphics3D}!addLight@{addLight}}
+\index{addLight@{addLight}!m3g::Graphics3D@{m3g::Graphics3D}}
+\subsubsection[{addLight}]{\setlength{\rightskip}{0pt plus 5cm}int addLight ({\bf Light} $\ast$ {\em light}, \/  {\bf Transform} \& {\em transform})}}
+\label{classm3g_1_1Graphics3D_e210cacb72c8540df86a6674e3c2dc4f}
+
+
+イミーディエイトモードで使用するライトのバインド. \hypertarget{classm3g_1_1Graphics3D_e3640472397d2b632496fa37c990b4bb}{
+\index{m3g::Graphics3D@{m3g::Graphics3D}!bindTarget@{bindTarget}}
+\index{bindTarget@{bindTarget}!m3g::Graphics3D@{m3g::Graphics3D}}
+\subsubsection[{bindTarget}]{\setlength{\rightskip}{0pt plus 5cm}void bindTarget ({\bf Image2D} $\ast$ {\em i}, \/  bool {\em depth\_\-buffer\_\-enabled} = {\tt true}, \/  int {\em hints} = {\tt 0})}}
+\label{classm3g_1_1Graphics3D_e3640472397d2b632496fa37c990b4bb}
+
+
+このGraphics3DクラスにミュータブルImage2Dクラスをバインドする. \hypertarget{classm3g_1_1Graphics3D_2173e179f4b2d7130cde46a48794ee66}{
+\index{m3g::Graphics3D@{m3g::Graphics3D}!bindTarget@{bindTarget}}
+\index{bindTarget@{bindTarget}!m3g::Graphics3D@{m3g::Graphics3D}}
+\subsubsection[{bindTarget}]{\setlength{\rightskip}{0pt plus 5cm}void bindTarget ({\bf Graphics} $\ast$ {\em g}, \/  bool {\em depth\_\-buffer\_\-enabled} = {\tt true}, \/  int {\em hints} = {\tt 0})}}
+\label{classm3g_1_1Graphics3D_2173e179f4b2d7130cde46a48794ee66}
+
+
+このGraphics3DクラスにGraphicsをバインドする. \hypertarget{classm3g_1_1Graphics3D_21c4a68a53cfbe0a7cec05d5a56682bf}{
+\index{m3g::Graphics3D@{m3g::Graphics3D}!clear@{clear}}
+\index{clear@{clear}!m3g::Graphics3D@{m3g::Graphics3D}}
+\subsubsection[{clear}]{\setlength{\rightskip}{0pt plus 5cm}void clear ({\bf Background} $\ast$ {\em background})}}
+\label{classm3g_1_1Graphics3D_21c4a68a53cfbe0a7cec05d5a56682bf}
+
+
+指定されたBackgroundオブジェクトでビューポートをクリアする. \hypertarget{classm3g_1_1Graphics3D_570b81f426d1b2b5e8794cffb33422c6}{
+\index{m3g::Graphics3D@{m3g::Graphics3D}!getCamera@{getCamera}}
+\index{getCamera@{getCamera}!m3g::Graphics3D@{m3g::Graphics3D}}
+\subsubsection[{getCamera}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Camera} $\ast$ getCamera (const {\bf Transform} \& {\em transform})}}
+\label{classm3g_1_1Graphics3D_570b81f426d1b2b5e8794cffb33422c6}
+
+
+カレントのカメラを取得する. \hypertarget{classm3g_1_1Graphics3D_c8c185b99073215202d2e35723f5c470}{
+\index{m3g::Graphics3D@{m3g::Graphics3D}!getDepthRangeFar@{getDepthRangeFar}}
+\index{getDepthRangeFar@{getDepthRangeFar}!m3g::Graphics3D@{m3g::Graphics3D}}
+\subsubsection[{getDepthRangeFar}]{\setlength{\rightskip}{0pt plus 5cm}float getDepthRangeFar () const}}
+\label{classm3g_1_1Graphics3D_c8c185b99073215202d2e35723f5c470}
+
+
+深度レンジのfar距離を所得する. \hypertarget{classm3g_1_1Graphics3D_60bc116f673bf2782de2df3eebfb2c92}{
+\index{m3g::Graphics3D@{m3g::Graphics3D}!getDepthRangeNear@{getDepthRangeNear}}
+\index{getDepthRangeNear@{getDepthRangeNear}!m3g::Graphics3D@{m3g::Graphics3D}}
+\subsubsection[{getDepthRangeNear}]{\setlength{\rightskip}{0pt plus 5cm}float getDepthRangeNear () const}}
+\label{classm3g_1_1Graphics3D_60bc116f673bf2782de2df3eebfb2c92}
+
+
+深度レンジのnear距離を取得する. \hypertarget{classm3g_1_1Graphics3D_5837234a23dc5f46d3adec17f521b58e}{
+\index{m3g::Graphics3D@{m3g::Graphics3D}!getHints@{getHints}}
+\index{getHints@{getHints}!m3g::Graphics3D@{m3g::Graphics3D}}
+\subsubsection[{getHints}]{\setlength{\rightskip}{0pt plus 5cm}int getHints () const}}
+\label{classm3g_1_1Graphics3D_5837234a23dc5f46d3adec17f521b58e}
+
+
+カレントのレンダリングターゲットのレンダリング品とを取得する. \hypertarget{classm3g_1_1Graphics3D_da6d71754bfe755dd8204a9332e9ed47}{
+\index{m3g::Graphics3D@{m3g::Graphics3D}!getInstance@{getInstance}}
+\index{getInstance@{getInstance}!m3g::Graphics3D@{m3g::Graphics3D}}
+\subsubsection[{getInstance}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Graphics3D} $\ast$ getInstance ()\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{classm3g_1_1Graphics3D_da6d71754bfe755dd8204a9332e9ed47}
+
+
+このアプリケーションに関連づけれれたGraphics3Dクラスのシングルトンオブジェクトを取得する. \hypertarget{classm3g_1_1Graphics3D_04272e584440c89fb4cb449003a84e7d}{
+\index{m3g::Graphics3D@{m3g::Graphics3D}!getLight@{getLight}}
+\index{getLight@{getLight}!m3g::Graphics3D@{m3g::Graphics3D}}
+\subsubsection[{getLight}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Light} $\ast$ getLight (int {\em index}, \/  const {\bf Transform} \& {\em transform}) const}}
+\label{classm3g_1_1Graphics3D_04272e584440c89fb4cb449003a84e7d}
+
+
+カレントのライト配列からライトを取得する. \hypertarget{classm3g_1_1Graphics3D_7a08cfeb48d76ad5d8859a1fc0c77d98}{
+\index{m3g::Graphics3D@{m3g::Graphics3D}!getLightCount@{getLightCount}}
+\index{getLightCount@{getLightCount}!m3g::Graphics3D@{m3g::Graphics3D}}
+\subsubsection[{getLightCount}]{\setlength{\rightskip}{0pt plus 5cm}int getLightCount () const}}
+\label{classm3g_1_1Graphics3D_7a08cfeb48d76ad5d8859a1fc0c77d98}
+
+
+カレントのライト配列のサイズを取得する. \hypertarget{classm3g_1_1Graphics3D_a7d4779a1ea7779caf7f409c4d2bb31f}{
+\index{m3g::Graphics3D@{m3g::Graphics3D}!getProperties@{getProperties}}
+\index{getProperties@{getProperties}!m3g::Graphics3D@{m3g::Graphics3D}}
+\subsubsection[{getProperties}]{\setlength{\rightskip}{0pt plus 5cm}std::unordered\_\-map$<$ const char $\ast$, int $>$ getProperties () const}}
+\label{classm3g_1_1Graphics3D_a7d4779a1ea7779caf7f409c4d2bb31f}
+
+
+実装依存のプロパティの取得. \hypertarget{classm3g_1_1Graphics3D_02d0033930c8e68f4d7ebd43abe7980a}{
+\index{m3g::Graphics3D@{m3g::Graphics3D}!getTarget@{getTarget}}
+\index{getTarget@{getTarget}!m3g::Graphics3D@{m3g::Graphics3D}}
+\subsubsection[{getTarget}]{\setlength{\rightskip}{0pt plus 5cm}void $\ast$ getTarget () const}}
+\label{classm3g_1_1Graphics3D_02d0033930c8e68f4d7ebd43abe7980a}
+
+
+カレントのレンダリングターゲットの取得. \hypertarget{classm3g_1_1Graphics3D_d51e0c421126f5deb61b359cdb7dab2e}{
+\index{m3g::Graphics3D@{m3g::Graphics3D}!getViewportHeight@{getViewportHeight}}
+\index{getViewportHeight@{getViewportHeight}!m3g::Graphics3D@{m3g::Graphics3D}}
+\subsubsection[{getViewportHeight}]{\setlength{\rightskip}{0pt plus 5cm}int getViewportHeight () const}}
+\label{classm3g_1_1Graphics3D_d51e0c421126f5deb61b359cdb7dab2e}
+
+
+ビューポートの高さの取得. \hypertarget{classm3g_1_1Graphics3D_768e5c057e2fa4c4b17a67134abbf89f}{
+\index{m3g::Graphics3D@{m3g::Graphics3D}!getViewportWidth@{getViewportWidth}}
+\index{getViewportWidth@{getViewportWidth}!m3g::Graphics3D@{m3g::Graphics3D}}
+\subsubsection[{getViewportWidth}]{\setlength{\rightskip}{0pt plus 5cm}int getViewportWidth () const}}
+\label{classm3g_1_1Graphics3D_768e5c057e2fa4c4b17a67134abbf89f}
+
+
+ビューポートの幅の取得. \hypertarget{classm3g_1_1Graphics3D_af58b44cc6219f86c40dadb8a9377856}{
+\index{m3g::Graphics3D@{m3g::Graphics3D}!getViewportX@{getViewportX}}
+\index{getViewportX@{getViewportX}!m3g::Graphics3D@{m3g::Graphics3D}}
+\subsubsection[{getViewportX}]{\setlength{\rightskip}{0pt plus 5cm}int getViewportX () const}}
+\label{classm3g_1_1Graphics3D_af58b44cc6219f86c40dadb8a9377856}
+
+
+ビューポートの水平方向の位置の取得. \hypertarget{classm3g_1_1Graphics3D_c21665afbf94a8f0153e099833c2b61a}{
+\index{m3g::Graphics3D@{m3g::Graphics3D}!getViewportY@{getViewportY}}
+\index{getViewportY@{getViewportY}!m3g::Graphics3D@{m3g::Graphics3D}}
+\subsubsection[{getViewportY}]{\setlength{\rightskip}{0pt plus 5cm}int getViewportY () const}}
+\label{classm3g_1_1Graphics3D_c21665afbf94a8f0153e099833c2b61a}
+
+
+ビューポートの垂直方向の位置の取得. \hypertarget{classm3g_1_1Graphics3D_7f17c6781152840d42e756c27b0fb8c8}{
+\index{m3g::Graphics3D@{m3g::Graphics3D}!isDepthBufferEnabled@{isDepthBufferEnabled}}
+\index{isDepthBufferEnabled@{isDepthBufferEnabled}!m3g::Graphics3D@{m3g::Graphics3D}}
+\subsubsection[{isDepthBufferEnabled}]{\setlength{\rightskip}{0pt plus 5cm}bool isDepthBufferEnabled () const}}
+\label{classm3g_1_1Graphics3D_7f17c6781152840d42e756c27b0fb8c8}
+
+
+カレントのレンダリングターゲットの深度バッファーが有効かどうかの問い合わせ. \hypertarget{classm3g_1_1Graphics3D_3ffaaf0d0f1e97a07c7f30c9b5a5dd32}{
+\index{m3g::Graphics3D@{m3g::Graphics3D}!releaseTarget@{releaseTarget}}
+\index{releaseTarget@{releaseTarget}!m3g::Graphics3D@{m3g::Graphics3D}}
+\subsubsection[{releaseTarget}]{\setlength{\rightskip}{0pt plus 5cm}void releaseTarget () const}}
+\label{classm3g_1_1Graphics3D_3ffaaf0d0f1e97a07c7f30c9b5a5dd32}
+
+
+現在バウンドされているターゲットをレンダリングし、ターゲットを解放する. \hypertarget{classm3g_1_1Graphics3D_8ef004c92d601203b8c697d441e7713f}{
+\index{m3g::Graphics3D@{m3g::Graphics3D}!render@{render}}
+\index{render@{render}!m3g::Graphics3D@{m3g::Graphics3D}}
+\subsubsection[{render}]{\setlength{\rightskip}{0pt plus 5cm}void render ({\bf World} $\ast$ {\em world}) const}}
+\label{classm3g_1_1Graphics3D_8ef004c92d601203b8c697d441e7713f}
+
+
+ワールドのアクティブなカメラでワールドをレンダリングする. \hypertarget{classm3g_1_1Graphics3D_9179d0d886a57cd3234b34f1b59dfc3c}{
+\index{m3g::Graphics3D@{m3g::Graphics3D}!render@{render}}
+\index{render@{render}!m3g::Graphics3D@{m3g::Graphics3D}}
+\subsubsection[{render}]{\setlength{\rightskip}{0pt plus 5cm}void render ({\bf VertexBuffer} $\ast$ {\em vertices}, \/  {\bf IndexBuffer} $\ast$ {\em triangles}, \/  {\bf Appearance} $\ast$ {\em apperance}, \/  {\bf Transform} \& {\em transform}, \/  int {\em scope}) const}}
+\label{classm3g_1_1Graphics3D_9179d0d886a57cd3234b34f1b59dfc3c}
+
+
+指定されたスコープのsubmeshを指定された行列でローカル座標からワールド座標に変換してレンダリングする. \hypertarget{classm3g_1_1Graphics3D_dc32291b31d6d3a32037eb9f727f73c0}{
+\index{m3g::Graphics3D@{m3g::Graphics3D}!render@{render}}
+\index{render@{render}!m3g::Graphics3D@{m3g::Graphics3D}}
+\subsubsection[{render}]{\setlength{\rightskip}{0pt plus 5cm}void render ({\bf VertexBuffer} $\ast$ {\em vertices}, \/  {\bf IndexBuffer} $\ast$ {\em triangles}, \/  {\bf Appearance} $\ast$ {\em apperance}, \/  {\bf Transform} \& {\em transform}) const}}
+\label{classm3g_1_1Graphics3D_dc32291b31d6d3a32037eb9f727f73c0}
+
+
+指定されたsubmeshを指定された行列でローカル座標からワールド座標に変換してレンダリングする. \hypertarget{classm3g_1_1Graphics3D_9c9ca78b3ce4cc358783a1a2701b9d85}{
+\index{m3g::Graphics3D@{m3g::Graphics3D}!render@{render}}
+\index{render@{render}!m3g::Graphics3D@{m3g::Graphics3D}}
+\subsubsection[{render}]{\setlength{\rightskip}{0pt plus 5cm}void render ({\bf Node} $\ast$ {\em node}, \/  {\bf Transform} $\ast$ {\em transform}) const}}
+\label{classm3g_1_1Graphics3D_9c9ca78b3ce4cc358783a1a2701b9d85}
+
+
+指定されたSprite3D,\hyperlink{classm3g_1_1Mesh}{Mesh},Groupノードを指定された行列でローカル座用からワールド座標に変換してレンダリングする. \hypertarget{classm3g_1_1Graphics3D_b8821ec231e8ebd939ae0feaaf138542}{
+\index{m3g::Graphics3D@{m3g::Graphics3D}!resetLights@{resetLights}}
+\index{resetLights@{resetLights}!m3g::Graphics3D@{m3g::Graphics3D}}
+\subsubsection[{resetLights}]{\setlength{\rightskip}{0pt plus 5cm}void resetLights ()}}
+\label{classm3g_1_1Graphics3D_b8821ec231e8ebd939ae0feaaf138542}
+
+
+カレントのライト配列のクリア. \hypertarget{classm3g_1_1Graphics3D_0df7bb61cfeba6626e20fd07ddd1c460}{
+\index{m3g::Graphics3D@{m3g::Graphics3D}!setCamera@{setCamera}}
+\index{setCamera@{setCamera}!m3g::Graphics3D@{m3g::Graphics3D}}
+\subsubsection[{setCamera}]{\setlength{\rightskip}{0pt plus 5cm}void setCamera ({\bf Camera} $\ast$ {\em camera}, \/  const {\bf Transform} \& {\em transform})}}
+\label{classm3g_1_1Graphics3D_0df7bb61cfeba6626e20fd07ddd1c460}
+
+
+イミーディエイトモードレンダリングで使用するカメラを設定する. \hypertarget{classm3g_1_1Graphics3D_6fc3837286f3516aa3320aeec9729495}{
+\index{m3g::Graphics3D@{m3g::Graphics3D}!setDepthRange@{setDepthRange}}
+\index{setDepthRange@{setDepthRange}!m3g::Graphics3D@{m3g::Graphics3D}}
+\subsubsection[{setDepthRange}]{\setlength{\rightskip}{0pt plus 5cm}void setDepthRange (float {\em near}, \/  float {\em far})}}
+\label{classm3g_1_1Graphics3D_6fc3837286f3516aa3320aeec9729495}
+
+
+NDC座標系からウィンドウ座標系に変換するさいの深度値のマッピングの仕方を設定する. \hypertarget{classm3g_1_1Graphics3D_2bf83cb69f50117dd9d5548fe96d0ab0}{
+\index{m3g::Graphics3D@{m3g::Graphics3D}!setLight@{setLight}}
+\index{setLight@{setLight}!m3g::Graphics3D@{m3g::Graphics3D}}
+\subsubsection[{setLight}]{\setlength{\rightskip}{0pt plus 5cm}void setLight (int {\em index}, \/  {\bf Light} $\ast$ {\em light}, \/  const {\bf Transform} \& {\em transform})}}
+\label{classm3g_1_1Graphics3D_2bf83cb69f50117dd9d5548fe96d0ab0}
+
+
+イミーディエイトモードレンダリング現在バウンドされているライトを置き換えるか修正する. \hypertarget{classm3g_1_1Graphics3D_0b4ec48e9c19060e9be5648c118c23b1}{
+\index{m3g::Graphics3D@{m3g::Graphics3D}!setViewport@{setViewport}}
+\index{setViewport@{setViewport}!m3g::Graphics3D@{m3g::Graphics3D}}
+\subsubsection[{setViewport}]{\setlength{\rightskip}{0pt plus 5cm}void setViewport (int {\em x}, \/  int {\em y}, \/  int {\em width}, \/  int {\em height})}}
+\label{classm3g_1_1Graphics3D_0b4ec48e9c19060e9be5648c118c23b1}
+
+
+現在バウンドされているレンダリングターゲットの矩形ビューポートを設定する. 
+
+このクラスの説明は次のファイルから生成されました:\begin{CompactItemize}
+\item 
+/work/desktop-m3g/src/Graphics3D.hpp\item 
+/work/desktop-m3g/src/Graphics3D.cpp\end{CompactItemize}

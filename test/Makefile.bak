@@ -19,7 +19,7 @@ depend:
 	makedepend -- $(CXXFLAGS) -- $(SRCS)
 
 clean:
-	rm -rf *.o *.so *.a *~ 
+	rm -rf *.o *.so *.a *~ *.out log
 	@echo done.
 
 
@@ -184,6 +184,39 @@ test-Background.o: /usr/include/GL/glew.h /usr/include/GL/glu.h
 test-Background.o: /usr/include/GL/gl.h ../src/m3gdef.hpp
 test-Background.o: ../src/m3ginternal.hpp ../src/Image2D.hpp
 test-Background.o: ../src/m3gexcept.hpp
+test-Bone.o: /usr/include/unittest++/UnitTest++.h
+test-Bone.o: /usr/include/unittest++/Config.h /usr/include/unittest++/Test.h
+test-Bone.o: /usr/include/unittest++/TestDetails.h
+test-Bone.o: /usr/include/unittest++/TestList.h
+test-Bone.o: /usr/include/unittest++/TestSuite.h
+test-Bone.o: /usr/include/unittest++/TestResults.h
+test-Bone.o: /usr/include/unittest++/TestMacros.h
+test-Bone.o: /usr/include/unittest++/Posix/SignalTranslator.h
+test-Bone.o: /usr/include/setjmp.h /usr/include/features.h
+test-Bone.o: /usr/include/sys/cdefs.h /usr/include/bits/wordsize.h
+test-Bone.o: /usr/include/gnu/stubs.h /usr/include/gnu/stubs-64.h
+test-Bone.o: /usr/include/bits/setjmp.h /usr/include/bits/sigset.h
+test-Bone.o: /usr/include/signal.h /usr/include/bits/types.h
+test-Bone.o: /usr/include/bits/typesizes.h /usr/include/bits/signum.h
+test-Bone.o: /usr/include/time.h /usr/include/bits/siginfo.h
+test-Bone.o: /usr/include/bits/sigaction.h /usr/include/bits/sigcontext.h
+test-Bone.o: /usr/include/bits/sigstack.h /usr/include/bits/pthreadtypes.h
+test-Bone.o: /usr/include/bits/sigthread.h
+test-Bone.o: /usr/include/unittest++/CheckMacros.h
+test-Bone.o: /usr/include/unittest++/Checks.h
+test-Bone.o: /usr/include/unittest++/MemoryOutStream.h
+test-Bone.o: /usr/include/unittest++/AssertException.h
+test-Bone.o: /usr/include/unittest++/TestRunner.h
+test-Bone.o: /usr/include/unittest++/TimeConstraint.h
+test-Bone.o: /usr/include/unittest++/TimeHelpers.h
+test-Bone.o: /usr/include/unittest++/Posix/TimeHelpers.h
+test-Bone.o: /usr/include/sys/time.h /usr/include/bits/time.h
+test-Bone.o: /usr/include/sys/select.h /usr/include/bits/select.h
+test-Bone.o: ../src/Bone.hpp ../src/Matrix.hpp ../src/Node.hpp
+test-Bone.o: ../src/Transformable.hpp ../src/Object3D.hpp
+test-Bone.o: /usr/include/GL/glew.h /usr/include/GL/glu.h
+test-Bone.o: /usr/include/GL/gl.h ../src/m3gdef.hpp ../src/m3ginternal.hpp
+test-Bone.o: ../src/Quaternion.hpp ../src/Transform.hpp
 test-Camera.o: /usr/include/unittest++/UnitTest++.h
 test-Camera.o: /usr/include/unittest++/Config.h
 test-Camera.o: /usr/include/unittest++/Test.h
@@ -217,7 +250,7 @@ test-Camera.o: ../src/Camera.hpp ../src/Node.hpp ../src/Transformable.hpp
 test-Camera.o: ../src/Object3D.hpp /usr/include/GL/glew.h
 test-Camera.o: /usr/include/GL/glu.h /usr/include/GL/gl.h ../src/m3gdef.hpp
 test-Camera.o: ../src/m3ginternal.hpp ../src/Quaternion.hpp
-test-Camera.o: ../src/Transform.hpp ../src/Matrix.hpp ../src/Projection.hpp
+test-Camera.o: ../src/Transform.hpp ../src/Matrix.hpp
 test-CompositingMode.o: /usr/include/unittest++/UnitTest++.h
 test-CompositingMode.o: /usr/include/unittest++/Config.h
 test-CompositingMode.o: /usr/include/unittest++/Test.h
@@ -718,6 +751,46 @@ test-Quaternion.o: /usr/include/unittest++/Posix/TimeHelpers.h
 test-Quaternion.o: /usr/include/sys/time.h /usr/include/bits/time.h
 test-Quaternion.o: /usr/include/sys/select.h /usr/include/bits/select.h
 test-Quaternion.o: ../src/Quaternion.hpp
+test-SkinnedMesh.o: /usr/include/unittest++/UnitTest++.h
+test-SkinnedMesh.o: /usr/include/unittest++/Config.h
+test-SkinnedMesh.o: /usr/include/unittest++/Test.h
+test-SkinnedMesh.o: /usr/include/unittest++/TestDetails.h
+test-SkinnedMesh.o: /usr/include/unittest++/TestList.h
+test-SkinnedMesh.o: /usr/include/unittest++/TestSuite.h
+test-SkinnedMesh.o: /usr/include/unittest++/TestResults.h
+test-SkinnedMesh.o: /usr/include/unittest++/TestMacros.h
+test-SkinnedMesh.o: /usr/include/unittest++/Posix/SignalTranslator.h
+test-SkinnedMesh.o: /usr/include/setjmp.h /usr/include/features.h
+test-SkinnedMesh.o: /usr/include/sys/cdefs.h /usr/include/bits/wordsize.h
+test-SkinnedMesh.o: /usr/include/gnu/stubs.h /usr/include/gnu/stubs-64.h
+test-SkinnedMesh.o: /usr/include/bits/setjmp.h /usr/include/bits/sigset.h
+test-SkinnedMesh.o: /usr/include/signal.h /usr/include/bits/types.h
+test-SkinnedMesh.o: /usr/include/bits/typesizes.h /usr/include/bits/signum.h
+test-SkinnedMesh.o: /usr/include/time.h /usr/include/bits/siginfo.h
+test-SkinnedMesh.o: /usr/include/bits/sigaction.h
+test-SkinnedMesh.o: /usr/include/bits/sigcontext.h
+test-SkinnedMesh.o: /usr/include/bits/sigstack.h
+test-SkinnedMesh.o: /usr/include/bits/pthreadtypes.h
+test-SkinnedMesh.o: /usr/include/bits/sigthread.h
+test-SkinnedMesh.o: /usr/include/unittest++/CheckMacros.h
+test-SkinnedMesh.o: /usr/include/unittest++/Checks.h
+test-SkinnedMesh.o: /usr/include/unittest++/MemoryOutStream.h
+test-SkinnedMesh.o: /usr/include/unittest++/AssertException.h
+test-SkinnedMesh.o: /usr/include/unittest++/TestRunner.h
+test-SkinnedMesh.o: /usr/include/unittest++/TimeConstraint.h
+test-SkinnedMesh.o: /usr/include/unittest++/TimeHelpers.h
+test-SkinnedMesh.o: /usr/include/unittest++/Posix/TimeHelpers.h
+test-SkinnedMesh.o: /usr/include/sys/time.h /usr/include/bits/time.h
+test-SkinnedMesh.o: /usr/include/sys/select.h /usr/include/bits/select.h
+test-SkinnedMesh.o: ../src/SkinnedMesh.hpp ../src/Mesh.hpp ../src/Node.hpp
+test-SkinnedMesh.o: ../src/Transformable.hpp ../src/Object3D.hpp
+test-SkinnedMesh.o: /usr/include/GL/glew.h /usr/include/GL/glu.h
+test-SkinnedMesh.o: /usr/include/GL/gl.h ../src/m3gdef.hpp
+test-SkinnedMesh.o: ../src/m3ginternal.hpp ../src/Quaternion.hpp
+test-SkinnedMesh.o: ../src/Transform.hpp ../src/Matrix.hpp
+test-SkinnedMesh.o: ../src/VertexArray.hpp ../src/VertexBuffer.hpp
+test-SkinnedMesh.o: ../src/IndexBuffer.hpp ../src/Appearance.hpp
+test-SkinnedMesh.o: ../src/Group.hpp ../src/Bone.hpp
 test-Sprite3D.o: /usr/include/unittest++/UnitTest++.h
 test-Sprite3D.o: /usr/include/unittest++/Config.h
 test-Sprite3D.o: /usr/include/unittest++/Test.h
@@ -1034,8 +1107,7 @@ test-World.o: ../src/Transformable.hpp ../src/Object3D.hpp
 test-World.o: /usr/include/GL/glew.h /usr/include/GL/glu.h
 test-World.o: /usr/include/GL/gl.h ../src/m3gdef.hpp ../src/m3ginternal.hpp
 test-World.o: ../src/Quaternion.hpp ../src/Transform.hpp ../src/Matrix.hpp
-test-World.o: ../src/Camera.hpp ../src/Projection.hpp ../src/Background.hpp
-test-World.o: ../src/Light.hpp
+test-World.o: ../src/Camera.hpp ../src/Background.hpp ../src/Light.hpp
 test-main.o: /usr/include/unittest++/UnitTest++.h
 test-main.o: /usr/include/unittest++/Config.h /usr/include/unittest++/Test.h
 test-main.o: /usr/include/unittest++/TestDetails.h

@@ -1,0 +1,150 @@
+\hypertarget{classm3g_1_1Group}{
+\section{クラス Group}
+\label{classm3g_1_1Group}\index{m3g::Group@{m3g::Group}}
+}
+{\tt \#include $<$Group.hpp$>$}
+
+Groupに対する継承グラフ:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=5cm]{classm3g_1_1Group}
+\end{center}
+\end{figure}
+\subsection*{Public メソッド}
+\begin{CompactItemize}
+\item 
+\hyperlink{classm3g_1_1Group_0b29b9393b4b6856ac75b759f4166c13}{Group} ()
+\item 
+virtual \hyperlink{classm3g_1_1Group_a2a755272411c0d861f46f30970f5ca5}{$\sim$Group} ()
+\item 
+void \hyperlink{classm3g_1_1Group_f7c798f6f7924dc14403df261f82153a}{addChild} (\hyperlink{classm3g_1_1Node}{Node} $\ast$child)
+\item 
+virtual int \hyperlink{classm3g_1_1Group_8aad1ceab4c2a03609c8a42324ce484d}{animate} (int world\_\-time)
+\item 
+\hyperlink{classm3g_1_1Node}{Node} $\ast$ \hyperlink{classm3g_1_1Group_a3af7d07fde341ef751157d274538698}{getChild} (int index) const 
+\item 
+int \hyperlink{classm3g_1_1Group_756d01dca16e146d69bb1881aca8fbb7}{getChildCount} () const 
+\item 
+bool \hyperlink{classm3g_1_1Group_10a3c77fa36fdb5d09b2bf39fe2a7c0b}{pick} (int scope, float ox, float oy, float oz, float dx, float dy, float dz, \hyperlink{classm3g_1_1RayIntersection}{RayIntersection} $\ast$ri) const 
+\item 
+void \hyperlink{classm3g_1_1Group_7415646c6f397f080d198176df44395c}{removeChild} (\hyperlink{classm3g_1_1Node}{Node} $\ast$child)
+\item 
+virtual std::ostream \& \hyperlink{classm3g_1_1Group_6fea17fa1532df3794f8cb39cb4f911f}{print} (std::ostream \&out) const 
+\end{CompactItemize}
+\subsection*{Public 変数}
+\begin{CompactItemize}
+\item 
+\hypertarget{classm3g_1_1Group_11d260eb623ff241a55524ad8bc9beb4}{
+PROTECTED \textbf{\_\-\_\-pad0\_\-\_\-}: virtual void findByObjectType (int obj\_\-type}
+\label{classm3g_1_1Group_11d260eb623ff241a55524ad8bc9beb4}
+
+\item 
+\hypertarget{classm3g_1_1Group_2c0e83157a767e0c6d0ae4111bda0233}{
+PROTECTED std::vector$<$ \hyperlink{classm3g_1_1Object3D}{Object3D} $\ast$ $>$ \&objs \textbf{const}}
+\label{classm3g_1_1Group_2c0e83157a767e0c6d0ae4111bda0233}
+
+\end{CompactItemize}
+\subsection*{Protected メソッド}
+\begin{CompactItemize}
+\item 
+virtual void \hyperlink{classm3g_1_1Group_1efcb1973989d9963d5bd6d03065d389}{render} (int pass, int index=0) const 
+\end{CompactItemize}
+
+
+\subsection{説明}
+未ソートの複数の子ノードを持つシーングラフのノード. 
+
+\subsection{コンストラクタとデストラクタ}
+\hypertarget{classm3g_1_1Group_0b29b9393b4b6856ac75b759f4166c13}{
+\index{m3g::Group@{m3g::Group}!Group@{Group}}
+\index{Group@{Group}!m3g::Group@{m3g::Group}}
+\subsubsection[{Group}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Group} ()}}
+\label{classm3g_1_1Group_0b29b9393b4b6856ac75b759f4166c13}
+
+
+子ノードを持たないGroupノードを作成するコンストラクタ. \hypertarget{classm3g_1_1Group_a2a755272411c0d861f46f30970f5ca5}{
+\index{m3g::Group@{m3g::Group}!$\sim$Group@{$\sim$Group}}
+\index{$\sim$Group@{$\sim$Group}!m3g::Group@{m3g::Group}}
+\subsubsection[{$\sim$Group}]{\setlength{\rightskip}{0pt plus 5cm}$\sim${\bf Group} ()\hspace{0.3cm}{\tt  \mbox{[}virtual\mbox{]}}}}
+\label{classm3g_1_1Group_a2a755272411c0d861f46f30970f5ca5}
+
+
+デストラクタ. 
+
+\subsection{関数}
+\hypertarget{classm3g_1_1Group_f7c798f6f7924dc14403df261f82153a}{
+\index{m3g::Group@{m3g::Group}!addChild@{addChild}}
+\index{addChild@{addChild}!m3g::Group@{m3g::Group}}
+\subsubsection[{addChild}]{\setlength{\rightskip}{0pt plus 5cm}void addChild ({\bf Node} $\ast$ {\em child})}}
+\label{classm3g_1_1Group_f7c798f6f7924dc14403df261f82153a}
+
+
+指定されたノードを追加する。以前に追加されていた子ノードの順番とインデックスは変更される可能性がある. \hypertarget{classm3g_1_1Group_8aad1ceab4c2a03609c8a42324ce484d}{
+\index{m3g::Group@{m3g::Group}!animate@{animate}}
+\index{animate@{animate}!m3g::Group@{m3g::Group}}
+\subsubsection[{animate}]{\setlength{\rightskip}{0pt plus 5cm}int animate (int {\em world\_\-time})\hspace{0.3cm}{\tt  \mbox{[}virtual\mbox{]}}}}
+\label{classm3g_1_1Group_8aad1ceab4c2a03609c8a42324ce484d}
+
+
+このノードと子ノードをアニメーションする. 
+
+\hyperlink{classm3g_1_1Node_8aad1ceab4c2a03609c8a42324ce484d}{Node}を再定義しています。
+
+\hyperlink{classm3g_1_1World_8aad1ceab4c2a03609c8a42324ce484d}{World}で再定義されています。\hypertarget{classm3g_1_1Group_a3af7d07fde341ef751157d274538698}{
+\index{m3g::Group@{m3g::Group}!getChild@{getChild}}
+\index{getChild@{getChild}!m3g::Group@{m3g::Group}}
+\subsubsection[{getChild}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Node} $\ast$ getChild (int {\em index}) const}}
+\label{classm3g_1_1Group_a3af7d07fde341ef751157d274538698}
+
+
+インデックスを指定して子ノードを取得する. \hypertarget{classm3g_1_1Group_756d01dca16e146d69bb1881aca8fbb7}{
+\index{m3g::Group@{m3g::Group}!getChildCount@{getChildCount}}
+\index{getChildCount@{getChildCount}!m3g::Group@{m3g::Group}}
+\subsubsection[{getChildCount}]{\setlength{\rightskip}{0pt plus 5cm}int getChildCount () const}}
+\label{classm3g_1_1Group_756d01dca16e146d69bb1881aca8fbb7}
+
+
+このグループの子ノードの数を取得する. \hypertarget{classm3g_1_1Group_10a3c77fa36fdb5d09b2bf39fe2a7c0b}{
+\index{m3g::Group@{m3g::Group}!pick@{pick}}
+\index{pick@{pick}!m3g::Group@{m3g::Group}}
+\subsubsection[{pick}]{\setlength{\rightskip}{0pt plus 5cm}bool pick (int {\em scope}, \/  float {\em ox}, \/  float {\em oy}, \/  float {\em oz}, \/  float {\em dx}, \/  float {\em dy}, \/  float {\em dz}, \/  {\bf RayIntersection} $\ast$ {\em ri}) const}}
+\label{classm3g_1_1Group_10a3c77fa36fdb5d09b2bf39fe2a7c0b}
+
+
+このグループのピッキング可能なMesh,scaled Sprite3Dのうち同じスコープで、指定されたピッキング光線で最初にヒットしたノードを返す. \hypertarget{classm3g_1_1Group_6fea17fa1532df3794f8cb39cb4f911f}{
+\index{m3g::Group@{m3g::Group}!print@{print}}
+\index{print@{print}!m3g::Group@{m3g::Group}}
+\subsubsection[{print}]{\setlength{\rightskip}{0pt plus 5cm}std::ostream \& print (std::ostream \& {\em out}) const\hspace{0.3cm}{\tt  \mbox{[}virtual\mbox{]}}}}
+\label{classm3g_1_1Group_6fea17fa1532df3794f8cb39cb4f911f}
+
+
+このGroupクラスの情報を表示する。デバッグ用. 
+
+\hyperlink{classm3g_1_1Node_6fea17fa1532df3794f8cb39cb4f911f}{Node}を再定義しています。
+
+\hyperlink{classm3g_1_1World_6fea17fa1532df3794f8cb39cb4f911f}{World}で再定義されています。\hypertarget{classm3g_1_1Group_7415646c6f397f080d198176df44395c}{
+\index{m3g::Group@{m3g::Group}!removeChild@{removeChild}}
+\index{removeChild@{removeChild}!m3g::Group@{m3g::Group}}
+\subsubsection[{removeChild}]{\setlength{\rightskip}{0pt plus 5cm}void removeChild ({\bf Node} $\ast$ {\em child})}}
+\label{classm3g_1_1Group_7415646c6f397f080d198176df44395c}
+
+
+このグループから指定されたノードを削除する。以前に追加されていた子ノードの順番とインデックスは変更される可能性がある. \hypertarget{classm3g_1_1Group_1efcb1973989d9963d5bd6d03065d389}{
+\index{m3g::Group@{m3g::Group}!render@{render}}
+\index{render@{render}!m3g::Group@{m3g::Group}}
+\subsubsection[{render}]{\setlength{\rightskip}{0pt plus 5cm}void render (int {\em pass}, \/  int {\em index} = {\tt 0}) const\hspace{0.3cm}{\tt  \mbox{[}protected, virtual\mbox{]}}}}
+\label{classm3g_1_1Group_1efcb1973989d9963d5bd6d03065d389}
+
+
+このGroupをレンダリングする内部使用の関数.
+
+Note: \hyperlink{classm3g_1_1Group}{Group} should be rendered via all rendering pass. 
+
+\hyperlink{classm3g_1_1Node_1efcb1973989d9963d5bd6d03065d389}{Node}を再定義しています。
+
+\hyperlink{classm3g_1_1World_1efcb1973989d9963d5bd6d03065d389}{World}で再定義されています。
+
+このクラスの説明は次のファイルから生成されました:\begin{CompactItemize}
+\item 
+/work/desktop-m3g/src/Group.hpp\item 
+/work/desktop-m3g/src/Group.cpp\end{CompactItemize}
