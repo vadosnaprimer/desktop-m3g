@@ -3,7 +3,6 @@
 #define __ANIMATION_CONTROLLER_HPP__
 
 #include "Object3D.hpp"
-#include "ActiveInterval.hpp"
 #include <iosfwd>
 
 namespace m3g {

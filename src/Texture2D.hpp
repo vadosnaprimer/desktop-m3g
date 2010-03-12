@@ -3,7 +3,6 @@
 
 #include <GL/glew.h>
 #include "Transformable.hpp"
-#include "TextureCoord2D.hpp"
 #include <iostream>
 
 namespace m3g {

@@ -33,21 +33,19 @@ clean:
 AnimationController.o: AnimationController.hpp Object3D.hpp
 AnimationController.o: /usr/include/GL/glew.h /usr/include/GL/glu.h
 AnimationController.o: /usr/include/GL/gl.h m3gdef.hpp m3ginternal.hpp
-AnimationController.o: ActiveInterval.hpp
 AnimationTrack.o: AnimationTrack.hpp Object3D.hpp /usr/include/GL/glew.h
 AnimationTrack.o: /usr/include/GL/glu.h /usr/include/GL/gl.h m3gdef.hpp
 AnimationTrack.o: m3ginternal.hpp KeyframeSequence.hpp Keyframe.hpp
-AnimationTrack.o: AnimationController.hpp ActiveInterval.hpp m3gexcept.hpp
+AnimationTrack.o: AnimationController.hpp m3gexcept.hpp
 Appearance.o: Appearance.hpp Object3D.hpp /usr/include/GL/glew.h
 Appearance.o: /usr/include/GL/glu.h /usr/include/GL/gl.h m3gdef.hpp
 Appearance.o: m3ginternal.hpp CompositingMode.hpp Fog.hpp Material.hpp
 Appearance.o: PolygonMode.hpp Texture2D.hpp Transformable.hpp Quaternion.hpp
-Appearance.o: Transform.hpp Matrix.hpp TextureCoord2D.hpp m3gexcept.hpp
+Appearance.o: Transform.hpp Matrix.hpp m3gexcept.hpp
 Background.o: Background.hpp Object3D.hpp /usr/include/GL/glew.h
 Background.o: /usr/include/GL/glu.h /usr/include/GL/gl.h m3gdef.hpp
 Background.o: m3ginternal.hpp Image2D.hpp m3gexcept.hpp AnimationTrack.hpp
-Background.o: AnimationController.hpp ActiveInterval.hpp KeyframeSequence.hpp
-Background.o: Keyframe.hpp
+Background.o: AnimationController.hpp KeyframeSequence.hpp Keyframe.hpp
 Bone.o: Bone.hpp Matrix.hpp Group.hpp Node.hpp Transformable.hpp Object3D.hpp
 Bone.o: /usr/include/GL/glew.h /usr/include/GL/glu.h /usr/include/GL/gl.h
 Bone.o: m3gdef.hpp m3ginternal.hpp Quaternion.hpp Transform.hpp m3gexcept.hpp
@@ -55,14 +53,14 @@ Camera.o: Camera.hpp Node.hpp Transformable.hpp Object3D.hpp
 Camera.o: /usr/include/GL/glew.h /usr/include/GL/glu.h /usr/include/GL/gl.h
 Camera.o: m3gdef.hpp m3ginternal.hpp Quaternion.hpp Transform.hpp Matrix.hpp
 Camera.o: Vector.hpp m3gexcept.hpp AnimationTrack.hpp AnimationController.hpp
-Camera.o: ActiveInterval.hpp KeyframeSequence.hpp Keyframe.hpp
+Camera.o: KeyframeSequence.hpp Keyframe.hpp
 CompositingMode.o: CompositingMode.hpp Object3D.hpp /usr/include/GL/glew.h
 CompositingMode.o: /usr/include/GL/glu.h /usr/include/GL/gl.h m3gdef.hpp
 CompositingMode.o: m3ginternal.hpp m3gexcept.hpp
 Fog.o: Fog.hpp Object3D.hpp /usr/include/GL/glew.h /usr/include/GL/glu.h
 Fog.o: /usr/include/GL/gl.h m3gdef.hpp m3ginternal.hpp m3gexcept.hpp
-Fog.o: AnimationTrack.hpp AnimationController.hpp ActiveInterval.hpp
-Fog.o: KeyframeSequence.hpp Keyframe.hpp
+Fog.o: AnimationTrack.hpp AnimationController.hpp KeyframeSequence.hpp
+Fog.o: Keyframe.hpp
 Graphics3D.o: Graphics3D.hpp World.hpp Group.hpp Node.hpp Transformable.hpp
 Graphics3D.o: Object3D.hpp /usr/include/GL/glew.h /usr/include/GL/glu.h
 Graphics3D.o: /usr/include/GL/gl.h m3gdef.hpp m3ginternal.hpp Quaternion.hpp
@@ -86,15 +84,14 @@ Light.o: Light.hpp Node.hpp Transformable.hpp Object3D.hpp
 Light.o: /usr/include/GL/glew.h /usr/include/GL/glu.h /usr/include/GL/gl.h
 Light.o: m3gdef.hpp m3ginternal.hpp Quaternion.hpp Transform.hpp Matrix.hpp
 Light.o: m3gexcept.hpp AnimationTrack.hpp AnimationController.hpp
-Light.o: ActiveInterval.hpp KeyframeSequence.hpp Keyframe.hpp
+Light.o: KeyframeSequence.hpp Keyframe.hpp
 Loader.o: Loader.hpp Object3D.hpp /usr/include/GL/glew.h
 Loader.o: /usr/include/GL/glu.h /usr/include/GL/gl.h m3gdef.hpp
 Loader.o: m3ginternal.hpp
 Material.o: Material.hpp Object3D.hpp /usr/include/GL/glew.h
 Material.o: /usr/include/GL/glu.h /usr/include/GL/gl.h m3gdef.hpp
 Material.o: m3ginternal.hpp m3gexcept.hpp AnimationTrack.hpp
-Material.o: AnimationController.hpp ActiveInterval.hpp KeyframeSequence.hpp
-Material.o: Keyframe.hpp
+Material.o: AnimationController.hpp KeyframeSequence.hpp Keyframe.hpp
 Matrix.o: Matrix.hpp Vector.hpp m3gexcept.hpp
 Mesh.o: Mesh.hpp Node.hpp Transformable.hpp Object3D.hpp
 Mesh.o: /usr/include/GL/glew.h /usr/include/GL/glu.h /usr/include/GL/gl.h
@@ -109,8 +106,8 @@ MorphingMesh.o: IndexBuffer.hpp Appearance.hpp
 Node.o: Node.hpp Transformable.hpp Object3D.hpp /usr/include/GL/glew.h
 Node.o: /usr/include/GL/glu.h /usr/include/GL/gl.h m3gdef.hpp m3ginternal.hpp
 Node.o: Quaternion.hpp Transform.hpp Matrix.hpp m3gexcept.hpp
-Node.o: AnimationTrack.hpp AnimationController.hpp ActiveInterval.hpp
-Node.o: KeyframeSequence.hpp Keyframe.hpp
+Node.o: AnimationTrack.hpp AnimationController.hpp KeyframeSequence.hpp
+Node.o: Keyframe.hpp
 Object3D.o: Object3D.hpp /usr/include/GL/glew.h /usr/include/GL/glu.h
 Object3D.o: /usr/include/GL/gl.h m3gdef.hpp m3ginternal.hpp
 Object3D.o: AnimationTrack.hpp m3gexcept.hpp
@@ -132,20 +129,18 @@ Sprite3D.o: /usr/include/GL/glew.h /usr/include/GL/glu.h /usr/include/GL/gl.h
 Sprite3D.o: m3gdef.hpp m3ginternal.hpp Quaternion.hpp Transform.hpp
 Sprite3D.o: Matrix.hpp Appearance.hpp Image2D.hpp m3gexcept.hpp
 Sprite3D.o: Graphics3D.hpp Vector.hpp AnimationTrack.hpp
-Sprite3D.o: AnimationController.hpp ActiveInterval.hpp KeyframeSequence.hpp
-Sprite3D.o: Keyframe.hpp
+Sprite3D.o: AnimationController.hpp KeyframeSequence.hpp Keyframe.hpp
 Texture2D.o: Texture2D.hpp /usr/include/GL/glew.h /usr/include/GL/glu.h
 Texture2D.o: /usr/include/GL/gl.h Transformable.hpp Object3D.hpp m3gdef.hpp
 Texture2D.o: m3ginternal.hpp Quaternion.hpp Transform.hpp Matrix.hpp
-Texture2D.o: TextureCoord2D.hpp Image2D.hpp m3gexcept.hpp AnimationTrack.hpp
-Texture2D.o: AnimationController.hpp ActiveInterval.hpp KeyframeSequence.hpp
-Texture2D.o: Keyframe.hpp
+Texture2D.o: Image2D.hpp m3gexcept.hpp AnimationTrack.hpp
+Texture2D.o: AnimationController.hpp KeyframeSequence.hpp Keyframe.hpp
 Transform.o: Transform.hpp Matrix.hpp Vector.hpp m3gexcept.hpp Quaternion.hpp
 Transformable.o: Transformable.hpp Object3D.hpp /usr/include/GL/glew.h
 Transformable.o: /usr/include/GL/glu.h /usr/include/GL/gl.h m3gdef.hpp
 Transformable.o: m3ginternal.hpp Quaternion.hpp Transform.hpp Matrix.hpp
 Transformable.o: m3gexcept.hpp AnimationTrack.hpp AnimationController.hpp
-Transformable.o: ActiveInterval.hpp KeyframeSequence.hpp Keyframe.hpp
+Transformable.o: KeyframeSequence.hpp Keyframe.hpp
 TriangleStripArray.o: TriangleStripArray.hpp IndexBuffer.hpp
 TriangleStripArray.o: /usr/include/GL/glew.h /usr/include/GL/glu.h
 TriangleStripArray.o: /usr/include/GL/gl.h Object3D.hpp m3gdef.hpp
@@ -157,8 +152,7 @@ VertexArray.o: m3gexcept.hpp
 VertexBuffer.o: VertexBuffer.hpp /usr/include/GL/glew.h /usr/include/GL/glu.h
 VertexBuffer.o: /usr/include/GL/gl.h Object3D.hpp m3gdef.hpp m3ginternal.hpp
 VertexBuffer.o: VertexArray.hpp AnimationTrack.hpp AnimationController.hpp
-VertexBuffer.o: ActiveInterval.hpp KeyframeSequence.hpp Keyframe.hpp
-VertexBuffer.o: m3gexcept.hpp
+VertexBuffer.o: KeyframeSequence.hpp Keyframe.hpp m3gexcept.hpp
 World.o: World.hpp Group.hpp Node.hpp Transformable.hpp Object3D.hpp
 World.o: /usr/include/GL/glew.h /usr/include/GL/glu.h /usr/include/GL/gl.h
 World.o: m3gdef.hpp m3ginternal.hpp Quaternion.hpp Transform.hpp Matrix.hpp
