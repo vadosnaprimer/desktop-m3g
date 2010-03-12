@@ -8,83 +8,95 @@
 
 namespace m3g {
 
-class VertexBuffer;
-class IndexBuffer;
-class Appearance;
+  class VertexBuffer;
+  class IndexBuffer;
+  class Appearance;
 
-/**
- * ポリ後なるサーフェスを定義するシーングラフのノード.
- */
-class Mesh : public Node
-{
-public:
+  /**
+   * @~English  A scene graph node that represents a 3D object defined as a polygonal surface.
+   * @~Japanese ポリゴナルサーフェスを定義するシーングラフのノード.
+   */
+  class Mesh : public Node
+  {
+  public:
     /**
-     * 指定された頂点バッファーとサブメッシュから新しいメッシュを作成する.
+     * @~English  Constructs a new Mesh with the given VertexBuffer and submeshes.
+     * @~Japanese 指定された頂点バッファーとサブメッシュから新しいメッシュを作成する.
      */
-  Mesh (VertexBuffer* vertices,
-	int num_submesh, IndexBuffer** submeshes,
-	int num_appearance, Appearance** appearances);
+    Mesh (VertexBuffer* vertices,
+	  int num_submesh, IndexBuffer** submeshes,
+	  int num_appearance, Appearance** appearances);
 
     /**
-     * サブメッシュ1つからなる新しいメッシュを作成する.
+     * @~English Constructs a new Mesh consisting of only one submesh. 
+     * @~Japanese サブメッシュ1つからなる新しいメッシュを作成する.
      */
     Mesh (VertexBuffer* vertices, 
 	  IndexBuffer* submesh,
 	  Appearance* appearance);
 
     /**
-     * デストラクタ
+     * @~English  Destruct this object.
+     * @~Japanese このオブジェクトを削除するデストラクタ.
      */
     virtual ~Mesh ();
 
     /**
-     * アニメーション.
+     * @~English  Updates all animated properties in this Object3D and all Object3Ds that are reachable from this Object3D.
+     * @~Japanese このObject3D自身とここから到達できるObject3Dのアニメーテッドプロパティを更新する.
      */
     virtual int animate (int time);
 
     /**
-     * 指定されたサブメッシュのカレントのアピアランスを取得.
+     * @~English  Gets the current Appearance of the specified submesh.
+     * @~Japanese 指定されたサブメッシュのカレントのアピアランスを取得.
      */
     Appearance* getAppearance (int index) const;
 
     /**
-     * 指定されたインデックスのサブメッシュを取得.
+     * @~English  Retrieves tthe submesh at the given index.
+     * @~Japanese 指定されたインデックスのサブメッシュを取得.
      */
     IndexBuffer* getIndexBuffer (int index) const;
 
     /**
-     * このメッシュのサブメッシュ数を取得.
+     * @~English  Gets the number of submeshes in this Mesh.
+     * @~Japanese このメッシュのサブメッシュ数を取得.
      */
     int getSubmeshCount () const;
 
     /**
-     * このメッシュの頂点バッファーの取得.
+     * @~English  Gets the vertex buffer of this Mesh.
+     * @~Japanese このメッシュの頂点バッファーの取得.
      */
     VertexBuffer* getVertexBuffer () const;
 
     /**
-     * 指定されたサブメッシュのアピアランスを設定.
+     * @~English  Sets the Appearance ofr the specified submesh.
+     * @~Japanese 指定されたサブメッシュのアピアランスを設定.
      */
     void setAppearance (int index, Appearance* appearance);
 
     /**
-     * このMeshクラスの情報を表示する。デバッグ用.
+     * @~English  Print out information of this object, for only debug.
+     * @~Japanese このMeshクラスの情報を表示する。デバッグ用.
      */
-  virtual std::ostream& print (std::ostream& out) const;
+    virtual std::ostream& print (std::ostream& out) const;
 
-protected:
+  protected:
 
-  /**
-   * このノードをレンダリングする内部使用の関数.
-   */
-  virtual void render (int pass, int index=0) const;
+    /**
+     * @~English  Render this object, for inner use.
+     * @~Japanese このノードをレンダリングする内部使用の関数.
+     */
+    virtual void render (int pass, int index=0) const;
 
-protected:
-  VertexBuffer* vertices;
-  std::vector<IndexBuffer*> indices;
-  std::vector<Appearance*>  appearances;
+  protected:
+    VertexBuffer*             vertices;
+    std::vector<IndexBuffer*> indices;
+    std::vector<Appearance*>  appearances;
 
-};
+  };
 
 } // namespace m3g {
 

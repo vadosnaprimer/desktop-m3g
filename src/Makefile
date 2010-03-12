@@ -54,9 +54,8 @@ Bone.o: m3gdef.hpp m3ginternal.hpp Quaternion.hpp Transform.hpp m3gexcept.hpp
 Camera.o: Camera.hpp Node.hpp Transformable.hpp Object3D.hpp
 Camera.o: /usr/include/GL/glew.h /usr/include/GL/glu.h /usr/include/GL/gl.h
 Camera.o: m3gdef.hpp m3ginternal.hpp Quaternion.hpp Transform.hpp Matrix.hpp
-Camera.o: Projection.hpp Vector.hpp m3gexcept.hpp AnimationTrack.hpp
-Camera.o: AnimationController.hpp ActiveInterval.hpp KeyframeSequence.hpp
-Camera.o: Keyframe.hpp
+Camera.o: Vector.hpp m3gexcept.hpp AnimationTrack.hpp AnimationController.hpp
+Camera.o: ActiveInterval.hpp KeyframeSequence.hpp Keyframe.hpp
 CompositingMode.o: CompositingMode.hpp Object3D.hpp /usr/include/GL/glew.h
 CompositingMode.o: /usr/include/GL/glu.h /usr/include/GL/gl.h m3gdef.hpp
 CompositingMode.o: m3ginternal.hpp m3gexcept.hpp
@@ -67,8 +66,8 @@ Fog.o: KeyframeSequence.hpp Keyframe.hpp
 Graphics3D.o: Graphics3D.hpp World.hpp Group.hpp Node.hpp Transformable.hpp
 Graphics3D.o: Object3D.hpp /usr/include/GL/glew.h /usr/include/GL/glu.h
 Graphics3D.o: /usr/include/GL/gl.h m3gdef.hpp m3ginternal.hpp Quaternion.hpp
-Graphics3D.o: Transform.hpp Matrix.hpp Camera.hpp Projection.hpp Graphics.hpp
-Graphics3D.o: Light.hpp m3gexcept.hpp
+Graphics3D.o: Transform.hpp Matrix.hpp Camera.hpp Graphics.hpp Light.hpp
+Graphics3D.o: m3gexcept.hpp
 Group.o: Group.hpp Node.hpp Transformable.hpp Object3D.hpp
 Group.o: /usr/include/GL/glew.h /usr/include/GL/glu.h /usr/include/GL/gl.h
 Group.o: m3gdef.hpp m3ginternal.hpp Quaternion.hpp Transform.hpp Matrix.hpp
@@ -163,5 +162,5 @@ VertexBuffer.o: m3gexcept.hpp
 World.o: World.hpp Group.hpp Node.hpp Transformable.hpp Object3D.hpp
 World.o: /usr/include/GL/glew.h /usr/include/GL/glu.h /usr/include/GL/gl.h
 World.o: m3gdef.hpp m3ginternal.hpp Quaternion.hpp Transform.hpp Matrix.hpp
-World.o: Camera.hpp Projection.hpp Background.hpp Light.hpp m3gexcept.hpp
+World.o: Camera.hpp Background.hpp Light.hpp m3gexcept.hpp
 m3ginternal.o: m3ginternal.hpp m3gdef.hpp

@@ -57,7 +57,7 @@ int Background:: animate (int world_time)
       //cout << "Background: missing controller, this animation track is ignored.\n";
       continue;
     }
-    if (!controller->isActiveInterval(world_time)) {
+    if (world_time < controller->getActiveIntervalStart() || world_time >= controller->getActiveIntervalEnd()) {
       continue;
     }
     float weight     = controller->getWeight ();

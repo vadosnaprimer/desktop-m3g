@@ -9,67 +9,77 @@
 
 namespace m3g {
 
-class Camera;
-class Background;
+  class Camera;
+  class Background;
 
-/**
- * シーングラフを保持する最上位の特殊グループノード.
- */
-class World : public Group
-{
-  friend class Graphics3D;
+  /**
+   * @~English  A special Group node that is a top-level container for scene graphs.
+   * @~Japanese シーングラフを保持する最上位の特殊グループノード.
+   */
+  class World : public Group
+  {
+    friend class Graphics3D;
 
-public:
+  public:
     /**
-     * デフォルト値のWorldオブジェクトの作成.
+     * @~English  Creates an empty World with default values.
+     * @~Japanese デフォルト値のWorldオブジェクトの作成.
      */
     World ();
 
     /**
-     * デストラクタ.
+     * @~English  Destructs this objects.
+     * @~Japanese このオブジェクトを削除するデストラクタ.
      */
     virtual ~World ();
 
     /**
-     * このノードと子ノードをアニメーションする.
+     * @~English  Updates all animated properties in this Object3D and all Object3Ds that are reachable from this Object3D.
+     * @~Japanese このObject3D自身とここから到達できるObject3Dのアニメーテッドプロパティを更新する.
      */
-  virtual int animate (int world_time);
+    virtual int animate (int world_time);
 
     /**
-     * カレントのアクティブカメラの取得.
+     * @~English  Gets the currently active cameara.
+     * @~Japanese カレントのアクティブカメラの取得.
      */
     Camera* getActiveCamera () const;
 
     /**
-     * このWorldのバックグラウンド設定の取得.
+     * @~English  Retrieves the background settings of this World.
+     * @~Japanese このWorldのバックグラウンド設定の取得.
      */
     Background* getBackground () const;
 
     /**
-     * このWorldをレンダリングするときに使われるカメラの設定.
+     * @~English  Sets the Camera to use when rendering this World.
+     * @~Japanese このWorldをレンダリングするときに使われるカメラの設定.
      */
     void setActiveCamera (Camera* camera);
 
     /**
-     * このWorldのバックグラウンドオブジェ区の設定.
+     * @~English  Sets the Background object for this World.
+     * @~Japanese このWorldのバックグラウンドオブジェ区の設定.
      */
     void setBackground (Background* background);
 
-  /**
-   * このWorldクラスの情報を表示する。デバッグ用.
-   */
-  virtual std::ostream& print (std::ostream& out) const;
+    /**
+     * @~English  Print out information of this object, for debug only.
+     * @~Japanese このWorldクラスの情報を表示する。デバッグ用.
+     */
+    virtual std::ostream& print (std::ostream& out) const;
 
-protected:
-  /**
-   * このノードをレンダリングする内部使用の関数.
-   */
-  virtual void render (int pass, int index=0) const;
+  protected:
+    /**
+     * @~English  Render this object.
+     * @~Japanese このノードをレンダリングする内部使用の関数.
+     */
+    virtual void render (int pass, int index=0) const;
 
-private:
-  Background* background;
-  Camera*     camera;
-};
+  private:
+    Background* background;
+    Camera*     camera;
+  };
 
 
 } // namespace m3g {

@@ -102,7 +102,7 @@ void SkinnedMesh:: addTransform (Node* node, int weight, int first_vertex, int n
   do {
     Transform trans;
     node->getCompositeTransform (&trans);
-    cout << "trans = " << trans << "\n";
+    // cout << "trans = " << trans << "\n";
     float m[16];
     trans.get (m);
     global_pose *= Matrix(m);

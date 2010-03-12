@@ -11,70 +11,83 @@ namespace m3g {
   class IndexBuffer;
   class Appearance;
 
-/**
- * 頂点モーフィングメッシュを表すシーングラフのノード.
- */
-class MorphingMesh : public Mesh
-{
-public:
+  /**
+   * @~English  A scene graph node that represents a vertex morphing polygon mesh.
+   * @~Japanese 頂点モーフィングメッシュを表すシーングラフのノード.
+   */
+  class MorphingMesh : public Mesh
+  {
+  public:
     /**
-     * 指定されたベースメッシュとモーフターゲットを持つ新しいモーフィングメッシュを作成.
+     * @~English  Construct a new MorphingMesh with the given base mesh and morph targets.
+     * @~Japanese 指定されたベースメッシュとモーフターゲットを持つ新しいモーフィングメッシュを作成.
      */
-  MorphingMesh (VertexBuffer* base, int num_target, VertexBuffer** targets, int num_submesh, IndexBuffer** sumeshes, int num_appearance, Appearance** appearances);
+    MorphingMesh (VertexBuffer* base, int num_target, VertexBuffer** targets, int num_submesh, IndexBuffer** sumeshes, int num_appearance, Appearance** appearances);
 
     /**
-     * 指定されたベースメッシュとモーフターゲットを持つ新しいモーフィングメッシュを作成.
+     * @~English  Constructs a new MorphingMesh with the given base mesh and morph targets.
+     * @~Japanese 指定されたベースメッシュとモーフターゲットを持つ新しいモーフィングメッシュを作成.
      */
-  MorphingMesh (VertexBuffer* base, int num_target, VertexBuffer** targets, IndexBuffer* sumeshes, Appearance* appearances);
+    MorphingMesh (VertexBuffer* base, int num_target, VertexBuffer** targets, IndexBuffer* sumeshes, Appearance* appearances);
 
     /**
-     * デストラクタ.
+     * @~English  Destruct this object.
+     * @~Japanese このオブジェクトを削除するデストラクタ.
      */
     virtual ~MorphingMesh ();
 
     /**
-     * アニメーショントラックの追加。
-     * 既存のトラックの順番とインデックスは変更されるかもしれない.
+     * @~English  Adds the given AnimationTrack to this Object3D, 
+     *            potentially changing the order and indices of the previously added tracks.
+     * @~Japanese アニメーショントラックの追加。
+     *            既存のトラックの順番とインデックスは変更されるかもしれない.
      */
     virtual void addAnimationTrack (AnimationTrack* animation_track);
 
     /**
-     * アニメーションの更新.
+     * @~English  Updates all animated properties in this Object3D and all Object3Ds that are reachable from this Object3D.
+     * @~Japanese このObject3D自身とここから到達できるObject3Dのアニメーテッドプロパティを更新する.
      */
     virtual int animate (int world_time);
 
     /**
-     * 指定されたインデックスのモーフターゲット頂点バッファーの取得.
+     * @~English  Returns the morph target VertxBuffer at the given index.
+     * @~Japanese 指定されたインデックスのモーフターゲット頂点バッファーの取得.
      */
     VertexBuffer* getMorphTarget (int index) const;
 
     /**
-     * このモーフィングメッシュのモーフターゲット数の取得.
+     * @~English  Returns the number of morph targets in this MorphingMesh.
+     * @~Japanese このモーフィングメッシュのモーフターゲット数の取得.
      */
     int getMorphTargetCount () const;
 
     /**
-     * このメッシュのカレントのモーフターゲットのウェイトの取得.
+     * @~English  Gets the current morph target weights for this mesh.
+     * @~Japanese このメッシュのカレントのモーフターゲットのウェイトの取得.
      */
     void getWeights (float* weights) const;
 
     /**
-     * このメッシュの全てのモーフターゲットのウエイトの設定.
+     * @~English  Sets the weights for all morph targets in this mesh.
+     * @~Japanese このメッシュの全てのモーフターゲットのウエイトの設定.
      */
     void setWeights (float* weights);
 
-  /**
-   *
-   */
-  std::ostream& print (std::ostream& out) const;
+    /**
+     * @~English  Print out information of this object.
+     * @~Japanese このオブジェクトの情報を表示。デバッグ用.
+     */
+    virtual std::ostream& print (std::ostream& out) const;
 
-protected:
-  /**
-   * このMorphingMeshをレンダリングする内部使用の関数.
-   */
-  virtual void render (int pass, int index=0) const;
+  protected:
+    /**
+     * @~English  Render this object, for inner use.
+     * @~Japanese このMorphingMeshをレンダリングする内部使用の関数.
+     */
+    virtual void render (int pass, int index=0) const;
 
-};
+  };
 
 } // namespace m3g {
 

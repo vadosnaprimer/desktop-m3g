@@ -38,6 +38,7 @@ void IndexBuffer:: getIndices (int* indices_)
 
 void IndexBuffer:: setIndices (int index_count_, int* indices_)
 {
+  // メモ：インデックス配列の確保だがコンストラクタで行った方が良くないか？
   //cout << "IndexBuffer: setIndices 1\n";
   if (index_count_ < 0) {
     throw invalid_argument ("Number of indices is < 0.");
@@ -61,6 +62,7 @@ void IndexBuffer:: setIndices (int index_count_, int* indices_)
 
 void IndexBuffer:: setIndices (int index_count_, int first_index)
 {
+  // メモ：インデックス配列の確保だがコンストラクタで行った方が良くないか？
   //cout << "IndexBuffer: setIndices 2\n";
   if (index_count_ < 1 || index_count_ > 65535) {
     throw invalid_argument ("Number of indices is < 1 or >65535.");
@@ -84,12 +86,6 @@ void IndexBuffer:: setIndices (int index_count_, int first_index)
   glBufferData (GL_ELEMENT_ARRAY_BUFFER, sizeof(int)*index_count, indices, GL_STATIC_DRAW);
 }
 
-GLuint IndexBuffer:: getIBO () const
-{
-  // これ使っている？
-  // 使ってないなら削除
-  return ibuf;
-}
 
 /**
  * Note: Background should be rendered only at second rendering pass(pass=2).

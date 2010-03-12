@@ -8,69 +8,73 @@
 
 namespace m3g {
 
-/**
- * 頂点を連結し幾何形状を定義する抽象クラス.
- */
-class IndexBuffer : public Object3D
-{
-  friend class Mesh; // for render
+  /**
+   * @~English  An abstract class defining how to connect vertices to form a geometric object.
+   * @~Japanese 頂点を連結し幾何形状を定義する抽象クラス.
+   */
+  class IndexBuffer : public Object3D
+  {
+    friend class Mesh; // for render
 
-private:
-  static const int EXPLICIT = 1;
-  static const int IMPLICIT = 2;
-
-public:
+  public:
     /**
-     * デストラクタ.
+     * @~English  Construct a new IndexBuffer Object.
+     * @~Japanese 新しいIndexBufferオブジェクトを作成するコンストラクタ.
      */
-  IndexBuffer ();
+    IndexBuffer ();
 
     /**
-     * デストラクタ.
+     * @~English  このオブジェクトを削除するデストラクタ.
+     * @~Japanese デストラクタ.
      */
     virtual ~IndexBuffer ();
 
     /**
-     * このバッファーのインデックスの数を取得.
+     * @~English  Returns the number of indices in this buffer.
+     * @~Japanese このバッファーのインデックスの数を取得.
      */
     int getIndexCount () const;
 
     /**
-     * このバッファーに収納されているインデックスを取得する.
+     * @~English  Retrieves vertex indices for the rendering primitives stored in this buffer.
+     * @~Japanese このバッファーに収納されているインデックスを取得する.
      */
     void getIndices (int* indices);
 
-  /**
-   * このImage2Dクラスの情報を表示する。デバッグ用.
-   */
-  virtual std::ostream& print (std::ostream& out) const;
-
-protected:
-  virtual void render (int pass, int index=0) const;
-
-PROTECTED:
     /**
-     * インデックス配列を明示的に確保する.
+     * @~English  Print out information of this object, for only debug.
+     * @~Japanese このImage2Dクラスの情報を表示する。デバッグ用.
      */
-  void setIndices (int num_index, int* indices);
+    virtual std::ostream& print (std::ostream& out) const;
+
+  protected:
+
     /**
-     * インデックス配列を暗黙的に確保する.
+     * @~English  Redner this object, for inner use.
+     * @~Japanese このIndexBufferをレンダリングする内部使用の関数.
      */
-  void setIndices (int num_index, int first_index);
+    virtual void render (int pass, int index=0) const;
 
-protected:
-  /**
-   * OpenGLのバッファーオブジェクトを取得する.
-   */
-  GLuint getIBO () const;
+  PROTECTED:
+    /**
+     * @~English  Allocate indices, for inner use.
+     * @~Japanese インデックス配列を明示的に確保する.
+     */
+    void setIndices (int num_index, int* indices);
+    /**
+     * @~English  Allocate indices, for inner use.
+     * @~Japanese インデックス配列を暗黙的に確保する.
+     */
+    void setIndices (int num_index, int first_index);
 
-private:
-  int  index_count;
-  int* indices;
 
-private:
-  GLuint ibuf;
-};
+  private:
+    int  index_count;
+    int* indices;
+
+  private:
+    GLuint ibuf;
+  };
 
 
 } // namespace m3g {

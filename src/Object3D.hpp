@@ -9,123 +9,154 @@
 
 namespace m3g {
 
-class AnimationTrack;
+  class AnimationTrack;
 
-/**
- * 3Dワールドに存在する全てのオブジェクトの基底となる抽象クラス.
- */
-class Object3D
-{
+  /**
+   * @~English  An abstract base class for all objects that can be part of a 3D world.
+   * @~Japanese 3Dワールドに存在する全てのオブジェクトの基底となる抽象クラス.
+   */
+  class Object3D
+  {
   
-public:
+  public:
     /**
-     * コンストラクタ.
-     * 規格上はprivateにすべき
+     * @~English  Construct a new Objec3D object.
+     * @~Japanese このオブジェクトを作成するコンストラクタ.
      */
     Object3D ();
 
     /**
-     * デストラクタ.
+     * @~English  Destruct this object.
+     * @~Japanese このオブジェクトを削除するデストラクタ.
      */
     virtual ~Object3D ();
 
-PROTECTED:
+  PROTECTED:
     /**
-     * このObject3Dに指定されたアニメーショントラックを追加する。
-     * 既存のトラックの順番とインデックスは変更されるかもしれない.
+     * @~English  Adds the given AnimationTrack to this Object3D, 
+     *            potentially changing the order and indices of the previously added tracks.
+     * @~Japanese このObject3Dに指定されたアニメーショントラックを追加する。
+     *            既存のトラックの順番とインデックスは変更されるかもしれない.
      */
     virtual void addAnimationTrack (AnimationTrack* animation_track);
 
-public:
+  public:
     /**
-     * このObject3D自身とここから到達できるObject3Dのアニメーテッドプロパティを更新する.
+     * @~English  Updates all animated properties in this Object3D and all Object3Ds that are reachable from this Object3D.
+     * @~Japanese このObject3D自身とここから到達できるObject3Dのアニメーテッドプロパティを更新する.
      */
     virtual int animate (int world_time);
 
     /**
-     * このObjct3Dの複製を作成する.
+     * @~English Creates a duplicate of this Object3D. 
+     * @~Japanese このObjct3Dの複製を作成する.
      */
     virtual Object3D* duplicate () const;
 
     /**
-     * このオブジェクトと到達できるオブジェクトから指定のユーザーIDのオブジェクトを見つける.
+     * @~English  Retrieves an object that has the given uer ID and is reachable from this object.
+     * @~Japanese このオブジェクトと到達できるオブジェクトから指定のユーザーIDのオブジェクトを見つける.
      */
     virtual Object3D* find (int userID) const;
 
 
     /** 
-     * 指定のインデックスのアニメーショントラックを見つける.
+     * @~English  Gets an AnimationTrack by index.
+     * @~Japanese 指定のインデックスのアニメーショントラックを見つける.
      */
     AnimationTrack* getAnimationTrack (int index) const;
 
     /**
-     * このObject3Dに関連づけられているアニメーショントラックの数の取得.
+     * @~English  Gets the number of AnimationTracks currently associated with this Object3D.
+     * @~Japanese このObject3Dに関連づけられているアニメーショントラックの数の取得.
      */
     int getAnimationTrackCount () const;
 
     /**
-     * このオブジェクトから参照しているObject3Dの数を返し、配列をそのポインターで埋める.
+     * @~English  Returns the number of direct Object3D references in this object, and fills in the objects to the given array.
+     * @~Japanese このオブジェクトから参照しているObject3Dの数を返し、配列をそのポインターで埋める.
      */
-  virtual int getReferences (Object3D** references, int size) const;
+    virtual int getReferences (Object3D** references, int size) const;
 
     /**
-     * このオブジェクトのユーザーIDを返す.
+     * @~English  Gets the user ID of this object.
+     * @~Japanese このオブジェクトのユーザーIDを返す.
      */
     int getUserID () const;
 
     /**
-     * このオブジェクトに現在関連づけられているユーザーオブジェクトを返す.
-     * 注意：本当はkey,valueのペアでなければならない。あとで修正する。
+     * @~English  Rerieves the user object that is currently associated with this Object3D.
+     * @~Japanese このオブジェクトに現在関連づけられているユーザーオブジェクトを返す.
+     *            注意：本当はkey,valueのペアでなければならない。あとで修正する。
      */
     void* getUserObject () const;
 
     /**
-     * このObject3Dから指定されたアニメーショントラックを削除する。
-     * 既存のトラックの順番やインデックスは変更されるかもしれない。
+     * @~English  Removves the given AnimationTrack from this Objet3D, potentially changing the order and indices.of the remaining tracks.
+     * @~Japanese このObject3Dから指定されたアニメーショントラックを削除する。
+     *            既存のトラックの順番やインデックスは変更されるかもしれない。
      */
     void removeAnimationTrack (AnimationTrack* animation_track);
 
     /**
-     * このオブジェクトのユーザーIDを設定する.
+     * @~English  Sets the user ID for this object.
+     * @~Japanese このオブジェクトのユーザーIDを設定する.
      */
     void setUserID (int userID);
 
     /**
-     * このObject3Dに任意のアプリケーション固有のオブジェクトを関連づける。
-     * ユーザーオブジェクトはコピーされない.
-     * 注意：本当はkey,valueのペアでなければならない。あとで修正する。
+     * @~English  Associates an arbitrary, application specific Object wth this Object3D.
+     * @~Japanese このObject3Dに任意のアプリケーション固有のオブジェクトを関連づける。
+     *            ユーザーオブジェクトはコピーされない.
+     *            注意：本当はkey,valueのペアでなければならない。あとで修正する。
      */
-  void setUserObject (void* user_object_value);
+    void setUserObject (void* user_object_value);
 
-  /**
-   * このObject3Dの情報を表示する。デバッグ用.
-   */
-  virtual std::ostream& print (std::ostream& out) const;
-
-
-protected:
-  /**
-   * このObject3Dをレンダリング(する内部使用の関数.
-   */
-  virtual void render (int pass, int index=0) const;
+    /**
+     * @~English  Print out information of this object, for debug only.
+     * @~Japanese このObject3Dの情報を表示する。デバッグ用.
+     */
+    virtual std::ostream& print (std::ostream& out) const;
 
 
-PROTECTED:
+  protected:
+    /**
+     * @~English  Render this object, for inner use.
+     * @~Japanese このObject3Dをレンダリング(する内部使用の関数.
+     */
+    virtual void render (int pass, int index=0) const;
 
-  void setObjectType (int type);
-  int  getObjectType () const;
-  virtual void findByObjectType (int obj_type, std::vector<Object3D*>& objs) const;
+
+  PROTECTED:
+
+    /**
+     * @~English  Sets object type.
+     * @~Japanese オブジェクトタイプの設定.
+     */
+    void setObjectType (int type);
+
+    /**
+     * @~English  Retrievs object type.
+     * @~Japanese オブジェクトタイプの取得.
+     */
+    int  getObjectType () const;
+
+    /**
+     * @~English  Find all objects by object type.
+     * @~Japanese オブジェクトタイプを指定して検索.
+     */
+    virtual void findByObjectType (int obj_type, std::vector<Object3D*>& objs) const;
   
 
-private:
-  int obj_type;
+  private:
+    int obj_type;
 
-private:
-  int   user_id;
-  void* user_object;
-  std::vector<AnimationTrack*> anim_tracks;
+  private:
+    int   user_id;
+    void* user_object;
+    std::vector<AnimationTrack*> anim_tracks;
 
-};
+  };
 
 } // namespace m3g {
 
