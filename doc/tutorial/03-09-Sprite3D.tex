@@ -1,0 +1,72 @@
+\subsection{スプライト}
+
+スプライトはSprite3Dクラスが扱います。
+スプライトはスクリーン空間に表示される矩形領域です。
+シーンの構成要素としてWorldクラスに挿入されます。
+Desktop-M3Gではテクスチャーを張った板ポリゴンとして実装されています。
+
+\begin{verbatim}
+Sprite3D* spr = new Sprite3D (false, img, app);
+wld->addChild (spr);
+\end{verbatim}
+
+setAppearance()メソッドでアピアランスをセットします。
+
+\begin{verbatim}
+void 	setAppearance (Appearance *appearance)
+\end{verbatim}
+
+現在のアピアランスはgetAppearance()メソッドで取得できます。
+\begin{verbatim}
+Appearance * 	getAppearance () const
+\end{verbatim}
+
+setImage()メソッドで画像を設定します。
+
+\begin{verbatim}
+void 	setImage (Image2D *image)
+\end{verbatim}
+
+現在の画像はgetImage()メソッドで取得します。
+
+\begin{verbatim}
+Image2D * 	getImage () const
+\end{verbatim}
+
+
+
+\subsubsection{スケールドスプライト}
+スプライトはインスタンス化時にスケールドスプライトとアンスケールドスプライトを選択します。
+スケールドは視点からの距離応じて大きさが変化するスプライトで、
+アンスケールドは距離にかかわらず常に一定サイズで表示されるスプライトです。
+
+現在のスケールド、アンスケールドはisScaled()メソッドを使って取得できます。
+
+\begin{verbatim}
+bool 	isScaled () const
+\end{verbatim}
+
+
+\subsubsection{クロップ領域}
+画像のクロップ領域をsetCrop()メソッドを使って設定します。
+クロップ領域はピクセルで指定します。
+
+\begin{verbatim}
+void 	setCrop (int cropX, int cropY, int width, int height)
+\end{verbatim}
+
+現在のクロップ領域はgetCropX(), getCropY(), getCropWidth(), getCropHeight()メソッドで取得します。
+
+\begin{verbatim}
+int 	getCropHeight () const
+int 	getCropWidth () const
+int 	getCropX () const
+int 	getCropY () const
+\end{verbatim}
+
+
+
+
+
+
+

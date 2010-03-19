@@ -1,0 +1,90 @@
+\subsection{カメラ}
+
+カメラの設定はCameraクラスで行います。
+カメラはインスタンス化したあとWorldオブジェクトに追加したあと
+アクティブ化すると有効になります。
+
+\subsubsection{カメラの種類}
+カメラは透視投影と平行投影の２つから選べか、任意の4x4の変換行列を指定できます。
+デフォルトは平行投影です。
+
+\subsubsection{平行投影}
+
+カメラを平行投影にするにはsetParallel()メソッドを使います。
+
+\begin{verbatim}
+void 	setParallel (float fovy, float aspect_ratio, float near, float far)
+\end{verbatim}
+
+引数で指定するパラメーターはOpenGLと同じです。順に縦方向のFOV、
+アスペクト比、ニア距離とファー距離を指定します。
+現在のパラメーターはgetProjectionメソッドで取得できます。
+\begin{verbatim}
+int 	getProjection (float *params) const
+\end{verbatim}
+
+引数のparamsには最低float4つが書き込める領域を指定します。
+順番にfovy, aspect\_ratio, near, farが書き込まれれます。
+
+\subsubsection{透視投影}
+
+\begin{verbatim}
+void 	setPerspective (float fovy, float aspect_ratio, float near, float far)
+\end{verbatim}
+
+引数で指定するパラメーターはOpenGLと同じです。順に縦方向のFOV、
+アスペクト比、ニア距離とファー距離を指定します。
+
+現在のパラメーターはgetProjectionメソッドで取得できます。
+\begin{verbatim}
+int 	getProjection (float *params) const
+\end{verbatim}
+
+引数のparamsには最低float4つが書き込める領域を指定します。
+順番にfovy, aspect\_ratio, near, farが書き込まれれます。
+
+
+\subsubsection{任意の射影変換}
+平行投影、透視投影以外にも任意の4x4行列を指定して遮蔽変換を行う事ができます。
+行列はTransform行列で指定します。
+ここで指定する行列はOpenGLのPROJECTION行列に相当します。
+
+\begin{verbatim}
+void 	setGeneric (const Transform &transorm)
+\end{verbatim}
+
+現在のパラメーターはgetProjectionメソッドで取得できます。
+
+\begin{verbatim}
+int 	getProjection (float *params) const
+\end{verbatim}
+
+引数にはTransformオブジェクトのポインターを指定します。
+
+
+\subsubsection{カメラの位置、方向}
+カメラの位置と視線方向の変更はCameraクラスの基底クラスである
+Transformableクラスを使ってアフィン変換を行います。
+デフォルトでは位置は原点(0,0,0)で視線方向はZ軸負の向き(0,0,-1)で
+upベクトルはY軸正の向き(0,1,0)です。
+例えば位置をZ軸状の点(0,0,10)にするにはこのようにします。
+
+\begin{verbatim}
+  Camera* cam = new Camera;
+  cam->translate (0,0,10);
+\end{verbatim}
+
+通常のアフィン変換（回転、平行移動）を駆使して任意の方向にカメラを設定するのは
+結構大変なのでDesktop-M3GではM3G非標準ですがglutのglLookAt()関数に相当するlookAt()メソッドを実装しています。
+
+
+\subsubsection{lookAt関数}
+起点（from\_x, from\_y, from\_z), 視点(to\_x, to\_y, to\_z)、upベクトル(up\_x, up\_y, up\_z)を指定して
+カメラの位置、向きをわかりやすく設定します。
+glutのgluLookAt()関数に相当します。
+
+\begin{verbatim}
+void 	lookAt (float from_x, float from_y, float from_z, float to_x, float to_y, float to_z, float up_x, float up_y, float up_z)
+\end{verbatim}
+
+

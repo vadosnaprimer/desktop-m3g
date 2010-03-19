@@ -1,0 +1,122 @@
+\subsection{キーフレームシーケンス}
+
+キーフレームのシーケンスをKeyframeSequenceクラスで扱います。
+キーフレームとは整数値の時刻tと浮動小数点のデータからなります。
+キーフレームシーケンスは複数のキーフレームを持ち、
+任意時刻tに対するデータの補間方法や、時刻の有効期間を定義します。
+
+
+ここに図。
+
+キーフレームは単なるデータの集合であり、
+それをどのように解釈するかはAnimationTrackクラスが行います。
+
+キーフレームシーケンスはキーフレーム数と１フレーム当たりのコンポーネント数、
+キーフレーム間の補間方法を指定してインスタンス化します。
+
+\begin{verbatim}
+ 	KeyframeSequence (int numKeyframes, int numComponents, int interpolation)
+\end{verbatim}
+
+
+現在のキーフレーム数はgetkeyframeCount()メソッドで取得します。
+
+\begin{verbatim}
+int 	getKeyframeCount () const
+\end{verbatim}
+
+現在のコンポーネント数はgetComponentCount()メソッドで取得します。
+
+\begin{verbatim}
+int 	getComponentCount () const
+\end{verbatim}
+
+現在の補間方法はgetInterpolationType()メソッドで取得します。
+
+\begin{verbatim}
+int 	getInterpolationType () const
+\end{verbatim}
+
+
+\subsubsection{補間方法}
+補間方法はLINEAR, SLERP, SPLINE, SQUAD, STEPの中から選択します。
+
+ここに表
+\begin{tabular}{ll}
+  STEP   &  後で書く \\
+  LINEAR &  後で書く \\
+  SLERP  &  後で書く \\
+  SQUAD  &  後で書く
+\end{tabular}
+
+もう少し詳しい説明？
+
+\subsubsection{キーフレームの設定}
+
+キーフレーム毎にsetKeyframe()メソッドを呼び出してデータを設定します。
+
+\begin{verbatim}
+void 	setKeyframe (int index, int time, float *value)
+\end{verbatim}
+
+引数のindexは0から始まるキーフレーム番号です。
+存在しないフレーム番号を指定するとエラーになります。
+timeは時刻を0以上の整数値で指定しvalueにはデータへのポインターを渡します。
+データはM3Gライブラリ内部にコピーされます。
+セットされたキーフレームは有効化される必要があります。
+
+\subsubsection{有効レンジ}
+
+セットされたキーフレームのうち有効なフレームをsetValidRange()メソッドで指定します。
+
+\begin{verbatim}
+void 	setValidRange (int first, int last)
+\end{verbatim}
+
+引数のfirst,lastは0から始まるフレーム番号を指定します。
+フレーム(first,last)が有効なフレームです。
+存在しないフレーム番号を指定するとエラーになります。
+
+現在の有効レンジはgetValidRangeFirst()メソッド、getValidRangleLast()メソッドで取得できます。
+
+\begin{verbatim}
+int 	getValidRangeFirst () const
+int 	getValidRangeLast () const
+\end{verbatim}
+
+\subsubsection{有効時間}
+
+このキーフレームシーケンスの有効時間をsetDuration()メソッドで指定します。
+
+\begin{verbatim}
+void 	setDuration (int duration)
+\end{verbatim}
+
+引数のdurationには0より大きな整数値を指定します。
+このキーフレームシーケンスは0からduration-1の時間を持ちます。
+
+現在の有効期間をgetDuration()メソッドで取得できます。
+
+\begin{verbatim}
+int 	getDuration () const
+\end{verbatim}
+
+\subsubsection{繰り返しモード}
+
+このキーフレームシーケンスの繰り返しモードをsetRepeatMode()で指定します。
+
+\begin{verbatim}
+void 	setRepeatMode (int mode)
+\end{verbatim}
+
+引数のmodeはCONSTANT, LOOPから選択します。
+CONSTANTは繰り返し無しで有効レンジを超える時刻は最後のフレームが使われます。
+LOOPはDURATIONを繰り返します。
+（分かりにくい。さらに説明が必要）
+
+現在の繰り返しモードはgetRepeatMode()メソッドで取得できます。
+
+\begin{verbatim}
+int 	getRepeatMode () const
+\end{verbatim}
+

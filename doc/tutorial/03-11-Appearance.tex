@@ -1,0 +1,29 @@
+\subsection{アピアランス}
+
+M3Gではオブジェクトの見え方に関するに設定を全てAppearanceクラスが保持します。
+AppearanceクラスはMaterial, Texture2D, PolygonMode, CompositingMode, Fogクラスを保持します。
+ここの設定はそれぞれのクラスの解説を参照してください。
+
+新しくクラスをセットするメソッドは以下の通りです。
+何もセットしない場合は適当なデフォルトが使用されます。
+
+\begin{verbatim}
+void 	setCompositingMode (CompositingMode *compositingMode)
+void 	setFog (Fog *fog)
+void 	setLayer (int layer)
+void 	setMaterial (Material *material)
+void 	setPolygonMode (PolygonMode *polygonMode)
+void 	setTexture (int index, Texture2D *texture)
+\end{verbatim}
+
+現在設定されているクラスを取得するメソッドは以下の通りです。
+
+\begin{verbatim}
+CompositingMode * 	getCompositingMode () const
+Fog * 	getFog () const
+int 	getLayer () const
+Material * 	getMaterial () const
+PolygonMode * 	getPolygonMode () const
+Texture2D * 	getTexture (int index) const
+\end{verbatim}
+

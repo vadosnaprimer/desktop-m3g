@@ -1,0 +1,44 @@
+\subsection{アニメーショントラック}
+
+AnimationTrackクラスはデータの集合であるキーフレームシーケンスを
+特定のアニメーション可能なプロパティに結びつけます。
+
+\subsection{コンストラクタ}
+\begin{verbatim}
+ 	AnimationTrack (KeyframeSequence *sequence, int property)
+\end{verbatim}
+
+コンストラクタには引数を2つ渡します。
+１つはKeyframeSequenceクラスへのポインタで、
+もう１つはそれを適用するpropertyです。
+propertyはALPHA, AMBIENT\_COLOR, COLOR, CROP, DENSITY, 
+DUFFUSE\_COLOR, FAR\_DISTANCE, FIELD\_OF\_VIEW, INTENSITY, 
+MORPH\_WEIGHTS, NEAR\_DISTANCE, ORIENTATION, PICKABILITY,
+SCALE, SHININESS, SPECULAR\_COLOR, SPOT\_ANGLE, SPOT\_EXPONENT,
+TRANSLATION, VISIBILITYの中から１つを選択します。
+
+ここに表。
+
+
+アニメーショントラックにはアニメーションコントローラーをセットする必要があります。
+\begin{verbatim}
+void 	setController (AnimationController *controller)
+\end{verbatim}
+
+現在のアニメーションコントローラーはgetController()メソッドで取得できます。
+\begin{verbatim}
+AnimationController * 	getController () const
+\end{verbatim}
+
+現在のキーフレームシーケンスはgetKeyframeSequence()メソッドで取得できます。
+
+\begin{verbatim}
+KeyframeSequence * 	getKeyframeSequence () const
+\end{verbatim}
+
+現在のアニメーション対象のプロパティはgetTragetProperty()メソッドで取得できます。
+
+\begin{verbatim}
+int 	getTargetProperty () const
+\end{verbatim}
+

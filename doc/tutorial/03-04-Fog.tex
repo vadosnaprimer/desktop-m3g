@@ -1,0 +1,38 @@
+\subsection{フォグ}
+
+フォグはFogクラスで制御します。
+
+\subsubsection{フォグの種類}
+フォグは距離に応じて本来の色とフォグカラーをブレンドして表示します。
+フォグには線形フォグと累乗フォグの2種類がありsetMode()メソッドで選択します。
+デフォルトは線形です。
+
+\begin{verbatim}
+Fog* fog = new Fog;
+wld->addChild (fog);
+\end{verbatim}
+
+\subsubsection{線形フォグ}
+距離(r)に比例してフォグカラーが変化するフォグです。
+
+ここに式
+
+setLinear()メソッドでnearとfarを指定します。
+r=nearの時α=0で、r=farの時α=1となります。
+
+\begin{verbatim}
+void setLinear  	(  	float   	 near,
+		float  	far	 
+	)
+\end{verbatim}
+
+\subsubsection{指数フォグ}
+距離(r)に対して指数的にカラーが変化するフォグです。
+
+ここに式
+
+setDensity()メソッドでdensityを指定します。
+あとで書く。
+
+
+

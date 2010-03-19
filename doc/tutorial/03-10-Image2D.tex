@@ -1,0 +1,61 @@
+\subsection{画像}
+
+画像はImage2Dクラスで扱います。
+Image2DクラスはTexture2D, Background, Sprite3Dクラスから利用されます。
+
+
+\subsubsection{画像フォーマット}
+
+M3Gで使用される画像形式はjpegとpngです。
+Desktop-M3Gでは現在png形式のみサポートしています。
+
+\subsubsection{ミュータブルとイミュータブル}
+ミュータブルは随時変更可能な画像を指します。
+イミュータブルはインスタンス化時に作成し、以後は変更できない画像を指します。
+
+
+\subsubsection{コンストラクタ}
+
+Image2Dのコンストラクタは3種類あります。
+
+\begin{verbatim}
+ 	Image2D (int format, int width, int height)
+ 	Image2D (int format, int width, int height, void *image)
+ 	Image2D (int format, int width, int height, void *image, void *palette)
+\end{verbatim}
+
+１番目の引数のformatにはALPHA, LUMINANCE, LUMINANCE\_ALPHA, RGB, RGBAの中から１つを選択します。
+2番目の引数widthと3番目の引数heightにはそれぞれ画像の幅と高さをピクセル数で指定します。
+4番目の引数のimageは画像データへのポインタを指定します。データはM3Gライブラリが確保した領域にコピーされます。
+指定しない場合は適当に初期化されます。
+5番目の引数のpaletteはパレットカラー化された画像形式の時にパレットへのポインタを指定します。
+Desktop-M3Gではパレット化カラー形式の画像には対応していないので、
+この形式のコンストラクタは利用できません。
+パレット化カラーは時代遅れの機能であり将来的にも実装される予定はありません。
+
+
+ここに表
+\begin{tabular}{ll}
+  ALPHA            & あとで書く \\
+  LUMINANCE        & あとで書く \\
+  LUMINANCE\_ALPHA & あとで書く \\
+  RGB              & あとで書く \\
+  RGBA             & あとで書く
+\end{tabular}
+
+現在のフォーマットはgetFormat()メソッドで取得できます。
+\begin{verbatim}
+int 	getFormat () const
+\end{verbatim}
+
+現在の幅と高さははgetHeight()メソッドおよびgetWidth()メソッドで取得できます。
+\begin{verbatim}
+int 	getHeight () const
+int 	getWidth () const
+\end{verbatim}
+
+現在のミュータブル/イミュータブルはisMutable()メソッドで取得できます。
+\begin{verbatim}
+bool 	isMutable () const
+\end{verbatim}
+

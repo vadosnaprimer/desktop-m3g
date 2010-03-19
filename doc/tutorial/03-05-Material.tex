@@ -1,0 +1,49 @@
+\subsection{マテリアル}
+
+Materialクラスはプリミティブの材質を制御します。
+ライティングはOpenGLと同じフォンモデルを利用します。
+Appearanceクラスにセットして使います。
+
+\begin{verbatim}
+Matrial* mat = new Matrial;
+app->setMaterial (mat);
+\end{verbatim}
+
+\subsubsection{カラーの設定}
+setColor()メソッドで各カラーを設定します。
+デフォルトは???です。
+
+\begin{verbatim}
+void 	setColor (int target, int argb)
+\end{verbatim}
+
+targeteにはAMBIENT,DIFFUSE,EMISSIVE,SPECULARの中から１つを選択します。
+それぞれ環境色、拡散色、自己発光色、スペキュラー色に担当します。
+argbには設定する色を4byteで指定します。
+ライティングのモデルはOpenGLと同じフォンモデルです。
+
+ここに式。
+
+現在のカラーはgetColor()メソッドで取得できます。
+
+\begin{verbatim}
+int 	getColor (int target) const 
+\end{verbatim}
+
+スペキュラーに関してはこのほかに指数部の係数をsetShininess()メソッドで指定します。
+
+\begin{verbatim}
+void 	setShininess (float shininess)
+\end{verbatim}
+
+現在のshininessパラメーターはgetShininess()メソッドで取得できます。
+
+\begin{verbatim}
+float 	getShininess () const 
+\end{verbatim}
+
+頂点カラーを使う場合はsetVertexColorTrackingEnable()メソッドを使います。
+
+\begin{verbatim}
+void 	setVertexColorTrackingEnable (bool enable)
+\end{verbatim}

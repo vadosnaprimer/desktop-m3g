@@ -1,0 +1,110 @@
+\subsection{ポリゴンモード}
+
+ポリゴンに関する種々の設定はPolygonModeクラスで行います。
+
+\begin{verbatim}
+PolygonMode* pmode = new PolygonMode;
+app->setPolygonMode (pmode);
+\end{verbatim}
+
+\subsubsection{ワインディング}
+ポリゴンの前面の判定基準をsetWinding()メソッドで行います。
+
+\begin{verbatim}
+void 	setWinding (int mode)
+\end{verbatim}
+
+modeにはWINDING\_CCW, WINDING\_CWのうちから１つを選択します。
+それぞれ順に反時計回り、時計回りを表に設定します。
+デフォルトはWINDING\_CCWです。
+
+現在のワインディングモードはgetWinding()メソッドで取得できます。
+\begin{verbatim}
+int 	getWinding () const
+\end{verbatim}
+
+\subsubsection{カリング}
+カリングの設定をsetCulling()メソッドで行います。
+
+\begin{verbatim}
+void 	setCulling (int mode)
+\end{verbatim}
+
+modeにはCULL\_BACK, CULL\_FRONT, CULL\_NONEのうちから１つを指定します。
+それぞれ順に、背面カリング、前面カリング、カリング無しです。
+前面と背面の判定はワインディングの設定に寄ります。
+
+現在のカリングモードはgetCulling()メソッドで取得できます。
+
+\begin{verbatim}
+int 	getCulling () const
+\end{verbatim}
+
+
+\subsubsection{両面ポリゴン}
+
+ライティングの計算を両面行うか、片面のみ行うかの設定は
+setTwoSidedLightingEnable()メソッドで行います。
+
+\begin{verbatim}
+void 	setTwoSidedLightingEnable (bool enable)
+\end{verbatim}
+
+現在の両面ライティングの設定はisTwoSidedLightingEnabled()メソッドで取得します。
+
+\begin{verbatim}
+bool 	isTwoSidedLightingEnabled () const 
+\end{verbatim}
+
+
+\subsubsection{シェーディング}
+フラットシェーディングとスムースシェーディングの選択をsetShading()メソッドで行います。
+
+\begin{verbatim}
+void 	setShading (int mode)
+\end{verbatim}
+
+modenにはSHADE\_FLATまたはSHADE\_SMOOTHを指定します。
+SHADE\_FLATはフラットシェーディング、SHDE\_SMMOTHはスムースシェーディングを行います。
+
+現在のシェーディングモードはgetShading()メソッドで取得できます。
+
+\begin{verbatim}
+int 	getShading () const
+\end{verbatim}
+
+
+\subsubsection{ローカルカメラライティング}
+
+ハードウェアによってはライティング計算の時のビューベクトルを簡易計算するものがあります。
+それの切り替えをsetLocalCameraLightingEnable()メソッデ行います。
+デフォルトは？？？デス。
+
+\begin{verbatim}
+void 	setLocalCameraLightingEnable (bool enable)
+\end{verbatim}
+
+現在のローカルカメラライティングの設定はisLocalCameraLightingEnabled()メソッデ
+注得できます。
+
+\begin{verbatim}
+bool 	isLocalCameraLightingEnabled () const
+\end{verbatim}
+
+\subsubsection{透視変換補正}
+
+ハードウェアによっては透視変換補正を行わないものがあります。
+それの切り替えをsetLocalCameraLightingEnable()メソッドで行います。
+
+\begin{verbatim}
+void 	setLocalCameraLightingEnable (bool enable)
+\end{verbatim}
+
+現在の透視変換補正の設定はisPerspectiveCorrectionEnabled()メソッドで行います。
+
+\begin{verbatim}
+bool 	isPerspectiveCorrectionEnabled () const
+\end{verbatim}
+
+
+

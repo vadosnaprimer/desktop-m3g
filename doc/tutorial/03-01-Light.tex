@@ -1,0 +1,129 @@
+\subsection{ライト}
+Lightクラスがライトを表します。
+ライトは環境光(AMBIENT),点光源(OMNI),平行光源(DIRECTIONAL),スポットライト(SPOT)の4種類です。
+ライトにはカラーと強度が設定できます。
+
+コード例
+\begin{quotation}
+Light lig = new Light;
+wld->addChild (lig);
+\end{quotation}
+
+デフォルトは平行光源でZ軸負の方向を向いています。カラーは(1,1,1)で強度は1.0です。
+
+\subsubsection{共通設定}
+ライトの種類はsetMode()メソッドで変更します。
+
+\begin{quotation}
+void 	setMode (int mode)
+\end{quotation}
+
+modeにはAMBIENT,OMNI,DIRECTIONAL,SPOTのいずれかを指定できます。
+現在の種類はgetMode()メソッドで取得できます。
+
+\begin{quotation}
+int 	getMode () const 
+\end{quotation}
+
+ライトの色はsetColor()メソッドで設定します。
+強度はsetIntensity()メソッドで設定します。
+色と強度の積が最終的なライトの出力になります。
+
+\begin{quotation}
+void 	setColor (int rgb)
+void 	setIntensity (float intensity)
+\end{quotation}
+
+色はr(0-255),g(0-255),b(0-255)１バイトずつをこの順番で整数型にパックして渡します。
+\begin{quotation}
+rgb = (r<<16) || (g<<8) || (b<<0);
+\end{quotation}
+
+現在の色の取得にはgetColor()メソッドを、強度の取得にはgetIntensity()メソッドを使います。
+
+\begin{quotation}
+int 	getColor () const
+float 	getIntensity () const 
+\end{quotation}
+
+ここまでは全てのライトに共通です。
+
+\subsubsection{環境光}
+シーン全体を環境光の色で照らします。
+設定できる項目は共通設定の項のみです。
+
+\subsubsection{平行光源}
+シーンを無限遠方から平行に照らします。
+デフォルトでZ軸負の方向を向いているのでアフィン変換を施して行います。
+例えばY軸負の方向を向いた平行光源を作成する場合はこうなります。
+
+\begin{quotation}
+Light* lig = new Light;
+lig->setMode (Light::DIRECTIONAL);
+lig->postRotate (-90, 1,0,0);
+\end{quotation}
+
+\subsubsection{点光源}
+シーンをある１点から照らします。
+デフォルトでは原点に位置するのでアフィン変換を施します。
+例えばY軸(0,10,0)の位置に動かすにはこのようになります。
+
+\begin{verbatim}
+Light* lig = new Light;
+lig->setMode (Light::OMNI};
+lig->tranlate (0,10,0);
+\end{verbatim}
+
+点光源は距離に応じた減衰を制御できます。
+減衰式は
+
+ここに式 α = 1/(c + l*r + q*r*r)
+
+で表されます。距離rに応じて比例項(l)、2条項(q)およびコンスタント(c)が設定できます。
+減衰工の設定はsetAttenuation()メソッドで行います。
+例えば距離の2乗に反比例する点光源はsetAttenuation()に
+constant=0, linear=0, quadratic=1を渡します。
+
+\begin{verbatim}
+lig->setAttenuation (0, 0, 1);
+\end{verbatim}
+
+デフォルトはconstant=1, linear=0, quadratic=0で、距離による減衰はありません。
+現在の減衰項はgetConstantAttenuation()メソッド、getLinearAttenuation()メソッド、
+getQuadraticAttenuation()メソッドで取得できます。
+
+\begin{verbatim}
+float 	getConstantAttenuation () const
+float 	getLinearAttenuation () const
+float 	getQuadraticAttenuation () const 
+\end{verbatim}
+
+\subsubsection{スポットライト}
+シーンをスポットライトで照らします。
+スポットライトの位置と方向は点光源や平行光源と同じようにアフィン変換で制御します。
+スポット角度はsetSpotAngle()メソッドで変更し、スポット指数はsetSpotExponent()
+メソッドで変更します。
+
+\begin{verbatim}
+void 	setSpotAngle (float angle)
+void 	setSpotExponent (float exponent)
+\end{verbatim}
+
+angleは中心線から外側までで0〜90の間を指定します。
+angle=180だけは特別な値でこの時は点光源と同じ動作になります。
+デフォルトはangle=???です。
+exponentは中心から外周部に向けての減衰項です。
+デフォルトはexponent=1です。
+現在の値はgetSplotAngle()メソッド、getSpotExponent()メソッドで取得できます。
+
+\begin{verbatim}
+float 	getSpotAngle () const
+float 	getSpotExponent () const 
+\end{verbatim}
+
+
+
+
+
+
+
