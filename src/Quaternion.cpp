@@ -1,5 +1,5 @@
 #include "Quaternion.hpp"
-#include "m3gexcept.hpp"
+#include "Exception.hpp"
 #include "m3ginternal.hpp"
 #include <iostream>
 #include <cmath>
@@ -17,7 +17,7 @@ Quaternion:: Quaternion (float angle, float ax, float ay, float az) :
   if (fabs((ax*ax+ay*ay+az*az)-1) > M3G_EPSILON) {
     //cout << (ax*ax+ay*ay+az*az-1) << " <--> " << M3G_EPSILON << "\n";
     //cout << ax << ", " << ay << ", " << az << "\n";
-    throw invalid_argument ("Length of rotation axis must be 1 for Quaternion.");
+    throw IllegalArgumentException (__FILE__, __func__, "Length of rotation axis must be 1 for Quaternion.");
   }
 
   float th = 2*M_PI*angle/360.f;
@@ -45,7 +45,7 @@ void Quaternion:: set (float qx, float qy, float qz, float qw)
 void Quaternion:: getAngleAxis (float* angle_axis) const
 {
   if (angle_axis == NULL) {
-    throw null_point_error ("angle_axis is NULL.");
+    throw NullPointException (__FILE__, __func__, "Angle_axis is NULL.");
   }
 
   float th = 2*acosf(w);

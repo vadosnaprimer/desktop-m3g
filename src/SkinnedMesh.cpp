@@ -4,7 +4,7 @@
 #include "VertexArray.hpp"
 #include "Bone.hpp"
 #include "Matrix.hpp"
-#include "m3gexcept.hpp"
+#include "Exception.hpp"
 #include <iostream>
 #include <vector>
 #include "Group.hpp"
@@ -23,19 +23,19 @@ SkinnedMesh:: SkinnedMesh (VertexBuffer* vertices,
 
   // このチェックはMeshでやっているので不要。あとで消す。
   if (vertices == NULL) {
-    throw null_point_error ("vertices is NULL.");
+    throw NullPointException (__FILE__, __func__, "Vertices is NULL.");
   }
   if (submeshes == NULL) {
-    throw null_point_error ("submesh is NULL.");
+    throw NullPointException (__FILE__, __func__, "Submesh is NULL.");
   }
   if (skeleton == NULL) {
-    throw null_point_error ("skeleton is NULL.");
+    throw NullPointException (__FILE__, __func__, "Skeleton is NULL.");
   }
   if (skeleton->getObjectType() != OBJTYPE_GROUP) {
-    throw invalid_argument ("Skelton root shoud be Group.");
+    throw IllegalArgumentException (__FILE__, __func__, "Skelton root shoud be Group.");
   }
   if (skeleton->getParent() != NULL) {
-    throw invalid_argument ("Skeleton root has parent. it must be NULL.");
+    throw IllegalArgumentException (__FILE__, __func__, "Skeleton root has parent. it must be NULL.");
   }
 
   // 間違い！
@@ -54,6 +54,8 @@ SkinnedMesh:: SkinnedMesh (VertexBuffer* vertices,
   setObjectType (OBJTYPE_SKINNED_MESH);
 
   // このチェックはMeshでやっているので不要。あとで消す。
+
+  /*
   if (vertices == NULL) {
     throw null_point_error ("vertices is NULL.");
   }
@@ -69,6 +71,7 @@ SkinnedMesh:: SkinnedMesh (VertexBuffer* vertices,
   if (skeleton->getParent() != NULL) {
     throw invalid_argument ("Skeleton root has parent. it must be NULL.");
   }
+  */
 
   root = skeleton;
 }
@@ -80,19 +83,19 @@ SkinnedMesh:: ~SkinnedMesh ()
 void SkinnedMesh:: addTransform (Node* node, int weight, int first_vertex, int num_vertices)
 {
   if (node == NULL) {
-    throw null_point_error ("Bone node is NULL.");
+    throw NullPointException (__FILE__, __func__, "Bone node is NULL.");
   }
   if (node->getObjectType() != OBJTYPE_GROUP && node->getObjectType() != OBJTYPE_WORLD) {
-    throw invalid_argument ("Bone node must be Group or its descendant.");
+    throw IllegalArgumentException (__FILE__, __func__, "Bone node must be Group or its descendant.");
   }
   if (weight <= 0) {
-    throw invalid_argument ("Bone weight must be positive integer.");
+    throw IllegalArgumentException (__FILE__, __func__, "Bone weight must be positive integer, weight=%f.", weight);
   }
   if (first_vertex < 0) {
-    throw invalid_argument ("First vertex must be > 0.");
+    throw IllegalArgumentException (__FILE__, __func__, "First vertex is invalid, first_vertex=%d.", first_vertex);
   }
   if (first_vertex + num_vertices > 65535) {
-    throw invalid_argument ("Vertices exceed 65535.");
+    throw IllegalArgumentException (__FILE__, __func__, "First vertex + number of vertices is invalid, first_vertex=%d, num_vertices=%d.", first_vertex, num_vertices);
   }
   
   Bone* bone = new Bone (node, weight, first_vertex, num_vertices);
@@ -119,10 +122,10 @@ void SkinnedMesh:: addTransform (Node* node, int weight, int first_vertex, int n
 void SkinnedMesh:: getBoneTransorm (Node* node, Transform* transform) const
 {
   if (node == NULL) {
-    throw null_point_error ("Bone node is NULL.");
+    throw NullPointException (__FILE__, __func__, "Bone node is NULL.");
   }
   if (transform == NULL) {
-    throw null_point_error ("Transform is NULL.");
+    throw NullPointException (__FILE__, __func__, "Transform is NULL.");
   }
 
   for (int i = 0; i < (int)bones.size(); i++) {
@@ -140,10 +143,10 @@ void SkinnedMesh:: getBoneTransorm (Node* node, Transform* transform) const
 int SkinnedMesh:: getBoneVertices (Node* node, int* indices, float* weights) const
 {
   if (node == NULL) {
-    throw null_point_error ("Bone node is NULL.");
+    throw NullPointException (__FILE__, __func__, "Bone node is NULL.");
   }
   if (vertices->getPositions(0) == NULL) {
-    throw null_point_error ("Positions are not set.");
+    throw NullPointException (__FILE__, __func__, "Positions are not set.");
   }
 
   int n = 0;

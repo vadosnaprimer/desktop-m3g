@@ -1,7 +1,7 @@
 #include <iostream>
 #include "Background.hpp"
 #include "Image2D.hpp"
-#include "m3gexcept.hpp"
+#include "Exception.hpp"
 #include "AnimationTrack.hpp"
 #include "AnimationController.hpp"
 #include "KeyframeSequence.hpp"
@@ -25,12 +25,13 @@ Background:: ~Background ()
 void Background:: addAnimationTrack (AnimationTrack* animation_track)
 {
   if (animation_track == NULL) {
-    throw null_point_error ("Added animation_track is NULL.");
+    throw NullPointException (__FILE__, __func__, "Animation track is NULL.");
   }
-  if (animation_track->getTargetProperty() != AnimationTrack::ALPHA &&
-      animation_track->getTargetProperty() != AnimationTrack::COLOR &&
-      animation_track->getTargetProperty() != AnimationTrack::CROP) {
-    throw invalid_argument ("Invalid animation track target for this Background.");
+  int property = animation_track->getTargetProperty();
+  if (property != AnimationTrack::ALPHA &&
+      property != AnimationTrack::COLOR &&
+      property != AnimationTrack::CROP) {
+    throw IllegalArgumentException (__FILE__, __func__, "Animation track target is invalid for this Background, property=%d", property);
   }
 
   Object3D:: addAnimationTrack (animation_track);

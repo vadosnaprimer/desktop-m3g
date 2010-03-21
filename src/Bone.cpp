@@ -1,6 +1,6 @@
 #include "Bone.hpp"
 #include "Group.hpp"
-#include "m3gexcept.hpp"
+#include "Exception.hpp"
 #include <iostream>
 using namespace std;
 using namespace m3g;
@@ -9,7 +9,7 @@ Bone:: Bone (Node* node_, int weight_, int first_vertex_, int num_vertex_) :
   node(0), weight(0), first_vertex(-1), num_vertex(0)
 {
   if (node_ == NULL) {
-    null_point_error ("Bone node is Null.");
+    NullPointException (__FILE__, __func__, "Bone node is Null.");
   }
 
   node        = node_;

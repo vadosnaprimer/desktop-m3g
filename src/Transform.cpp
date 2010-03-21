@@ -1,6 +1,6 @@
 #include "Transform.hpp"
 #include "Vector.hpp"
-#include "m3gexcept.hpp"
+#include "Exception.hpp"
 #include "Quaternion.hpp"
 #include <iostream>
 #include <cstring>
@@ -25,7 +25,7 @@ Transform:: ~Transform ()
 void Transform:: get (float* mat) const
 {
   if (mat == NULL) {
-    throw null_point_error ("Matrix is NULL.");
+    throw NullPointException (__FILE__, __func__, "Matrix is NULL.");
   }
 
   memcpy (mat, &matrix.m, sizeof(matrix.m));
@@ -90,7 +90,7 @@ void Transform:: postTranslate (float tx, float ty, float tz)
 void Transform:: set (const float* mat)
 {
   if (mat == NULL) {
-    throw null_point_error ("Setted material is NULL.");
+    throw NullPointException (__FILE__, __func__, "Material is NULL.");
   }
   matrix.set (mat);
 }
@@ -108,7 +108,7 @@ void Transform:: setIdentity ()
 void Transform:: transform (float* vectors) const
 {
   if (vectors == NULL) {
-    throw null_point_error ("Transformd vectors is NULL.");
+    throw NullPointException (__FILE__, __func__, "Vectors is NULL.");
   }
   Vector v (vectors[0], vectors[1], vectors[2]);
 

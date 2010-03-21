@@ -1,5 +1,5 @@
 #include "PolygonMode.hpp"
-#include "m3gexcept.hpp"
+#include "Exception.hpp"
 #include <iostream>
 using namespace std;
 using namespace m3g;
@@ -49,7 +49,7 @@ bool PolygonMode:: isTwoSidedLightingEnabled () const
 void PolygonMode:: setCulling (int mode)
 {
   if (mode != CULL_BACK && mode != CULL_FRONT && mode != CULL_NONE) {
-    throw invalid_argument ("Illegal culling mode is specified.\n");
+    throw IllegalArgumentException (__FILE__, __func__, "Mode is invalid, mode=%d.", mode);
   }
   culling = mode;
 }
@@ -67,7 +67,7 @@ void PolygonMode:: setPerspectiveCorrectionEnable (bool enable)
 void PolygonMode:: setShading (int mode)
 {
   if (mode != SHADE_FLAT && mode != SHADE_SMOOTH) {
-    throw invalid_argument ("Illegal shading mode is specified.\n");
+    throw IllegalArgumentException (__FILE__, __func__, "Mode is invalid, mode=%d.", mode);
   }
   shading = mode;
 }
@@ -80,7 +80,7 @@ void PolygonMode:: setTwoSidedLightingEnable (bool enable)
 void PolygonMode:: setWinding (int mode)
 {
   if (mode != WINDING_CCW && mode != WINDING_CW) {
-    throw invalid_argument ("Illegal winding mode is specified.\n");
+    throw IllegalArgumentException (__FILE__, __func__, "Mode is invalid, mode=%d.", mode);
   }
   winding = mode;
 }

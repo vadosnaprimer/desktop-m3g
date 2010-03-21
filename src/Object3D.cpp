@@ -1,6 +1,6 @@
 #include "Object3D.hpp"
 #include "AnimationTrack.hpp"
-#include "m3gexcept.hpp"
+#include "Exception.hpp"
 #include <iostream>
 using namespace std;
 using namespace m3g;
@@ -20,7 +20,7 @@ Object3D:: ~Object3D ()
 void Object3D:: addAnimationTrack (AnimationTrack* animation_track)
 {
   if (animation_track == 0) {
-    throw runtime_error ("Null pointer argument\n");
+    throw NullPointException (__FILE__, __func__, "Animation track is Null.");
   }
 
   anim_tracks.push_back (animation_track);
@@ -51,7 +51,7 @@ Object3D* Object3D:: find (int target_user_id) const
 AnimationTrack* Object3D:: getAnimationTrack (int index) const
 {
   if (index < 0 || index > (int)anim_tracks.size()) {
-    throw invalid_argument ("Index is out of bound.");
+    throw IllegalArgumentException (__FILE__, __func__, "Index is invalid, index=%d, max=%d.", index, anim_tracks.size());
   }
   return anim_tracks[index];
 }
@@ -63,7 +63,7 @@ int Object3D:: getAnimationTrackCount () const
 
 int Object3D:: getReferences (Object3D** references, int size) const
 {
-  throw not_implemented_error ("Reference is not implemented.");
+  throw NotImplementedException (__FILE__, __func__, "Sorry, Reference is not implemented yet.");
 
   return 0;
 }

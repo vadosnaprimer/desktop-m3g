@@ -1,5 +1,5 @@
 #include "Node.hpp"
-#include "m3gexcept.hpp"
+#include "Exception.hpp"
 #include "AnimationTrack.hpp"
 #include "AnimationController.hpp"
 #include "KeyframeSequence.hpp"
@@ -22,25 +22,25 @@ Node:: ~Node ()
 void Node:: addAnimationTrack (AnimationTrack* animation_track)
 {
    if (animation_track == NULL) {
-    throw null_point_error ("Added animation_track is NULL.");
+     throw NullPointException (__FILE__, __func__, "Animation track is NULL.");
   }
-  if (animation_track->getTargetProperty() != AnimationTrack::ALPHA       &&
-      animation_track->getTargetProperty() != AnimationTrack::PICKABILITY &&
-      animation_track->getTargetProperty() != AnimationTrack::VISIBILITY  &&
-      animation_track->getTargetProperty() != AnimationTrack::ORIENTATION &&
-      animation_track->getTargetProperty() != AnimationTrack::SCALE       &&
-      animation_track->getTargetProperty() != AnimationTrack::TRANSLATION) {
-    throw invalid_argument ("Invalid animation track target for Node.");
+   int property = animation_track->getTargetProperty();
+  if (property != AnimationTrack::ALPHA       &&
+      property != AnimationTrack::PICKABILITY &&
+      property != AnimationTrack::VISIBILITY  &&
+      property != AnimationTrack::ORIENTATION &&
+      property != AnimationTrack::SCALE       &&
+      property != AnimationTrack::TRANSLATION) {
+    throw IllegalArgumentException (__FILE__, __func__, "Annimation target is invlid for this Node, property=%d.", property);
   }
  
   Object3D:: addAnimationTrack (animation_track);
-
 }
 
 void Node:: align (Node* reference)
 {
   if (reference == 0) {
-    throw null_point_error ("Reference is NULL.");
+    throw NullPointException (__FILE__, __func__, "Reference is NULL.");
   }
   z_alignment.target    = ORIGIN;
   z_alignment.reference = reference;
@@ -135,7 +135,7 @@ Node* Node:: getAlignmentReference (int axis) const
     return y_alignment.reference;
   }
   default: {
-    throw invalid_argument ("Unknown axis is specified.");
+    throw IllegalArgumentException (__FILE__, __func__, "Axis is invalid, axis=%d.", axis);
   }
   }
 }
@@ -150,7 +150,7 @@ int Node:: getAlignmentTarget (int axis) const
     return y_alignment.target;
   }
   default: {
-    throw invalid_argument ("Unknown axis is specified.");
+    throw IllegalArgumentException (__FILE__, __func__, "Axis is invalid, axis=%d.", axis);
   }
   }
 }

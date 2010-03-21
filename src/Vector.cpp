@@ -1,5 +1,5 @@
 #include "Vector.hpp"
-#include "m3gexcept.hpp"
+#include "Exception.hpp"
 #include <iostream>
 #include <cmath>
 using namespace std;
@@ -22,34 +22,34 @@ Vector:: ~Vector ()
 void Vector:: get (float* xyz) const
 {
   if (w == 0) {
-    throw null_point_error ("W component is 0.");
+    throw ArithmeticException (__FILE__, __func__, "W component is 0.");
   }
   xyz[0] = x/w; 
   xyz[1] = y/w;
   xyz[2] = z/w;
 }
 
-float& Vector:: operator[] (int n)
+float& Vector:: operator[] (int index)
 {
-  if (n < 0 || n > 3) {
-    throw invalid_argument ("Index of Vector is out of range.");
+  if (index < 0 || index > 3) {
+    throw IndexOutOfBoundsException (__FILE__, __func__, "Index is invalid, index=%d.", index);
   }
-  return (&x)[n];
+  return (&x)[index];
 }
 
-const float& Vector:: operator[] (int n) const
+const float& Vector:: operator[] (int index) const
 {
-  if (n < 0 || n > 3) {
-    throw invalid_argument ("Index of Vector is out of range.");
+  if (index < 0 || index > 3) {
+    throw IndexOutOfBoundsException (__FILE__, __func__, "Index is invalid, index=%d.", index);
   }
-  return (&x)[n];
+  return (&x)[index];
 }
 
 void Vector:: normalize ()
 {
   float len = sqrtf(x*x+y*y+z*z);
   if (len == 0) {
-    throw null_point_error ("Divided by 0.");
+    throw ArithmeticException (__FILE__, __func__, "Normalized, but length of vector is 0.");
   }
   x /= len;
   y /= len;
@@ -69,7 +69,7 @@ Vector m3g::cross (const Vector& p, const Vector& q)
 Vector operator+ (const Vector& lhs, const Vector& rhs)
 {
   if (lhs.w != rhs.w && lhs.w != 0 && rhs.w != 0) {
-    throw invalid_argument ("Plus of Invalid w component of Vector is invalid.");
+    throw IllegalArgumentException (__FILE__, __func__, "Add vectors with different w. lhs.w=%f, rhs.w=%f.", lhs.w, rhs.w);
   }
 
   if (lhs.w == rhs.w) {

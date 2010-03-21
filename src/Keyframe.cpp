@@ -1,6 +1,6 @@
 #include "Keyframe.hpp"
 #include "Quaternion.hpp"
-#include "m3gexcept.hpp"
+#include "Exception.hpp"
 #include <iostream>
 using namespace std;
 using namespace m3g;
@@ -21,10 +21,10 @@ Keyframe:: ~Keyframe ()
 void m3g::step   (float s, const Keyframe& k0, const Keyframe& k1, int component_count, float* value)
 {
   if (value == NULL) {
-    throw null_point_error ("Value is NULL.");
+    throw NullPointException (__FILE__, __func__, "Value is NULL.");
   }
   if (s < 0 || s > 1) {
-    throw invalid_argument ("S is invalid.");
+    throw IllegalArgumentException (__FILE__, __func__, "S is invalid, s=%f.", s);
   }
 
   for (int i = 0; i < component_count; i++) {
@@ -35,10 +35,10 @@ void m3g::step   (float s, const Keyframe& k0, const Keyframe& k1, int component
 void m3g::linear (float s, const Keyframe& k0, const Keyframe& k1, int component_count, float* value)
 {
   if (value == NULL) {
-    throw null_point_error ("Value is NULL.");
+    throw NullPointException (__FILE__, __func__, "Value is NULL.");
   }
   if (s < 0 || s > 1) {
-    throw invalid_argument ("S is invalid.");
+    throw IllegalArgumentException (__FILE__, __func__, "S is invalid, s=%f.", s);
   }
 
   for (int i = 0; i < component_count; i++) {
@@ -49,10 +49,10 @@ void m3g::linear (float s, const Keyframe& k0, const Keyframe& k1, int component
 void m3g::slerp  (float s, const Keyframe& k0, const Keyframe& k1, int component_count, float* value)
 {
   if (value == NULL) {
-    throw null_point_error ("Value is NULL.");
+    throw NullPointException (__FILE__, __func__, "Value is NULL.");
   }
   if (s < 0 || s > 1) {
-    throw invalid_argument ("S is invalid.");
+    throw IllegalArgumentException (__FILE__, __func__, "S is invalid, s=%f.", s);
   }
 
   Quaternion q0, q1, q2;
@@ -71,16 +71,16 @@ void m3g::slerp  (float s, const Keyframe& k0, const Keyframe& k1, int component
 
 void m3g::squad  (float s, const Keyframe& k0, const Keyframe& k1, int component_count, float* value)
 {
-  throw not_implemented_error ("Squad is not implemented.");
+  throw NotImplementedException (__FILE__, __func__, "Squad is not implemented.");
 }
 
 void m3g::spline (float s, const Keyframe& k0, const Keyframe& k1, const Keyframe& k2, const Keyframe& k3, int component_count, float* value)
 {
   if (value == NULL) {
-    throw null_point_error ("Value is NULL.");
+    throw NullPointException (__FILE__, __func__, "Value is NULL.");
   }
   if (s < 0 || s > 1) {
-    throw invalid_argument ("S is invalid.");
+    throw IllegalArgumentException (__FILE__, __func__, "S is invalid, s=%f.", s);
   }
 
   float sh0 = 2*s*s*s - 3*s*s + 1;

@@ -3,7 +3,7 @@
 #include <cmath>
 #include "Appearance.hpp"
 #include "Image2D.hpp"
-#include "m3gexcept.hpp"
+#include "Exception.hpp"
 #include "Graphics3D.hpp"
 #include "Vector.hpp"
 #include "AnimationTrack.hpp"
@@ -20,7 +20,7 @@ Sprite3D:: Sprite3D (bool scaled_, Image2D* image_, Appearance* appearance_) :
   setObjectType (OBJTYPE_SPRITE3D);
 
   if (image_ == 0) {
-    throw null_point_error ("Image of Sprite3D is NULL.");
+    throw NullPointException (__FILE__, __func__, "Image is NULL.");
   }
 
   scaled      = scaled_;
@@ -50,16 +50,17 @@ Sprite3D:: ~Sprite3D ()
 void Sprite3D:: addAnimationTrack (AnimationTrack* animation_track)
 {
   if (animation_track == NULL) {
-    throw null_point_error ("Added animation_track is NULL.");
+    throw NullPointException (__FILE__, __func__, "Animation track is NULL.");
   }
-  if (animation_track->getTargetProperty() != AnimationTrack::CROP        &&
-      animation_track->getTargetProperty() != AnimationTrack::ALPHA       &&
-      animation_track->getTargetProperty() != AnimationTrack::PICKABILITY &&
-      animation_track->getTargetProperty() != AnimationTrack::VISIBILITY  &&
-      animation_track->getTargetProperty() != AnimationTrack::ORIENTATION &&
-      animation_track->getTargetProperty() != AnimationTrack::SCALE       &&
-      animation_track->getTargetProperty() != AnimationTrack::TRANSLATION) {
-    throw invalid_argument ("Invalid animation track target for this Sprite3D.");
+  int property = animation_track->getTargetProperty();
+  if (property != AnimationTrack::CROP        &&
+      property != AnimationTrack::ALPHA       &&
+      property != AnimationTrack::PICKABILITY &&
+      property != AnimationTrack::VISIBILITY  &&
+      property != AnimationTrack::ORIENTATION &&
+      property != AnimationTrack::SCALE       &&
+      property != AnimationTrack::TRANSLATION) {
+    throw IllegalArgumentException (__FILE__, __func__, "Animation target is invalid for this Sprite3D, property=%d.", property);
   }
  
   Object3D:: addAnimationTrack (animation_track);

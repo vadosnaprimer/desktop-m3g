@@ -2,7 +2,7 @@
 #include "m3gdef.hpp"
 #include <iostream>
 #include "Image2D.hpp"
-#include "m3gexcept.hpp"
+#include "Exception.hpp"
 #include "AnimationTrack.hpp"
 #include "AnimationController.hpp"
 #include "KeyframeSequence.hpp"
@@ -19,7 +19,7 @@ Texture2D:: Texture2D (Image2D* img) :
   setObjectType (OBJTYPE_TEXTURE2D);
 
   if (img == NULL) {
-    throw null_point_error ("Specified Image2D is NULL.");
+    throw NullPointException (__FILE__, __func__, "Image is NULL.");
   }
 
   image = img;
@@ -45,13 +45,14 @@ Texture2D:: ~Texture2D ()
 void Texture2D:: addAnimationTrack (AnimationTrack* animation_track)
 {
   if (animation_track == NULL) {
-    throw null_point_error ("Added animation_track is NULL.");
+    throw NullPointException (__FILE__, __func__, "Animation track is NULL.");
   }
-  if (animation_track->getTargetProperty() != AnimationTrack::COLOR       &&
-      animation_track->getTargetProperty() != AnimationTrack::ORIENTATION &&
-      animation_track->getTargetProperty() != AnimationTrack::SCALE       &&
-      animation_track->getTargetProperty() != AnimationTrack::TRANSLATION) {
-    throw invalid_argument ("Invalid animation track target for VertexBuffer.");
+  int property = animation_track->getTargetProperty();
+  if (property != AnimationTrack::COLOR       &&
+      property != AnimationTrack::ORIENTATION &&
+      property != AnimationTrack::SCALE       &&
+      property != AnimationTrack::TRANSLATION) {
+    throw IllegalArgumentException (__FILE__, __func__, "Animation target is invalid for this VertexBuffer, property=%d.", property);
   }
  
   Object3D:: addAnimationTrack (animation_track);
@@ -164,7 +165,7 @@ void Texture2D:: setBlending (int func)
 {
   if (func != FUNC_ADD && func != FUNC_BLEND && func != FUNC_DECAL &&
       func != FUNC_MODULATE && func != FUNC_REPLACE) {
-    throw invalid_argument ("Specified blending function is unknown.");
+    throw IllegalArgumentException (__FILE__, __func__, "Blending function is invalid, func=%d.", func);
   }
 
   blending_mode = func;
@@ -173,10 +174,10 @@ void Texture2D:: setBlending (int func)
 void Texture2D:: setFiltering (int level_filter, int image_filter)
 {
   if (level_filter != FILTER_BASE_LEVEL && level_filter != FILTER_LINEAR && level_filter != FILTER_NEAREST ) {
-    throw invalid_argument ("Level filter is unknown.");
+    throw IllegalArgumentException (__FILE__, __func__, "Level filter is invalid, level_filter=%d.", level_filter);
   }
   if (image_filter != FILTER_LINEAR && image_filter != FILTER_NEAREST) {
-    throw invalid_argument ("Image filter is unknown.");
+    throw IllegalArgumentException (__FILE__, __func__, "Image filter is invalid, image_filter=%d.", image_filter);
   }
 
   filter.level = level_filter;
@@ -191,10 +192,10 @@ void Texture2D:: setImage (Image2D* img)
 void Texture2D:: setWrapping (int wrap_s, int wrap_t)
 {
   if (wrap_s != WRAP_CLAMP && wrap_s != WRAP_REPEAT) {
-    throw invalid_argument ("Wrap mode of S is unknown.");
+    throw IllegalArgumentException (__FILE__, __func__, "Wrap mode of S is invalid, wrap_s=%d.", wrap_s);
   }
   if (wrap_t != WRAP_CLAMP && wrap_t != WRAP_REPEAT) {
-    throw invalid_argument ("Wrap mode of T is unknown.");
+    throw IllegalArgumentException (__FILE__, __func__, "Wrap mode of T is invalid, wrap_t=%d.", wrap_t);
   }
 
   wrapping.s = wrap_s;

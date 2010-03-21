@@ -7,7 +7,7 @@
 #include "Graphics.hpp"
 #include "Transform.hpp"
 #include "Light.hpp"
-#include "m3gexcept.hpp"
+#include "Exception.hpp"
 using namespace m3g;
 using namespace std;
 
@@ -110,26 +110,28 @@ int Graphics3D:: getViewportY () const
 
 bool Graphics3D:: isDepthBufferEnabled () const
 {
-    return 0;
+  throw NotImplementedException (__FILE__, __func__, "Sorry, isDepthBufferEnabled() is not implemented.");
+  return 0;
 }
 
 void Graphics3D:: releaseTarget () const
 {
+  throw NotImplementedException (__FILE__, __func__, "Sorry, releaseTraget() is not implemented.");
 }
 
 void Graphics3D:: render (Node* node, Transform* transform) const
 {
-  throw not_implemented_error ("Sorry, immediate render mode is not implemented.");
+  throw NotImplementedException (__FILE__, __func__, "Sorry, immediate render mode is not implemented.");
 }
 
 void Graphics3D:: render (VertexBuffer* vertices, IndexBuffer* triangles, Appearance* apperance, Transform& transform) const
 {
-  throw not_implemented_error ("Sorry, immediate render mode is not implemented.");
+  throw NotImplementedException (__FILE__, __func__, "Sorry, immediate render mode is not implemented.");
 }
 
 void Graphics3D:: render (VertexBuffer* vertices, IndexBuffer* triangles, Appearance* apperance, Transform& transform, int scope) const
 {
-  throw not_implemented_error ("Sorry, immediate render mode is not implemented.");
+  throw NotImplementedException (__FILE__, __func__, "Sorry, immediate render mode is not implemented.");
 }
 
 void Graphics3D:: render (World* world) const

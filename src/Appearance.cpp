@@ -6,7 +6,7 @@
 #include "PolygonMode.hpp"
 #include "Texture2D.hpp"
 #include "CompositingMode.hpp"
-#include "m3gexcept.hpp"
+#include "Exception.hpp"
 using namespace std;
 using namespace m3g;
 
@@ -82,7 +82,7 @@ PolygonMode* Appearance:: getPolygonMode () const
 Texture2D* Appearance:: getTexture (int index) const
 {
   if (index < 0 || index >= MAX_TEXTURE_UNITS) {
-    throw invalid_argument ("Too large texture index rather than you can use is specifi");
+    throw IllegalArgumentException (__FILE__, __func__, "Texture index is inalid, index=%d", index);
   }
   return textures[index];
 }
@@ -90,7 +90,7 @@ Texture2D* Appearance:: getTexture (int index) const
 void Appearance:: setCompositingMode (CompositingMode* mode)
 {
   if (mode == NULL) {
-    throw null_point_error ("Null compositing mode is specified.\n");
+    throw NullPointException (__FILE__, __func__, "Null compositing mode is specified.");
   }
   compositing_mode = mode;
 }
@@ -98,7 +98,7 @@ void Appearance:: setCompositingMode (CompositingMode* mode)
 void Appearance:: setFog (Fog* f)
 {
   if (f == NULL) {
-    throw null_point_error ("Null fog is specified.\n");
+    throw NullPointException (__FILE__, __func__, "Null fog is specified.");
   }
   fog = f;
 }
@@ -111,7 +111,7 @@ void Appearance:: setLayer (int layer)
 void Appearance:: setMaterial (Material* mat)
 {
   if (mat == NULL) {
-    throw null_point_error ("Null material is specified.\n");
+    throw NullPointException (__FILE__, __func__, "Null material is specified.");
   }
   material = mat;
 }
@@ -119,7 +119,7 @@ void Appearance:: setMaterial (Material* mat)
 void Appearance:: setPolygonMode (PolygonMode* mode)
 {
   if (mode == NULL) {
-    throw null_point_error ("Null polygon mode is specified.\n");
+    throw NullPointException (__FILE__, __func__, "Null polygon mode is specified.");
   }
   polygon_mode = mode;
 }
@@ -127,10 +127,10 @@ void Appearance:: setPolygonMode (PolygonMode* mode)
 void Appearance:: setTexture (int index, Texture2D* texture)
 {
   if (index < 0 || index >= MAX_TEXTURE_UNITS) {
-    throw invalid_argument ("Too large texture index rather than you can use is specifi");
+    throw NullPointException (__FILE__, __func__, "Too large texture index rather than you can use is specifi");
   }
   if (texture == NULL) {
-    throw null_point_error ("Null texture is specified.\n");
+    throw NullPointException (__FILE__, __func__, "Null texture is specified.");
   }
 
   textures[index] = texture;

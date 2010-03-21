@@ -1,6 +1,6 @@
 #include "Matrix.hpp"
 #include "Vector.hpp"
-#include "m3gexcept.hpp"
+#include "Exception.hpp"
 #include <iostream>
 #include <cstring>
 #include <cmath>
@@ -112,7 +112,7 @@ void Matrix:: invert ()
     - n[0][3]*n[1][0]*n[2][1]*n[3][2] - n[0][3]*n[1][1]*n[2][2]*n[3][0] - n[0][3]*n[1][2]*n[2][0]*n[3][1];
 
   if (det == 0) {
-    throw zero_division_error ("Determinant of this matrix is 0.");
+    throw IllegalArgumentException (__FILE__, __func__, "Can't invert this matrix.");
   }
 
   float inv_det = 1/det;

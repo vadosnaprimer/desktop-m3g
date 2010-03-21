@@ -1,7 +1,7 @@
 #include "TriangleStripArray.hpp"
 #include <iostream>
 #include <cstdlib>
-#include "m3gexcept.hpp"
+#include "Exception.hpp"
 using namespace std;
 using namespace m3g;
 
@@ -11,13 +11,13 @@ TriangleStripArray:: TriangleStripArray (int* indices, int num_strips, int* stri
   setObjectType (OBJTYPE_TRIANGLE_STRIP_ARRAY);
 
   if (indices == NULL) {
-    throw null_point_error ("Indices is NULL.");
+    throw NullPointException (__FILE__, __func__, "Indices is NULL.");
   }
   if (strip_array == NULL) {
-    throw null_point_error ("Stips is NULL.");
+    throw NullPointException (__FILE__, __func__, "Strips array is NULL.");
   }
   if (num_strips < 1 || num_strips > 65535) {
-    throw invalid_argument ("Num_strip_lengths is invalid.");
+    throw IllegalArgumentException (__FILE__, __func__, "Number of strip lengths is invalid, num_strips=%d.", num_strips);
   }
 
   int num = 0;
@@ -33,13 +33,13 @@ TriangleStripArray:: TriangleStripArray (int* indices, int num_strips, int* stri
 TriangleStripArray:: TriangleStripArray (int first_index, int num_strips, int* strip_array) 
 {
   if (strip_array == NULL) {
-    throw null_point_error ("Stips is NULL.");
+    throw NullPointException (__FILE__, __func__, "Strips array is NULL.");
   }
   if (first_index < 0 || first_index > 65535) {
-    throw invalid_argument ("Fist_index is invalid.");
+    throw IllegalArgumentException (__FILE__, __func__, "Fist index is invalid, first_idex=%d.", first_index);
   }
   if (num_strips < 1 || first_index + num_strips > 65536) {
-    throw invalid_argument ("Num_strip_lengths is invalid.");
+    throw IllegalArgumentException (__FILE__, __func__, "Nummber of strip lengths is invalid, first_index=%d, num_strips=%d.", first_index, num_strips);
   }
 
   int num = 0;

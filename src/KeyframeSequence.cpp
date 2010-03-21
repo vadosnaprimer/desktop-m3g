@@ -1,7 +1,7 @@
 #include "KeyframeSequence.hpp"
 #include <iostream>
 #include <cstring>
-#include "m3gexcept.hpp"
+#include "Exception.hpp"
 #include "Quaternion.hpp"
 using namespace std;
 using namespace m3g;
@@ -14,13 +14,13 @@ KeyframeSequence:: KeyframeSequence (int num_keyframes, int num_components, int 
   setObjectType (OBJTYPE_KEYFRAME_SEQUENCE);
   
   if (num_keyframes < 1) {
-    throw invalid_argument ("Invalid Number of keyframs is specified.");
+    throw IllegalArgumentException (__FILE__, __func__, "Number of keyframes is invalid, num=%d.", num_keyframes);
   }
   if (num_components < 1) {
-    throw invalid_argument ("Invalid Number of components is specified.");
+    throw IllegalArgumentException (__FILE__, __func__, "Number of components is invalid, conponent=%d.", num_components);
   }
   if (interpolation != LINEAR && interpolation != SLERP && interpolation != SPLINE && interpolation != SQUAD && interpolation != STEP) {
-    throw invalid_argument ("Invalid interpolation type is specified.");
+    throw IllegalArgumentException (__FILE__, __func__, "Interpolation type is invalid, type=%d.", interpolation);
   }
 
   keyframe_count    = num_keyframes;
@@ -57,7 +57,7 @@ int KeyframeSequence:: getInterpolationType () const
 int KeyframeSequence:: getKeyframe (int index, float* value) const
 {
   if (index < 0 || index >= keyframe_count) {
-    throw invalid_argument ("Invalid index is specified.");
+    throw IllegalArgumentException (__FILE__, __func__, "Index is invalid, index=%d.", index);
   }
 
   if (value) {
@@ -96,13 +96,13 @@ void KeyframeSequence:: setDuration (int new_duration)
 void KeyframeSequence:: setKeyframe (int index, int time, float* value)
 {
   if (index < 0 || index >= keyframe_count) {
-    throw invalid_argument ("Invalid index is specified.");
+    throw IllegalArgumentException (__FILE__, __func__, "Index is invalid, index=%d, keyframe_count=%d.", index, keyframe_count);
   }
   if (time < 0) {
-    throw invalid_argument ("Invalid time is specified.");
+    throw IllegalArgumentException (__FILE__, __func__, "Time is Invalid, time=%d.", time);
   }
   if (value == NULL) {
-    throw null_point_error ("value is null.");
+    throw NullPointException (__FILE__, __func__, "Value is NULL.");
   }
 
   keyframes[index].time = time;
@@ -115,7 +115,7 @@ void KeyframeSequence:: setKeyframe (int index, int time, float* value)
 void KeyframeSequence:: setRepeatMode (int mode)
 {
   if (mode != CONSTANT && mode != LOOP) {
-    throw invalid_argument ("Specified repeat mode is unknown.");
+    throw IllegalArgumentException (__FILE__, __func__, "Repeat mode is invalid, mode=%d.", mode);
   }
   repeat_mode = mode;
 }
@@ -123,13 +123,13 @@ void KeyframeSequence:: setRepeatMode (int mode)
 void KeyframeSequence:: setValidRange (int first, int last)
 {
   if (first < 0 || first >= keyframe_count) {
-    throw invalid_argument ("First of valid range is invalid.");
+    throw IllegalArgumentException (__FILE__, __func__, "First of valid range is invalid, first=%d, keyframe_count=%d.", first, keyframe_count);
   }
   if (last < 0 || last >= keyframe_count) {
-    throw invalid_argument ("Last of valid range is invalid.");
+    throw IllegalArgumentException (__FILE__, __func__, "Last of valid range is invalid, last=%d, keyframe_count=%d.", last, keyframe_count);
   }
   if (first >= last) {
-    throw not_implemented_error ("Sorry, frist>last(inverse animation) is not yet implemented.");
+    throw NotImplementedException (__FILE__, __func__, "Sorry, frist>last(inverse animation) is not yet implemented, first=%d, last=%d.", first, last);
   }
 
   valid_range = ValidRange (first, last);
@@ -138,17 +138,18 @@ void KeyframeSequence:: setValidRange (int first, int last)
 void KeyframeSequence:: getFrame (int local_time, float* value) const
 {
   if (value == NULL) {
-    throw null_point_error ("Specified value is NULL.");
+    throw NullPointException (__FILE__, __func__, "Value is NULL.");
   }
   if (valid_range.first == valid_range.last) {
-    throw invalid_argument ("Valid range is not setted.");
+    throw IllegalArgumentException (__FILE__, __func__, "Valid range is not setted.");
   }
   if (valid_range.first > valid_range.last) {
-    throw not_implemented_error ("Sorry, frist>last(inverse animation) is not yet implemented.");
+    throw NotImplementedException (__FILE__, __func__, "Sorry, frist>last(inverse animation) is not yet implemented, first=%d, last=%d.", valid_range.first, valid_range.last);
   }
 
   int first = valid_range.first;
   int last  = valid_range.last;
+
   /*
   if (repeat_mode == LOOP) {
     while (local_time < keyframes[first].time) {
@@ -219,15 +220,15 @@ void KeyframeSequence:: getFrame (int local_time, float* value) const
     return;
   }
   case SPLINE: {
-    cout << "interp: " << k0 << ", " << k1 << ", " << k2 << ", " << k3 << "\n";
+    //cout << "interp: " << k0 << ", " << k1 << ", " << k2 << ", " << k3 << "\n";
     spline (s, k0, k1, k2, k3, component_count, value);
     return;
   }
   case SQUAD: {
-    // fall throgh
+    throw NotImplementedException (__FILE__, __func__, "SQUAD Interpolated is not nimplemented.");
   }
   default: {
-    throw not_implemented_error ("This Interpolated type is unimplemented.");
+    throw InternalException (__FILE__, __func__, "Interpolation type is unknwon, type=%d.", interp_type);
   }
   }
 }

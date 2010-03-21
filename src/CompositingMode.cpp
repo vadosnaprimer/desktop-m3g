@@ -1,6 +1,6 @@
 #include <iostream>
 #include "CompositingMode.hpp"
-#include "m3gexcept.hpp"
+#include "Exception.hpp"
 using namespace m3g;
 using namespace std;
 
@@ -147,7 +147,7 @@ void CompositingMode:: render (int pass, int index) const
     break;
   }
   default: {
-    throw domain_error ("Unknown blending mode.");
+    throw InternalException (__FILE__, __func__, "Blending mode is unknwon, mode=%d.", blending_mode);
   }
   }
 

@@ -1,7 +1,7 @@
 #include <iostream>
 #include "Transformable.hpp"
 #include "Transform.hpp"
-#include "m3gexcept.hpp"
+#include "Exception.hpp"
 #include "AnimationTrack.hpp"
 #include "AnimationController.hpp"
 #include "KeyframeSequence.hpp"
@@ -21,12 +21,13 @@ Transformable:: ~Transformable ()
 void Transformable:: addAnimationTrack (AnimationTrack* animation_track)
 {
    if (animation_track == NULL) {
-    throw null_point_error ("Added animation_track is NULL.");
+     throw NullPointException (__FILE__, __func__, "Animation track is NULL.");
   }
-  if (animation_track->getTargetProperty() != AnimationTrack::ORIENTATION &&
-      animation_track->getTargetProperty() != AnimationTrack::SCALE &&
-      animation_track->getTargetProperty() != AnimationTrack::TRANSLATION) {
-    throw invalid_argument ("Invalid animation track target for this Transformable.");
+   int property = animation_track->getTargetProperty();
+  if (property != AnimationTrack::ORIENTATION &&
+      property != AnimationTrack::SCALE &&
+      property != AnimationTrack::TRANSLATION) {
+    throw IllegalArgumentException (__FILE__, __func__, "Animation target is invalid for this Transformable, property=%d.", property);
   }
  
   Object3D:: addAnimationTrack (animation_track);
@@ -121,7 +122,7 @@ int Transformable:: animate (int world_time)
 void Transformable:: getCompositeTransform (Transform* ctransform) const
 {
   if (ctransform == NULL) {
-    throw null_point_error ("Tranform is NULL.");
+    throw NullPointException (__FILE__, __func__, "Tranform is NULL.");
   }
 
   ctransform->setIdentity ();
@@ -134,7 +135,7 @@ void Transformable:: getCompositeTransform (Transform* ctransform) const
 void Transformable:: getOrientation (float* angle_axis) const
 {
   if (angle_axis == NULL) {
-    throw null_point_error ("Angle_axis is NULL.");
+    throw NullPointException (__FILE__, __func__, "Angle_axis is NULL.");
   }
   
   orientation.getAngleAxis (angle_axis);
@@ -143,7 +144,7 @@ void Transformable:: getOrientation (float* angle_axis) const
 void Transformable:: getScale (float* xyz) const
 {
   if (xyz == NULL) {
-    throw null_point_error ("Scaling xyz is NULL.");
+    throw NullPointException (__FILE__, __func__, "Scaling xyz is NULL.");
   }
 
   xyz[0] = scaling.x;
@@ -154,7 +155,7 @@ void Transformable:: getScale (float* xyz) const
 void Transformable:: getTransform (Transform* out_transform) const
 {
   if (out_transform == NULL) {
-    throw null_point_error ("Transform is NULL.");
+    throw NullPointException (__FILE__, __func__, "Transform is NULL.");
   }
 
   out_transform->set (transform);
@@ -163,7 +164,7 @@ void Transformable:: getTransform (Transform* out_transform) const
 void Transformable:: getTranslation (float* xyz) const
 {
   if (xyz == NULL) {
-    throw null_point_error ("Translation xyz is NULL.");
+    throw NullPointException (__FILE__, __func__, "Xyz is NULL.");
   }
 
   xyz[0] = translation.x;

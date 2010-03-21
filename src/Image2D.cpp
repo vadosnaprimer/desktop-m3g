@@ -1,7 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <cstring>
-#include "m3gexcept.hpp"
+#include "Exception.hpp"
 #include "Image2D.hpp"
 using namespace m3g;
 using namespace std;
@@ -14,7 +14,7 @@ Image2D:: Image2D (int format_, int width_, int height_) :
   setObjectType (OBJTYPE_IMAGE2D);
 
   if (width <= 0 || height <= 0) {
-    throw invalid_argument ("Width or height is < 0.\n");
+    throw IllegalArgumentException (__FILE__, __func__, "Width or height is invalid, width=%f, height=%f.", width, height);
   }
   bpp = format_to_bpp (format);
 
@@ -27,10 +27,10 @@ Image2D:: Image2D (int format_, int width_, int height_, void* image_) :
   image(0), bpp(0), immutable(true)
 {
   if (width <= 0 || height <= 0) {
-    throw invalid_argument ("Width or height is < 0.\n");
+    throw IllegalArgumentException (__FILE__, __func__, "Width or height is invalid, width=%f, height=%f.", width, height);
   }
   if (image_ == 0) {
-    throw null_point_error ("Image of argument is NULL.\n");
+    throw NullPointException (__FILE__, __func__, "Image is NULL.");
   }
 
   bpp = format_to_bpp (format);
@@ -41,7 +41,7 @@ Image2D:: Image2D (int format_, int width_, int height_, void* image_) :
 Image2D:: Image2D (int format_, int width_, int height_, void* image_, void* palette_) :
   format(format_), width(width_), height(height_), bpp(0), immutable(true)
 {
-  throw domain_error ("Palleted image is not implemented.\n");
+  throw NotImplementedException (__FILE__, __func__, "Palleted image is not implemented. don't use this");
 }
 
 Image2D:: ~Image2D ()
@@ -77,13 +77,16 @@ bool Image2D:: isMutable () const
 void Image2D:: set (int px, int py, int wid, int hei, void* image_)
 {
   if (immutable) {
-    throw domain_error ("Asked to change immutable Image.\n");
+    throw IllegalStateException (__FILE__, __func__, "This image is immutable.");
   }
   if (px < 0 || px >= width || py < 0 || py >= height) {
-      throw invalid_argument ("Invalid argument of x,y,width,height is specified.\n");
-    }
+    throw IllegalArgumentException (__FILE__, __func__, "Coordinate(px,py) is invalid, px=%d, py=%d.", px, py);
+  }
+  if (wid < 0 || wid > width || hei < 0 || hei > height) {
+    throw IllegalArgumentException (__FILE__, __func__, "Size(width,height) is invalid, width=%d, height=%d.", wid, hei);
+  }
   if (image == 0) {
-    throw null_point_error ("Image of argument is NULL.\n");
+    throw NullPointException (__FILE__, __func__, "Image is NULL.");
   }
 
   unsigned char* img = (unsigned char*)image_;
@@ -93,19 +96,6 @@ void Image2D:: set (int px, int py, int wid, int hei, void* image_)
   }
 
 }
-/*
-int Image2D:: get (int px, int py) const
-{
-  if (px < 0 || px >= width || py < 0 || py >= height) {
-      throw invalid_argument ("Invalid argument of x,y is specified.\n");
-    }
-
-  int color = 0;
-  memcpy (&color, image[py]+bpp*px, bpp);
-  return color;
-}
-*/
-
 
 
  /**
@@ -144,7 +134,7 @@ GLenum Image2D:: getOpenGLFormat () const
     return GL_RGBA;
   }
   else {
-    throw domain_error ("Unknown image format.");
+    throw InternalException (__FILE__, __func__, "Image format is unknwon, format=%d.", format);
   }
 
 }
@@ -168,7 +158,7 @@ int Image2D:: format_to_bpp (int format) const
     return 4;
   }
   default: {
-    throw runtime_error ("Unknwon image format is specified.\n");
+     throw InternalException (__FILE__, __func__, "Format is unknwon, format=%d.", format);
   }
   }
 }

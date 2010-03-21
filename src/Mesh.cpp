@@ -3,7 +3,7 @@
 #include "VertexArray.hpp"
 #include "IndexBuffer.hpp"
 #include "Appearance.hpp"
-#include "m3gexcept.hpp"
+#include "Exception.hpp"
 #include <iostream>
 using namespace std;
 using namespace m3g;
@@ -16,19 +16,19 @@ Mesh:: Mesh (VertexBuffer* vertices_,
   setObjectType (OBJTYPE_MESH);
 
   if (vertices_ == 0) {
-    throw null_point_error ("VertexBuffe is NULL.");
+    throw NullPointException (__FILE__, __func__, "VertexBuffer is NULL.");
   }
   if (num_submesh == 0) {
-    throw invalid_argument ("Number of submesh is invalid.");
+    throw IllegalArgumentException (__FILE__, __func__, "Number of submesh is invalid, num_submesh=%d.", num_submesh);
   }
   if (submeshes == 0) {
-    throw null_point_error ("IndexBuffer is NULL.");
+    throw NullPointException (__FILE__, __func__, "IndexBuffer is NULL.");
   }
   if (num_appearance == 0) {
-    throw invalid_argument ("Number of appearance is invalid.");
+    throw IllegalArgumentException (__FILE__, __func__, "Number of appearance is invalid, num_appearance=%d.", num_appearance);
   }
   if (appearances_ == 0) {
-    throw null_point_error ("Appearances is NULL.");
+    throw NullPointException (__FILE__, __func__, "Appearances is NULL.");
   }
 
   vertices = vertices_;
@@ -45,23 +45,23 @@ Mesh:: Mesh (VertexBuffer* vertices_,
 Mesh:: Mesh (VertexBuffer* vertices_, IndexBuffer* submesh, Appearance* appearance)
 {
   if (vertices_ == 0) {
-    throw null_point_error ("VertexBuffer is NULL.");
+    throw NullPointException (__FILE__, __func__, "VertexBuffer is NULL.");
   }
   if (submesh == 0) {
-    throw null_point_error ("IndexBuffer is NULL.");
+    throw NullPointException (__FILE__, __func__, "IndexBuffer is NULL.");
   }
   if (appearance == 0) {
-    throw null_point_error ("Appearance is NULL.");
+    throw NullPointException (__FILE__, __func__, "Appearance is NULL.");
   }
-  cout << "Mesh: add submesh = " << submesh << "\n";
+  //cout << "Mesh: add submesh = " << submesh << "\n";
 
   vertices = vertices_;
   indices.push_back (submesh);
   appearances.push_back (appearance);
 
-  for (int i = 0; i < (int)indices.size(); i++) {
-    cout << "indices[" << i << "] = "<< indices[i] << "\n";
-  }
+  //for (int i = 0; i < (int)indices.size(); i++) {
+  //  cout << "indices[" << i << "] = "<< indices[i] << "\n";
+  //}
 }
 
 Mesh:: ~Mesh ()
@@ -70,7 +70,7 @@ Mesh:: ~Mesh ()
 
 int Mesh:: animate (int world_time)
 {
-  cout << "Mesh: animate time=" << world_time << "\n";
+  //cout << "Mesh: animate time=" << world_time << "\n";
 
   Node::animate (world_time);
 
@@ -89,7 +89,7 @@ int Mesh:: animate (int world_time)
 Appearance* Mesh:: getAppearance (int index) const
 {
   if (index < 0 || index >= (int)appearances.size()) {
-    throw out_of_range ("Index of appearance is out of bound.");
+    throw IndexOutOfBoundsException (__FILE__, __func__, "Index is invalid, index=%d, max=%d.", index, appearances.size());
   }
   return appearances[index];
 }
@@ -97,7 +97,7 @@ Appearance* Mesh:: getAppearance (int index) const
 IndexBuffer* Mesh:: getIndexBuffer (int index) const
 {
   if (index < 0 || index >= (int)indices.size()) {
-    throw out_of_range ("Index of indexbuffer is out of bound.");
+    throw IndexOutOfBoundsException (__FILE__, __func__, "Index is invalid, index=%d, max=%d.", index, indices.size());
   }
   return indices[index];
 }
@@ -115,7 +115,7 @@ VertexBuffer* Mesh:: getVertexBuffer () const
 void Mesh:: setAppearance (int index, Appearance* appearance)
 {
   if (index < 0 || index >= (int)appearances.size()) {
-    throw out_of_range ("Index of appearances is out of bound.");
+    throw IndexOutOfBoundsException (__FILE__, __func__, "Index is invalid, index=%d, max=%d.", index, appearances.size());
   }
   
   if (appearance) {
@@ -140,9 +140,9 @@ void Mesh:: render (int pass, int index) const
     return;
   }
 
-  for (int i = 0; i < (int)indices.size(); i++) {
-    cout << "indices[" << i << "] = "<< indices[i] << "\n";
-  }
+  //for (int i = 0; i < (int)indices.size(); i++) {
+  //  cout << "indices[" << i << "] = "<< indices[i] << "\n";
+  //}
 
 
   //cout << "Mesh: " << indices.size() << "メッシュ\n";
@@ -172,13 +172,13 @@ void Mesh:: render (int pass, int index) const
   // 頂点データの指定
   vertices->render (pass, index);
 
-  cout << "Mesh: size = " << indices.size() << "\n";
+  //cout << "Mesh: size = " << indices.size() << "\n";
 
   // インデックスの指定
   for (int i = 0; i < (int)indices.size(); i++) {
-    cout << "i = " << i << "\n";
-    cout << "app = " << appearances[i] << "\n";
-    cout << "ind = " << indices[i] << "\n";
+    //cout << "i = " << i << "\n";
+    //cout << "app = " << appearances[i] << "\n";
+    //cout << "ind = " << indices[i] << "\n";
     appearances[i]->render (pass, index);
     indices[i]->render (pass, index);
   }

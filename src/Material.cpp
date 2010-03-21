@@ -1,6 +1,6 @@
 #include <iostream>
 #include "Material.hpp"
-#include "m3gexcept.hpp"
+#include "Exception.hpp"
 #include "AnimationTrack.hpp"
 #include "AnimationController.hpp"
 #include "KeyframeSequence.hpp"
@@ -25,15 +25,16 @@ Material:: ~Material ()
 void Material:: addAnimationTrack (AnimationTrack* animation_track)
 {
   if (animation_track == NULL) {
-    throw null_point_error ("Added animation_track is NULL.");
+    throw NullPointException (__FILE__, __func__, "Animation_track is NULL.");
   }
-  if (animation_track->getTargetProperty() != AnimationTrack::ALPHA &&
-      animation_track->getTargetProperty() != AnimationTrack::AMBIENT_COLOR &&
-      animation_track->getTargetProperty() != AnimationTrack::DIFFUSE_COLOR &&
-      animation_track->getTargetProperty() != AnimationTrack::EMISSIVE_COLOR &&
-      animation_track->getTargetProperty() != AnimationTrack::SHININESS && 
-      animation_track->getTargetProperty() != AnimationTrack::SPECULAR_COLOR) {
-    throw invalid_argument ("Invalid animation track target for this Material.");
+  int property = animation_track->getTargetProperty();
+  if (property != AnimationTrack::ALPHA &&
+      property != AnimationTrack::AMBIENT_COLOR &&
+      property != AnimationTrack::DIFFUSE_COLOR &&
+      property != AnimationTrack::EMISSIVE_COLOR &&
+      property != AnimationTrack::SHININESS && 
+      property != AnimationTrack::SPECULAR_COLOR) {
+    throw IllegalArgumentException (__FILE__, __func__, "Animation target is invalid for this Material, property=%d.", property);
   }
  
   Object3D:: addAnimationTrack (animation_track);
@@ -232,7 +233,7 @@ int Material:: getColor (int target) const
     return specular_color;
   }
   default: {
-    throw invalid_argument ("Unknown target of getColor is specified.");
+    throw IllegalArgumentException (__FILE__, __func__, "Unknown target of getColor is specified.");
   }
   }
 }
@@ -267,7 +268,7 @@ void Material:: setColor (int target, int argb)
      return;
   }
   default: {
-    throw invalid_argument ("Unknown target of setColor is specified.");
+    throw IllegalArgumentException (__FILE__, __func__, "Target of setColor is invalid, target=%d.", target);
   }
   }
   

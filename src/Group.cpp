@@ -3,7 +3,7 @@
 #include <algorithm>
 #include "RayIntersection.hpp"
 #include "Sprite3D.hpp"
-#include "m3gexcept.hpp"
+#include "Exception.hpp"
 using namespace m3g;
 using namespace std;
 
@@ -20,13 +20,13 @@ Group:: ~Group ()
 void Group:: addChild (Node* child)
 {
   if (child == 0) {
-    throw null_point_error ("Added child is NULL.");
+    throw NullPointException (__FILE__, __func__, "Child is NULL.");
   }
   if (child == this || child->getObjectType() == OBJTYPE_WORLD) {
-    throw invalid_argument ("Added child is illegal.");
+    throw IllegalArgumentException (__FILE__, __func__, "Object type of node is invalid, type=%d.", child->getObjectType());
   }
   if (child->getParent() != NULL && child->getParent() != this) {
-    throw invalid_argument ("Added child is already a member of other group.");
+    throw IllegalArgumentException (__FILE__, __func__, "Added child is already a member of other group.");
   }
 
   child->setParent (this);
@@ -49,7 +49,7 @@ int Group:: animate (int world_time)
 Node* Group:: getChild (int index) const
 {
   if (index < 0 || index >= (int)children.size()) {
-    throw invalid_argument ("Index is out of bound.");
+    throw IllegalArgumentException (__FILE__, __func__, "Chldren index is invalid, index=%d.", index);
   }
 
   return children[index];
@@ -62,7 +62,7 @@ int Group:: getChildCount () const
 
 bool Group:: pick (int scope, float ox, float oy, float oz, float dx, float dy, float dz, RayIntersection* ri) const
 {
-  throw not_implemented_error ("Sorry, Group:: pick is not implemented.");
+  throw NotImplementedException (__FILE__, __func__, "Sorry, pick is not implemented.");
   return false;
 }
 

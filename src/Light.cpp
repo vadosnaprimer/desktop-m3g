@@ -1,6 +1,6 @@
 #include "Light.hpp"
 #include <iostream>
-#include "m3gexcept.hpp"
+#include "Exception.hpp"
 #include "AnimationTrack.hpp"
 #include "AnimationController.hpp"
 #include "KeyframeSequence.hpp"
@@ -23,19 +23,20 @@ Light:: ~Light ()
 void Light:: addAnimationTrack (AnimationTrack* animation_track)
 {
   if (animation_track == NULL) {
-    throw null_point_error ("Added animation_track is NULL.");
+    throw NullPointException (__FILE__, __func__, "Animation track is NULL.");
   }
-  if (animation_track->getTargetProperty() != AnimationTrack::COLOR         &&
-      animation_track->getTargetProperty() != AnimationTrack::INTENSITY     &&
-      animation_track->getTargetProperty() != AnimationTrack::SPOT_ANGLE    &&
-      animation_track->getTargetProperty() != AnimationTrack::SPOT_EXPONENT &&
-      animation_track->getTargetProperty() != AnimationTrack::ALPHA         &&
-      animation_track->getTargetProperty() != AnimationTrack::PICKABILITY   &&
-      animation_track->getTargetProperty() != AnimationTrack::VISIBILITY    &&
-      animation_track->getTargetProperty() != AnimationTrack::ORIENTATION   &&
-      animation_track->getTargetProperty() != AnimationTrack::SCALE         &&
-      animation_track->getTargetProperty() != AnimationTrack::TRANSLATION) {
-    throw invalid_argument ("Invalid animation track target for Light.");
+  int property = animation_track->getTargetProperty();
+  if (property != AnimationTrack::COLOR         &&
+      property != AnimationTrack::INTENSITY     &&
+      property != AnimationTrack::SPOT_ANGLE    &&
+      property != AnimationTrack::SPOT_EXPONENT &&
+      property != AnimationTrack::ALPHA         &&
+      property != AnimationTrack::PICKABILITY   &&
+      property != AnimationTrack::VISIBILITY    &&
+      property != AnimationTrack::ORIENTATION   &&
+      property != AnimationTrack::SCALE         &&
+      property != AnimationTrack::TRANSLATION) {
+    throw IllegalArgumentException (__FILE__, __func__, "Animation target is invalid for Light, property=%d.", property);
   }
  
   Object3D:: addAnimationTrack (animation_track);
@@ -183,10 +184,10 @@ float Light:: getSpotExponent () const
 void Light:: setAttenuation (float constant, float linear, float quadratic)
 {
   if (constant < 0 || linear < 0 || quadratic < 0) {
-    throw invalid_argument ("Attenuation parameter must be > 0.");
+    throw IllegalArgumentException (__FILE__, __func__, "Attenuation parameters is invalid, constant=%f, linear=%f, quadratic=%f.", constant, linear, quadratic);
   }
   if (constant == 0 && linear == 0 && quadratic == 0) {
-    throw invalid_argument ("All attenuation parameters are 0.");
+    throw IllegalArgumentException (__FILE__, __func__, "Attenuation parameters is invalid, constant=%f, linear=%f, quadratic=%f.", constant, linear, quadratic);
   }
   attenuation.constant  = constant;
   attenuation.linear    = linear;
@@ -206,7 +207,7 @@ void Light:: setIntensity (float i)
 void Light:: setMode (int mod)
 {
   if (mod != AMBIENT && mod != DIRECTIONAL && mod != OMNI && mod != SPOT) {
-    throw invalid_argument ("Requested light mode is invalid.");
+    throw IllegalArgumentException (__FILE__, __func__, "Mode is invalid, mode=%d.", mod);
   }
   mode = mod;
 }
@@ -214,7 +215,7 @@ void Light:: setMode (int mod)
 void Light:: setSpotAngle (float angle)
 {
   if (angle < 0 || angle > 90) {
-    throw invalid_argument ("Requested spot angle is invalid.");
+    throw IllegalArgumentException (__FILE__, __func__, "Spot angle is invalid, angle=%f.", angle);
   }
   spot.angle = angle;
 }
@@ -222,7 +223,7 @@ void Light:: setSpotAngle (float angle)
 void Light:: setSpotExponent (float exponent)
 {
   if (exponent < 0 || exponent > 128) {
-    throw invalid_argument ("Spot exponent is invalid.");
+    throw IllegalArgumentException (__FILE__, __func__, "Spot exponent is invalid, exponent=%f.", exponent);
   }
   spot.exponent = exponent;
 }
@@ -310,7 +311,7 @@ int index = getGLIndex ();
     glLightf  (GL_LIGHT0+index, GL_SPOT_CUTOFF,   spot.angle);
   }
   else {
-    throw domain_error ("Invalid light mode.");
+    throw IllegalArgumentException (__FILE__, __func__, "Invalid light mode, mode=%d.", mode);
   }
 
   glLightf (GL_LIGHT0+index, GL_CONSTANT_ATTENUATION,  attenuation.constant);

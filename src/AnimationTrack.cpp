@@ -2,7 +2,7 @@
 #include "AnimationTrack.hpp"
 #include "KeyframeSequence.hpp"
 #include "AnimationController.hpp"
-#include "m3gexcept.hpp"
+#include "Exception.hpp"
 using namespace std;
 using namespace m3g;
 
@@ -75,7 +75,7 @@ static bool is_property_has_valid_component (int property, int component_count)
     return (component_count == 1) ? true : false;
   }
   default:
-    throw domain_error ("Unknown peoperty is specified. this never happen.");
+    throw InternalException (__FILE__, __func__, "Unknown property, property=%d", property);
   }
 }
 
@@ -84,14 +84,14 @@ AnimationTrack:: AnimationTrack (KeyframeSequence* sequence_, int property_) :
 {
   setObjectType (OBJTYPE_ANIMATION_TRACK);
   if (sequence_ == NULL) {
-    throw null_point_error ("Specified keyframe sequence is NULL.");
+    throw NullPointException (__FILE__, __func__, "KeyframeSequence is NULL.");
   }
   if (property_ < ALPHA || property_ > VISIBILITY) {
-    throw invalid_argument ("Invalid property is specified.");
+    throw IllegalArgumentException (__FILE__, __func__, "Property is unkwon, property=%d", property_);
   }
   // TODO: propertyとコンポーネント数のチェック
   if (!is_property_has_valid_component (property_, sequence_->getComponentCount())) {
-    throw invalid_argument ("Invalid component count for this propety.");
+    throw IllegalArgumentException (__FILE__, __func__, "Component count of KeyframeSequence is invalid for this property, count=%d, property=%d", sequence_->getComponentCount(), property_);
   }
 
 
@@ -111,7 +111,7 @@ AnimationController* AnimationTrack:: getController () const
 KeyframeSequence* AnimationTrack:: getKeyframeSequence () const
 {
   if (keyframe_sequence == NULL) {
-    throw domain_error ("KeyframeSequence is NULLL. this never happen.");
+    throw InternalException(__FILE__, __func__, "KeyframeSequence is NULLL.");
   }
   return keyframe_sequence;
 }

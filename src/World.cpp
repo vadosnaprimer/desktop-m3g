@@ -4,7 +4,7 @@
 #include "Light.hpp"
 #include <iostream>
 #include <cmath>
-#include "m3gexcept.hpp"
+#include "Exception.hpp"
 using namespace m3g;
 using namespace std;
 
@@ -48,7 +48,7 @@ Background* World:: getBackground () const
 void World:: setActiveCamera (Camera* cam)
 {
   if (cam == NULL) {
-    throw null_point_error ("Camera is NULL.");
+    throw NullPointException (__FILE__, __func__, "Camera is NULL.");
   }
 
   vector<Object3D*> objs;
@@ -63,7 +63,7 @@ void World:: setActiveCamera (Camera* cam)
     }
   }
   if (c == 0) {
-    throw invalid_argument ("Camera must be there in this World.");
+    throw IllegalArgumentException (__FILE__, __func__, "Can't find such camera in World.");
   }
 
   camera = c;
@@ -72,7 +72,7 @@ void World:: setActiveCamera (Camera* cam)
 void World:: setBackground (Background* bg)
 {
   if (bg == NULL) {
-    throw null_point_error ("Background is NULL\n");
+    throw NullPointException (__FILE__, __func__, "Background is NULL.");
   }
 
   background = bg;

@@ -3,7 +3,7 @@
 #include "Camera.hpp"
 #include "Vector.hpp"
 #include "Transform.hpp"
-#include "m3gexcept.hpp"
+#include "Exception.hpp"
 #include "AnimationTrack.hpp"
 #include "AnimationController.hpp"
 #include "KeyframeSequence.hpp"
@@ -24,18 +24,19 @@ Camera:: ~Camera ()
 void Camera:: addAnimationTrack (AnimationTrack* animation_track)
 {
    if (animation_track == NULL) {
-    throw null_point_error ("Added animation_track is NULL.");
+    throw NullPointException (__FILE__, __func__, "Animation track is NULL.");
   }
-  if (animation_track->getTargetProperty() != AnimationTrack::FAR_DISTANCE  &&
-      animation_track->getTargetProperty() != AnimationTrack::FIELD_OF_VIEW &&
-      animation_track->getTargetProperty() != AnimationTrack::NEAR_DISTANCE &&
-      animation_track->getTargetProperty() != AnimationTrack::ALPHA         &&
-      animation_track->getTargetProperty() != AnimationTrack::PICKABILITY   &&
-      animation_track->getTargetProperty() != AnimationTrack::VISIBILITY    &&
-      animation_track->getTargetProperty() != AnimationTrack::ORIENTATION   &&
-      animation_track->getTargetProperty() != AnimationTrack::SCALE         &&
-      animation_track->getTargetProperty() != AnimationTrack::TRANSLATION) {
-    throw invalid_argument ("Invalid animation track target for this Camera.");
+   int property = animation_track->getTargetProperty();
+  if (property != AnimationTrack::FAR_DISTANCE  &&
+      property != AnimationTrack::FIELD_OF_VIEW &&
+      property != AnimationTrack::NEAR_DISTANCE &&
+      property != AnimationTrack::ALPHA         &&
+      property != AnimationTrack::PICKABILITY   &&
+      property != AnimationTrack::VISIBILITY    &&
+      property != AnimationTrack::ORIENTATION   &&
+      property != AnimationTrack::SCALE         &&
+      property != AnimationTrack::TRANSLATION) {
+    throw IllegalArgumentException (__FILE__, __func__, "Animation track target is invalid for this Camera, property=%d.", property);
   }
  
   Object3D:: addAnimationTrack (animation_track);
@@ -202,7 +203,7 @@ void Camera:: render (int pass, int index) const
       glMultMatrixf (m);
     }
     else {
-      throw domain_error ("Projection type of Camera is unknown.");
+      throw InternalException (__FILE__, __func__, "Projection type is invalid, type=%d.", type);
     }
 
     glMatrixMode (GL_MODELVIEW);

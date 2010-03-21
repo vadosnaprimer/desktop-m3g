@@ -1,6 +1,6 @@
 #include "Fog.hpp"
 #include <iostream>
-#include "m3gexcept.hpp"
+#include "Exception.hpp"
 #include "AnimationTrack.hpp"
 #include "AnimationController.hpp"
 #include "KeyframeSequence.hpp"
@@ -20,19 +20,20 @@ Fog:: ~Fog ()
 void Fog:: addAnimationTrack (AnimationTrack* animation_track)
 {
   if (animation_track == NULL) {
-    throw null_point_error ("Added animation_track is NULL.");
+    throw NullPointException (__FILE__, __func__, "Animation track is NULL.");
   }
-  if (animation_track->getTargetProperty() != AnimationTrack::COLOR         &&
-      animation_track->getTargetProperty() != AnimationTrack::DENSITY       &&
-      animation_track->getTargetProperty() != AnimationTrack::FAR_DISTANCE  &&
-      animation_track->getTargetProperty() != AnimationTrack::NEAR_DISTANCE &&
-      animation_track->getTargetProperty() != AnimationTrack::ALPHA         &&
-      animation_track->getTargetProperty() != AnimationTrack::PICKABILITY   &&
-      animation_track->getTargetProperty() != AnimationTrack::VISIBILITY    &&
-      animation_track->getTargetProperty() != AnimationTrack::ORIENTATION   &&
-      animation_track->getTargetProperty() != AnimationTrack::SCALE         &&
-      animation_track->getTargetProperty() != AnimationTrack::TRANSLATION) {
-    throw invalid_argument ("Invalid animation track target for this Fog.");
+  int property = animation_track->getTargetProperty();
+  if (property != AnimationTrack::COLOR         &&
+      property != AnimationTrack::DENSITY       &&
+      property != AnimationTrack::FAR_DISTANCE  &&
+      property != AnimationTrack::NEAR_DISTANCE &&
+      property != AnimationTrack::ALPHA         &&
+      property != AnimationTrack::PICKABILITY   &&
+      property != AnimationTrack::VISIBILITY    &&
+      property != AnimationTrack::ORIENTATION   &&
+      property != AnimationTrack::SCALE         &&
+      property != AnimationTrack::TRANSLATION) {
+    throw IllegalArgumentException (__FILE__, __func__, "Animation track target is invalid for this Fog, property=%d.", property);
   }
  
   Object3D:: addAnimationTrack (animation_track);
@@ -225,14 +226,30 @@ void Fog:: render (int pass, int index) const
     break;
   }
   default: {
-    throw domain_error ("Unknwon fog mode.");
+    throw InternalException (__FILE__, __func__, "Fog mode is unknwon, mode=%d.", mode);
   }
+  }
+}
+
+static
+const char* mode_to_string (int mode)
+{
+  switch (mode) {
+  case Fog::LINEAR: return "LINEAR";
+  case Fog::EXPONENTIAL: return "EXPONENTIAL";
+  default: return "Unknwon";
   }
 }
 
 std::ostream& Fog:: print (std::ostream& out) const
 {
-  return out;
+  out << "Fog: ";
+  out << "  mode=" << mode_to_string(mode);
+  out << ", density=" << density;
+  out << ", near=" << near;
+  out << ", far=" << far;
+  out << ", color=0x" << hex << color << dec; 
+  return out << "\n";
 }
 
  std::ostream& operator<< (std::ostream& out, const Fog& fog)
