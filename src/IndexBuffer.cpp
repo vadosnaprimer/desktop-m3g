@@ -21,7 +21,7 @@ IndexBuffer:: ~IndexBuffer ()
     indices = 0;
   }
 }
-
+/*
 int IndexBuffer:: getIndexCount () const
 {
     return index_count;
@@ -35,7 +35,8 @@ void IndexBuffer:: getIndices (int* indices_)
 
   memcpy (indices_, indices, sizeof(int)*index_count);
 }
-
+*/
+/*
 void IndexBuffer:: setIndices (int index_count_, int* indices_)
 {
   // メモ：インデックス配列の確保だがコンストラクタで行った方が良くないか？
@@ -85,7 +86,7 @@ void IndexBuffer:: setIndices (int index_count_, int first_index)
   glBindBuffer (GL_ELEMENT_ARRAY_BUFFER, ibuf); 
   glBufferData (GL_ELEMENT_ARRAY_BUFFER, sizeof(int)*index_count, indices, GL_STATIC_DRAW);
 }
-
+*/
 
 /**
  * Note: Background should be rendered only at second rendering pass(pass=2).

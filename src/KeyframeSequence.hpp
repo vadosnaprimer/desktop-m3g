@@ -154,7 +154,6 @@ public:
      */
   virtual std::ostream& print (std::ostream& out) const;
 
-PRIVATE:
   /**
    * @~English  Returns interpolated values at specified time, for inner use.
    * @~Japanese 指定された時刻のフレームを取得する内部使用の関数.

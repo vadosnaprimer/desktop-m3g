@@ -22,10 +22,8 @@ TEST (TriangleStripArray_set_variables_explicit)
   CHECK_EQUAL (2, index_buf[0]);
   CHECK_EQUAL (20, index_buf[9]);
 
-  CHECK_EQUAL (3, (int)tris->strips.size());
-  CHECK_EQUAL (4, tris->strips[0]);
-  CHECK_EQUAL (3, tris->strips[1]);
-  CHECK_EQUAL (3, tris->strips[2]);
+  
+  CHECK_EQUAL (10, (int)tris->getIndexCount());
 }
 
 TEST (TriangleStripArray_set_variables_implicit)
@@ -41,9 +39,4 @@ TEST (TriangleStripArray_set_variables_implicit)
   tris->getIndices (index_buf);
   CHECK_EQUAL (100, index_buf[0]);
   CHECK_EQUAL (109, index_buf[9]);
-
-  CHECK_EQUAL (3, (int)tris->strips.size());
-  CHECK_EQUAL (4, tris->strips[0]);
-  CHECK_EQUAL (3, tris->strips[1]);
-  CHECK_EQUAL (3, tris->strips[2]);
 }

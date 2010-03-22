@@ -31,7 +31,6 @@ namespace m3g {
      */
     virtual ~Object3D ();
 
-  PROTECTED:
     /**
      * @~English  Adds the given AnimationTrack to this Object3D, 
      *            potentially changing the order and indices of the previously added tracks.
@@ -40,7 +39,6 @@ namespace m3g {
      */
     virtual void addAnimationTrack (AnimationTrack* animation_track);
 
-  public:
     /**
      * @~English  Updates all animated properties in this Object3D and all Object3Ds that are reachable from this Object3D.
      * @~Japanese このObject3D自身とここから到達できるObject3Dのアニメーテッドプロパティを更新する.
@@ -113,6 +111,18 @@ namespace m3g {
     void setUserObject (void* user_object_value);
 
     /**
+     * @~English  Retrievs object type, for inner use.
+     * @~Japanese オブジェクトタイプを取得するM3G非標準の関数.
+     */
+    int  getObjectType () const;
+
+    /**
+     * @~English  Find all objects by object type.
+     * @~Japanese オブジェクトタイプを指定して検索するM3G非標準の関数.
+     */
+    virtual void findByObjectType (int obj_type, std::vector<Object3D*>& objs) const;
+
+    /**
      * @~English  Print out information of this object, for debug only.
      * @~Japanese このObject3Dの情報を表示する。デバッグ用.
      */
@@ -126,32 +136,16 @@ namespace m3g {
      */
     virtual void render (int pass, int index=0) const;
 
-
-  PROTECTED:
-
     /**
      * @~English  Sets object type.
      * @~Japanese オブジェクトタイプの設定.
      */
     void setObjectType (int type);
 
-    /**
-     * @~English  Retrievs object type.
-     * @~Japanese オブジェクトタイプの取得.
-     */
-    int  getObjectType () const;
-
-    /**
-     * @~English  Find all objects by object type.
-     * @~Japanese オブジェクトタイプを指定して検索.
-     */
-    virtual void findByObjectType (int obj_type, std::vector<Object3D*>& objs) const;
   
 
   private:
-    int obj_type;
-
-  private:
+    int   obj_type;     ///< M3G非標準のオブジェクトタイプ
     int   user_id;
     void* user_object;
     std::vector<AnimationTrack*> anim_tracks;

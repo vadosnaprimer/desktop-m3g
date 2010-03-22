@@ -73,7 +73,6 @@ namespace m3g {
      */
     virtual std::ostream& print (std::ostream& out) const;
 
-  PROTECTED:
     /**
      * @~English   Find by object type.
      * @~Japanese オブジェクトタイプで検索する.

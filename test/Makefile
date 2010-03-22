@@ -180,7 +180,6 @@ test-Background.o: ../src/Background.hpp ../src/Object3D.hpp
 test-Background.o: /usr/include/GL/glew.h /usr/include/GL/glu.h
 test-Background.o: /usr/include/GL/gl.h ../src/m3gdef.hpp
 test-Background.o: ../src/m3ginternal.hpp ../src/Image2D.hpp
-test-Background.o: ../src/m3gexcept.hpp
 test-Bone.o: /usr/include/unittest++/UnitTest++.h
 test-Bone.o: /usr/include/unittest++/Config.h /usr/include/unittest++/Test.h
 test-Bone.o: /usr/include/unittest++/TestDetails.h
@@ -284,6 +283,37 @@ test-CompositingMode.o: ../src/CompositingMode.hpp ../src/Object3D.hpp
 test-CompositingMode.o: /usr/include/GL/glew.h /usr/include/GL/glu.h
 test-CompositingMode.o: /usr/include/GL/gl.h ../src/m3gdef.hpp
 test-CompositingMode.o: ../src/m3ginternal.hpp
+test-Exception.o: /usr/include/unittest++/UnitTest++.h
+test-Exception.o: /usr/include/unittest++/Config.h
+test-Exception.o: /usr/include/unittest++/Test.h
+test-Exception.o: /usr/include/unittest++/TestDetails.h
+test-Exception.o: /usr/include/unittest++/TestList.h
+test-Exception.o: /usr/include/unittest++/TestSuite.h
+test-Exception.o: /usr/include/unittest++/TestResults.h
+test-Exception.o: /usr/include/unittest++/TestMacros.h
+test-Exception.o: /usr/include/unittest++/Posix/SignalTranslator.h
+test-Exception.o: /usr/include/setjmp.h /usr/include/features.h
+test-Exception.o: /usr/include/sys/cdefs.h /usr/include/bits/wordsize.h
+test-Exception.o: /usr/include/gnu/stubs.h /usr/include/gnu/stubs-64.h
+test-Exception.o: /usr/include/bits/setjmp.h /usr/include/bits/sigset.h
+test-Exception.o: /usr/include/signal.h /usr/include/bits/types.h
+test-Exception.o: /usr/include/bits/typesizes.h /usr/include/bits/signum.h
+test-Exception.o: /usr/include/time.h /usr/include/bits/siginfo.h
+test-Exception.o: /usr/include/bits/sigaction.h
+test-Exception.o: /usr/include/bits/sigcontext.h /usr/include/bits/sigstack.h
+test-Exception.o: /usr/include/bits/pthreadtypes.h
+test-Exception.o: /usr/include/bits/sigthread.h
+test-Exception.o: /usr/include/unittest++/CheckMacros.h
+test-Exception.o: /usr/include/unittest++/Checks.h
+test-Exception.o: /usr/include/unittest++/MemoryOutStream.h
+test-Exception.o: /usr/include/unittest++/AssertException.h
+test-Exception.o: /usr/include/unittest++/TestRunner.h
+test-Exception.o: /usr/include/unittest++/TimeConstraint.h
+test-Exception.o: /usr/include/unittest++/TimeHelpers.h
+test-Exception.o: /usr/include/unittest++/Posix/TimeHelpers.h
+test-Exception.o: /usr/include/sys/time.h /usr/include/bits/time.h
+test-Exception.o: /usr/include/sys/select.h /usr/include/bits/select.h
+test-Exception.o: ../src/Exception.hpp
 test-Fog.o: /usr/include/unittest++/UnitTest++.h
 test-Fog.o: /usr/include/unittest++/Config.h /usr/include/unittest++/Test.h
 test-Fog.o: /usr/include/unittest++/TestDetails.h
@@ -379,7 +409,7 @@ test-Image2D.o: /usr/include/sys/time.h /usr/include/bits/time.h
 test-Image2D.o: /usr/include/sys/select.h /usr/include/bits/select.h
 test-Image2D.o: ../src/Image2D.hpp ../src/Object3D.hpp /usr/include/GL/glew.h
 test-Image2D.o: /usr/include/GL/glu.h /usr/include/GL/gl.h ../src/m3gdef.hpp
-test-Image2D.o: ../src/m3ginternal.hpp ../src/m3gexcept.hpp
+test-Image2D.o: ../src/m3ginternal.hpp
 test-IndexBuffer.o: /usr/include/unittest++/UnitTest++.h
 test-IndexBuffer.o: /usr/include/unittest++/Config.h
 test-IndexBuffer.o: /usr/include/unittest++/Test.h
@@ -550,7 +580,7 @@ test-Material.o: /usr/include/sys/select.h /usr/include/bits/select.h
 test-Material.o: ../src/Material.hpp ../src/Object3D.hpp
 test-Material.o: /usr/include/GL/glew.h /usr/include/GL/glu.h
 test-Material.o: /usr/include/GL/gl.h ../src/m3gdef.hpp
-test-Material.o: ../src/m3ginternal.hpp ../src/m3gexcept.hpp
+test-Material.o: ../src/m3ginternal.hpp
 test-Matrix.o: /usr/include/unittest++/UnitTest++.h
 test-Matrix.o: /usr/include/unittest++/Config.h
 test-Matrix.o: /usr/include/unittest++/Test.h
@@ -859,7 +889,7 @@ test-Texture2D.o: /usr/include/GL/glu.h /usr/include/GL/gl.h
 test-Texture2D.o: ../src/Transformable.hpp ../src/Object3D.hpp
 test-Texture2D.o: ../src/m3gdef.hpp ../src/m3ginternal.hpp
 test-Texture2D.o: ../src/Quaternion.hpp ../src/Transform.hpp
-test-Texture2D.o: ../src/Matrix.hpp ../src/Image2D.hpp ../src/m3gexcept.hpp
+test-Texture2D.o: ../src/Matrix.hpp ../src/Image2D.hpp
 test-Transform.o: /usr/include/unittest++/UnitTest++.h
 test-Transform.o: /usr/include/unittest++/Config.h
 test-Transform.o: /usr/include/unittest++/Test.h

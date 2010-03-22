@@ -3,7 +3,7 @@
 #include "SkinnedMesh.hpp"
 #include "VertexArray.hpp"
 #include "VertexBuffer.hpp"
-#include "IndexBuffer.hpp"
+#include "TriangleStripArray.hpp"
 #include "Appearance.hpp"
 #include "Group.hpp"
 #include "Bone.hpp"
@@ -14,18 +14,21 @@ using namespace m3g;
 TEST (SkinnedMesh_default_variables)
 {
   VertexBuffer* vbuf    = new VertexBuffer;
-  IndexBuffer* ibuf[2]  = {new IndexBuffer, new IndexBuffer};
+  int indices[] = {0,1,2};
+  int strips[] = {3};
+  TriangleStripArray* tris[2] = {new TriangleStripArray (indices, 1, strips),
+                                  new TriangleStripArray (indices, 1, strips)};
   Appearance*  app[2]   = {new Appearance, new Appearance};
   Group*       skeleton = new Group;
-  SkinnedMesh* mesh     = new SkinnedMesh (vbuf, 2, ibuf, 2, app, skeleton);
+  SkinnedMesh* mesh     = new SkinnedMesh (vbuf, 2, (IndexBuffer**)tris, 2, app, skeleton);
 
 
   CHECK_EQUAL (OBJTYPE_SKINNED_MESH, mesh->getObjectType());
   CHECK_EQUAL (skeleton, mesh->getSkeleton());
 
   delete vbuf;
-  delete ibuf[0];
-  delete ibuf[1];
+  delete tris[0];
+  delete tris[1];
   delete app[0];
   delete app[1];
   delete skeleton;
@@ -35,14 +38,16 @@ TEST (SkinnedMesh_default_variables)
 TEST (SkinnedMesh_addTransform)
 {
   VertexBuffer* vbuf    = new VertexBuffer;
-  IndexBuffer* ibuf     = new IndexBuffer;
+  int indices[] = {0,1,2};
+  int strips[] = {3};
+  TriangleStripArray* tris = new TriangleStripArray (indices, 1, strips);
   Appearance*  app      = new Appearance;
   Group*       root   = new Group;
   root->translate (0,0,2);
   Group*       bone_1 = new Group;
   bone_1->translate (0,3,0);
   root->addChild (bone_1);
-  SkinnedMesh* mesh     = new SkinnedMesh (vbuf, ibuf, app, root);
+  SkinnedMesh* mesh     = new SkinnedMesh (vbuf, tris, app, root);
 
   root->Transformable::print(cout);
 
@@ -106,10 +111,12 @@ TEST (SkinnedMesh_getBoneVertices_1)
   float scale = 1;
   float bias[3] = {0,0,0};
   vbuf->setPositions (positions, scale, bias);
-  IndexBuffer* ibuf     = new IndexBuffer;
+  int tri_indices[] = {0,1,2};
+  int strips[] = {3};
+  TriangleStripArray* tris = new TriangleStripArray (tri_indices, 1, strips);
   Appearance*  app      = new Appearance;
   Group*       root   = new Group;
-  SkinnedMesh* mesh     = new SkinnedMesh (vbuf, ibuf, app, root);
+  SkinnedMesh* mesh     = new SkinnedMesh (vbuf, tris, app, root);
 
   mesh->addTransform (root, 2, 0, 10);
 
@@ -148,12 +155,14 @@ TEST (SkinnedMesh_getBoneVertices_2)
   float scale = 1;
   float bias[3] = {0,0,0};
   vbuf->setPositions (positions, scale, bias);
-  IndexBuffer* ibuf     = new IndexBuffer;
+  int tri_indices[] = {0,1,2};
+  int strips[] = {3};
+  TriangleStripArray* tris = new TriangleStripArray (tri_indices, 1, strips);
   Appearance*  app      = new Appearance;
   Group*       root   = new Group;
   Group*       bone_1   = new Group;
   root->addChild (bone_1);
-  SkinnedMesh* mesh     = new SkinnedMesh (vbuf, ibuf, app, root);
+  SkinnedMesh* mesh     = new SkinnedMesh (vbuf, tris, app, root);
 
   mesh->addTransform (root, 1, 0, 6);
   mesh->addTransform (bone_1, 2, 4, 6);

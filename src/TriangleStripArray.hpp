@@ -1,6 +1,8 @@
 #ifndef __TRIANGLE_STRIP_ARRAY_HPP__
 #define __TRIANGLE_STRIP_ARRAY_HPP__
 
+#include <unittest++/UnitTest++.h>
+
 #include "IndexBuffer.hpp"
 #include <iosfwd>
 
@@ -12,6 +14,8 @@ namespace m3g {
    */
   class TriangleStripArray : public IndexBuffer
   {
+    friend class UnitTest::Test;
+
   public:
     /**
      * @~English  Constructs a triangle strip array with explicit indices.
@@ -33,6 +37,18 @@ namespace m3g {
     virtual ~TriangleStripArray ();
 
     /**
+     * @~English  Returns the number of indices in this buffer.
+     * @~Japanese このバッファーのインデックスの数を取得.
+     */
+    virtual int getIndexCount () const;
+
+    /**
+     * @~English  Retrieves vertex indices for the rendering primitives stored in this buffer.
+     * @~Japanese このバッファーに収納されているインデックスを取得する.
+     */
+    virtual void getIndices (int* indices);
+
+    /**
      * @~English  Print out information of this object, for debug only.
      * @~Japanese このTriangleStripArrayクラスの情報を表示する。デバッグ用の関数.
      */
@@ -46,10 +62,13 @@ namespace m3g {
     virtual void render (int pass, int index=0) const;
 
 
-  PRIVATE:
+  private:
+    int*             indices;
     std::vector<int> strips;
-  };
 
+    GLuint ibuf;
+  };
+  
 
 } // namespace m3g {
 

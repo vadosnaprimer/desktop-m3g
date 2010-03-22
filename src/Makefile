@@ -44,7 +44,7 @@ Appearance.o: PolygonMode.hpp Texture2D.hpp Transformable.hpp Quaternion.hpp
 Appearance.o: Transform.hpp Matrix.hpp Exception.hpp
 Background.o: Background.hpp Object3D.hpp /usr/include/GL/glew.h
 Background.o: /usr/include/GL/glu.h /usr/include/GL/gl.h m3gdef.hpp
-Background.o: m3ginternal.hpp Image2D.hpp AnimationTrack.hpp
+Background.o: m3ginternal.hpp Image2D.hpp Exception.hpp AnimationTrack.hpp
 Background.o: AnimationController.hpp KeyframeSequence.hpp Keyframe.hpp
 Bone.o: Bone.hpp Matrix.hpp Group.hpp Node.hpp Transformable.hpp Object3D.hpp
 Bone.o: /usr/include/GL/glew.h /usr/include/GL/glu.h /usr/include/GL/gl.h
@@ -142,10 +142,42 @@ Transformable.o: /usr/include/GL/glu.h /usr/include/GL/gl.h m3gdef.hpp
 Transformable.o: m3ginternal.hpp Quaternion.hpp Transform.hpp Matrix.hpp
 Transformable.o: Exception.hpp AnimationTrack.hpp AnimationController.hpp
 Transformable.o: KeyframeSequence.hpp Keyframe.hpp
-TriangleStripArray.o: TriangleStripArray.hpp IndexBuffer.hpp
-TriangleStripArray.o: /usr/include/GL/glew.h /usr/include/GL/glu.h
-TriangleStripArray.o: /usr/include/GL/gl.h Object3D.hpp m3gdef.hpp
-TriangleStripArray.o: m3ginternal.hpp Exception.hpp
+TriangleStripArray.o: TriangleStripArray.hpp
+TriangleStripArray.o: /usr/include/unittest++/UnitTest++.h
+TriangleStripArray.o: /usr/include/unittest++/Config.h
+TriangleStripArray.o: /usr/include/unittest++/Test.h
+TriangleStripArray.o: /usr/include/unittest++/TestDetails.h
+TriangleStripArray.o: /usr/include/unittest++/TestList.h
+TriangleStripArray.o: /usr/include/unittest++/TestSuite.h
+TriangleStripArray.o: /usr/include/unittest++/TestResults.h
+TriangleStripArray.o: /usr/include/unittest++/TestMacros.h
+TriangleStripArray.o: /usr/include/unittest++/Posix/SignalTranslator.h
+TriangleStripArray.o: /usr/include/setjmp.h /usr/include/features.h
+TriangleStripArray.o: /usr/include/sys/cdefs.h /usr/include/bits/wordsize.h
+TriangleStripArray.o: /usr/include/gnu/stubs.h /usr/include/gnu/stubs-64.h
+TriangleStripArray.o: /usr/include/bits/setjmp.h /usr/include/bits/sigset.h
+TriangleStripArray.o: /usr/include/signal.h /usr/include/bits/types.h
+TriangleStripArray.o: /usr/include/bits/typesizes.h
+TriangleStripArray.o: /usr/include/bits/signum.h /usr/include/time.h
+TriangleStripArray.o: /usr/include/bits/siginfo.h
+TriangleStripArray.o: /usr/include/bits/sigaction.h
+TriangleStripArray.o: /usr/include/bits/sigcontext.h
+TriangleStripArray.o: /usr/include/bits/sigstack.h
+TriangleStripArray.o: /usr/include/bits/pthreadtypes.h
+TriangleStripArray.o: /usr/include/bits/sigthread.h
+TriangleStripArray.o: /usr/include/unittest++/CheckMacros.h
+TriangleStripArray.o: /usr/include/unittest++/Checks.h
+TriangleStripArray.o: /usr/include/unittest++/MemoryOutStream.h
+TriangleStripArray.o: /usr/include/unittest++/AssertException.h
+TriangleStripArray.o: /usr/include/unittest++/TestRunner.h
+TriangleStripArray.o: /usr/include/unittest++/TimeConstraint.h
+TriangleStripArray.o: /usr/include/unittest++/TimeHelpers.h
+TriangleStripArray.o: /usr/include/unittest++/Posix/TimeHelpers.h
+TriangleStripArray.o: /usr/include/sys/time.h /usr/include/bits/time.h
+TriangleStripArray.o: /usr/include/sys/select.h /usr/include/bits/select.h
+TriangleStripArray.o: IndexBuffer.hpp /usr/include/GL/glew.h
+TriangleStripArray.o: /usr/include/GL/glu.h /usr/include/GL/gl.h Object3D.hpp
+TriangleStripArray.o: m3gdef.hpp m3ginternal.hpp Exception.hpp
 Vector.o: Vector.hpp Exception.hpp
 VertexArray.o: VertexArray.hpp /usr/include/GL/glew.h /usr/include/GL/glu.h
 VertexArray.o: /usr/include/GL/gl.h Object3D.hpp m3gdef.hpp m3ginternal.hpp

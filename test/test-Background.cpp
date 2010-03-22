@@ -2,7 +2,6 @@
 #include <iostream>
 #include "Background.hpp"
 #include "Image2D.hpp"
-#include "m3gexcept.hpp"
 using namespace std;
 using namespace m3g;
 

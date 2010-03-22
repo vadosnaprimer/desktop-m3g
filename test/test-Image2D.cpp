@@ -1,7 +1,7 @@
 #include <unittest++/UnitTest++.h>
 #include <iostream>
 #include "Image2D.hpp"
-#include "m3gexcept.hpp"
+#include "Exception.hpp"
 using namespace std;
 using namespace m3g;
 
@@ -51,9 +51,9 @@ TEST (Image2D_default_variables_2)
     Image2D* img = new Image2D (Image2D::ALPHA, 64, 48, buf, pallet);
     img->getWidth();
   } 
-  catch (domain_error& e) {
+  catch (NotImplementedException& e) {
     // Palleted image is not supported.
-    // it will raise domain_error.
+    // it will raise NotImplementedException
   }
 }
 

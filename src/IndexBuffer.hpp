@@ -33,13 +33,14 @@ namespace m3g {
      * @~English  Returns the number of indices in this buffer.
      * @~Japanese このバッファーのインデックスの数を取得.
      */
-    int getIndexCount () const;
+    virtual int getIndexCount () const = 0;
 
     /**
      * @~English  Retrieves vertex indices for the rendering primitives stored in this buffer.
      * @~Japanese このバッファーに収納されているインデックスを取得する.
      */
-    void getIndices (int* indices);
+    virtual void getIndices (int* indices) = 0;
+
 
     /**
      * @~English  Print out information of this object, for only debug.
@@ -55,24 +56,21 @@ namespace m3g {
      */
     virtual void render (int pass, int index=0) const;
 
-  PROTECTED:
     /**
      * @~English  Allocate indices, for inner use.
      * @~Japanese インデックス配列を明示的に確保する.
      */
-    void setIndices (int num_index, int* indices);
+    // void setIndices (int num_index, int* indices);
+
     /**
      * @~English  Allocate indices, for inner use.
      * @~Japanese インデックス配列を暗黙的に確保する.
      */
-    void setIndices (int num_index, int first_index);
-
-
-  private:
-    int  index_count;
-    int* indices;
+    // void setIndices (int num_index, int first_index);
 
   private:
+    int    index_count;
+    int*   indices;
     GLuint ibuf;
   };
 
