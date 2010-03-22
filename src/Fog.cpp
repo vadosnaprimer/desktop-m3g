@@ -136,10 +136,7 @@ int Fog :: animate (int world_time)
     near = new_near;
   }
 
-  //cout << hex << "Fog: color = 0x" << color << dec << "\n";
-  //cout << "Fog: density = " << density << "\n";
-  //cout << "Fog: far = " << far << "\n";
-  //cout << "Fog: near = " << near << "\n";
+  //this->print (cout);
 
   return 0;
 }

@@ -126,7 +126,7 @@ TEST (KeyframeSequence_interpolate_linear_loop)
   float value;
 
   keyframe->getFrame (-50, &value);
-  CHECK_CLOSE (3, value, 0.00001);
+  CHECK_CLOSE (0, value, 0.00001);
 
   keyframe->getFrame (0, &value);
   CHECK_CLOSE (0, value, 0.00001);

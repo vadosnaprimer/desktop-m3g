@@ -3,6 +3,7 @@
 
 namespace m3g {
 
+  /*
 #ifdef NDEBUG
 #define PROTECTED protected
 #define PRIVATE   private
@@ -10,7 +11,7 @@ namespace m3g {
 #define PROTECTED public
 #define PRIVATE   public
 #endif
-
+  */
 
 /**
  * このライブラリで許容できる誤差の指定.
@@ -32,7 +33,7 @@ namespace m3g {
   /**
    *
    */
-const char* objtype_to_string(int objtype);
+  //const char* objtype_to_string(int objtype);
 
 
 } // namespace m3g {

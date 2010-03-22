@@ -137,6 +137,8 @@ void KeyframeSequence:: setValidRange (int first, int last)
 
 void KeyframeSequence:: getFrame (int local_time, float* value) const
 {
+  //cout << "KeyframeSequence: local_time=" << local_time  << ", value = " << value << "\n";
+
   if (value == NULL) {
     throw NullPointException (__FILE__, __func__, "Value is NULL.");
   }
@@ -145,6 +147,9 @@ void KeyframeSequence:: getFrame (int local_time, float* value) const
   }
   if (valid_range.first > valid_range.last) {
     throw NotImplementedException (__FILE__, __func__, "Sorry, frist>last(inverse animation) is not yet implemented, first=%d, last=%d.", valid_range.first, valid_range.last);
+  }
+  if (duration <= 0) {
+    throw IllegalArgumentException (__FILE__, __func__, "Duraion is invalid, duration=%d.", duration);
   }
 
   int first = valid_range.first;
@@ -163,6 +168,9 @@ void KeyframeSequence:: getFrame (int local_time, float* value) const
   //cout << "duration = " << duration << "\n";
 
   if (repeat_mode == LOOP) {
+    local_time %= duration;
+  }
+  /*
     while (local_time < 0) {
       local_time += duration;
     }
@@ -170,6 +178,7 @@ void KeyframeSequence:: getFrame (int local_time, float* value) const
       local_time -= duration;
     }
   }
+  */
 
   if (local_time <= keyframes[first].time) {
     for (int i = 0; i < component_count; i++) {
