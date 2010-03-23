@@ -75,11 +75,7 @@ TriangleStripArray:: ~TriangleStripArray ()
 
 int TriangleStripArray:: getIndexCount () const
 {
-  int index_count = 0;
-  for (int i = 0; i < (int)strips.size(); i++) {
-    index_count += strips[i];
-  }
-  return index_count;
+  return accumulate (strips.begin(), strips.end(), 0);
 }
 
 void TriangleStripArray:: getIndices (int* indices_)
