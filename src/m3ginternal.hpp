@@ -33,7 +33,7 @@ namespace m3g {
   /**
    *
    */
-  //const char* objtype_to_string(int objtype);
+  const char* objtype_to_string(int objtype);
 
 
 } // namespace m3g {

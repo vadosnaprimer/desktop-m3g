@@ -24,7 +24,7 @@
 #include "parse-VertexBuffer.hpp"
 #include "../m3gdef.hpp"
 #include "../m3ginternal.hpp"
-#include "../m3gexcept.hpp"
+#include "../Exception.hpp"
 using namespace m3g;
 using namespace std;
 
@@ -36,19 +36,19 @@ M3GParser:: M3GParser (const char* name) :
   total_file_size(0), approximate_size(0)
 {
   if (name == NULL) {
-    throw null_point_error ("Specified file name is NULL.");
+    throw NullPointException (__FILE__, __func__, "File name is NULL.");
   }
  
    ifs = new ifstream (name);
    if (!ifs) {
-     throw io_error ("Can't open file.");
+     throw IOException (__FILE__, __func__, "Can't open file, name=%s.", name);
    }
 
     char ident[12];
     ifs->read ((char*)&ident, 12);
 
     if (memcmp(ident, m3g_ident, 12) != 0) {
-     throw io_error ("Specified file is not m3g format.");
+      throw IOException (__FILE__, __func__, "This file is not m3g format, name=%s.", name);
     }
 
     memset (authoring_field, 0, sizeof(authoring_field));

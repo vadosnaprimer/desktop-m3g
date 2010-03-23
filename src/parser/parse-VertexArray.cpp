@@ -2,7 +2,7 @@
 #include <iostream>
 #include "../VertexArray.hpp"
 #include "parse-Object3D.hpp"
-#include "../m3gexcept.hpp"
+#include "../Exception.hpp"
 using namespace std;
 using namespace m3g;
 
@@ -59,7 +59,7 @@ void parse_VertexArray (istrstream& iss, vector<Object3D*>& objs)
     //cout << "\n";
 
   } else {
-    throw domain_error ("Invalid component size is specified in m3g file.");
+    throw InternalException (__FILE__, __func__, "Invalid component size is specified in m3g file.");
   }
 
   /*  

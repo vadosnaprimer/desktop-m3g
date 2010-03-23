@@ -5,7 +5,7 @@ using namespace m3g;
 
 const float m3g::M3G_EPSILON = std::numeric_limits<float>::epsilon()*100;
 
-/*
+
 const char* m3g::objtype_to_string(int objtype)
 {
   switch (objtype) {
@@ -36,4 +36,3 @@ const char* m3g::objtype_to_string(int objtype)
   default: return "Unknown";
   }
 }
-*/

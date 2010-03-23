@@ -2,14 +2,14 @@
 #include "parse-Object3D.hpp"
 #include "../Object3D.hpp"
 #include "../AnimationTrack.hpp"
-#include "../m3gexcept.hpp"
+#include "../Exception.hpp"
 using namespace std;
 using namespace m3g;
 
 void parse_Object3D (istrstream& iss, vector<Object3D*>& objs, Object3D* obj)
 {
   if (obj == NULL) {
-    throw null_point_error ("Object3D is NULL.");
+    throw NullPointException (__FILE__, __func__, "Object3D is NULL.");
   }
 
   unsigned int user_id;

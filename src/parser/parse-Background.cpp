@@ -3,7 +3,7 @@
 #include <vector>
 #include "../Background.hpp"
 #include "../Image2D.hpp"
-#include "../m3gexcept.hpp"
+#include "../Exception.hpp"
 #include "parse-Background.hpp"
 #include "parse-Object3D.hpp"
 using namespace std;

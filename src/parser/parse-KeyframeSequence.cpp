@@ -3,7 +3,7 @@
 #include <vector>
 #include <cstdlib>
 #include "../KeyframeSequence.hpp"
-#include "../m3gexcept.hpp"
+#include "../Exception.hpp"
 #include "parse-Object3D.hpp"
 using namespace std;
 using namespace m3g;
@@ -98,7 +98,7 @@ void parse_KeyframeSequence (istrstream& iss, vector<Object3D*>& objs)
     break;
   }
   default: {
-    throw domain_error ("Invalid encoding of KeyframeSequence.");
+    throw InternalException (__FILE__, __func__, "Invalid encoding of KeyframeSequence.");
   }
   }
 

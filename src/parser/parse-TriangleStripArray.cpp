@@ -1,16 +1,17 @@
 #include <strstream>
 #include <iostream>
 #include "../TriangleStripArray.hpp"
-#include "../m3gexcept.hpp"
-#include "parse-IndexBuffer.hpp"
+#include "../Exception.hpp"
+#include "parse-Object3D.hpp"
 using namespace std;
 using namespace m3g;
 
 void parse_TriangleStripArray (istrstream& iss, vector<Object3D*>& objs)
 {
-  IndexBuffer* dummy = new IndexBuffer;
-  parse_IndexBuffer (iss, objs, dummy);
+  Object3D* dummy = new Object3D;
+  parse_Object3D (iss, objs, dummy);
 
+  // ignore IndexBuffer.
 
   unsigned char encoding;
   iss.read ((char*)&encoding, 1);
@@ -63,7 +64,7 @@ void parse_TriangleStripArray (istrstream& iss, vector<Object3D*>& objs)
     break;
   }
   default: {
-    throw domain_error ("Unknown encoding format of TriangleStripArray.");
+    throw InternalException (__FILE__, __func__, "Unknown encoding format of TriangleStripArray.");
   }
   }
 

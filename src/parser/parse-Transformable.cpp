@@ -3,14 +3,14 @@
 #include "parse-Object3D.hpp"
 #include "parse-Transformable.hpp"
 #include "../Transformable.hpp"
-#include "../m3gexcept.hpp"
+#include "../Exception.hpp"
 using namespace std;
 using namespace m3g;
 
 void parse_Transformable (istrstream& iss, vector<Object3D*>& objs, Transformable* trans)
 {
   if (trans == NULL) {
-    throw null_point_error ("Transformabls is NULL.");
+    throw NullPointException (__FILE__, __func__, "Transformabls is NULL.");
   }
 
   parse_Object3D (iss, objs, trans);

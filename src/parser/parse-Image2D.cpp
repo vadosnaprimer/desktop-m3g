@@ -4,7 +4,7 @@
 #include <cstdlib>
 #include "../Image2D.hpp"
 #include "parse-Object3D.hpp"
-#include "../m3gexcept.hpp"
+#include "../Exception.hpp"
 using namespace std;
 using namespace m3g;
 
@@ -34,7 +34,7 @@ void parse_Image2D (istrstream& iss, vector<Object3D*>& objs)
     unsigned int palette_count;
     iss.read ((char*)&palette_count, 4);
     if (palette_count > 0) {
-      throw not_implemented_error ("Paletted texture is not supported.");
+      throw NotImplementedException (__FILE__, __func__, "Paletted texture is not supported.");
     }
 
     unsigned int pixels_count;

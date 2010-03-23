@@ -6,78 +6,35 @@
 using namespace std;
 using namespace m3g;
 
-
-static bool is_property_has_valid_component (int property, int component_count)
+static
+bool is_property_has_valid_component (int property, int component_count)
 {
   switch (property) {
-  case AnimationTrack:: ALPHA: {
-    return (component_count == 1) ? true : false;
-  }
-  case AnimationTrack:: AMBIENT_COLOR: {
-    return (component_count == 3) ? true : false;
-  }
-  case AnimationTrack::COLOR: {
-    return (component_count == 3) ? true : false;
-  }
-  case AnimationTrack:: CROP: {
-    return (component_count == 2 || component_count == 4) ? true : false;
-  }
-  case AnimationTrack:: DENSITY: {
-    return (component_count == 1) ? true : false;
-  }
-  case AnimationTrack:: DIFFUSE_COLOR: {
-    return (component_count == 3) ? true : false;
-  }
-  case AnimationTrack:: EMISSIVE_COLOR: {
-    return (component_count == 3) ? true : false;
-  }
-  case AnimationTrack:: FAR_DISTANCE: {
-    return (component_count == 1) ? true : false;
-  }
-  case AnimationTrack:: FIELD_OF_VIEW: {
-    return (component_count == 1) ? true : false;
-  }
-  case AnimationTrack:: INTENSITY: {
-    return (component_count == 1) ? true : false;
-  }
-  case AnimationTrack:: MORPH_WEIGHTS: {
-    // see M3G specification.
-    return true;
-  }
-  case AnimationTrack:: NEAR_DISTANCE: {
-    return (component_count == 1) ? true : false;
-  }
-  case AnimationTrack:: ORIENTATION: {
-    return (component_count == 4) ? true : false;
-  }
-  case AnimationTrack:: PICKABILITY: {
-    return (component_count == 1) ? true : false;
-  }
-  case AnimationTrack:: SCALE: {
-    return (component_count == 1 || component_count == 3) ? true : false;
-  }
-  case AnimationTrack:: SHININESS: {
-    return (component_count == 1) ? true : false;
-  }
-  case AnimationTrack:: SPECULAR_COLOR: {
-    return (component_count == 3) ? true : false;
-  }
-  case AnimationTrack:: SPOT_ANGLE: {
-    return (component_count == 1) ? true : false;
-  }
-  case AnimationTrack:: SPOT_EXPONENT: {
-    return (component_count == 1) ? true : false;
-  }
-  case AnimationTrack:: TRANSLATION: {
-    return (component_count == 3) ? true : false;
-  }
-  case AnimationTrack:: VISIBILITY: {
-    return (component_count == 1) ? true : false;
-  }
-  default:
-    throw InternalException (__FILE__, __func__, "Unknown property, property=%d", property);
+  case AnimationTrack:: ALPHA:         return (component_count == 1) ? true : false;
+  case AnimationTrack:: AMBIENT_COLOR: return (component_count == 3) ? true : false;
+  case AnimationTrack:: COLOR:         return (component_count == 3) ? true : false;
+  case AnimationTrack:: CROP:          return (component_count == 2 || component_count == 4) ? true : false;
+  case AnimationTrack:: DENSITY:       return (component_count == 1) ? true : false;
+  case AnimationTrack:: DIFFUSE_COLOR: return (component_count == 3) ? true : false;
+  case AnimationTrack:: EMISSIVE_COLOR:return (component_count == 3) ? true : false;
+  case AnimationTrack:: FAR_DISTANCE:  return (component_count == 1) ? true : false;
+  case AnimationTrack:: FIELD_OF_VIEW: return (component_count == 1) ? true : false;
+  case AnimationTrack:: INTENSITY:     return (component_count == 1) ? true : false;
+  case AnimationTrack:: MORPH_WEIGHTS: return true;
+  case AnimationTrack:: NEAR_DISTANCE: return (component_count == 1) ? true : false;
+  case AnimationTrack:: ORIENTATION:   return (component_count == 4) ? true : false;
+  case AnimationTrack:: PICKABILITY:   return (component_count == 1) ? true : false;
+  case AnimationTrack:: SCALE:         return (component_count == 1 || component_count == 3) ? true : false;
+  case AnimationTrack:: SHININESS:     return (component_count == 1) ? true : false;
+  case AnimationTrack:: SPECULAR_COLOR:return (component_count == 3) ? true : false;
+  case AnimationTrack:: SPOT_ANGLE:    return (component_count == 1) ? true : false;
+  case AnimationTrack:: SPOT_EXPONENT: return (component_count == 1) ? true : false;
+  case AnimationTrack:: TRANSLATION:   return (component_count == 3) ? true : false;
+  case AnimationTrack:: VISIBILITY:    return (component_count == 1) ? true : false;
+  default: throw InternalException (__FILE__, __func__, "Unknown property, property=%d", property);
   }
 }
+
 
 AnimationTrack:: AnimationTrack (KeyframeSequence* sequence_, int property_) :
   property(0), keyframe_sequence(0), animation_controller(0)

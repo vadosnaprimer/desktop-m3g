@@ -3,7 +3,7 @@
 #include <vector>
 #include "../Camera.hpp"
 #include "../Transform.hpp"
-#include "../m3gexcept.hpp"
+#include "../Exception.hpp"
 #include "parse-Node.hpp"
 using namespace std;
 using namespace m3g;
@@ -45,7 +45,7 @@ void parse_Camera (istrstream& iss, vector<Object3D*>& objs)
     iss.read ((char*)&far,  4);
     cam->setPerspective (fovy, aspect_ratio, near, far);
   } else {
-    throw domain_error ("Unknown camera type.");
+    throw InternalException (__FILE__, __func__, "Unknown camera type.");
   }
 
   objs.push_back (cam);

@@ -3,7 +3,7 @@
 #include "../Node.hpp"
 #include "parse-Transformable.hpp"
 #include "parse-Node.hpp"
-#include "../m3gexcept.hpp"
+#include "../Exception.hpp"
 using namespace std;
 using namespace m3g;
 
@@ -11,7 +11,7 @@ using namespace m3g;
 void parse_Node (istrstream& iss, vector<Object3D*>& objs, Node* node)
 {
   if (node == NULL) {
-    throw null_point_error ("Node is NULL.");
+    throw NullPointException (__FILE__, __func__, "Node is NULL.");
   }
 
   parse_Transformable (iss, objs, node);
