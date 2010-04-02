@@ -1,0 +1,88 @@
+
+\subsection{Object3D}
+
+Object3Dはシーンの構成要素（シーンオブジェクト）の基底となる抽象クラスです。
+全てのシーンの構成要素はこのクラスを継承します。
+
+\subsubsection{アニメーション}
+
+addAnimationTrack()メソッドでこのオブジェクトにアニメーションを追加します。
+
+\begin{verbatim}
+    virtual void addAnimationTrack (AnimationTrack* animation_track);
+\end{verbatim}
+
+引数には適切に設定されたAnimationTrackオブジェクトを渡します。
+アニメーショントラックのターゲットプロパティが、
+このオブジェクトに適応可能でなければいけません。
+
+既に設定したアニメーションを取り除くにはremoveAnimationTrack()メソッドを使います。
+
+\begin{verbatim}
+    void removeAnimationTrack (AnimationTrack* animation_track);
+\end{verbatim}
+
+引数には取り除きたいAnimationTrackオブジェクトを指定します。
+
+\subsubsection{ユーザーID}
+
+全てのシーンオブジェクトは任意のユーザーIDを持ちます。
+ユーザーIDの設定および解釈はライブラリの使用者の自由です。
+ユーザーIDの設定にはsetUserID()メソッドを使います。
+デフォルトは0です。
+
+\begin{verbatim}
+    void setUserID (int userID);
+\end{verbatim}
+
+現在設定されているのユーザーIDを取得するにはgetUerID()メソッドを使います。
+
+\begin{verbatim}
+    int getUserID () const;
+\end{verbatim}
+
+\subsubsection{ユーザーオブジェクト}
+
+全てのシーンオブジェクトは任意のユーザーオブジェクトを１つ持ちます。
+ユーザーオブジェクトはキー、バリューからなる任意のデータで、
+その設定と解釈はライブラリの使用者の自由です。
+この機能は現在実装されていません。
+
+ユーザーオブジェクトを設定するにはsetUserObject()メソッドを使います。
+
+\begin{verbatim}
+    void setUserObject (const char* name, void* value);
+\end{verbatim}
+
+第１引数にはキーとなる文字列を、第２引数には値となるデータを渡します。
+
+現在設定されているユーザーオブジェクトを取得するにはgetUserObject()メソッドを使います。
+
+\begin{verbatim}
+    void* getUserObject () const;
+\end{verbatim}
+
+
+\subsubsection{デバッグ表示}
+
+M3G非標準ですがシーンの構成要素を表すクラスは全てデバッグ用にのprint()メソッドを持ちます。
+print()メソッドはそのクラスの情報のみを表示するので、基底クラスの情報も表示したい場合は
+明示的に基底クラスの名前でprint()メソッドを修飾して呼び出してください。
+例えばMeshクラスで全ての情報を表示するには以下のように書きます。
+
+\begin{verbatim}
+mesh->print (cout);
+mesh->Node:: print (cout);
+mesh->Transformable:: print (cout);
+mesh->Object3D:: print (cout);
+\end{verbatim}
+
+
+
+
+\begin{verbatim}
+\end{verbatim}
+
+
+
+

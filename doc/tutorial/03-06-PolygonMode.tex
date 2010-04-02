@@ -1,6 +1,9 @@
 \subsection{ポリゴンモード}
 
 ポリゴンに関する種々の設定はPolygonModeクラスで行います。
+設定できる項目はOpenGLとほとんど同じワインディング、カリング、シェーディング他です。
+OpenGLにあるポリゴンの輪郭線描画モードはありません。
+ポリゴンは必ず塗りつぶします。
 
 \begin{verbatim}
 PolygonMode* pmode = new PolygonMode;
@@ -8,22 +11,25 @@ app->setPolygonMode (pmode);
 \end{verbatim}
 
 \subsubsection{ワインディング}
-ポリゴンの前面の判定基準をsetWinding()メソッドで行います。
+ポリゴンの表面の判定基準をsetWinding()メソッドで行います。
+ポリゴンの表裏はカリング処理で使用されます。
 
 \begin{verbatim}
 void 	setWinding (int mode)
 \end{verbatim}
 
 modeにはWINDING\_CCW, WINDING\_CWのうちから１つを選択します。
-それぞれ順に反時計回り、時計回りを表に設定します。
+それぞれ順に反時計回り、時計回りを''ポリゴンの表''と定義します。
 デフォルトはWINDING\_CCWです。
 
 現在のワインディングモードはgetWinding()メソッドで取得できます。
+
 \begin{verbatim}
 int 	getWinding () const
 \end{verbatim}
 
 \subsubsection{カリング}
+
 カリングの設定をsetCulling()メソッドで行います。
 
 \begin{verbatim}
@@ -32,7 +38,8 @@ void 	setCulling (int mode)
 
 modeにはCULL\_BACK, CULL\_FRONT, CULL\_NONEのうちから１つを指定します。
 それぞれ順に、背面カリング、前面カリング、カリング無しです。
-前面と背面の判定はワインディングの設定に寄ります。
+前面と背面の判定はワインディングの設定に依存します。
+デフォルトはCULLING\_BACKです。
 
 現在のカリングモードはgetCulling()メソッドで取得できます。
 
@@ -43,12 +50,16 @@ int 	getCulling () const
 
 \subsubsection{両面ポリゴン}
 
-ライティングの計算を両面行うか、片面のみ行うかの設定は
-setTwoSidedLightingEnable()メソッドで行います。
+setTwoSidedLightingEnable()メソッドは
+シェーディング計算を表面と裏面の両方で行うか表面のみで行うかを制御します。
 
 \begin{verbatim}
 void 	setTwoSidedLightingEnable (bool enable)
 \end{verbatim}
+
+典型的には背面カリングが有効なとき裏を向いたポリゴンは破棄されるので、
+シェーディングを行う必要はありません。
+デフォルトはenable=falseで、表面のみのシェーディングされます。
 
 現在の両面ライティングの設定はisTwoSidedLightingEnabled()メソッドで取得します。
 
@@ -64,8 +75,9 @@ bool 	isTwoSidedLightingEnabled () const
 void 	setShading (int mode)
 \end{verbatim}
 
-modenにはSHADE\_FLATまたはSHADE\_SMOOTHを指定します。
+modeにはSHADE\_FLATまたはSHADE\_SMOOTHを指定します。
 SHADE\_FLATはフラットシェーディング、SHDE\_SMMOTHはスムースシェーディングを行います。
+デフォルトはSHADE\_SMOOTHです。
 
 現在のシェーディングモードはgetShading()メソッドで取得できます。
 
@@ -76,9 +88,16 @@ int 	getShading () const
 
 \subsubsection{ローカルカメラライティング}
 
-ハードウェアによってはライティング計算の時のビューベクトルを簡易計算するものがあります。
-それの切り替えをsetLocalCameraLightingEnable()メソッデ行います。
-デフォルトは？？？デス。
+setLocalCameraLightingEnable()メソッドで
+鏡面反射の計算で視点位置をカメラの位置（ローカル）で行うか、無限遠方で行うかを選択します。
+カメラ位置を無視して無限遠方で計算した方が処理は軽くなります。
+Desktop-M3Gのデフォルトはenable=trueです。
+
+（注意）オリジナルのM3Gではデフォルトはenable=falseですが、
+現在デスクトップ用に売られているGPUではローカルカメラライティングは問題になりません。
+
+ローカルカメラライティングの設定は''ヒント''です。
+GPUによってはこれを無視する事があります。
 
 \begin{verbatim}
 void 	setLocalCameraLightingEnable (bool enable)
@@ -93,14 +112,20 @@ bool 	isLocalCameraLightingEnabled () const
 
 \subsubsection{透視変換補正}
 
-ハードウェアによっては透視変換補正を行わないものがあります。
-それの切り替えをsetLocalCameraLightingEnable()メソッドで行います。
+setPerspectiveCorrectionEnable()メソッドで色とテクスチャーの透視変換補正の有無を切り替えます。
+Desktop-M3Gのデフォルトはenable=trueです。
+
+（注意）オリジナルのM3Gではデフォルトはenable=falseですが、
+現在デスクトップ用に売られているGPUでは透視変換補正は問題になりません。
+
+透視変換補正の設定は''ヒント''です。
+GPUによってはこれを無視する事があります。
 
 \begin{verbatim}
-void 	setLocalCameraLightingEnable (bool enable)
+    void setPerspectiveCorrectionEnable (bool enable);
 \end{verbatim}
 
-現在の透視変換補正の設定はisPerspectiveCorrectionEnabled()メソッドで行います。
+現在の透視変換補正の設定はisPerspectiveCorrectionEnabled()メソッドで取得できます。
 
 \begin{verbatim}
 bool 	isPerspectiveCorrectionEnabled () const

@@ -1,14 +1,53 @@
 \subsection{スプライト}
 
-スプライトはSprite3Dクラスが扱います。
+Sprite3Dはシーンの構成ノードの1つで2D画像を表示されます。
 スプライトはスクリーン空間に表示される矩形領域です。
-シーンの構成要素としてWorldクラスに挿入されます。
+スプライトには後述のスケールドとアンスケールドの2種類があります。
 Desktop-M3Gではテクスチャーを張った板ポリゴンとして実装されています。
+インスタンス化した後Worldクラスに追加します。
+
 
 \begin{verbatim}
 Sprite3D* spr = new Sprite3D (false, img, app);
 wld->addChild (spr);
 \end{verbatim}
+
+コンストラクタの引数は第1引数がスケールド、アンスケールドのフラグで、
+第2引数がスプライト画像として使うImage2Dオブジェクトへのポインター、
+第3引数がアピアランスです。
+
+
+\subsubsection{スケールドスプライト}
+スプライトはコンストラクタでスケールド・スプライトとアンスケールドスプライトを選択します。
+スケールドは視点からの距離応じて大きさが変化するスプライトで、
+アンスケールドは距離にかかわらず常に一定サイズで表示されるスプライトです。
+
+現在のスケールド、アンスケールドはisScaled()メソッドを使って取得できます。
+
+\begin{verbatim}
+bool 	isScaled () const
+\end{verbatim}
+
+
+\subsubsection{スプライト画像}
+
+画像はコンストラクタでImage2Dオブジェクトを渡します。
+画像を差し替えるにはsetImage()メソッドを使います。
+
+\begin{verbatim}
+void 	setImage (Image2D *image)
+\end{verbatim}
+
+第1引数にはImage2Dオブジェクトを渡します。
+
+現在の画像はgetImage()メソッドで取得します。
+
+\begin{verbatim}
+Image2D * 	getImage () const
+\end{verbatim}
+
+\subsubsection{スプライトのアピアランス}
+
 
 setAppearance()メソッドでアピアランスをセットします。
 
@@ -21,30 +60,6 @@ void 	setAppearance (Appearance *appearance)
 Appearance * 	getAppearance () const
 \end{verbatim}
 
-setImage()メソッドで画像を設定します。
-
-\begin{verbatim}
-void 	setImage (Image2D *image)
-\end{verbatim}
-
-現在の画像はgetImage()メソッドで取得します。
-
-\begin{verbatim}
-Image2D * 	getImage () const
-\end{verbatim}
-
-
-
-\subsubsection{スケールドスプライト}
-スプライトはインスタンス化時にスケールドスプライトとアンスケールドスプライトを選択します。
-スケールドは視点からの距離応じて大きさが変化するスプライトで、
-アンスケールドは距離にかかわらず常に一定サイズで表示されるスプライトです。
-
-現在のスケールド、アンスケールドはisScaled()メソッドを使って取得できます。
-
-\begin{verbatim}
-bool 	isScaled () const
-\end{verbatim}
 
 
 \subsubsection{クロップ領域}

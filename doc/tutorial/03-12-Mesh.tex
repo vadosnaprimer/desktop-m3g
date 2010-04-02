@@ -4,7 +4,6 @@
 メッシュは頂点データを取り扱うVertexBufferクラスと
 面を定義するインデックス配列のIndexBufferクラス、材質を定義するAppearanceクラスを持ちます。
 
-ここに図
 
 \begin{verbatim}
 Mesh* msh = new Mesh (vertices, submeshes, indices, apps);
@@ -13,8 +12,8 @@ wld->addChild (msh);
 
 \subsubsection{コンストラクタ}
 
-頂点データと１つまたは複数のインデックス配列およびアピアランスを指定してインスタンス化します。
-１つのインデックス配列が１つのサブメッシュを定義します。
+頂点データと面を構成するインデックス配列およびアピアランスを指定してインスタンス化します。
+１つのインデックス配列が１つのサブメッシュを定義し、１つまたは複数のサブメッシュを同時に指定できます。
 
 \begin{verbatim}
  	Mesh (VertexBuffer *vertices, int num_submesh, IndexBuffer **submeshes, int num_appearance, Appearance **appearances)
@@ -27,11 +26,13 @@ wld->addChild (msh);
 int 	getSubmeshCount () const
 \end{verbatim}
 
-現在のインデックス配列を取得するにはgetIndexBuffer()メソッドを使います。
+現在のインデックス配列を取得するにはgetIndexBuffer()メソッドを使用します。
 
 \begin{verbatim}
 IndexBuffer * 	getIndexBuffer (int index) const
 \end{verbatim}
+
+引数のindexにはサブメッシュの番号を0から始まる整数値で指定します。
 
 現在の頂点データを取得するにはgetIndexBuffer()メソッドを使います。
 
@@ -46,13 +47,15 @@ NULLを指定するとデフォルトのアピアランスが使われます。
 void 	setAppearance (int index, Appearance *appearance)
 \end{verbatim}
 
-第１引数のindexにはサブメッシュのインデックスを指定します。
+第１引数のindexにはサブメッシュの番号を指定します。
+第2引数のappearanceにはセットしたいAppearaceオブジェクトを指定します。
+NULLを指定するとデフォルトのアピアランスが使われます。
 
-現在のアピアランスを取得します。
+サブメッシュに定義されているアピアランスを取得します。
 
 \begin{verbatim}
 Appearance * 	getAppearance (int index) const
 \end{verbatim}
 
-第１引数のindexにはサブメッシュのインデックスを指定します。
+第１引数のindexにはサブメッシュの番号を指定します。
 

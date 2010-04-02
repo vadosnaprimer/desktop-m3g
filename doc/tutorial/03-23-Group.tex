@@ -1,0 +1,64 @@
+\subsection{グループ}
+
+Groupはシーンを構成するノードの１つで、複数の子のノードを１つにまとめ
+シーンの階層構造を作成します。
+この階層構造はスキンアニメーションのスケルトンを構成するのにも使われます。
+Groupオブジェクトはインスタンス化した後WorldクラスにaddChild()します。
+
+\begin{verbatim}
+Group* grp = new Group;
+wld->addChild (grp);
+\end{verbatim}
+
+
+\subsubsection{子ノードの追加}
+
+Groupに子ノードを追加するにはaddChild()メソッドを使います。
+
+\begin{verbatim}
+    void addChild (Node* child);
+\end{verbatim}
+
+既に保持していた子ノードの順番はこのメソッドの呼び出しによって変わるかもしれません。
+既にどこかのGroupに属しているノードを追加する事はできません。
+またWorldクラスを追加する事はできません。
+
+現在このGroupオブジェクトが保持している子ノードの数を取得するには
+getChildCount()メソッドを使います。
+
+\begin{verbatim}
+    int getChildCount () const;
+\end{verbatim}
+
+現在このGroupオブジェクトが保持している子ノードを取得するには
+getChild()メソッドを使います。
+
+\begin{verbatim}
+    Node* getChild (int index) const;
+\end{verbatim}
+
+引数には0からgetChildCount()-1の間の番号を指定します。
+
+
+現在このGroupオブジェクトが保持している子ノードを削除するには
+removeChild()メソッドを使います。
+
+\begin{verbatim}
+    void removeChild (Node* child);
+\end{verbatim}
+
+引数には削除したい子ノードを指定します。
+指定された子ノードが存在しない場合単に何もしません。
+既に保持していた子ノードの順番はこのメソッドの呼び出しによって変わるかもしれません。
+
+\subsubsection{ピッキング}
+
+ピッキングを行います。現在この機能は未実装です。
+
+
+
+
+
+
+
+

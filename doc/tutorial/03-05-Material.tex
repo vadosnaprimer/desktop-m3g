@@ -1,28 +1,40 @@
 \subsection{マテリアル}
 
-Materialクラスはプリミティブの材質を制御します。
-ライティングはOpenGLと同じフォンモデルを利用します。
-Appearanceクラスにセットして使います。
+Materialクラスはプリミティブの反射特性を制御します。
+シェーディングにはOpenGLと同じフォンモデルを利用します。
+マテリアルはアピアランスの構成要素の１つでAppearanceのクラスにセットして使います。
 
 \begin{verbatim}
 Matrial* mat = new Matrial;
 app->setMaterial (mat);
 \end{verbatim}
 
+マテリアル特性は環境光(AMBIENT)、拡散光(DIFFUSE)、鏡面光(SPECULAR)、
+鏡面指数(SHININESS)、放射光(EMISSIVE)から構成されます。
+
 \subsubsection{カラーの設定}
-setColor()メソッドで各カラーを設定します。
-デフォルトは???です。
+setColor()メソッドで各特性のカラーを設定します。
 
 \begin{verbatim}
-void 	setColor (int target, int argb)
+void 	setColor (int target, int argb);
 \end{verbatim}
 
-targeteにはAMBIENT,DIFFUSE,EMISSIVE,SPECULARの中から１つを選択します。
-それぞれ環境色、拡散色、自己発光色、スペキュラー色に担当します。
-argbには設定する色を4byteで指定します。
-ライティングのモデルはOpenGLと同じフォンモデルです。
+第１引数のtargeteには変更したいマテリアル特性を環境光(AMBIENT)、拡散光(DIFFUSE)、鏡面光(SPECULAR)、放射光(EMISSIVE)の中から１つを選択します。
+第２引数のargbには設定する色を指定します。フォーマットは各１バイトでargbの順番です。
+α成分はDIFFUSEのみ有効でAMBIENT, SPECULAR, EMISSIVEの場合は無視されます。
 
-ここに式。
+\begin{verbatim}
+   int argb = (a << 24) | (r << 16) | (g << 8) | (b << 0);
+\end{verbatim}
+
+デフォルトは下記の通りです。
+
+\begin{tabular}{ll}
+  AMBIENT  & 0x00333333 \\
+  DIFFUSE  & 0xFFCCCCCC \\
+  SPECULAR & 0x00000000 \\
+  EMISSIVE & 0x00000000
+\end{tabular}
 
 現在のカラーはgetColor()メソッドで取得できます。
 
@@ -30,7 +42,10 @@ argbには設定する色を4byteで指定します。
 int 	getColor (int target) const 
 \end{verbatim}
 
-スペキュラーに関してはこのほかに指数部の係数をsetShininess()メソッドで指定します。
+引数のtargetには取得したいマテリアル特性を指定します。
+
+鏡面反射に関してはこのほかに指数部の係数をsetShininess()メソッドで指定します。
+デフォルトはshininess=0.0です。
 
 \begin{verbatim}
 void 	setShininess (float shininess)
@@ -39,11 +54,23 @@ void 	setShininess (float shininess)
 現在のshininessパラメーターはgetShininess()メソッドで取得できます。
 
 \begin{verbatim}
-float 	getShininess () const 
+float 	getShininess () const;
 \end{verbatim}
 
-頂点カラーを使う場合はsetVertexColorTrackingEnable()メソッドを使います。
+\subsubsection{バーテックスカラートラッキング}
+
+バーテックスカラートラッキングが有効な場合環境光(AMBIENT)と拡散光(DIFFUSE)は、
+VertexBufferで設定されたデフォルトカラーか（もしあるなら）頂点毎に設定された頂点カラーで置き換えられます。
+頂点カラーを使う場合はsetVertexColorTrackingEnable()メソッドを使って有効化します。
+デフォルトはenable=falseです。
+この機能は現在実装されていません。
 
 \begin{verbatim}
 void 	setVertexColorTrackingEnable (bool enable)
+\end{verbatim}
+
+現在のバーテックスカラートラッキングの設定はisVertexColorTrackingEnabled()メソッドで取得します。
+
+\begin{verbatim}
+bool isVertexColorTrackingEnabled () const;
 \end{verbatim}

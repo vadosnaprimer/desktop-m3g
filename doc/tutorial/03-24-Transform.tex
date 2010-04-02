@@ -1,0 +1,141 @@
+
+\subsection{トランスフォーム}
+
+Transformはトランスフォームを表す4x4行列を抽象化したクラスです。
+デフォルトは単位行列に設定されています。
+Transformオブジェクトは原則（ポインターではなく）参照で渡され、
+ライブラリ内部でコピーされます。
+
+Transformを表す4x4行列を取得するにはget()メソッドを使います。
+
+\begin{verbatim}
+    void get (float* matrix) const;
+\end{verbatim}
+
+引数のmatrixにはfloat16個分の領域へのポインターを渡します。
+行列は行優先(row-major)で格納されます。
+
+\begin{pmatrix}
+  0  & 1  & 2  & 3  \\
+  4  & 5  & 6  & 7  \\
+  8  & 9  & 10 & 11 \\
+  12 & 13 & 14 & 15
+\end{matrix}
+
+明示的に4x4行列を設定するにはset()メソッドを使います。
+
+\begin{verbatim}
+    void set (const float* matrix);
+    void set (const Transform& transform);
+\end{verbatim}
+
+引数には16個のfloat(row-major)で行列を指定するか、
+Transformオブジェクトを指定します。
+
+setIdentity()メソッドはこの4x4行列(M)を単位行列化します。
+
+\[ M = I \]
+
+\begin{verbatim}
+    void setIdentity ();
+\end{verbatim}
+
+invert()メソッドはこの4x4行列を逆行列化します。
+逆行列が計算できない場合は例外を発生します。
+
+\[ M' = M^-1 \]
+
+\begin{verbatim}
+    void invert ();
+\end{verbatim}
+
+
+transopose()メソッドはこの4x4行列を転置します。
+
+\[ M' = M^t \]
+
+
+\begin{verbatim}
+    void transpose ();
+\end{verbatim}
+
+postTranslate()メソッドは引数で指定された平行移動を表す4x4行列(T)を作成し、
+この4x4行列(M)に右から乗算します。
+
+\[ M' =  M T \]
+
+\begin{verbatim}
+    void postTranslate (float tx, float ty, float tz);
+\end{verbatim}
+
+引数には移動量(tx,ty,tz)を指定します。
+
+postRotate()メソッドは引数で指定された回転を表す4x4行列(R)を作成し、
+この4x4行列(M)に右から乗算します。
+
+\begin{verbatim}
+    void postRotate (float angle, float ax, float ay, float az);
+\end{verbatim}
+
+引数のangleには回転角度をdegreeで、ax,ay,azは回転軸(ax,zy,az)を指定します。
+回転軸のベクトルは単位ベクトルである必要はありません。
+
+postRotate()メソッドはクォータニオンで指定された回転を表す4x4行列(R)を作成し、
+この4x4行列(M)に右から乗算します。
+
+\[ M' =  M R \]
+
+\begin{verbatim}
+    void postRotateQuat (float qx, float qy, float qz, float qw);
+\end{verbatim}
+
+(qx,qy,qz)がクォータニオンの虚数成分で、qwが実数成分です。
+
+postScale()メソッドは引数で指定された拡大縮小を表す4x4行列(S)を作成し、
+この4x4行列(M)に右から乗算します。
+
+\[ M' =  M S \]
+
+\begin{verbatim}
+    void postScale (float sx, float sy, float sz);
+\end{verbatim}
+
+引数にはX,Y,Z軸方向の拡大縮小率を指定します。1.0が現状維持です。
+
+postMultiply()メソッドは引数で指定された4x4行列(T)を、
+この4x4行列(M)に右から乗算します。
+
+\[ M' =  M T \]
+
+\begin{verbatim}
+    void postMultiply (const Transform& transform);
+\end{verbatim}
+
+
+transform()メソッドはfloat4個で表されたベクトル(v)を、
+この4x4行列(M)を使って変換します。
+
+\[ v' = M v \]
+
+\begin{verbatim}
+    void transform (float* vectors) const;
+\end{verbatim}
+
+引数のvectorsは変換結果で上書きされます。
+
+
+またtransform()メソッドはVertexArrayオブジェクトの持つデータを
+一括してこの行列(M)で変換する事ができます。
+
+\begin{verbatim}
+void transform (VertexArray* in, float* out, bool w) const;
+\end{verbatim}
+
+
+第1引数inにはベクトルデータを、第2引数outには結果を書き込むfloatの領域を、
+第3引数wにはVertexArrayが4番目のコンポーネントを持たないときの補間方法をboolで指定します。
+w=trueのとき1で補完され,w=falseの時0で補完されます。
+2,3番目のコンポーネントが存在しないときは0で補完されます。
+
+
+

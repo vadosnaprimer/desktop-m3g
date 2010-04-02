@@ -7,8 +7,10 @@ Texuter2D¥¯¥é¥¹¤Î¥³¥ó¥¹¥È¥é¥¯¥¿¤ÇImage2D¥¯¥é¥¹¤Î¥Ý¥¤¥ó¥¿¡¼¤ò¼õ¤±¼è¤Ã¤Æ¥¤¥ó¥¹¥¿¥ó
 ¥Æ¥¯¥¹¥Á¥ã¡¼ÈÖ¹æ¤ò»ØÄê¤·¤ÆAppearance¥¯¥é¥¹¤Ë¥»¥Ã¥È¤·¤Þ¤¹¡£
 ¥Þ¥ë¥Á¥Æ¥¯¥¹¥Á¥ã¡¼¤ÎËç¿ô¤Î¾å¸Â¤Ï¼ÂÁõ°ÍÂ¸¤Ç¤¹¡£
 ¡Ê¥¯¥¨¥ê¡¼¤ÎÊýË¡¤â½ñ¤¯¡Ë
-¥Æ¥¯¥¹¥Á¥ã¡¼²èÁü¤Ë¤Ïjpeg¤Èpng¤¬»ÈÍÑ¤Ç¤­¤Þ¤¹¡£
+M3G¤Ç¤Ï¥Æ¥¯¥¹¥Á¥ã¡¼²èÁü¤Ëjpeg¤Èpng¤¬»ÈÍÑ¤Ç¤­¤Þ¤¹¡£
 ¸½ºß¤ÎDesktop-M3G¤Î¼ÂÁõ¤Ç¤Ïpng¤Î¤ß¥µ¥Ý¡¼¥È¤·¤Æ¤¤¤Þ¤¹¡£
+M3G¤Ç¤ÏOpenGL2.1¤òÍ×µá¤·¤Æ¤¤¤ë¤Î¤Ç¥Æ¥¯¥¹¥Á¥ã¡¼¥µ¥¤¥º¤Ï2¤Î³¬¾è¤Ç¤¢¤ëÉ¬Í×¤Ï¤¢¤ê¤Þ¤»¤ó¡£
+¤¿¤À¤·°ìÈÌÅª¤Ë¤ÏGPU¤Ï2¤Î³¬¾è¤Î¥µ¥¤¥º¤ÎÊý¤¬¹âÂ®¤Ç¤¹¡£
 
 \begin{verbatim}
 Image2D* img = new Image2D (IMAGE::RGBA, image.png);
@@ -16,10 +18,13 @@ Texture2D* tex = new Texture2D (img);
 app->setTexutre(0, tex);
 \end{verbatim}
 
+²èÁü¤ò¸å¤«¤éº¹¤·ÂØ¤¨¤ë¤Ë¤ÏsetImage()¥á¥½¥Ã¥É¤ò»È¤¤¤Þ¤¹¡£
 
 \begin{verbatim}
 void 	setImage (Image2D *image)
 \end{verbatim}
+
+¸½ºßÀßÄê¤µ¤ì¤Æ¤¤¤ë²èÁü¤ò¼èÆÀ¤¹¤ë¤Ë¤ÏgetImage()¥á¥½¥Ã¥É¤ò»È¤¤¤Þ¤¹¡£
 
 \begin{verbatim}
 Image2D * 	getImage () const
@@ -34,11 +39,21 @@ M3G¤Ç¤Ï¥ß¥Ã¥×¥Þ¥Ã¥×¤Ï¡ÊGPU¤¬ÂÐ±þ¤·¤Æ¤¤¤ì¤Ð¡Ë¾ï¤ËÍ­¸ú¤Ç¤¹¡£
 void 	setFiltering (int level_filter, int image_filter)
 \end{verbatim}
 
-°ú¿ô¤Îimage\_filter¤Ï²èÁüÆâ¤Î¥Õ¥£¥ë¥¿¡¼¤òFILTER\_NEAREST, FILTER\_LINEAR¤ÎÃæ¤«¤éÁªÂò¤·¤Þ¤¹¡£
+Âè1°ú¿ô¤Îimage\_filter¤Ï²èÁüÆâ¤Î¥Õ¥£¥ë¥¿¡¼¤òFILTER\_NEAREST, FILTER\_LINEAR¤ÎÃæ¤«¤éÁªÂò¤·¤Þ¤¹¡£
 FILTER¡²NEAREST¤ÏºÇ¶áËµ²èÁÇ¤ò¡¢FILTER\_LINEAR¤Ï¼þÊÕ4²èÁÇ¤òÀþ·ÁÊä´Ö¤·¤Þ¤¹¡£
-°ú¿ô¤Îlevel\_filter¤Ï¥ß¥Ã¥×¥Þ¥Ã¥×³¬ÁØ´Ö¤Î¥Õ¥£¥ë¥¿¡¼¤ò¡¢FILTER\_BASE, FILTER\_NEAREST, FILTER\_LINEAR¤ÎÃæ¤«¤éÁªÂò¤·¤Þ¤¹¡£
+Âè2°ú¿ô¤Îlevel\_filter¤Ï¥ß¥Ã¥×¥Þ¥Ã¥×³¬ÁØ´Ö¤Î¥Õ¥£¥ë¥¿¡¼¤ò¡¢FILTER\_BASE, FILTER\_NEAREST, FILTER\_LINEAR¤ÎÃæ¤«¤éÁªÂò¤·¤Þ¤¹¡£
 FILTER\_BASE¤Ï¾ï¤Ë¥ß¥Ã¥×¥Þ¥Ã¥×¥ì¥Ù¥ë0¤Î²èÁü¤ò»ÈÍÑ¤·¤Þ¤¹¡£
 ¤Ä¤Þ¤ê¥ß¥Ã¥×¥Þ¥Ã¥×½èÍý¤ò¹Ô¤¤¤Þ¤»¤ó¡£
+
+\begin{tabular}{llll}
+  \rowcolor[gray]{0.8} & ¥ì¥Ù¥ë¥Õ¥£¥ë¥¿¡¼ & ²èÁü¥Õ¥£¥ë¥¿¡¼ & ÀâÌÀ & Æ±Åù¤ÊOpenGL \\
+  BASE\_LEVEL & NEAREST & ¥Ù¡¼¥¹¥ì¥Ù¥ë¤ò¥Ý¥¤¥ó¥È¥µ¥ó¥×¥ê¥ó¥° & NEAREST \\
+  BASE\_LEVEL & LINEAR  & ¥Ù¡¼¥¹¥ì¥Ù¥ë¤ò¥Ð¥¤¥ê¥Ë¥¢¥µ¥ó¥×¥ê¥ó¥° & LINEAR \\
+  NEAREST     & NEAREST & 1ÈÖ¶á¤¤¥ß¥Ã¥×¥Þ¥Ã¥×¥ì¥Ù¥ë¤ò¥Ý¥¤¥ó¥È¥µ¥ó¥×¥ê¥ó¥° & NEAREST\_MIPMAP\_NEAREST \\
+  NEAREST     & LINEAR  & 1ÈÖ¶á¤¤¥ß¥Ã¥×¥Þ¥Ã¥×¥ì¥Ù¥ë¤ò¥Ð¥¤¥ê¥Ë¥¢¥µ¥ó¥×¥ê¥ó¥° & NEAREST\_MIPMAP\_NEAREST \\
+  LINEAR      & NEAREST & 2¤Ä¤Î¥ß¥Ã¥×¥Þ¥Ã¥×¥ì¥Ù¥ë¤ò¥Ý¥¤¥ó¥È¥µ¥ó¥×¥ê¥ó¥° & NEAREST\_MIPMAP\_LINEAR \\
+  LINEAR      & LINEAR & 2¤Ä¤Î¥ß¥Ã¥×¥Þ¥Ã¥×¥ì¥Ù¥ë¤ò¥Ð¥¤¥ê¥Ë¥¢¥µ¥ó¥×¥ê¥ó¥° & LINEAR\_MIPMAP\_LINEAR \\
+\end{tabular}
 
 ¸½ºß¤Î¥Æ¥¯¥¹¥Á¥ã¡¼¥Õ¥£¥ë¥¿¡¼¤ÏgetImageFilter()¥á¥½¥Ã¥É¤ÈgetLevelFilter()¥á¥½¥Ã¥É¤ò»È¤Ã¤Æ¼èÆÀ¤·¤Þ¤¹¡£
 
@@ -55,9 +70,8 @@ setWrapping()¥á¥½¥Ã¥É¤Ç¥Æ¥¯¥¹¥Á¥ã¡¼¤ÎÈÏ°Ï³°¥¢¥¯¥»¥¹¤Î·«¤êÊÖ¤·¥â¡¼¥É¤ò»ØÄê¤·¤Þ¤¹¡
 void 	setWrapping (int wrap_s, int wrap_t)
 \end{verbatim}
 
-²£(S)¤È½Ä(T)¤Ï¸ÄÊÌ¤Ë»ØÄê¤Ç¤­¡¢WRAP\_CLAMP, WRAP\_REPEAT¤«¤éÁªÂò¤·¤Þ¤¹¡£
-WRAP\_CLAMP¤ÏºÇ³°¼þ¥Ô¥¯¥»¥ë¤Ë¥¯¥é¥ó¥×¤µ¤ì¤Þ¤¹¡£WRAP\_REPAT¤Ï
-²èÁü¤¬¥¿¥¤¥ë¾õ¤Ë·«¤êÊÖ¤µ¤ì¤Þ¤¹¡£
+²£(S)¤È½Ä(T)¤Ï¸ÄÊÌ¤Ë»ØÄê¤Ç¤­¡¢¤½¤ì¤¾¤ìWRAP\_CLAMP, WRAP\_REPEAT¤«¤éÁªÂò¤·¤Þ¤¹¡£
+WRAP\_CLAMP¤ÏºÇ³°¼þ¥Ô¥¯¥»¥ë¤Ë¥¯¥é¥ó¥×¤µ¤ì¤Þ¤¹¡£WRAP\_REPAT¤Ï²èÁü¤¬¥¿¥¤¥ë¾õ¤Ë·«¤êÊÖ¤µ¤ì¤Þ¤¹¡£
 
 ¸½ºß¤Î·«¤êÊÖ¤·¥â¡¼¥É¤ÏgetWrappingS()¥á¥½¥Ã¥É¤ÈgetWrappingT()¥á¥½¥Ã¥É¤Ç¼èÆÀ¤Ç¤­¤Þ¤¹¡£
 
@@ -69,6 +83,7 @@ int 	getWrappingT () const
 \subsubsection{¥Ö¥ì¥ó¥Ç¥£¥ó¥°¥â¡¼¥É}
 
 setBlending()¥á¥½¥Ã¥É¤Ï¥Æ¥¯¥¹¥Á¥ã¡¼¥«¥é¡¼¤Î¥Ö¥ì¥ó¥É¤ÎÊýË¡¤ÎÀ©¸æÊýË¡¤òÀßÄê¤·¤Þ¤¹¡£
+¸½ºßRGB¥Õ¥©¡¼¥Þ¥Ã¥È¤ª¤è¤ÓRGBA¥Õ¥©¡¼¥Þ¥Ã¥È°Ê³°¤ÎÆ°ºî¤ò³ÎÇ§¤·¤Æ¤¤¤Þ¤»¤ó¡£
 
 \begin{verbatim}
 void 	setBlending (int func)
@@ -77,13 +92,24 @@ void 	setBlending (int func)
 °ú¿ô¤Îfunc¤Ë¤ÏFUNC\_ADD, FUNC\_BLEND, FUNC\_DECAL, FUNC\_REPLACE¤ÎÃæ¤«¤é1¤Ä¤òÁªÂò¤·¤Þ¤¹¡£
 
 \begin{tabular}{ll}
-  FUNC\_ADD     & ¤¢¤È¤Ç½ñ¤¯ \\
-  FUNC\_BLEND   & ¤¢¤È¤Ç½ñ¤¯ \\
-  FUNC\_DECAL   & ¤¢¤È¤Ç½ñ¤¯ \\
-  FUNC\_REPLACE & ¤¢¤È¤Ç½ñ¤¯
+  \rowcolor[gray]{0.8} & ¥Æ¥¯¥¹¥Á¥ã¡¼¥Õ¥©¡¼¥Þ¥Ã¥È & REPLACE & MODULATE & DECAL & BLEND & ADD \\
+  ALPHA     & C_v = C_f & C_v = C_f     & Ì¤ÄêµÁ & C_v = C_f                 & C_v = C_f        \\
+            & A_v = A_f & A_v = A_f     & Ì¤ÄêµÁ & A_v = A_f A_t             & A_v = A_f A_t \\
+
+  LUMINANCE & C_v = C_t & C_v = C_f C_t & Ì¤ÄêµÁ & C_v = C_f (1-C_t) + C_c C_t & C_v = C_f + C_t \\
+            & A_v = A_f & A_v = A_f     & Ì¤ÄêµÁ & A_v = A_f                  & A_v = A_f       \\
+
+  LUM\_ALPHA & C_v = C_t & C_v = C_f C_t & Ì¤ÄêµÁ & C_v = C_f (1-C_t) + C_c C_t & C_v = C_f + C_t \\
+            & A_v = A_f & A_v = A_f A_t  & Ì¤ÄêµÁ & A_v = A_f A_t              & A_v = A_f A_t     \\
+
+  RGB       & C_v = C_t & C_v = C_f C_t & C_v = C_t & C_v = C_f (1-C_t) + C_c C_t & C_v = C_f + C_t \\
+            & A_v = A_f & A_v = A_f     & A_v = A_f & A_v = A_f                  & A_v = A_f       \\
+
+  RGBA      & C_v = C_t & C_v = C_f C_t & C_v = C_t & C_v = C_f (1-C_t) + C_c C_t & C_v = C_f + C_t \\
+            & A_v = A_t & A_v = A_f A_t & A_v = A_f & A_v = A_f A_t               & A_v = A_f A_t      \\
 \end{tabular}
 
-¸½ºß¤Î¥Ö¥ì¥ó¥Ç¥£¥ó¥°ÊýË¡¤ÏgetBlending()¥á¥½¥Ã¥É¤Ç¼èÆÀ¤·¤Þ¤¹¡£
+¸½ºß¤Î¥Ö¥ì¥ó¥Ç¥£¥ó¥°¥â¡¼¥É¤ÏgetBlending()¥á¥½¥Ã¥É¤Ç¼èÆÀ¤·¤Þ¤¹¡£
 
 \begin{verbatim}
 int 	getBlending () const
@@ -92,10 +118,16 @@ int 	getBlending () const
 \subsubsection{¥Ö¥ì¥ó¥É¥«¥é¡¼}
 
 setBlendColor()¥á¥½¥Ã¥É¤Ï¥Ö¥ì¥ó¥Ç¥£¥ó¥°¥â¡¼¥ÉFUNC\_BLEND¤Ç»ÈÍÑ¤¹¤ë¥Ö¥ì¥ó¥É¥«¥é¡¼¤òÀßÄê¤·¤Þ¤¹¡£
-¡ÊÃí°Õ¡§¼ÂÁõ¤·Ëº¤ì¤¿¡ª¡Ë
+¸½ºß¤³¤Îµ¡Ç½¤Ï¼ÂÁõ¤µ¤ì¤Æ¤¤¤Þ¤»¤ó¡£
 
 \begin{verbatim}
 void 	setBlendColor (int rgb)
+\end{verbatim}
+
+°ú¿ô¤Î¥Ö¥ì¥ó¥É¥«¥é¡¼¤ÏRGB¥Õ¥©¡¼¥Þ¥Ã¥È¤Ç»ØÄê¤·¤Þ¤¹¡£
+
+\begin{verbatim}
+   int rgb = (r << 16) | (g << 8) | (a << 0);
 \end{verbatim}
 
 ¸½ºß¤Î¥Ö¥ì¥ó¥É¥«¥é¡¼¤ÏgetBlendColor()¥á¥½¥Ã¥É¤Ç¼èÆÀ¤Ç¤­¤Þ¤¹¡£

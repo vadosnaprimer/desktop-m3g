@@ -1,7 +1,7 @@
 \subsection{バックグラウンド}
 
-背景画像および色はBackgroundクラスで扱います。
-インスタンス化したBackgroundオブジェクトはWorldクラスのsetBackground()メソッドで登録します。
+背景の色および画像の設定はBackgroundクラスで扱います。
+インスタンス化したのちWorldクラスのsetBackground()メソッドで登録します。
 
 \begin{verbatim}
 Background* bg = new Background;
@@ -10,46 +10,63 @@ wld->setBackground (bg);
 
 \subsubsection{背景色}
 
-背景をクリアするかどうかの設定はsetColorClearEnable()メソッドで行います。
-デフォルトはenable=yesです。
+レンダリング前にフレームバッファーをクリアするかどうかの設定は
+setColorClearEnable()メソッドで行います。
+デフォルトはenable=yesで、黒色、透明(0,0,0,0)でクリアされます。
+
 \begin{verbatim}
 void 	setColorClearEnable (bool enable)
 \end{verbatim}
 
-同様にZバッファーのクリアはsetDepthClearEnable()メソッドで行います。
-デフォルトはenable=yesです。
-
-\begin{verbatim}
-void 	setDepthClearEnable (bool enable)
-\end{verbatim}
-
-現在のカラバッファーのクリアとデプスバッファーのクリアの状態は
-isColorClearEnabled(), isDepthClearEnabled()メソッドで取得できます。
+現在のカラバッファーのクリア設定は
+isColorClearEnabled()メソッドで取得できます。
 
 \begin{verbatim}
 bool 	isColorClearEnabled () const
+\end{verbatim}
+
+同様にZバッファーのクリアはsetDepthClearEnable()メソッドで行います。
+デフォルトはenable=yesで、Zバッファーの表現できる最大値でクリアされます。
+
+\begin{verbatim}
+void 	setDepthClearEnable (bool enable);
+\end{verbatim}
+
+現在のデプスバッファーのクリア設定は
+isDepthClearEnabled()メソッドで取得できます。
+
+\begin{verbatim}
 bool 	isDepthClearEnabled () const 
 \end{verbatim}
 
 背景色の設定はsetColor()メソッドで行います。
-デフォルトは黒色(0,0,0)です。
-（a有効だっけ？)
+背景画像が設定されていない場合はビューポート全体がこの色でクリアされます。
+画像が設定されていて繰り返しモードがBORDERの場合、画像の範囲外はこの色でクリアされます。
+デフォルトは黒色,透明(0,0,0,0)です。
 
 \begin{verbatim}
 void 	setColor (int argb)
 \end{verbatim}
 
+引数はargb形式で指定します。
+
+\begin{verbatim}
+ int argb = (a << 24) | (r << 16) | (g << 8) | (b << 0);
+\end{verbatim}
+
+
 \subsubsection{背景画像}
 
 背景を単一の色で塗りつぶす代わりに画像を使うにはsetImage()メソッドを使います。
-引数にはImage2Dオブジェクトを渡します。
 背景画像にはjpegかpngが利用できます。
 現在のDesktop-M3Gの実装ではpngのみサポートしています。
-デフォルトで背景画像はありません。
+デフォルトで背景画像は設定されていません。
 
 \begin{verbatim}
 void 	setImage (Image2D *image)
 \end{verbatim}
+
+引数のimageには画像を設定済みのImage2Dオブジェクトを渡します。
 
 設定した画像はgetImage()メソッドで取得できます。
 
@@ -57,20 +74,22 @@ void 	setImage (Image2D *image)
 Image2D * 	getImage () const 
 \end{verbatim}
 
-デフォルトでは指定した画像がビューポート全体に一枚絵として表示されます。
-setCrop()メソッドで画像のクロップ領域（画像から一部分を切り出す矩形）を
+デフォルトでは指定した画像がビューポート全体に拡大もしくは縮小されて表示されます。
+setCrop()メソッドで画像のクロップ領域（画像から一部分を切り出した矩形）を
 設定する事ができます。
 
 \begin{verbatim}
 void 	setCrop (int crop_x, int rop_y, int width, int height)
 \end{verbatim}
 
-クロップ領域はピクセルで起点(x,y)と(width,height)を指定します。
-座標は画像の左下が(0,0)で右上が(width-1,height-1)です。
-（これ本当？）
-例えば毎フレームクロップ領域を移動する事で背景画像をスクロールさせる事ができます。
-クロップ領域の指定は画像サイズ(0,0)〜(width-1,height-1)に限定されません。
+4つの引数はクロップ領域を指定します。
+(crop\_x,crop\_y)は画像の左上の点をピクセル単位で、
+(width,height)は大きさをピクセル単位で指定します。
+width,heightには0以上の値を指定します。
+クロップ領域の指定は画像サイズ(0,0)〜(image\_width-1,image\_height-1)に限定されません。
 画像サイズを超える領域を指定した場合の取り扱い方法はsetImageMode()メソッドで指定します。
+クロップ領域の使い方として例えば毎フレームクロップ領域を移動する事で背景画像を
+スクロールさせる事ができます。
 
 現在のクロップ領域はgetCropX(), getCropY(), getCropWidth(), 
 getCropHeight(),メソッドで取得します。
@@ -82,14 +101,19 @@ int 	getCropX () const
 int 	getCropY () const 
 \end{verbatim}
 
+setImageMode()メソッドは背景画像の繰り返しモードを設定します。
+
 \begin{verbatim}
 void 	setImageMode (int mode_x, int mode_y)
 \end{verbatim}
 
-有効なイメージモードはBORDERとREPEATです。X方向とY方向は別個に指定できます。
-BORDERは領域外は再外周部のピクセルを伸張して使います。
-REPEATは画像を繰り返します。画像を敷き詰めた仮想的なタイルから色を取得します。
-デフォルトは？？？です。
+引数のmode\_x, mode\_yにはそれぞれX方向とY方向の
+イメージモードをBORDERとREPEATの２つから選択します。
+X方向とY方向は独立して指定できます。
+BORDERは領域外を背景色で塗りつぶします。
+REPEATは領域外を画像を繰り返します。
+画像を敷き詰めた仮想的なタイルから色を取得します。
+デフォルトはX方向、Y方向共にBORDERです。
 
 現在のイメージモードはgetImageModeX(), getImageModeY()メソッドで取得します。
 

@@ -1,29 +1,54 @@
 \subsection{アピアランス}
 
-M3Gではオブジェクトの見え方に関するに設定を全てAppearanceクラスが保持します。
-AppearanceクラスはMaterial, Texture2D, PolygonMode, CompositingMode, Fogクラスを保持します。
-ここの設定はそれぞれのクラスの解説を参照してください。
+M3Gではオブジェクトの色、テクスチャー、コンポジット設定、フォグなど見え方に関する
+設定を全てまとめてアピアランス(Appearance)と呼びます。
+AppearanceクラスはMaterial, Texture2D, PolygonMode, CompositingMode, Fogクラスを
+構成要素として持つホルダーです。
 
-新しくクラスをセットするメソッドは以下の通りです。
+構成要素を新しくセットするメソッドは以下の通りです。
 何もセットしない場合は適当なデフォルトが使用されます。
 
 \begin{verbatim}
 void 	setCompositingMode (CompositingMode *compositingMode)
 void 	setFog (Fog *fog)
-void 	setLayer (int layer)
 void 	setMaterial (Material *material)
 void 	setPolygonMode (PolygonMode *polygonMode)
 void 	setTexture (int index, Texture2D *texture)
 \end{verbatim}
 
+テクスチャーのみマルチテクスチャーのためのテクスチャー番号の指定が必要です。
 現在設定されているクラスを取得するメソッドは以下の通りです。
 
 \begin{verbatim}
 CompositingMode * 	getCompositingMode () const
 Fog * 	getFog () const
-int 	getLayer () const
 Material * 	getMaterial () const
 PolygonMode * 	getPolygonMode () const
 Texture2D * 	getTexture (int index) const
+\end{verbatim}
+
+
+\subsubsection{レイヤー}
+
+M3Gでは描画はレイヤー順に行われます。すなわちレイヤー番号0に所属する
+メッシュ、スプライトが全て描画された後、レイヤー番号1のが描画されます。以下2,3,…と続きます。
+同じレイヤー内では半透明な物体より不透明な物体が先に描画さます。
+ここでいう不透明な物体とはCompositingModeのブレンディングモードがREPLACE（デフォルト）の物を指します。
+それ以外は全て不透明な物体として扱われます。
+
+現在この機能は実装されていません。描画順は保証されません。
+
+
+\begin{verbatim}
+void 	setLayer (int layer);
+\end{verbatim}
+
+引数のlayerにはレイヤー番号を0以上の整数値で指定します。
+デフォルトはlayer=0で、最高プライオリティです。
+
+現在所属するレイヤー番号はgetLayer()メソッドで取得します。
+
+\begin{verbatim}
+int 	getLayer () const
 \end{verbatim}
 

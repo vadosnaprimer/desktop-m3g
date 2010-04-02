@@ -1,0 +1,52 @@
+
+\subsection{トライアングルストリップ}
+
+TriangleStripArrayクラスはトライアングルストリップ形式で面を定義します。
+トライアングルストリップ形式の解説はOpenGLなどの解説書を参照してください。
+
+\subsubsection{コンストラクタ}
+
+TriangleStripArrayクラスのコンストラクタには２つの形式があります。
+1つ目はインデックスの配列とストリップ長を指定して作成する方法です。
+
+\begin{verbatim}
+    TriangleStripArray (int* indices, int num_strips, int* strips);
+\end{verbatim}
+
+第1引数のindicesにはインデックスの配列を指定ます。
+インデックスは頂点番号を示す整数値です。
+TriangleStripArrayクラスは複数のトライアングルストリップを同時に扱います。
+第2,第3引数にはストリップ長の配列とその配列長を指定します。
+TriangleStripArrayクラスは指定されたストリップ長毎にインデックスの配列を切り出し、
+ストリップとします。
+
+例えば、
+
+\begin{verbatim}
+    int indices{} = {3,4,5,10,11,12,13};
+    strips{}      = {3,4}
+    TriangleStripArray* tris = new TriangleStripArray (indices, 2, strips);
+\end{verbatim}
+
+はストリップ１(頂点番号3,4,5)とストリップ２（頂点番号10,11,12,13）を作成します。
+
+2つめの形式は最初のインデックス番号とストリップ長を指定して作成する方法です。
+
+
+\begin{verbatim}
+    TriangleStripArray (int first_index, int num_strips, int* strips);
+\end{verbatim}
+
+第1引数のfirst\_vertexには最初の頂点番号を指定します。
+第2,第3引数には同様にストリップ長の配列とその配列長を指定します。
+TriangleStripArrayクラスは指定されたストリップ長毎にfirst\_indexから順番に
+インクリメントしながらインデックス配列を作成しストリップとします。
+
+例えば、
+
+\begin{verbatim}
+    strips{}      = {3,4}
+    TriangleStripArray* tris = new TriangleStripArray (10, 2, strips);
+\end{verbatim}
+
+はストリップ１（頂点番号10,11,12）とストリップ２（頂点番号13,14,15,16）を作成します。
