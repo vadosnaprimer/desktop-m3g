@@ -1,38 +1,38 @@
 
-\subsection{トランスフォーム}
+\subsection{�ȥ�󥹥ե�����}
 
-Transformはトランスフォームを表す4x4行列を抽象化したクラスです。
-デフォルトは単位行列に設定されています。
-Transformオブジェクトは原則（ポインターではなく）参照で渡され、
-ライブラリ内部でコピーされます。
+Transform�ϥȥ�󥹥ե������ɽ��4x4�������ݲ��������饹�Ǥ���
+�ǥե���Ȥ�ñ�̹�������ꤵ��Ƥ��ޤ���
+Transform���֥������Ȥϸ�§�ʥݥ��󥿡��ǤϤʤ��˻��Ȥ��Ϥ��졢
+�饤�֥�������ǥ��ԡ�����ޤ���
 
-Transformを表す4x4行列を取得するにはget()メソッドを使います。
+Transform��ɽ��4x4������������ˤ�get()�᥽�åɤ�Ȥ��ޤ���
 
 \begin{verbatim}
     void get (float* matrix) const;
 \end{verbatim}
 
-引数のmatrixにはfloat16個分の領域へのポインターを渡します。
-行列は行優先(row-major)で格納されます。
+������matrix�ˤ�float16��ʬ���ΰ�ؤΥݥ��󥿡����Ϥ��ޤ���
+����Ϲ�ͥ��(row-major)�ǳ�Ǽ����ޤ���
 
-\begin{pmatrix}
+\[ \begin{pmatrix}
   0  & 1  & 2  & 3  \\
   4  & 5  & 6  & 7  \\
   8  & 9  & 10 & 11 \\
   12 & 13 & 14 & 15
-\end{matrix}
+\end{pmatrix} \]
 
-明示的に4x4行列を設定するにはset()メソッドを使います。
+����Ū��4x4��������ꤹ��ˤ�set()�᥽�åɤ�Ȥ��ޤ���
 
 \begin{verbatim}
     void set (const float* matrix);
     void set (const Transform& transform);
 \end{verbatim}
 
-引数には16個のfloat(row-major)で行列を指定するか、
-Transformオブジェクトを指定します。
+�����ˤ�16�Ĥ�float(row-major)�ǹ������ꤹ�뤫��
+Transform���֥������Ȥ���ꤷ�ޤ���
 
-setIdentity()メソッドはこの4x4行列(M)を単位行列化します。
+setIdentity()�᥽�åɤϤ���4x4����(M)��ñ�̹��󲽤��ޤ���
 
 \[ M = I \]
 
@@ -40,8 +40,8 @@ setIdentity()メソッドはこの4x4行列(M)を単位行列化します。
     void setIdentity ();
 \end{verbatim}
 
-invert()メソッドはこの4x4行列を逆行列化します。
-逆行列が計算できない場合は例外を発生します。
+invert()�᥽�åɤϤ���4x4�����չ��󲽤��ޤ���
+�չ��󤬷׻��Ǥ��ʤ������㳰��ȯ�����ޤ���
 
 \[ M' = M^-1 \]
 
@@ -50,7 +50,7 @@ invert()メソッドはこの4x4行列を逆行列化します。
 \end{verbatim}
 
 
-transopose()メソッドはこの4x4行列を転置します。
+transopose()�᥽�åɤϤ���4x4�����ž�֤��ޤ���
 
 \[ M' = M^t \]
 
@@ -59,8 +59,8 @@ transopose()メソッドはこの4x4行列を転置します。
     void transpose ();
 \end{verbatim}
 
-postTranslate()メソッドは引数で指定された平行移動を表す4x4行列(T)を作成し、
-この4x4行列(M)に右から乗算します。
+postTranslate()�᥽�åɤϰ����ǻ��ꤵ�줿ʿ�԰�ư��ɽ��4x4����(T)���������
+����4x4����(M)�˱�����軻���ޤ���
 
 \[ M' =  M T \]
 
@@ -68,20 +68,20 @@ postTranslate()メソッドは引数で指定された平行移動を表す4x4�
     void postTranslate (float tx, float ty, float tz);
 \end{verbatim}
 
-引数には移動量(tx,ty,tz)を指定します。
+�����ˤϰ�ư��(tx,ty,tz)����ꤷ�ޤ���
 
-postRotate()メソッドは引数で指定された回転を表す4x4行列(R)を作成し、
-この4x4行列(M)に右から乗算します。
+postRotate()�᥽�åɤϰ����ǻ��ꤵ�줿��ž��ɽ��4x4����(R)���������
+����4x4����(M)�˱�����軻���ޤ���
 
 \begin{verbatim}
     void postRotate (float angle, float ax, float ay, float az);
 \end{verbatim}
 
-引数のangleには回転角度をdegreeで、ax,ay,azは回転軸(ax,zy,az)を指定します。
-回転軸のベクトルは単位ベクトルである必要はありません。
+������angle�ˤϲ�ž���٤�degree�ǡ�ax,ay,az�ϲ�ž��(ax,zy,az)����ꤷ�ޤ���
+��ž���Υ٥��ȥ��ñ�̥٥��ȥ�Ǥ���ɬ�פϤ���ޤ���
 
-postRotate()メソッドはクォータニオンで指定された回転を表す4x4行列(R)を作成し、
-この4x4行列(M)に右から乗算します。
+postRotate()�᥽�åɤϥ��������˥���ǻ��ꤵ�줿��ž��ɽ��4x4����(R)���������
+����4x4����(M)�˱�����軻���ޤ���
 
 \[ M' =  M R \]
 
@@ -89,10 +89,10 @@ postRotate()メソッドはクォータニオンで指定された回転を表�
     void postRotateQuat (float qx, float qy, float qz, float qw);
 \end{verbatim}
 
-(qx,qy,qz)がクォータニオンの虚数成分で、qwが実数成分です。
+(qx,qy,qz)�����������˥���ε�����ʬ�ǡ�qw���¿���ʬ�Ǥ���
 
-postScale()メソッドは引数で指定された拡大縮小を表す4x4行列(S)を作成し、
-この4x4行列(M)に右から乗算します。
+postScale()�᥽�åɤϰ����ǻ��ꤵ�줿����̾���ɽ��4x4����(S)���������
+����4x4����(M)�˱�����軻���ޤ���
 
 \[ M' =  M S \]
 
@@ -100,10 +100,10 @@ postScale()メソッドは引数で指定された拡大縮小を表す4x4行列
     void postScale (float sx, float sy, float sz);
 \end{verbatim}
 
-引数にはX,Y,Z軸方向の拡大縮小率を指定します。1.0が現状維持です。
+�����ˤ�X,Y,Z�������γ���̾�Ψ����ꤷ�ޤ���1.0�������ݻ��Ǥ���
 
-postMultiply()メソッドは引数で指定された4x4行列(T)を、
-この4x4行列(M)に右から乗算します。
+postMultiply()�᥽�åɤϰ����ǻ��ꤵ�줿4x4����(T)��
+����4x4����(M)�˱�����軻���ޤ���
 
 \[ M' =  M T \]
 
@@ -112,8 +112,8 @@ postMultiply()メソッドは引数で指定された4x4行列(T)を、
 \end{verbatim}
 
 
-transform()メソッドはfloat4個で表されたベクトル(v)を、
-この4x4行列(M)を使って変換します。
+transform()�᥽�åɤ�float4�Ĥ�ɽ���줿�٥��ȥ�(v)��
+����4x4����(M)��Ȥä��Ѵ����ޤ���
 
 \[ v' = M v \]
 
@@ -121,21 +121,21 @@ transform()メソッドはfloat4個で表されたベクトル(v)を、
     void transform (float* vectors) const;
 \end{verbatim}
 
-引数のvectorsは変換結果で上書きされます。
+������vectors���Ѵ���̤Ǿ�񤭤���ޤ���
 
 
-またtransform()メソッドはVertexArrayオブジェクトの持つデータを
-一括してこの行列(M)で変換する事ができます。
+�ޤ�transform()�᥽�åɤ�VertexArray���֥������Ȥλ��ĥǡ�����
+��礷�Ƥ��ι���(M)���Ѵ���������Ǥ��ޤ���
 
 \begin{verbatim}
 void transform (VertexArray* in, float* out, bool w) const;
 \end{verbatim}
 
 
-第1引数inにはベクトルデータを、第2引数outには結果を書き込むfloatの領域を、
-第3引数wにはVertexArrayが4番目のコンポーネントを持たないときの補間方法をboolで指定します。
-w=trueのとき1で補完され,w=falseの時0で補完されます。
-2,3番目のコンポーネントが存在しないときは0で補完されます。
+��1����in�ˤϥ٥��ȥ�ǡ�������2����out�ˤϷ�̤�񤭹���float���ΰ��
+��3����w�ˤ�VertexArray��4���ܤΥ���ݡ��ͥ�Ȥ�����ʤ��Ȥ��������ˡ��bool�ǻ��ꤷ�ޤ���
+w=true�ΤȤ�1���䴰����,w=false�λ�0���䴰����ޤ���
+2,3���ܤΥ���ݡ��ͥ�Ȥ�¸�ߤ��ʤ��Ȥ���0���䴰����ޤ���
 
 
 

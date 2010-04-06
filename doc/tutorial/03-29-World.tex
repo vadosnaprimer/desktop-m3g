@@ -1,45 +1,45 @@
-\subsection{ワールド}
+\subsection{����}
 
-Worldクラスはシーンを構成する最上位のコンテナクラスです。
-Worldは他のノードの子になる事ができません。
-シーンはWorldオブジェクトをルートとする木構造です。
+World���饹�ϥ������������Ǿ�̤Υ���ƥʥ��饹�Ǥ���
+World��¾�ΥΡ��ɤλҤˤʤ�����Ǥ��ޤ���
+�������World���֥������Ȥ�롼�ȤȤ����ڹ�¤�Ǥ���
 
-WorldクラスをGraphics3Dクラスのrender()メソッドに渡す事で、
-そのシーンがレンダリングされます。
+World���饹��Graphics3D���饹��render()�᥽�åɤ��Ϥ����ǡ�
+���Υ����󤬥�����󥰤���ޤ���
 
 \begin{verbatim}
 World* wld = new World;
 g3d->render (wld);
 \end{verbatim}
 
-\subsubsection{カメラの設定}
+\subsubsection{����������}
 
-レンダリングするためにはsetActiveCamera()メソッドで
-カメラを１つアクティブ化する必要があります。
+������󥰤��뤿��ˤ�setActiveCamera()�᥽�åɤ�
+�����򣱤ĥ����ƥ��ֲ�����ɬ�פ�����ޤ���
 
 \begin{verbatim}
     void setActiveCamera (Camera* camera);
 \end{verbatim}
 
-カメラは事前にシーンノードとしてWorldに挿入されている必要があります。
-詳細はCameraクラスの説明をご覧ください。
+�����ϻ����˥�����Ρ��ɤȤ���World����������Ƥ���ɬ�פ�����ޤ���
+�ܺ٤�Camera���饹��������������������
 
-\subsubsection{背景の設定}
+\subsubsection{�طʤ�����}
 
-背景の設定はBackgroundクラスが行います。
-デフォルト以外の背景を使う場合はsetBackground()メソッドで設定します。
-詳細はBackgroundクラスの説明をご覧ください。
+�طʤ������Background���饹���Ԥ��ޤ���
+�ǥե���Ȱʳ����طʤ�Ȥ�����setBackground()�᥽�åɤ����ꤷ�ޤ���
+�ܺ٤�Background���饹��������������������
 
 \begin{verbatim}
     void setBackground (Background* background);
 \end{verbatim}
 
 
-\subsubsection{ノードの追加}
+\subsubsection{�Ρ��ɤ��ɲ�}
 
-シーンノードの追加にはaddChild()メソッドを使います。
-ただしaddChild()はWorldクラスの基底クラスであるGroupクラスで定義されたメソッドです。
-詳細はGroupクラスの説明をご覧ください。
+������Ρ��ɤ��ɲäˤ�addChild()�᥽�åɤ�Ȥ��ޤ���
+������addChild()��World���饹�δ��쥯�饹�Ǥ���Group���饹��������줿�᥽�åɤǤ���
+�ܺ٤�Group���饹��������������������
 
 \begin{verbatim}
     void addChild (Node* child);

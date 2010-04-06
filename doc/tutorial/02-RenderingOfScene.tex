@@ -18,9 +18,11 @@ M3Gには1行1行レンダリングコマンドを実行するimmediateモードと、
 になります。コードではこのようになります。
 
 \begin{quotation}
+\begin{verbatim}
 World* wld = new World;
 Graphics3D* g3d = Graphics3D::getInstance();
 g3d->render (wld);
+\end{verbatim}
 \end{quotation}
 
 Graphics3Dクラスはnew演算子でインスタンス化せずに専用のgetInstance()メソッドでインスタンス化します。
@@ -31,19 +33,23 @@ Graphics3Dクラスはnew演算子でインスタンス化せずに専用のgetInstance()メソッドでイ
 \subsection{カメラ}
 シーンにカメラオブジェクトを追加しアクティブにします。
 シーンには複数のカメラを設置できますが、同時にアクティブにできるのは1つだけです。
-コード例
+
 \begin{quotation}
+\begin{verbatim}
   Camera* cam = new Camera;
   wld->addChild (cam);
   wld->setActiveCamera (cam);
+\end{verbatim}
 \end{quotation}
 
 デフォルトのカメラは平行投影でz軸負の方向を向いています。
 これを透視投影に変えるにはsetPerspective()メソッドを使います。
 
 \begin{quotation}
+\begin{verbatim}
   Camera* cam = wld->getActiveCamera();
   cam->setPerspective (45, h/w, 0.1, 100);
+\end{verbatim}
 \end{quotation}
 
 現在アクティブなカメラはgetActiveCamera()メソッドで取得できます。
@@ -58,9 +64,6 @@ M3Gのプリミティブはメッシュのみです。トライアングル1個もメッシュとして描画します
 VertexBufferクラス、インデックスを保持するTriangleStripクラスからなります。
 またマテリアルなどを保持するAppearanceクラスも同時に渡します。
 
-ここに図。
-
-ここにコード。
 
 VertexArray,VertexBuffer,TriangleStrip,Meshに関しては
 次章以降のチュートリアルをご覧ください。
@@ -72,10 +75,11 @@ VertexArray,VertexBuffer,TriangleStrip,Meshに関しては
 使用するM3GのクラスはWorld,Camera,Meshほかです。
 ここではglutを使った完全なコードを示します。
 
-ここにコード。
+現在コードは省略されています。
 
 
 \subsection{シーンの構成要素}
+
 シーンを構成する要素はすべてNodeクラスを派生しています。
 以下のクラスは全てNodeを基底クラスに持ちWorldクラスに挿入可能です。
 

@@ -1,139 +1,139 @@
-\subsection{キーフレームシーケンス}
+\subsection{�����ե졼�ॷ������}
 
-アニメーションはキーフレームと呼ばれる、ある時刻に対するデータを
-連続して補完する事で実現されます。
-キーフレームの集合をキームレームシーケンスと呼びKeyframeSequenceクラスで扱います。
-キーフレームは整数値の時刻tと浮動小数点のデータからなります。
-キーフレームシーケンスは複数のキーフレームを持ち、
-任意時刻tに対するデータの補間方法や、時刻の有効期間も定義します。
+���˥᡼�����ϥ����ե졼��ȸƤФ�롢���������Ф���ǡ�����
+Ϣ³�����䴰������Ǽ¸�����ޤ���
+�����ե졼��ν���򥭡���졼�ॷ�����󥹤ȸƤ�KeyframeSequence���饹�ǰ����ޤ���
+�����ե졼��������ͤλ���t����ư�������Υǡ�������ʤ�ޤ���
+�����ե졼�ॷ�����󥹤�ʣ���Υ����ե졼��������
+Ǥ�ջ���t���Ф���ǡ����������ˡ�䡢�����ͭ�����֤�������ޤ���
 
-キーフレームは単なるデータの集合であり、
-データをどのように解釈するかはAnimationTrackクラスが行います。
+�����ե졼���ñ�ʤ�ǡ����ν���Ǥ��ꡢ
+�ǡ�����ɤΤ褦�˲�᤹�뤫��AnimationTrack���饹���Ԥ��ޤ���
 
-キーフレームシーケンスの基本的な構築方法は、
+�����ե졼�ॷ�����󥹤δ���Ū�ʹ�����ˡ�ϡ�
 
 \begin{itemize}
-\item キーフレーム数を指定してキーフレームシーケンスの作成
-\item 有効範囲(valid range)の設定
-\item 継続期間(duration)の設定
+\item �����ե졼�������ꤷ�ƥ����ե졼�ॷ�����󥹤κ���
+\item ͭ���ϰ�(valid range)������
+\item ��³����(duration)������
 \end{itemize}
 
 
-キーフレームシーケンスはキーフレーム数と１フレーム当たりのコンポーネント数、
-キーフレーム間の補間方法を指定してインスタンス化します。
+�����ե졼�ॷ�����󥹤ϥ����ե졼����ȣ��ե졼��������Υ���ݡ��ͥ�ȿ���
+�����ե졼��֤������ˡ����ꤷ�ƥ��󥹥��󥹲����ޤ���
 
 \begin{verbatim}
  	KeyframeSequence (int numKeyframes, int numComponents, int interpolation)
 \end{verbatim}
 
-第１引数のnum\_keyframesにはキーフレームの数を、第２引数のnum\_componentsには
-キーフレームの保持するコンポーネント数を、第３引数のinterpolationには
-補間方法をSTEP, LINEAR, SPLINE, SLERP, SQUADの中から指定します。
-それぞれSTEPがステップ補間、線形補間、スプライン補間、
-クォータニオンのスプライン補間、クオータニオンの球面線形補間を表します。
+�裱������num\_keyframes�ˤϥ����ե졼��ο����裲������num\_components�ˤ�
+�����ե졼����ݻ����륳��ݡ��ͥ�ȿ����裳������interpolation�ˤ�
+�����ˡ��STEP, LINEAR, SPLINE, SLERP, SQUAD���椫����ꤷ�ޤ���
+���줾��STEP�����ƥå���֡�������֡����ץ饤����֡�
+���������˥���Υ��ץ饤����֡����������˥���ε���������֤�ɽ���ޤ���
 
-設定されたキーフレーム数はgetkeyframeCount()メソッドで取得します。
+���ꤵ�줿�����ե졼�����getkeyframeCount()�᥽�åɤǼ������ޤ���
 
 \begin{verbatim}
 int 	getKeyframeCount () const
 \end{verbatim}
 
-設定されたのコンポーネント数はgetComponentCount()メソッドで取得します。
+���ꤵ�줿�Υ���ݡ��ͥ�ȿ���getComponentCount()�᥽�åɤǼ������ޤ���
 
 \begin{verbatim}
 int 	getComponentCount () const
 \end{verbatim}
 
-設定された補間方法はgetInterpolationType()メソッドで取得します。
+���ꤵ�줿�����ˡ��getInterpolationType()�᥽�åɤǼ������ޤ���
 
 \begin{verbatim}
 int 	getInterpolationType () const
 \end{verbatim}
 
 
-\subsubsection{補間方法}
-補間方法はSTEP, LINEAR, SPLINE, SLERP, SQUADの中から選択します。
+\subsubsection{�����ˡ}
+�����ˡ��STEP, LINEAR, SPLINE, SLERP, SQUAD���椫�����򤷤ޤ���
 
-ここに表
-\begin{tabular}{ll}
-  STEP   &  ステップ補間   & $ v = v_i $ \\
-  LINEAR &  線形補間       & $ v = (1-s)V_i + sV_{i+1} $ \\
-  SPLINE &  スプライン補間 & 略（M3Gの仕様書を参照してください) \\
-  SLERP  &  クォータニオンの球面線形補間 & 略（M3Gの仕様書を参照してください) \\
-  SQUAD  &  クォータニオンのスプライン補間 & 略（M3Gの仕様書を参照してください) 
+������ɽ
+\begin{tabular}{lll}
+  STEP   &  ���ƥå����   & $ v = v_i $ \\
+  LINEAR &  �������       & $ v = (1-s)V_i + sV_{i+1} $ \\
+  SPLINE &  ���ץ饤����� & ά��M3G�λ��ͽ�򻲾Ȥ��Ƥ�������) \\
+  SLERP  &  ���������˥���ε���������� & ά��M3G�λ��ͽ�򻲾Ȥ��Ƥ�������) \\
+  SQUAD  &  ���������˥���Υ��ץ饤����� & ά��M3G�λ��ͽ�򻲾Ȥ��Ƥ�������) 
 \end{tabular}
 
 
-\subsubsection{キーフレームの設定}
+\subsubsection{�����ե졼�������}
 
-コンストラクタで指定したキーフレームの数だけ
-キーフレーム毎にsetKeyframe()メソッドを呼び出してデータを設定します。
+���󥹥ȥ饯���ǻ��ꤷ�������ե졼��ο�����
+�����ե졼�����setKeyframe()�᥽�åɤ�ƤӽФ��ƥǡ��������ꤷ�ޤ���
 
 
 \begin{verbatim}
 void 	setKeyframe (int index, int time, float *value)
 \end{verbatim}
 
-引数のindexは0から始まるキーフレーム番号です。
-存在しないフレーム番号を指定するとエラーになります。
-引数timeには時刻を0以上の整数値で指定し、
-引数valueにはデータへのポインターを渡します。
-データはM3Gライブラリ内部にコピーされます。
-セットされたキーフレームはsetValidRange()で有効化される必要があります。
+������index��0����Ϥޤ륭���ե졼���ֹ�Ǥ���
+¸�ߤ��ʤ��ե졼���ֹ����ꤹ��ȥ��顼�ˤʤ�ޤ���
+����time�ˤϻ����0�ʾ�������ͤǻ��ꤷ��
+����value�ˤϥǡ����ؤΥݥ��󥿡����Ϥ��ޤ���
+�ǡ�����M3G�饤�֥�������˥��ԡ�����ޤ���
+���åȤ��줿�����ե졼���setValidRange()��ͭ���������ɬ�פ�����ޤ���
 
-\subsubsection{有効範囲の設定}
+\subsubsection{ͭ���ϰϤ�����}
 
-セットされたキーフレームのうち有効なフレームをsetValidRange()メソッドで指定します。
-単にsetKeyframeでセットしただけでは有効になりません。
+���åȤ��줿�����ե졼��Τ���ͭ���ʥե졼���setValidRange()�᥽�åɤǻ��ꤷ�ޤ���
+ñ��setKeyframe�ǥ��åȤ��������Ǥ�ͭ���ˤʤ�ޤ���
 
 \begin{verbatim}
 void 	setValidRange (int first, int last)
 \end{verbatim}
 
-引数のfirstとlastは0から始まるフレーム番号を指定します。上限はgetKyframeCount()-1です。
-firstとlastは有効なフレームに含みます。
-存在しないフレーム番号を指定するとエラーになります。
+������first��last��0����Ϥޤ�ե졼���ֹ����ꤷ�ޤ�����¤�getKyframeCount()-1�Ǥ���
+first��last��ͭ���ʥե졼��˴ޤߤޤ���
+¸�ߤ��ʤ��ե졼���ֹ����ꤹ��ȥ��顼�ˤʤ�ޤ���
 
-現在の有効範囲はgetValidRangeFirst()メソッド、getValidRangleLast()メソッドで取得できます。
+���ߤ�ͭ���ϰϤ�getValidRangeFirst()�᥽�åɡ�getValidRangleLast()�᥽�åɤǼ����Ǥ��ޤ���
 
 \begin{verbatim}
 int 	getValidRangeFirst () const
 int 	getValidRangeLast () const
 \end{verbatim}
 
-\subsubsection{継続時間の設定}
+\subsubsection{��³���֤�����}
 
-このキーフレームシーケンスの継続時間をsetDuration()メソッドで指定します。
-継続時間とはこのキーフレームシーケンスが再生される長さ（時間）です。
+���Υ����ե졼�ॷ�����󥹤η�³���֤�setDuration()�᥽�åɤǻ��ꤷ�ޤ���
+��³���֤ȤϤ��Υ����ե졼�ॷ�����󥹤����������Ĺ���ʻ��֡ˤǤ���
 
 \begin{verbatim}
 void 	setDuration (int duration)
 \end{verbatim}
 
-引数のdurationには0より大きな整数値を指定します。
-デフォルトは0です。
+������duration�ˤ�0����礭�������ͤ���ꤷ�ޤ���
+�ǥե���Ȥ�0�Ǥ���
 
-現在の継続時間はgetDuration()メソッドで取得できます。
+���ߤη�³���֤�getDuration()�᥽�åɤǼ����Ǥ��ޤ���
 
 \begin{verbatim}
 int 	getDuration () const
 \end{verbatim}
 
 
-\subsubsection{繰り返しモード}
+\subsubsection{�����֤��⡼��}
 
-このキーフレームシーケンスの繰り返しモードをsetRepeatMode()で指定します。
-繰り返しは継続時間を超える時刻のアニメーションの再生方法に関係します。
+���Υ����ե졼�ॷ�����󥹤η����֤��⡼�ɤ�setRepeatMode()�ǻ��ꤷ�ޤ���
+�����֤��Ϸ�³���֤�Ķ�������Υ��˥᡼�����κ�����ˡ�˴ط����ޤ���
 
 \begin{verbatim}
 void 	setRepeatMode (int mode)
 \end{verbatim}
 
-引数のmodeはCONSTANT, LOOPから選択します。
-LOOPは継続時間のアニメーションを繰り返します。
-CONSTANTは繰り返し無しで継続時間を超える時刻には最後のフレームが使われます。
+������mode��CONSTANT, LOOP�������򤷤ޤ���
+LOOP�Ϸ�³���֤Υ��˥᡼�����򷫤��֤��ޤ���
+CONSTANT�Ϸ����֤�̵���Ƿ�³���֤�Ķ�������ˤϺǸ�Υե졼�ब�Ȥ��ޤ���
 
-現在の繰り返しモードはgetRepeatMode()メソッドで取得できます。
+���ߤη����֤��⡼�ɤ�getRepeatMode()�᥽�åɤǼ����Ǥ��ޤ���
 
 \begin{verbatim}
 int 	getRepeatMode () const

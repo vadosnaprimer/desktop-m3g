@@ -5,8 +5,10 @@ Light¥¯¥é¥¹¤Ï¥é¥¤¥È¤òÉ½¤¹¥·¡¼¥ó¥Î¡¼¥É¤Ç¤¹¡£
 ¥é¥¤¥È¤Ë¤Ï¥«¥é¡¼¤È¶¯ÅÙ¤¬ÀßÄê¤Ç¤­¤Þ¤¹¡£
 
 \begin{quotation}
+\begin{verbatim}
 Light* lig = new Light;
 wld->addChild (lig);
+\end{verbatim}
 \end{quotation}
 
 ¥Ç¥Õ¥©¥ë¥È¤ÏÊ¿¹Ô¸÷¸»¤ÇZ¼´Éé¤ÎÊý¸þ¤ò¸þ¤¤¤Æ¤¤¤Þ¤¹¡£¥«¥é¡¼¤ÏÇò¿§(1,1,1)¤Ç¶¯ÅÙ¤Ï1.0¤Ç¤¹¡£
@@ -15,7 +17,9 @@ wld->addChild (lig);
 ¥é¥¤¥È¤Î¼ïÎà¤ÏsetMode()¥á¥½¥Ã¥É¤ÇÊÑ¹¹¤·¤Þ¤¹¡£
 
 \begin{quotation}
+\begin{verbatim}
 void 	setMode (int mode);
+\end{verbatim}
 \end{quotation}
 
 mode¤Ë¤Ï´Ä¶­¸÷(AMBIENT),ÅÀ¸÷¸»(OMNI),Ê¿¹Ô¸÷¸»(DIRECTIONAL),¥¹¥Ý¥Ã¥È¥é¥¤¥È(SPOT)¤Î
@@ -24,29 +28,37 @@ mode¤Ë¤Ï´Ä¶­¸÷(AMBIENT),ÅÀ¸÷¸»(OMNI),Ê¿¹Ô¸÷¸»(DIRECTIONAL),¥¹¥Ý¥Ã¥È¥é¥¤¥È(SPOT)¤
 ¸½ºß¤Î¥é¥¤¥È¤Î¼ïÎà¤ÏgetMode()¥á¥½¥Ã¥É¤Ç¼èÆÀ¤Ç¤­¤Þ¤¹¡£
 
 \begin{quotation}
+\begin{verbatim}
 int 	getMode () const 
+\end{verbatim}
 \end{quotation}
 
 ¥é¥¤¥È¤Î¿§¤ÏsetColor()¥á¥½¥Ã¥É¤Ç»ØÄê¤·¡¢¶¯ÅÙ¤ÏsetIntensity()¥á¥½¥Ã¥É¤ÇÀßÄê¤·¤Þ¤¹¡£
 ¿§¤È¶¯ÅÙ¤ÎÀÑ¤¬ºÇ½ªÅª¤Ê¥é¥¤¥È¤Î½ÐÎÏ¤Ë¤Ê¤ê¤Þ¤¹¡£
 
 \begin{quotation}
+\begin{verbatim}
 void 	setColor (int rgb)
 void 	setIntensity (float intensity)
+\end{verbatim}
 \end{quotation}
 
 °ú¿ô¤Îrgb¤Ë¤Ïr(0-255),g(0-255),b(0-255)¤òrgb¥Õ¥©¡¼¥Þ¥Ã¥È¤ÇÀ°¿ô·¿¤Ë¥Ñ¥Ã¥¯¤·¤ÆÅÏ¤·¤Þ¤¹¡£
 intensity¤Ï¶¯ÅÙ¤òÇ¤°Õ¤ÎÉâÆ°¾®¿ôÃÍ¤Ç»ØÄê¤·¤Þ¤¹¡£0¤ª¤è¤ÓÉé¤ÎÃÍ¤â»ØÄê²ÄÇ½¤Ç¤¹¡£
 
 \begin{quotation}
+\begin{verbatim}
 rgb = (r<<16) || (g<<8) || (b<<0);
+\end{verbatim}
 \end{quotation}
 
 ¸½ºß¤Î¿§¤Î¼èÆÀ¤Ë¤ÏgetColor()¥á¥½¥Ã¥É¤ò¡¢¶¯ÅÙ¤Î¼èÆÀ¤Ë¤ÏgetIntensity()¥á¥½¥Ã¥É¤ò»È¤¤¤Þ¤¹¡£
 
 \begin{quotation}
+\begin{verbatim}
 int 	getColor () const
 float 	getIntensity () const 
+\end{verbatim}
 \end{quotation}
 
 ¤³¤³¤Þ¤Ç¤ÏÁ´¤Æ¤Î¥é¥¤¥È¤Ë¶¦ÄÌ¤Ç¤¹¡£
@@ -61,9 +73,11 @@ float 	getIntensity () const
 Îã¤¨¤ÐY¼´Éé¤ÎÊý¸þ¤ò¸þ¤¤¤¿Ê¿¹Ô¸÷¸»¤òºîÀ®¤¹¤ë¾ì¹ç¤Ï¤³¤¦¤Ê¤ê¤Þ¤¹¡£
 
 \begin{quotation}
+\begin{verbatim}
 Light* lig = new Light;
 lig->setMode (Light::DIRECTIONAL);
 lig->postRotate (-90, 1,0,0);
+\end{verbatim}
 \end{quotation}
 
 \subsubsection{ÅÀ¸÷¸»}
@@ -79,9 +93,11 @@ lig->tranlate (0,10,0);
 
 ÅÀ¸÷¸»¤Îµ÷Î¥¤Ë¤è¤ë¸º¿ê¤ÏsetAttenuation()¥á¥½¥Ã¥É¤ò»È¤Ã¤ÆÀ©¸æ¤Ç¤­¤Þ¤¹¡£
 
+
 \begin{verbatim}
     void setAttenuation (float constant, float linear, float quadratic);
 \end{verbatim}
+
 
 ¸º¿ê·¸¿ô¦Á¤Ï°ú¿ô¤Îconstant(c), linear(l), quadratic(q)¤ò»È¤Ã¤Æ°Ê²¼¤Î¼°¤Ç·×»»¤µ¤ì¤Þ¤¹¡£
 

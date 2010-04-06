@@ -46,7 +46,7 @@ FILTER\_BASEは常にミップマップレベル0の画像を使用します。
 つまりミップマップ処理を行いません。
 
 \begin{tabular}{llll}
-  \rowcolor[gray]{0.8} & レベルフィルター & 画像フィルター & 説明 & 同等なOpenGL \\
+  レベルフィルター & 画像フィルター & 説明 & 同等なOpenGL \\
   BASE\_LEVEL & NEAREST & ベースレベルをポイントサンプリング & NEAREST \\
   BASE\_LEVEL & LINEAR  & ベースレベルをバイリニアサンプリング & LINEAR \\
   NEAREST     & NEAREST & 1番近いミップマップレベルをポイントサンプリング & NEAREST\_MIPMAP\_NEAREST \\
@@ -91,22 +91,18 @@ void 	setBlending (int func)
 
 引数のfuncにはFUNC\_ADD, FUNC\_BLEND, FUNC\_DECAL, FUNC\_REPLACEの中から1つを選択します。
 
-\begin{tabular}{ll}
-  \rowcolor[gray]{0.8} & テクスチャーフォーマット & REPLACE & MODULATE & DECAL & BLEND & ADD \\
-  ALPHA     & C_v = C_f & C_v = C_f     & 未定義 & C_v = C_f                 & C_v = C_f        \\
-            & A_v = A_f & A_v = A_f     & 未定義 & A_v = A_f A_t             & A_v = A_f A_t \\
-
-  LUMINANCE & C_v = C_t & C_v = C_f C_t & 未定義 & C_v = C_f (1-C_t) + C_c C_t & C_v = C_f + C_t \\
-            & A_v = A_f & A_v = A_f     & 未定義 & A_v = A_f                  & A_v = A_f       \\
-
-  LUM\_ALPHA & C_v = C_t & C_v = C_f C_t & 未定義 & C_v = C_f (1-C_t) + C_c C_t & C_v = C_f + C_t \\
-            & A_v = A_f & A_v = A_f A_t  & 未定義 & A_v = A_f A_t              & A_v = A_f A_t     \\
-
-  RGB       & C_v = C_t & C_v = C_f C_t & C_v = C_t & C_v = C_f (1-C_t) + C_c C_t & C_v = C_f + C_t \\
-            & A_v = A_f & A_v = A_f     & A_v = A_f & A_v = A_f                  & A_v = A_f       \\
-
-  RGBA      & C_v = C_t & C_v = C_f C_t & C_v = C_t & C_v = C_f (1-C_t) + C_c C_t & C_v = C_f + C_t \\
-            & A_v = A_t & A_v = A_f A_t & A_v = A_f & A_v = A_f A_t               & A_v = A_f A_t      \\
+\begin{tabular}{llllll}
+  テクスチャーフォーマット & REPLACE & MODULATE & DECAL & BLEND & ADD \\
+  ALPHA     & $C_v = C_f$ & $C_v = C_f$     & 未定義 & $C_v = C_f$                 & $C_v = C_f$  \\
+  　        & $A_v = A_f$ & $A_v = A_f$     & 未定義 & $A_v = A_f A_t$             & $A_v = A_f A_t$ \\
+  LUMINANCE & $C_v = C_t$ & $C_v = C_f C_t$ & 未定義 & $C_v = C_f (1-C_t) + C_c C_t$ & $C_v = C_f + C_t$ \\
+  　        & $A_v = A_f$ & $A_v = A_f$     & 未定義 & $A_v = A_f$                  & $A_v = A_f$       \\
+  LUM\_ALPHA & $C_v = C_t$ & $C_v = C_f C_t$ & 未定義 & $C_v = C_f (1-C_t) + C_c C_t$ & $C_v = C_f + C_t$ \\
+  　        & $A_v = A_f$ & $A_v = A_f A_t$  & 未定義 & $A_v = A_f A_t$              & $A_v = A_f A_t$     \\
+  RGB       & $C_v = C_t$ & $C_v = C_f C_t$ & $C_v = C_t$ & $C_v = C_f (1-C_t) + C_c C_t$ & $C_v = C_f + C_t$ \\
+  　        & $A_v = A_f$ & $A_v = A_f$     & $A_v = A_f$ & $A_v = A_f$                  & $A_v = A_f$       \\
+  RGBA      & $C_v = C_t$ & $C_v = C_f C_t$ & $C_v = C_t$ & $C_v = C_f (1-C_t) + C_c C_t$ & $C_v = C_f + C_t$ \\
+  　        & $A_v = A_t$ & $A_v = A_f A_t$ & $A_v = A_f$ & $A_v = A_f A_t$               & $A_v = A_f A_t$      \\
 \end{tabular}
 
 現在のブレンディングモードはgetBlending()メソッドで取得します。
