@@ -1,9 +1,12 @@
 \subsection{アニメーショントラック}
 
-AnimationTrackクラスはデータの集合であるキーフレームシーケンスを
+AnimationTrackクラスは（単なるデータの集合である）キーフレームシーケンスを
 特定のアニメーション可能なプロパティに結びつけます。
 
 \subsection{コンストラクタ}
+
+AnimationTrackはキーフレームシーケンスとターゲットプロパティを指定します。
+
 \begin{verbatim}
  	AnimationTrack (KeyframeSequence *sequence, int property)
 \end{verbatim}
@@ -16,21 +19,49 @@ DUFFUSE\_COLOR, FAR\_DISTANCE, FIELD\_OF\_VIEW, INTENSITY,
 MORPH\_WEIGHTS, NEAR\_DISTANCE, ORIENTATION, PICKABILITY,
 SCALE, SHININESS, SPECULAR\_COLOR, SPOT\_ANGLE, SPOT\_EXPONENT,
 TRANSLATION, VISIBILITYの中から１つを選択します。
+指定できるターゲットプロパティとコンポーネント数、適応可能なクラスには制限があります。
 
-ここに表。
+\begin{tabular}{ll}
+  プロパティ名     & コンポーネント数 & 適応可能なクラス \\
+  ALPHA           & 1   & Node, Background, Material, VertexBuffer \\
+  AMIBENT\_COLOR  & 3   & Material                                  \\
+  COLOR           & 3   & Light, Background, Fog, Texture2D, VertexBuffer \\
+  CROP            & 2,4 & Sprite3D, Background \\
+  DENSITY         & 1   & Fog                  \\
+  DIFFUSE\_COLOR  & 3   & Material             \\
+  EMISSIVE\_COLOR & 3   & Material             \\
+  FAR\_DISTANCE   & 1   & Camera, Fog          \\
+  FIELD\_OF\_VIEW & 1   & Camera               \\
+  INTENSITY       & 1   & LIght                \\
+  MORPH\_WEIGHTS  & 1   & MorphingMesh         \\
+  NEAR\_DISTANCE  & 1   & Camera, Fog          \\
+  PICKABILITY     & 1   & Node                 \\
+  SCALE           & 1,3 & Trasformable         \\
+  SHININESS       & 1   & Material             \\
+  SPECULAR\_COLOR & 3   & Material             \\
+  SPOT\_ANGLE     & 1   & Light                \\
+  SPOT\_EXPONENT  & 1   & Light                \\
+  TRANSLATION     & 3   & Transformable        \\
+  VISIBILITY      & 1   & Node 
+\end{tabular}
 
 
 アニメーショントラックにはアニメーションコントローラーをセットする必要があります。
+
 \begin{verbatim}
 void 	setController (AnimationController *controller)
 \end{verbatim}
 
-現在のアニメーションコントローラーはgetController()メソッドで取得できます。
+引数のcontrollerにはAnimationContorollerを指定します。
+１つのAnimationControllerを複数のAnimationTrackにセットできます。
+
+現在設定されているアニメーションコントローラーはgetController()メソッドで取得できます。
+
 \begin{verbatim}
 AnimationController * 	getController () const
 \end{verbatim}
 
-現在のキーフレームシーケンスはgetKeyframeSequence()メソッドで取得できます。
+現在設定されているキーフレームシーケンスはgetKeyframeSequence()メソッドで取得できます。
 
 \begin{verbatim}
 KeyframeSequence * 	getKeyframeSequence () const

@@ -1,0 +1,97 @@
+\subsection{Graphics3D}
+
+Graphics3Dクラスは描画コンテキストを取り扱うシングルトンクラスです。
+全ての描画はGraphics3Dクラスを通して行われます。
+
+典型的には以下の手順で行われます。
+
+\begin{verbatim}
+Graphics3D* g3d = Graphics3D::getInstance();
+// ビューポートの設定
+World* wld = new World;
+// シーンの設定
+g3d->render (wld);
+\end{verbatim}
+
+Graphics3Dはシングルトンクラス化されており
+new演算子は呼び出してインスタンス化はできません。
+代わりにgetInstance()メソッドを使います。
+M3Gはマルチスレッドセーフではありません。
+M3Gのクラス・メソッドはOpenGLコンテキストが使用可能な状態である事を要求します。
+OpenGLコンテキストが有効でない環境での利用は未定義です。
+
+Java/MIDPのオリジナルのM3Gでは描画対象を指定するためにrender()メソッドの前に
+Graphicsクラスを引数に持つbindTarget()メソッドを呼び出します。
+C++で書かれたDesktop-M3GではGraphicsクラスに相当する標準的なクラスが存在しないので
+bindTarget()およびreleaseTarget()メソッドを呼ぶ必要はありません。
+
+ただしこのあたりの実装に関してはOpenGLのグラフィックスコンテキストの標準化を見ながら
+随時変更する予定です。
+
+
+
+
+\subsubsection{イミィーディエイトモードとリテインドモード}
+M3Gには大きくイミィーディエイトモード(immediate mode)と
+リテインドモード(retained mode)の２つがあります。
+イミィーディエイトモードはOpenGLと同じようにライト、カメラ等の設定を
+1つずつ設定していきます。速度的なメリットがないので現在Desktop-M3Gでは対応していません。
+すなわちGraphic3Dクラスのメソッドのうち、
+addLight(), clear(), getCamera(), getDepthRangeFar(), 
+getDepthRangeNear(), getLight, getLightCount(), 
+render(Node, Transform), render(VertexBuffer, IndexBuffer),
+render(VertexBuffer, IndexBuffer, Appearance, Transform, int),
+resetLights(), setCamera(), setDepthRagne(), setLight()
+を呼び出すとNotImplementedException例外が発生します。
+リテインドモードは事前にシーングラフを作成し、それをGraphcs3Dクラスに渡してレンダリングします。M3Gで標準的に使われる手法です。
+render(World*)メソッドが該当します。
+
+
+\subsubsection{レンダリングターゲット}
+オリジナルのM3GではbindTarget()メソッドでレンダリングターゲットを指定し、
+releaseTarget()で解放します。
+指定できるターゲットは java.awt.Graphics か javax.microedition.lcdui.Graphics ですが、
+C/C++ではこれらに相当する標準的な仕組みがないので呼び出す必要はありません。
+bindTarget()、releaseTarget()ともに呼び出すと例外を発生します。
+最終的にDesktop-M3Gでレンダリングターゲットをどうするかは現在未定です。
+
+bindTarget()で渡すレンダリングヒント（ANTIALIAS, DITHER, TRUE\_COLOR, OVERWRITE)の扱いはは未定です。
+
+\subsubsection{ビューポートの設定}
+
+ビューポートの設定はsetViewport()メソッドで行います。
+ビューポートはウィンドウ内の矩形領域の事で、NDC空間(-1,-1)〜(1,1)が伸張され
+ここに表示されます。
+
+\begin{verbatim}
+    void setViewport (int x, int y, int width, int height);
+\end{verbatim}
+
+引数にはビューポートの左下の座標(x,y)とサイズ(width,height)をピクセル数で指定します。
+
+
+\subsubsection{実装依存のプロパティ}
+
+いくつかの機能は実装または使用中のGPUによって制限されます。
+getProperties()メソッドは実装依存のプロパティ情報を取得します。
+プロパティはname(const char*),value(int)のペアで表されます。
+
+\begin{verbatim}
+ std::vector<Property> properties = g3d->getProperty();
+\end{verbatim}
+
+プロパティの名前を取得するにはname()メソッドを、値を取得するにはvalue()メソッドを使います。
+
+
+\begin{verbatim}
+
+\end{verbatim}
+
+
+
+
+
+
+
+
+

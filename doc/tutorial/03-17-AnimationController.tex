@@ -1,6 +1,6 @@
 p\subsection{アニメーションコントローラー}
 
-アニメーションの再生スピードなどを制御します。
+AnimationContollerはアニメーションの再生スピードなどを制御します。
 アニメーショントラックは必ずアニメーションコントローラーに結びつけられている必要があります。
 
 
@@ -9,19 +9,21 @@ AnimationController* ctlr = new AnimationController;
 track->setAnimationController (ctlr);
 \end{verbatim}
 
-\subsubsection{アクティブ時刻}
+\subsubsection{アクティブ期間}
 
-このアニメーションが有効な時刻をsetActiveInterval()メソッドで指定します。
+このアニメーションが有効な期間をsetActiveInterval()メソッドで指定します。
 
 \begin{verbatim}
 void 	setActiveInterval (int start, int end)
 \end{verbatim}
 
-アクティブな時刻をワールド時間で開始時刻をstartで、終了時刻をendで指定します。
-このコントローラーに関連づけられたアニメーションは、この時刻以外は再生されません。
-start=0, end=0は特別な値で指定すると全ての時刻で有効化されます。
+このコントローラーがアクティブな期間をワールド時間(start,end]で指定します。
+startは含み、endは含みません。
+このコントローラーに関連づけられたアニメーショントラックは、
+この期間以外は再生されません。
+start=endは特別な値で、指定すると全ての時刻で有効と見なされます。
 
-現在のアクティブ時刻はgetActiveIntervalStart()メソッドとgetActiveIntervalEnd()メソッドで取得できます。
+現在のアクティブ期間はgetActiveIntervalStart()メソッドとgetActiveIntervalEnd()メソッドで取得できます。
 
 \begin{verbatim}
 int 	getActiveIntervalStart () const
@@ -37,14 +39,16 @@ bool 	isActiveInterval (int world_time) const
 
 \subsubsection{再生速度}
 
+速度はこのコントローラーに関連づけられたアニメーショントラックの再生速度を変更します。
 再生速度はsetSpeed()メソッドで変更します。
 
 \begin{verbatim}
 void 	setSpeed (float speed, int world_time)
 \end{verbatim}
 
-1番目の引数のspeedは再生速度です。初期値はspeed=1.0で2.0に設定すると
-関連づけられたアニメーションターゲットが2倍速で再生されます。
+1番目の引数のspeedは再生速度です。
+デフォルトはspeed=1.0で、例えば2.0に設定すると
+アニメーションターゲットは2倍速で再生されます。
 2番目の引数のworld\_timeは現在のワールド時間を指定します。
 内部的にアニメーションを連続して再生するのに必要です。
 
@@ -56,7 +60,7 @@ float 	getSpeed () const
 
 \subsubsection{アニメーションウェイト}
 setWeight()メソッドでこのコントローラーのウェイトを設定します。
-ウェイトは２つのアニメーションをブレンドするのに使用します。
+ウェイトは２つのアニメーションをブレンドし、なめらかに遷移するのに使用されます。
 
 \begin{verbatim}
 void 	setWeight (float weight)
