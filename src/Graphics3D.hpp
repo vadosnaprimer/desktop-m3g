@@ -2,6 +2,7 @@
 #ifndef __GRAPHICS3D_HPP__
 #define __GRAPHICS3D_HPP__
 
+#include <vector>
 #include <iosfwd>
 #include <unordered_map>
 
@@ -18,7 +19,7 @@ namespace m3g {
   class IndexBuffer;
   class Appearance;
   class World;
-
+  class Property;
 
   /**
    * @~English  A singleton 3D graphics context that can be bound to a rendering target.
@@ -116,7 +117,7 @@ namespace m3g {
      * @~English  Retrieves implementation specific peoperties.
      * @~Japanese 実装依存のプロパティの取得.
      */
-    std::unordered_map<const char*, int> getProperties () const;
+    std::vector<Property*> getProperties () const;
 
     /**
      * @~English  Returns the current rendierng target.
@@ -225,6 +226,7 @@ namespace m3g {
     Viewport viewport;
     bool     depth_buffer_enable;
     int      hints;
+    std::vector<Property*> properties;
   };
 
 } // namespace m3g {

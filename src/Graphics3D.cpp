@@ -8,6 +8,7 @@
 #include "Transform.hpp"
 #include "Light.hpp"
 #include "Exception.hpp"
+#include "Property.hpp"
 using namespace m3g;
 using namespace std;
 
@@ -15,9 +16,23 @@ Graphics3D:: Graphics3D () :
   viewport(0,0,0,0), depth_buffer_enable(false), hints(0)
 {
   // 今だけZテストを常時有効
-  // 本当はbindTarget()の中で有効化すべき
-  // bindTarget()自体消そうかどうしようか迷い中。
   glEnable (GL_DEPTH_TEST);
+
+  // プロパティは決めうち
+  properties.push_back (new Property("supportAntialiasing", 1));
+  properties.push_back (new Property("supportTrueColor", 1));
+  properties.push_back (new Property("supportDithering", 1));
+  properties.push_back (new Property("supportMipmapping", 1));
+  properties.push_back (new Property("supportPerspectiveCorrection", 1));
+  properties.push_back (new Property("supportLocalCameraLighting", 1));
+  properties.push_back (new Property("maxLights", 8));
+  properties.push_back (new Property("maxViewportWith", 2048));
+  properties.push_back (new Property("maxViewportHeight", 2048));
+  properties.push_back (new Property("maxViewportDimension", 2048));
+  properties.push_back (new Property("maxTextureDimension", 2048));
+  properties.push_back (new Property("maxSpriteCropDimension", 2048));
+  properties.push_back (new Property("maxTransformsPerVertex", 4));
+  properties.push_back (new Property("numTextureUnits", 4));
 }
 
 Graphics3D:: ~Graphics3D ()
@@ -85,10 +100,9 @@ int Graphics3D:: getLightCount () const
   return 0;
 }
 
-std::unordered_map<const char*, int> Graphics3D:: getProperties () const
+std::vector<Property*> Graphics3D:: getProperties () const
 {
-  unordered_map<const char*, int> m;
-  return m;
+  return properties;
 }
 
 void* Graphics3D:: getTarget () const
