@@ -9,7 +9,7 @@ namespace m3g {
 
   /**
    * @~English  An Appearance component encapsulating per-pixel comositing attributes.
-   * @~Japanese ピクセルのコンポジットモードをカプセル化したアピアランスの構成要素.
+   * @~Japanese ピクセル単位のコンポジット方法をカプセル化したアピアランスの構成要素.
    */
   class CompositingMode : public Object3D
   {

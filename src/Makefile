@@ -52,8 +52,8 @@ Bone.o: m3gdef.hpp m3ginternal.hpp Quaternion.hpp Transform.hpp Exception.hpp
 Camera.o: Camera.hpp Node.hpp Transformable.hpp Object3D.hpp
 Camera.o: /usr/include/GL/glew.h /usr/include/GL/glu.h /usr/include/GL/gl.h
 Camera.o: m3gdef.hpp m3ginternal.hpp Quaternion.hpp Transform.hpp Matrix.hpp
-Camera.o: Vector.hpp Exception.hpp AnimationTrack.hpp AnimationController.hpp
-Camera.o: KeyframeSequence.hpp Keyframe.hpp
+Camera.o: Vector.hpp AnimationTrack.hpp AnimationController.hpp
+Camera.o: KeyframeSequence.hpp Keyframe.hpp Exception.hpp
 CompositingMode.o: CompositingMode.hpp Object3D.hpp /usr/include/GL/glew.h
 CompositingMode.o: /usr/include/GL/glu.h /usr/include/GL/gl.h m3gdef.hpp
 CompositingMode.o: m3ginternal.hpp Exception.hpp

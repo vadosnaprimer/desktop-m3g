@@ -54,11 +54,11 @@ int Node:: animate (int world_time)
 
   Transformable:: animate (world_time);
 
-  bool  is_alpha_modefied = false;
-  bool  is_picking_enable_modefied = false;
+  bool  is_alpha_modefied            = false;
+  bool  is_picking_enable_modefied   = false;
   bool  is_rendering_enable_modefied = false;
-  float alpha = 0;
-  bool  new_picking_enable = false;
+  float new_alpha            = 0;
+  bool  new_picking_enable   = false;
   bool  new_rendering_enable = false;
   
   for (int i = 0; i < getAnimationTrackCount(); i++) {
@@ -79,7 +79,7 @@ int Node:: animate (int world_time)
     case AnimationTrack:: ALPHA: {
       float value[1] = {1};
       keyframe->getFrame (local_time, value);
-      alpha += value[0] * weight;
+      new_alpha += value[0] * weight;
       is_alpha_modefied = true;
       //cout << "Node: alpha --> " << alpha << "\n";
       break;
@@ -108,10 +108,7 @@ int Node:: animate (int world_time)
   }
 
   if (is_alpha_modefied) {
-    alpha = (alpha < 0) ? 0 : 
-      (alpha > 1) ? 1 : 
-      alpha;
-    alpha_factor = alpha;
+    alpha_factor = clamp (0, 1, new_alpha);
   }
   if (is_picking_enable_modefied) {
     picking_enable = new_picking_enable;
@@ -128,30 +125,18 @@ int Node:: animate (int world_time)
 Node* Node:: getAlignmentReference (int axis) const
 {
   switch (axis) {
-  case Z_AXIS: {
-    return z_alignment.reference;
-  }
-  case Y_AXIS: {
-    return y_alignment.reference;
-  }
-  default: {
-    throw IllegalArgumentException (__FILE__, __func__, "Axis is invalid, axis=%d.", axis);
-  }
+  case Z_AXIS: return z_alignment.reference;
+  case Y_AXIS: return y_alignment.reference;
+  default: throw IllegalArgumentException (__FILE__, __func__, "Axis is invalid, axis=%d.", axis);
   }
 }
 
 int Node:: getAlignmentTarget (int axis) const
 {
   switch (axis) {
-  case Z_AXIS: {
-    return z_alignment.target;
-  }
-  case Y_AXIS: {
-    return y_alignment.target;
-  }
-  default: {
-    throw IllegalArgumentException (__FILE__, __func__, "Axis is invalid, axis=%d.", axis);
-  }
+  case Z_AXIS: return z_alignment.target;
+  case Y_AXIS: return y_alignment.target;
+  default: throw IllegalArgumentException (__FILE__, __func__, "Axis is invalid, axis=%d.", axis);
   }
 }
 
@@ -254,6 +239,10 @@ void Node:: setAlignment (Node* z_ref, int z_target, Node* y_ref, int y_target)
 
 void Node:: setAlphaFactor (float alpha)
 {
+  if (alpha < 0 || alpha > 1.0) {
+    throw IllegalArgumentException (__FILE__, __func__, "Alpha is invalid.");
+  }
+
   alpha_factor = alpha;
 }
 
@@ -289,7 +278,7 @@ void Node:: render (int pass, int index) const
 std::ostream& Node:: print (std::ostream& out) const
 {
   out << "Node: ";
-  out << " scope=" << scope;
+  out << "  scope=" << scope;
   out << ", rendering_enable=" << rendering_enable;
   out << ", picking_enable=" << picking_enable;
   out << ", alpha_factor=" << alpha_factor;

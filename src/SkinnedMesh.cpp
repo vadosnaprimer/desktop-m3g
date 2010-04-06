@@ -183,7 +183,7 @@ Group* SkinnedMesh:: getSkeleton () const
 
 void SkinnedMesh:: render (int pass, int index) const
 {
-  cout << "SkinnedMesh: render\n";
+  //cout << "SkinnedMesh: render\n";
 
   // MatrixPaletteの作成
   vector<Matrix> matrix_palette;
@@ -204,10 +204,10 @@ void SkinnedMesh:: render (int pass, int index) const
     matrix_palette.push_back (global_pose * bones[i]->getInverseBindMatrix());
   }
 
-  cout << "Matrix Palette = " << matrix_palette.size() << "\n";
-  for (int i = 0; i < (int)matrix_palette.size(); i++) {
-    cout << i << ": " << matrix_palette[i] << "\n";
-  }
+  //cout << "Matrix Palette = " << matrix_palette.size() << "\n";
+  //for (int i = 0; i < (int)matrix_palette.size(); i++) {
+  //  cout << i << ": " << matrix_palette[i] << "\n";
+  //}
 
   // int vertex_count = vertices->getPositions(0)->getVertexCount();
 

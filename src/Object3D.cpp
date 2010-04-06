@@ -5,8 +5,7 @@
 using namespace std;
 using namespace m3g;
 
-Object3D:: Object3D () : obj_type(OBJTYPE_OBJECT3D),
-user_id(0), user_object(0)
+Object3D:: Object3D () : obj_type(OBJTYPE_OBJECT3D), user_id(0)
 {
 }
 
@@ -19,7 +18,7 @@ Object3D:: ~Object3D ()
  */
 void Object3D:: addAnimationTrack (AnimationTrack* animation_track)
 {
-  if (animation_track == 0) {
+  if (animation_track == NULL) {
     throw NullPointException (__FILE__, __func__, "Animation track is Null.");
   }
 
@@ -33,9 +32,8 @@ int Object3D:: animate (int world_time)
 
 Object3D* Object3D:: duplicate () const
 {
-  Object3D* obj = new Object3D;
-  obj->user_id = this->user_id;
-  obj->user_object = this->user_object;
+  Object3D* obj    = new Object3D;
+  obj->user_id     = this->user_id;
   obj->anim_tracks = this->anim_tracks;
   return obj;
 }
@@ -75,7 +73,8 @@ int Object3D:: getUserID () const
 
 void* Object3D:: getUserObject () const
 {
-    return user_object;
+  throw NotImplementedException (__FILE__, __func__, "User Object is not implemnted, yet.");
+  return 0;
 }
 
 void Object3D:: removeAnimationTrack (AnimationTrack* animation_track)
@@ -95,9 +94,9 @@ void Object3D:: setUserID (int new_user_id)
   user_id = new_user_id;
 }
 
-void Object3D:: setUserObject (void* new_user_object)
+void Object3D:: setUserObject (const char* name, void* value)
 {
-  user_object = new_user_object;
+  throw NotImplementedException (__FILE__, __func__, "User Object is not implemented, yte");
 }
 
 void Object3D:: setObjectType (int type)
@@ -124,9 +123,8 @@ void Object3D:: render (int pass, int index) const
 std::ostream& Object3D:: print (std::ostream& out) const
 {
   out << "Object3D: ";
-  out << " user_id=" << user_id;
-  out << " user_object=" << user_object;
-  out << " animation_tracks=" << anim_tracks.size();
+  out << "  user_id=" << user_id;
+  out << ", animation_tracks=" << anim_tracks.size();
   return out << "\n";
 }
 

@@ -92,7 +92,7 @@ namespace m3g {
     /**
      * @~English  Removves the given AnimationTrack from this Objet3D, potentially changing the order and indices.of the remaining tracks.
      * @~Japanese このObject3Dから指定されたアニメーショントラックを削除する。
-     *            既存のトラックの順番やインデックスは変更されるかもしれない。
+     *            既存のトラックの順番やインデックスは変更されるかもしれない.
      */
     void removeAnimationTrack (AnimationTrack* animation_track);
 
@@ -108,7 +108,7 @@ namespace m3g {
      *            ユーザーオブジェクトはコピーされない.
      *            注意：本当はkey,valueのペアでなければならない。あとで修正する。
      */
-    void setUserObject (void* user_object_value);
+    void setUserObject (const char* name, void* value);
 
     /**
      * @~English  Retrievs object type, for inner use.
@@ -147,7 +147,7 @@ namespace m3g {
   private:
     int   obj_type;     ///< M3G非標準のオブジェクトタイプ
     int   user_id;
-    void* user_object;
+    //std::vector<UserObject> user_objects;
     std::vector<AnimationTrack*> anim_tracks;
 
   };

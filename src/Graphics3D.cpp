@@ -26,39 +26,43 @@ Graphics3D:: ~Graphics3D ()
 
 int Graphics3D:: addLight (Light* light, Transform& transform)
 {
-    return 0;
+  throw NotImplementedException (__FILE__, __func__, "Sorry, addLight is not implemented.");
+  return 0;
 }
 
 void Graphics3D:: bindTarget (Graphics* g, bool depth_buffer_enabled, int hints)
 {
+  throw NotImplementedException (__FILE__, __func__, "Sorry, bindTarget is not implemented.");
 }
 
-void Graphics3D:: bindTarget (Image2D* i, bool depth_buffer_enabled, int hints)
-{
-}
 
 void Graphics3D:: clear (Background* background)
 {
+  throw NotImplementedException (__FILE__, __func__, "Sorry, clear is not implemented.");
 }
 
 Camera* Graphics3D:: getCamera (const Transform& transform)
 {
-    return 0;
+  throw NotImplementedException (__FILE__, __func__, "Sorry, getCamera is not implemented.");
+  return 0;
 }
 
 float Graphics3D:: getDepthRangeFar () const
 {
-    return 0;
+  throw NotImplementedException (__FILE__, __func__, "Sorry, getDepthRangeFar is not implemented.");
+  return 0;
 }
 
 float Graphics3D:: getDepthRangeNear () const
 {
-    return 0;
+  throw NotImplementedException (__FILE__, __func__, "Soryy, getDepthNear is not implemented.");
+  return 0;
 }
 
 int Graphics3D:: getHints () const
 {
-    return 0;
+  throw NotImplementedException (__FILE__, __func__, "Sorry, getHints is not implemented.");
+  return 0;
 }
 
 Graphics3D* Graphics3D:: getInstance ()
@@ -69,43 +73,49 @@ Graphics3D* Graphics3D:: getInstance ()
 
 Light* Graphics3D:: getLight (int index, const Transform& transform) const
 {
-    return 0;
+  throw NotImplementedException (__FILE__, __func__, "Sorry, getLight is not implemented.");
+
+  return 0;
 }
 
 int Graphics3D:: getLightCount () const
 {
-    return 0;
+  throw NotImplementedException (__FILE__, __func__, "Sorry, getLightCount is not implemented.");
+
+  return 0;
 }
 
 std::unordered_map<const char*, int> Graphics3D:: getProperties () const
 {
-    unordered_map<const char*, int> m;
-    return m;
+  unordered_map<const char*, int> m;
+  return m;
 }
 
 void* Graphics3D:: getTarget () const
 {
-    return 0;
+  throw NotImplementedException (__FILE__, __func__, "getTarget is not implemented.");
+
+  return 0;
 }
 
 int Graphics3D:: getViewportHeight () const
 {
-    return viewport.height;
+  return viewport.height;
 }
 
 int Graphics3D:: getViewportWidth () const
 {
-    return viewport.width;
+  return viewport.width;
 }
 
 int Graphics3D:: getViewportX () const
 {
-    return viewport.x;
+  return viewport.x;
 }
 
 int Graphics3D:: getViewportY () const
 {
-    return viewport.y;
+  return viewport.y;
 }
 
 bool Graphics3D:: isDepthBufferEnabled () const
@@ -138,52 +148,52 @@ void Graphics3D:: render (World* world) const
 {
   cout << "Graphics3D: レンダー " << world->getChildCount() << " ノード\n";
 
-  // Camera should be first.
+  // Zero pass for Background, Camera.
   world->render (0);
 
-  //  Camera* cam = world->getActiveCamera();
-  //  cam->render ();
+  // Fist pass for Lights.
+  world->render (1);
 
-    // Fist pass for Lights.
-    //Light::resetGLIndex();
-    world->render (1);
+  // Second pass for Scene nodes.
+  world->render (2);
 
-    // Second pass for Objects.
-    world->render (2);
+  /*
+  // This is for Debug.
+  glDisable (GL_LIGHTING);
+  for (int i = 0; i < MAX_TEXTURE_UNITS; i++) {
+  glActiveTexture (GL_TEXTURE0+i);
+  glDisable (GL_TEXTURE_2D);
+  }
+  glActiveTexture (GL_TEXTURE0);
 
-    /*
-    // デバッグ用トライアングル。そのうち消す。
-    glDisable (GL_LIGHTING);
-    for (int i = 0; i < MAX_TEXTURE_UNITS; i++) {
-      glActiveTexture (GL_TEXTURE0+i);
-      glDisable (GL_TEXTURE_2D);
-    }
-    glActiveTexture (GL_TEXTURE0);
-
-    glBegin (GL_TRIANGLES);
-    glColor3f (1,1,0);
-    glVertex3f (1,1,0);
-    glVertex3f (0,0,0);
-    glVertex3f (-1,1,0);
-    glColor3f (1,1,1);
-    glEnd();
-    */
+  glBegin (GL_TRIANGLES);
+  glColor3f (1,1,0);
+  glVertex3f (1,1,0);
+  glVertex3f (0,0,0);
+  glVertex3f (-1,1,0);
+  glColor3f (1,1,1);
+  glEnd();
+  */
 }
 
 void Graphics3D:: resetLights ()
 {
+  throw NotImplementedException (__FILE__, __func__, "Sorry, resetLights is not implemented.");
 }
 
 void Graphics3D:: setCamera (Camera* camera, const Transform& transform)
 {
+  throw NotImplementedException (__FILE__, __func__, "Sorry, setCamera is not implemented.");
 }
 
 void Graphics3D:: setDepthRange (float near, float far)
 {
+  throw NotImplementedException (__FILE__, __func__, "Sorry setDepthRange is not implemented.");
 }
 
 void Graphics3D:: setLight (int index, Light* light, const Transform& transform)
 {
+  throw NotImplementedException (__FILE__, __func__, "Sorry, setLight is not implemented.");
 }
 
 void Graphics3D:: setViewport (int x, int y, int width, int height)

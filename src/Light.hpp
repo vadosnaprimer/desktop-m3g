@@ -7,16 +7,16 @@
 namespace m3g {
 
   /**
-   * @~English  
+   * @~English  A scene graph node that represents different kinds of light sources.
    * @~Japanese ライトを表すシーングラフノード.
    */
   class Light : public Node
   {
     friend class Graphics3D;  // for render
-    friend class World;  // for resetGLIndex
+    friend class World;       // for resetGLIndex
 
     /**
-     * @~English  
+     * @~English  Attenuation parameters, for inner use.
      * @~Japanese 放射照度の計算式のパラメーターを保持する内部使用の構造体.
      */
     struct Attenuation {
@@ -27,7 +27,7 @@ namespace m3g {
     };
 
     /**
-     * @~English  
+     * @~English  Spot light parameters, for inner use.
      * @~Japanese スポットライトの放射照度の計算に使うパラメーターを保持する内部使用の構造体.
      */
     struct Spot {
@@ -72,14 +72,15 @@ namespace m3g {
     virtual ~Light ();
 
     /**
-     * @~English  
+     * @~English  Adds the given AnimationTrack to this Object3D, 
      * @~Japanese アニメーショントラックの追加。
      *            既存のトラックの順番とインデックスは変更されるかもしれない.
      */
     virtual void addAnimationTrack (AnimationTrack* animation_track);
 
     /**
-     * @~English  
+     * @~English  Updates all animated properties in this Object3D and all Object3Ds that are reachable from this Object3D.
+
      * @~Japanese アニメーションの更新.
      */
     virtual int animate (int world_time);
@@ -163,8 +164,8 @@ namespace m3g {
     void setSpotAngle (float angle);
 
     /**
-     * @~English  
-     * @~Japanese このライトのスポットexponentの設定.
+     * @~English  Sets the spot exponent for this Light.
+     * @~Japanese このライトのスポットライト指数の設定.
      */
     void setSpotExponent (float exponent);
 

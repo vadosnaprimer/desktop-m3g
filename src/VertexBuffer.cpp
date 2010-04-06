@@ -60,7 +60,7 @@ int VertexBuffer:: animate (int world_time)
   bool  is_color_modefied = false;
   bool  is_alpha_modefied = false;
   float rgb[]  = {0,0,0};
-  float alpha  = 0;
+  float new_alpha  = 0;
 
   for (int i = 0; i < getAnimationTrackCount(); i++) {
     AnimationTrack*      track      = getAnimationTrack (i);
@@ -90,7 +90,7 @@ int VertexBuffer:: animate (int world_time)
     case AnimationTrack::ALPHA: {
       float value[1] = {1};
       keyframe->getFrame (local_time, value);
-      alpha += value[0] * weight;
+      new_alpha += value[0] * weight;
       is_alpha_modefied = true;
       //cout << "VertexBuffer: alpha --> " << alpha << "\n";
       break;
@@ -103,31 +103,22 @@ int VertexBuffer:: animate (int world_time)
   }
 
   if (is_color_modefied) {
-      unsigned char r = (rgb[0] <= 0) ? 0 : 
-	(rgb[0] >= 1) ? 255 :
-	(unsigned char)(rgb[0]*255);
-      unsigned char g = (rgb[1] <= 0) ? 0 : 
-	(rgb[1] >= 1) ? 255 : 
-	(unsigned char)(rgb[1]*255);
-      unsigned char b = (rgb[2] <= 0) ? 0 : 
-	(rgb[2] >= 1) ? 255 : 
-	(unsigned char)(rgb[2]*255);
+    unsigned char r = clamp (0, 1, rgb[0]) * 255;
+    unsigned char g = clamp (0, 1, rgb[1]) * 255;
+    unsigned char b = clamp (0, 1, rgb[2]) * 255;
       //cout << "VertexBuffer: r,g,b = " << (int)r << ", " << (int)g << ", " << (int)b << "\n";
-      default_color &= 0xff000000;
-      default_color |= (r << 16) | (g << 8) | (b << 0);
+    default_color = (default_color & 0xff000000) | (r << 16) | (g << 8) | (b << 0);
   }
   if (is_alpha_modefied) {
-      unsigned char a = (alpha <= 0) ? 0 :
-	(alpha >= 1) ? 255 :
-	(unsigned char)(alpha*255);
-      default_color &= 0x00ffffff;
-      default_color |= (a << 24);
+    unsigned char a = clamp (0, 1, new_alpha) * 255;
+    default_color = (default_color & 0x00ffffff) | (a << 24);
   }
 
   //cout << hex << "VertexBuffer: default_color = 0x" << default_color << dec << "\n";
 
   // メモ：
   // 0でも間違えではないが仕様書をよく読んでから実装する。
+
   return 0;
 }
 
@@ -373,6 +364,8 @@ void VertexBuffer:: render (int pass, int index) const
     glVertexPointer (cc, GL_FLOAT, 0, 0);  // 0,0=stride,offset
   }
 
+  // TODO: vertex_color_tracking=enableの時のみ頂点カラーを使うべき。
+  // あとこれだとDIFFUSE COLORが設定されていない。
   if (color_array) {
     //cout << "VertexBuffer: render color array\n";
     int cc = color_array->getComponentCount();
@@ -380,10 +373,10 @@ void VertexBuffer:: render (int pass, int index) const
     glColorPointer (cc, GL_FLOAT, 0, 0);  // 0,0=stride,offset
   } else {
     //cout << "VertexBuffer: render default color\n";
-    float a = ((default_color & 0xff000000) >> 24) / 255.f;
     float r = ((default_color & 0x00ff0000) >> 16) / 255.f;
     float g = ((default_color & 0x0000ff00) >>  8) / 255.f;
     float b = ((default_color & 0x000000ff) >>  0) / 255.f;
+    float a = ((default_color & 0xff000000) >> 24) / 255.f;
     glColor4f (r,g,b,a);
   }
 
@@ -398,9 +391,6 @@ void VertexBuffer:: render (int pass, int index) const
       //cout << "render " << i << "th texture coordinate array\n";
       int cc = texture_coordinate_arrays[i]->getComponentCount();
       glClientActiveTexture (GL_TEXTURE0 + i);
-      //cout << "AAA: glClientActiveTexture, " << i << "\n";
-      //cout << "AAA: glBindBuffer, " << tcbuf[i] << "\n";
-      //cout << "AAA: glTexCoordPointer\n";
       glBindBuffer (GL_ARRAY_BUFFER, tcbuf[i]);
       glTexCoordPointer (cc, GL_FLOAT, 0, 0);  // 0,0=stride,offset
     }
@@ -433,20 +423,20 @@ std::ostream& VertexBuffer:: print (std::ostream& out) const
 {
   out << "VertexBuffer: \n";
   if (vertex_position_array)
-    out << "  Positions = " << *vertex_position_array;
+    out << "  positions = " << *vertex_position_array;
   else
-    out << "  Positions = 0\n";
+    out << "  positions = 0\n";
   if (normal_array)
-    out << "  Normals = " << *normal_array;
+    out << ", normals = " << *normal_array;
   else
-    out << "  Normals = 0\n";
+    out << ", normals = 0\n";
   
   if (color_array)
-    out << "  Colors  = " << *color_array;
+    out << ", colors  = " << *color_array;
   else
-    out << "  Colors  = 0\n";
-  out << hex << "  default color = 0x" << default_color << dec << "\n";
-  return out;
+    out << ", colors  = 0\n";
+  out << ", default color = 0x" << hex << default_color << dec;
+  return out << "\n";;
 }
 
 std::ostream& operator<< (std::ostream& out, const VertexBuffer& vbuf)

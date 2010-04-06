@@ -8,7 +8,7 @@
 #include "KeyframeSequence.hpp"
 using namespace std;
 using namespace m3g;
-#include <cstdlib>
+//#include <cstdlib>
 
 Texture2D:: Texture2D (Image2D* img) :
   image(0), wrapping(WRAP_REPEAT, WRAP_REPEAT),
@@ -27,7 +27,7 @@ Texture2D:: Texture2D (Image2D* img) :
   int format = image->getOpenGLFormat();
   int width  = image->getWidth();
   int height = image->getHeight();
-  void* data = image->getImage();
+  void* data = image->getOpenGLData();
 
   glGenTextures (1, &texobj);
   glBindTexture (GL_TEXTURE_2D, texobj);
@@ -100,18 +100,11 @@ int Texture2D:: animate (int world_time)
   }
 
   if (is_color_modefied) {
-      unsigned char r = (rgb[0] <= 0) ? 0 : 
-	(rgb[0] >= 1) ? 255 :
-	(unsigned char)(rgb[0]*255);
-      unsigned char g = (rgb[1] <= 0) ? 0 : 
-	(rgb[1] >= 1) ? 255 : 
-	(unsigned char)(rgb[1]*255);
-      unsigned char b = (rgb[2] <= 0) ? 0 : 
-	(rgb[2] >= 1) ? 255 : 
-	(unsigned char)(rgb[2]*255);
-      //cout << "VertexBuffer: r,g,b = " << (int)r << ", " << (int)g << ", " << (int)b << "\n";
-      blend_color &= 0xff000000;
-      blend_color |= (r << 16) | (g << 8) | (b << 0);
+    unsigned char r = clamp (0, 1, rgb[0]) * 255;
+    unsigned char g = clamp (0, 1, rgb[1]) * 255;
+    unsigned char b = clamp (0, 1, rgb[2]) * 255;
+    //cout << "VertexBuffer: r,g,b = " << (int)r << ", " << (int)g << ", " << (int)b << "\n";
+    blend_color = (blend_color & 0xff000000) | (r << 16) | (g << 8) | (b << 0);
   }
 
   //cout << hex << "Texture2D: blend color = 0x" << blend_color << dec << "\n";
@@ -217,49 +210,45 @@ void Texture2D:: render (int pass, int index) const
   glActiveTexture (GL_TEXTURE0+index);
   glBindTexture   (GL_TEXTURE_2D, texobj);
 
-  if (blending_mode == FUNC_ADD) {
-    glTexEnvi (GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_ADD);
-  }
-  else if (blending_mode == FUNC_BLEND) {
-    glTexEnvi (GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_BLEND);
-  }
-  else if (blending_mode == FUNC_DECAL) {
-    glTexEnvi (GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_DECAL);
-  }
-  else if (blending_mode == FUNC_MODULATE) {
-    glTexEnvi (GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
-  }
-  else {
-    glTexEnvi (GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
+  switch (blending_mode) {
+  case FUNC_ADD     : glTexEnvi (GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_ADD); break;
+  case FUNC_BLEND   : glTexEnvi (GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_BLEND); break;
+  case FUNC_DECAL   : glTexEnvi (GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_DECAL); break;
+  case FUNC_MODULATE: glTexEnvi (GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE); break;
+  case FUNC_REPLACE : glTexEnvi (GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE); break;
+  default: throw IllegalStateException (__FILE__, __func__, "Blending mode is invalid, mode=%d.", blending_mode);
   }
 
-  if (filter.level == FILTER_BASE_LEVEL) {
+  switch (filter.image) {
+  case FILTER_BASE_LEVEL:
     glTexParameteri  (GL_TEXTURE_2D, GL_TEXTURE_BASE_LEVEL, 0);
     glTexParameteri  (GL_TEXTURE_2D, GL_TEXTURE_MAX_LEVEL, 0);
-  }
-  else if (filter.level == FILTER_LINEAR) {
+    break;
+  case FILTER_LINEAR:
     glTexParameteri  (GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
     glTexParameteri  (GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-  }
-  else {
+    break;
+  case FILTER_NEAREST:
     glTexParameteri  (GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
     glTexParameteri  (GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+    break;
+  default:
+    throw IllegalStateException (__FILE__, __func__, "Level filter is invalid.");
   }
 
-  if (wrapping.s == WRAP_CLAMP) {
-    glTexParameteri (GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP);
-  }
-  else {
-    glTexParameteri (GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+  // filter.levelは？
+
+  switch (wrapping.s) {
+  case WRAP_CLAMP :  glTexParameteri (GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP); break;
+  case WRAP_REPEAT:  glTexParameteri (GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT); break;
+  default: throw IllegalStateException (__FILE__, __func__, "Wraping mode S is invalid, mode=%d.", wrapping.s);
   }
 
-  if (wrapping.t == WRAP_CLAMP) {
-    glTexParameteri (GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP);
+  switch (wrapping.t) {
+  case WRAP_CLAMP :  glTexParameteri (GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP); break;
+  case WRAP_REPEAT:  glTexParameteri (GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT); break;
+  default: throw IllegalStateException (__FILE__, __func__, "Wraping mode T is invalid, mode=%d.", wrapping.t);
   }
-  else {
-    glTexParameteri (GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-  }
-
 
   glEnable        (GL_TEXTURE_2D);
   //cout << "Texture2D: enabled = " << index << "\n";
@@ -281,7 +270,7 @@ static
 const char* wrap_to_string (int wrap)
 {
   switch (wrap) {
-  case Texture2D::WRAP_CLAMP: return "CLAMP";
+  case Texture2D::WRAP_CLAMP : return "CLAMP";
   case Texture2D::WRAP_REPEAT: return "REPEAT";
   default: return "Unknown";
   }
@@ -292,8 +281,8 @@ const char* filter_to_string (int filter)
 {
   switch (filter) {
   case Texture2D::FILTER_BASE_LEVEL: return "BASE_LEVEL";
-  case Texture2D::FILTER_LINEAR: return "FILTER_LINEAR";
-  case Texture2D::FILTER_NEAREST: return "FILTER_NEAREST";
+  case Texture2D::FILTER_LINEAR    : return "FILTER_LINEAR";
+  case Texture2D::FILTER_NEAREST   : return "FILTER_NEAREST";
   default: return "Unknown";
   }
 }
@@ -302,11 +291,11 @@ static
 const char* blending_to_string (int blending)
 {
   switch (blending) {
-  case Texture2D::FUNC_ADD: return "ADD";
-  case Texture2D::FUNC_BLEND: return "BLEND";
-  case Texture2D::FUNC_DECAL: return "DECAL";
+  case Texture2D::FUNC_ADD     : return "ADD";
+  case Texture2D::FUNC_BLEND   : return "BLEND";
+  case Texture2D::FUNC_DECAL   : return "DECAL";
   case Texture2D::FUNC_MODULATE: return "MODULATE";
-  case Texture2D::FUNC_REPLACE: return "REPLACE";
+  case Texture2D::FUNC_REPLACE : return "REPLACE";
   default: return "Unknown";
   }
 }
@@ -314,10 +303,10 @@ const char* blending_to_string (int blending)
 std::ostream& Texture2D:: print (std::ostream& out) const
 {
   out << "Texture2D: ";
-  out << " wrapping=" << wrap_to_string(wrapping.s) << "," << wrap_to_string(wrapping.t) << "\n";
-  out << " filter=" << filter_to_string(filter.level) << "," << filter_to_string(filter.image) << "\n";
-  out << " blending=" << blending_to_string(blending_mode) << "\n";
-  out << hex << " blend_color=0x" << blend_color << dec;
+  out << "  wrapping=" << wrap_to_string(wrapping.s) << "," << wrap_to_string(wrapping.t);
+  out << ", filter="   << filter_to_string(filter.level) << "," << filter_to_string(filter.image);
+  out << ", blending=" << blending_to_string(blending_mode);
+  out << ", blend_color=0x" << hex << blend_color << dec;
   return out << "\n";
 }
 

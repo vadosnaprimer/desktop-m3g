@@ -1,5 +1,6 @@
 #include "Fog.hpp"
 #include <iostream>
+#include <algorithm>
 #include "Exception.hpp"
 #include "AnimationTrack.hpp"
 #include "AnimationController.hpp"
@@ -46,14 +47,14 @@ int Fog :: animate (int world_time)
 
   //cout << "Fog: animate, track=" << getAnimationTrackCount() << "\n";
   
-  bool  is_color_modefied = false;
-  bool  is_density_modefied   = false;
-  bool  is_far_modefied   = false;
-  bool  is_near_modefied   = false;
-  float rgb[]  = {0,0,0};
+  bool  is_color_modefied   = false;
+  bool  is_density_modefied = false;
+  bool  is_far_modefied     = false;
+  bool  is_near_modefied    = false;
+  float rgb[]       = {0,0,0};
   float new_density = 0;
-  float new_far = 0;
-  float new_near = 0;
+  float new_far     = 0;
+  float new_near    = 0;
 
   for (int i = 0; i < getAnimationTrackCount(); i++) {
     AnimationTrack*      track      = getAnimationTrack (i);
@@ -112,22 +113,14 @@ int Fog :: animate (int world_time)
   }
 
   if (is_color_modefied) {
-      unsigned char r = (rgb[0] <= 0) ? 0 : 
-	(rgb[0] >= 1) ? 255 :
-	(unsigned char)(rgb[0]*255);
-      unsigned char g = (rgb[1] <= 0) ? 0 : 
-	(rgb[1] >= 1) ? 255 : 
-	(unsigned char)(rgb[1]*255);
-      unsigned char b = (rgb[2] <= 0) ? 0 : 
-	(rgb[2] >= 1) ? 255 : 
-	(unsigned char)(rgb[2]*255);
-      //cout << "Fog: r,g,b = " << (int)r << ", " << (int)g << ", " << (int)b << "\n";
-      color &= 0xff000000;
-      color |= (r << 16) | (g << 8) | (b << 0);
+    unsigned char r = clamp (0, 1, rgb[0]) * 255;
+    unsigned char g = clamp (0, 1, rgb[1]) * 255;
+    unsigned char b = clamp (0, 1, rgb[1]) * 255;
+    //cout << "Fog: r,g,b = " << (int)r << ", " << (int)g << ", " << (int)b << "\n";
+    color = (r << 16) | (g << 8) | (b << 0);
   }
   if (is_density_modefied) {
-    new_density = (new_density < 0) ? 0 : new_density;
-    density = new_density;
+    density = max (0.f, new_density);
   }
   if (is_far_modefied) {
     far = new_far;
@@ -171,20 +164,33 @@ void Fog:: setColor (int rgb)
   color = rgb & 0x00ffffff;
 }
 
-void Fog:: setDensity (float new_density)
+void Fog:: setDensity (float dens)
 {
-  density = new_density;
+  if (dens < 0) {
+    throw IllegalArgumentException (__FILE__, __func__, "Density is invalid, dens=%f.", dens);
+  }
+
+  density = dens;
 }
 
-void Fog:: setLinear (float near_distance, float far_distance)
+void Fog:: setLinear (float near_, float far_)
 {
-  near = near_distance;
-  far  = far_distance;
+  if (near_ == far_) {
+    // M3Gでは定義されてないが0割を発生するためエラーとする
+    throw IllegalArgumentException (__FILE__, __func__, "Near and far are invalid, n=%f, n=%f.", near_, far_);
+  }
+
+  near = near_;
+  far  = far_;
 }
 
-void Fog:: setMode (int new_mode)
+void Fog:: setMode (int mode_)
 {
-  mode = new_mode;
+  if (mode_ != LINEAR && mode_ != EXPONENTIAL) {
+    throw IllegalArgumentException (__FILE__, __func__, "Mode is invalid, mode=%d, \n", mode_);
+  }
+
+  mode = mode_;
 }
 
 
@@ -200,39 +206,35 @@ void Fog:: render (int pass, int index) const
 
   //cout << "Fog: render\n";
 
-  GLfloat argb[4];
-  argb[3] = ((color & 0xff000000) >> 24) / 255.f;
-  argb[0] = ((color & 0x00ff0000) >> 16) / 255.f;
-  argb[1] = ((color & 0x0000ff00) >> 8) / 255.f;
-  argb[2] = ((color & 0x000000ff) >> 0) / 255.f;
-
   glEnable (GL_FOG);
 
+  GLfloat rgb[3] = {((color & 0x00ff0000) >> 16) / 255.f,
+                    ((color & 0x0000ff00) >> 8 ) / 255.f,
+                    ((color & 0x000000ff) >> 0 ) / 255.f};
+
   switch (mode) {
-  case EXPONENTIAL: {
-    glFogi (GL_FOG_MODE, GL_EXP);
-    glFogf (GL_FOG_DENSITY, density);
-    glFogfv (GL_FOG_COLOR, argb);
+  case EXPONENTIAL:
+    glFogi  (GL_FOG_MODE   , GL_EXP);
+    glFogf  (GL_FOG_DENSITY, density);
+    glFogfv (GL_FOG_COLOR  , rgb);
     break;
-  }
-  case LINEAR: {
-    glFogi (GL_FOG_MODE, GL_LINEAR);
-    glFogf (GL_FOG_START, near);
-    glFogf (GL_FOG_END, far);
-    glFogfv (GL_FOG_COLOR, argb);
+  case LINEAR:
+    glFogi  (GL_FOG_MODE , GL_LINEAR);
+    glFogf  (GL_FOG_START, near);
+    glFogf  (GL_FOG_END  , far);
+    glFogfv (GL_FOG_COLOR, rgb);
     break;
-  }
-  default: {
+  default:
     throw InternalException (__FILE__, __func__, "Fog mode is unknwon, mode=%d.", mode);
   }
-  }
+
 }
 
 static
 const char* mode_to_string (int mode)
 {
   switch (mode) {
-  case Fog::LINEAR: return "LINEAR";
+  case Fog::LINEAR     : return "LINEAR";
   case Fog::EXPONENTIAL: return "EXPONENTIAL";
   default: return "Unknwon";
   }

@@ -21,7 +21,8 @@ void parse_Object3D (istrstream& iss, vector<Object3D*>& objs, Object3D* obj)
   iss.read ((char*)&animation_tracks_count, 4);
   for (int i = 0; i < (int)animation_tracks_count; i++) {
     iss.read ((char*)&animation_tracks_index, 4);
-    AnimationTrack* atrack = dynamic_cast<AnimationTrack*>(objs[animation_tracks_index]);
+    cout << "animation_tracks_index = " << animation_tracks_index << "\n";
+    AnimationTrack* atrack = dynamic_cast<AnimationTrack*>(objs.at(animation_tracks_index));
     obj->addAnimationTrack (atrack);
   }
 
@@ -38,7 +39,7 @@ void parse_Object3D (istrstream& iss, vector<Object3D*>& objs, Object3D* obj)
 
     // 本当はユーザーデータはkey,valueのペアでなければならない。
     // 今の実装だとvalueだけ。あとで修整する。
-    obj->setUserObject (user_parameter_value);
+    obj->setUserObject ("fail", user_parameter_value);
   }
 
 }

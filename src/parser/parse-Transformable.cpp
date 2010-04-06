@@ -17,7 +17,7 @@ void parse_Transformable (istrstream& iss, vector<Object3D*>& objs, Transformabl
 
   bool has_comonent_transform;
   iss.read ((char*)&has_comonent_transform, 1);
-  cout << "has_comonent_transform = " << has_comonent_transform << "\n";
+  //cout << "has_comonent_transform = " << has_comonent_transform << "\n";
   if (has_comonent_transform) {
     float tx, ty, tz;
     iss.read ((char*)&tx, 4);
@@ -41,7 +41,7 @@ void parse_Transformable (istrstream& iss, vector<Object3D*>& objs, Transformabl
 
   bool has_general_transform;
   iss.read ((char*)&has_general_transform, 1);
-  cout << "has_general_transform = " << has_general_transform << "\n";
+  //cout << "has_general_transform = " << has_general_transform << "\n";
   if (has_general_transform) {
     float matrix[16];
     iss.read ((char*)matrix, 64);

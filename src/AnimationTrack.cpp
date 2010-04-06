@@ -20,7 +20,7 @@ bool is_property_has_valid_component (int property, int component_count)
   case AnimationTrack:: FAR_DISTANCE:  return (component_count == 1) ? true : false;
   case AnimationTrack:: FIELD_OF_VIEW: return (component_count == 1) ? true : false;
   case AnimationTrack:: INTENSITY:     return (component_count == 1) ? true : false;
-  case AnimationTrack:: MORPH_WEIGHTS: return true;
+  case AnimationTrack:: MORPH_WEIGHTS: return (component_count == 1) ? true : false;
   case AnimationTrack:: NEAR_DISTANCE: return (component_count == 1) ? true : false;
   case AnimationTrack:: ORIENTATION:   return (component_count == 4) ? true : false;
   case AnimationTrack:: PICKABILITY:   return (component_count == 1) ? true : false;
@@ -46,7 +46,6 @@ AnimationTrack:: AnimationTrack (KeyframeSequence* sequence_, int property_) :
   if (property_ < ALPHA || property_ > VISIBILITY) {
     throw IllegalArgumentException (__FILE__, __func__, "Property is unkwon, property=%d", property_);
   }
-  // TODO: propertyとコンポーネント数のチェック
   if (!is_property_has_valid_component (property_, sequence_->getComponentCount())) {
     throw IllegalArgumentException (__FILE__, __func__, "Component count of KeyframeSequence is invalid for this property, count=%d, property=%d", sequence_->getComponentCount(), property_);
   }
@@ -67,9 +66,7 @@ AnimationController* AnimationTrack:: getController () const
 
 KeyframeSequence* AnimationTrack:: getKeyframeSequence () const
 {
-  if (keyframe_sequence == NULL) {
-    throw InternalException(__FILE__, __func__, "KeyframeSequence is NULLL.");
-  }
+  // null is ok.
   return keyframe_sequence;
 }
 
@@ -116,20 +113,20 @@ const char* property_to_string (int property)
 std::ostream& AnimationTrack:: print (std::ostream& out) const
 {
   out << "AnimationTrack: ";
-  out << " property=" << property_to_string(property);
-  out << " keyframe_sequence=[";
+  out << "  property=" << property_to_string(property);
+  out << ", keyframe_sequence=[";
   for (int i = 0;  i < keyframe_sequence->getKeyframeCount(); i++) {
     out << i << ":" << keyframe_sequence->getKeyframe (i, 0) << ",";
   }
   out << "]";
   if (animation_controller)
-    out << " animation_controller=0x" << hex << animation_controller << dec;
+    out << ", animation_controller=0x" << hex << animation_controller << dec;
   else
-    out << " animation_controller=0";
+    out << ", animation_controller=0";
   return out << "\n";
 }
 
-std::ostream& operator<< (std::ostream& out, const AnimationTrack& a)
+std::ostream& operator<< (std::ostream& out, const AnimationTrack& track)
 {
-  return a.print(out);
+  return track.print(out);
 }

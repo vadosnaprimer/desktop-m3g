@@ -8,7 +8,7 @@ namespace m3g {
 
   /**
    * @~English  A two-dimensional image that can be used as a textur, backgoround or sprite image.
-   * @~Japanese テクスチャー、バックグラウンド、スプライト画像として使う2D画像.
+   * @~Japanese テクスチャー、バックグラウンド、スプライト画像として使う2D画像クラス.
    */
   class Image2D : public Object3D
   {
@@ -70,25 +70,25 @@ namespace m3g {
     virtual ~Image2D ();
 
     /**
-     * @~English  
+     * @~English  Gets the internal format of this Image2D.
      * @~Japanese このImage2Dクラスの内部フォーマットを取得.
      */
     int getFormat () const;
 
     /**
-     * @~English  
+     * @~English  Gets the hieght of this Image2D.
      * @~Japanese このImage2Dクラスの高さをピクセル数で取得.
      */
     int getHeight () const;
 
     /**
-     * @~English  
+     * @~English  Gets the width of this Image2D.
      * @~Japanese このImage2Dクラスの幅をピクセル数で取得.
      */
     int getWidth () const;
 
     /**
-     * @~English  
+     * @~English  Qeries wheter this Image2D is mutable.
      * @~Japanese このImage2Dクラスがミュータブルかどうかの問い合わせ.
      */
     bool isMutable () const;
@@ -102,9 +102,10 @@ namespace m3g {
 
     /**
      * @~English  Write image as ppm file(alpha component is ignored), for only debug .
-     * @~Japanese ppm画像として出力する。この関数はデバッグ用でありリリースに含まれていてはならない.
+     * @~Japanese ppm画像として出力するM3G非標準の関数。
+     *            この関数はデバッグ用でありリリースに含まれていてはならない.
      */
-    void write_ppm (const char* name) const;
+    void write_ppm (const char* file_name) const;
 
     /**
      * @~English  Print out information of this class, for only debug.
@@ -118,36 +119,26 @@ namespace m3g {
      */
     GLenum getOpenGLFormat () const;
 
-  private:
-
     /**
      * @~English  Return pointer to raw data, for inner use.
-     * @~Japanese 内部データへのポインターを返す内部使用の関数.
+     * @~Japanese 内部データへのポインターを返すM3G未定義の関数.
      */
-    void* getImage () const;
-
-    /**
-     * @~English  Return pixel size of this format, for inner use.
-     * @~Japanese 画像フォーマットのバイト当たりのピクセル数を返す内部使用の関数.
-     */
-    int format_to_bpp (int format) const;
+    void* getOpenGLData () const;
 
 
   private:
-    int            format;
-    int            width;
-    int            height;
-    unsigned char* image;
-    int            bpp;
-    bool           immutable;
+    int   format;
+    int   width;
+    int   height;
+    char* image;
+    bool  immutable;
 
-  private:
     GLuint         texobj;
   };
 
 } // namespace m3g {
 
-std::ostream& operator<< (std::ostream& out, const m3g::Image2D& i);
+std::ostream& operator<< (std::ostream& out, const m3g::Image2D& img);
 
 
 #endif

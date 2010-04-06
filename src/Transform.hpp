@@ -107,7 +107,7 @@ namespace m3g {
     void transform (VertexArray* in, float* out, bool w) const;
 
     /**
-     * @~English  Transposes this matrix.
+     * @~English  Transpose this matrix.
      * @~Japanese 転置を取りこの行列と入れ替える.
      */
     void transpose ();

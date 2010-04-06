@@ -45,9 +45,9 @@ TEST (Quaternion_multiply_float)
   Quaternion q2 = q*0.5;
   float angle_axies[4];
   q.getAngleAxis(angle_axies);
-  cout << "q0 = " << angle_axies[0] << ", " << angle_axies[1] << ", " << angle_axies[2] << ", " << angle_axies[3] << "\n";
+  //cout << "q0 = " << angle_axies[0] << ", " << angle_axies[1] << ", " << angle_axies[2] << ", " << angle_axies[3] << "\n";
   q2.getAngleAxis(angle_axies);
-  cout << "q2 = " << angle_axies[0] << ", " << angle_axies[1] << ", " << angle_axies[2] << ", " << angle_axies[3] << "\n";
+  //cout << "q2 = " << angle_axies[0] << ", " << angle_axies[1] << ", " << angle_axies[2] << ", " << angle_axies[3] << "\n";
 }
 
 TEST (Quaternion_multiply_Quaternion)

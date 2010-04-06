@@ -49,7 +49,7 @@ TEST (SkinnedMesh_addTransform)
   root->addChild (bone_1);
   SkinnedMesh* mesh     = new SkinnedMesh (vbuf, tris, app, root);
 
-  root->Transformable::print(cout);
+  //root->Transformable::print(cout);
 
   mesh->addTransform (root, 1, 0, 10);
   mesh->addTransform (bone_1, 1, 0, 10);

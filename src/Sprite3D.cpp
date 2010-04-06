@@ -19,7 +19,7 @@ Sprite3D:: Sprite3D (bool scaled_, Image2D* image_, Appearance* appearance_) :
 {
   setObjectType (OBJTYPE_SPRITE3D);
 
-  if (image_ == 0) {
+  if (image_ == NULL) {
     throw NullPointException (__FILE__, __func__, "Image is NULL.");
   }
 
@@ -32,7 +32,7 @@ Sprite3D:: Sprite3D (bool scaled_, Image2D* image_, Appearance* appearance_) :
   crop.height = image->getHeight();
 
   int format = image->getOpenGLFormat ();
-  void* data = image->getImage ();
+  void* data = image->getOpenGLData ();
 
   glGenTextures   (1, &texobj);
   glBindTexture   (GL_TEXTURE_2D, texobj);
@@ -94,14 +94,14 @@ int Sprite3D:: animate (int world_time)
       float value[4] = {0,0,0,0};
       keyframe->getFrame (local_time, value);
       if (keyframe->getComponentCount() == 4) {
-	new_crop.x += value[0] * weight;
-	new_crop.y += value[1] * weight;
+	new_crop.x      += value[0] * weight;
+	new_crop.y      += value[1] * weight;
 	new_crop.width  += value[2] * weight;
 	new_crop.height += value[3] * weight;
       }
       else {
-	new_crop.x += value[0] * weight;
-	new_crop.y += value[1] * weight;
+	new_crop.x      += value[0] * weight;
+	new_crop.y      += value[1] * weight;
 	new_crop.width  += crop.width * weight;
 	new_crop.height += crop.height * weight;
 	
@@ -175,7 +175,11 @@ void Sprite3D:: setCrop (int crop_x, int crop_y, int width, int height)
 
 void Sprite3D:: setImage (Image2D* image_)
 {
-  image = image_;
+  if (image_ == NULL) {
+    throw NullPointException (__FILE__, __func__, "Image is NULL.");
+  }
+
+  image       = image_;
   crop.x      = 0;
   crop.y      = 0;
   crop.width  = image->getWidth();
@@ -297,8 +301,7 @@ void Sprite3D:: render (int pass, int index) const
     glMatrixMode (GL_MODELVIEW);
     glPopMatrix ();
 
-  }
-  else {
+  } else {
     
     float width  = 2*image->getWidth()/viewport_width;
     float height = 2*image->getHeight()/viewport_height;
@@ -336,25 +339,33 @@ int Sprite3D:: getLayer () const
 {
   if (appearance) {
     return appearance->getLayer();
-  }
-  else {
+  } else {
     return 0;
   }
 }
+
 
 bool Sprite3D:: sort_by_layer (const Sprite3D* lhs, const Sprite3D* rhs)
 {
   return lhs->getLayer() < rhs->getLayer();
 }
 
+
 std::ostream& Sprite3D:: print (std::ostream& out) const
 {
-  return out;
+  int width  = image ? image->getWidth() : 0;
+  int height = image ? image->getHeight() : 0;
+  out << "Sprite3D: ";
+  out << "  scaled=" << scaled;
+  out << ", image=0x" << image << "(" << width << "x" << height << ")";
+  out << ", appearance=0x" << appearance;
+  out << ", crop=" << crop.x << "," << crop.y << "," << crop.width << "," << crop.height;
+  return out << "\n";;
 }
 
-std::ostream& operator<< (std::ostream& out, const Sprite3D& s)
+std::ostream& operator<< (std::ostream& out, const Sprite3D& spr)
 {
-  return s.print(out);
+  return spr.print(out);
 }
 
 

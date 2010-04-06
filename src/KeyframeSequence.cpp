@@ -1,8 +1,8 @@
 #include "KeyframeSequence.hpp"
-#include <iostream>
-#include <cstring>
 #include "Exception.hpp"
 #include "Quaternion.hpp"
+#include <iostream>
+#include <cstring>
 using namespace std;
 using namespace m3g;
 
@@ -90,6 +90,10 @@ int KeyframeSequence:: getValidRangeLast () const
 
 void KeyframeSequence:: setDuration (int new_duration)
 {
+  if (new_duration <= 0) {
+    throw IllegalArgumentException (__FILE__, __func__, "Duration is invalid, duration=%d.", duration);
+  }
+
   duration = new_duration;
 }
 
@@ -216,29 +220,23 @@ void KeyframeSequence:: getFrame (int local_time, float* value) const
                        keyframes[right+1];
 
   switch (interp_type) {
-  case STEP: {
+  case STEP: 
     step (s, k1, k2, component_count, value);
     return;
-  }
-  case LINEAR: {
+  case LINEAR:
     linear (s, k1, k2, component_count, value);
     return;
-  }
-  case SLERP: {
+  case SLERP:
     slerp (s, k1, k2, component_count, value);
     return;
-  }
-  case SPLINE: {
+  case SPLINE:
     //cout << "interp: " << k0 << ", " << k1 << ", " << k2 << ", " << k3 << "\n";
     spline (s, k0, k1, k2, k3, component_count, value);
     return;
-  }
-  case SQUAD: {
+  case SQUAD:
     throw NotImplementedException (__FILE__, __func__, "SQUAD Interpolated is not nimplemented.");
-  }
-  default: {
+  default:
     throw InternalException (__FILE__, __func__, "Interpolation type is unknwon, type=%d.", interp_type);
-  }
   }
 }
 
@@ -267,13 +265,13 @@ const char* interp_type_to_string (int interp)
 std::ostream& KeyframeSequence:: print (std::ostream& out) const
 {
   out << "KeyframeSequence: ";
-  out << " keyframe_count=" << keyframe_count;
-  out << " component_count=" << component_count;
-  out << " valid_range=" << valid_range.first << "," << valid_range.last;
-  out << " duration=" << duration;
-  out << " repeat_mode=" << repeat_mode_to_string(repeat_mode);
-  out << " interp_type=" << interp_type_to_string(interp_type);
-  out << " keyframes=[";
+  out << "  keyframe_count="  << keyframe_count;
+  out << ", component_count=" << component_count;
+  out << ", valid_range="     << valid_range.first << "," << valid_range.last;
+  out << ", duration="        << duration;
+  out << ", repeat_mode="     << repeat_mode_to_string(repeat_mode);
+  out << ", interp_type="     << interp_type_to_string(interp_type);
+  out << ", keyframes=[";
   for (int i = 0; i < keyframe_count; i++) {
     out << i << ":(" << keyframes[i].time << ")=[";
     for (int j = 0; j < component_count; j++) {

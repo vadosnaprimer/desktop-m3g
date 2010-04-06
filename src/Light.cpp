@@ -46,9 +46,9 @@ int Light:: animate (int world_time)
 {
   Object3D:: animate (world_time);
 
-  bool  is_color_modefied = false;
-  bool  is_intensity_modefied = false;
-  bool  is_spot_angle_modefied = false;
+  bool  is_color_modefied         = false;
+  bool  is_intensity_modefied     = false;
+  bool  is_spot_angle_modefied    = false;
   bool  is_spot_exponent_modefied = false;
   float rgb[] = {0,0,0};
   float new_intensity;
@@ -111,27 +111,20 @@ int Light:: animate (int world_time)
   }
 
   if (is_color_modefied) {
-      unsigned char r = (rgb[0] <= 0) ? 0 : 
-	(rgb[0] >= 1) ? 255 :
-	(unsigned char)(rgb[0]*255);
-      unsigned char g = (rgb[1] <= 0) ? 0 : 
-	(rgb[1] >= 1) ? 255 : 
-	(unsigned char)(rgb[1]*255);
-      unsigned char b = (rgb[2] <= 0) ? 0 : 
-	(rgb[2] >= 1) ? 255 : 
-	(unsigned char)(rgb[2]*255);
-      //cout << "Light: r,g,b = " << (int)r << ", " << (int)g << ", " << (int)b << "\n";
-      color &= 0xff000000;
-      color |= (r << 16) | (g << 8) | (b << 0);
+    unsigned char r = clamp (0, 1, rgb[0]) * 255;
+    unsigned char g = clamp (0, 1, rgb[1]) * 255;
+    unsigned char b = clamp (0, 1, rgb[2]) * 255;
+    //cout << "Light: r,g,b = " << (int)r << ", " << (int)g << ", " << (int)b << "\n";
+    color = (color & 0xff000000) | (r << 16) | (g << 8) | (b << 0);
   }
   if (is_intensity_modefied) {
     intensity = new_intensity;
   }
   if (is_spot_angle_modefied) {
-    spot.angle = new_spot.angle;
+    spot.angle = clamp (0, 90, new_spot.angle);
   }
   if (is_spot_exponent_modefied) {
-    spot.exponent = new_spot.exponent;
+    spot.exponent = clamp (0, 128, new_spot.exponent);
   }
 
   //cout << *this << "\n";
@@ -143,42 +136,42 @@ int Light:: animate (int world_time)
 
 int Light:: getColor () const
 {
-    return color;
+  return color;
 }
 
 float Light:: getConstantAttenuation () const
 {
-    return attenuation.constant;
+  return attenuation.constant;
 }
 
 float Light:: getIntensity () const
 {
-    return intensity;
+  return intensity;
 }
 
 float Light:: getLinearAttenuation () const
 {
-    return attenuation.linear;
+  return attenuation.linear;
 }
 
 int Light:: getMode () const
 {
-    return mode;
+  return mode;
 }
 
 float Light:: getQuadraticAttenuation () const
 {
-    return attenuation.quadratic;
+  return attenuation.quadratic;
 }
 
 float Light:: getSpotAngle () const
 {
-    return spot.angle;
+  return spot.angle;
 }
 
 float Light:: getSpotExponent () const
 {
-    return spot.exponent;
+  return spot.exponent;
 }
 
 void Light:: setAttenuation (float constant, float linear, float quadratic)
@@ -251,14 +244,14 @@ void Light:: render (int pass, int index_do_not_use) const
 
   //cout << "Light: render ================\n";
   
-int index = getGLIndex ();
+  int index = getGLIndex ();
 
   GLfloat black[4] = {0,0,0,1};
-  GLfloat argb[4];
-  argb[3] = intensity * ((color & 0xff000000) >> 24) / 255.f;
-  argb[0] = intensity * ((color & 0x00ff0000) >> 16) / 255.f;
-  argb[1] = intensity * ((color & 0x0000ff00) >>  8) / 255.f;
-  argb[2] = intensity * ((color & 0x000000ff) >>  0) / 255.f;
+  GLfloat rgba[4];
+  rgba[0] = intensity * ((color & 0x00ff0000) >> 16) / 255.f;
+  rgba[1] = intensity * ((color & 0x0000ff00) >>  8) / 255.f;
+  rgba[2] = intensity * ((color & 0x000000ff) >>  0) / 255.f;
+  rgba[3] = intensity * ((color & 0xff000000) >> 24) / 255.f;
   
   Transform trans;
   getCompositeTransform (&trans);
@@ -272,7 +265,7 @@ int index = getGLIndex ();
 
   if (mode == AMBIENT) {
     //cout << "AMBIENT light\n";
-    glLightfv (GL_LIGHT0+index, GL_AMBIENT,  argb);
+    glLightfv (GL_LIGHT0+index, GL_AMBIENT,  rgba);
     glLightfv (GL_LIGHT0+index, GL_DIFFUSE,  black);
     glLightfv (GL_LIGHT0+index, GL_SPECULAR, black);
     glLightf  (GL_LIGHT0+index, GL_SPOT_CUTOFF, 180.0f);
@@ -282,19 +275,19 @@ int index = getGLIndex ();
     GLfloat xyzw[4] = {m[2], m[6], m[10], 0};
     glLightfv (GL_LIGHT0+index, GL_POSITION, xyzw);
     glLightfv (GL_LIGHT0+index, GL_AMBIENT,  black);
-    glLightfv (GL_LIGHT0+index, GL_DIFFUSE,  argb);
-    glLightfv (GL_LIGHT0+index, GL_SPECULAR, argb);
+    glLightfv (GL_LIGHT0+index, GL_DIFFUSE,  rgba);
+    glLightfv (GL_LIGHT0+index, GL_SPECULAR, rgba);
     glLightf  (GL_LIGHT0+index, GL_SPOT_CUTOFF, 180.0f);
   }
   else if (mode == OMNI) {
     GLfloat xyzw[4] = {m[3], m[7], m[11], 1.0f};
     //cout << "OMNI light: xyzw = " << xyzw[0] << ", "<< xyzw[1] << ", "<< xyzw[2] << ", "<< xyzw[3] << "\n";
-    //cout << "OMNI light: color = " << argb[0] << ", "<< argb[1] << ", "<< argb[2] << ", "<< argb[3] << "\n";
+    //cout << "OMNI light: color = " << rgba[0] << ", "<< rgba[1] << ", "<< rgba[2] << ", "<< rgba[3] << "\n";
     //cout << "index = " << index << "\n";
     glLightfv (GL_LIGHT0+index, GL_POSITION, xyzw);
     glLightfv (GL_LIGHT0+index, GL_AMBIENT,  black);
-    glLightfv (GL_LIGHT0+index, GL_DIFFUSE,  argb);
-    glLightfv (GL_LIGHT0+index, GL_SPECULAR, argb);
+    glLightfv (GL_LIGHT0+index, GL_DIFFUSE,  rgba);
+    glLightfv (GL_LIGHT0+index, GL_SPECULAR, rgba);
     glLightf  (GL_LIGHT0+index, GL_SPOT_CUTOFF, 180.f);
   }
   else if (mode == SPOT) {
@@ -304,8 +297,8 @@ int index = getGLIndex ();
     //cout << "dir = " << -m[2] << ", " << -m[6] << ", " << -m[10] << "\n";
     glLightfv (GL_LIGHT0+index, GL_POSITION, pos);
     glLightfv (GL_LIGHT0+index, GL_AMBIENT,  black);
-    glLightfv (GL_LIGHT0+index, GL_DIFFUSE,  argb);
-    glLightfv (GL_LIGHT0+index, GL_SPECULAR, argb);
+    glLightfv (GL_LIGHT0+index, GL_DIFFUSE,  rgba);
+    glLightfv (GL_LIGHT0+index, GL_SPECULAR, rgba);
     glLightfv (GL_LIGHT0+index, GL_SPOT_DIRECTION, dir);
     glLightf  (GL_LIGHT0+index, GL_SPOT_EXPONENT, spot.exponent);
     glLightf  (GL_LIGHT0+index, GL_SPOT_CUTOFF,   spot.angle);
@@ -326,21 +319,25 @@ static
 const char* mode_to_string (int mode)
 {
   switch (mode) {
-  case Light::AMBIENT: return "AMBIENT";
+  case Light::AMBIENT    : return "AMBIENT";
   case Light::DIRECTIONAL: return "DIRECTIONAL";
-  case Light::OMNI: return "OMNI";
-  case Light::SPOT: return "SPOT";
+  case Light::OMNI       : return "OMNI";
+  case Light::SPOT       : return "SPOT";
   default: return "Unknown";
   }
 }
 
 std::ostream& Light:: print (std::ostream& out) const
 {
-  out << "Light: mode=" << mode_to_string(mode) << ", color=0x" << hex << color << dec;
-  out << ", intensity=" << intensity << ", attenuation=" << attenuation.constant;
-  out << "," << attenuation.linear << "," << attenuation.quadratic << ", spot=";
-  out << spot.angle << "," << spot.exponent << "\n";
-  return out;
+  out << "Light: mode="   << mode_to_string(mode);
+  out << ", color=0x"     << hex << color << dec;
+  out << ", intensity="   << intensity;
+  out << ", attenuation=" << attenuation.constant;
+  out << ","              << attenuation.linear;
+  out << ","              << attenuation.quadratic;
+  out << ", spot="        << spot.angle;
+  out << ","              << spot.exponent;
+  return out << "\n";
 }
 
 std::ostream& operator<< (std::ostream& out, const Light& lig)

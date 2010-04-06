@@ -70,26 +70,22 @@ void AnimationController:: setWeight (float weight)
 
 bool AnimationController:: isActiveInterval (int world_time) const
 {
-  if (active_interval.start == active_interval.end) {
+  if (active_interval.start == active_interval.end)
     return true;
-  }
-  else if (world_time >= active_interval.start && world_time < active_interval.end) {
+  else if (world_time >= active_interval.start && world_time < active_interval.end)
     return true;
-  }
-  else {
+  else
     return false;
-  }
-
 }
 
 std::ostream& AnimationController:: print (std::ostream& out) const
 {
   out << "AnimationController: ";
-  out << " active_interval=" << active_interval.start << "," << active_interval.end;
-  out << " blending_weight=" << blending_weight;
-  out << " speed=" << speed;
-  out << " refference_world_time=" << refference_world_time;
-  out << " refference_sequence_time=" << refference_sequence_time;
+  out << "  active_interval=" << active_interval.start << "," << active_interval.end;
+  out << ", blending_weight=" << blending_weight;
+  out << ", speed=" << speed;
+  out << ", refference_world_time=" << refference_world_time;
+  out << ", refference_sequence_time=" << refference_sequence_time;
   return out << "\n";
 }
 

@@ -46,18 +46,18 @@ int Material:: animate (int world_time)
 
   Object3D:: animate (world_time);
   
-  bool  is_alpha_modefied = false;
-  bool  is_ambient_color_modefied = false;
-  bool  is_diffuse_color_modefied = false;
+  bool  is_alpha_modefied          = false;
+  bool  is_ambient_color_modefied  = false;
+  bool  is_diffuse_color_modefied  = false;
   bool  is_emissive_color_modefied = false;
-  bool  is_shininess_modefied = false;
+  bool  is_shininess_modefied      = false;
   bool  is_specular_color_modefied = false;
-  float ambient_rgb[] = {0,0,0};
-  float diffuse_rgb[] = {0,0,0};
+  float ambient_rgb[]  = {0,0,0};
+  float diffuse_rgb[]  = {0,0,0};
   float emissive_rgb[] = {0,0,0};
   float specular_rgb[] = {0,0,0};
-  float alpha  = 0;
-  float new_shininess = 0;
+  float alpha          = 0;
+  float new_shininess  = 0;
 
   for (int i = 0; i < getAnimationTrackCount(); i++) {
     AnimationTrack*      track      = getAnimationTrack (i);
@@ -138,73 +138,39 @@ int Material:: animate (int world_time)
   }
 
   if (is_ambient_color_modefied) {
-      unsigned char r = (ambient_rgb[0] <= 0) ? 0 : 
-	(ambient_rgb[0] >= 1) ? 255 :
-	ambient_rgb[0]*255;
-      unsigned char g = (ambient_rgb[1] <= 0) ? 0 : 
-	(ambient_rgb[1] >= 1) ? 255 : 
-	ambient_rgb[1]*255;
-      unsigned char b = (ambient_rgb[2] <= 0) ? 0 : 
-	(ambient_rgb[2] >= 1) ? 255 : 
-	ambient_rgb[2]*255;
-      //cout << "Material: r,g,b = " << (int)r << ", " << (int)g << ", " << (int)b << "\n";
-      ambient_color &= 0xff000000;
-      ambient_color |= (r << 16) | (g << 8) | (b << 0);
+    unsigned char r = clamp (0, 1, ambient_rgb[0]) * 255;
+    unsigned char g = clamp (0, 1, ambient_rgb[1]) * 255;
+    unsigned char b = clamp (0, 1, ambient_rgb[2]) * 255;
+    //cout << "Material: r,g,b = " << (int)r << ", " << (int)g << ", " << (int)b << "\n";
+    ambient_color = (r << 16) | (g << 8) | (b << 0);
   }
   if (is_diffuse_color_modefied) {
-      unsigned char r = (diffuse_rgb[0] <= 0) ? 0 : 
-	(diffuse_rgb[0] >= 1) ? 255 :
-	diffuse_rgb[0]*255;
-      unsigned char g = (diffuse_rgb[1] <= 0) ? 0 : 
-	(diffuse_rgb[1] >= 1) ? 255 : 
-	diffuse_rgb[1]*255;
-      unsigned char b = (diffuse_rgb[2] <= 0) ? 0 : 
-	(diffuse_rgb[2] >= 1) ? 255 : 
-	diffuse_rgb[2]*255;
+    unsigned char r = clamp (0, 1, diffuse_rgb[0]) * 255;
+    unsigned char g = clamp (0, 1, diffuse_rgb[1]) * 255;
+    unsigned char b = clamp (0, 1, diffuse_rgb[2]) * 255;
       //cout << "Material: r,g,b = " << (int)r << ", " << (int)g << ", " << (int)b << "\n";
-      diffuse_color &= 0xff000000;
-      diffuse_color |= (r << 16) | (g << 8) | (b << 0);
+    diffuse_color = (diffuse_color & 0xff000000) | (r << 16) | (g << 8) | (b << 0);
   }
   if (is_emissive_color_modefied) {
-      unsigned char r = (emissive_rgb[0] <= 0) ? 0 : 
-	(emissive_rgb[0] >= 1) ? 255 :
-	emissive_rgb[0]*255;
-      unsigned char g = (emissive_rgb[1] <= 0) ? 0 : 
-	(emissive_rgb[1] >= 1) ? 255 : 
-	emissive_rgb[1]*255;
-      unsigned char b = (emissive_rgb[2] <= 0) ? 0 : 
-	(emissive_rgb[2] >= 1) ? 255 : 
-	emissive_rgb[2]*255;
-      //cout << "Material: r,g,b = " << (int)r << ", " << (int)g << ", " << (int)b << "\n";
-      emissive_color &= 0xff000000;
-      emissive_color |= (r << 16) | (g << 8) | (b << 0);
+    unsigned char r = clamp (0, 1, emissive_rgb[0]) * 255;
+    unsigned char g = clamp (0, 1, emissive_rgb[1]) * 255;
+    unsigned char b = clamp (0, 1, emissive_rgb[2]) * 255;
+    //cout << "Material: r,g,b = " << (int)r << ", " << (int)g << ", " << (int)b << "\n";
+    emissive_color = (r << 16) | (g << 8) | (b << 0);
   }
   if (is_alpha_modefied) {
-      unsigned char a = (alpha <= 0) ? 0 :
-	(alpha >= 1) ? 255 :
-	(unsigned char)(alpha*255);
-      diffuse_color &= 0x00ffffff;
-      diffuse_color |= (a << 24);
+    unsigned char a = clamp (0, 1, alpha) * 255;
+    diffuse_color = (diffuse_color & 0x00ffffff) | (a << 24);
   }
   if (is_shininess_modefied) {
-    new_shininess = (new_shininess < 0) ? 0 :
-      (new_shininess > 128) ? 128 :
-      new_shininess;
-    shininess = new_shininess;
+    shininess = clamp (0, 128, new_shininess);
   }
   if (is_specular_color_modefied) {
-      unsigned char r = (specular_rgb[0] <= 0) ? 0 : 
-	(specular_rgb[0] >= 1) ? 255 :
-	specular_rgb[0]*255;
-      unsigned char g = (specular_rgb[1] <= 0) ? 0 : 
-	(specular_rgb[1] >= 1) ? 255 : 
-	specular_rgb[1]*255;
-      unsigned char b = (specular_rgb[2] <= 0) ? 0 : 
-	(specular_rgb[2] >= 1) ? 255 : 
-	specular_rgb[2]*255;
-      //cout << "Material: r,g,b = " << (int)r << ", " << (int)g << ", " << (int)b << "\n";
-      specular_color &= 0xff000000;
-      specular_color |= (r << 16) | (g << 8) | (b << 0);
+    unsigned char r = clamp (0, 1, specular_rgb[0]) * 255;
+    unsigned char g = clamp (0, 1, specular_rgb[1]) * 255;
+    unsigned char b = clamp (0, 1, specular_rgb[2]) * 255;
+    //cout << "Material: r,g,b = " << (int)r << ", " << (int)g << ", " << (int)b << "\n";
+    specular_color = (r << 16) | (g << 8) | (b << 0);
   }
 
 
@@ -220,21 +186,11 @@ int Material:: animate (int world_time)
 int Material:: getColor (int target) const
 {
   switch (target) {
-  case AMBIENT: {
-    return ambient_color;
-  }
-  case DIFFUSE: {
-    return diffuse_color;
-  }
-  case EMISSIVE: {
-    return emissive_color;
-  }
-  case SPECULAR: {
-    return specular_color;
-  }
-  default: {
-    throw IllegalArgumentException (__FILE__, __func__, "Unknown target of getColor is specified.");
-  }
+  case AMBIENT : return ambient_color;
+  case DIFFUSE : return diffuse_color;
+  case EMISSIVE: return emissive_color;
+  case SPECULAR: return specular_color;
+  default: throw IllegalArgumentException (__FILE__, __func__, "Target is invalid, target=%d.", target);
   }
 }
 
@@ -251,25 +207,11 @@ bool Material:: isVertexColorTrackingEnabled () const
 void Material:: setColor (int target, int argb)
 {
   switch (target) {
-  case AMBIENT: {
-    ambient_color = argb & 0x00ffffff;
-    return;
-  }
-  case DIFFUSE: {
-    diffuse_color = argb;
-    return;
-  }
-  case EMISSIVE: {
-    emissive_color = argb & 0x00ffffff;
-    return;
-  }
-  case SPECULAR: {
-     specular_color = argb & 0x00ffffff;
-     return;
-  }
-  default: {
-    throw IllegalArgumentException (__FILE__, __func__, "Target of setColor is invalid, target=%d.", target);
-  }
+  case AMBIENT : ambient_color  = argb & 0x00ffffff; return;
+  case DIFFUSE : diffuse_color  = argb             ; return;
+  case EMISSIVE: emissive_color = argb & 0x00ffffff; return;
+  case SPECULAR: specular_color = argb & 0x00ffffff; return;
+  default: throw IllegalArgumentException (__FILE__, __func__, "Target is invalid, target=%d.", target);
   }
   
 }
@@ -295,36 +237,31 @@ void Material:: render (int pass, int index) const
   }
 
   //cout << "Material: render\n";
-  Object3D::render (pass, index);
 
-  GLfloat argb[4] = {0,0,0,0};
+  GLfloat ambient_rgba[4] = {((ambient_color & 0x00ff0000) >> 16) / 255.f,
+                             ((ambient_color & 0x0000ff00) >> 8 ) / 255.f,
+                             ((ambient_color & 0x000000ff) >> 0 ) / 255.f, 1};
+  glMaterialfv (GL_FRONT_AND_BACK, GL_AMBIENT, ambient_rgba);
 
-  argb[3] = ((ambient_color & 0xff000000) >> 24) / 255.f;
-  argb[0] = ((ambient_color & 0x00ff0000) >> 16) / 255.f;
-  argb[1] = ((ambient_color & 0x0000ff00) >> 8) / 255.f;
-  argb[2] = ((ambient_color & 0x000000ff) >> 0) / 255.f;
-  glMaterialfv (GL_FRONT_AND_BACK, GL_AMBIENT,  argb);
-
-  argb[3] = ((diffuse_color & 0xff000000) >> 24) / 255.f;
-  argb[0] = ((diffuse_color & 0x00ff0000) >> 16) / 255.f;
-  argb[1] = ((diffuse_color & 0x0000ff00) >> 8) / 255.f;
-  argb[2] = ((diffuse_color & 0x000000ff) >> 0) / 255.f;
-  glMaterialfv (GL_FRONT_AND_BACK, GL_DIFFUSE,  argb);
+  GLfloat diffuse_rgba[4] = {((diffuse_color & 0x00ff0000) >> 16) / 255.f,
+                             ((diffuse_color & 0x0000ff00) >> 8 ) / 255.f,
+                             ((diffuse_color & 0x000000ff) >> 0 ) / 255.f,
+                             ((diffuse_color & 0xff000000) >> 24) / 255.f};
+  glMaterialfv (GL_FRONT_AND_BACK, GL_DIFFUSE, diffuse_rgba);
   
-  // In no light, diffuse color of material shoud be used.
-  glColor4f (argb[0], argb[1], argb[2], argb[3]);
+  GLfloat specular_rgba[4] = {((specular_color & 0x00ff0000) >> 16) / 255.f,
+                              ((specular_color & 0x0000ff00) >> 8 ) / 255.f,
+                              ((specular_color & 0x000000ff) >> 0 ) / 255.f, 1};
+  glMaterialfv (GL_FRONT_AND_BACK, GL_SPECULAR, specular_rgba);
+  glMaterialf  (GL_FRONT_AND_BACK, GL_SHININESS, shininess);
 
-  argb[3] = ((specular_color & 0xff000000) >> 24) / 255.f;
-  argb[0] = ((specular_color & 0x00ff0000) >> 16) / 255.f;
-  argb[1] = ((specular_color & 0x0000ff00) >> 8) / 255.f;
-  argb[2] = ((specular_color & 0x000000ff) >> 0) / 255.f;
-  glMaterialfv (GL_FRONT_AND_BACK, GL_SPECULAR, argb);
+  GLfloat emissive_rgba[4] = {((emissive_color & 0x00ff0000) >> 16) / 255.f,
+                              ((emissive_color & 0x0000ff00) >> 8 ) / 255.f,
+                              ((emissive_color & 0x000000ff) >> 0 ) / 255.f, 1};
+  glMaterialfv (GL_FRONT_AND_BACK, GL_EMISSION, emissive_rgba);
 
-  argb[3] = ((emissive_color & 0xff000000) >> 24) / 255.f;
-  argb[0] = ((emissive_color & 0x00ff0000) >> 16) / 255.f;
-  argb[1] = ((emissive_color & 0x0000ff00) >> 8) / 255.f;
-  argb[2] = ((emissive_color & 0x000000ff) >> 0) / 255.f;
-  glMaterialfv (GL_FRONT_AND_BACK, GL_EMISSION, argb);
+  // Diffuse color of material shoud be used as "Color" too.
+  glColor4fv (diffuse_rgba);
 
   //cout << *this;
 }
@@ -332,12 +269,15 @@ void Material:: render (int pass, int index) const
 
  std::ostream& Material:: print (std::ostream& out) const
  {
-   out << "Material: ambient=" << hex << ambient_color << ", diffuse=0x" << diffuse_color;
-   out << ", emissive=0x" << emissive_color << ", specular=0x" << specular_color << dec;
-   out << ", shininess=" << shininess << ", vertex_color_tracking=" << vertex_color_tracking << "\n";
-   return out;
+   out << "Material: " << hex;
+   out << "  ambient=0x"  << ambient_color;
+   out << ", diffuse=0x"  << diffuse_color;
+   out << ", emissive=0x" << emissive_color;
+   out << ", specular=0x" << specular_color << dec;
+   out << ", shininess="  << shininess;
+   out << ", vertex_color_tracking=" << vertex_color_tracking;
+   return out << "\n";
  }
-
 
 
 std::ostream& operator<< (std::ostream& out, const Material& mat)

@@ -10,6 +10,7 @@
 #include "parse-Appearance.hpp"
 #include "parse-Background.hpp"
 #include "parse-Camera.hpp"
+#include "parse-CompositingMode.hpp"
 #include "parse-Group.hpp"
 #include "parse-Image2D.hpp"
 #include "parse-KeyframeSequence.hpp"
@@ -178,6 +179,10 @@ void M3GParser:: parse_object_section ()
 	parse_Camera (iss, objs);
 	break;
       }
+      case OBJTYPE_COMPOSITING_MODE: {
+	parse_CompositingMode (iss, objs);
+	break;
+      }
       case OBJTYPE_GROUP: {
 	parse_Group (iss, objs);
 	break;
@@ -227,7 +232,7 @@ void M3GParser:: parse_object_section ()
 	break;
       }
       default: {
-	cout << "M3GParser: Unkwon objtype\n";
+	cout << "M3GParser: Unkwon objtype=" << (int)object_type << "\n";
 	// 今だけ空読み
 	char* buf = (char*)malloc(object_length);
 	iss.read (buf, object_length);

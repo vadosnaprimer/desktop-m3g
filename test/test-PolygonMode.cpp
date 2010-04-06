@@ -13,9 +13,9 @@ TEST (PolygonMode_default_variables)
   CHECK_EQUAL (PolygonMode::CULL_BACK, pmode->getCulling());
   CHECK_EQUAL (PolygonMode::WINDING_CCW, pmode->getWinding());
   CHECK_EQUAL (PolygonMode::SHADE_SMOOTH, pmode->getShading());
-  CHECK_EQUAL (false, pmode->isLocalCameraLightingEnabled());
-  CHECK_EQUAL (false, pmode->isPerspectiveCorrectionEnabled());
   CHECK_EQUAL (false, pmode->isTwoSidedLightingEnabled());
+  CHECK_EQUAL (true, pmode->isLocalCameraLightingEnabled());
+  CHECK_EQUAL (true, pmode->isPerspectiveCorrectionEnabled());
   
   delete pmode;
 }
@@ -28,8 +28,18 @@ TEST (PolygonMode_set_variables)
   pmode->setCulling (PolygonMode::CULL_NONE);
   pmode->setWinding (PolygonMode::WINDING_CW);
   pmode->setShading (PolygonMode::SHADE_FLAT);
-  pmode->setLocalCameraLightingEnable (true);
-  pmode->setPerspectiveCorrectionEnable (true);
   pmode->setTwoSidedLightingEnable (true);
+  pmode->setLocalCameraLightingEnable (false);
+  pmode->setPerspectiveCorrectionEnable (false);
+
+  CHECK_EQUAL (OBJTYPE_POLYGON_MODE, pmode->getObjectType());
+  CHECK_EQUAL (PolygonMode::CULL_NONE, pmode->getCulling());
+  CHECK_EQUAL (PolygonMode::WINDING_CW, pmode->getWinding());
+  CHECK_EQUAL (PolygonMode::SHADE_FLAT, pmode->getShading());
+  CHECK_EQUAL (true,  pmode->isTwoSidedLightingEnabled());
+  CHECK_EQUAL (false, pmode->isLocalCameraLightingEnabled());
+  CHECK_EQUAL (false, pmode->isPerspectiveCorrectionEnabled());
+  
+  delete pmode;
 }
 

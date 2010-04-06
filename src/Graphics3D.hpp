@@ -65,12 +65,6 @@ namespace m3g {
     void bindTarget (Graphics* g, bool depth_buffer_enabled=true, int hints=0);
 
     /**
-     * @~English  Binds the given Graphics or mutable Image2D as the rendirng target of this Graphcis3D.
-     * @~Japanese このGraphics3DクラスにミュータブルImage2Dクラスをバインドする.
-     */
-    void bindTarget (Image2D* i, bool depth_buffer_enabled=true, int hints=0);
-
-    /**
      * @~English  Clears the viewport as specified in the given Background object.
      * @~Japanese 指定されたBackgroundオブジェクトでビューポートをクリアする.
      */

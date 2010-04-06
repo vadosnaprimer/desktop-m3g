@@ -13,7 +13,7 @@ namespace m3g {
 
   /**
    * @~English  An abstract base class for Node and Texture2D, defining common methods for manipulating node and texture.
-   * @~Japanese ノードや2Dテクスチャーの座標変換を抽象クラス.
+   * @~Japanese ノードや2Dテクスチャーのための座標変換を扱う抽象クラス.
    */
   class Transformable : public Object3D
   {
@@ -75,7 +75,7 @@ namespace m3g {
      * @~English  Retriees the orientation component of htis Transformable.
      * @~Japanese このクラスのorientation要素を取得する.
      */
-    void getOrientation (float* angleAixs) const;
+    void getOrientation (float* angle_aixs) const;
 
     /**
      * @~English  Retrieves the matrix component of this Transformable.

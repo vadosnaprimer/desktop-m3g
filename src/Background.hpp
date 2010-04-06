@@ -46,8 +46,7 @@ namespace m3g {
      * @~English  Specifies that the imaginary pixels outside of 
      *            the source image bondaries in X or Y direction
      *            are considered to have the background color.
-     * @~Japanese 背景画像の領域外を指定した場合、ボーダー境界色を
-     *            返す設定を表す定数.
+     * @~Japanese 背景画像の領域外を指定した場合、背景色を返す設定を表す定数.
      */
     static const int BORDER = 32;
     /**

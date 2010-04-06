@@ -8,7 +8,8 @@ namespace m3g {
   class Vector;
 
 /**
- * 行列クラス。内部使用専用.
+ * @~English  4x4 Matrix, for inner use.
+ * @~Japanese 4x4行列クラス。内部使用専用.
  */
 class Matrix
 {
@@ -31,9 +32,6 @@ public:
   void transpose ();
   Matrix& operator*= (const Matrix& rhs);
 
-    /**
-     * このMatrixクラスの情報を表示する。デバッグ用.
-     */
   std::ostream& print (std::ostream& out) const;
 
 public:

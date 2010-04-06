@@ -1,4 +1,5 @@
 #include <iostream>
+#include <cmath>
 #include "Background.hpp"
 #include "Image2D.hpp"
 #include "Exception.hpp"
@@ -45,17 +46,17 @@ int Background:: animate (int world_time)
 
   bool     is_color_modefied = false;
   bool     is_alpha_modefied = false;
-  bool     is_crop_modefied = false;
+  bool     is_crop_modefied  = false;
   float    new_color[] = {0,0,0};
-  float    new_alpha = 0;
-  CropRect crop = CropRect(0,0,0,0);
+  float    new_alpha   = 0;
+  CropRect new_crop    = CropRect(0,0,0,0);
     
   for (int i = 0; i < getAnimationTrackCount(); i++) {
     AnimationTrack*      track      = getAnimationTrack (i);
     KeyframeSequence*    keyframe   = track->getKeyframeSequence();
     AnimationController* controller = track->getController();
     if (controller == NULL) {
-      //cout << "Background: missing controller, this animation track is ignored.\n";
+      //cout << "Background: missing controller, this animation track should be ignored.\n";
       continue;
     }
     if (world_time < controller->getActiveIntervalStart() || world_time >= controller->getActiveIntervalEnd()) {
@@ -77,16 +78,15 @@ int Background:: animate (int world_time)
       float value[4] = {0,0,0,0};
       keyframe->getFrame (local_time, value);
       if (keyframe->getComponentCount() == 4) {
-	crop.x += value[0] * weight;
-	crop.y += value[1] * weight;
-	crop.width  += value[2] * weight;
-	crop.height += value[3] * weight;
-      }
-      else {
-	crop.x += value[0] * weight;
-	crop.y += value[1] * weight;
-	crop.width  += crop_rectangle.width * weight;
-	crop.height += crop_rectangle.height * weight;
+	new_crop.x      += value[0] * weight;
+	new_crop.y      += value[1] * weight;
+	new_crop.width  += value[2] * weight;
+	new_crop.height += value[3] * weight;
+      } else {
+	new_crop.x      += value[0] * weight;
+	new_crop.y      += value[1] * weight;
+	new_crop.width  += crop_rectangle.width * weight;
+	new_crop.height += crop_rectangle.height * weight;
 	
       }
       is_crop_modefied = true;
@@ -109,22 +109,20 @@ int Background:: animate (int world_time)
     }
   }
 
-  if (is_alpha_modefied) {
-    unsigned char a = clamp(0, 1, new_alpha) * 255;
-    background_color &= 0x00ffffff;
-    background_color |= (a << 24);
-  }
   if (is_crop_modefied) {
-    crop.width = (crop.width < 0) ? 0 : crop.width;
-    crop.height = (crop.height < 0) ? 0 : crop.height;
-    crop_rectangle = CropRect(crop.x, crop.y, crop.width, crop.height);
+    new_crop.width  = max(0.f, new_crop.width);
+    new_crop.height = max(0.f, new_crop.height);
+    crop_rectangle  = CropRect(new_crop.x, new_crop.y, new_crop.width, new_crop.height);
   }
   if (is_color_modefied) {
-    unsigned char r = clamp(0, 1, new_color[0]) * 255;
-    unsigned char g = clamp(0, 1, new_color[1]) * 255;
-    unsigned char b = clamp(0, 1, new_color[2]) * 255;
-    background_color &= 0xff000000;
-    background_color |= (r << 16) | (g << 8) | (b << 0);
+    unsigned char r  = clamp(0, 1, new_color[0]) * 255;
+    unsigned char g  = clamp(0, 1, new_color[1]) * 255;
+    unsigned char b  = clamp(0, 1, new_color[2]) * 255;
+    background_color = (background_color & 0xff000000) | (r << 16) | (g << 8) | (b << 0);
+  }
+  if (is_alpha_modefied) {
+    unsigned char a  = clamp(0, 1, new_alpha) * 255;
+    background_color = (background_color & 0x00ffffff) | (a << 24);
   }
   
   return 0;
@@ -210,7 +208,7 @@ void Background:: setImage (Image2D* image)
   crop_rectangle = CropRect (0,0,background_width,background_height);
 
   int format = image->getOpenGLFormat ();
-  void* data = image->getImage ();
+  void* data = image->getOpenGLData ();
 
   glGenTextures   (1, &texobj);
   glBindTexture   (GL_TEXTURE_2D, texobj);
@@ -223,6 +221,11 @@ void Background:: setImage (Image2D* image)
 
 void Background:: setImageMode (int mode_x, int mode_y)
 {
+  if ((mode_x != REPEAT && mode_x != BORDER) ||
+      (mode_y != REPEAT && mode_y != BORDER)) {
+    throw IllegalArgumentException (__FILE__, __func__, "Mode is invalid, x=%d, y=%d.\n", mode_x, mode_y);
+  }
+
   image_mode = ImageMode(mode_x, mode_y);
 }
 
@@ -240,12 +243,11 @@ void Background:: render (int pass, int index) const
 
   //cout << "Background: render\n";
 
-  float b = ((background_color & 0x000000ff) >>  0) / 255.f;
-  float g = ((background_color & 0x0000ff00) >>  8) / 255.f;
   float r = ((background_color & 0x00ff0000) >> 16) / 255.f;
+  float g = ((background_color & 0x0000ff00) >>  8) / 255.f;
+  float b = ((background_color & 0x000000ff) >>  0) / 255.f;
   float a = ((background_color & 0xff000000) >> 24) / 255.f;
   float rgba[4] = {r,g,b,a};
-
 
   glClearColor (r,g,b,a);
   glClearDepth (1.f);
@@ -322,14 +324,17 @@ const char* mode_to_string (int mode)
 std::ostream& Background:: print (std::ostream& out) const
 {
   out << "Background: ";
-  out << " color clear=" << color_clear_enable << ", ";
-  out << " depth clear=" << depth_clear_enable << ", ";
-  out << " background color=0x" << hex << background_color << dec << ", ";
-  out << " background image=" << background_image << ", ";
-  out << " image mode=" << mode_to_string(image_mode.x) << "," << mode_to_string(image_mode.y) << ", ";
-  out << " crop rectangle=" << crop_rectangle.x << "," << crop_rectangle.y;
-  out << "," << crop_rectangle.width << "," << crop_rectangle.height << "\n";
-  return out;
+  out << "  color clear="        << color_clear_enable;
+  out << ", depth clear="        << depth_clear_enable;
+  out << ", background color=0x" << hex << background_color << dec;
+  out << ", background image="   << background_image;
+  out << ", image mode="         << mode_to_string(image_mode.x);
+  out << ","                     << mode_to_string(image_mode.y);
+  out << ", crop rectangle="     << crop_rectangle.x;
+  out << ","                     << crop_rectangle.y;
+  out << ","                     << crop_rectangle.width;
+  out << ","                     << crop_rectangle.height;
+  return out << "\n";
 }
 
 std::ostream& operator<< (std::ostream& out, const Background& bg)

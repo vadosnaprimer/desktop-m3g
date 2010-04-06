@@ -11,6 +11,7 @@ namespace m3g {
   class Appearance;
 
   /**
+   * @~English  A scene graph node that represents a 2-dimensional image with a 3D position.
    * @~Japanese 3Dの位置情報を持った2D画像を表すシーングラフノード.
    */
   class Sprite3D : public Node
@@ -144,7 +145,6 @@ namespace m3g {
      * @~English  Sort by layer number, for inner use.
      * @~Japanese レイヤー番号の取得する内部使用の関数.
      */
-
     static bool sort_by_layer (const Sprite3D* lhs, const Sprite3D* rhs);
 
   private:

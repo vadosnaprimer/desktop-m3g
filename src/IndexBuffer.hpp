@@ -37,7 +37,7 @@ namespace m3g {
 
     /**
      * @~English  Retrieves vertex indices for the rendering primitives stored in this buffer.
-     * @~Japanese このバッファーに収納されているインデックスを取得する.
+     * @~Japanese このバッファーに収納されているインデックスを取得.
      */
     virtual void getIndices (int* indices) = 0;
 
@@ -69,9 +69,9 @@ namespace m3g {
     // void setIndices (int num_index, int first_index);
 
   private:
-    int    index_count;
-    int*   indices;
-    GLuint ibuf;
+    //int    index_count;
+    //int*   indices;
+    //GLuint ibuf;
   };
 
 

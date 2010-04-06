@@ -66,7 +66,7 @@ namespace m3g {
      * @~English  Copies in an array of 8-bit vertex attributes.
      * @~Japanese 8bit頂点属性値のコピー.
      */
-    void set (int first_vertex, int num_vrertices, char* values);
+    void set (int first_vertex, int num_vertices, char* values);
 
     /**
      * @~English  Copies in an array of 16-bit vertex attributes.

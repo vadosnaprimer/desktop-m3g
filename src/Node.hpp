@@ -149,7 +149,7 @@ namespace m3g {
      * @~English   Sets the alpha factor for this Node.
      * @~Japanese このノードのα値を設定.
      */
-    void setAlphaFactor (float alpha_factor) ;
+    void setAlphaFactor (float alpha_factor);
 
     /**
      * @~English   Sets the picking enable flag of this Node.

@@ -1,45 +1,50 @@
+#include "Image2D.hpp"
+#include "Exception.hpp"
 #include <iostream>
 #include <fstream>
 #include <cstring>
-#include "Exception.hpp"
-#include "Image2D.hpp"
 using namespace m3g;
 using namespace std;
+
+static int format_to_bpp (int format);
 
 
 Image2D:: Image2D (int format_, int width_, int height_) : 
   format(format_), width(width_), height(height_),
-  image(0), bpp(0), immutable(false)
+  image(0), immutable(false)
 {
   setObjectType (OBJTYPE_IMAGE2D);
 
   if (width <= 0 || height <= 0) {
     throw IllegalArgumentException (__FILE__, __func__, "Width or height is invalid, width=%f, height=%f.", width, height);
   }
-  bpp = format_to_bpp (format);
+  int bpp = format_to_bpp (format);
 
-  image = new unsigned char [height*width*bpp];
+  image = new char [height*width*bpp];
   memset (image, 0, height*width*bpp);
 }
 
 Image2D:: Image2D (int format_, int width_, int height_, void* image_) : 
   format(format_), width(width_), height(height_), 
-  image(0), bpp(0), immutable(true)
+  image(0), immutable(true)
 {
+  setObjectType (OBJTYPE_IMAGE2D);
+
   if (width <= 0 || height <= 0) {
     throw IllegalArgumentException (__FILE__, __func__, "Width or height is invalid, width=%f, height=%f.", width, height);
   }
-  if (image_ == 0) {
+  if (image_ == NULL) {
     throw NullPointException (__FILE__, __func__, "Image is NULL.");
   }
 
-  bpp = format_to_bpp (format);
-  image = new unsigned char [height*width*bpp];
+  int bpp  = format_to_bpp (format);
+
+  image = new char [height*width*bpp];
   memcpy (image, image_, height*width*bpp);
 }
 
 Image2D:: Image2D (int format_, int width_, int height_, void* image_, void* palette_) :
-  format(format_), width(width_), height(height_), bpp(0), immutable(true)
+  format(format_), width(width_), height(height_), immutable(true)
 {
   throw NotImplementedException (__FILE__, __func__, "Palleted image is not implemented. don't use this");
 }
@@ -85,14 +90,14 @@ void Image2D:: set (int px, int py, int wid, int hei, void* image_)
   if (wid < 0 || wid > width || hei < 0 || hei > height) {
     throw IllegalArgumentException (__FILE__, __func__, "Size(width,height) is invalid, width=%d, height=%d.", wid, hei);
   }
-  if (image == 0) {
+  if (image == NULL) {
     throw NullPointException (__FILE__, __func__, "Image is NULL.");
   }
 
-  unsigned char* img = (unsigned char*)image_;
+  int bpp = format_to_bpp (format);
 
   for (int y = py; y < py+hei; y++) {
-    memcpy (image + y*width*bpp + px*bpp, img + (y-py)*wid*bpp, wid*bpp);
+    memcpy (image + y*width*bpp + px*bpp, (char*)image_ + (y-py)*wid*bpp, wid*bpp);
   }
 
 }
@@ -103,6 +108,7 @@ void Image2D:: set (int px, int py, int wid, int hei, void* image_)
   */
   void Image2D:: write_ppm (const char* name) const
   {
+    int bpp = format_to_bpp (format);
     ofstream ofs(name);
     ofs << "P3\n" << width << " " << height << "\n255\n\n";
     for (int y = height-1; y >= 0; y--) {
@@ -118,65 +124,44 @@ void Image2D:: set (int px, int py, int wid, int hei, void* image_)
 
 GLenum Image2D:: getOpenGLFormat () const
 {
-  if (format == Image2D::ALPHA) {
-    return GL_ALPHA;
-  }
-  else if (format == Image2D::LUMINANCE) {
-    return GL_LUMINANCE;
-  }
-  else if (format == Image2D::LUMINANCE_ALPHA) {
-    return GL_LUMINANCE_ALPHA;
-  }
-  else if (format == Image2D::RGB) {
-    return GL_RGB;
-   }
-  else if (format == Image2D::RGBA) {
-    return GL_RGBA;
-  }
-  else {
-    throw InternalException (__FILE__, __func__, "Image format is unknwon, format=%d.", format);
-  }
-
-}
-
-int Image2D:: format_to_bpp (int format) const
-{
   switch (format) {
-  case Image2D::ALPHA: {
-    return 1;
+  case Image2D::ALPHA          : return GL_ALPHA;
+  case Image2D::LUMINANCE      : return GL_LUMINANCE;
+  case Image2D::LUMINANCE_ALPHA: return GL_LUMINANCE_ALPHA;
+  case Image2D::RGB            : return GL_RGB;
+  case Image2D::RGBA           : return GL_RGBA;
+  default: throw InternalException (__FILE__, __func__, "Image format is unknwon, format=%d.", format);
   }
-  case Image2D::LUMINANCE: {
-    return 1;
-  }
-  case Image2D::LUMINANCE_ALPHA: {
-    return 2;
-  }
-  case Image2D::RGB: {
-    return 3;
-  }
-  case Image2D::RGBA: {
-    return 4;
-  }
-  default: {
-     throw InternalException (__FILE__, __func__, "Format is unknwon, format=%d.", format);
-  }
-  }
+
 }
 
-void* Image2D:: getImage () const
+void* Image2D:: getOpenGLData () const
 {
   return image;
+}
+
+static
+int format_to_bpp (int format)
+{
+  switch (format) {
+  case Image2D::ALPHA          : return 1;
+  case Image2D::LUMINANCE      : return 1;
+  case Image2D::LUMINANCE_ALPHA: return 2;
+  case Image2D::RGB            : return 3;
+  case Image2D::RGBA           : return 4;
+  default: throw InternalException (__FILE__, __func__, "Format is unknwon, format=%d.", format);
+  }
 }
 
 static 
 const char* format_to_string (int format)
 {
   switch (format) {
-  case Image2D::ALPHA:     return "ALPHA";
-  case Image2D::LUMINANCE: return "LUMINANCE";
+  case Image2D::ALPHA          : return "ALPHA";
+  case Image2D::LUMINANCE      : return "LUMINANCE";
   case Image2D::LUMINANCE_ALPHA: return "LUMINANCE_ALPHA";
-  case Image2D::RGB:       return "RGB";
-  case Image2D::RGBA:      return "RGBA";
+  case Image2D::RGB            : return "RGB";
+  case Image2D::RGBA           : return "RGBA";
   default: return "Unknwon";
   }
 }
@@ -184,10 +169,10 @@ const char* format_to_string (int format)
  std::ostream& Image2D:: print (std::ostream& out) const
  {
    out << "Image2D: ";
-   out << " format=" << format_to_string(format);
-   out << " width=" << width;
-   out << " height=" << height;
-   out << " immutable=" << immutable;
+   out << "  format="    << format_to_string(format);
+   out << ", width="     << width;
+   out << ", height="    << height;
+   out << ", immutable=" << immutable;
    return out << "\n";
  }
 

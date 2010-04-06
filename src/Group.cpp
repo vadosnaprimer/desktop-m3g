@@ -19,7 +19,7 @@ Group:: ~Group ()
 
 void Group:: addChild (Node* child)
 {
-  if (child == 0) {
+  if (child == NULL) {
     throw NullPointException (__FILE__, __func__, "Child is NULL.");
   }
   if (child == this || child->getObjectType() == OBJTYPE_WORLD) {
@@ -76,6 +76,9 @@ void Group:: removeChild (Node* child)
       break;
     }
   }
+
+  // SkinnedMeshの場合特殊な処理が必要。
+  // 仕様書を見よ。
 }
 
 void Group:: findByObjectType (int type, std::vector<Object3D*>& objs) const

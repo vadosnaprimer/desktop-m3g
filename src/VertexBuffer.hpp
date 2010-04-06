@@ -8,117 +8,129 @@
 
 namespace m3g {
 
-class VertexArray;
+  class VertexArray;
 
-/**
- * VertexBufferは頂点位置、法線、色、テクスチャー座標を含むVertexArrayへのポインターを含む.
- */
-class VertexBuffer : public Object3D
-{
-  friend class Mesh;  // for render
+  /**
+   * @~English  VertexBuffer holds references to VertexArrays that 
+   *            contain the positions, colors, normals, and 
+   *            texture coordinates for a set of vertices.
+   * @~Japanese VertexBufferは頂点位置、法線、色、テクスチャー座標を保持する
+   *            VertexArrayへのポインターを持つホルダークラス.
+   */
+  class VertexBuffer : public Object3D
+  {
+    friend class Mesh;  // for render
 
-public:
+  public:
     /**
-     * デフォルトの値のVertexBufferオブジェクトを作成.
+     * @~English  Creates an empty VertexBuffer with default values.
+     * @~Japanese デフォルトの値のVertexBufferオブジェクトを作成.
      */
     VertexBuffer ();
 
     /**
-     * デストラクタ.
+     * @~English  Destructs this object.
+     * @~Japanese このオブジェクトを削除するデストラクタ.
      */
     virtual ~VertexBuffer ();
 
-    /**
-     * アニメーショントラックの追加。
-     * 既存のトラックの順番とインデックスは変更されるかもしれない.
-     */
+
     virtual void addAnimationTrack (AnimationTrack* animation_track);
 
-    /**
-     * アニメーションの更新.
-     */
+
     virtual int animate (int time);
 
     /**
-     * カレントのカラー配列を取得する。もし頂点カラーが定義されていなければnullが返る.
+     * @~English  Gets the current color array.
+     * @~Japanese カレントのカラー配列の取得.
      */
     VertexArray* getColors () const;
 
     /**
-     * このVertexBufferのデフォルトカラーを取得.
+     * @~English  Retrieves the default color of this VertexBuffer.
+     * @~Japanese このVertexBufferのデフォルトカラーを取得.
      */
     int getDefaultColor () const;
 
     /**
-     * カレントの法線ベクトルの配列を取得する。もし頂点法線が定義されていなければnullが返る.
+     * @~English  Gets the current normal vector array.
+     * @~Japanese カレントの法線ベクトルの配列の取得.
      */
     VertexArray* getNormals () const;
 
     /**
-     * カレントの頂点座標の配列を取得する。もし頂点配列が定義されていなければnullが返る.
+     * @~English  Returns the current vertex position array.
+     * @~Japanese カレントの頂点座標の配列の取得.
      */
     VertexArray* getPositions (float* scale_bias) const;
 
     /**
-     * カレントのテクスチャー座標の配列を取得する。もしテクスチャー座標が定義されていなければnullが返る.
+     * @~English  Gets the current texture coordinate array for the specified texture unit.
+     * @~Japanese カレントのテクスチャー座標の配列の取得.
      */
-  VertexArray* getTexCoords (int index, float* scale_bias) const;
+    VertexArray* getTexCoords (int index, float* scale_bias) const;
 
     /**
-     * このVertexBufferに頂点カラーを設定する.
+     * @~English  Sets the per-vertex color for this VertexBuffer.
+     * @~Japanese このVertexBufferに頂点カラーを設定する.
      */
     void setColors (VertexArray* colors);
 
     /**
-     * 頂点カラーが設定されていないときのカラーを設定する.
+     * @~English  Sets the color to use in absence of per-vetex colors.
+     * @~Japanese 頂点カラーが設定されていないときのカラーを設定する.
      */
     void setDefaultColor (int rgb);
 
     /**
-     * このVertexBufferに頂点法線を設定する.
+     * @~English  Sets the normal vectors for this VertexBuffer.
+     * @~Japanese このVertexBufferに頂点法線を設定する.
      */
     void setNormals (VertexArray* normals);
 
     /**
-     * このVertexBufferに頂点座標を設定する.
+     * @~English  Sets the vertex positions for this VertexBuffer.
+     * @~Japanese このVertexBufferに頂点座標を設定する.
      */
     void setPositions (VertexArray* positios, float scale, float* bias);
 
     /**
-     * このVertexBufferにテクスチャー座標を設定する.
+     * @~English  Sets the texture coordinates for the specified textureing unit.
+     * @~Japanese このVertexBufferにテクスチャー座標を設定する.
      */
-    void setTexCoords (int index, VertexArray* texCoords, float scale, float* bias);
+    void setTexCoords (int index, VertexArray* tex_coords, float scale, float* bias);
 
-  /**
-   * このVertexBufferクラスの情報を表示する。デバッグ用.
-   */
-  virtual std::ostream& print (std::ostream& out) const;
+    /**
+     * @~English  Print out information of this object, for debug only.
+     * @~Japanese このVertexBufferクラスの情報を表示する。デバッグ用.
+     */
+    virtual std::ostream& print (std::ostream& out) const;
 
 
-protected:
-  virtual void findByObjectType (int obj_type, std::vector<Object3D*>& objs) const;
+  protected:
+    virtual void findByObjectType (int obj_type, std::vector<Object3D*>& objs) const;
 
-private:
-  virtual void render (int pass, int index=0) const;
+  private:
+    virtual void render (int pass, int index=0) const;
 
-private:
-  VertexArray* vertex_position_array;
-  float        positions_scale;
-  float        positions_bias[3];
-  VertexArray* texture_coordinate_arrays[MAX_TEXTURE_UNITS];
-  float        tex_coord_scale[MAX_TEXTURE_UNITS];
-  float        tex_coord_bias[MAX_TEXTURE_UNITS][3];
-  VertexArray* normal_array;
-  VertexArray* color_array;
-  union {
-    int default_color;
-    unsigned char argb[4];
+
+    // normal_array --> normals に名前を変えようか？
+
+  private:
+    VertexArray* vertex_position_array;
+    float        positions_scale;
+    float        positions_bias[3];
+    VertexArray* texture_coordinate_arrays[MAX_TEXTURE_UNITS];
+    float        tex_coord_scale[MAX_TEXTURE_UNITS];
+    float        tex_coord_bias[MAX_TEXTURE_UNITS][3];
+    VertexArray* normal_array;
+    VertexArray* color_array;
+    int          default_color;
+
+  private:
+    GLuint vbuf, ibuf, nbuf, tcbuf[MAX_TEXTURE_UNITS];
+
   };
-
-private:
-  GLuint vbuf, ibuf, nbuf, tcbuf[MAX_TEXTURE_UNITS];
-
-};
 
 
 } // namespace m3g {

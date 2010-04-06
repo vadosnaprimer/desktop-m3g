@@ -409,42 +409,7 @@ test-Image2D.o: /usr/include/sys/time.h /usr/include/bits/time.h
 test-Image2D.o: /usr/include/sys/select.h /usr/include/bits/select.h
 test-Image2D.o: ../src/Image2D.hpp ../src/Object3D.hpp /usr/include/GL/glew.h
 test-Image2D.o: /usr/include/GL/glu.h /usr/include/GL/gl.h ../src/m3gdef.hpp
-test-Image2D.o: ../src/m3ginternal.hpp
-test-IndexBuffer.o: /usr/include/unittest++/UnitTest++.h
-test-IndexBuffer.o: /usr/include/unittest++/Config.h
-test-IndexBuffer.o: /usr/include/unittest++/Test.h
-test-IndexBuffer.o: /usr/include/unittest++/TestDetails.h
-test-IndexBuffer.o: /usr/include/unittest++/TestList.h
-test-IndexBuffer.o: /usr/include/unittest++/TestSuite.h
-test-IndexBuffer.o: /usr/include/unittest++/TestResults.h
-test-IndexBuffer.o: /usr/include/unittest++/TestMacros.h
-test-IndexBuffer.o: /usr/include/unittest++/Posix/SignalTranslator.h
-test-IndexBuffer.o: /usr/include/setjmp.h /usr/include/features.h
-test-IndexBuffer.o: /usr/include/sys/cdefs.h /usr/include/bits/wordsize.h
-test-IndexBuffer.o: /usr/include/gnu/stubs.h /usr/include/gnu/stubs-64.h
-test-IndexBuffer.o: /usr/include/bits/setjmp.h /usr/include/bits/sigset.h
-test-IndexBuffer.o: /usr/include/signal.h /usr/include/bits/types.h
-test-IndexBuffer.o: /usr/include/bits/typesizes.h /usr/include/bits/signum.h
-test-IndexBuffer.o: /usr/include/time.h /usr/include/bits/siginfo.h
-test-IndexBuffer.o: /usr/include/bits/sigaction.h
-test-IndexBuffer.o: /usr/include/bits/sigcontext.h
-test-IndexBuffer.o: /usr/include/bits/sigstack.h
-test-IndexBuffer.o: /usr/include/bits/pthreadtypes.h
-test-IndexBuffer.o: /usr/include/bits/sigthread.h
-test-IndexBuffer.o: /usr/include/unittest++/CheckMacros.h
-test-IndexBuffer.o: /usr/include/unittest++/Checks.h
-test-IndexBuffer.o: /usr/include/unittest++/MemoryOutStream.h
-test-IndexBuffer.o: /usr/include/unittest++/AssertException.h
-test-IndexBuffer.o: /usr/include/unittest++/TestRunner.h
-test-IndexBuffer.o: /usr/include/unittest++/TimeConstraint.h
-test-IndexBuffer.o: /usr/include/unittest++/TimeHelpers.h
-test-IndexBuffer.o: /usr/include/unittest++/Posix/TimeHelpers.h
-test-IndexBuffer.o: /usr/include/sys/time.h /usr/include/bits/time.h
-test-IndexBuffer.o: /usr/include/sys/select.h /usr/include/bits/select.h
-test-IndexBuffer.o: ../src/IndexBuffer.hpp /usr/include/GL/glew.h
-test-IndexBuffer.o: /usr/include/GL/glu.h /usr/include/GL/gl.h
-test-IndexBuffer.o: ../src/Object3D.hpp ../src/m3gdef.hpp
-test-IndexBuffer.o: ../src/m3ginternal.hpp
+test-Image2D.o: ../src/m3ginternal.hpp ../src/Exception.hpp
 test-Keyframe.o: /usr/include/unittest++/UnitTest++.h
 test-Keyframe.o: /usr/include/unittest++/Config.h
 test-Keyframe.o: /usr/include/unittest++/Test.h
@@ -643,8 +608,8 @@ test-Mesh.o: ../src/Mesh.hpp ../src/Node.hpp ../src/Transformable.hpp
 test-Mesh.o: ../src/Object3D.hpp /usr/include/GL/glew.h /usr/include/GL/glu.h
 test-Mesh.o: /usr/include/GL/gl.h ../src/m3gdef.hpp ../src/m3ginternal.hpp
 test-Mesh.o: ../src/Quaternion.hpp ../src/Transform.hpp ../src/Matrix.hpp
-test-Mesh.o: ../src/VertexBuffer.hpp ../src/IndexBuffer.hpp
-test-Mesh.o: ../src/Appearance.hpp
+test-Mesh.o: ../src/VertexBuffer.hpp ../src/TriangleStripArray.hpp
+test-Mesh.o: ../src/IndexBuffer.hpp ../src/Appearance.hpp
 test-Node.o: /usr/include/unittest++/UnitTest++.h
 test-Node.o: /usr/include/unittest++/Config.h /usr/include/unittest++/Test.h
 test-Node.o: /usr/include/unittest++/TestDetails.h
@@ -816,8 +781,8 @@ test-SkinnedMesh.o: /usr/include/GL/gl.h ../src/m3gdef.hpp
 test-SkinnedMesh.o: ../src/m3ginternal.hpp ../src/Quaternion.hpp
 test-SkinnedMesh.o: ../src/Transform.hpp ../src/Matrix.hpp
 test-SkinnedMesh.o: ../src/VertexArray.hpp ../src/VertexBuffer.hpp
-test-SkinnedMesh.o: ../src/IndexBuffer.hpp ../src/Appearance.hpp
-test-SkinnedMesh.o: ../src/Group.hpp ../src/Bone.hpp
+test-SkinnedMesh.o: ../src/TriangleStripArray.hpp ../src/IndexBuffer.hpp
+test-SkinnedMesh.o: ../src/Appearance.hpp ../src/Group.hpp ../src/Bone.hpp
 test-Sprite3D.o: /usr/include/unittest++/UnitTest++.h
 test-Sprite3D.o: /usr/include/unittest++/Config.h
 test-Sprite3D.o: /usr/include/unittest++/Test.h

@@ -6,20 +6,19 @@ using namespace m3g;
 using namespace std;
 
 
-IndexBuffer:: IndexBuffer () :
-  index_count(0), indices(0), ibuf(0)
+IndexBuffer:: IndexBuffer ()
 {
   setObjectType (OBJTYPE_INDEX_BUFFER);
 
-  glGenBuffers (1, &ibuf);
+  //glGenBuffers (1, &ibuf);
 }
 
 IndexBuffer:: ~IndexBuffer ()
 {
-  if (indices) {
-    delete indices;
-    indices = 0;
-  }
+  //if (indices) {
+  //  delete indices;
+  //  indices = 0;
+  //}
 }
 /*
 int IndexBuffer:: getIndexCount () const
@@ -94,23 +93,23 @@ void IndexBuffer:: setIndices (int index_count_, int first_index)
  */
 void IndexBuffer:: render (int pass, int index) const
 {
-  if (pass != 2) {
-    return;
-  }
+  //if (pass != 2) {
+  //  return;
+  //}
 
-  if (ibuf == 0) {
-    throw OpenGLException (__FILE__, __func__, "Buffer object of index is not ready, ibuf=%d.", ibuf);
-  }
+  //if (ibuf == 0) {
+  //  throw OpenGLException (__FILE__, __func__, "Buffer object of index is not ready, ibuf=%d.", ibuf);
+  //}
 
-  glBindBuffer (GL_ELEMENT_ARRAY_BUFFER, ibuf);
+  //glBindBuffer (GL_ELEMENT_ARRAY_BUFFER, ibuf);
 }
 
 std::ostream& IndexBuffer:: print (std::ostream& out) const
 {
   out << "IndexBuffer: ";
-  out << " index_count=" << index_count;
-  out << " indices=" << indices;
-  out << " ibuf=" << ibuf;
+  //out << " index_count=" << index_count;
+  //out << " indices=" << indices;
+  //out << " ibuf=" << ibuf;
   return out << "\n";
 }
 

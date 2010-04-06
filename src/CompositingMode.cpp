@@ -109,71 +109,60 @@ void CompositingMode:: render (int pass, int index) const
   } else {
     glDepthFunc (GL_ALWAYS);
   }
-  if (depth_write) {
-    glDepthMask (GL_TRUE);
-  } else {
-    glDepthMask (GL_FALSE);
-  }
-  if (color_write && alpha_write) {
-    glColorMask (GL_TRUE, GL_TRUE, GL_TRUE, GL_TRUE);
-  } else if (color_write && !alpha_write) {
-    glColorMask (GL_TRUE, GL_TRUE, GL_TRUE, GL_FALSE);
-  } else if (!color_write && alpha_write) {
-    glColorMask (GL_FALSE, GL_FALSE, GL_FALSE, GL_TRUE);
-  } else {
-    glColorMask (GL_FALSE, GL_FALSE, GL_FALSE, GL_FALSE);
-  }
+
+  glDepthMask (depth_write);
+  glColorMask (color_write, color_write, color_write, alpha_write);
 
   glEnable (GL_BLEND);
   switch (blending_mode) {
-  case REPLACE: {
-    glBlendFunc (GL_ONE, GL_ZERO);
-    break;
-  }
-  case ALPHA_ADD: {
-    glBlendFunc (GL_SRC_ALPHA, GL_ONE);
-    break;
-  }
-  case ALPHA: {
-    glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-    break;
-  }
-  case MODULATE: {
-    glBlendFunc (GL_DST_COLOR, GL_ZERO);
-    break;
-  }
-  case MODULATE_X2: {
-    glBlendFunc (GL_DST_COLOR, GL_SRC_COLOR);
-    break;
-  }
-  default: {
-    throw InternalException (__FILE__, __func__, "Blending mode is unknwon, mode=%d.", blending_mode);
-  }
+  case REPLACE    : glBlendFunc (GL_ONE, GL_ZERO)           ; break;
+  case ALPHA_ADD  : glBlendFunc (GL_SRC_ALPHA, GL_ONE)      ; break;
+  case ALPHA      : glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA) ; break;
+  case MODULATE   : glBlendFunc (GL_DST_COLOR, GL_ZERO)     ; break;
+  case MODULATE_X2: glBlendFunc (GL_DST_COLOR, GL_SRC_COLOR); break;
+  default: throw InternalException (__FILE__, __func__, "Blending mode is invalid, mode=%d.", blending_mode);
   }
 
   if (alpha_threshold > 0) {
-    glEnable (GL_ALPHA_TEST);
-    glAlphaFunc (GL_GREATER, alpha_threshold);
-  }
-  else {
+    glEnable    (GL_ALPHA_TEST);
+    glAlphaFunc (GL_GEQUAL, alpha_threshold);      
+  } else {
     glDisable (GL_ALPHA_TEST);
   }
 
-  if (depth_offset.factor > 0 || depth_offset.units > 0) {
+  if (depth_offset.factor || depth_offset.units) {
     glEnable (GL_POLYGON_OFFSET_FILL);
     glPolygonOffset (depth_offset.factor, depth_offset.units);
-  }
-  else {
+  } else {
     glDisable (GL_POLYGON_OFFSET_FILL);
   }
 
 }
 
+static
+const char* mode_to_string (int mode)
+{
+  switch (mode) {
+  case CompositingMode::ALPHA      : return "ALPHA";
+  case CompositingMode::ALPHA_ADD  : return "ALPHA_ADD";
+  case CompositingMode::MODULATE   : return "MODULATE";
+  case CompositingMode::MODULATE_X2: return "MODULATE_X2";
+  case CompositingMode::REPLACE    : return "REPLACE";
+  default: return "Unknwon";
+  }
+}
 
 std::ostream& CompositingMode:: print (std::ostream& out) const
 {
-  
-  return out;
+  out << "CompositingMode: ";
+  out << "  blending_mode="    << mode_to_string(blending_mode);
+  out << ", alpha_threashold=" << alpha_threshold;
+  out << ", depth_offset="     << depth_offset.units << "," << depth_offset.factor;
+  out << ", depth_test="       << depth_test;
+  out << ", depth_write="      << depth_write;
+  out << ", color_write="      << color_write;
+  out << ", alpha_write="      << alpha_write;
+  return out << "\n";;
 }
 
 std::ostream& operator<< (std::ostream& out, const CompositingMode& cm)

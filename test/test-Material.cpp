@@ -30,14 +30,12 @@ TEST (Material_set_variables)
   mat->setShininess (1.0);
   mat->setVertexColorTrackingEnable (true);
 
-  cout << hex;
   CHECK_EQUAL (true, mat->isVertexColorTrackingEnabled());
   CHECK_EQUAL (0x00345678, mat->getColor(Material::AMBIENT));
   CHECK_EQUAL (0x23456789, mat->getColor(Material::DIFFUSE));
   CHECK_EQUAL (0x0056789a, mat->getColor(Material::EMISSIVE));
   CHECK_EQUAL (0x006789ab, mat->getColor(Material::SPECULAR));
   CHECK_EQUAL (1.0, mat->getShininess());
-  cout << dec;
 
   delete mat;
 }

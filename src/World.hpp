@@ -59,7 +59,7 @@ namespace m3g {
 
     /**
      * @~English  Sets the Background object for this World.
-     * @~Japanese このWorldのバックグラウンドオブジェ区の設定.
+     * @~Japanese このWorldのバックグラウンドオブジェクトの設定.
      */
     void setBackground (Background* background);
 

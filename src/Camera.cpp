@@ -3,10 +3,10 @@
 #include "Camera.hpp"
 #include "Vector.hpp"
 #include "Transform.hpp"
-#include "Exception.hpp"
 #include "AnimationTrack.hpp"
 #include "AnimationController.hpp"
 #include "KeyframeSequence.hpp"
+#include "Exception.hpp"
 using namespace std;
 using namespace m3g;
 
@@ -23,10 +23,10 @@ Camera:: ~Camera ()
 
 void Camera:: addAnimationTrack (AnimationTrack* animation_track)
 {
-   if (animation_track == NULL) {
+  if (animation_track == NULL) {
     throw NullPointException (__FILE__, __func__, "Animation track is NULL.");
   }
-   int property = animation_track->getTargetProperty();
+  int property = animation_track->getTargetProperty();
   if (property != AnimationTrack::FAR_DISTANCE  &&
       property != AnimationTrack::FIELD_OF_VIEW &&
       property != AnimationTrack::NEAR_DISTANCE &&
@@ -50,9 +50,9 @@ int Camera:: animate (int world_time)
 
   bool  is_far_modefied  = false;
   bool  is_fovy_modefied = false;
-  bool  is_near_modefied  = false;
-  float new_far  = 0;
-  float new_fovy = 0;
+  bool  is_near_modefied = false;
+  float new_far   = 0;
+  float new_fovy  = 0;
   float new_near  = 0;
   
   for (int i = 0; i < getAnimationTrackCount(); i++) {
@@ -101,26 +101,31 @@ int Camera:: animate (int world_time)
     }
   }
 
-  if (is_far_modefied) {
-    if (type == PARALLEL) {
-      new_far = (new_far < M3G_EPSILON) ? M3G_EPSILON : 0;
+  if (is_near_modefied) {
+    if (type == PERSPECTIVE) {
+      near = max (M3G_EPSILON, new_near);
+    } else {
+      near = new_near;
     }
-    far = new_far;
+  }
+  if (is_far_modefied) {
+    if (type == PERSPECTIVE) {
+      far = max (M3G_EPSILON, new_far);
+    } else {
+      far = new_far;
+    }
   }
   if (is_fovy_modefied) {
     if (type == PERSPECTIVE) {
-      new_fovy = clamp (0, 180, new_fovy);
+      fovy = clamp (M3G_EPSILON, 180-M3G_EPSILON, new_fovy);
+    } else {
+      fovy = max (M3G_EPSILON, new_fovy);
     }
-    else {
-      new_fovy = (new_fovy < M3G_EPSILON) ? M3G_EPSILON : 0;
-    }
-    fovy = new_fovy;
   }
-  if (is_near_modefied) {
-    if (type == PERSPECTIVE) {
-      new_near = (new_near < M3G_EPSILON) ? M3G_EPSILON : 0;
-    }
-    near = new_near;
+
+  // don't permit this condition.
+  if (near == far) {
+    throw IllegalArgumentException (__FILE__, __func__, "Near equals far, n,f=%f.", near);
   }
 
   
@@ -151,12 +156,24 @@ void Camera:: setGeneric (const Transform& transform)
 {
   type = GENERIC;
   proj_trans.set (transform);
+
+  // ここで逆行列が計算できる事をチェックするべき？
 }
 
-void Camera:: setParallel (float fovy_, float aspect_ratio_, float near_, float far_)
+void Camera:: setParallel (float height_, float aspect_ratio_, float near_, float far_)
 {
+  if (height_ <= 0) {
+    throw IllegalArgumentException (__FILE__, __func__, "Height is invalid, h=%f,", height_);
+  }
+  if (aspect_ratio_ <= 0) {
+    throw IllegalArgumentException (__FILE__, __func__, "Aspect ratio is invalid, ratio=%f,", aspect_ratio_);
+  }
+  if (near_ == far_) {
+    throw IllegalArgumentException (__FILE__, __func__, "Near and far are invalid, near=%f, far=%f.", near_, far_);
+  }
+
   type         = PARALLEL;
-  fovy         = fovy_;
+  fovy         = height_;
   aspect_ratio = aspect_ratio_;
   near         = near_;
   far          = far_;
@@ -164,6 +181,16 @@ void Camera:: setParallel (float fovy_, float aspect_ratio_, float near_, float 
 
 void Camera:: setPerspective (float fovy_, float aspect_ratio_, float near_, float far_)
 {
+  if (fovy_ <= 0 || fovy_ >= 180) {
+    throw IllegalArgumentException (__FILE__, __func__, "Fov is invalid, fov=%f.", fovy_);
+  }
+  if (aspect_ratio_ <= 0) {
+    throw IllegalArgumentException (__FILE__, __func__, "Aspect ratio is invalid, ratio=%f.", aspect_ratio);
+  }
+  if (near_ <= 0 || far_ <= 0 || near_ == far_) {
+    throw IllegalArgumentException (__FILE__, __func__, "Near and far are invalid, near=%f, far=%f.", near_, far_);
+  }
+
   type         = PERSPECTIVE;
   fovy         = fovy_;
   aspect_ratio = aspect_ratio_;
@@ -251,19 +278,27 @@ void Camera:: lookAt  (float from_x, float from_y, float from_z,
 std::ostream& Camera:: print (std::ostream& out) const
 {
   out << "Camera: ";
-  if (type == PERSPECTIVE) {
-    out << "type=\"PERSPECTIVE\", fovy=" << fovy << ", aspect_ratio=" << aspect_ratio << ", near=" << near << ", far=" << far;
-  }
-  else if (type == PARALLEL) {
-    out << "type=\"PARALLEL\", fovy=" << fovy << ", aspect_ratio=" << aspect_ratio << ", near=" << near << ", far=" << far;
-  }
-  else {
+  switch (type) {
+  case PARALLEL:
+    out << "  type=\"PARALLEL\"";
+    out << ", height="       << fovy;
+    out << ", aspect_ratio=" << aspect_ratio;
+    out << ", near="         << near;
+    out << ", far="          << far;
+  case PERSPECTIVE:
+    out << "  type=\"PERSPECTIVE\"";
+    out << ", fovy="         << fovy;
+    out << ", aspect_ratio=" << aspect_ratio;
+    out << ", near="         << near;
+    out << ", far="          << far;
+    break;
+  default:
     Transform trns;
     getTransform (&trns);
-    out << "type=\"GENERIC\" matrix=" << trns;
+    out << "  type=\"GENERIC\"";
+    out << ", matrix=" << trns;
   }
-  out << "\n";
-  return out;
+  return out << "\n";
 }
 
 

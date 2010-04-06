@@ -49,7 +49,7 @@ void VertexArray:: get (int first_vertex, int num_vertices, char* values_) const
     throw IllegalStateException (__FILE__, __func__, "Component size of this vertex array is not 1 byte, component_size=%d.", component_size);
   }
 
-  char* p = values + first_vertex * component_count * component_size;
+  char* p  = values + first_vertex * component_count * component_size;
   int size = num_vertices * component_count * component_size;
   memcpy (values_, p, size);
 }

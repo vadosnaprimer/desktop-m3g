@@ -35,12 +35,12 @@ M3GParser.o: parse-AnimationTrack.hpp ../AnimationTrack.hpp
 M3GParser.o: parse-Appearance.hpp ../Appearance.hpp parse-Background.hpp
 M3GParser.o: ../Background.hpp parse-Camera.hpp ../Camera.hpp ../Node.hpp
 M3GParser.o: ../Transformable.hpp ../Quaternion.hpp ../Transform.hpp
-M3GParser.o: ../Matrix.hpp parse-Group.hpp ../Group.hpp parse-Image2D.hpp
-M3GParser.o: ../Image2D.hpp parse-KeyframeSequence.hpp
-M3GParser.o: ../KeyframeSequence.hpp ../Keyframe.hpp parse-Light.hpp
-M3GParser.o: ../Light.hpp parse-Material.hpp ../Material.hpp parse-Mesh.hpp
-M3GParser.o: ../Mesh.hpp parse-PolygonMode.hpp ../PolygonMode.hpp
-M3GParser.o: parse-Texture2D.hpp ../Texture2D.hpp
+M3GParser.o: ../Matrix.hpp parse-CompositingMode.hpp ../CompositingMode.hpp
+M3GParser.o: parse-Group.hpp ../Group.hpp parse-Image2D.hpp ../Image2D.hpp
+M3GParser.o: parse-KeyframeSequence.hpp ../KeyframeSequence.hpp
+M3GParser.o: ../Keyframe.hpp parse-Light.hpp ../Light.hpp parse-Material.hpp
+M3GParser.o: ../Material.hpp parse-Mesh.hpp ../Mesh.hpp parse-PolygonMode.hpp
+M3GParser.o: ../PolygonMode.hpp parse-Texture2D.hpp ../Texture2D.hpp
 M3GParser.o: parse-TriangleStripArray.hpp ../TriangleStripArray.hpp
 M3GParser.o: /usr/include/unittest++/UnitTest++.h
 M3GParser.o: /usr/include/unittest++/Config.h /usr/include/unittest++/Test.h
@@ -70,6 +70,7 @@ M3GParser.o: /usr/include/sys/select.h /usr/include/bits/select.h
 M3GParser.o: ../IndexBuffer.hpp parse-World.hpp ../World.hpp ../Group.hpp
 M3GParser.o: parse-VertexArray.hpp ../VertexArray.hpp parse-VertexBuffer.hpp
 M3GParser.o: ../VertexBuffer.hpp ../m3gdef.hpp ../m3ginternal.hpp
+M3GParser.o: ../Exception.hpp
 Section.o: adler32.hpp /usr/include/stdint.h /usr/include/features.h
 Section.o: /usr/include/sys/cdefs.h /usr/include/bits/wordsize.h
 Section.o: /usr/include/gnu/stubs.h /usr/include/gnu/stubs-64.h
@@ -103,13 +104,13 @@ parse-Appearance.o: ../Transform.hpp ../Matrix.hpp ../Material.hpp
 parse-Appearance.o: parse-Object3D.hpp ../Object3D.hpp
 parse-Background.o: ../Background.hpp ../Object3D.hpp /usr/include/GL/glew.h
 parse-Background.o: /usr/include/GL/glu.h /usr/include/GL/gl.h ../m3gdef.hpp
-parse-Background.o: ../m3ginternal.hpp ../Image2D.hpp parse-Background.hpp
-parse-Background.o: parse-Object3D.hpp ../Object3D.hpp
+parse-Background.o: ../m3ginternal.hpp ../Image2D.hpp ../Exception.hpp
+parse-Background.o: parse-Background.hpp parse-Object3D.hpp ../Object3D.hpp
 parse-Camera.o: ../Camera.hpp ../Node.hpp ../Transformable.hpp
 parse-Camera.o: ../Object3D.hpp /usr/include/GL/glew.h /usr/include/GL/glu.h
 parse-Camera.o: /usr/include/GL/gl.h ../m3gdef.hpp ../m3ginternal.hpp
 parse-Camera.o: ../Quaternion.hpp ../Transform.hpp ../Matrix.hpp
-parse-Camera.o: ../Transform.hpp parse-Node.hpp ../Node.hpp
+parse-Camera.o: ../Transform.hpp ../Exception.hpp parse-Node.hpp ../Node.hpp
 parse-CompositingMode.o: ../CompositingMode.hpp ../Object3D.hpp
 parse-CompositingMode.o: /usr/include/GL/glew.h /usr/include/GL/glu.h
 parse-CompositingMode.o: /usr/include/GL/gl.h ../m3gdef.hpp
@@ -125,6 +126,7 @@ parse-Group.o: parse-Node.hpp ../Node.hpp
 parse-Image2D.o: ../Image2D.hpp ../Object3D.hpp /usr/include/GL/glew.h
 parse-Image2D.o: /usr/include/GL/glu.h /usr/include/GL/gl.h ../m3gdef.hpp
 parse-Image2D.o: ../m3ginternal.hpp parse-Object3D.hpp ../Object3D.hpp
+parse-Image2D.o: ../Exception.hpp
 parse-IndexBuffer.o: ../IndexBuffer.hpp /usr/include/GL/glew.h
 parse-IndexBuffer.o: /usr/include/GL/glu.h /usr/include/GL/gl.h
 parse-IndexBuffer.o: ../Object3D.hpp ../m3gdef.hpp ../m3ginternal.hpp
@@ -132,7 +134,7 @@ parse-IndexBuffer.o: parse-Object3D.hpp ../Object3D.hpp
 parse-KeyframeSequence.o: ../KeyframeSequence.hpp ../Object3D.hpp
 parse-KeyframeSequence.o: /usr/include/GL/glew.h /usr/include/GL/glu.h
 parse-KeyframeSequence.o: /usr/include/GL/gl.h ../m3gdef.hpp
-parse-KeyframeSequence.o: ../m3ginternal.hpp ../Keyframe.hpp
+parse-KeyframeSequence.o: ../m3ginternal.hpp ../Keyframe.hpp ../Exception.hpp
 parse-KeyframeSequence.o: parse-Object3D.hpp ../Object3D.hpp
 parse-Light.o: ../Light.hpp ../Node.hpp ../Transformable.hpp ../Object3D.hpp
 parse-Light.o: /usr/include/GL/glew.h /usr/include/GL/glu.h
@@ -157,10 +159,11 @@ parse-Node.o: ../Node.hpp parse-Transformable.hpp ../Transformable.hpp
 parse-Node.o: ../Object3D.hpp /usr/include/GL/glew.h /usr/include/GL/glu.h
 parse-Node.o: /usr/include/GL/gl.h ../m3gdef.hpp ../m3ginternal.hpp
 parse-Node.o: ../Quaternion.hpp ../Transform.hpp ../Matrix.hpp parse-Node.hpp
+parse-Node.o: ../Exception.hpp
 parse-Object3D.o: parse-Object3D.hpp ../Object3D.hpp ../AnimationTrack.hpp
 parse-Object3D.o: ../Object3D.hpp /usr/include/GL/glew.h
 parse-Object3D.o: /usr/include/GL/glu.h /usr/include/GL/gl.h ../m3gdef.hpp
-parse-Object3D.o: ../m3ginternal.hpp
+parse-Object3D.o: ../m3ginternal.hpp ../Exception.hpp
 parse-PolygonMode.o: ../PolygonMode.hpp ../Object3D.hpp
 parse-PolygonMode.o: /usr/include/GL/glew.h /usr/include/GL/glu.h
 parse-PolygonMode.o: /usr/include/GL/gl.h ../m3gdef.hpp ../m3ginternal.hpp
@@ -187,7 +190,7 @@ parse-Transformable.o: parse-Transformable.hpp ../Transformable.hpp
 parse-Transformable.o: ../Object3D.hpp /usr/include/GL/glew.h
 parse-Transformable.o: /usr/include/GL/glu.h /usr/include/GL/gl.h
 parse-Transformable.o: ../m3gdef.hpp ../m3ginternal.hpp ../Quaternion.hpp
-parse-Transformable.o: ../Transform.hpp ../Matrix.hpp
+parse-Transformable.o: ../Transform.hpp ../Matrix.hpp ../Exception.hpp
 parse-TriangleStripArray.o: ../TriangleStripArray.hpp
 parse-TriangleStripArray.o: /usr/include/unittest++/UnitTest++.h
 parse-TriangleStripArray.o: /usr/include/unittest++/Config.h
@@ -227,12 +230,12 @@ parse-TriangleStripArray.o: /usr/include/sys/select.h
 parse-TriangleStripArray.o: /usr/include/bits/select.h ../IndexBuffer.hpp
 parse-TriangleStripArray.o: /usr/include/GL/glew.h /usr/include/GL/glu.h
 parse-TriangleStripArray.o: /usr/include/GL/gl.h ../Object3D.hpp
-parse-TriangleStripArray.o: ../m3gdef.hpp ../m3ginternal.hpp
-parse-TriangleStripArray.o: parse-IndexBuffer.hpp ../IndexBuffer.hpp
+parse-TriangleStripArray.o: ../m3gdef.hpp ../m3ginternal.hpp ../Exception.hpp
+parse-TriangleStripArray.o: parse-Object3D.hpp ../Object3D.hpp
 parse-VertexArray.o: ../VertexArray.hpp /usr/include/GL/glew.h
 parse-VertexArray.o: /usr/include/GL/glu.h /usr/include/GL/gl.h
 parse-VertexArray.o: ../Object3D.hpp ../m3gdef.hpp ../m3ginternal.hpp
-parse-VertexArray.o: parse-Object3D.hpp ../Object3D.hpp
+parse-VertexArray.o: parse-Object3D.hpp ../Object3D.hpp ../Exception.hpp
 parse-VertexBuffer.o: ../VertexBuffer.hpp /usr/include/GL/glew.h
 parse-VertexBuffer.o: /usr/include/GL/glu.h /usr/include/GL/gl.h
 parse-VertexBuffer.o: ../Object3D.hpp ../m3gdef.hpp ../m3ginternal.hpp

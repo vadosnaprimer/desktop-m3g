@@ -89,9 +89,7 @@ Texture2D* Appearance:: getTexture (int index) const
 
 void Appearance:: setCompositingMode (CompositingMode* mode)
 {
-  if (mode == NULL) {
-    throw NullPointException (__FILE__, __func__, "Null compositing mode is specified.");
-  }
+  // null is ok, use default.
   compositing_mode = mode;
 }
 
@@ -110,17 +108,13 @@ void Appearance:: setLayer (int layer)
 
 void Appearance:: setMaterial (Material* mat)
 {
-  if (mat == NULL) {
-    throw NullPointException (__FILE__, __func__, "Null material is specified.");
-  }
+  // null is ok, use default.
   material = mat;
 }
 
 void Appearance:: setPolygonMode (PolygonMode* mode)
 {
-  if (mode == NULL) {
-    throw NullPointException (__FILE__, __func__, "Null polygon mode is specified.");
-  }
+  // null is ok, use default.
   polygon_mode = mode;
 }
 
@@ -182,6 +176,9 @@ void Appearance:: render (int pass, int index) const
   }
   if (compositing_mode) {
     compositing_mode->render (pass, index);
+  }
+  if (polygon_mode) {
+    polygon_mode->render (pass, index);
   }
 
   for (int i = 0; i < MAX_TEXTURE_UNITS; i++) {

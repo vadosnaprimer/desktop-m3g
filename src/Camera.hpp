@@ -85,7 +85,7 @@ namespace m3g {
      * @~English  Constructs a parallel projection matrix and sets that as the current projcection matrix.
      * @~Japanese 平行投影行列を作成し、カレントの透視変換行列として設定する.
      */
-    void setParallel (float fovy, float aspect_ratio, float near, float far);
+    void setParallel (float height, float aspect_ratio, float near, float far);
 
     /**
      * @~English  Constructs a perspective projection matrix and sets that as the current projection matrix.

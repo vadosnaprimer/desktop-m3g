@@ -42,10 +42,10 @@ int Transformable:: animate (int world_time)
   bool  is_orientation_modefied = false;
   bool  is_scaling_modefied     = false;
   bool  is_translation_modefied = false;
-  Quaternion  new_orientation = Quaternion();
+  Quaternion  new_orientation   = Quaternion();
   new_orientation.set (0,0,0,0);
-  Scale       new_scaling     = Scale(0,0,0);
-  Translation new_translation = Translation(0,0,0);
+  Scale       new_scaling       = Scale(0,0,0);
+  Translation new_translation   = Translation(0,0,0);
 
   
   
@@ -92,7 +92,7 @@ int Transformable:: animate (int world_time)
       keyframe->getFrame (local_time, value);
       new_translation = Translation (value[0]*weight, value[1]*weight, value[2]*weight);
       is_translation_modefied = true;
-      cout << "Transformable: translation --> " << new_translation.x << ", " << new_translation.y << ", " << new_translation.z << "\n";
+      //cout << "Transformable: translation --> " << new_translation.x << ", " << new_translation.y << ", " << new_translation.z << "\n";
       break;
     }
     default: {
@@ -103,8 +103,7 @@ int Transformable:: animate (int world_time)
   }
 
   if (is_orientation_modefied) {
-    // メモ
-    // 正規化必要？
+    // メモ：正規化必要？
     orientation = new_orientation;
   }
   if (is_scaling_modefied) {
@@ -235,7 +234,7 @@ void Transformable:: render (int pass, int index) const
 std::ostream& Transformable:: print (std::ostream& out) const
 {
   out << "Transformable: ";
-  out << " translation=" << translation.x << "," << translation.y << "," << translation.z;
+  out << "  translation=" << translation.x << "," << translation.y << "," << translation.z;
   out << ", scale=" << scaling.x << "," << scaling.y << "," << scaling.z;
   out << ", orientation=" << orientation.x << "," << orientation.y << "," << orientation.z;
   out << ", transform=" << transform;
