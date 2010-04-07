@@ -74,12 +74,7 @@ void&nbsp;</td><td class="memItemRight" valign="bottom"><b>setKeyframe</b> (int 
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">virtual std::ostream &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1KeyframeSequence.html#6fea17fa1532df3794f8cb39cb4f911f">print</a> (std::ostream &amp;out) const </td></tr>
 
-<tr><td colspan="2"><br><h2>Public Attributes</h2></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="09d77e6556195583218cf7f0bc11ab1c"></a><!-- doxytag: member="m3g::KeyframeSequence::__pad0__" ref="09d77e6556195583218cf7f0bc11ab1c" args="" -->
-PRIVATE&nbsp;</td><td class="memItemRight" valign="bottom"><b>__pad0__</b>: void getFrame (int local_time</td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="2216ebfe3179bd5c53663d0780a0a190"></a><!-- doxytag: member="m3g::KeyframeSequence::const" ref="2216ebfe3179bd5c53663d0780a0a190" args="" -->
-PRIVATE float *value&nbsp;</td><td class="memItemRight" valign="bottom"><b>const</b></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1KeyframeSequence.html#e172563df4ce29c6fa9bca679e9bba7c">getFrame</a> (int local_time, float *value) const </td></tr>
 
 <tr><td colspan="2"><br><h2>Static Public Attributes</h2></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">static const int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1KeyframeSequence.html#b45ff833865ae8962be27923995f91a3">CONSTANT</a> = 192</td></tr>
@@ -190,6 +185,35 @@ Returns the number of components per keyframe in this ssequence.
 
 <p>
 Gets the duration of this sequence. 
+</div>
+</div><p>
+<a class="anchor" name="e172563df4ce29c6fa9bca679e9bba7c"></a><!-- doxytag: member="m3g::KeyframeSequence::getFrame" ref="e172563df4ce29c6fa9bca679e9bba7c" args="(int local_time, float *value) const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void getFrame           </td>
+          <td>(</td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>local_time</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float *&nbsp;</td>
+          <td class="paramname"> <em>value</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td> const</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Returns interpolated values at specified time, for inner use. 
 </div>
 </div><p>
 <a class="anchor" name="0d46321e7f46e037508cce88cdf6a487"></a><!-- doxytag: member="m3g::KeyframeSequence::getInterpolationType" ref="0d46321e7f46e037508cce88cdf6a487" args="() const " -->
@@ -516,7 +540,7 @@ A constructor parameter that specifies stepping from one keyframe value to the n
 <hr>The documentation for this class was generated from the following files:<ul>
 <li>/work/desktop-m3g/src/<a class="el" href="KeyframeSequence_8hpp-source.html">KeyframeSequence.hpp</a><li>/work/desktop-m3g/src/KeyframeSequence.cpp</ul>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Fri Mar 12 10:22:42 2010 by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Wed Apr 7 10:24:29 2010 by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.8 </small></address>
 </body>

@@ -17,6 +17,8 @@ Object3Dに対する継承グラフ:\begin{figure}[H]
 \item 
 virtual \hyperlink{classm3g_1_1Object3D_8ece10725587e63a2c75283c16cc4df5}{$\sim$Object3D} ()
 \item 
+virtual void \hyperlink{classm3g_1_1Object3D_415c0b110f95410ded9b85e5d99a496b}{addAnimationTrack} (\hyperlink{classm3g_1_1AnimationTrack}{AnimationTrack} $\ast$animation\_\-track)
+\item 
 virtual int \hyperlink{classm3g_1_1Object3D_8aad1ceab4c2a03609c8a42324ce484d}{animate} (int world\_\-time)
 \item 
 virtual \hyperlink{classm3g_1_1Object3D}{Object3D} $\ast$ \hyperlink{classm3g_1_1Object3D_a25110dac934f867b83b73ad4741a0f4}{duplicate} () const 
@@ -37,34 +39,20 @@ void \hyperlink{classm3g_1_1Object3D_e36d8f8544daee6bd4e2ccd6755ed03d}{removeAni
 \item 
 void \hyperlink{classm3g_1_1Object3D_5e4753e91dca5aa56abacb7fde69f332}{setUserID} (int userID)
 \item 
-void \hyperlink{classm3g_1_1Object3D_052563fbd888204955f1a56628882f14}{setUserObject} (void $\ast$user\_\-object\_\-value)
+void \hyperlink{classm3g_1_1Object3D_989411d827091f4a5e97e0377bbd1a7a}{setUserObject} (const char $\ast$name, void $\ast$value)
+\item 
+int \hyperlink{classm3g_1_1Object3D_06be1b37b707b5f227cba2308043f3df}{getObjectType} () const 
+\item 
+virtual void \hyperlink{classm3g_1_1Object3D_4dadb21b568b0230fac106f15040138c}{findByObjectType} (int obj\_\-type, std::vector$<$ \hyperlink{classm3g_1_1Object3D}{Object3D} $\ast$ $>$ \&objs) const 
 \item 
 virtual std::ostream \& \hyperlink{classm3g_1_1Object3D_6fea17fa1532df3794f8cb39cb4f911f}{print} (std::ostream \&out) const 
-\end{CompactItemize}
-\subsection*{Public 変数}
-\begin{CompactItemize}
-\item 
-\hypertarget{classm3g_1_1Object3D_11d260eb623ff241a55524ad8bc9beb4}{
-PROTECTED \textbf{\_\-\_\-pad0\_\-\_\-}: virtual void addAnimationTrack (\hyperlink{classm3g_1_1AnimationTrack}{AnimationTrack}$\ast$ animation\_\-track)}
-\label{classm3g_1_1Object3D_11d260eb623ff241a55524ad8bc9beb4}
-
 \end{CompactItemize}
 \subsection*{Protected メソッド}
 \begin{CompactItemize}
 \item 
 virtual void \hyperlink{classm3g_1_1Object3D_1efcb1973989d9963d5bd6d03065d389}{render} (int pass, int index=0) const 
 \item 
-int \hyperlink{classm3g_1_1Object3D_06be1b37b707b5f227cba2308043f3df}{getObjectType} () const 
-\item 
-virtual void \hyperlink{classm3g_1_1Object3D_4dadb21b568b0230fac106f15040138c}{findByObjectType} (int obj\_\-type, std::vector$<$ \hyperlink{classm3g_1_1Object3D}{Object3D} $\ast$ $>$ \&objs) const 
-\end{CompactItemize}
-\subsection*{Protected 変数}
-\begin{CompactItemize}
-\item 
-\hypertarget{classm3g_1_1Object3D_1868c0b310409e4b2258f29504e43760}{
-PROTECTED \textbf{\_\-\_\-pad1\_\-\_\-}: void setObjectType (int type)}
-\label{classm3g_1_1Object3D_1868c0b310409e4b2258f29504e43760}
-
+void \hyperlink{classm3g_1_1Object3D_777701a101d1332abffa2ad6a255b91d}{setObjectType} (int type)
 \end{CompactItemize}
 
 
@@ -89,7 +77,16 @@ PROTECTED \textbf{\_\-\_\-pad1\_\-\_\-}: void setObjectType (int type)}
 このオブジェクトを削除するデストラクタ. 
 
 \subsection{関数}
-\hypertarget{classm3g_1_1Object3D_8aad1ceab4c2a03609c8a42324ce484d}{
+\hypertarget{classm3g_1_1Object3D_415c0b110f95410ded9b85e5d99a496b}{
+\index{m3g::Object3D@{m3g::Object3D}!addAnimationTrack@{addAnimationTrack}}
+\index{addAnimationTrack@{addAnimationTrack}!m3g::Object3D@{m3g::Object3D}}
+\subsubsection[{addAnimationTrack}]{\setlength{\rightskip}{0pt plus 5cm}void addAnimationTrack ({\bf AnimationTrack} $\ast$ {\em animation\_\-track})\hspace{0.3cm}{\tt  \mbox{[}virtual\mbox{]}}}}
+\label{classm3g_1_1Object3D_415c0b110f95410ded9b85e5d99a496b}
+
+
+このObject3Dに指定されたアニメーショントラックを追加する。 既存のトラックの順番とインデックスは変更されるかもしれない. 
+
+\hyperlink{classm3g_1_1Background_415c0b110f95410ded9b85e5d99a496b}{Background}, \hyperlink{classm3g_1_1Camera_415c0b110f95410ded9b85e5d99a496b}{Camera}, \hyperlink{classm3g_1_1Fog_415c0b110f95410ded9b85e5d99a496b}{Fog}, \hyperlink{classm3g_1_1Light_415c0b110f95410ded9b85e5d99a496b}{Light}, \hyperlink{classm3g_1_1Material_415c0b110f95410ded9b85e5d99a496b}{Material}, \hyperlink{classm3g_1_1MorphingMesh_415c0b110f95410ded9b85e5d99a496b}{MorphingMesh}, \hyperlink{classm3g_1_1Node_415c0b110f95410ded9b85e5d99a496b}{Node}, \hyperlink{classm3g_1_1Sprite3D_415c0b110f95410ded9b85e5d99a496b}{Sprite3D}, \hyperlink{classm3g_1_1Texture2D_415c0b110f95410ded9b85e5d99a496b}{Texture2D}, \hyperlink{classm3g_1_1Transformable_415c0b110f95410ded9b85e5d99a496b}{Transformable}, と \hyperlink{classm3g_1_1VertexBuffer_415c0b110f95410ded9b85e5d99a496b}{VertexBuffer}で再定義されています。\hypertarget{classm3g_1_1Object3D_8aad1ceab4c2a03609c8a42324ce484d}{
 \index{m3g::Object3D@{m3g::Object3D}!animate@{animate}}
 \index{animate@{animate}!m3g::Object3D@{m3g::Object3D}}
 \subsubsection[{animate}]{\setlength{\rightskip}{0pt plus 5cm}int animate (int {\em world\_\-time})\hspace{0.3cm}{\tt  \mbox{[}virtual\mbox{]}}}}
@@ -115,13 +112,13 @@ PROTECTED \textbf{\_\-\_\-pad1\_\-\_\-}: void setObjectType (int type)}
 このオブジェクトと到達できるオブジェクトから指定のユーザーIDのオブジェクトを見つける. \hypertarget{classm3g_1_1Object3D_4dadb21b568b0230fac106f15040138c}{
 \index{m3g::Object3D@{m3g::Object3D}!findByObjectType@{findByObjectType}}
 \index{findByObjectType@{findByObjectType}!m3g::Object3D@{m3g::Object3D}}
-\subsubsection[{findByObjectType}]{\setlength{\rightskip}{0pt plus 5cm}void findByObjectType (int {\em obj\_\-type}, \/  std::vector$<$ {\bf Object3D} $\ast$ $>$ \& {\em objs}) const\hspace{0.3cm}{\tt  \mbox{[}protected, virtual\mbox{]}}}}
+\subsubsection[{findByObjectType}]{\setlength{\rightskip}{0pt plus 5cm}void findByObjectType (int {\em obj\_\-type}, \/  std::vector$<$ {\bf Object3D} $\ast$ $>$ \& {\em objs}) const\hspace{0.3cm}{\tt  \mbox{[}virtual\mbox{]}}}}
 \label{classm3g_1_1Object3D_4dadb21b568b0230fac106f15040138c}
 
 
-オブジェクトタイプを指定して検索. 
+オブジェクトタイプを指定して検索するM3G非標準の関数. 
 
-\hyperlink{classm3g_1_1Appearance_4dadb21b568b0230fac106f15040138c}{Appearance}, \hyperlink{classm3g_1_1Texture2D_4dadb21b568b0230fac106f15040138c}{Texture2D}, と \hyperlink{classm3g_1_1VertexBuffer_4dadb21b568b0230fac106f15040138c}{VertexBuffer}で再定義されています。\hypertarget{classm3g_1_1Object3D_f0978f3f2efe3227ca613da3361424dd}{
+\hyperlink{classm3g_1_1Appearance_4dadb21b568b0230fac106f15040138c}{Appearance}, \hyperlink{classm3g_1_1Group_4dadb21b568b0230fac106f15040138c}{Group}, \hyperlink{classm3g_1_1Texture2D_4dadb21b568b0230fac106f15040138c}{Texture2D}, と \hyperlink{classm3g_1_1VertexBuffer_4dadb21b568b0230fac106f15040138c}{VertexBuffer}で再定義されています。\hypertarget{classm3g_1_1Object3D_f0978f3f2efe3227ca613da3361424dd}{
 \index{m3g::Object3D@{m3g::Object3D}!getAnimationTrack@{getAnimationTrack}}
 \index{getAnimationTrack@{getAnimationTrack}!m3g::Object3D@{m3g::Object3D}}
 \subsubsection[{getAnimationTrack}]{\setlength{\rightskip}{0pt plus 5cm}{\bf AnimationTrack} $\ast$ getAnimationTrack (int {\em index}) const}}
@@ -138,11 +135,11 @@ PROTECTED \textbf{\_\-\_\-pad1\_\-\_\-}: void setObjectType (int type)}
 このObject3Dに関連づけられているアニメーショントラックの数の取得. \hypertarget{classm3g_1_1Object3D_06be1b37b707b5f227cba2308043f3df}{
 \index{m3g::Object3D@{m3g::Object3D}!getObjectType@{getObjectType}}
 \index{getObjectType@{getObjectType}!m3g::Object3D@{m3g::Object3D}}
-\subsubsection[{getObjectType}]{\setlength{\rightskip}{0pt plus 5cm}int getObjectType () const\hspace{0.3cm}{\tt  \mbox{[}protected\mbox{]}}}}
+\subsubsection[{getObjectType}]{\setlength{\rightskip}{0pt plus 5cm}int getObjectType () const}}
 \label{classm3g_1_1Object3D_06be1b37b707b5f227cba2308043f3df}
 
 
-オブジェクトタイプの取得. \hypertarget{classm3g_1_1Object3D_ddf91fbaaa866aa7aad5d530a69feba8}{
+オブジェクトタイプを取得するM3G非標準の関数. \hypertarget{classm3g_1_1Object3D_ddf91fbaaa866aa7aad5d530a69feba8}{
 \index{m3g::Object3D@{m3g::Object3D}!getReferences@{getReferences}}
 \index{getReferences@{getReferences}!m3g::Object3D@{m3g::Object3D}}
 \subsubsection[{getReferences}]{\setlength{\rightskip}{0pt plus 5cm}int getReferences ({\bf Object3D} $\ast$$\ast$ {\em references}, \/  int {\em size}) const\hspace{0.3cm}{\tt  \mbox{[}virtual\mbox{]}}}}
@@ -179,7 +176,7 @@ PROTECTED \textbf{\_\-\_\-pad1\_\-\_\-}: void setObjectType (int type)}
 \label{classm3g_1_1Object3D_e36d8f8544daee6bd4e2ccd6755ed03d}
 
 
-このObject3Dから指定されたアニメーショントラックを削除する。 既存のトラックの順番やインデックスは変更されるかもしれない。 \hypertarget{classm3g_1_1Object3D_1efcb1973989d9963d5bd6d03065d389}{
+このObject3Dから指定されたアニメーショントラックを削除する。 既存のトラックの順番やインデックスは変更されるかもしれない. \hypertarget{classm3g_1_1Object3D_1efcb1973989d9963d5bd6d03065d389}{
 \index{m3g::Object3D@{m3g::Object3D}!render@{render}}
 \index{render@{render}!m3g::Object3D@{m3g::Object3D}}
 \subsubsection[{render}]{\setlength{\rightskip}{0pt plus 5cm}void render (int {\em pass}, \/  int {\em index} = {\tt 0}) const\hspace{0.3cm}{\tt  \mbox{[}protected, virtual\mbox{]}}}}
@@ -188,18 +185,25 @@ PROTECTED \textbf{\_\-\_\-pad1\_\-\_\-}: void setObjectType (int type)}
 
 このObject3Dをレンダリング(する内部使用の関数. 
 
-\hyperlink{classm3g_1_1Camera_1efcb1973989d9963d5bd6d03065d389}{Camera}, \hyperlink{classm3g_1_1CompositingMode_1efcb1973989d9963d5bd6d03065d389}{CompositingMode}, \hyperlink{classm3g_1_1Fog_1efcb1973989d9963d5bd6d03065d389}{Fog}, \hyperlink{classm3g_1_1Group_1efcb1973989d9963d5bd6d03065d389}{Group}, \hyperlink{classm3g_1_1IndexBuffer_1efcb1973989d9963d5bd6d03065d389}{IndexBuffer}, \hyperlink{classm3g_1_1Mesh_1efcb1973989d9963d5bd6d03065d389}{Mesh}, \hyperlink{classm3g_1_1MorphingMesh_1efcb1973989d9963d5bd6d03065d389}{MorphingMesh}, \hyperlink{classm3g_1_1Node_1efcb1973989d9963d5bd6d03065d389}{Node}, \hyperlink{classm3g_1_1PolygonMode_1efcb1973989d9963d5bd6d03065d389}{PolygonMode}, \hyperlink{classm3g_1_1SkinnedMesh_1efcb1973989d9963d5bd6d03065d389}{SkinnedMesh}, \hyperlink{classm3g_1_1Sprite3D_1efcb1973989d9963d5bd6d03065d389}{Sprite3D}, \hyperlink{classm3g_1_1Transformable_1efcb1973989d9963d5bd6d03065d389}{Transformable}, \hyperlink{classm3g_1_1TriangleStripArray_1efcb1973989d9963d5bd6d03065d389}{TriangleStripArray}, と \hyperlink{classm3g_1_1World_1efcb1973989d9963d5bd6d03065d389}{World}で再定義されています。\hypertarget{classm3g_1_1Object3D_5e4753e91dca5aa56abacb7fde69f332}{
+\hyperlink{classm3g_1_1Camera_1efcb1973989d9963d5bd6d03065d389}{Camera}, \hyperlink{classm3g_1_1CompositingMode_1efcb1973989d9963d5bd6d03065d389}{CompositingMode}, \hyperlink{classm3g_1_1Fog_1efcb1973989d9963d5bd6d03065d389}{Fog}, \hyperlink{classm3g_1_1Group_1efcb1973989d9963d5bd6d03065d389}{Group}, \hyperlink{classm3g_1_1IndexBuffer_1efcb1973989d9963d5bd6d03065d389}{IndexBuffer}, \hyperlink{classm3g_1_1Mesh_1efcb1973989d9963d5bd6d03065d389}{Mesh}, \hyperlink{classm3g_1_1MorphingMesh_1efcb1973989d9963d5bd6d03065d389}{MorphingMesh}, \hyperlink{classm3g_1_1Node_1efcb1973989d9963d5bd6d03065d389}{Node}, \hyperlink{classm3g_1_1PolygonMode_1efcb1973989d9963d5bd6d03065d389}{PolygonMode}, \hyperlink{classm3g_1_1SkinnedMesh_1efcb1973989d9963d5bd6d03065d389}{SkinnedMesh}, \hyperlink{classm3g_1_1Sprite3D_1efcb1973989d9963d5bd6d03065d389}{Sprite3D}, \hyperlink{classm3g_1_1Transformable_1efcb1973989d9963d5bd6d03065d389}{Transformable}, \hyperlink{classm3g_1_1TriangleStripArray_1efcb1973989d9963d5bd6d03065d389}{TriangleStripArray}, と \hyperlink{classm3g_1_1World_1efcb1973989d9963d5bd6d03065d389}{World}で再定義されています。\hypertarget{classm3g_1_1Object3D_777701a101d1332abffa2ad6a255b91d}{
+\index{m3g::Object3D@{m3g::Object3D}!setObjectType@{setObjectType}}
+\index{setObjectType@{setObjectType}!m3g::Object3D@{m3g::Object3D}}
+\subsubsection[{setObjectType}]{\setlength{\rightskip}{0pt plus 5cm}void setObjectType (int {\em type})\hspace{0.3cm}{\tt  \mbox{[}protected\mbox{]}}}}
+\label{classm3g_1_1Object3D_777701a101d1332abffa2ad6a255b91d}
+
+
+オブジェクトタイプの設定. \hypertarget{classm3g_1_1Object3D_5e4753e91dca5aa56abacb7fde69f332}{
 \index{m3g::Object3D@{m3g::Object3D}!setUserID@{setUserID}}
 \index{setUserID@{setUserID}!m3g::Object3D@{m3g::Object3D}}
 \subsubsection[{setUserID}]{\setlength{\rightskip}{0pt plus 5cm}void setUserID (int {\em userID})}}
 \label{classm3g_1_1Object3D_5e4753e91dca5aa56abacb7fde69f332}
 
 
-このオブジェクトのユーザーIDを設定する. \hypertarget{classm3g_1_1Object3D_052563fbd888204955f1a56628882f14}{
+このオブジェクトのユーザーIDを設定する. \hypertarget{classm3g_1_1Object3D_989411d827091f4a5e97e0377bbd1a7a}{
 \index{m3g::Object3D@{m3g::Object3D}!setUserObject@{setUserObject}}
 \index{setUserObject@{setUserObject}!m3g::Object3D@{m3g::Object3D}}
-\subsubsection[{setUserObject}]{\setlength{\rightskip}{0pt plus 5cm}void setUserObject (void $\ast$ {\em user\_\-object\_\-value})}}
-\label{classm3g_1_1Object3D_052563fbd888204955f1a56628882f14}
+\subsubsection[{setUserObject}]{\setlength{\rightskip}{0pt plus 5cm}void setUserObject (const char $\ast$ {\em name}, \/  void $\ast$ {\em value})}}
+\label{classm3g_1_1Object3D_989411d827091f4a5e97e0377bbd1a7a}
 
 
 このObject3Dに任意のアプリケーション固有のオブジェクトを関連づける。 ユーザーオブジェクトはコピーされない. 注意：本当はkey,valueのペアでなければならない。あとで修正する。 

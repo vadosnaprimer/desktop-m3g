@@ -48,25 +48,23 @@ Inheritance diagram for Image2D:</div>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">virtual&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Image2D.html#7ac703fe7edbb053dd2246ea1bb43200">~Image2D</a> ()</td></tr>
 
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="c08e2752176d267cc4429d4d185975b8"></a><!-- doxytag: member="m3g::Image2D::getFormat" ref="c08e2752176d267cc4429d4d185975b8" args="() const " -->
-int&nbsp;</td><td class="memItemRight" valign="bottom"><b>getFormat</b> () const </td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Image2D.html#c08e2752176d267cc4429d4d185975b8">getFormat</a> () const </td></tr>
 
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="317329daf960a1759801c0f16d43d5a3"></a><!-- doxytag: member="m3g::Image2D::getHeight" ref="317329daf960a1759801c0f16d43d5a3" args="() const " -->
-int&nbsp;</td><td class="memItemRight" valign="bottom"><b>getHeight</b> () const </td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Image2D.html#317329daf960a1759801c0f16d43d5a3">getHeight</a> () const </td></tr>
 
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="f149cb053bc8b5fbc1364b5dbb934488"></a><!-- doxytag: member="m3g::Image2D::getWidth" ref="f149cb053bc8b5fbc1364b5dbb934488" args="() const " -->
-int&nbsp;</td><td class="memItemRight" valign="bottom"><b>getWidth</b> () const </td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Image2D.html#f149cb053bc8b5fbc1364b5dbb934488">getWidth</a> () const </td></tr>
 
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="d687aabba553d1c66bfc253ec7e5bd05"></a><!-- doxytag: member="m3g::Image2D::isMutable" ref="d687aabba553d1c66bfc253ec7e5bd05" args="() const " -->
-bool&nbsp;</td><td class="memItemRight" valign="bottom"><b>isMutable</b> () const </td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Image2D.html#d687aabba553d1c66bfc253ec7e5bd05">isMutable</a> () const </td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Image2D.html#fe9ef1abefb9e92b38687e27c9004bdc">set</a> (int x, int y, int width, int height, void *image)</td></tr>
 
-<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Image2D.html#6ec48e0681b8805c75ecadf4ba4a40cb">write_ppm</a> (const char *name) const </td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Image2D.html#32ee5b2bcc9c7bf69b925413eeccb4bf">write_ppm</a> (const char *file_name) const </td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">virtual std::ostream &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Image2D.html#6fea17fa1532df3794f8cb39cb4f911f">print</a> (std::ostream &amp;out) const </td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">GLenum&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Image2D.html#7923da2fe82fee768ec9937a693e843c">getOpenGLFormat</a> () const </td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Image2D.html#b837b1bdda59947a6d818c448965c502">getOpenGLData</a> () const </td></tr>
 
 <tr><td colspan="2"><br><h2>Static Public Attributes</h2></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">static const int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Image2D.html#417581fcde4067111f47320edb2aa378">ALPHA</a> = 96</td></tr>
@@ -235,6 +233,63 @@ Destruct this object.
 </div>
 </div><p>
 <hr><h2>Member Function Documentation</h2>
+<a class="anchor" name="c08e2752176d267cc4429d4d185975b8"></a><!-- doxytag: member="m3g::Image2D::getFormat" ref="c08e2752176d267cc4429d4d185975b8" args="() const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int getFormat           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Gets the internal format of this <a class="el" href="classm3g_1_1Image2D.html">Image2D</a>. 
+</div>
+</div><p>
+<a class="anchor" name="317329daf960a1759801c0f16d43d5a3"></a><!-- doxytag: member="m3g::Image2D::getHeight" ref="317329daf960a1759801c0f16d43d5a3" args="() const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int getHeight           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Gets the hieght of this <a class="el" href="classm3g_1_1Image2D.html">Image2D</a>. 
+</div>
+</div><p>
+<a class="anchor" name="b837b1bdda59947a6d818c448965c502"></a><!-- doxytag: member="m3g::Image2D::getOpenGLData" ref="b837b1bdda59947a6d818c448965c502" args="() const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void * getOpenGLData           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Return pointer to raw data, for inner use. 
+</div>
+</div><p>
 <a class="anchor" name="7923da2fe82fee768ec9937a693e843c"></a><!-- doxytag: member="m3g::Image2D::getOpenGLFormat" ref="7923da2fe82fee768ec9937a693e843c" args="() const " -->
 <div class="memitem">
 <div class="memproto">
@@ -252,6 +307,44 @@ Destruct this object.
 
 <p>
 Return OpenGL format, for inner use. 
+</div>
+</div><p>
+<a class="anchor" name="f149cb053bc8b5fbc1364b5dbb934488"></a><!-- doxytag: member="m3g::Image2D::getWidth" ref="f149cb053bc8b5fbc1364b5dbb934488" args="() const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int getWidth           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Gets the width of this <a class="el" href="classm3g_1_1Image2D.html">Image2D</a>. 
+</div>
+</div><p>
+<a class="anchor" name="d687aabba553d1c66bfc253ec7e5bd05"></a><!-- doxytag: member="m3g::Image2D::isMutable" ref="d687aabba553d1c66bfc253ec7e5bd05" args="() const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool isMutable           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Qeries wheter this <a class="el" href="classm3g_1_1Image2D.html">Image2D</a> is mutable. 
 </div>
 </div><p>
 <a class="anchor" name="6fea17fa1532df3794f8cb39cb4f911f"></a><!-- doxytag: member="m3g::Image2D::print" ref="6fea17fa1532df3794f8cb39cb4f911f" args="(std::ostream &amp;out) const " -->
@@ -323,7 +416,7 @@ Print out information of this class, for only debug.
 Updates a rectangular area of this <a class="el" href="classm3g_1_1Image2D.html">Image2D</a> by copying pixels from a byte array. 
 </div>
 </div><p>
-<a class="anchor" name="6ec48e0681b8805c75ecadf4ba4a40cb"></a><!-- doxytag: member="m3g::Image2D::write_ppm" ref="6ec48e0681b8805c75ecadf4ba4a40cb" args="(const char *name) const " -->
+<a class="anchor" name="32ee5b2bcc9c7bf69b925413eeccb4bf"></a><!-- doxytag: member="m3g::Image2D::write_ppm" ref="32ee5b2bcc9c7bf69b925413eeccb4bf" args="(const char *file_name) const " -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -423,7 +516,7 @@ A constructor parameter specifying that this <a class="el" href="classm3g_1_1Ima
 <hr>The documentation for this class was generated from the following files:<ul>
 <li>/work/desktop-m3g/src/<a class="el" href="Image2D_8hpp-source.html">Image2D.hpp</a><li>/work/desktop-m3g/src/Image2D.cpp</ul>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Fri Mar 12 10:22:42 2010 by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Wed Apr 7 10:24:28 2010 by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.8 </small></address>
 </body>

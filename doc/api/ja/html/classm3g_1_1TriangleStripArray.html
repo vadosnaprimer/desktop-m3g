@@ -47,14 +47,18 @@ TriangleStripArrayに対する継承グラフ</div>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">virtual&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1TriangleStripArray.html#1cb3853bf79b7710d57044da818d2cde">~TriangleStripArray</a> ()</td></tr>
 
+<tr><td class="memItemLeft" nowrap align="right" valign="top">virtual int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1TriangleStripArray.html#fe9ae2993ebcdb93d5ff26d57c81b73e">getIndexCount</a> () const </td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1TriangleStripArray.html#650953afac45099025a524ab160b911f">getIndices</a> (int *indices)</td></tr>
+
 <tr><td class="memItemLeft" nowrap align="right" valign="top">virtual std::ostream &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1TriangleStripArray.html#6fea17fa1532df3794f8cb39cb4f911f">print</a> (std::ostream &amp;out) const </td></tr>
 
 <tr><td colspan="2"><br><h2>Protected メソッド</h2></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1TriangleStripArray.html#1efcb1973989d9963d5bd6d03065d389">render</a> (int pass, int index=0) const </td></tr>
 
-<tr><td colspan="2"><br><h2>Protected 変数</h2></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="09d77e6556195583218cf7f0bc11ab1c"></a><!-- doxytag: member="m3g::TriangleStripArray::__pad0__" ref="09d77e6556195583218cf7f0bc11ab1c" args="" -->
-PRIVATE&nbsp;</td><td class="memItemRight" valign="bottom"><b>__pad0__</b>: std::vector&lt;int&gt; strips</td></tr>
+<tr><td colspan="2"><br><h2>フレンド</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="1f61169bea98d63b51332345ccaea9d5"></a><!-- doxytag: member="m3g::TriangleStripArray::UnitTest::Test" ref="1f61169bea98d63b51332345ccaea9d5" args="" -->
+class&nbsp;</td><td class="memItemRight" valign="bottom"><b>UnitTest::Test</b></td></tr>
 
 </table>
 <hr><a name="_details"></a><h2>説明</h2>
@@ -149,6 +153,49 @@ PRIVATE&nbsp;</td><td class="memItemRight" valign="bottom"><b>__pad0__</b>: std:
 </div>
 </div><p>
 <hr><h2>関数</h2>
+<a class="anchor" name="fe9ae2993ebcdb93d5ff26d57c81b73e"></a><!-- doxytag: member="m3g::TriangleStripArray::getIndexCount" ref="fe9ae2993ebcdb93d5ff26d57c81b73e" args="() const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int getIndexCount           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const<code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+このバッファーのインデックスの数を取得. 
+<p><a class="el" href="classm3g_1_1IndexBuffer.html#ac7d2c37f177b21195a81f00061ef94e">IndexBuffer</a>を実装しています。</p>
+
+</div>
+</div><p>
+<a class="anchor" name="650953afac45099025a524ab160b911f"></a><!-- doxytag: member="m3g::TriangleStripArray::getIndices" ref="650953afac45099025a524ab160b911f" args="(int *indices)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void getIndices           </td>
+          <td>(</td>
+          <td class="paramtype">int *&nbsp;</td>
+          <td class="paramname"> <em>indices</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+このバッファーに収納されているインデックスを取得する. 
+<p><a class="el" href="classm3g_1_1IndexBuffer.html#59fb1eca8810ea3b028735c5dce53fca">IndexBuffer</a>を実装しています。</p>
+
+</div>
+</div><p>
 <a class="anchor" name="6fea17fa1532df3794f8cb39cb4f911f"></a><!-- doxytag: member="m3g::TriangleStripArray::print" ref="6fea17fa1532df3794f8cb39cb4f911f" args="(std::ostream &amp;out) const " -->
 <div class="memitem">
 <div class="memproto">
@@ -206,7 +253,7 @@ Note: <a class="el" href="classm3g_1_1TriangleStripArray.html">TriangleStripArra
 <hr>このクラスの説明は次のファイルから生成されました:<ul>
 <li>/work/desktop-m3g/src/<a class="el" href="TriangleStripArray_8hpp-source.html">TriangleStripArray.hpp</a><li>/work/desktop-m3g/src/TriangleStripArray.cpp</ul>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Fri Mar 12 10:22:39 2010に生成されました。&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Wed Apr 7 10:24:25 2010に生成されました。&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.8 </small></address>
 </body>

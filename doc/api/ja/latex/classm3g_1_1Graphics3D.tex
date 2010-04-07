@@ -18,8 +18,6 @@ int \hyperlink{classm3g_1_1Graphics3D_e210cacb72c8540df86a6674e3c2dc4f}{addLight
 \item 
 void \hyperlink{classm3g_1_1Graphics3D_2173e179f4b2d7130cde46a48794ee66}{bindTarget} (\hyperlink{classm3g_1_1Graphics}{Graphics} $\ast$g, bool depth\_\-buffer\_\-enabled=true, int hints=0)
 \item 
-void \hyperlink{classm3g_1_1Graphics3D_e3640472397d2b632496fa37c990b4bb}{bindTarget} (\hyperlink{classm3g_1_1Image2D}{Image2D} $\ast$i, bool depth\_\-buffer\_\-enabled=true, int hints=0)
-\item 
 void \hyperlink{classm3g_1_1Graphics3D_21c4a68a53cfbe0a7cec05d5a56682bf}{clear} (\hyperlink{classm3g_1_1Background}{Background} $\ast$background)
 \item 
 \hyperlink{classm3g_1_1Camera}{Camera} $\ast$ \hyperlink{classm3g_1_1Graphics3D_570b81f426d1b2b5e8794cffb33422c6}{getCamera} (const \hyperlink{classm3g_1_1Transform}{Transform} \&transform)
@@ -34,7 +32,7 @@ int \hyperlink{classm3g_1_1Graphics3D_5837234a23dc5f46d3adec17f521b58e}{getHints
 \item 
 int \hyperlink{classm3g_1_1Graphics3D_7a08cfeb48d76ad5d8859a1fc0c77d98}{getLightCount} () const 
 \item 
-std::unordered\_\-map$<$ const char $\ast$, int $>$ \hyperlink{classm3g_1_1Graphics3D_a7d4779a1ea7779caf7f409c4d2bb31f}{getProperties} () const 
+std::vector$<$ Property $\ast$ $>$ \hyperlink{classm3g_1_1Graphics3D_d87d3f8145ea47e2b736c6c3525dad5c}{getProperties} () const 
 \item 
 void $\ast$ \hyperlink{classm3g_1_1Graphics3D_02d0033930c8e68f4d7ebd43abe7980a}{getTarget} () const 
 \item 
@@ -119,14 +117,7 @@ static const int \textbf{TRUE\_\-COLOR} = 1$<$$<$3}
 \label{classm3g_1_1Graphics3D_e210cacb72c8540df86a6674e3c2dc4f}
 
 
-イミーディエイトモードで使用するライトのバインド. \hypertarget{classm3g_1_1Graphics3D_e3640472397d2b632496fa37c990b4bb}{
-\index{m3g::Graphics3D@{m3g::Graphics3D}!bindTarget@{bindTarget}}
-\index{bindTarget@{bindTarget}!m3g::Graphics3D@{m3g::Graphics3D}}
-\subsubsection[{bindTarget}]{\setlength{\rightskip}{0pt plus 5cm}void bindTarget ({\bf Image2D} $\ast$ {\em i}, \/  bool {\em depth\_\-buffer\_\-enabled} = {\tt true}, \/  int {\em hints} = {\tt 0})}}
-\label{classm3g_1_1Graphics3D_e3640472397d2b632496fa37c990b4bb}
-
-
-このGraphics3DクラスにミュータブルImage2Dクラスをバインドする. \hypertarget{classm3g_1_1Graphics3D_2173e179f4b2d7130cde46a48794ee66}{
+イミーディエイトモードで使用するライトのバインド. \hypertarget{classm3g_1_1Graphics3D_2173e179f4b2d7130cde46a48794ee66}{
 \index{m3g::Graphics3D@{m3g::Graphics3D}!bindTarget@{bindTarget}}
 \index{bindTarget@{bindTarget}!m3g::Graphics3D@{m3g::Graphics3D}}
 \subsubsection[{bindTarget}]{\setlength{\rightskip}{0pt plus 5cm}void bindTarget ({\bf Graphics} $\ast$ {\em g}, \/  bool {\em depth\_\-buffer\_\-enabled} = {\tt true}, \/  int {\em hints} = {\tt 0})}}
@@ -189,11 +180,11 @@ static const int \textbf{TRUE\_\-COLOR} = 1$<$$<$3}
 \label{classm3g_1_1Graphics3D_7a08cfeb48d76ad5d8859a1fc0c77d98}
 
 
-カレントのライト配列のサイズを取得する. \hypertarget{classm3g_1_1Graphics3D_a7d4779a1ea7779caf7f409c4d2bb31f}{
+カレントのライト配列のサイズを取得する. \hypertarget{classm3g_1_1Graphics3D_d87d3f8145ea47e2b736c6c3525dad5c}{
 \index{m3g::Graphics3D@{m3g::Graphics3D}!getProperties@{getProperties}}
 \index{getProperties@{getProperties}!m3g::Graphics3D@{m3g::Graphics3D}}
-\subsubsection[{getProperties}]{\setlength{\rightskip}{0pt plus 5cm}std::unordered\_\-map$<$ const char $\ast$, int $>$ getProperties () const}}
-\label{classm3g_1_1Graphics3D_a7d4779a1ea7779caf7f409c4d2bb31f}
+\subsubsection[{getProperties}]{\setlength{\rightskip}{0pt plus 5cm}std::vector$<$ Property $\ast$ $>$ getProperties () const}}
+\label{classm3g_1_1Graphics3D_d87d3f8145ea47e2b736c6c3525dad5c}
 
 
 実装依存のプロパティの取得. \hypertarget{classm3g_1_1Graphics3D_02d0033930c8e68f4d7ebd43abe7980a}{

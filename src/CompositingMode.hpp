@@ -15,6 +15,17 @@ namespace m3g {
   {
     friend class Appearance;  // for findByType
 
+    /**
+     * @~English  Structure of depth offset, for inner use.
+     * @~Japanese デプスオフセット情報を持つ内部使用の構造体.
+     */
+    struct DepthOffset {
+      DepthOffset (float factor_, float units_) : factor(factor_), units(units_) {};
+      float factor;
+      float units;
+    };
+
+
   public:
     /**
      * @~English  Selects the alpha blend mode.
@@ -41,16 +52,6 @@ namespace m3g {
      * @~Japanese リプレースを表す定数.
      */
     static const int REPLACE      = 68;
-
-    /**
-     * @~English  Structure of depth offset, for inner use.
-     * @~Japanese デプスオフセット情報を持つ内部使用の構造体.
-     */
-    struct DepthOffset {
-      DepthOffset (float factor_, float units_) : factor(factor_), units(units_) {};
-      float factor;
-      float units;
-    };
 
   public:
     /**

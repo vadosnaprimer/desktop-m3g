@@ -39,66 +39,60 @@
 <a name="l00027"></a>00027 
 <a name="l00032"></a>00032     <span class="keyword">virtual</span> <a class="code" href="classm3g_1_1Object3D.html#8ece10725587e63a2c75283c16cc4df5">~Object3D</a> ();
 <a name="l00033"></a>00033 
-<a name="l00034"></a>00034   PROTECTED:
-<a name="l00041"></a>00041     <span class="keyword">virtual</span> <span class="keywordtype">void</span> addAnimationTrack (<a class="code" href="classm3g_1_1AnimationTrack.html">AnimationTrack</a>* animation_track);
-<a name="l00042"></a>00042 
-<a name="l00043"></a>00043   <span class="keyword">public</span>:
-<a name="l00048"></a>00048     <span class="keyword">virtual</span> <span class="keywordtype">int</span> <a class="code" href="classm3g_1_1Object3D.html#8aad1ceab4c2a03609c8a42324ce484d">animate</a> (<span class="keywordtype">int</span> world_time);
-<a name="l00049"></a>00049 
-<a name="l00054"></a>00054     <span class="keyword">virtual</span> <a class="code" href="classm3g_1_1Object3D.html">Object3D</a>* <a class="code" href="classm3g_1_1Object3D.html#a25110dac934f867b83b73ad4741a0f4">duplicate</a> () <span class="keyword">const</span>;
-<a name="l00055"></a>00055 
-<a name="l00060"></a>00060     <span class="keyword">virtual</span> <a class="code" href="classm3g_1_1Object3D.html">Object3D</a>* <a class="code" href="classm3g_1_1Object3D.html#aa62f6aaac2e9359875f027ca05788ac">find</a> (<span class="keywordtype">int</span> userID) <span class="keyword">const</span>;
-<a name="l00061"></a>00061 
-<a name="l00062"></a>00062 
-<a name="l00067"></a>00067     <a class="code" href="classm3g_1_1AnimationTrack.html">AnimationTrack</a>* <a class="code" href="classm3g_1_1Object3D.html#f0978f3f2efe3227ca613da3361424dd">getAnimationTrack</a> (<span class="keywordtype">int</span> index) <span class="keyword">const</span>;
-<a name="l00068"></a>00068 
-<a name="l00073"></a>00073     <span class="keywordtype">int</span> <a class="code" href="classm3g_1_1Object3D.html#0926843b66090795972850376b8e4e6c">getAnimationTrackCount</a> () <span class="keyword">const</span>;
-<a name="l00074"></a>00074 
-<a name="l00079"></a>00079     <span class="keyword">virtual</span> <span class="keywordtype">int</span> <a class="code" href="classm3g_1_1Object3D.html#ddf91fbaaa866aa7aad5d530a69feba8">getReferences</a> (<a class="code" href="classm3g_1_1Object3D.html">Object3D</a>** references, <span class="keywordtype">int</span> size) <span class="keyword">const</span>;
-<a name="l00080"></a>00080 
-<a name="l00085"></a>00085     <span class="keywordtype">int</span> <a class="code" href="classm3g_1_1Object3D.html#b8d9067364251d0208fcdc502d394e2c">getUserID</a> () <span class="keyword">const</span>;
-<a name="l00086"></a>00086 
-<a name="l00092"></a>00092     <span class="keywordtype">void</span>* <a class="code" href="classm3g_1_1Object3D.html#a9b8541216c1fa7792617218a5fb6672">getUserObject</a> () <span class="keyword">const</span>;
-<a name="l00093"></a>00093 
-<a name="l00099"></a>00099     <span class="keywordtype">void</span> <a class="code" href="classm3g_1_1Object3D.html#e36d8f8544daee6bd4e2ccd6755ed03d">removeAnimationTrack</a> (<a class="code" href="classm3g_1_1AnimationTrack.html">AnimationTrack</a>* animation_track);
-<a name="l00100"></a>00100 
-<a name="l00105"></a>00105     <span class="keywordtype">void</span> <a class="code" href="classm3g_1_1Object3D.html#5e4753e91dca5aa56abacb7fde69f332">setUserID</a> (<span class="keywordtype">int</span> userID);
-<a name="l00106"></a>00106 
-<a name="l00113"></a>00113     <span class="keywordtype">void</span> <a class="code" href="classm3g_1_1Object3D.html#052563fbd888204955f1a56628882f14">setUserObject</a> (<span class="keywordtype">void</span>* user_object_value);
-<a name="l00114"></a>00114 
-<a name="l00119"></a>00119     <span class="keyword">virtual</span> std::ostream&amp; <a class="code" href="classm3g_1_1Object3D.html#6fea17fa1532df3794f8cb39cb4f911f">print</a> (std::ostream&amp; out) <span class="keyword">const</span>;
-<a name="l00120"></a>00120 
-<a name="l00121"></a>00121 
-<a name="l00122"></a>00122   <span class="keyword">protected</span>:
-<a name="l00127"></a>00127     <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classm3g_1_1Object3D.html#1efcb1973989d9963d5bd6d03065d389">render</a> (<span class="keywordtype">int</span> pass, <span class="keywordtype">int</span> index=0) <span class="keyword">const</span>;
-<a name="l00128"></a>00128 
-<a name="l00129"></a>00129 
-<a name="l00130"></a>00130   PROTECTED:
+<a name="l00040"></a>00040     <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classm3g_1_1Object3D.html#415c0b110f95410ded9b85e5d99a496b">addAnimationTrack</a> (<a class="code" href="classm3g_1_1AnimationTrack.html">AnimationTrack</a>* animation_track);
+<a name="l00041"></a>00041 
+<a name="l00046"></a>00046     <span class="keyword">virtual</span> <span class="keywordtype">int</span> <a class="code" href="classm3g_1_1Object3D.html#8aad1ceab4c2a03609c8a42324ce484d">animate</a> (<span class="keywordtype">int</span> world_time);
+<a name="l00047"></a>00047 
+<a name="l00052"></a>00052     <span class="keyword">virtual</span> <a class="code" href="classm3g_1_1Object3D.html">Object3D</a>* <a class="code" href="classm3g_1_1Object3D.html#a25110dac934f867b83b73ad4741a0f4">duplicate</a> () <span class="keyword">const</span>;
+<a name="l00053"></a>00053 
+<a name="l00058"></a>00058     <span class="keyword">virtual</span> <a class="code" href="classm3g_1_1Object3D.html">Object3D</a>* <a class="code" href="classm3g_1_1Object3D.html#aa62f6aaac2e9359875f027ca05788ac">find</a> (<span class="keywordtype">int</span> userID) <span class="keyword">const</span>;
+<a name="l00059"></a>00059 
+<a name="l00060"></a>00060 
+<a name="l00065"></a>00065     <a class="code" href="classm3g_1_1AnimationTrack.html">AnimationTrack</a>* <a class="code" href="classm3g_1_1Object3D.html#f0978f3f2efe3227ca613da3361424dd">getAnimationTrack</a> (<span class="keywordtype">int</span> index) <span class="keyword">const</span>;
+<a name="l00066"></a>00066 
+<a name="l00071"></a>00071     <span class="keywordtype">int</span> <a class="code" href="classm3g_1_1Object3D.html#0926843b66090795972850376b8e4e6c">getAnimationTrackCount</a> () <span class="keyword">const</span>;
+<a name="l00072"></a>00072 
+<a name="l00077"></a>00077     <span class="keyword">virtual</span> <span class="keywordtype">int</span> <a class="code" href="classm3g_1_1Object3D.html#ddf91fbaaa866aa7aad5d530a69feba8">getReferences</a> (<a class="code" href="classm3g_1_1Object3D.html">Object3D</a>** references, <span class="keywordtype">int</span> size) <span class="keyword">const</span>;
+<a name="l00078"></a>00078 
+<a name="l00083"></a>00083     <span class="keywordtype">int</span> <a class="code" href="classm3g_1_1Object3D.html#b8d9067364251d0208fcdc502d394e2c">getUserID</a> () <span class="keyword">const</span>;
+<a name="l00084"></a>00084 
+<a name="l00090"></a>00090     <span class="keywordtype">void</span>* <a class="code" href="classm3g_1_1Object3D.html#a9b8541216c1fa7792617218a5fb6672">getUserObject</a> () <span class="keyword">const</span>;
+<a name="l00091"></a>00091 
+<a name="l00097"></a>00097     <span class="keywordtype">void</span> <a class="code" href="classm3g_1_1Object3D.html#e36d8f8544daee6bd4e2ccd6755ed03d">removeAnimationTrack</a> (<a class="code" href="classm3g_1_1AnimationTrack.html">AnimationTrack</a>* animation_track);
+<a name="l00098"></a>00098 
+<a name="l00103"></a>00103     <span class="keywordtype">void</span> <a class="code" href="classm3g_1_1Object3D.html#5e4753e91dca5aa56abacb7fde69f332">setUserID</a> (<span class="keywordtype">int</span> userID);
+<a name="l00104"></a>00104 
+<a name="l00111"></a>00111     <span class="keywordtype">void</span> <a class="code" href="classm3g_1_1Object3D.html#989411d827091f4a5e97e0377bbd1a7a">setUserObject</a> (<span class="keyword">const</span> <span class="keywordtype">char</span>* name, <span class="keywordtype">void</span>* value);
+<a name="l00112"></a>00112 
+<a name="l00117"></a>00117     <span class="keywordtype">int</span>  <a class="code" href="classm3g_1_1Object3D.html#06be1b37b707b5f227cba2308043f3df">getObjectType</a> () <span class="keyword">const</span>;
+<a name="l00118"></a>00118 
+<a name="l00123"></a>00123     <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classm3g_1_1Object3D.html#4dadb21b568b0230fac106f15040138c">findByObjectType</a> (<span class="keywordtype">int</span> obj_type, std::vector&lt;Object3D*&gt;&amp; objs) <span class="keyword">const</span>;
+<a name="l00124"></a>00124 
+<a name="l00129"></a>00129     <span class="keyword">virtual</span> std::ostream&amp; <a class="code" href="classm3g_1_1Object3D.html#6fea17fa1532df3794f8cb39cb4f911f">print</a> (std::ostream&amp; out) <span class="keyword">const</span>;
+<a name="l00130"></a>00130 
 <a name="l00131"></a>00131 
-<a name="l00136"></a>00136     <span class="keywordtype">void</span> setObjectType (<span class="keywordtype">int</span> type);
-<a name="l00137"></a>00137 
-<a name="l00142"></a>00142     <span class="keywordtype">int</span>  <a class="code" href="classm3g_1_1Object3D.html#06be1b37b707b5f227cba2308043f3df">getObjectType</a> () <span class="keyword">const</span>;
-<a name="l00143"></a>00143 
-<a name="l00148"></a>00148     <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classm3g_1_1Object3D.html#4dadb21b568b0230fac106f15040138c">findByObjectType</a> (<span class="keywordtype">int</span> obj_type, std::vector&lt;Object3D*&gt;&amp; objs) <span class="keyword">const</span>;
-<a name="l00149"></a>00149   
-<a name="l00150"></a>00150 
-<a name="l00151"></a>00151   <span class="keyword">private</span>:
-<a name="l00152"></a>00152     <span class="keywordtype">int</span> obj_type;
-<a name="l00153"></a>00153 
-<a name="l00154"></a>00154   <span class="keyword">private</span>:
-<a name="l00155"></a>00155     <span class="keywordtype">int</span>   user_id;
-<a name="l00156"></a>00156     <span class="keywordtype">void</span>* user_object;
-<a name="l00157"></a>00157     std::vector&lt;AnimationTrack*&gt; anim_tracks;
+<a name="l00132"></a>00132   <span class="keyword">protected</span>:
+<a name="l00137"></a>00137     <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classm3g_1_1Object3D.html#1efcb1973989d9963d5bd6d03065d389">render</a> (<span class="keywordtype">int</span> pass, <span class="keywordtype">int</span> index=0) <span class="keyword">const</span>;
+<a name="l00138"></a>00138 
+<a name="l00143"></a>00143     <span class="keywordtype">void</span> <a class="code" href="classm3g_1_1Object3D.html#777701a101d1332abffa2ad6a255b91d">setObjectType</a> (<span class="keywordtype">int</span> type);
+<a name="l00144"></a>00144 
+<a name="l00145"></a>00145   
+<a name="l00146"></a>00146 
+<a name="l00147"></a>00147   <span class="keyword">private</span>:
+<a name="l00148"></a>00148     <span class="keywordtype">int</span>   obj_type;     
+<a name="l00149"></a>00149     <span class="keywordtype">int</span>   user_id;
+<a name="l00150"></a>00150     <span class="comment">//std::vector&lt;UserObject&gt; user_objects;</span>
+<a name="l00151"></a>00151     std::vector&lt;AnimationTrack*&gt; anim_tracks;
+<a name="l00152"></a>00152 
+<a name="l00153"></a>00153   };
+<a name="l00154"></a>00154 
+<a name="l00155"></a>00155 } <span class="comment">// namespace m3g {</span>
+<a name="l00156"></a>00156 
+<a name="l00157"></a>00157 std::ostream&amp; operator&lt;&lt; (std::ostream&amp; out, <span class="keyword">const</span> <a class="code" href="classm3g_1_1Object3D.html">m3g::Object3D</a>&amp; obj);
 <a name="l00158"></a>00158 
-<a name="l00159"></a>00159   };
-<a name="l00160"></a>00160 
-<a name="l00161"></a>00161 } <span class="comment">// namespace m3g {</span>
-<a name="l00162"></a>00162 
-<a name="l00163"></a>00163 std::ostream&amp; operator&lt;&lt; (std::ostream&amp; out, <span class="keyword">const</span> <a class="code" href="classm3g_1_1Object3D.html">m3g::Object3D</a>&amp; obj);
-<a name="l00164"></a>00164 
-<a name="l00165"></a>00165 <span class="preprocessor">#endif</span>
+<a name="l00159"></a>00159 <span class="preprocessor">#endif</span>
 </pre></div></div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Fri Mar 12 10:22:40 2010 by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Wed Apr 7 10:24:27 2010 by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.8 </small></address>
 </body>

@@ -1,23 +1,23 @@
 \hypertarget{classm3g_1_1Light}{
-\section{クラス Light}
+\section{Light Class Reference}
 \label{classm3g_1_1Light}\index{m3g::Light@{m3g::Light}}
 }
 {\tt \#include $<$Light.hpp$>$}
 
-Lightに対する継承グラフ:\begin{figure}[H]
+Inheritance diagram for Light::\begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[height=4cm]{classm3g_1_1Light}
 \end{center}
 \end{figure}
-\subsection*{構成}
+\subsection*{Classes}
 \begin{CompactItemize}
 \item 
 struct \textbf{Attenuation}
 \item 
 struct \textbf{Spot}
 \end{CompactItemize}
-\subsection*{Public メソッド}
+\subsection*{Public Member Functions}
 \begin{CompactItemize}
 \item 
 \hyperlink{classm3g_1_1Light_7f8a7be05225f470c200f7e4ff914a3c}{Light} ()
@@ -58,7 +58,7 @@ void \hyperlink{classm3g_1_1Light_787eb66801e17d0412559598326ce19d}{setSpotExpon
 \item 
 virtual std::ostream \& \hyperlink{classm3g_1_1Light_6fea17fa1532df3794f8cb39cb4f911f}{print} (std::ostream \&out) const 
 \end{CompactItemize}
-\subsection*{Static Public 変数}
+\subsection*{Static Public Attributes}
 \begin{CompactItemize}
 \item 
 static const int \hyperlink{classm3g_1_1Light_4cf648a82d9de62a1fb15f4277049594}{AMBIENT} = 128
@@ -69,7 +69,7 @@ static const int \hyperlink{classm3g_1_1Light_34d360bb8395ad7fbcd3ec286ece64cb}{
 \item 
 static const int \hyperlink{classm3g_1_1Light_c44aef16b96dc8fd8b134416964a7de9}{SPOT} = 131
 \end{CompactItemize}
-\subsection*{フレンド}
+\subsection*{Friends}
 \begin{CompactItemize}
 \item 
 \hypertarget{classm3g_1_1Light_8174d4c629550c1ee279571250236ef4}{
@@ -84,10 +84,10 @@ class \textbf{World}}
 \end{CompactItemize}
 
 
-\subsection{説明}
-ライトを表すシーングラフノード. 
+\subsection{Detailed Description}
+A scene graph node that represents different kinds of light sources. 
 
-\subsection{コンストラクタとデストラクタ}
+\subsection{Constructor \& Destructor Documentation}
 \hypertarget{classm3g_1_1Light_7f8a7be05225f470c200f7e4ff914a3c}{
 \index{m3g::Light@{m3g::Light}!Light@{Light}}
 \index{Light@{Light}!m3g::Light@{m3g::Light}}
@@ -95,16 +95,16 @@ class \textbf{World}}
 \label{classm3g_1_1Light_7f8a7be05225f470c200f7e4ff914a3c}
 
 
-デフォルト値のLightオブジェクトを作成するコンストラクタ.. \hypertarget{classm3g_1_1Light_f50d3d8cdb323e1a9fbd7bfac3aeba06}{
+Consturct a new \hyperlink{classm3g_1_1Light}{Light} witdh default values. \hypertarget{classm3g_1_1Light_f50d3d8cdb323e1a9fbd7bfac3aeba06}{
 \index{m3g::Light@{m3g::Light}!$\sim$Light@{$\sim$Light}}
 \index{$\sim$Light@{$\sim$Light}!m3g::Light@{m3g::Light}}
 \subsubsection[{$\sim$Light}]{\setlength{\rightskip}{0pt plus 5cm}$\sim${\bf Light} ()\hspace{0.3cm}{\tt  \mbox{[}virtual\mbox{]}}}}
 \label{classm3g_1_1Light_f50d3d8cdb323e1a9fbd7bfac3aeba06}
 
 
-このオブジェクトを削除するデストラクタ. 
+Destruct this object. 
 
-\subsection{関数}
+\subsection{Member Function Documentation}
 \hypertarget{classm3g_1_1Light_415c0b110f95410ded9b85e5d99a496b}{
 \index{m3g::Light@{m3g::Light}!addAnimationTrack@{addAnimationTrack}}
 \index{addAnimationTrack@{addAnimationTrack}!m3g::Light@{m3g::Light}}
@@ -112,127 +112,127 @@ class \textbf{World}}
 \label{classm3g_1_1Light_415c0b110f95410ded9b85e5d99a496b}
 
 
-アニメーショントラックの追加。 既存のトラックの順番とインデックスは変更されるかもしれない. 
+Adds the given \hyperlink{classm3g_1_1AnimationTrack}{AnimationTrack} to this \hyperlink{classm3g_1_1Object3D}{Object3D}, 
 
-\hyperlink{classm3g_1_1Node_415c0b110f95410ded9b85e5d99a496b}{Node}を再定義しています。\hypertarget{classm3g_1_1Light_8aad1ceab4c2a03609c8a42324ce484d}{
+Reimplemented from \hyperlink{classm3g_1_1Node_415c0b110f95410ded9b85e5d99a496b}{Node}.\hypertarget{classm3g_1_1Light_8aad1ceab4c2a03609c8a42324ce484d}{
 \index{m3g::Light@{m3g::Light}!animate@{animate}}
 \index{animate@{animate}!m3g::Light@{m3g::Light}}
 \subsubsection[{animate}]{\setlength{\rightskip}{0pt plus 5cm}int animate (int {\em world\_\-time})\hspace{0.3cm}{\tt  \mbox{[}virtual\mbox{]}}}}
 \label{classm3g_1_1Light_8aad1ceab4c2a03609c8a42324ce484d}
 
 
-アニメーションの更新. 
+Updates all animated properties in this \hyperlink{classm3g_1_1Object3D}{Object3D} and all Object3Ds that are reachable from this \hyperlink{classm3g_1_1Object3D}{Object3D}. 
 
-\hyperlink{classm3g_1_1Node_8aad1ceab4c2a03609c8a42324ce484d}{Node}を再定義しています。\hypertarget{classm3g_1_1Light_4cfa1931c265ec3412fe3f6408a1b4f5}{
+Reimplemented from \hyperlink{classm3g_1_1Node_8aad1ceab4c2a03609c8a42324ce484d}{Node}.\hypertarget{classm3g_1_1Light_4cfa1931c265ec3412fe3f6408a1b4f5}{
 \index{m3g::Light@{m3g::Light}!getColor@{getColor}}
 \index{getColor@{getColor}!m3g::Light@{m3g::Light}}
 \subsubsection[{getColor}]{\setlength{\rightskip}{0pt plus 5cm}int getColor () const}}
 \label{classm3g_1_1Light_4cfa1931c265ec3412fe3f6408a1b4f5}
 
 
-このライトのカレントのカラーの取得. \hypertarget{classm3g_1_1Light_9553ab96cb7639acafcebb81888af687}{
+Retrieves the curent color fo this \hyperlink{classm3g_1_1Light}{Light}. \hypertarget{classm3g_1_1Light_9553ab96cb7639acafcebb81888af687}{
 \index{m3g::Light@{m3g::Light}!getConstantAttenuation@{getConstantAttenuation}}
 \index{getConstantAttenuation@{getConstantAttenuation}!m3g::Light@{m3g::Light}}
 \subsubsection[{getConstantAttenuation}]{\setlength{\rightskip}{0pt plus 5cm}float getConstantAttenuation () const}}
 \label{classm3g_1_1Light_9553ab96cb7639acafcebb81888af687}
 
 
-このライトのカレントのコンスタントの減衰率の取得. \hypertarget{classm3g_1_1Light_ca846da41d09a6ae01d6b362c33e938d}{
+Retrieves the current constant attenuation coefficient for this \hyperlink{classm3g_1_1Light}{Light}. \hypertarget{classm3g_1_1Light_ca846da41d09a6ae01d6b362c33e938d}{
 \index{m3g::Light@{m3g::Light}!getIntensity@{getIntensity}}
 \index{getIntensity@{getIntensity}!m3g::Light@{m3g::Light}}
 \subsubsection[{getIntensity}]{\setlength{\rightskip}{0pt plus 5cm}float getIntensity () const}}
 \label{classm3g_1_1Light_ca846da41d09a6ae01d6b362c33e938d}
 
 
-このライトのカレントの強度の取得. \hypertarget{classm3g_1_1Light_50e949b0cc2014e576987379cac07769}{
+Retrieves the current intensity of this \hyperlink{classm3g_1_1Light}{Light}. \hypertarget{classm3g_1_1Light_50e949b0cc2014e576987379cac07769}{
 \index{m3g::Light@{m3g::Light}!getLinearAttenuation@{getLinearAttenuation}}
 \index{getLinearAttenuation@{getLinearAttenuation}!m3g::Light@{m3g::Light}}
 \subsubsection[{getLinearAttenuation}]{\setlength{\rightskip}{0pt plus 5cm}float getLinearAttenuation () const}}
 \label{classm3g_1_1Light_50e949b0cc2014e576987379cac07769}
 
 
-このライトのリニアの減衰率の取得. \hypertarget{classm3g_1_1Light_d4ce4524e4751fe5e3cfb8c270347d54}{
+Retrieves the current linear attenuation coefficient for this \hyperlink{classm3g_1_1Light}{Light}. \hypertarget{classm3g_1_1Light_d4ce4524e4751fe5e3cfb8c270347d54}{
 \index{m3g::Light@{m3g::Light}!getMode@{getMode}}
 \index{getMode@{getMode}!m3g::Light@{m3g::Light}}
 \subsubsection[{getMode}]{\setlength{\rightskip}{0pt plus 5cm}int getMode () const}}
 \label{classm3g_1_1Light_d4ce4524e4751fe5e3cfb8c270347d54}
 
 
-このライトのカレントの種類の取得. \hypertarget{classm3g_1_1Light_9ec7130ca1977cfeb4b2cbebc31971b4}{
+Retrieves the current type of this \hyperlink{classm3g_1_1Light}{Light}. \hypertarget{classm3g_1_1Light_9ec7130ca1977cfeb4b2cbebc31971b4}{
 \index{m3g::Light@{m3g::Light}!getQuadraticAttenuation@{getQuadraticAttenuation}}
 \index{getQuadraticAttenuation@{getQuadraticAttenuation}!m3g::Light@{m3g::Light}}
 \subsubsection[{getQuadraticAttenuation}]{\setlength{\rightskip}{0pt plus 5cm}float getQuadraticAttenuation () const}}
 \label{classm3g_1_1Light_9ec7130ca1977cfeb4b2cbebc31971b4}
 
 
-このライトの2乗の減衰率の取得. \hypertarget{classm3g_1_1Light_1117f914d754fe74c090dc97bde905eb}{
+Retrieves the current quadratic attenuation coefficient for this \hyperlink{classm3g_1_1Light}{Light}. \hypertarget{classm3g_1_1Light_1117f914d754fe74c090dc97bde905eb}{
 \index{m3g::Light@{m3g::Light}!getSpotAngle@{getSpotAngle}}
 \index{getSpotAngle@{getSpotAngle}!m3g::Light@{m3g::Light}}
 \subsubsection[{getSpotAngle}]{\setlength{\rightskip}{0pt plus 5cm}float getSpotAngle () const}}
 \label{classm3g_1_1Light_1117f914d754fe74c090dc97bde905eb}
 
 
-このライトのカレントのスポット角度の取得. \hypertarget{classm3g_1_1Light_a359fee191741efb7e576616a59a76f7}{
+Retrieves the current spot angle of this \hyperlink{classm3g_1_1Light}{Light}. \hypertarget{classm3g_1_1Light_a359fee191741efb7e576616a59a76f7}{
 \index{m3g::Light@{m3g::Light}!getSpotExponent@{getSpotExponent}}
 \index{getSpotExponent@{getSpotExponent}!m3g::Light@{m3g::Light}}
 \subsubsection[{getSpotExponent}]{\setlength{\rightskip}{0pt plus 5cm}float getSpotExponent () const}}
 \label{classm3g_1_1Light_a359fee191741efb7e576616a59a76f7}
 
 
-このライトのカレントのスポットexponential減衰率の取得. \hypertarget{classm3g_1_1Light_6fea17fa1532df3794f8cb39cb4f911f}{
+Sets the spot exponent for this \hyperlink{classm3g_1_1Light}{Light}. \hypertarget{classm3g_1_1Light_6fea17fa1532df3794f8cb39cb4f911f}{
 \index{m3g::Light@{m3g::Light}!print@{print}}
 \index{print@{print}!m3g::Light@{m3g::Light}}
 \subsubsection[{print}]{\setlength{\rightskip}{0pt plus 5cm}std::ostream \& print (std::ostream \& {\em out}) const\hspace{0.3cm}{\tt  \mbox{[}virtual\mbox{]}}}}
 \label{classm3g_1_1Light_6fea17fa1532df3794f8cb39cb4f911f}
 
 
-このLightクラスの情報を表示する。デバッグ用. 
+Print out information of this object, for debug only. 
 
-\hyperlink{classm3g_1_1Node_6fea17fa1532df3794f8cb39cb4f911f}{Node}を再定義しています。\hypertarget{classm3g_1_1Light_391c5cff137fc2e810f5129a5381196f}{
+Reimplemented from \hyperlink{classm3g_1_1Node_6fea17fa1532df3794f8cb39cb4f911f}{Node}.\hypertarget{classm3g_1_1Light_391c5cff137fc2e810f5129a5381196f}{
 \index{m3g::Light@{m3g::Light}!setAttenuation@{setAttenuation}}
 \index{setAttenuation@{setAttenuation}!m3g::Light@{m3g::Light}}
 \subsubsection[{setAttenuation}]{\setlength{\rightskip}{0pt plus 5cm}void setAttenuation (float {\em constant}, \/  float {\em linear}, \/  float {\em quadratic})}}
 \label{classm3g_1_1Light_391c5cff137fc2e810f5129a5381196f}
 
 
-このライトの減衰係数の取得. \hypertarget{classm3g_1_1Light_b1f5cc0f5cc6bbbd716a526c61f1081d}{
+Sets the attenuation coeffieicients for this \hyperlink{classm3g_1_1Light}{Light}. \hypertarget{classm3g_1_1Light_b1f5cc0f5cc6bbbd716a526c61f1081d}{
 \index{m3g::Light@{m3g::Light}!setColor@{setColor}}
 \index{setColor@{setColor}!m3g::Light@{m3g::Light}}
 \subsubsection[{setColor}]{\setlength{\rightskip}{0pt plus 5cm}void setColor (int {\em rgb})}}
 \label{classm3g_1_1Light_b1f5cc0f5cc6bbbd716a526c61f1081d}
 
 
-このライトのカラーの設定. \hypertarget{classm3g_1_1Light_ce02325cb6289c007d569c193641c468}{
+Sets the color of this \hyperlink{classm3g_1_1Light}{Light}. \hypertarget{classm3g_1_1Light_ce02325cb6289c007d569c193641c468}{
 \index{m3g::Light@{m3g::Light}!setIntensity@{setIntensity}}
 \index{setIntensity@{setIntensity}!m3g::Light@{m3g::Light}}
 \subsubsection[{setIntensity}]{\setlength{\rightskip}{0pt plus 5cm}void setIntensity (float {\em intensity})}}
 \label{classm3g_1_1Light_ce02325cb6289c007d569c193641c468}
 
 
-このライトの強度の設定. \hypertarget{classm3g_1_1Light_9f407b18ba6235cb96fa95611c1ea3a4}{
+Sets the intensity of this \hyperlink{classm3g_1_1Light}{Light}. \hypertarget{classm3g_1_1Light_9f407b18ba6235cb96fa95611c1ea3a4}{
 \index{m3g::Light@{m3g::Light}!setMode@{setMode}}
 \index{setMode@{setMode}!m3g::Light@{m3g::Light}}
 \subsubsection[{setMode}]{\setlength{\rightskip}{0pt plus 5cm}void setMode (int {\em mode})}}
 \label{classm3g_1_1Light_9f407b18ba6235cb96fa95611c1ea3a4}
 
 
-このライトの種類の設置. \hypertarget{classm3g_1_1Light_30ce206b37f6ed5e918fbc75b3f91072}{
+Sets the type of this \hyperlink{classm3g_1_1Light}{Light}. \hypertarget{classm3g_1_1Light_30ce206b37f6ed5e918fbc75b3f91072}{
 \index{m3g::Light@{m3g::Light}!setSpotAngle@{setSpotAngle}}
 \index{setSpotAngle@{setSpotAngle}!m3g::Light@{m3g::Light}}
 \subsubsection[{setSpotAngle}]{\setlength{\rightskip}{0pt plus 5cm}void setSpotAngle (float {\em angle})}}
 \label{classm3g_1_1Light_30ce206b37f6ed5e918fbc75b3f91072}
 
 
-このライトのスポットコーン角度の設定. \hypertarget{classm3g_1_1Light_787eb66801e17d0412559598326ce19d}{
+Sets the spot cone angle for this \hyperlink{classm3g_1_1Light}{Light}. \hypertarget{classm3g_1_1Light_787eb66801e17d0412559598326ce19d}{
 \index{m3g::Light@{m3g::Light}!setSpotExponent@{setSpotExponent}}
 \index{setSpotExponent@{setSpotExponent}!m3g::Light@{m3g::Light}}
 \subsubsection[{setSpotExponent}]{\setlength{\rightskip}{0pt plus 5cm}void setSpotExponent (float {\em exponent})}}
 \label{classm3g_1_1Light_787eb66801e17d0412559598326ce19d}
 
 
-このライトのスポットexponentの設定. 
+Sets the spot exponent for this \hyperlink{classm3g_1_1Light}{Light}. 
 
-\subsection{変数}
+\subsection{Member Data Documentation}
 \hypertarget{classm3g_1_1Light_4cf648a82d9de62a1fb15f4277049594}{
 \index{m3g::Light@{m3g::Light}!AMBIENT@{AMBIENT}}
 \index{AMBIENT@{AMBIENT}!m3g::Light@{m3g::Light}}
@@ -240,30 +240,30 @@ class \textbf{World}}
 \label{classm3g_1_1Light_4cf648a82d9de62a1fb15f4277049594}
 
 
-環境光を表す定数. \hypertarget{classm3g_1_1Light_a2fb668ca8bbeb8323eda98fba594fda}{
+A paramter to setMode, specifying an amibent light source. \hypertarget{classm3g_1_1Light_a2fb668ca8bbeb8323eda98fba594fda}{
 \index{m3g::Light@{m3g::Light}!DIRECTIONAL@{DIRECTIONAL}}
 \index{DIRECTIONAL@{DIRECTIONAL}!m3g::Light@{m3g::Light}}
 \subsubsection[{DIRECTIONAL}]{\setlength{\rightskip}{0pt plus 5cm}const int {\bf DIRECTIONAL} = 129\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
 \label{classm3g_1_1Light_a2fb668ca8bbeb8323eda98fba594fda}
 
 
-平行光源を表す定数. \hypertarget{classm3g_1_1Light_34d360bb8395ad7fbcd3ec286ece64cb}{
+A paramter to setMode, specifying an directional light source. \hypertarget{classm3g_1_1Light_34d360bb8395ad7fbcd3ec286ece64cb}{
 \index{m3g::Light@{m3g::Light}!OMNI@{OMNI}}
 \index{OMNI@{OMNI}!m3g::Light@{m3g::Light}}
 \subsubsection[{OMNI}]{\setlength{\rightskip}{0pt plus 5cm}const int {\bf OMNI} = 130\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
 \label{classm3g_1_1Light_34d360bb8395ad7fbcd3ec286ece64cb}
 
 
-点光源を表す定数. \hypertarget{classm3g_1_1Light_c44aef16b96dc8fd8b134416964a7de9}{
+A paramter to setMode, specifying an omnidirectional light source. \hypertarget{classm3g_1_1Light_c44aef16b96dc8fd8b134416964a7de9}{
 \index{m3g::Light@{m3g::Light}!SPOT@{SPOT}}
 \index{SPOT@{SPOT}!m3g::Light@{m3g::Light}}
 \subsubsection[{SPOT}]{\setlength{\rightskip}{0pt plus 5cm}const int {\bf SPOT} = 131\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
 \label{classm3g_1_1Light_c44aef16b96dc8fd8b134416964a7de9}
 
 
-スポットライトを表す定数. 
+A paramter to setMode, specifying an spot light source. 
 
-このクラスの説明は次のファイルから生成されました:\begin{CompactItemize}
+The documentation for this class was generated from the following files:\begin{CompactItemize}
 \item 
 /work/desktop-m3g/src/Light.hpp\item 
 /work/desktop-m3g/src/Light.cpp\end{CompactItemize}

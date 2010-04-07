@@ -31,11 +31,13 @@ bool \hyperlink{classm3g_1_1Image2D_d687aabba553d1c66bfc253ec7e5bd05}{isMutable}
 \item 
 void \hyperlink{classm3g_1_1Image2D_fe9ef1abefb9e92b38687e27c9004bdc}{set} (int x, int y, int width, int height, void $\ast$image)
 \item 
-void \hyperlink{classm3g_1_1Image2D_6ec48e0681b8805c75ecadf4ba4a40cb}{write\_\-ppm} (const char $\ast$name) const 
+void \hyperlink{classm3g_1_1Image2D_32ee5b2bcc9c7bf69b925413eeccb4bf}{write\_\-ppm} (const char $\ast$file\_\-name) const 
 \item 
 virtual std::ostream \& \hyperlink{classm3g_1_1Image2D_6fea17fa1532df3794f8cb39cb4f911f}{print} (std::ostream \&out) const 
 \item 
 GLenum \hyperlink{classm3g_1_1Image2D_7923da2fe82fee768ec9937a693e843c}{getOpenGLFormat} () const 
+\item 
+void $\ast$ \hyperlink{classm3g_1_1Image2D_b837b1bdda59947a6d818c448965c502}{getOpenGLData} () const 
 \end{CompactItemize}
 \subsection*{Static Public 変数}
 \begin{CompactItemize}
@@ -71,7 +73,7 @@ class \textbf{Sprite3D}}
 
 
 \subsection{説明}
-テクスチャー、バックグラウンド、スプライト画像として使う2D画像. 
+テクスチャー、バックグラウンド、スプライト画像として使う2D画像クラス. 
 
 \subsection{コンストラクタとデストラクタ}
 \hypertarget{classm3g_1_1Image2D_cea21be298c6584490d2b714c4b29d6b}{
@@ -119,7 +121,14 @@ class \textbf{Sprite3D}}
 \label{classm3g_1_1Image2D_317329daf960a1759801c0f16d43d5a3}
 
 
-このImage2Dクラスの高さをピクセル数で取得. \hypertarget{classm3g_1_1Image2D_7923da2fe82fee768ec9937a693e843c}{
+このImage2Dクラスの高さをピクセル数で取得. \hypertarget{classm3g_1_1Image2D_b837b1bdda59947a6d818c448965c502}{
+\index{m3g::Image2D@{m3g::Image2D}!getOpenGLData@{getOpenGLData}}
+\index{getOpenGLData@{getOpenGLData}!m3g::Image2D@{m3g::Image2D}}
+\subsubsection[{getOpenGLData}]{\setlength{\rightskip}{0pt plus 5cm}void $\ast$ getOpenGLData () const}}
+\label{classm3g_1_1Image2D_b837b1bdda59947a6d818c448965c502}
+
+
+内部データへのポインターを返すM3G未定義の関数. \hypertarget{classm3g_1_1Image2D_7923da2fe82fee768ec9937a693e843c}{
 \index{m3g::Image2D@{m3g::Image2D}!getOpenGLFormat@{getOpenGLFormat}}
 \index{getOpenGLFormat@{getOpenGLFormat}!m3g::Image2D@{m3g::Image2D}}
 \subsubsection[{getOpenGLFormat}]{\setlength{\rightskip}{0pt plus 5cm}GLenum getOpenGLFormat () const}}
@@ -156,14 +165,14 @@ OpenGLの画像形式を返すM3G未定義の関数. \hypertarget{classm3g_1_1Im
 \label{classm3g_1_1Image2D_fe9ef1abefb9e92b38687e27c9004bdc}
 
 
-バイト配列からピクセルをコピーしてこのImage2Dクラスの矩形領域を更新する. \hypertarget{classm3g_1_1Image2D_6ec48e0681b8805c75ecadf4ba4a40cb}{
+バイト配列からピクセルをコピーしてこのImage2Dクラスの矩形領域を更新する. \hypertarget{classm3g_1_1Image2D_32ee5b2bcc9c7bf69b925413eeccb4bf}{
 \index{m3g::Image2D@{m3g::Image2D}!write\_\-ppm@{write\_\-ppm}}
 \index{write\_\-ppm@{write\_\-ppm}!m3g::Image2D@{m3g::Image2D}}
 \subsubsection[{write\_\-ppm}]{\setlength{\rightskip}{0pt plus 5cm}void write\_\-ppm (const char $\ast$ {\em name}) const}}
-\label{classm3g_1_1Image2D_6ec48e0681b8805c75ecadf4ba4a40cb}
+\label{classm3g_1_1Image2D_32ee5b2bcc9c7bf69b925413eeccb4bf}
 
 
-ppm画像として出力する。この関数はデバッグ用でありリリースに含まれていてはならない.
+ppm画像として出力するM3G非標準の関数。 この関数はデバッグ用でありリリースに含まれていてはならない.
 
 注意：OpenGLは左下が(0,0)、ppmは左上が(0,0) 
 

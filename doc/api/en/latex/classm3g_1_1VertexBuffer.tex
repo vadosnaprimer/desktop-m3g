@@ -39,7 +39,7 @@ void \hyperlink{classm3g_1_1VertexBuffer_4aabe6277538d5aa8285759dab85002a}{setNo
 \item 
 void \hyperlink{classm3g_1_1VertexBuffer_527460407f488d5128bae7d0adb6da43}{setPositions} (\hyperlink{classm3g_1_1VertexArray}{VertexArray} $\ast$positios, float scale, float $\ast$bias)
 \item 
-void \hyperlink{classm3g_1_1VertexBuffer_626af19bd7702480ac9e8ea4532d27d5}{setTexCoords} (int index, \hyperlink{classm3g_1_1VertexArray}{VertexArray} $\ast$texCoords, float scale, float $\ast$bias)
+void \hyperlink{classm3g_1_1VertexBuffer_9fd3dd3f78138d654d18863e4f1329f4}{setTexCoords} (int index, \hyperlink{classm3g_1_1VertexArray}{VertexArray} $\ast$tex\_\-coords, float scale, float $\ast$bias)
 \item 
 virtual std::ostream \& \hyperlink{classm3g_1_1VertexBuffer_6fea17fa1532df3794f8cb39cb4f911f}{print} (std::ostream \&out) const 
 \end{CompactItemize}
@@ -59,7 +59,7 @@ class \textbf{Mesh}}
 
 
 \subsection{Detailed Description}
-VertexBufferは頂点位置、法線、色、テクスチャー座標を含むVertexArrayへのポインターを含む. 
+\hyperlink{classm3g_1_1VertexBuffer}{VertexBuffer} holds references to VertexArrays that contain the positions, colors, normals, and texture coordinates for a set of vertices. 
 
 \subsection{Constructor \& Destructor Documentation}
 \hypertarget{classm3g_1_1VertexBuffer_fd7b13840c99c57d27316c8f8434dc49}{
@@ -69,14 +69,14 @@ VertexBufferは頂点位置、法線、色、テクスチャー座標を含むVe
 \label{classm3g_1_1VertexBuffer_fd7b13840c99c57d27316c8f8434dc49}
 
 
-デフォルトの値のVertexBufferオブジェクトを作成. \hypertarget{classm3g_1_1VertexBuffer_0e5e1dbdc4295ff9aa1e15e0ce3624af}{
+Creates an empty \hyperlink{classm3g_1_1VertexBuffer}{VertexBuffer} with default values. \hypertarget{classm3g_1_1VertexBuffer_0e5e1dbdc4295ff9aa1e15e0ce3624af}{
 \index{m3g::VertexBuffer@{m3g::VertexBuffer}!$\sim$VertexBuffer@{$\sim$VertexBuffer}}
 \index{$\sim$VertexBuffer@{$\sim$VertexBuffer}!m3g::VertexBuffer@{m3g::VertexBuffer}}
 \subsubsection[{$\sim$VertexBuffer}]{\setlength{\rightskip}{0pt plus 5cm}$\sim${\bf VertexBuffer} ()\hspace{0.3cm}{\tt  \mbox{[}virtual\mbox{]}}}}
 \label{classm3g_1_1VertexBuffer_0e5e1dbdc4295ff9aa1e15e0ce3624af}
 
 
-デストラクタ. 
+Destructs this object. 
 
 \subsection{Member Function Documentation}
 \hypertarget{classm3g_1_1VertexBuffer_415c0b110f95410ded9b85e5d99a496b}{
@@ -86,14 +86,16 @@ VertexBufferは頂点位置、法線、色、テクスチャー座標を含むVe
 \label{classm3g_1_1VertexBuffer_415c0b110f95410ded9b85e5d99a496b}
 
 
-アニメーショントラックの追加。 既存のトラックの順番とインデックスは変更されるかもしれない. \hypertarget{classm3g_1_1VertexBuffer_82cfeb67ca66b93e2ca7bda9a4f0e2aa}{
+Adds the given \hyperlink{classm3g_1_1AnimationTrack}{AnimationTrack} to this \hyperlink{classm3g_1_1Object3D}{Object3D}, potentially changing the order and indices of the previously added tracks. 
+
+Reimplemented from \hyperlink{classm3g_1_1Object3D_415c0b110f95410ded9b85e5d99a496b}{Object3D}.\hypertarget{classm3g_1_1VertexBuffer_82cfeb67ca66b93e2ca7bda9a4f0e2aa}{
 \index{m3g::VertexBuffer@{m3g::VertexBuffer}!animate@{animate}}
 \index{animate@{animate}!m3g::VertexBuffer@{m3g::VertexBuffer}}
-\subsubsection[{animate}]{\setlength{\rightskip}{0pt plus 5cm}int animate (int {\em time})\hspace{0.3cm}{\tt  \mbox{[}virtual\mbox{]}}}}
+\subsubsection[{animate}]{\setlength{\rightskip}{0pt plus 5cm}int animate (int {\em world\_\-time})\hspace{0.3cm}{\tt  \mbox{[}virtual\mbox{]}}}}
 \label{classm3g_1_1VertexBuffer_82cfeb67ca66b93e2ca7bda9a4f0e2aa}
 
 
-アニメーションの更新. 
+Updates all animated properties in this \hyperlink{classm3g_1_1Object3D}{Object3D} and all Object3Ds that are reachable from this \hyperlink{classm3g_1_1Object3D}{Object3D}. 
 
 Reimplemented from \hyperlink{classm3g_1_1Object3D_8aad1ceab4c2a03609c8a42324ce484d}{Object3D}.\hypertarget{classm3g_1_1VertexBuffer_4dadb21b568b0230fac106f15040138c}{
 \index{m3g::VertexBuffer@{m3g::VertexBuffer}!findByObjectType@{findByObjectType}}
@@ -111,42 +113,42 @@ Reimplemented from \hyperlink{classm3g_1_1Object3D_4dadb21b568b0230fac106f150401
 \label{classm3g_1_1VertexBuffer_e3bdc8503242a6d278230352d03e5893}
 
 
-カレントのカラー配列を取得する。もし頂点カラーが定義されていなければnullが返る. \hypertarget{classm3g_1_1VertexBuffer_4e33b93a98ce0632d51e7ae775ae5b1e}{
+Gets the current color array. \hypertarget{classm3g_1_1VertexBuffer_4e33b93a98ce0632d51e7ae775ae5b1e}{
 \index{m3g::VertexBuffer@{m3g::VertexBuffer}!getDefaultColor@{getDefaultColor}}
 \index{getDefaultColor@{getDefaultColor}!m3g::VertexBuffer@{m3g::VertexBuffer}}
 \subsubsection[{getDefaultColor}]{\setlength{\rightskip}{0pt plus 5cm}int getDefaultColor () const}}
 \label{classm3g_1_1VertexBuffer_4e33b93a98ce0632d51e7ae775ae5b1e}
 
 
-このVertexBufferのデフォルトカラーを取得. \hypertarget{classm3g_1_1VertexBuffer_0f4341d1215ff8f4efeaa40a21327c0c}{
+Retrieves the default color of this \hyperlink{classm3g_1_1VertexBuffer}{VertexBuffer}. \hypertarget{classm3g_1_1VertexBuffer_0f4341d1215ff8f4efeaa40a21327c0c}{
 \index{m3g::VertexBuffer@{m3g::VertexBuffer}!getNormals@{getNormals}}
 \index{getNormals@{getNormals}!m3g::VertexBuffer@{m3g::VertexBuffer}}
 \subsubsection[{getNormals}]{\setlength{\rightskip}{0pt plus 5cm}{\bf VertexArray} $\ast$ getNormals () const}}
 \label{classm3g_1_1VertexBuffer_0f4341d1215ff8f4efeaa40a21327c0c}
 
 
-カレントの法線ベクトルの配列を取得する。もし頂点法線が定義されていなければnullが返る. \hypertarget{classm3g_1_1VertexBuffer_5ca059361f9f834dd00b5d595bf3df0b}{
+Gets the current normal vector array. \hypertarget{classm3g_1_1VertexBuffer_5ca059361f9f834dd00b5d595bf3df0b}{
 \index{m3g::VertexBuffer@{m3g::VertexBuffer}!getPositions@{getPositions}}
 \index{getPositions@{getPositions}!m3g::VertexBuffer@{m3g::VertexBuffer}}
 \subsubsection[{getPositions}]{\setlength{\rightskip}{0pt plus 5cm}{\bf VertexArray} $\ast$ getPositions (float $\ast$ {\em scale\_\-bias}) const}}
 \label{classm3g_1_1VertexBuffer_5ca059361f9f834dd00b5d595bf3df0b}
 
 
-カレントの頂点座標の配列を取得する。もし頂点配列が定義されていなければnullが返る. \hypertarget{classm3g_1_1VertexBuffer_9015840c09da0691c31a8aab5e09404a}{
+Returns the current vertex position array. \hypertarget{classm3g_1_1VertexBuffer_9015840c09da0691c31a8aab5e09404a}{
 \index{m3g::VertexBuffer@{m3g::VertexBuffer}!getTexCoords@{getTexCoords}}
 \index{getTexCoords@{getTexCoords}!m3g::VertexBuffer@{m3g::VertexBuffer}}
 \subsubsection[{getTexCoords}]{\setlength{\rightskip}{0pt plus 5cm}{\bf VertexArray} $\ast$ getTexCoords (int {\em index}, \/  float $\ast$ {\em scale\_\-bias}) const}}
 \label{classm3g_1_1VertexBuffer_9015840c09da0691c31a8aab5e09404a}
 
 
-カレントのテクスチャー座標の配列を取得する。もしテクスチャー座標が定義されていなければnullが返る. \hypertarget{classm3g_1_1VertexBuffer_6fea17fa1532df3794f8cb39cb4f911f}{
+Gets the current texture coordinate array for the specified texture unit. \hypertarget{classm3g_1_1VertexBuffer_6fea17fa1532df3794f8cb39cb4f911f}{
 \index{m3g::VertexBuffer@{m3g::VertexBuffer}!print@{print}}
 \index{print@{print}!m3g::VertexBuffer@{m3g::VertexBuffer}}
 \subsubsection[{print}]{\setlength{\rightskip}{0pt plus 5cm}std::ostream \& print (std::ostream \& {\em out}) const\hspace{0.3cm}{\tt  \mbox{[}virtual\mbox{]}}}}
 \label{classm3g_1_1VertexBuffer_6fea17fa1532df3794f8cb39cb4f911f}
 
 
-このVertexBufferクラスの情報を表示する。デバッグ用. 
+Print out information of this object, for debug only. 
 
 Reimplemented from \hyperlink{classm3g_1_1Object3D_6fea17fa1532df3794f8cb39cb4f911f}{Object3D}.\hypertarget{classm3g_1_1VertexBuffer_e5a5933252e3ec3afa0a83698b5b3521}{
 \index{m3g::VertexBuffer@{m3g::VertexBuffer}!setColors@{setColors}}
@@ -155,7 +157,7 @@ Reimplemented from \hyperlink{classm3g_1_1Object3D_6fea17fa1532df3794f8cb39cb4f9
 \label{classm3g_1_1VertexBuffer_e5a5933252e3ec3afa0a83698b5b3521}
 
 
-このVertexBufferに頂点カラーを設定する.
+Sets the per-vertex color for this \hyperlink{classm3g_1_1VertexBuffer}{VertexBuffer}.
 
 x:\mbox{[}-128,127\mbox{]} --$>$ y:\mbox{[}0,1\mbox{]} y = (x+128)/255 \hypertarget{classm3g_1_1VertexBuffer_ba88996ea63221b09b9f841aef0270ee}{
 \index{m3g::VertexBuffer@{m3g::VertexBuffer}!setDefaultColor@{setDefaultColor}}
@@ -164,14 +166,14 @@ x:\mbox{[}-128,127\mbox{]} --$>$ y:\mbox{[}0,1\mbox{]} y = (x+128)/255 \hypertar
 \label{classm3g_1_1VertexBuffer_ba88996ea63221b09b9f841aef0270ee}
 
 
-頂点カラーが設定されていないときのカラーを設定する. \hypertarget{classm3g_1_1VertexBuffer_4aabe6277538d5aa8285759dab85002a}{
+Sets the color to use in absence of per-vetex colors. \hypertarget{classm3g_1_1VertexBuffer_4aabe6277538d5aa8285759dab85002a}{
 \index{m3g::VertexBuffer@{m3g::VertexBuffer}!setNormals@{setNormals}}
 \index{setNormals@{setNormals}!m3g::VertexBuffer@{m3g::VertexBuffer}}
 \subsubsection[{setNormals}]{\setlength{\rightskip}{0pt plus 5cm}void setNormals ({\bf VertexArray} $\ast$ {\em normals})}}
 \label{classm3g_1_1VertexBuffer_4aabe6277538d5aa8285759dab85002a}
 
 
-このVertexBufferに頂点法線を設定する.
+Sets the normal vectors for this \hyperlink{classm3g_1_1VertexBuffer}{VertexBuffer}.
 
 x:\mbox{[}-128,127\mbox{]} --$>$ y:\mbox{[}-1,1\mbox{]}, or x:\mbox{[}-32768,32767\mbox{]} --$>$ y:\mbox{[}-1,1\mbox{]} y = (2x+1)/255, or y = (2x+1)/65535 \hypertarget{classm3g_1_1VertexBuffer_527460407f488d5128bae7d0adb6da43}{
 \index{m3g::VertexBuffer@{m3g::VertexBuffer}!setPositions@{setPositions}}
@@ -180,14 +182,14 @@ x:\mbox{[}-128,127\mbox{]} --$>$ y:\mbox{[}-1,1\mbox{]}, or x:\mbox{[}-32768,327
 \label{classm3g_1_1VertexBuffer_527460407f488d5128bae7d0adb6da43}
 
 
-このVertexBufferに頂点座標を設定する. \hypertarget{classm3g_1_1VertexBuffer_626af19bd7702480ac9e8ea4532d27d5}{
+Sets the vertex positions for this \hyperlink{classm3g_1_1VertexBuffer}{VertexBuffer}. \hypertarget{classm3g_1_1VertexBuffer_9fd3dd3f78138d654d18863e4f1329f4}{
 \index{m3g::VertexBuffer@{m3g::VertexBuffer}!setTexCoords@{setTexCoords}}
 \index{setTexCoords@{setTexCoords}!m3g::VertexBuffer@{m3g::VertexBuffer}}
-\subsubsection[{setTexCoords}]{\setlength{\rightskip}{0pt plus 5cm}void setTexCoords (int {\em index}, \/  {\bf VertexArray} $\ast$ {\em texCoords}, \/  float {\em scale}, \/  float $\ast$ {\em bias})}}
-\label{classm3g_1_1VertexBuffer_626af19bd7702480ac9e8ea4532d27d5}
+\subsubsection[{setTexCoords}]{\setlength{\rightskip}{0pt plus 5cm}void setTexCoords (int {\em index}, \/  {\bf VertexArray} $\ast$ {\em tex\_\-coords}, \/  float {\em scale}, \/  float $\ast$ {\em bias})}}
+\label{classm3g_1_1VertexBuffer_9fd3dd3f78138d654d18863e4f1329f4}
 
 
-このVertexBufferにテクスチャー座標を設定する. 
+Sets the texture coordinates for the specified textureing unit. 
 
 The documentation for this class was generated from the following files:\begin{CompactItemize}
 \item 

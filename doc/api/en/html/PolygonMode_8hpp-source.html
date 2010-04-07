@@ -26,11 +26,11 @@
 <a name="l00006"></a>00006 
 <a name="l00007"></a>00007 <span class="keyword">namespace </span>m3g {
 <a name="l00008"></a>00008 
-<a name="l00013"></a>00013 <span class="keyword">class </span>PolygonMode : <span class="keyword">public</span> Object3D
-<a name="l00014"></a>00014 {
-<a name="l00015"></a>00015   <span class="keyword">friend</span> <span class="keyword">class </span>Appearance;  <span class="comment">// for findByType</span>
+<a name="l00013"></a>00013   <span class="keyword">class </span>PolygonMode : <span class="keyword">public</span> Object3D
+<a name="l00014"></a>00014   {
+<a name="l00015"></a>00015     <span class="keyword">friend</span> <span class="keyword">class </span>Appearance;  <span class="comment">// for findByType</span>
 <a name="l00016"></a>00016 
-<a name="l00017"></a>00017 <span class="keyword">public</span>:
+<a name="l00017"></a>00017   <span class="keyword">public</span>:
 <a name="l00022"></a>00022     <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">int</span> CULL_BACK    = 160;
 <a name="l00027"></a>00027     <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">int</span> CULL_FRONT   = 161;
 <a name="l00032"></a>00032     <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">int</span> CULL_NONE    = 162;
@@ -39,7 +39,7 @@
 <a name="l00047"></a>00047     <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">int</span> WINDING_CCW  = 168;
 <a name="l00052"></a>00052     <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">int</span> WINDING_CW   = 169;
 <a name="l00053"></a>00053 
-<a name="l00054"></a>00054 <span class="keyword">public</span>:
+<a name="l00054"></a>00054   <span class="keyword">public</span>:
 <a name="l00055"></a>00055 
 <a name="l00060"></a>00060     PolygonMode ();
 <a name="l00061"></a>00061 
@@ -69,19 +69,19 @@
 <a name="l00133"></a>00133 
 <a name="l00138"></a>00138     <span class="keywordtype">void</span> setWinding (<span class="keywordtype">int</span> mode);
 <a name="l00139"></a>00139 
-<a name="l00144"></a>00144   <span class="keyword">virtual</span> std::ostream&amp; print (std::ostream&amp; out) <span class="keyword">const</span>;
+<a name="l00144"></a>00144     <span class="keyword">virtual</span> std::ostream&amp; print (std::ostream&amp; out) <span class="keyword">const</span>;
 <a name="l00145"></a>00145 
-<a name="l00146"></a>00146 <span class="keyword">protected</span>:
-<a name="l00151"></a>00151   <span class="keyword">virtual</span> <span class="keywordtype">void</span> render (<span class="keywordtype">int</span> pass, <span class="keywordtype">int</span> index=0) <span class="keyword">const</span>;
+<a name="l00146"></a>00146   <span class="keyword">protected</span>:
+<a name="l00151"></a>00151     <span class="keyword">virtual</span> <span class="keywordtype">void</span> render (<span class="keywordtype">int</span> pass, <span class="keywordtype">int</span> index=0) <span class="keyword">const</span>;
 <a name="l00152"></a>00152 
-<a name="l00153"></a>00153 <span class="keyword">private</span>:
-<a name="l00154"></a>00154   <span class="keywordtype">int</span>  culling;
-<a name="l00155"></a>00155   <span class="keywordtype">int</span>  winding;
-<a name="l00156"></a>00156   <span class="keywordtype">int</span>  shading;
-<a name="l00157"></a>00157   <span class="keywordtype">bool</span> two_sided_lighting;
-<a name="l00158"></a>00158   <span class="keywordtype">bool</span> local_camera_lighting;
-<a name="l00159"></a>00159   <span class="keywordtype">bool</span> perspective_correction;
-<a name="l00160"></a>00160 };
+<a name="l00153"></a>00153   <span class="keyword">private</span>:
+<a name="l00154"></a>00154     <span class="keywordtype">int</span>  culling;
+<a name="l00155"></a>00155     <span class="keywordtype">int</span>  winding;
+<a name="l00156"></a>00156     <span class="keywordtype">int</span>  shading;
+<a name="l00157"></a>00157     <span class="keywordtype">bool</span> two_sided_lighting;
+<a name="l00158"></a>00158     <span class="keywordtype">bool</span> local_camera_lighting;
+<a name="l00159"></a>00159     <span class="keywordtype">bool</span> perspective_correction;
+<a name="l00160"></a>00160   };
 <a name="l00161"></a>00161 
 <a name="l00162"></a>00162 } <span class="comment">// namespace m3g {</span>
 <a name="l00163"></a>00163 
@@ -90,7 +90,7 @@
 <a name="l00166"></a>00166 
 <a name="l00167"></a>00167 <span class="preprocessor">#endif</span>
 </pre></div></div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Fri Mar 12 10:22:40 2010 by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Wed Apr 7 10:24:27 2010 by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.8 </small></address>
 </body>

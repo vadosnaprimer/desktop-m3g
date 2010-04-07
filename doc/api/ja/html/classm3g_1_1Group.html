@@ -61,13 +61,7 @@ Groupに対する継承グラフ</div>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">virtual std::ostream &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Group.html#6fea17fa1532df3794f8cb39cb4f911f">print</a> (std::ostream &amp;out) const </td></tr>
 
-<tr><td colspan="2"><br><h2>Public 変数</h2></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="11d260eb623ff241a55524ad8bc9beb4"></a><!-- doxytag: member="m3g::Group::__pad0__" ref="11d260eb623ff241a55524ad8bc9beb4" args="" -->
-PROTECTED&nbsp;</td><td class="memItemRight" valign="bottom"><b>__pad0__</b>: virtual void findByObjectType (int obj_type</td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="2c0e83157a767e0c6d0ae4111bda0233"></a><!-- doxytag: member="m3g::Group::const" ref="2c0e83157a767e0c6d0ae4111bda0233" args="" -->
-PROTECTED std::vector<br class="typebreak">
-&lt; <a class="el" href="classm3g_1_1Object3D.html">Object3D</a> * &gt; &amp;objs&nbsp;</td><td class="memItemRight" valign="bottom"><b>const</b></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Group.html#4dadb21b568b0230fac106f15040138c">findByObjectType</a> (int obj_type, std::vector&lt; <a class="el" href="classm3g_1_1Object3D.html">Object3D</a> * &gt; &amp;objs) const </td></tr>
 
 <tr><td colspan="2"><br><h2>Protected メソッド</h2></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Group.html#1efcb1973989d9963d5bd6d03065d389">render</a> (int pass, int index=0) const </td></tr>
@@ -155,6 +149,37 @@ PROTECTED std::vector<br class="typebreak">
 <p><a class="el" href="classm3g_1_1Node.html#8aad1ceab4c2a03609c8a42324ce484d">Node</a>を再定義しています。</p>
 
 <p><a class="el" href="classm3g_1_1World.html#8aad1ceab4c2a03609c8a42324ce484d">World</a>で再定義されています。</p>
+
+</div>
+</div><p>
+<a class="anchor" name="4dadb21b568b0230fac106f15040138c"></a><!-- doxytag: member="m3g::Group::findByObjectType" ref="4dadb21b568b0230fac106f15040138c" args="(int obj_type, std::vector&lt; Object3D * &gt; &amp;objs) const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void findByObjectType           </td>
+          <td>(</td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>obj_type</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::vector&lt; <a class="el" href="classm3g_1_1Object3D.html">Object3D</a> * &gt; &amp;&nbsp;</td>
+          <td class="paramname"> <em>objs</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td> const<code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+オブジェクトタイプで検索する. 
+<p><a class="el" href="classm3g_1_1Object3D.html#4dadb21b568b0230fac106f15040138c">Object3D</a>を再定義しています。</p>
 
 </div>
 </div><p>
@@ -343,7 +368,7 @@ Note: <a class="el" href="classm3g_1_1Group.html">Group</a> should be rendered v
 <hr>このクラスの説明は次のファイルから生成されました:<ul>
 <li>/work/desktop-m3g/src/<a class="el" href="Group_8hpp-source.html">Group.hpp</a><li>/work/desktop-m3g/src/Group.cpp</ul>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Fri Mar 12 10:22:37 2010に生成されました。&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Wed Apr 7 10:24:22 2010に生成されました。&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.8 </small></address>
 </body>

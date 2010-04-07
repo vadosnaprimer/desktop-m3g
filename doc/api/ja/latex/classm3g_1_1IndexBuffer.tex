@@ -17,9 +17,9 @@ IndexBufferに対する継承グラフ:\begin{figure}[H]
 \item 
 virtual \hyperlink{classm3g_1_1IndexBuffer_ac7952364fe4d2d7b2731da5380c841c}{$\sim$IndexBuffer} ()
 \item 
-int \hyperlink{classm3g_1_1IndexBuffer_fe9ae2993ebcdb93d5ff26d57c81b73e}{getIndexCount} () const 
+virtual int \hyperlink{classm3g_1_1IndexBuffer_ac7d2c37f177b21195a81f00061ef94e}{getIndexCount} () const =0
 \item 
-void \hyperlink{classm3g_1_1IndexBuffer_650953afac45099025a524ab160b911f}{getIndices} (int $\ast$indices)
+virtual void \hyperlink{classm3g_1_1IndexBuffer_59fb1eca8810ea3b028735c5dce53fca}{getIndices} (int $\ast$indices)=0
 \item 
 virtual std::ostream \& \hyperlink{classm3g_1_1IndexBuffer_6fea17fa1532df3794f8cb39cb4f911f}{print} (std::ostream \&out) const 
 \end{CompactItemize}
@@ -27,21 +27,6 @@ virtual std::ostream \& \hyperlink{classm3g_1_1IndexBuffer_6fea17fa1532df3794f8c
 \begin{CompactItemize}
 \item 
 virtual void \hyperlink{classm3g_1_1IndexBuffer_1efcb1973989d9963d5bd6d03065d389}{render} (int pass, int index=0) const 
-\item 
-void \hyperlink{classm3g_1_1IndexBuffer_26c5b78691f0f92bd8589714cc25b6a8}{setIndices} (int num\_\-index, int first\_\-index)
-\end{CompactItemize}
-\subsection*{Protected 変数}
-\begin{CompactItemize}
-\item 
-\hypertarget{classm3g_1_1IndexBuffer_11d260eb623ff241a55524ad8bc9beb4}{
-PROTECTED \textbf{\_\-\_\-pad0\_\-\_\-}: void setIndices (int num\_\-index}
-\label{classm3g_1_1IndexBuffer_11d260eb623ff241a55524ad8bc9beb4}
-
-\item 
-\hypertarget{classm3g_1_1IndexBuffer_6b7df92152fe609a14f72e9634a55421}{
-PROTECTED int $\ast$ \textbf{indices}}
-\label{classm3g_1_1IndexBuffer_6b7df92152fe609a14f72e9634a55421}
-
 \end{CompactItemize}
 \subsection*{フレンド}
 \begin{CompactItemize}
@@ -74,21 +59,25 @@ class \textbf{Mesh}}
 デストラクタ. 
 
 \subsection{関数}
-\hypertarget{classm3g_1_1IndexBuffer_fe9ae2993ebcdb93d5ff26d57c81b73e}{
+\hypertarget{classm3g_1_1IndexBuffer_ac7d2c37f177b21195a81f00061ef94e}{
 \index{m3g::IndexBuffer@{m3g::IndexBuffer}!getIndexCount@{getIndexCount}}
 \index{getIndexCount@{getIndexCount}!m3g::IndexBuffer@{m3g::IndexBuffer}}
-\subsubsection[{getIndexCount}]{\setlength{\rightskip}{0pt plus 5cm}int getIndexCount () const}}
-\label{classm3g_1_1IndexBuffer_fe9ae2993ebcdb93d5ff26d57c81b73e}
+\subsubsection[{getIndexCount}]{\setlength{\rightskip}{0pt plus 5cm}virtual int getIndexCount () const\hspace{0.3cm}{\tt  \mbox{[}pure virtual\mbox{]}}}}
+\label{classm3g_1_1IndexBuffer_ac7d2c37f177b21195a81f00061ef94e}
 
 
-このバッファーのインデックスの数を取得. \hypertarget{classm3g_1_1IndexBuffer_650953afac45099025a524ab160b911f}{
+このバッファーのインデックスの数を取得. 
+
+\hyperlink{classm3g_1_1TriangleStripArray_fe9ae2993ebcdb93d5ff26d57c81b73e}{TriangleStripArray}で実装されています。\hypertarget{classm3g_1_1IndexBuffer_59fb1eca8810ea3b028735c5dce53fca}{
 \index{m3g::IndexBuffer@{m3g::IndexBuffer}!getIndices@{getIndices}}
 \index{getIndices@{getIndices}!m3g::IndexBuffer@{m3g::IndexBuffer}}
-\subsubsection[{getIndices}]{\setlength{\rightskip}{0pt plus 5cm}void getIndices (int $\ast$ {\em indices})}}
-\label{classm3g_1_1IndexBuffer_650953afac45099025a524ab160b911f}
+\subsubsection[{getIndices}]{\setlength{\rightskip}{0pt plus 5cm}virtual void getIndices (int $\ast$ {\em indices})\hspace{0.3cm}{\tt  \mbox{[}pure virtual\mbox{]}}}}
+\label{classm3g_1_1IndexBuffer_59fb1eca8810ea3b028735c5dce53fca}
 
 
-このバッファーに収納されているインデックスを取得する. \hypertarget{classm3g_1_1IndexBuffer_6fea17fa1532df3794f8cb39cb4f911f}{
+このバッファーに収納されているインデックスを取得. 
+
+\hyperlink{classm3g_1_1TriangleStripArray_650953afac45099025a524ab160b911f}{TriangleStripArray}で実装されています。\hypertarget{classm3g_1_1IndexBuffer_6fea17fa1532df3794f8cb39cb4f911f}{
 \index{m3g::IndexBuffer@{m3g::IndexBuffer}!print@{print}}
 \index{print@{print}!m3g::IndexBuffer@{m3g::IndexBuffer}}
 \subsubsection[{print}]{\setlength{\rightskip}{0pt plus 5cm}std::ostream \& print (std::ostream \& {\em out}) const\hspace{0.3cm}{\tt  \mbox{[}virtual\mbox{]}}}}
@@ -112,14 +101,7 @@ Note: \hyperlink{classm3g_1_1Background}{Background} should be rendered only at 
 
 \hyperlink{classm3g_1_1Object3D_1efcb1973989d9963d5bd6d03065d389}{Object3D}を再定義しています。
 
-\hyperlink{classm3g_1_1TriangleStripArray_1efcb1973989d9963d5bd6d03065d389}{TriangleStripArray}で再定義されています。\hypertarget{classm3g_1_1IndexBuffer_26c5b78691f0f92bd8589714cc25b6a8}{
-\index{m3g::IndexBuffer@{m3g::IndexBuffer}!setIndices@{setIndices}}
-\index{setIndices@{setIndices}!m3g::IndexBuffer@{m3g::IndexBuffer}}
-\subsubsection[{setIndices}]{\setlength{\rightskip}{0pt plus 5cm}void setIndices (int {\em num\_\-index}, \/  int {\em first\_\-index})\hspace{0.3cm}{\tt  \mbox{[}protected\mbox{]}}}}
-\label{classm3g_1_1IndexBuffer_26c5b78691f0f92bd8589714cc25b6a8}
-
-
-インデックス配列を暗黙的に確保する. 
+\hyperlink{classm3g_1_1TriangleStripArray_1efcb1973989d9963d5bd6d03065d389}{TriangleStripArray}で再定義されています。
 
 このクラスの説明は次のファイルから生成されました:\begin{CompactItemize}
 \item 

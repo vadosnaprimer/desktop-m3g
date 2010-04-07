@@ -32,14 +32,16 @@ Inheritance diagram for Transformable:</div>
 
 <p><center><img src="classm3g_1_1Transformable.png" usemap="#Transformable_map" border="0" alt=""></center>
 <map name="Transformable_map">
-<area href="classm3g_1_1Object3D.html" alt="Object3D" shape="rect" coords="160,0,257,24">
-<area href="classm3g_1_1Node.html" alt="Node" shape="rect" coords="107,112,204,136">
-<area href="classm3g_1_1Texture2D.html" alt="Texture2D" shape="rect" coords="214,112,311,136">
+<area href="classm3g_1_1Object3D.html" alt="Object3D" shape="rect" coords="267,0,364,24">
+<area href="classm3g_1_1Node.html" alt="Node" shape="rect" coords="214,112,311,136">
+<area href="classm3g_1_1Texture2D.html" alt="Texture2D" shape="rect" coords="321,112,418,136">
 <area href="classm3g_1_1Camera.html" alt="Camera" shape="rect" coords="0,168,97,192">
-<area href="classm3g_1_1Mesh.html" alt="Mesh" shape="rect" coords="267,168,364,192">
+<area href="classm3g_1_1Light.html" alt="Light" shape="rect" coords="214,168,311,192">
+<area href="classm3g_1_1Mesh.html" alt="Mesh" shape="rect" coords="321,168,418,192">
+<area href="classm3g_1_1Sprite3D.html" alt="Sprite3D" shape="rect" coords="428,168,525,192">
 <area href="classm3g_1_1World.html" alt="World" shape="rect" coords="107,224,204,248">
-<area href="classm3g_1_1MorphingMesh.html" alt="MorphingMesh" shape="rect" coords="214,224,311,248">
-<area href="classm3g_1_1SkinnedMesh.html" alt="SkinnedMesh" shape="rect" coords="321,224,418,248">
+<area href="classm3g_1_1MorphingMesh.html" alt="MorphingMesh" shape="rect" coords="267,224,364,248">
+<area href="classm3g_1_1SkinnedMesh.html" alt="SkinnedMesh" shape="rect" coords="374,224,471,248">
 </map>
 </div>
 
@@ -62,7 +64,7 @@ Inheritance diagram for Transformable:</div>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Transformable.html#263ef66efed11b7f9678e2e4bbec4c55">getCompositeTransform</a> (<a class="el" href="classm3g_1_1Transform.html">Transform</a> *transform) const </td></tr>
 
-<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Transformable.html#f4df4d4858762f23a5562f7192e6d53c">getOrientation</a> (float *angleAixs) const </td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Transformable.html#06125ab0d85ef8c5c7ace9ced04993f3">getOrientation</a> (float *angle_aixs) const </td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Transformable.html#b8a2dd11d0ba90e138625eb86a6a6083">getScale</a> (float *xyz) const </td></tr>
 
@@ -151,7 +153,9 @@ Destruct this object.
 
 <p>
 Adds the given <a class="el" href="classm3g_1_1AnimationTrack.html">AnimationTrack</a> to this <a class="el" href="classm3g_1_1Object3D.html">Object3D</a>, potentially changing the order and indices of the previously added tracks. 
-<p>Reimplemented in <a class="el" href="classm3g_1_1Camera.html#415c0b110f95410ded9b85e5d99a496b">Camera</a>, <a class="el" href="classm3g_1_1MorphingMesh.html#415c0b110f95410ded9b85e5d99a496b">MorphingMesh</a>, <a class="el" href="classm3g_1_1Node.html#415c0b110f95410ded9b85e5d99a496b">Node</a>, and <a class="el" href="classm3g_1_1Texture2D.html#415c0b110f95410ded9b85e5d99a496b">Texture2D</a>.</p>
+<p>Reimplemented from <a class="el" href="classm3g_1_1Object3D.html#415c0b110f95410ded9b85e5d99a496b">Object3D</a>.</p>
+
+<p>Reimplemented in <a class="el" href="classm3g_1_1Camera.html#415c0b110f95410ded9b85e5d99a496b">Camera</a>, <a class="el" href="classm3g_1_1Light.html#415c0b110f95410ded9b85e5d99a496b">Light</a>, <a class="el" href="classm3g_1_1MorphingMesh.html#415c0b110f95410ded9b85e5d99a496b">MorphingMesh</a>, <a class="el" href="classm3g_1_1Node.html#415c0b110f95410ded9b85e5d99a496b">Node</a>, <a class="el" href="classm3g_1_1Sprite3D.html#415c0b110f95410ded9b85e5d99a496b">Sprite3D</a>, and <a class="el" href="classm3g_1_1Texture2D.html#415c0b110f95410ded9b85e5d99a496b">Texture2D</a>.</p>
 
 </div>
 </div><p>
@@ -175,7 +179,7 @@ Adds the given <a class="el" href="classm3g_1_1AnimationTrack.html">AnimationTra
 Updates all animated properties in this <a class="el" href="classm3g_1_1Object3D.html">Object3D</a> and all Object3Ds that are reachable from this <a class="el" href="classm3g_1_1Object3D.html">Object3D</a>. 
 <p>Reimplemented from <a class="el" href="classm3g_1_1Object3D.html#8aad1ceab4c2a03609c8a42324ce484d">Object3D</a>.</p>
 
-<p>Reimplemented in <a class="el" href="classm3g_1_1Camera.html#8aad1ceab4c2a03609c8a42324ce484d">Camera</a>, <a class="el" href="classm3g_1_1Mesh.html#82cfeb67ca66b93e2ca7bda9a4f0e2aa">Mesh</a>, <a class="el" href="classm3g_1_1MorphingMesh.html#8aad1ceab4c2a03609c8a42324ce484d">MorphingMesh</a>, <a class="el" href="classm3g_1_1Node.html#8aad1ceab4c2a03609c8a42324ce484d">Node</a>, <a class="el" href="classm3g_1_1Texture2D.html#82cfeb67ca66b93e2ca7bda9a4f0e2aa">Texture2D</a>, and <a class="el" href="classm3g_1_1World.html#8aad1ceab4c2a03609c8a42324ce484d">World</a>.</p>
+<p>Reimplemented in <a class="el" href="classm3g_1_1Camera.html#8aad1ceab4c2a03609c8a42324ce484d">Camera</a>, <a class="el" href="classm3g_1_1Light.html#8aad1ceab4c2a03609c8a42324ce484d">Light</a>, <a class="el" href="classm3g_1_1Mesh.html#82cfeb67ca66b93e2ca7bda9a4f0e2aa">Mesh</a>, <a class="el" href="classm3g_1_1MorphingMesh.html#8aad1ceab4c2a03609c8a42324ce484d">MorphingMesh</a>, <a class="el" href="classm3g_1_1Node.html#8aad1ceab4c2a03609c8a42324ce484d">Node</a>, <a class="el" href="classm3g_1_1Sprite3D.html#8aad1ceab4c2a03609c8a42324ce484d">Sprite3D</a>, <a class="el" href="classm3g_1_1Texture2D.html#82cfeb67ca66b93e2ca7bda9a4f0e2aa">Texture2D</a>, and <a class="el" href="classm3g_1_1World.html#8aad1ceab4c2a03609c8a42324ce484d">World</a>.</p>
 
 </div>
 </div><p>
@@ -199,7 +203,7 @@ Updates all animated properties in this <a class="el" href="classm3g_1_1Object3D
 Retrieves the composite transformation matrix of this Transformabls. 
 </div>
 </div><p>
-<a class="anchor" name="f4df4d4858762f23a5562f7192e6d53c"></a><!-- doxytag: member="m3g::Transformable::getOrientation" ref="f4df4d4858762f23a5562f7192e6d53c" args="(float *angleAixs) const " -->
+<a class="anchor" name="06125ab0d85ef8c5c7ace9ced04993f3"></a><!-- doxytag: member="m3g::Transformable::getOrientation" ref="06125ab0d85ef8c5c7ace9ced04993f3" args="(float *angle_aixs) const " -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -207,7 +211,7 @@ Retrieves the composite transformation matrix of this Transformabls.
           <td class="memname">void getOrientation           </td>
           <td>(</td>
           <td class="paramtype">float *&nbsp;</td>
-          <td class="paramname"> <em>angleAixs</em>          </td>
+          <td class="paramname"> <em>angle_aixs</em>          </td>
           <td>&nbsp;)&nbsp;</td>
           <td> const</td>
         </tr>
@@ -381,7 +385,7 @@ Multiplies the current orientation component from the left by the given orientat
 Print out information this object, for debug only. 
 <p>Reimplemented from <a class="el" href="classm3g_1_1Object3D.html#6fea17fa1532df3794f8cb39cb4f911f">Object3D</a>.</p>
 
-<p>Reimplemented in <a class="el" href="classm3g_1_1Camera.html#6fea17fa1532df3794f8cb39cb4f911f">Camera</a>, <a class="el" href="classm3g_1_1Mesh.html#6fea17fa1532df3794f8cb39cb4f911f">Mesh</a>, <a class="el" href="classm3g_1_1MorphingMesh.html#6fea17fa1532df3794f8cb39cb4f911f">MorphingMesh</a>, <a class="el" href="classm3g_1_1Node.html#6fea17fa1532df3794f8cb39cb4f911f">Node</a>, <a class="el" href="classm3g_1_1SkinnedMesh.html#6fea17fa1532df3794f8cb39cb4f911f">SkinnedMesh</a>, <a class="el" href="classm3g_1_1Texture2D.html#6fea17fa1532df3794f8cb39cb4f911f">Texture2D</a>, and <a class="el" href="classm3g_1_1World.html#6fea17fa1532df3794f8cb39cb4f911f">World</a>.</p>
+<p>Reimplemented in <a class="el" href="classm3g_1_1Camera.html#6fea17fa1532df3794f8cb39cb4f911f">Camera</a>, <a class="el" href="classm3g_1_1Light.html#6fea17fa1532df3794f8cb39cb4f911f">Light</a>, <a class="el" href="classm3g_1_1Mesh.html#6fea17fa1532df3794f8cb39cb4f911f">Mesh</a>, <a class="el" href="classm3g_1_1MorphingMesh.html#6fea17fa1532df3794f8cb39cb4f911f">MorphingMesh</a>, <a class="el" href="classm3g_1_1Node.html#6fea17fa1532df3794f8cb39cb4f911f">Node</a>, <a class="el" href="classm3g_1_1SkinnedMesh.html#6fea17fa1532df3794f8cb39cb4f911f">SkinnedMesh</a>, <a class="el" href="classm3g_1_1Sprite3D.html#6fea17fa1532df3794f8cb39cb4f911f">Sprite3D</a>, <a class="el" href="classm3g_1_1Texture2D.html#6fea17fa1532df3794f8cb39cb4f911f">Texture2D</a>, and <a class="el" href="classm3g_1_1World.html#6fea17fa1532df3794f8cb39cb4f911f">World</a>.</p>
 
 </div>
 </div><p>
@@ -414,7 +418,7 @@ Print out information this object, for debug only.
 Render this object, for inner use. 
 <p>Reimplemented from <a class="el" href="classm3g_1_1Object3D.html#1efcb1973989d9963d5bd6d03065d389">Object3D</a>.</p>
 
-<p>Reimplemented in <a class="el" href="classm3g_1_1Camera.html#1efcb1973989d9963d5bd6d03065d389">Camera</a>, <a class="el" href="classm3g_1_1Mesh.html#1efcb1973989d9963d5bd6d03065d389">Mesh</a>, <a class="el" href="classm3g_1_1MorphingMesh.html#1efcb1973989d9963d5bd6d03065d389">MorphingMesh</a>, <a class="el" href="classm3g_1_1Node.html#1efcb1973989d9963d5bd6d03065d389">Node</a>, <a class="el" href="classm3g_1_1SkinnedMesh.html#1efcb1973989d9963d5bd6d03065d389">SkinnedMesh</a>, and <a class="el" href="classm3g_1_1World.html#1efcb1973989d9963d5bd6d03065d389">World</a>.</p>
+<p>Reimplemented in <a class="el" href="classm3g_1_1Camera.html#1efcb1973989d9963d5bd6d03065d389">Camera</a>, <a class="el" href="classm3g_1_1Mesh.html#1efcb1973989d9963d5bd6d03065d389">Mesh</a>, <a class="el" href="classm3g_1_1MorphingMesh.html#1efcb1973989d9963d5bd6d03065d389">MorphingMesh</a>, <a class="el" href="classm3g_1_1Node.html#1efcb1973989d9963d5bd6d03065d389">Node</a>, <a class="el" href="classm3g_1_1SkinnedMesh.html#1efcb1973989d9963d5bd6d03065d389">SkinnedMesh</a>, <a class="el" href="classm3g_1_1Sprite3D.html#1efcb1973989d9963d5bd6d03065d389">Sprite3D</a>, and <a class="el" href="classm3g_1_1World.html#1efcb1973989d9963d5bd6d03065d389">World</a>.</p>
 
 </div>
 </div><p>
@@ -622,7 +626,7 @@ Adds the given offset to the current translation component.
 <hr>The documentation for this class was generated from the following files:<ul>
 <li>/work/desktop-m3g/src/<a class="el" href="Transformable_8hpp-source.html">Transformable.hpp</a><li>/work/desktop-m3g/src/Transformable.cpp</ul>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Fri Mar 12 10:22:43 2010 by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Wed Apr 7 10:24:30 2010 by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.8 </small></address>
 </body>

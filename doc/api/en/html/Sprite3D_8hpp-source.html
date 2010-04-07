@@ -30,65 +30,65 @@
 <a name="l00010"></a>00010   <span class="keyword">class </span>Image2D;
 <a name="l00011"></a>00011   <span class="keyword">class </span>Appearance;
 <a name="l00012"></a>00012 
-<a name="l00016"></a>00016   <span class="keyword">class </span>Sprite3D : <span class="keyword">public</span> Node
-<a name="l00017"></a>00017   {
-<a name="l00018"></a>00018     <span class="keyword">friend</span> <span class="keyword">class </span>Group;   <span class="comment">// for sort_by_layer</span>
-<a name="l00019"></a>00019 
-<a name="l00024"></a>00024     <span class="keyword">struct </span>CropRect
-<a name="l00025"></a>00025     {
-<a name="l00026"></a>00026       CropRect (<span class="keywordtype">float</span> x_, <span class="keywordtype">float</span> y_, <span class="keywordtype">float</span> width_, <span class="keywordtype">float</span> height_) : x(x_), y(y_), width(width_), height(height_) {};
-<a name="l00027"></a>00027       <span class="keywordtype">float</span> x;
-<a name="l00028"></a>00028       <span class="keywordtype">float</span> y;
-<a name="l00029"></a>00029       <span class="keywordtype">float</span> width;
-<a name="l00030"></a>00030       <span class="keywordtype">float</span> height;
-<a name="l00031"></a>00031     };
-<a name="l00032"></a>00032 
-<a name="l00033"></a>00033   <span class="keyword">public</span>:
-<a name="l00034"></a>00034 
-<a name="l00039"></a>00039     Sprite3D (<span class="keywordtype">bool</span> scaled, Image2D* image, Appearance* appearance);
-<a name="l00040"></a>00040 
-<a name="l00045"></a>00045     <span class="keyword">virtual</span> ~Sprite3D ();
-<a name="l00046"></a>00046 
-<a name="l00053"></a>00053     <span class="keyword">virtual</span> <span class="keywordtype">void</span> addAnimationTrack (AnimationTrack* animation_track);
-<a name="l00054"></a>00054 
-<a name="l00059"></a>00059     <span class="keyword">virtual</span> <span class="keywordtype">int</span> animate (<span class="keywordtype">int</span> world_time);
-<a name="l00060"></a>00060 
-<a name="l00065"></a>00065     Appearance* getAppearance () <span class="keyword">const</span>;
-<a name="l00066"></a>00066 
-<a name="l00071"></a>00071     <span class="keywordtype">int</span> getCropHeight () <span class="keyword">const</span>;
-<a name="l00072"></a>00072 
-<a name="l00077"></a>00077     <span class="keywordtype">int</span> getCropWidth () <span class="keyword">const</span>;
-<a name="l00078"></a>00078 
-<a name="l00083"></a>00083     <span class="keywordtype">int</span> getCropX () <span class="keyword">const</span>;
-<a name="l00084"></a>00084 
-<a name="l00089"></a>00089     <span class="keywordtype">int</span> getCropY () <span class="keyword">const</span>;
-<a name="l00090"></a>00090 
-<a name="l00095"></a>00095     Image2D* getImage () <span class="keyword">const</span>;
-<a name="l00096"></a>00096 
-<a name="l00101"></a>00101     <span class="keywordtype">bool</span> isScaled () <span class="keyword">const</span>;
-<a name="l00102"></a>00102 
-<a name="l00107"></a>00107     <span class="keywordtype">void</span> setAppearance (Appearance* appearance);
-<a name="l00108"></a>00108 
-<a name="l00113"></a>00113     <span class="keywordtype">void</span> setCrop (<span class="keywordtype">int</span> cropX, <span class="keywordtype">int</span> cropY, <span class="keywordtype">int</span> width, <span class="keywordtype">int</span> height);
-<a name="l00114"></a>00114 
-<a name="l00119"></a>00119     <span class="keywordtype">void</span> setImage (Image2D* image);
-<a name="l00120"></a>00120 
+<a name="l00017"></a><a class="code" href="classm3g_1_1Sprite3D.html">00017</a>   <span class="keyword">class </span><a class="code" href="classm3g_1_1Sprite3D.html">Sprite3D</a> : <span class="keyword">public</span> <a class="code" href="classm3g_1_1Node.html">Node</a>
+<a name="l00018"></a>00018   {
+<a name="l00019"></a>00019     <span class="keyword">friend</span> <span class="keyword">class </span>Group;   <span class="comment">// for sort_by_layer</span>
+<a name="l00020"></a>00020 
+<a name="l00025"></a>00025     <span class="keyword">struct </span>CropRect
+<a name="l00026"></a>00026     {
+<a name="l00027"></a>00027       CropRect (<span class="keywordtype">float</span> x_, <span class="keywordtype">float</span> y_, <span class="keywordtype">float</span> width_, <span class="keywordtype">float</span> height_) : x(x_), y(y_), width(width_), height(height_) {};
+<a name="l00028"></a>00028       <span class="keywordtype">float</span> x;
+<a name="l00029"></a>00029       <span class="keywordtype">float</span> y;
+<a name="l00030"></a>00030       <span class="keywordtype">float</span> width;
+<a name="l00031"></a>00031       <span class="keywordtype">float</span> height;
+<a name="l00032"></a>00032     };
+<a name="l00033"></a>00033 
+<a name="l00034"></a>00034   <span class="keyword">public</span>:
+<a name="l00035"></a>00035 
+<a name="l00040"></a>00040     <a class="code" href="classm3g_1_1Sprite3D.html#9cb33fd453d441ed8e99b95f5e29df0c">Sprite3D</a> (<span class="keywordtype">bool</span> scaled, <a class="code" href="classm3g_1_1Image2D.html">Image2D</a>* image, <a class="code" href="classm3g_1_1Appearance.html">Appearance</a>* appearance);
+<a name="l00041"></a>00041 
+<a name="l00046"></a>00046     <span class="keyword">virtual</span> <a class="code" href="classm3g_1_1Sprite3D.html#a57bd1e3141ba11c88ddec1e46c188d6">~Sprite3D</a> ();
+<a name="l00047"></a>00047 
+<a name="l00054"></a>00054     <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classm3g_1_1Sprite3D.html#415c0b110f95410ded9b85e5d99a496b">addAnimationTrack</a> (<a class="code" href="classm3g_1_1AnimationTrack.html">AnimationTrack</a>* animation_track);
+<a name="l00055"></a>00055 
+<a name="l00060"></a>00060     <span class="keyword">virtual</span> <span class="keywordtype">int</span> <a class="code" href="classm3g_1_1Sprite3D.html#8aad1ceab4c2a03609c8a42324ce484d">animate</a> (<span class="keywordtype">int</span> world_time);
+<a name="l00061"></a>00061 
+<a name="l00066"></a>00066     <a class="code" href="classm3g_1_1Appearance.html">Appearance</a>* <a class="code" href="classm3g_1_1Sprite3D.html#0219cb20ddea978a5796b5b414d012d2">getAppearance</a> () <span class="keyword">const</span>;
+<a name="l00067"></a>00067 
+<a name="l00072"></a>00072     <span class="keywordtype">int</span> <a class="code" href="classm3g_1_1Sprite3D.html#d6d9d6f23b7bb004c93642bcd081f4a3">getCropHeight</a> () <span class="keyword">const</span>;
+<a name="l00073"></a>00073 
+<a name="l00078"></a>00078     <span class="keywordtype">int</span> <a class="code" href="classm3g_1_1Sprite3D.html#5c6515f6706675ef31ca5dfa0a03b953">getCropWidth</a> () <span class="keyword">const</span>;
+<a name="l00079"></a>00079 
+<a name="l00084"></a>00084     <span class="keywordtype">int</span> <a class="code" href="classm3g_1_1Sprite3D.html#d0ba0211183decc8f0459ca598b12912">getCropX</a> () <span class="keyword">const</span>;
+<a name="l00085"></a>00085 
+<a name="l00090"></a>00090     <span class="keywordtype">int</span> <a class="code" href="classm3g_1_1Sprite3D.html#9ef03b219415a1f08aef6745ad5d87d0">getCropY</a> () <span class="keyword">const</span>;
+<a name="l00091"></a>00091 
+<a name="l00096"></a>00096     <a class="code" href="classm3g_1_1Image2D.html">Image2D</a>* <a class="code" href="classm3g_1_1Sprite3D.html#a8c0193b0e7d47d4b5c9f60df24c44f5">getImage</a> () <span class="keyword">const</span>;
+<a name="l00097"></a>00097 
+<a name="l00102"></a>00102     <span class="keywordtype">bool</span> <a class="code" href="classm3g_1_1Sprite3D.html#8e3e7fa70e1d3f2342580991105779f5">isScaled</a> () <span class="keyword">const</span>;
+<a name="l00103"></a>00103 
+<a name="l00108"></a>00108     <span class="keywordtype">void</span> <a class="code" href="classm3g_1_1Sprite3D.html#b9b44bad4241635062ed66437c9bae48">setAppearance</a> (<a class="code" href="classm3g_1_1Appearance.html">Appearance</a>* appearance);
+<a name="l00109"></a>00109 
+<a name="l00114"></a>00114     <span class="keywordtype">void</span> <a class="code" href="classm3g_1_1Sprite3D.html#92660f9625c68b0169ee84bbc4586187">setCrop</a> (<span class="keywordtype">int</span> cropX, <span class="keywordtype">int</span> cropY, <span class="keywordtype">int</span> width, <span class="keywordtype">int</span> height);
+<a name="l00115"></a>00115 
+<a name="l00120"></a>00120     <span class="keywordtype">void</span> <a class="code" href="classm3g_1_1Sprite3D.html#705b89b41cd1b38f664ed912be44baaa">setImage</a> (<a class="code" href="classm3g_1_1Image2D.html">Image2D</a>* image);
 <a name="l00121"></a>00121 
-<a name="l00126"></a>00126     <span class="keyword">virtual</span> std::ostream&amp; print (std::ostream&amp; out) <span class="keyword">const</span>;
-<a name="l00127"></a>00127 
-<a name="l00128"></a>00128   <span class="keyword">protected</span>:
-<a name="l00133"></a>00133     <span class="keyword">virtual</span> <span class="keywordtype">void</span> render (<span class="keywordtype">int</span> pass, <span class="keywordtype">int</span> index=0) <span class="keyword">const</span>;
-<a name="l00134"></a>00134 
+<a name="l00122"></a>00122 
+<a name="l00127"></a>00127     <span class="keyword">virtual</span> std::ostream&amp; <a class="code" href="classm3g_1_1Sprite3D.html#6fea17fa1532df3794f8cb39cb4f911f">print</a> (std::ostream&amp; out) <span class="keyword">const</span>;
+<a name="l00128"></a>00128 
+<a name="l00129"></a>00129   <span class="keyword">protected</span>:
+<a name="l00134"></a>00134     <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classm3g_1_1Sprite3D.html#1efcb1973989d9963d5bd6d03065d389">render</a> (<span class="keywordtype">int</span> pass, <span class="keywordtype">int</span> index=0) <span class="keyword">const</span>;
 <a name="l00135"></a>00135 
-<a name="l00136"></a>00136   <span class="keyword">private</span>:
-<a name="l00141"></a>00141     <span class="keywordtype">int</span> getLayer () <span class="keyword">const</span>;
-<a name="l00142"></a>00142 
-<a name="l00148"></a>00148     <span class="keyword">static</span> <span class="keywordtype">bool</span> sort_by_layer (<span class="keyword">const</span> Sprite3D* lhs, <span class="keyword">const</span> Sprite3D* rhs);
+<a name="l00136"></a>00136 
+<a name="l00137"></a>00137   <span class="keyword">private</span>:
+<a name="l00142"></a>00142     <span class="keywordtype">int</span> getLayer () <span class="keyword">const</span>;
+<a name="l00143"></a>00143 
+<a name="l00148"></a>00148     <span class="keyword">static</span> <span class="keywordtype">bool</span> sort_by_layer (<span class="keyword">const</span> <a class="code" href="classm3g_1_1Sprite3D.html">Sprite3D</a>* lhs, <span class="keyword">const</span> <a class="code" href="classm3g_1_1Sprite3D.html">Sprite3D</a>* rhs);
 <a name="l00149"></a>00149 
 <a name="l00150"></a>00150   <span class="keyword">private</span>:
 <a name="l00151"></a>00151     <span class="keywordtype">bool</span>        scaled;
-<a name="l00152"></a>00152     Image2D*    image;
-<a name="l00153"></a>00153     Appearance* appearance;
+<a name="l00152"></a>00152     <a class="code" href="classm3g_1_1Image2D.html">Image2D</a>*    image;
+<a name="l00153"></a>00153     <a class="code" href="classm3g_1_1Appearance.html">Appearance</a>* appearance;
 <a name="l00154"></a>00154     CropRect    crop;
 <a name="l00155"></a>00155 
 <a name="l00156"></a>00156     GLuint      texobj;
@@ -96,12 +96,12 @@
 <a name="l00158"></a>00158 
 <a name="l00159"></a>00159 } <span class="comment">// namespace m3g {</span>
 <a name="l00160"></a>00160 
-<a name="l00161"></a>00161 std::ostream&amp; operator&lt;&lt; (std::ostream&amp; out, <span class="keyword">const</span> m3g::Sprite3D&amp; s);
+<a name="l00161"></a>00161 std::ostream&amp; operator&lt;&lt; (std::ostream&amp; out, <span class="keyword">const</span> <a class="code" href="classm3g_1_1Sprite3D.html">m3g::Sprite3D</a>&amp; s);
 <a name="l00162"></a>00162 
 <a name="l00163"></a>00163 
 <a name="l00164"></a>00164 <span class="preprocessor">#endif</span>
 </pre></div></div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Fri Mar 12 10:22:40 2010 by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Wed Apr 7 10:24:27 2010 by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.8 </small></address>
 </body>

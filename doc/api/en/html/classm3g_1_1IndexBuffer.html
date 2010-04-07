@@ -45,23 +45,14 @@ Inheritance diagram for IndexBuffer:</div>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">virtual&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1IndexBuffer.html#ac7952364fe4d2d7b2731da5380c841c">~IndexBuffer</a> ()</td></tr>
 
-<tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1IndexBuffer.html#fe9ae2993ebcdb93d5ff26d57c81b73e">getIndexCount</a> () const </td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">virtual int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1IndexBuffer.html#ac7d2c37f177b21195a81f00061ef94e">getIndexCount</a> () const =0</td></tr>
 
-<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1IndexBuffer.html#650953afac45099025a524ab160b911f">getIndices</a> (int *indices)</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1IndexBuffer.html#59fb1eca8810ea3b028735c5dce53fca">getIndices</a> (int *indices)=0</td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">virtual std::ostream &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1IndexBuffer.html#6fea17fa1532df3794f8cb39cb4f911f">print</a> (std::ostream &amp;out) const </td></tr>
 
 <tr><td colspan="2"><br><h2>Protected Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1IndexBuffer.html#1efcb1973989d9963d5bd6d03065d389">render</a> (int pass, int index=0) const </td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1IndexBuffer.html#26c5b78691f0f92bd8589714cc25b6a8">setIndices</a> (int num_index, int first_index)</td></tr>
-
-<tr><td colspan="2"><br><h2>Protected Attributes</h2></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="11d260eb623ff241a55524ad8bc9beb4"></a><!-- doxytag: member="m3g::IndexBuffer::__pad0__" ref="11d260eb623ff241a55524ad8bc9beb4" args="" -->
-PROTECTED&nbsp;</td><td class="memItemRight" valign="bottom"><b>__pad0__</b>: void setIndices (int num_index</td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="6b7df92152fe609a14f72e9634a55421"></a><!-- doxytag: member="m3g::IndexBuffer::indices" ref="6b7df92152fe609a14f72e9634a55421" args="" -->
-PROTECTED int *&nbsp;</td><td class="memItemRight" valign="bottom"><b>indices</b></td></tr>
 
 <tr><td colspan="2"><br><h2>Friends</h2></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="a41a130f156b145bffb3f4b5172c4c93"></a><!-- doxytag: member="m3g::IndexBuffer::Mesh" ref="a41a130f156b145bffb3f4b5172c4c93" args="" -->
@@ -109,16 +100,16 @@ Construct a new <a class="el" href="classm3g_1_1IndexBuffer.html">IndexBuffer</a
 </div>
 </div><p>
 <hr><h2>Member Function Documentation</h2>
-<a class="anchor" name="fe9ae2993ebcdb93d5ff26d57c81b73e"></a><!-- doxytag: member="m3g::IndexBuffer::getIndexCount" ref="fe9ae2993ebcdb93d5ff26d57c81b73e" args="() const " -->
+<a class="anchor" name="ac7d2c37f177b21195a81f00061ef94e"></a><!-- doxytag: member="m3g::IndexBuffer::getIndexCount" ref="ac7d2c37f177b21195a81f00061ef94e" args="() const =0" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int getIndexCount           </td>
+          <td class="memname">virtual int getIndexCount           </td>
           <td>(</td>
           <td class="paramname">          </td>
           <td>&nbsp;)&nbsp;</td>
-          <td> const</td>
+          <td> const<code> [pure virtual]</code></td>
         </tr>
       </table>
 </div>
@@ -126,19 +117,21 @@ Construct a new <a class="el" href="classm3g_1_1IndexBuffer.html">IndexBuffer</a
 
 <p>
 Returns the number of indices in this buffer. 
+<p>Implemented in <a class="el" href="classm3g_1_1TriangleStripArray.html#fe9ae2993ebcdb93d5ff26d57c81b73e">TriangleStripArray</a>.</p>
+
 </div>
 </div><p>
-<a class="anchor" name="650953afac45099025a524ab160b911f"></a><!-- doxytag: member="m3g::IndexBuffer::getIndices" ref="650953afac45099025a524ab160b911f" args="(int *indices)" -->
+<a class="anchor" name="59fb1eca8810ea3b028735c5dce53fca"></a><!-- doxytag: member="m3g::IndexBuffer::getIndices" ref="59fb1eca8810ea3b028735c5dce53fca" args="(int *indices)=0" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void getIndices           </td>
+          <td class="memname">virtual void getIndices           </td>
           <td>(</td>
           <td class="paramtype">int *&nbsp;</td>
           <td class="paramname"> <em>indices</em>          </td>
           <td>&nbsp;)&nbsp;</td>
-          <td></td>
+          <td><code> [pure virtual]</code></td>
         </tr>
       </table>
 </div>
@@ -146,6 +139,8 @@ Returns the number of indices in this buffer.
 
 <p>
 Retrieves vertex indices for the rendering primitives stored in this buffer. 
+<p>Implemented in <a class="el" href="classm3g_1_1TriangleStripArray.html#650953afac45099025a524ab160b911f">TriangleStripArray</a>.</p>
+
 </div>
 </div><p>
 <a class="anchor" name="6fea17fa1532df3794f8cb39cb4f911f"></a><!-- doxytag: member="m3g::IndexBuffer::print" ref="6fea17fa1532df3794f8cb39cb4f911f" args="(std::ostream &amp;out) const " -->
@@ -206,39 +201,10 @@ Note: <a class="el" href="classm3g_1_1Background.html">Background</a> should be 
 
 </div>
 </div><p>
-<a class="anchor" name="26c5b78691f0f92bd8589714cc25b6a8"></a><!-- doxytag: member="m3g::IndexBuffer::setIndices" ref="26c5b78691f0f92bd8589714cc25b6a8" args="(int num_index, int first_index)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void setIndices           </td>
-          <td>(</td>
-          <td class="paramtype">int&nbsp;</td>
-          <td class="paramname"> <em>num_index</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&nbsp;</td>
-          <td class="paramname"> <em>first_index</em></td><td>&nbsp;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td><td><code> [protected]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-Allocate indices, for inner use. 
-</div>
-</div><p>
 <hr>The documentation for this class was generated from the following files:<ul>
 <li>/work/desktop-m3g/src/<a class="el" href="IndexBuffer_8hpp-source.html">IndexBuffer.hpp</a><li>/work/desktop-m3g/src/IndexBuffer.cpp</ul>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Fri Mar 12 10:22:42 2010 by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Wed Apr 7 10:24:28 2010 by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.8 </small></address>
 </body>

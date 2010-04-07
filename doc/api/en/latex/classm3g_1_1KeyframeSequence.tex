@@ -50,19 +50,8 @@ void \hyperlink{classm3g_1_1KeyframeSequence_e5cd1486fe0a8a61cf96816e976d7f87}{s
 void \hyperlink{classm3g_1_1KeyframeSequence_b5a824131cef547816366141afe0339a}{setValidRange} (int first, int last)
 \item 
 virtual std::ostream \& \hyperlink{classm3g_1_1KeyframeSequence_6fea17fa1532df3794f8cb39cb4f911f}{print} (std::ostream \&out) const 
-\end{CompactItemize}
-\subsection*{Public Attributes}
-\begin{CompactItemize}
 \item 
-\hypertarget{classm3g_1_1KeyframeSequence_09d77e6556195583218cf7f0bc11ab1c}{
-PRIVATE \textbf{\_\-\_\-pad0\_\-\_\-}: void getFrame (int local\_\-time}
-\label{classm3g_1_1KeyframeSequence_09d77e6556195583218cf7f0bc11ab1c}
-
-\item 
-\hypertarget{classm3g_1_1KeyframeSequence_2216ebfe3179bd5c53663d0780a0a190}{
-PRIVATE float $\ast$value \textbf{const}}
-\label{classm3g_1_1KeyframeSequence_2216ebfe3179bd5c53663d0780a0a190}
-
+void \hyperlink{classm3g_1_1KeyframeSequence_e172563df4ce29c6fa9bca679e9bba7c}{getFrame} (int local\_\-time, float $\ast$value) const 
 \end{CompactItemize}
 \subsection*{Static Public Attributes}
 \begin{CompactItemize}
@@ -118,7 +107,14 @@ Returns the number of components per keyframe in this ssequence. \hypertarget{cl
 \label{classm3g_1_1KeyframeSequence_995a5ca5c8c3c993ef167f67cbb5fabe}
 
 
-Gets the duration of this sequence. \hypertarget{classm3g_1_1KeyframeSequence_0d46321e7f46e037508cce88cdf6a487}{
+Gets the duration of this sequence. \hypertarget{classm3g_1_1KeyframeSequence_e172563df4ce29c6fa9bca679e9bba7c}{
+\index{m3g::KeyframeSequence@{m3g::KeyframeSequence}!getFrame@{getFrame}}
+\index{getFrame@{getFrame}!m3g::KeyframeSequence@{m3g::KeyframeSequence}}
+\subsubsection[{getFrame}]{\setlength{\rightskip}{0pt plus 5cm}void getFrame (int {\em local\_\-time}, \/  float $\ast$ {\em value}) const}}
+\label{classm3g_1_1KeyframeSequence_e172563df4ce29c6fa9bca679e9bba7c}
+
+
+Returns interpolated values at specified time, for inner use. \hypertarget{classm3g_1_1KeyframeSequence_0d46321e7f46e037508cce88cdf6a487}{
 \index{m3g::KeyframeSequence@{m3g::KeyframeSequence}!getInterpolationType@{getInterpolationType}}
 \index{getInterpolationType@{getInterpolationType}!m3g::KeyframeSequence@{m3g::KeyframeSequence}}
 \subsubsection[{getInterpolationType}]{\setlength{\rightskip}{0pt plus 5cm}int getInterpolationType () const}}

@@ -40,8 +40,6 @@
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Graphics3D.html#2173e179f4b2d7130cde46a48794ee66">bindTarget</a> (<a class="el" href="classm3g_1_1Graphics.html">Graphics</a> *g, bool depth_buffer_enabled=true, int hints=0)</td></tr>
 
-<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Graphics3D.html#e3640472397d2b632496fa37c990b4bb">bindTarget</a> (<a class="el" href="classm3g_1_1Image2D.html">Image2D</a> *i, bool depth_buffer_enabled=true, int hints=0)</td></tr>
-
 <tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Graphics3D.html#21c4a68a53cfbe0a7cec05d5a56682bf">clear</a> (<a class="el" href="classm3g_1_1Background.html">Background</a> *background)</td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="el" href="classm3g_1_1Camera.html">Camera</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Graphics3D.html#570b81f426d1b2b5e8794cffb33422c6">getCamera</a> (const <a class="el" href="classm3g_1_1Transform.html">Transform</a> &amp;transform)</td></tr>
@@ -56,8 +54,7 @@
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Graphics3D.html#7a08cfeb48d76ad5d8859a1fc0c77d98">getLightCount</a> () const </td></tr>
 
-<tr><td class="memItemLeft" nowrap align="right" valign="top">std::unordered_map&lt; const char <br class="typebreak">
-*, int &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Graphics3D.html#a7d4779a1ea7779caf7f409c4d2bb31f">getProperties</a> () const </td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">std::vector&lt; Property * &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Graphics3D.html#d87d3f8145ea47e2b736c6c3525dad5c">getProperties</a> () const </td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">void *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Graphics3D.html#02d0033930c8e68f4d7ebd43abe7980a">getTarget</a> () const </td></tr>
 
@@ -157,41 +154,6 @@ static const int&nbsp;</td><td class="memItemRight" valign="bottom"><b>TRUE_COLO
 
 <p>
 イミーディエイトモードで使用するライトのバインド. 
-</div>
-</div><p>
-<a class="anchor" name="e3640472397d2b632496fa37c990b4bb"></a><!-- doxytag: member="m3g::Graphics3D::bindTarget" ref="e3640472397d2b632496fa37c990b4bb" args="(Image2D *i, bool depth_buffer_enabled=true, int hints=0)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void bindTarget           </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="classm3g_1_1Image2D.html">Image2D</a> *&nbsp;</td>
-          <td class="paramname"> <em>i</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">bool&nbsp;</td>
-          <td class="paramname"> <em>depth_buffer_enabled</em> = <code>true</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&nbsp;</td>
-          <td class="paramname"> <em>hints</em> = <code>0</code></td><td>&nbsp;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td><td></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-このGraphics3DクラスにミュータブルImage2Dクラスをバインドする. 
 </div>
 </div><p>
 <a class="anchor" name="2173e179f4b2d7130cde46a48794ee66"></a><!-- doxytag: member="m3g::Graphics3D::bindTarget" ref="2173e179f4b2d7130cde46a48794ee66" args="(Graphics *g, bool depth_buffer_enabled=true, int hints=0)" -->
@@ -393,12 +355,12 @@ static const int&nbsp;</td><td class="memItemRight" valign="bottom"><b>TRUE_COLO
 カレントのライト配列のサイズを取得する. 
 </div>
 </div><p>
-<a class="anchor" name="a7d4779a1ea7779caf7f409c4d2bb31f"></a><!-- doxytag: member="m3g::Graphics3D::getProperties" ref="a7d4779a1ea7779caf7f409c4d2bb31f" args="() const " -->
+<a class="anchor" name="d87d3f8145ea47e2b736c6c3525dad5c"></a><!-- doxytag: member="m3g::Graphics3D::getProperties" ref="d87d3f8145ea47e2b736c6c3525dad5c" args="() const " -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::unordered_map&lt; const char *, int &gt; getProperties           </td>
+          <td class="memname">std::vector&lt; Property * &gt; getProperties           </td>
           <td>(</td>
           <td class="paramname">          </td>
           <td>&nbsp;)&nbsp;</td>
@@ -838,7 +800,7 @@ NDC座標系からウィンドウ座標系に変換するさいの深度値の�
 <hr>このクラスの説明は次のファイルから生成されました:<ul>
 <li>/work/desktop-m3g/src/<a class="el" href="Graphics3D_8hpp-source.html">Graphics3D.hpp</a><li>/work/desktop-m3g/src/Graphics3D.cpp</ul>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Fri Mar 12 10:22:37 2010に生成されました。&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Wed Apr 7 10:24:22 2010に生成されました。&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.8 </small></address>
 </body>

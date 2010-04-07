@@ -66,7 +66,7 @@ Inheritance diagram for VertexBuffer:</div>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1VertexBuffer.html#527460407f488d5128bae7d0adb6da43">setPositions</a> (<a class="el" href="classm3g_1_1VertexArray.html">VertexArray</a> *positios, float scale, float *bias)</td></tr>
 
-<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1VertexBuffer.html#626af19bd7702480ac9e8ea4532d27d5">setTexCoords</a> (int index, <a class="el" href="classm3g_1_1VertexArray.html">VertexArray</a> *texCoords, float scale, float *bias)</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1VertexBuffer.html#9fd3dd3f78138d654d18863e4f1329f4">setTexCoords</a> (int index, <a class="el" href="classm3g_1_1VertexArray.html">VertexArray</a> *tex_coords, float scale, float *bias)</td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">virtual std::ostream &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1VertexBuffer.html#6fea17fa1532df3794f8cb39cb4f911f">print</a> (std::ostream &amp;out) const </td></tr>
 
@@ -79,7 +79,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>Mesh</b></td></tr>
 
 </table>
 <hr><a name="_details"></a><h2>Detailed Description</h2>
-VertexBufferは頂点位置、法線、色、テクスチャー座標を含むVertexArrayへのポインターを含む. <hr><h2>Constructor &amp; Destructor Documentation</h2>
+<a class="el" href="classm3g_1_1VertexBuffer.html">VertexBuffer</a> holds references to VertexArrays that contain the positions, colors, normals, and texture coordinates for a set of vertices. <hr><h2>Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" name="fd7b13840c99c57d27316c8f8434dc49"></a><!-- doxytag: member="m3g::VertexBuffer::VertexBuffer" ref="fd7b13840c99c57d27316c8f8434dc49" args="()" -->
 <div class="memitem">
 <div class="memproto">
@@ -96,7 +96,7 @@ VertexBufferは頂点位置、法線、色、テクスチャー座標を含むVe
 <div class="memdoc">
 
 <p>
-デフォルトの値のVertexBufferオブジェクトを作成. 
+Creates an empty <a class="el" href="classm3g_1_1VertexBuffer.html">VertexBuffer</a> with default values. 
 </div>
 </div><p>
 <a class="anchor" name="0e5e1dbdc4295ff9aa1e15e0ce3624af"></a><!-- doxytag: member="m3g::VertexBuffer::~VertexBuffer" ref="0e5e1dbdc4295ff9aa1e15e0ce3624af" args="()" -->
@@ -115,7 +115,7 @@ VertexBufferは頂点位置、法線、色、テクスチャー座標を含むVe
 <div class="memdoc">
 
 <p>
-デストラクタ. 
+Destructs this object. 
 </div>
 </div><p>
 <hr><h2>Member Function Documentation</h2>
@@ -136,7 +136,9 @@ VertexBufferは頂点位置、法線、色、テクスチャー座標を含むVe
 <div class="memdoc">
 
 <p>
-アニメーショントラックの追加。 既存のトラックの順番とインデックスは変更されるかもしれない. 
+Adds the given <a class="el" href="classm3g_1_1AnimationTrack.html">AnimationTrack</a> to this <a class="el" href="classm3g_1_1Object3D.html">Object3D</a>, potentially changing the order and indices of the previously added tracks. 
+<p>Reimplemented from <a class="el" href="classm3g_1_1Object3D.html#415c0b110f95410ded9b85e5d99a496b">Object3D</a>.</p>
+
 </div>
 </div><p>
 <a class="anchor" name="82cfeb67ca66b93e2ca7bda9a4f0e2aa"></a><!-- doxytag: member="m3g::VertexBuffer::animate" ref="82cfeb67ca66b93e2ca7bda9a4f0e2aa" args="(int time)" -->
@@ -147,7 +149,7 @@ VertexBufferは頂点位置、法線、色、テクスチャー座標を含むVe
           <td class="memname">int animate           </td>
           <td>(</td>
           <td class="paramtype">int&nbsp;</td>
-          <td class="paramname"> <em>time</em>          </td>
+          <td class="paramname"> <em>world_time</em>          </td>
           <td>&nbsp;)&nbsp;</td>
           <td><code> [virtual]</code></td>
         </tr>
@@ -156,7 +158,7 @@ VertexBufferは頂点位置、法線、色、テクスチャー座標を含むVe
 <div class="memdoc">
 
 <p>
-アニメーションの更新. 
+Updates all animated properties in this <a class="el" href="classm3g_1_1Object3D.html">Object3D</a> and all Object3Ds that are reachable from this <a class="el" href="classm3g_1_1Object3D.html">Object3D</a>. 
 <p>Reimplemented from <a class="el" href="classm3g_1_1Object3D.html#8aad1ceab4c2a03609c8a42324ce484d">Object3D</a>.</p>
 
 </div>
@@ -208,7 +210,7 @@ Find all objects by object type.
 <div class="memdoc">
 
 <p>
-カレントのカラー配列を取得する。もし頂点カラーが定義されていなければnullが返る. 
+Gets the current color array. 
 </div>
 </div><p>
 <a class="anchor" name="4e33b93a98ce0632d51e7ae775ae5b1e"></a><!-- doxytag: member="m3g::VertexBuffer::getDefaultColor" ref="4e33b93a98ce0632d51e7ae775ae5b1e" args="() const " -->
@@ -227,7 +229,7 @@ Find all objects by object type.
 <div class="memdoc">
 
 <p>
-このVertexBufferのデフォルトカラーを取得. 
+Retrieves the default color of this <a class="el" href="classm3g_1_1VertexBuffer.html">VertexBuffer</a>. 
 </div>
 </div><p>
 <a class="anchor" name="0f4341d1215ff8f4efeaa40a21327c0c"></a><!-- doxytag: member="m3g::VertexBuffer::getNormals" ref="0f4341d1215ff8f4efeaa40a21327c0c" args="() const " -->
@@ -246,7 +248,7 @@ Find all objects by object type.
 <div class="memdoc">
 
 <p>
-カレントの法線ベクトルの配列を取得する。もし頂点法線が定義されていなければnullが返る. 
+Gets the current normal vector array. 
 </div>
 </div><p>
 <a class="anchor" name="5ca059361f9f834dd00b5d595bf3df0b"></a><!-- doxytag: member="m3g::VertexBuffer::getPositions" ref="5ca059361f9f834dd00b5d595bf3df0b" args="(float *scale_bias) const " -->
@@ -266,7 +268,7 @@ Find all objects by object type.
 <div class="memdoc">
 
 <p>
-カレントの頂点座標の配列を取得する。もし頂点配列が定義されていなければnullが返る. 
+Returns the current vertex position array. 
 </div>
 </div><p>
 <a class="anchor" name="9015840c09da0691c31a8aab5e09404a"></a><!-- doxytag: member="m3g::VertexBuffer::getTexCoords" ref="9015840c09da0691c31a8aab5e09404a" args="(int index, float *scale_bias) const " -->
@@ -295,7 +297,7 @@ Find all objects by object type.
 <div class="memdoc">
 
 <p>
-カレントのテクスチャー座標の配列を取得する。もしテクスチャー座標が定義されていなければnullが返る. 
+Gets the current texture coordinate array for the specified texture unit. 
 </div>
 </div><p>
 <a class="anchor" name="6fea17fa1532df3794f8cb39cb4f911f"></a><!-- doxytag: member="m3g::VertexBuffer::print" ref="6fea17fa1532df3794f8cb39cb4f911f" args="(std::ostream &amp;out) const " -->
@@ -315,7 +317,7 @@ Find all objects by object type.
 <div class="memdoc">
 
 <p>
-このVertexBufferクラスの情報を表示する。デバッグ用. 
+Print out information of this object, for debug only. 
 <p>Reimplemented from <a class="el" href="classm3g_1_1Object3D.html#6fea17fa1532df3794f8cb39cb4f911f">Object3D</a>.</p>
 
 </div>
@@ -337,7 +339,7 @@ Find all objects by object type.
 <div class="memdoc">
 
 <p>
-このVertexBufferに頂点カラーを設定する.<p>
+Sets the per-vertex color for this <a class="el" href="classm3g_1_1VertexBuffer.html">VertexBuffer</a>.<p>
 x:[-128,127] --&gt; y:[0,1] y = (x+128)/255 
 </div>
 </div><p>
@@ -358,7 +360,7 @@ x:[-128,127] --&gt; y:[0,1] y = (x+128)/255
 <div class="memdoc">
 
 <p>
-頂点カラーが設定されていないときのカラーを設定する. 
+Sets the color to use in absence of per-vetex colors. 
 </div>
 </div><p>
 <a class="anchor" name="4aabe6277538d5aa8285759dab85002a"></a><!-- doxytag: member="m3g::VertexBuffer::setNormals" ref="4aabe6277538d5aa8285759dab85002a" args="(VertexArray *normals)" -->
@@ -378,7 +380,7 @@ x:[-128,127] --&gt; y:[0,1] y = (x+128)/255
 <div class="memdoc">
 
 <p>
-このVertexBufferに頂点法線を設定する.<p>
+Sets the normal vectors for this <a class="el" href="classm3g_1_1VertexBuffer.html">VertexBuffer</a>.<p>
 x:[-128,127] --&gt; y:[-1,1], or x:[-32768,32767] --&gt; y:[-1,1] y = (2x+1)/255, or y = (2x+1)/65535 
 </div>
 </div><p>
@@ -414,10 +416,10 @@ x:[-128,127] --&gt; y:[-1,1], or x:[-32768,32767] --&gt; y:[-1,1] y = (2x+1)/255
 <div class="memdoc">
 
 <p>
-このVertexBufferに頂点座標を設定する. 
+Sets the vertex positions for this <a class="el" href="classm3g_1_1VertexBuffer.html">VertexBuffer</a>. 
 </div>
 </div><p>
-<a class="anchor" name="626af19bd7702480ac9e8ea4532d27d5"></a><!-- doxytag: member="m3g::VertexBuffer::setTexCoords" ref="626af19bd7702480ac9e8ea4532d27d5" args="(int index, VertexArray *texCoords, float scale, float *bias)" -->
+<a class="anchor" name="9fd3dd3f78138d654d18863e4f1329f4"></a><!-- doxytag: member="m3g::VertexBuffer::setTexCoords" ref="9fd3dd3f78138d654d18863e4f1329f4" args="(int index, VertexArray *tex_coords, float scale, float *bias)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -431,7 +433,7 @@ x:[-128,127] --&gt; y:[-1,1], or x:[-32768,32767] --&gt; y:[-1,1] y = (2x+1)/255
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype"><a class="el" href="classm3g_1_1VertexArray.html">VertexArray</a> *&nbsp;</td>
-          <td class="paramname"> <em>texCoords</em>, </td>
+          <td class="paramname"> <em>tex_coords</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -455,13 +457,13 @@ x:[-128,127] --&gt; y:[-1,1], or x:[-32768,32767] --&gt; y:[-1,1] y = (2x+1)/255
 <div class="memdoc">
 
 <p>
-このVertexBufferにテクスチャー座標を設定する. 
+Sets the texture coordinates for the specified textureing unit. 
 </div>
 </div><p>
 <hr>The documentation for this class was generated from the following files:<ul>
 <li>/work/desktop-m3g/src/<a class="el" href="VertexBuffer_8hpp-source.html">VertexBuffer.hpp</a><li>/work/desktop-m3g/src/VertexBuffer.cpp</ul>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Fri Mar 12 10:22:44 2010 by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Wed Apr 7 10:24:31 2010 by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.8 </small></address>
 </body>

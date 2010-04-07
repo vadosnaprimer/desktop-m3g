@@ -17,9 +17,9 @@ Inheritance diagram for IndexBuffer::\begin{figure}[H]
 \item 
 virtual \hyperlink{classm3g_1_1IndexBuffer_ac7952364fe4d2d7b2731da5380c841c}{$\sim$IndexBuffer} ()
 \item 
-int \hyperlink{classm3g_1_1IndexBuffer_fe9ae2993ebcdb93d5ff26d57c81b73e}{getIndexCount} () const 
+virtual int \hyperlink{classm3g_1_1IndexBuffer_ac7d2c37f177b21195a81f00061ef94e}{getIndexCount} () const =0
 \item 
-void \hyperlink{classm3g_1_1IndexBuffer_650953afac45099025a524ab160b911f}{getIndices} (int $\ast$indices)
+virtual void \hyperlink{classm3g_1_1IndexBuffer_59fb1eca8810ea3b028735c5dce53fca}{getIndices} (int $\ast$indices)=0
 \item 
 virtual std::ostream \& \hyperlink{classm3g_1_1IndexBuffer_6fea17fa1532df3794f8cb39cb4f911f}{print} (std::ostream \&out) const 
 \end{CompactItemize}
@@ -27,21 +27,6 @@ virtual std::ostream \& \hyperlink{classm3g_1_1IndexBuffer_6fea17fa1532df3794f8c
 \begin{CompactItemize}
 \item 
 virtual void \hyperlink{classm3g_1_1IndexBuffer_1efcb1973989d9963d5bd6d03065d389}{render} (int pass, int index=0) const 
-\item 
-void \hyperlink{classm3g_1_1IndexBuffer_26c5b78691f0f92bd8589714cc25b6a8}{setIndices} (int num\_\-index, int first\_\-index)
-\end{CompactItemize}
-\subsection*{Protected Attributes}
-\begin{CompactItemize}
-\item 
-\hypertarget{classm3g_1_1IndexBuffer_11d260eb623ff241a55524ad8bc9beb4}{
-PROTECTED \textbf{\_\-\_\-pad0\_\-\_\-}: void setIndices (int num\_\-index}
-\label{classm3g_1_1IndexBuffer_11d260eb623ff241a55524ad8bc9beb4}
-
-\item 
-\hypertarget{classm3g_1_1IndexBuffer_6b7df92152fe609a14f72e9634a55421}{
-PROTECTED int $\ast$ \textbf{indices}}
-\label{classm3g_1_1IndexBuffer_6b7df92152fe609a14f72e9634a55421}
-
 \end{CompactItemize}
 \subsection*{Friends}
 \begin{CompactItemize}
@@ -74,21 +59,25 @@ Construct a new \hyperlink{classm3g_1_1IndexBuffer}{IndexBuffer} Object. \hypert
 このオブジェクトを削除するデストラクタ. 
 
 \subsection{Member Function Documentation}
-\hypertarget{classm3g_1_1IndexBuffer_fe9ae2993ebcdb93d5ff26d57c81b73e}{
+\hypertarget{classm3g_1_1IndexBuffer_ac7d2c37f177b21195a81f00061ef94e}{
 \index{m3g::IndexBuffer@{m3g::IndexBuffer}!getIndexCount@{getIndexCount}}
 \index{getIndexCount@{getIndexCount}!m3g::IndexBuffer@{m3g::IndexBuffer}}
-\subsubsection[{getIndexCount}]{\setlength{\rightskip}{0pt plus 5cm}int getIndexCount () const}}
-\label{classm3g_1_1IndexBuffer_fe9ae2993ebcdb93d5ff26d57c81b73e}
+\subsubsection[{getIndexCount}]{\setlength{\rightskip}{0pt plus 5cm}virtual int getIndexCount () const\hspace{0.3cm}{\tt  \mbox{[}pure virtual\mbox{]}}}}
+\label{classm3g_1_1IndexBuffer_ac7d2c37f177b21195a81f00061ef94e}
 
 
-Returns the number of indices in this buffer. \hypertarget{classm3g_1_1IndexBuffer_650953afac45099025a524ab160b911f}{
+Returns the number of indices in this buffer. 
+
+Implemented in \hyperlink{classm3g_1_1TriangleStripArray_fe9ae2993ebcdb93d5ff26d57c81b73e}{TriangleStripArray}.\hypertarget{classm3g_1_1IndexBuffer_59fb1eca8810ea3b028735c5dce53fca}{
 \index{m3g::IndexBuffer@{m3g::IndexBuffer}!getIndices@{getIndices}}
 \index{getIndices@{getIndices}!m3g::IndexBuffer@{m3g::IndexBuffer}}
-\subsubsection[{getIndices}]{\setlength{\rightskip}{0pt plus 5cm}void getIndices (int $\ast$ {\em indices})}}
-\label{classm3g_1_1IndexBuffer_650953afac45099025a524ab160b911f}
+\subsubsection[{getIndices}]{\setlength{\rightskip}{0pt plus 5cm}virtual void getIndices (int $\ast$ {\em indices})\hspace{0.3cm}{\tt  \mbox{[}pure virtual\mbox{]}}}}
+\label{classm3g_1_1IndexBuffer_59fb1eca8810ea3b028735c5dce53fca}
 
 
-Retrieves vertex indices for the rendering primitives stored in this buffer. \hypertarget{classm3g_1_1IndexBuffer_6fea17fa1532df3794f8cb39cb4f911f}{
+Retrieves vertex indices for the rendering primitives stored in this buffer. 
+
+Implemented in \hyperlink{classm3g_1_1TriangleStripArray_650953afac45099025a524ab160b911f}{TriangleStripArray}.\hypertarget{classm3g_1_1IndexBuffer_6fea17fa1532df3794f8cb39cb4f911f}{
 \index{m3g::IndexBuffer@{m3g::IndexBuffer}!print@{print}}
 \index{print@{print}!m3g::IndexBuffer@{m3g::IndexBuffer}}
 \subsubsection[{print}]{\setlength{\rightskip}{0pt plus 5cm}std::ostream \& print (std::ostream \& {\em out}) const\hspace{0.3cm}{\tt  \mbox{[}virtual\mbox{]}}}}
@@ -112,14 +101,7 @@ Note: \hyperlink{classm3g_1_1Background}{Background} should be rendered only at 
 
 Reimplemented from \hyperlink{classm3g_1_1Object3D_1efcb1973989d9963d5bd6d03065d389}{Object3D}.
 
-Reimplemented in \hyperlink{classm3g_1_1TriangleStripArray_1efcb1973989d9963d5bd6d03065d389}{TriangleStripArray}.\hypertarget{classm3g_1_1IndexBuffer_26c5b78691f0f92bd8589714cc25b6a8}{
-\index{m3g::IndexBuffer@{m3g::IndexBuffer}!setIndices@{setIndices}}
-\index{setIndices@{setIndices}!m3g::IndexBuffer@{m3g::IndexBuffer}}
-\subsubsection[{setIndices}]{\setlength{\rightskip}{0pt plus 5cm}void setIndices (int {\em num\_\-index}, \/  int {\em first\_\-index})\hspace{0.3cm}{\tt  \mbox{[}protected\mbox{]}}}}
-\label{classm3g_1_1IndexBuffer_26c5b78691f0f92bd8589714cc25b6a8}
-
-
-Allocate indices, for inner use. 
+Reimplemented in \hyperlink{classm3g_1_1TriangleStripArray_1efcb1973989d9963d5bd6d03065d389}{TriangleStripArray}.
 
 The documentation for this class was generated from the following files:\begin{CompactItemize}
 \item 

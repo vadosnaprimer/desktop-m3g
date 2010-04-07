@@ -1,5 +1,5 @@
 #SRC = $(wildcard *.tex)
-SRC = Tutorial-ja.tex
+SRC = tutorial-ja.tex
 DVI = $(SRC*.tex=.dvi)
 PDF = $(SRC:.tex=.pdf)
 TEXC = platex

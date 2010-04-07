@@ -110,7 +110,7 @@ class \textbf{Appearance}}
 \label{classm3g_1_1Texture2D_060332aea614a81a914cd2e55f1794df}
 
 
-デストラクタ. 
+このオブジェクトを削除するデストラクタ. 
 
 \subsection{関数}
 \hypertarget{classm3g_1_1Texture2D_415c0b110f95410ded9b85e5d99a496b}{
@@ -120,16 +120,16 @@ class \textbf{Appearance}}
 \label{classm3g_1_1Texture2D_415c0b110f95410ded9b85e5d99a496b}
 
 
-アニメーショントラックの追加。 既存のトラックの順番とインデックスは変更されるかもしれない. 
+このObject3Dに指定されたアニメーショントラックを追加する。 既存のトラックの順番とインデックスは変更されるかもしれない. 
 
 \hyperlink{classm3g_1_1Transformable_415c0b110f95410ded9b85e5d99a496b}{Transformable}を再定義しています。\hypertarget{classm3g_1_1Texture2D_82cfeb67ca66b93e2ca7bda9a4f0e2aa}{
 \index{m3g::Texture2D@{m3g::Texture2D}!animate@{animate}}
 \index{animate@{animate}!m3g::Texture2D@{m3g::Texture2D}}
-\subsubsection[{animate}]{\setlength{\rightskip}{0pt plus 5cm}int animate (int {\em time})\hspace{0.3cm}{\tt  \mbox{[}virtual\mbox{]}}}}
+\subsubsection[{animate}]{\setlength{\rightskip}{0pt plus 5cm}int animate (int {\em world\_\-time})\hspace{0.3cm}{\tt  \mbox{[}virtual\mbox{]}}}}
 \label{classm3g_1_1Texture2D_82cfeb67ca66b93e2ca7bda9a4f0e2aa}
 
 
-アニメーションの更新. y 
+このObject3D自身とここから到達できるObject3Dのアニメーテッドプロパティを更新する. 
 
 \hyperlink{classm3g_1_1Transformable_8aad1ceab4c2a03609c8a42324ce484d}{Transformable}を再定義しています。\hypertarget{classm3g_1_1Texture2D_4dadb21b568b0230fac106f15040138c}{
 \index{m3g::Texture2D@{m3g::Texture2D}!findByObjectType@{findByObjectType}}
@@ -138,7 +138,7 @@ class \textbf{Appearance}}
 \label{classm3g_1_1Texture2D_4dadb21b568b0230fac106f15040138c}
 
 
-オブジェクトタイプを指定して検索. 
+オブジェクトタイプを指定して検索するM3G非標準の関数. 
 
 \hyperlink{classm3g_1_1Object3D_4dadb21b568b0230fac106f15040138c}{Object3D}を再定義しています。\hypertarget{classm3g_1_1Texture2D_b7dc7b7bf2934448281894f2c1ef3638}{
 \index{m3g::Texture2D@{m3g::Texture2D}!getBlendColor@{getBlendColor}}
@@ -250,14 +250,14 @@ S,Tテクスチャー座標のラッピングモードの設定.
 \label{classm3g_1_1Texture2D_5f06003f50141919a3665d22f55602a8}
 
 
-バイリニア補完を表す定数値. \hypertarget{classm3g_1_1Texture2D_1ee2e06d6462fdafd5f17e63eddfb8fe}{
+線形補間を表す定数値. \hypertarget{classm3g_1_1Texture2D_1ee2e06d6462fdafd5f17e63eddfb8fe}{
 \index{m3g::Texture2D@{m3g::Texture2D}!FILTER\_\-NEAREST@{FILTER\_\-NEAREST}}
 \index{FILTER\_\-NEAREST@{FILTER\_\-NEAREST}!m3g::Texture2D@{m3g::Texture2D}}
 \subsubsection[{FILTER\_\-NEAREST}]{\setlength{\rightskip}{0pt plus 5cm}const int {\bf FILTER\_\-NEAREST} = 210\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
 \label{classm3g_1_1Texture2D_1ee2e06d6462fdafd5f17e63eddfb8fe}
 
 
-ニアレストネイバーを表す定数値. \hypertarget{classm3g_1_1Texture2D_825ea3aff59f79958257ac557c802760}{
+最近傍補間を表す定数値. \hypertarget{classm3g_1_1Texture2D_825ea3aff59f79958257ac557c802760}{
 \index{m3g::Texture2D@{m3g::Texture2D}!FUNC\_\-ADD@{FUNC\_\-ADD}}
 \index{FUNC\_\-ADD@{FUNC\_\-ADD}!m3g::Texture2D@{m3g::Texture2D}}
 \subsubsection[{FUNC\_\-ADD}]{\setlength{\rightskip}{0pt plus 5cm}const int {\bf FUNC\_\-ADD} = 224\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}

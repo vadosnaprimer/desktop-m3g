@@ -13,6 +13,17 @@ namespace m3g {
    */
   class KeyframeSequence : public Object3D
   {
+    /**
+     * @~English  Struct of valid range, for inner use.
+     * @~Japanese 有効時間を定義する内部使用構造体.
+     */
+    struct ValidRange {
+      ValidRange (int first_, int last_) : first(first_), last(last_) {};
+      int first;
+      int last;
+    };
+  
+
   public:
     /**
      * @~English  A parameter to setRepeatMode, specifying that this sequence is to be played back just once and not repeated.
@@ -50,18 +61,7 @@ namespace m3g {
      */
     static const int STEP     = 180;
 
-    /**
-     * @~English  Struct of valid range, for inner use.
-     * @~Japanese 有効時間を定義する内部使用構造体.
-     */
-    struct ValidRange {
-      ValidRange (int first_, int last_) : first(first_), last(last_) {};
-      int first;
-      int last;
-    };
-  
 
-  public:
     /**
      * @~English  Constructs a new2 keyframe sequence with specified interpolation method,
      *            number of components per keyframe, and number of keyframes.

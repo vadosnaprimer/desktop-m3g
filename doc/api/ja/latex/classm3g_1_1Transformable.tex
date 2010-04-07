@@ -30,7 +30,7 @@ virtual int \hyperlink{classm3g_1_1Transformable_8aad1ceab4c2a03609c8a42324ce484
 \item 
 void \hyperlink{classm3g_1_1Transformable_263ef66efed11b7f9678e2e4bbec4c55}{getCompositeTransform} (\hyperlink{classm3g_1_1Transform}{Transform} $\ast$transform) const 
 \item 
-void \hyperlink{classm3g_1_1Transformable_f4df4d4858762f23a5562f7192e6d53c}{getOrientation} (float $\ast$angleAixs) const 
+void \hyperlink{classm3g_1_1Transformable_06125ab0d85ef8c5c7ace9ced04993f3}{getOrientation} (float $\ast$angle\_\-aixs) const 
 \item 
 void \hyperlink{classm3g_1_1Transformable_b8a2dd11d0ba90e138625eb86a6a6083}{getScale} (float $\ast$xyz) const 
 \item 
@@ -64,7 +64,7 @@ virtual void \hyperlink{classm3g_1_1Transformable_1efcb1973989d9963d5bd6d03065d3
 
 
 \subsection{説明}
-ノードや2Dテクスチャーの座標変換を抽象クラス. 
+ノードや2Dテクスチャーのための座標変換を扱う抽象クラス. 
 
 \subsection{コンストラクタとデストラクタ}
 \hypertarget{classm3g_1_1Transformable_ca6563203e3e883391c9d0927028aa04}{
@@ -93,6 +93,8 @@ virtual void \hyperlink{classm3g_1_1Transformable_1efcb1973989d9963d5bd6d03065d3
 
 このObject3Dに指定されたアニメーショントラックを追加する。 既存のトラックの順番とインデックスは変更されるかもしれない. 
 
+\hyperlink{classm3g_1_1Object3D_415c0b110f95410ded9b85e5d99a496b}{Object3D}を再定義しています。
+
 \hyperlink{classm3g_1_1Camera_415c0b110f95410ded9b85e5d99a496b}{Camera}, \hyperlink{classm3g_1_1Light_415c0b110f95410ded9b85e5d99a496b}{Light}, \hyperlink{classm3g_1_1MorphingMesh_415c0b110f95410ded9b85e5d99a496b}{MorphingMesh}, \hyperlink{classm3g_1_1Node_415c0b110f95410ded9b85e5d99a496b}{Node}, \hyperlink{classm3g_1_1Sprite3D_415c0b110f95410ded9b85e5d99a496b}{Sprite3D}, と \hyperlink{classm3g_1_1Texture2D_415c0b110f95410ded9b85e5d99a496b}{Texture2D}で再定義されています。\hypertarget{classm3g_1_1Transformable_8aad1ceab4c2a03609c8a42324ce484d}{
 \index{m3g::Transformable@{m3g::Transformable}!animate@{animate}}
 \index{animate@{animate}!m3g::Transformable@{m3g::Transformable}}
@@ -111,11 +113,11 @@ virtual void \hyperlink{classm3g_1_1Transformable_1efcb1973989d9963d5bd6d03065d3
 \label{classm3g_1_1Transformable_263ef66efed11b7f9678e2e4bbec4c55}
 
 
-このクラスの複合変換行列を取得する. \hypertarget{classm3g_1_1Transformable_f4df4d4858762f23a5562f7192e6d53c}{
+このクラスの複合変換行列を取得する. \hypertarget{classm3g_1_1Transformable_06125ab0d85ef8c5c7ace9ced04993f3}{
 \index{m3g::Transformable@{m3g::Transformable}!getOrientation@{getOrientation}}
 \index{getOrientation@{getOrientation}!m3g::Transformable@{m3g::Transformable}}
-\subsubsection[{getOrientation}]{\setlength{\rightskip}{0pt plus 5cm}void getOrientation (float $\ast$ {\em angleAixs}) const}}
-\label{classm3g_1_1Transformable_f4df4d4858762f23a5562f7192e6d53c}
+\subsubsection[{getOrientation}]{\setlength{\rightskip}{0pt plus 5cm}void getOrientation (float $\ast$ {\em angle\_\-aixs}) const}}
+\label{classm3g_1_1Transformable_06125ab0d85ef8c5c7ace9ced04993f3}
 
 
 このクラスのorientation要素を取得する. \hypertarget{classm3g_1_1Transformable_b8a2dd11d0ba90e138625eb86a6a6083}{

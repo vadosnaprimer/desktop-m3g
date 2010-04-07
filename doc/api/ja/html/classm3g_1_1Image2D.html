@@ -58,11 +58,13 @@ Image2Dに対する継承グラフ</div>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Image2D.html#fe9ef1abefb9e92b38687e27c9004bdc">set</a> (int x, int y, int width, int height, void *image)</td></tr>
 
-<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Image2D.html#6ec48e0681b8805c75ecadf4ba4a40cb">write_ppm</a> (const char *name) const </td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Image2D.html#32ee5b2bcc9c7bf69b925413eeccb4bf">write_ppm</a> (const char *file_name) const </td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">virtual std::ostream &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Image2D.html#6fea17fa1532df3794f8cb39cb4f911f">print</a> (std::ostream &amp;out) const </td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">GLenum&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Image2D.html#7923da2fe82fee768ec9937a693e843c">getOpenGLFormat</a> () const </td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Image2D.html#b837b1bdda59947a6d818c448965c502">getOpenGLData</a> () const </td></tr>
 
 <tr><td colspan="2"><br><h2>Static Public 変数</h2></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">static const int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Image2D.html#417581fcde4067111f47320edb2aa378">ALPHA</a> = 96</td></tr>
@@ -87,7 +89,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>Sprite3D</b></td></t
 
 </table>
 <hr><a name="_details"></a><h2>説明</h2>
-テクスチャー、バックグラウンド、スプライト画像として使う2D画像. <hr><h2>コンストラクタとデストラクタ</h2>
+テクスチャー、バックグラウンド、スプライト画像として使う2D画像クラス. <hr><h2>コンストラクタとデストラクタ</h2>
 <a class="anchor" name="cea21be298c6584490d2b714c4b29d6b"></a><!-- doxytag: member="m3g::Image2D::Image2D" ref="cea21be298c6584490d2b714c4b29d6b" args="(int format, int width, int height)" -->
 <div class="memitem">
 <div class="memproto">
@@ -269,6 +271,25 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>Sprite3D</b></td></t
 このImage2Dクラスの高さをピクセル数で取得. 
 </div>
 </div><p>
+<a class="anchor" name="b837b1bdda59947a6d818c448965c502"></a><!-- doxytag: member="m3g::Image2D::getOpenGLData" ref="b837b1bdda59947a6d818c448965c502" args="() const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void * getOpenGLData           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+内部データへのポインターを返すM3G未定義の関数. 
+</div>
+</div><p>
 <a class="anchor" name="7923da2fe82fee768ec9937a693e843c"></a><!-- doxytag: member="m3g::Image2D::getOpenGLFormat" ref="7923da2fe82fee768ec9937a693e843c" args="() const " -->
 <div class="memitem">
 <div class="memproto">
@@ -395,7 +416,7 @@ OpenGLの画像形式を返すM3G未定義の関数.
 バイト配列からピクセルをコピーしてこのImage2Dクラスの矩形領域を更新する. 
 </div>
 </div><p>
-<a class="anchor" name="6ec48e0681b8805c75ecadf4ba4a40cb"></a><!-- doxytag: member="m3g::Image2D::write_ppm" ref="6ec48e0681b8805c75ecadf4ba4a40cb" args="(const char *name) const " -->
+<a class="anchor" name="32ee5b2bcc9c7bf69b925413eeccb4bf"></a><!-- doxytag: member="m3g::Image2D::write_ppm" ref="32ee5b2bcc9c7bf69b925413eeccb4bf" args="(const char *file_name) const " -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -412,7 +433,7 @@ OpenGLの画像形式を返すM3G未定義の関数.
 <div class="memdoc">
 
 <p>
-ppm画像として出力する。この関数はデバッグ用でありリリースに含まれていてはならない.<p>
+ppm画像として出力するM3G非標準の関数。 この関数はデバッグ用でありリリースに含まれていてはならない.<p>
 注意：OpenGLは左下が(0,0)、ppmは左上が(0,0) 
 </div>
 </div><p>
@@ -495,7 +516,7 @@ R,G,B,Aを持つ画像を表す定数.
 <hr>このクラスの説明は次のファイルから生成されました:<ul>
 <li>/work/desktop-m3g/src/<a class="el" href="Image2D_8hpp-source.html">Image2D.hpp</a><li>/work/desktop-m3g/src/Image2D.cpp</ul>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Fri Mar 12 10:22:37 2010に生成されました。&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Wed Apr 7 10:24:22 2010に生成されました。&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.8 </small></address>
 </body>

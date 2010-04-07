@@ -57,6 +57,8 @@ Object3Dに対する継承グラフ</div>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">virtual&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Object3D.html#8ece10725587e63a2c75283c16cc4df5">~Object3D</a> ()</td></tr>
 
+<tr><td class="memItemLeft" nowrap align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Object3D.html#415c0b110f95410ded9b85e5d99a496b">addAnimationTrack</a> (<a class="el" href="classm3g_1_1AnimationTrack.html">AnimationTrack</a> *animation_track)</td></tr>
+
 <tr><td class="memItemLeft" nowrap align="right" valign="top">virtual int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Object3D.html#8aad1ceab4c2a03609c8a42324ce484d">animate</a> (int world_time)</td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">virtual <a class="el" href="classm3g_1_1Object3D.html">Object3D</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Object3D.html#a25110dac934f867b83b73ad4741a0f4">duplicate</a> () const </td></tr>
@@ -77,24 +79,18 @@ Object3Dに対する継承グラフ</div>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Object3D.html#5e4753e91dca5aa56abacb7fde69f332">setUserID</a> (int userID)</td></tr>
 
-<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Object3D.html#052563fbd888204955f1a56628882f14">setUserObject</a> (void *user_object_value)</td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top">virtual std::ostream &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Object3D.html#6fea17fa1532df3794f8cb39cb4f911f">print</a> (std::ostream &amp;out) const </td></tr>
-
-<tr><td colspan="2"><br><h2>Public 変数</h2></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="11d260eb623ff241a55524ad8bc9beb4"></a><!-- doxytag: member="m3g::Object3D::__pad0__" ref="11d260eb623ff241a55524ad8bc9beb4" args="" -->
-PROTECTED&nbsp;</td><td class="memItemRight" valign="bottom"><b>__pad0__</b>: virtual void addAnimationTrack (<a class="el" href="classm3g_1_1AnimationTrack.html">AnimationTrack</a>* animation_track)</td></tr>
-
-<tr><td colspan="2"><br><h2>Protected メソッド</h2></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Object3D.html#1efcb1973989d9963d5bd6d03065d389">render</a> (int pass, int index=0) const </td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Object3D.html#989411d827091f4a5e97e0377bbd1a7a">setUserObject</a> (const char *name, void *value)</td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Object3D.html#06be1b37b707b5f227cba2308043f3df">getObjectType</a> () const </td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Object3D.html#4dadb21b568b0230fac106f15040138c">findByObjectType</a> (int obj_type, std::vector&lt; <a class="el" href="classm3g_1_1Object3D.html">Object3D</a> * &gt; &amp;objs) const </td></tr>
 
-<tr><td colspan="2"><br><h2>Protected 変数</h2></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="1868c0b310409e4b2258f29504e43760"></a><!-- doxytag: member="m3g::Object3D::__pad1__" ref="1868c0b310409e4b2258f29504e43760" args="" -->
-PROTECTED&nbsp;</td><td class="memItemRight" valign="bottom"><b>__pad1__</b>: void setObjectType (int type)</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">virtual std::ostream &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Object3D.html#6fea17fa1532df3794f8cb39cb4f911f">print</a> (std::ostream &amp;out) const </td></tr>
+
+<tr><td colspan="2"><br><h2>Protected メソッド</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Object3D.html#1efcb1973989d9963d5bd6d03065d389">render</a> (int pass, int index=0) const </td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Object3D.html#777701a101d1332abffa2ad6a255b91d">setObjectType</a> (int type)</td></tr>
 
 </table>
 <hr><a name="_details"></a><h2>説明</h2>
@@ -138,6 +134,28 @@ PROTECTED&nbsp;</td><td class="memItemRight" valign="bottom"><b>__pad1__</b>: vo
 </div>
 </div><p>
 <hr><h2>関数</h2>
+<a class="anchor" name="415c0b110f95410ded9b85e5d99a496b"></a><!-- doxytag: member="m3g::Object3D::addAnimationTrack" ref="415c0b110f95410ded9b85e5d99a496b" args="(AnimationTrack *animation_track)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void addAnimationTrack           </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classm3g_1_1AnimationTrack.html">AnimationTrack</a> *&nbsp;</td>
+          <td class="paramname"> <em>animation_track</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+このObject3Dに指定されたアニメーショントラックを追加する。 既存のトラックの順番とインデックスは変更されるかもしれない. 
+<p><a class="el" href="classm3g_1_1Background.html#415c0b110f95410ded9b85e5d99a496b">Background</a>, <a class="el" href="classm3g_1_1Camera.html#415c0b110f95410ded9b85e5d99a496b">Camera</a>, <a class="el" href="classm3g_1_1Fog.html#415c0b110f95410ded9b85e5d99a496b">Fog</a>, <a class="el" href="classm3g_1_1Light.html#415c0b110f95410ded9b85e5d99a496b">Light</a>, <a class="el" href="classm3g_1_1Material.html#415c0b110f95410ded9b85e5d99a496b">Material</a>, <a class="el" href="classm3g_1_1MorphingMesh.html#415c0b110f95410ded9b85e5d99a496b">MorphingMesh</a>, <a class="el" href="classm3g_1_1Node.html#415c0b110f95410ded9b85e5d99a496b">Node</a>, <a class="el" href="classm3g_1_1Sprite3D.html#415c0b110f95410ded9b85e5d99a496b">Sprite3D</a>, <a class="el" href="classm3g_1_1Texture2D.html#415c0b110f95410ded9b85e5d99a496b">Texture2D</a>, <a class="el" href="classm3g_1_1Transformable.html#415c0b110f95410ded9b85e5d99a496b">Transformable</a>, と <a class="el" href="classm3g_1_1VertexBuffer.html#415c0b110f95410ded9b85e5d99a496b">VertexBuffer</a>で再定義されています。</p>
+
+</div>
+</div><p>
 <a class="anchor" name="8aad1ceab4c2a03609c8a42324ce484d"></a><!-- doxytag: member="m3g::Object3D::animate" ref="8aad1ceab4c2a03609c8a42324ce484d" args="(int world_time)" -->
 <div class="memitem">
 <div class="memproto">
@@ -218,15 +236,15 @@ PROTECTED&nbsp;</td><td class="memItemRight" valign="bottom"><b>__pad1__</b>: vo
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td></td><td> const<code> [protected, virtual]</code></td>
+          <td></td><td></td><td> const<code> [virtual]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
 <p>
-オブジェクトタイプを指定して検索. 
-<p><a class="el" href="classm3g_1_1Appearance.html#4dadb21b568b0230fac106f15040138c">Appearance</a>, <a class="el" href="classm3g_1_1Texture2D.html#4dadb21b568b0230fac106f15040138c">Texture2D</a>, と <a class="el" href="classm3g_1_1VertexBuffer.html#4dadb21b568b0230fac106f15040138c">VertexBuffer</a>で再定義されています。</p>
+オブジェクトタイプを指定して検索するM3G非標準の関数. 
+<p><a class="el" href="classm3g_1_1Appearance.html#4dadb21b568b0230fac106f15040138c">Appearance</a>, <a class="el" href="classm3g_1_1Group.html#4dadb21b568b0230fac106f15040138c">Group</a>, <a class="el" href="classm3g_1_1Texture2D.html#4dadb21b568b0230fac106f15040138c">Texture2D</a>, と <a class="el" href="classm3g_1_1VertexBuffer.html#4dadb21b568b0230fac106f15040138c">VertexBuffer</a>で再定義されています。</p>
 
 </div>
 </div><p>
@@ -278,14 +296,14 @@ PROTECTED&nbsp;</td><td class="memItemRight" valign="bottom"><b>__pad1__</b>: vo
           <td>(</td>
           <td class="paramname">          </td>
           <td>&nbsp;)&nbsp;</td>
-          <td> const<code> [protected]</code></td>
+          <td> const</td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
 <p>
-オブジェクトタイプの取得. 
+オブジェクトタイプを取得するM3G非標準の関数. 
 </div>
 </div><p>
 <a class="anchor" name="ddf91fbaaa866aa7aad5d530a69feba8"></a><!-- doxytag: member="m3g::Object3D::getReferences" ref="ddf91fbaaa866aa7aad5d530a69feba8" args="(Object3D **references, int size) const " -->
@@ -394,7 +412,7 @@ PROTECTED&nbsp;</td><td class="memItemRight" valign="bottom"><b>__pad1__</b>: vo
 <div class="memdoc">
 
 <p>
-このObject3Dから指定されたアニメーショントラックを削除する。 既存のトラックの順番やインデックスは変更されるかもしれない。 
+このObject3Dから指定されたアニメーショントラックを削除する。 既存のトラックの順番やインデックスは変更されるかもしれない. 
 </div>
 </div><p>
 <a class="anchor" name="1efcb1973989d9963d5bd6d03065d389"></a><!-- doxytag: member="m3g::Object3D::render" ref="1efcb1973989d9963d5bd6d03065d389" args="(int pass, int index=0) const " -->
@@ -428,6 +446,26 @@ PROTECTED&nbsp;</td><td class="memItemRight" valign="bottom"><b>__pad1__</b>: vo
 
 </div>
 </div><p>
+<a class="anchor" name="777701a101d1332abffa2ad6a255b91d"></a><!-- doxytag: member="m3g::Object3D::setObjectType" ref="777701a101d1332abffa2ad6a255b91d" args="(int type)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void setObjectType           </td>
+          <td>(</td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>type</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [protected]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+オブジェクトタイプの設定. 
+</div>
+</div><p>
 <a class="anchor" name="5e4753e91dca5aa56abacb7fde69f332"></a><!-- doxytag: member="m3g::Object3D::setUserID" ref="5e4753e91dca5aa56abacb7fde69f332" args="(int userID)" -->
 <div class="memitem">
 <div class="memproto">
@@ -448,17 +486,26 @@ PROTECTED&nbsp;</td><td class="memItemRight" valign="bottom"><b>__pad1__</b>: vo
 このオブジェクトのユーザーIDを設定する. 
 </div>
 </div><p>
-<a class="anchor" name="052563fbd888204955f1a56628882f14"></a><!-- doxytag: member="m3g::Object3D::setUserObject" ref="052563fbd888204955f1a56628882f14" args="(void *user_object_value)" -->
+<a class="anchor" name="989411d827091f4a5e97e0377bbd1a7a"></a><!-- doxytag: member="m3g::Object3D::setUserObject" ref="989411d827091f4a5e97e0377bbd1a7a" args="(const char *name, void *value)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">void setUserObject           </td>
           <td>(</td>
-          <td class="paramtype">void *&nbsp;</td>
-          <td class="paramname"> <em>user_object_value</em>          </td>
-          <td>&nbsp;)&nbsp;</td>
+          <td class="paramtype">const char *&nbsp;</td>
+          <td class="paramname"> <em>name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">void *&nbsp;</td>
+          <td class="paramname"> <em>value</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td></td>
         </tr>
       </table>
 </div>
@@ -471,7 +518,7 @@ PROTECTED&nbsp;</td><td class="memItemRight" valign="bottom"><b>__pad1__</b>: vo
 <hr>このクラスの説明は次のファイルから生成されました:<ul>
 <li>/work/desktop-m3g/src/<a class="el" href="Object3D_8hpp-source.html">Object3D.hpp</a><li>/work/desktop-m3g/src/Object3D.cpp</ul>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Fri Mar 12 10:22:38 2010に生成されました。&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Wed Apr 7 10:24:24 2010に生成されました。&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.8 </small></address>
 </body>

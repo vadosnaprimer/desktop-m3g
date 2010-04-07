@@ -21,33 +21,23 @@ Inheritance diagram for Image2D::\begin{figure}[H]
 \item 
 virtual \hyperlink{classm3g_1_1Image2D_7ac703fe7edbb053dd2246ea1bb43200}{$\sim$Image2D} ()
 \item 
-\hypertarget{classm3g_1_1Image2D_c08e2752176d267cc4429d4d185975b8}{
-int \textbf{getFormat} () const }
-\label{classm3g_1_1Image2D_c08e2752176d267cc4429d4d185975b8}
-
+int \hyperlink{classm3g_1_1Image2D_c08e2752176d267cc4429d4d185975b8}{getFormat} () const 
 \item 
-\hypertarget{classm3g_1_1Image2D_317329daf960a1759801c0f16d43d5a3}{
-int \textbf{getHeight} () const }
-\label{classm3g_1_1Image2D_317329daf960a1759801c0f16d43d5a3}
-
+int \hyperlink{classm3g_1_1Image2D_317329daf960a1759801c0f16d43d5a3}{getHeight} () const 
 \item 
-\hypertarget{classm3g_1_1Image2D_f149cb053bc8b5fbc1364b5dbb934488}{
-int \textbf{getWidth} () const }
-\label{classm3g_1_1Image2D_f149cb053bc8b5fbc1364b5dbb934488}
-
+int \hyperlink{classm3g_1_1Image2D_f149cb053bc8b5fbc1364b5dbb934488}{getWidth} () const 
 \item 
-\hypertarget{classm3g_1_1Image2D_d687aabba553d1c66bfc253ec7e5bd05}{
-bool \textbf{isMutable} () const }
-\label{classm3g_1_1Image2D_d687aabba553d1c66bfc253ec7e5bd05}
-
+bool \hyperlink{classm3g_1_1Image2D_d687aabba553d1c66bfc253ec7e5bd05}{isMutable} () const 
 \item 
 void \hyperlink{classm3g_1_1Image2D_fe9ef1abefb9e92b38687e27c9004bdc}{set} (int x, int y, int width, int height, void $\ast$image)
 \item 
-void \hyperlink{classm3g_1_1Image2D_6ec48e0681b8805c75ecadf4ba4a40cb}{write\_\-ppm} (const char $\ast$name) const 
+void \hyperlink{classm3g_1_1Image2D_32ee5b2bcc9c7bf69b925413eeccb4bf}{write\_\-ppm} (const char $\ast$file\_\-name) const 
 \item 
 virtual std::ostream \& \hyperlink{classm3g_1_1Image2D_6fea17fa1532df3794f8cb39cb4f911f}{print} (std::ostream \&out) const 
 \item 
 GLenum \hyperlink{classm3g_1_1Image2D_7923da2fe82fee768ec9937a693e843c}{getOpenGLFormat} () const 
+\item 
+void $\ast$ \hyperlink{classm3g_1_1Image2D_b837b1bdda59947a6d818c448965c502}{getOpenGLData} () const 
 \end{CompactItemize}
 \subsection*{Static Public Attributes}
 \begin{CompactItemize}
@@ -117,14 +107,49 @@ Constructs an immutable \hyperlink{classm3g_1_1Image2D}{Image2D} by copying pale
 Destruct this object. 
 
 \subsection{Member Function Documentation}
-\hypertarget{classm3g_1_1Image2D_7923da2fe82fee768ec9937a693e843c}{
+\hypertarget{classm3g_1_1Image2D_c08e2752176d267cc4429d4d185975b8}{
+\index{m3g::Image2D@{m3g::Image2D}!getFormat@{getFormat}}
+\index{getFormat@{getFormat}!m3g::Image2D@{m3g::Image2D}}
+\subsubsection[{getFormat}]{\setlength{\rightskip}{0pt plus 5cm}int getFormat () const}}
+\label{classm3g_1_1Image2D_c08e2752176d267cc4429d4d185975b8}
+
+
+Gets the internal format of this \hyperlink{classm3g_1_1Image2D}{Image2D}. \hypertarget{classm3g_1_1Image2D_317329daf960a1759801c0f16d43d5a3}{
+\index{m3g::Image2D@{m3g::Image2D}!getHeight@{getHeight}}
+\index{getHeight@{getHeight}!m3g::Image2D@{m3g::Image2D}}
+\subsubsection[{getHeight}]{\setlength{\rightskip}{0pt plus 5cm}int getHeight () const}}
+\label{classm3g_1_1Image2D_317329daf960a1759801c0f16d43d5a3}
+
+
+Gets the hieght of this \hyperlink{classm3g_1_1Image2D}{Image2D}. \hypertarget{classm3g_1_1Image2D_b837b1bdda59947a6d818c448965c502}{
+\index{m3g::Image2D@{m3g::Image2D}!getOpenGLData@{getOpenGLData}}
+\index{getOpenGLData@{getOpenGLData}!m3g::Image2D@{m3g::Image2D}}
+\subsubsection[{getOpenGLData}]{\setlength{\rightskip}{0pt plus 5cm}void $\ast$ getOpenGLData () const}}
+\label{classm3g_1_1Image2D_b837b1bdda59947a6d818c448965c502}
+
+
+Return pointer to raw data, for inner use. \hypertarget{classm3g_1_1Image2D_7923da2fe82fee768ec9937a693e843c}{
 \index{m3g::Image2D@{m3g::Image2D}!getOpenGLFormat@{getOpenGLFormat}}
 \index{getOpenGLFormat@{getOpenGLFormat}!m3g::Image2D@{m3g::Image2D}}
 \subsubsection[{getOpenGLFormat}]{\setlength{\rightskip}{0pt plus 5cm}GLenum getOpenGLFormat () const}}
 \label{classm3g_1_1Image2D_7923da2fe82fee768ec9937a693e843c}
 
 
-Return OpenGL format, for inner use. \hypertarget{classm3g_1_1Image2D_6fea17fa1532df3794f8cb39cb4f911f}{
+Return OpenGL format, for inner use. \hypertarget{classm3g_1_1Image2D_f149cb053bc8b5fbc1364b5dbb934488}{
+\index{m3g::Image2D@{m3g::Image2D}!getWidth@{getWidth}}
+\index{getWidth@{getWidth}!m3g::Image2D@{m3g::Image2D}}
+\subsubsection[{getWidth}]{\setlength{\rightskip}{0pt plus 5cm}int getWidth () const}}
+\label{classm3g_1_1Image2D_f149cb053bc8b5fbc1364b5dbb934488}
+
+
+Gets the width of this \hyperlink{classm3g_1_1Image2D}{Image2D}. \hypertarget{classm3g_1_1Image2D_d687aabba553d1c66bfc253ec7e5bd05}{
+\index{m3g::Image2D@{m3g::Image2D}!isMutable@{isMutable}}
+\index{isMutable@{isMutable}!m3g::Image2D@{m3g::Image2D}}
+\subsubsection[{isMutable}]{\setlength{\rightskip}{0pt plus 5cm}bool isMutable () const}}
+\label{classm3g_1_1Image2D_d687aabba553d1c66bfc253ec7e5bd05}
+
+
+Qeries wheter this \hyperlink{classm3g_1_1Image2D}{Image2D} is mutable. \hypertarget{classm3g_1_1Image2D_6fea17fa1532df3794f8cb39cb4f911f}{
 \index{m3g::Image2D@{m3g::Image2D}!print@{print}}
 \index{print@{print}!m3g::Image2D@{m3g::Image2D}}
 \subsubsection[{print}]{\setlength{\rightskip}{0pt plus 5cm}std::ostream \& print (std::ostream \& {\em out}) const\hspace{0.3cm}{\tt  \mbox{[}virtual\mbox{]}}}}
@@ -140,11 +165,11 @@ Reimplemented from \hyperlink{classm3g_1_1Object3D_6fea17fa1532df3794f8cb39cb4f9
 \label{classm3g_1_1Image2D_fe9ef1abefb9e92b38687e27c9004bdc}
 
 
-Updates a rectangular area of this \hyperlink{classm3g_1_1Image2D}{Image2D} by copying pixels from a byte array. \hypertarget{classm3g_1_1Image2D_6ec48e0681b8805c75ecadf4ba4a40cb}{
+Updates a rectangular area of this \hyperlink{classm3g_1_1Image2D}{Image2D} by copying pixels from a byte array. \hypertarget{classm3g_1_1Image2D_32ee5b2bcc9c7bf69b925413eeccb4bf}{
 \index{m3g::Image2D@{m3g::Image2D}!write\_\-ppm@{write\_\-ppm}}
 \index{write\_\-ppm@{write\_\-ppm}!m3g::Image2D@{m3g::Image2D}}
 \subsubsection[{write\_\-ppm}]{\setlength{\rightskip}{0pt plus 5cm}void write\_\-ppm (const char $\ast$ {\em name}) const}}
-\label{classm3g_1_1Image2D_6ec48e0681b8805c75ecadf4ba4a40cb}
+\label{classm3g_1_1Image2D_32ee5b2bcc9c7bf69b925413eeccb4bf}
 
 
 Write image as ppm file(alpha component is ignored), for only debug .

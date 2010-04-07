@@ -56,6 +56,8 @@ Inheritance diagram for Object3D:</div>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">virtual&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Object3D.html#8ece10725587e63a2c75283c16cc4df5">~Object3D</a> ()</td></tr>
 
+<tr><td class="memItemLeft" nowrap align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Object3D.html#415c0b110f95410ded9b85e5d99a496b">addAnimationTrack</a> (<a class="el" href="classm3g_1_1AnimationTrack.html">AnimationTrack</a> *animation_track)</td></tr>
+
 <tr><td class="memItemLeft" nowrap align="right" valign="top">virtual int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Object3D.html#8aad1ceab4c2a03609c8a42324ce484d">animate</a> (int world_time)</td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">virtual <a class="el" href="classm3g_1_1Object3D.html">Object3D</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Object3D.html#a25110dac934f867b83b73ad4741a0f4">duplicate</a> () const </td></tr>
@@ -76,24 +78,18 @@ Inheritance diagram for Object3D:</div>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Object3D.html#5e4753e91dca5aa56abacb7fde69f332">setUserID</a> (int userID)</td></tr>
 
-<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Object3D.html#052563fbd888204955f1a56628882f14">setUserObject</a> (void *user_object_value)</td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top">virtual std::ostream &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Object3D.html#6fea17fa1532df3794f8cb39cb4f911f">print</a> (std::ostream &amp;out) const </td></tr>
-
-<tr><td colspan="2"><br><h2>Public Attributes</h2></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="11d260eb623ff241a55524ad8bc9beb4"></a><!-- doxytag: member="m3g::Object3D::__pad0__" ref="11d260eb623ff241a55524ad8bc9beb4" args="" -->
-PROTECTED&nbsp;</td><td class="memItemRight" valign="bottom"><b>__pad0__</b>: virtual void addAnimationTrack (<a class="el" href="classm3g_1_1AnimationTrack.html">AnimationTrack</a>* animation_track)</td></tr>
-
-<tr><td colspan="2"><br><h2>Protected Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Object3D.html#1efcb1973989d9963d5bd6d03065d389">render</a> (int pass, int index=0) const </td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Object3D.html#989411d827091f4a5e97e0377bbd1a7a">setUserObject</a> (const char *name, void *value)</td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Object3D.html#06be1b37b707b5f227cba2308043f3df">getObjectType</a> () const </td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Object3D.html#4dadb21b568b0230fac106f15040138c">findByObjectType</a> (int obj_type, std::vector&lt; <a class="el" href="classm3g_1_1Object3D.html">Object3D</a> * &gt; &amp;objs) const </td></tr>
 
-<tr><td colspan="2"><br><h2>Protected Attributes</h2></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="1868c0b310409e4b2258f29504e43760"></a><!-- doxytag: member="m3g::Object3D::__pad1__" ref="1868c0b310409e4b2258f29504e43760" args="" -->
-PROTECTED&nbsp;</td><td class="memItemRight" valign="bottom"><b>__pad1__</b>: void setObjectType (int type)</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">virtual std::ostream &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Object3D.html#6fea17fa1532df3794f8cb39cb4f911f">print</a> (std::ostream &amp;out) const </td></tr>
+
+<tr><td colspan="2"><br><h2>Protected Member Functions</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Object3D.html#1efcb1973989d9963d5bd6d03065d389">render</a> (int pass, int index=0) const </td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Object3D.html#777701a101d1332abffa2ad6a255b91d">setObjectType</a> (int type)</td></tr>
 
 </table>
 <hr><a name="_details"></a><h2>Detailed Description</h2>
@@ -137,6 +133,28 @@ Destruct this object.
 </div>
 </div><p>
 <hr><h2>Member Function Documentation</h2>
+<a class="anchor" name="415c0b110f95410ded9b85e5d99a496b"></a><!-- doxytag: member="m3g::Object3D::addAnimationTrack" ref="415c0b110f95410ded9b85e5d99a496b" args="(AnimationTrack *animation_track)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void addAnimationTrack           </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classm3g_1_1AnimationTrack.html">AnimationTrack</a> *&nbsp;</td>
+          <td class="paramname"> <em>animation_track</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Adds the given <a class="el" href="classm3g_1_1AnimationTrack.html">AnimationTrack</a> to this <a class="el" href="classm3g_1_1Object3D.html">Object3D</a>, potentially changing the order and indices of the previously added tracks. 
+<p>Reimplemented in <a class="el" href="classm3g_1_1Background.html#415c0b110f95410ded9b85e5d99a496b">Background</a>, <a class="el" href="classm3g_1_1Camera.html#415c0b110f95410ded9b85e5d99a496b">Camera</a>, <a class="el" href="classm3g_1_1Fog.html#415c0b110f95410ded9b85e5d99a496b">Fog</a>, <a class="el" href="classm3g_1_1Light.html#415c0b110f95410ded9b85e5d99a496b">Light</a>, <a class="el" href="classm3g_1_1Material.html#415c0b110f95410ded9b85e5d99a496b">Material</a>, <a class="el" href="classm3g_1_1MorphingMesh.html#415c0b110f95410ded9b85e5d99a496b">MorphingMesh</a>, <a class="el" href="classm3g_1_1Node.html#415c0b110f95410ded9b85e5d99a496b">Node</a>, <a class="el" href="classm3g_1_1Sprite3D.html#415c0b110f95410ded9b85e5d99a496b">Sprite3D</a>, <a class="el" href="classm3g_1_1Texture2D.html#415c0b110f95410ded9b85e5d99a496b">Texture2D</a>, <a class="el" href="classm3g_1_1Transformable.html#415c0b110f95410ded9b85e5d99a496b">Transformable</a>, and <a class="el" href="classm3g_1_1VertexBuffer.html#415c0b110f95410ded9b85e5d99a496b">VertexBuffer</a>.</p>
+
+</div>
+</div><p>
 <a class="anchor" name="8aad1ceab4c2a03609c8a42324ce484d"></a><!-- doxytag: member="m3g::Object3D::animate" ref="8aad1ceab4c2a03609c8a42324ce484d" args="(int world_time)" -->
 <div class="memitem">
 <div class="memproto">
@@ -155,7 +173,7 @@ Destruct this object.
 
 <p>
 Updates all animated properties in this <a class="el" href="classm3g_1_1Object3D.html">Object3D</a> and all Object3Ds that are reachable from this <a class="el" href="classm3g_1_1Object3D.html">Object3D</a>. 
-<p>Reimplemented in <a class="el" href="classm3g_1_1Appearance.html#8aad1ceab4c2a03609c8a42324ce484d">Appearance</a>, <a class="el" href="classm3g_1_1Background.html#8aad1ceab4c2a03609c8a42324ce484d">Background</a>, <a class="el" href="classm3g_1_1Camera.html#8aad1ceab4c2a03609c8a42324ce484d">Camera</a>, <a class="el" href="classm3g_1_1Fog.html#8aad1ceab4c2a03609c8a42324ce484d">Fog</a>, <a class="el" href="classm3g_1_1Material.html#8aad1ceab4c2a03609c8a42324ce484d">Material</a>, <a class="el" href="classm3g_1_1Mesh.html#82cfeb67ca66b93e2ca7bda9a4f0e2aa">Mesh</a>, <a class="el" href="classm3g_1_1MorphingMesh.html#8aad1ceab4c2a03609c8a42324ce484d">MorphingMesh</a>, <a class="el" href="classm3g_1_1Node.html#8aad1ceab4c2a03609c8a42324ce484d">Node</a>, <a class="el" href="classm3g_1_1Texture2D.html#82cfeb67ca66b93e2ca7bda9a4f0e2aa">Texture2D</a>, <a class="el" href="classm3g_1_1Transformable.html#8aad1ceab4c2a03609c8a42324ce484d">Transformable</a>, <a class="el" href="classm3g_1_1VertexBuffer.html#82cfeb67ca66b93e2ca7bda9a4f0e2aa">VertexBuffer</a>, and <a class="el" href="classm3g_1_1World.html#8aad1ceab4c2a03609c8a42324ce484d">World</a>.</p>
+<p>Reimplemented in <a class="el" href="classm3g_1_1Appearance.html#8aad1ceab4c2a03609c8a42324ce484d">Appearance</a>, <a class="el" href="classm3g_1_1Background.html#8aad1ceab4c2a03609c8a42324ce484d">Background</a>, <a class="el" href="classm3g_1_1Camera.html#8aad1ceab4c2a03609c8a42324ce484d">Camera</a>, <a class="el" href="classm3g_1_1Fog.html#8aad1ceab4c2a03609c8a42324ce484d">Fog</a>, <a class="el" href="classm3g_1_1Light.html#8aad1ceab4c2a03609c8a42324ce484d">Light</a>, <a class="el" href="classm3g_1_1Material.html#8aad1ceab4c2a03609c8a42324ce484d">Material</a>, <a class="el" href="classm3g_1_1Mesh.html#82cfeb67ca66b93e2ca7bda9a4f0e2aa">Mesh</a>, <a class="el" href="classm3g_1_1MorphingMesh.html#8aad1ceab4c2a03609c8a42324ce484d">MorphingMesh</a>, <a class="el" href="classm3g_1_1Node.html#8aad1ceab4c2a03609c8a42324ce484d">Node</a>, <a class="el" href="classm3g_1_1Sprite3D.html#8aad1ceab4c2a03609c8a42324ce484d">Sprite3D</a>, <a class="el" href="classm3g_1_1Texture2D.html#82cfeb67ca66b93e2ca7bda9a4f0e2aa">Texture2D</a>, <a class="el" href="classm3g_1_1Transformable.html#8aad1ceab4c2a03609c8a42324ce484d">Transformable</a>, <a class="el" href="classm3g_1_1VertexBuffer.html#82cfeb67ca66b93e2ca7bda9a4f0e2aa">VertexBuffer</a>, and <a class="el" href="classm3g_1_1World.html#8aad1ceab4c2a03609c8a42324ce484d">World</a>.</p>
 
 </div>
 </div><p>
@@ -217,7 +235,7 @@ Retrieves an object that has the given uer ID and is reachable from this object.
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td></td><td> const<code> [protected, virtual]</code></td>
+          <td></td><td></td><td> const<code> [virtual]</code></td>
         </tr>
       </table>
 </div>
@@ -277,14 +295,14 @@ Gets the number of AnimationTracks currently associated with this <a class="el" 
           <td>(</td>
           <td class="paramname">          </td>
           <td>&nbsp;)&nbsp;</td>
-          <td> const<code> [protected]</code></td>
+          <td> const</td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
 <p>
-Retrievs object type. 
+Retrievs object type, for inner use. 
 </div>
 </div><p>
 <a class="anchor" name="ddf91fbaaa866aa7aad5d530a69feba8"></a><!-- doxytag: member="m3g::Object3D::getReferences" ref="ddf91fbaaa866aa7aad5d530a69feba8" args="(Object3D **references, int size) const " -->
@@ -372,7 +390,7 @@ Rerieves the user object that is currently associated with this <a class="el" hr
 
 <p>
 Print out information of this object, for debug only. 
-<p>Reimplemented in <a class="el" href="classm3g_1_1AnimationController.html#6fea17fa1532df3794f8cb39cb4f911f">AnimationController</a>, <a class="el" href="classm3g_1_1AnimationTrack.html#6fea17fa1532df3794f8cb39cb4f911f">AnimationTrack</a>, <a class="el" href="classm3g_1_1Appearance.html#6fea17fa1532df3794f8cb39cb4f911f">Appearance</a>, <a class="el" href="classm3g_1_1Background.html#6fea17fa1532df3794f8cb39cb4f911f">Background</a>, <a class="el" href="classm3g_1_1Camera.html#6fea17fa1532df3794f8cb39cb4f911f">Camera</a>, <a class="el" href="classm3g_1_1CompositingMode.html#6fea17fa1532df3794f8cb39cb4f911f">CompositingMode</a>, <a class="el" href="classm3g_1_1Fog.html#6fea17fa1532df3794f8cb39cb4f911f">Fog</a>, <a class="el" href="classm3g_1_1Image2D.html#6fea17fa1532df3794f8cb39cb4f911f">Image2D</a>, <a class="el" href="classm3g_1_1IndexBuffer.html#6fea17fa1532df3794f8cb39cb4f911f">IndexBuffer</a>, <a class="el" href="classm3g_1_1KeyframeSequence.html#6fea17fa1532df3794f8cb39cb4f911f">KeyframeSequence</a>, <a class="el" href="classm3g_1_1Material.html#6fea17fa1532df3794f8cb39cb4f911f">Material</a>, <a class="el" href="classm3g_1_1Mesh.html#6fea17fa1532df3794f8cb39cb4f911f">Mesh</a>, <a class="el" href="classm3g_1_1MorphingMesh.html#6fea17fa1532df3794f8cb39cb4f911f">MorphingMesh</a>, <a class="el" href="classm3g_1_1Node.html#6fea17fa1532df3794f8cb39cb4f911f">Node</a>, <a class="el" href="classm3g_1_1SkinnedMesh.html#6fea17fa1532df3794f8cb39cb4f911f">SkinnedMesh</a>, <a class="el" href="classm3g_1_1Texture2D.html#6fea17fa1532df3794f8cb39cb4f911f">Texture2D</a>, <a class="el" href="classm3g_1_1Transformable.html#6fea17fa1532df3794f8cb39cb4f911f">Transformable</a>, <a class="el" href="classm3g_1_1TriangleStripArray.html#6fea17fa1532df3794f8cb39cb4f911f">TriangleStripArray</a>, <a class="el" href="classm3g_1_1VertexArray.html#6fea17fa1532df3794f8cb39cb4f911f">VertexArray</a>, <a class="el" href="classm3g_1_1VertexBuffer.html#6fea17fa1532df3794f8cb39cb4f911f">VertexBuffer</a>, and <a class="el" href="classm3g_1_1World.html#6fea17fa1532df3794f8cb39cb4f911f">World</a>.</p>
+<p>Reimplemented in <a class="el" href="classm3g_1_1AnimationController.html#6fea17fa1532df3794f8cb39cb4f911f">AnimationController</a>, <a class="el" href="classm3g_1_1AnimationTrack.html#6fea17fa1532df3794f8cb39cb4f911f">AnimationTrack</a>, <a class="el" href="classm3g_1_1Appearance.html#6fea17fa1532df3794f8cb39cb4f911f">Appearance</a>, <a class="el" href="classm3g_1_1Background.html#6fea17fa1532df3794f8cb39cb4f911f">Background</a>, <a class="el" href="classm3g_1_1Camera.html#6fea17fa1532df3794f8cb39cb4f911f">Camera</a>, <a class="el" href="classm3g_1_1CompositingMode.html#6fea17fa1532df3794f8cb39cb4f911f">CompositingMode</a>, <a class="el" href="classm3g_1_1Fog.html#6fea17fa1532df3794f8cb39cb4f911f">Fog</a>, <a class="el" href="classm3g_1_1Image2D.html#6fea17fa1532df3794f8cb39cb4f911f">Image2D</a>, <a class="el" href="classm3g_1_1IndexBuffer.html#6fea17fa1532df3794f8cb39cb4f911f">IndexBuffer</a>, <a class="el" href="classm3g_1_1KeyframeSequence.html#6fea17fa1532df3794f8cb39cb4f911f">KeyframeSequence</a>, <a class="el" href="classm3g_1_1Light.html#6fea17fa1532df3794f8cb39cb4f911f">Light</a>, <a class="el" href="classm3g_1_1Material.html#6fea17fa1532df3794f8cb39cb4f911f">Material</a>, <a class="el" href="classm3g_1_1Mesh.html#6fea17fa1532df3794f8cb39cb4f911f">Mesh</a>, <a class="el" href="classm3g_1_1MorphingMesh.html#6fea17fa1532df3794f8cb39cb4f911f">MorphingMesh</a>, <a class="el" href="classm3g_1_1Node.html#6fea17fa1532df3794f8cb39cb4f911f">Node</a>, <a class="el" href="classm3g_1_1SkinnedMesh.html#6fea17fa1532df3794f8cb39cb4f911f">SkinnedMesh</a>, <a class="el" href="classm3g_1_1Sprite3D.html#6fea17fa1532df3794f8cb39cb4f911f">Sprite3D</a>, <a class="el" href="classm3g_1_1Texture2D.html#6fea17fa1532df3794f8cb39cb4f911f">Texture2D</a>, <a class="el" href="classm3g_1_1Transformable.html#6fea17fa1532df3794f8cb39cb4f911f">Transformable</a>, <a class="el" href="classm3g_1_1TriangleStripArray.html#6fea17fa1532df3794f8cb39cb4f911f">TriangleStripArray</a>, <a class="el" href="classm3g_1_1VertexArray.html#6fea17fa1532df3794f8cb39cb4f911f">VertexArray</a>, <a class="el" href="classm3g_1_1VertexBuffer.html#6fea17fa1532df3794f8cb39cb4f911f">VertexBuffer</a>, and <a class="el" href="classm3g_1_1World.html#6fea17fa1532df3794f8cb39cb4f911f">World</a>.</p>
 
 </div>
 </div><p>
@@ -423,8 +441,28 @@ Removves the given <a class="el" href="classm3g_1_1AnimationTrack.html">Animatio
 
 <p>
 Render this object, for inner use. 
-<p>Reimplemented in <a class="el" href="classm3g_1_1Camera.html#1efcb1973989d9963d5bd6d03065d389">Camera</a>, <a class="el" href="classm3g_1_1CompositingMode.html#1efcb1973989d9963d5bd6d03065d389">CompositingMode</a>, <a class="el" href="classm3g_1_1Fog.html#1efcb1973989d9963d5bd6d03065d389">Fog</a>, <a class="el" href="classm3g_1_1IndexBuffer.html#1efcb1973989d9963d5bd6d03065d389">IndexBuffer</a>, <a class="el" href="classm3g_1_1Mesh.html#1efcb1973989d9963d5bd6d03065d389">Mesh</a>, <a class="el" href="classm3g_1_1MorphingMesh.html#1efcb1973989d9963d5bd6d03065d389">MorphingMesh</a>, <a class="el" href="classm3g_1_1Node.html#1efcb1973989d9963d5bd6d03065d389">Node</a>, <a class="el" href="classm3g_1_1SkinnedMesh.html#1efcb1973989d9963d5bd6d03065d389">SkinnedMesh</a>, <a class="el" href="classm3g_1_1Transformable.html#1efcb1973989d9963d5bd6d03065d389">Transformable</a>, <a class="el" href="classm3g_1_1TriangleStripArray.html#1efcb1973989d9963d5bd6d03065d389">TriangleStripArray</a>, and <a class="el" href="classm3g_1_1World.html#1efcb1973989d9963d5bd6d03065d389">World</a>.</p>
+<p>Reimplemented in <a class="el" href="classm3g_1_1Camera.html#1efcb1973989d9963d5bd6d03065d389">Camera</a>, <a class="el" href="classm3g_1_1CompositingMode.html#1efcb1973989d9963d5bd6d03065d389">CompositingMode</a>, <a class="el" href="classm3g_1_1Fog.html#1efcb1973989d9963d5bd6d03065d389">Fog</a>, <a class="el" href="classm3g_1_1IndexBuffer.html#1efcb1973989d9963d5bd6d03065d389">IndexBuffer</a>, <a class="el" href="classm3g_1_1Mesh.html#1efcb1973989d9963d5bd6d03065d389">Mesh</a>, <a class="el" href="classm3g_1_1MorphingMesh.html#1efcb1973989d9963d5bd6d03065d389">MorphingMesh</a>, <a class="el" href="classm3g_1_1Node.html#1efcb1973989d9963d5bd6d03065d389">Node</a>, <a class="el" href="classm3g_1_1SkinnedMesh.html#1efcb1973989d9963d5bd6d03065d389">SkinnedMesh</a>, <a class="el" href="classm3g_1_1Sprite3D.html#1efcb1973989d9963d5bd6d03065d389">Sprite3D</a>, <a class="el" href="classm3g_1_1Transformable.html#1efcb1973989d9963d5bd6d03065d389">Transformable</a>, <a class="el" href="classm3g_1_1TriangleStripArray.html#1efcb1973989d9963d5bd6d03065d389">TriangleStripArray</a>, and <a class="el" href="classm3g_1_1World.html#1efcb1973989d9963d5bd6d03065d389">World</a>.</p>
 
+</div>
+</div><p>
+<a class="anchor" name="777701a101d1332abffa2ad6a255b91d"></a><!-- doxytag: member="m3g::Object3D::setObjectType" ref="777701a101d1332abffa2ad6a255b91d" args="(int type)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void setObjectType           </td>
+          <td>(</td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>type</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [protected]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Sets object type. 
 </div>
 </div><p>
 <a class="anchor" name="5e4753e91dca5aa56abacb7fde69f332"></a><!-- doxytag: member="m3g::Object3D::setUserID" ref="5e4753e91dca5aa56abacb7fde69f332" args="(int userID)" -->
@@ -447,17 +485,26 @@ Render this object, for inner use.
 Sets the user ID for this object. 
 </div>
 </div><p>
-<a class="anchor" name="052563fbd888204955f1a56628882f14"></a><!-- doxytag: member="m3g::Object3D::setUserObject" ref="052563fbd888204955f1a56628882f14" args="(void *user_object_value)" -->
+<a class="anchor" name="989411d827091f4a5e97e0377bbd1a7a"></a><!-- doxytag: member="m3g::Object3D::setUserObject" ref="989411d827091f4a5e97e0377bbd1a7a" args="(const char *name, void *value)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">void setUserObject           </td>
           <td>(</td>
-          <td class="paramtype">void *&nbsp;</td>
-          <td class="paramname"> <em>user_object_value</em>          </td>
-          <td>&nbsp;)&nbsp;</td>
+          <td class="paramtype">const char *&nbsp;</td>
+          <td class="paramname"> <em>name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">void *&nbsp;</td>
+          <td class="paramname"> <em>value</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td></td>
         </tr>
       </table>
 </div>
@@ -470,7 +517,7 @@ Associates an arbitrary, application specific Object wth this <a class="el" href
 <hr>The documentation for this class was generated from the following files:<ul>
 <li>/work/desktop-m3g/src/<a class="el" href="Object3D_8hpp-source.html">Object3D.hpp</a><li>/work/desktop-m3g/src/Object3D.cpp</ul>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Fri Mar 12 10:22:43 2010 by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Wed Apr 7 10:24:30 2010 by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.8 </small></address>
 </body>

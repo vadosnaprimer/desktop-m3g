@@ -36,11 +36,9 @@
 <tr><td colspan="2"><br><h2>Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Graphics3D.html#9b9347476fc10e57b31694ac8a628511">~Graphics3D</a> ()</td></tr>
 
-<tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Graphics3D.html#e210cacb72c8540df86a6674e3c2dc4f">addLight</a> (Light *light, <a class="el" href="classm3g_1_1Transform.html">Transform</a> &amp;transform)</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Graphics3D.html#e210cacb72c8540df86a6674e3c2dc4f">addLight</a> (<a class="el" href="classm3g_1_1Light.html">Light</a> *light, <a class="el" href="classm3g_1_1Transform.html">Transform</a> &amp;transform)</td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Graphics3D.html#2173e179f4b2d7130cde46a48794ee66">bindTarget</a> (<a class="el" href="classm3g_1_1Graphics.html">Graphics</a> *g, bool depth_buffer_enabled=true, int hints=0)</td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Graphics3D.html#e3640472397d2b632496fa37c990b4bb">bindTarget</a> (<a class="el" href="classm3g_1_1Image2D.html">Image2D</a> *i, bool depth_buffer_enabled=true, int hints=0)</td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Graphics3D.html#21c4a68a53cfbe0a7cec05d5a56682bf">clear</a> (<a class="el" href="classm3g_1_1Background.html">Background</a> *background)</td></tr>
 
@@ -52,12 +50,11 @@
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Graphics3D.html#5837234a23dc5f46d3adec17f521b58e">getHints</a> () const </td></tr>
 
-<tr><td class="memItemLeft" nowrap align="right" valign="top">Light *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Graphics3D.html#04272e584440c89fb4cb449003a84e7d">getLight</a> (int index, const <a class="el" href="classm3g_1_1Transform.html">Transform</a> &amp;transform) const </td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="el" href="classm3g_1_1Light.html">Light</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Graphics3D.html#04272e584440c89fb4cb449003a84e7d">getLight</a> (int index, const <a class="el" href="classm3g_1_1Transform.html">Transform</a> &amp;transform) const </td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Graphics3D.html#7a08cfeb48d76ad5d8859a1fc0c77d98">getLightCount</a> () const </td></tr>
 
-<tr><td class="memItemLeft" nowrap align="right" valign="top">std::unordered_map&lt; const char <br class="typebreak">
-*, int &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Graphics3D.html#a7d4779a1ea7779caf7f409c4d2bb31f">getProperties</a> () const </td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">std::vector&lt; Property * &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Graphics3D.html#d87d3f8145ea47e2b736c6c3525dad5c">getProperties</a> () const </td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">void *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Graphics3D.html#02d0033930c8e68f4d7ebd43abe7980a">getTarget</a> () const </td></tr>
 
@@ -87,7 +84,7 @@
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Graphics3D.html#6fc3837286f3516aa3320aeec9729495">setDepthRange</a> (float near, float far)</td></tr>
 
-<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Graphics3D.html#2bf83cb69f50117dd9d5548fe96d0ab0">setLight</a> (int index, Light *light, const <a class="el" href="classm3g_1_1Transform.html">Transform</a> &amp;transform)</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Graphics3D.html#2bf83cb69f50117dd9d5548fe96d0ab0">setLight</a> (int index, <a class="el" href="classm3g_1_1Light.html">Light</a> *light, const <a class="el" href="classm3g_1_1Transform.html">Transform</a> &amp;transform)</td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Graphics3D.html#0b4ec48e9c19060e9be5648c118c23b1">setViewport</a> (int x, int y, int width, int height)</td></tr>
 
@@ -137,7 +134,7 @@ Destruct this object.
         <tr>
           <td class="memname">int addLight           </td>
           <td>(</td>
-          <td class="paramtype">Light *&nbsp;</td>
+          <td class="paramtype"><a class="el" href="classm3g_1_1Light.html">Light</a> *&nbsp;</td>
           <td class="paramname"> <em>light</em>, </td>
         </tr>
         <tr>
@@ -156,42 +153,7 @@ Destruct this object.
 <div class="memdoc">
 
 <p>
-Binds a Light to use in subsequent immediate mode rendering. 
-</div>
-</div><p>
-<a class="anchor" name="e3640472397d2b632496fa37c990b4bb"></a><!-- doxytag: member="m3g::Graphics3D::bindTarget" ref="e3640472397d2b632496fa37c990b4bb" args="(Image2D *i, bool depth_buffer_enabled=true, int hints=0)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void bindTarget           </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="classm3g_1_1Image2D.html">Image2D</a> *&nbsp;</td>
-          <td class="paramname"> <em>i</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">bool&nbsp;</td>
-          <td class="paramname"> <em>depth_buffer_enabled</em> = <code>true</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&nbsp;</td>
-          <td class="paramname"> <em>hints</em> = <code>0</code></td><td>&nbsp;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td><td></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-Binds the given <a class="el" href="classm3g_1_1Graphics.html">Graphics</a> or mutable <a class="el" href="classm3g_1_1Image2D.html">Image2D</a> as the rendirng target of this Graphcis3D. 
+Binds a <a class="el" href="classm3g_1_1Light.html">Light</a> to use in subsequent immediate mode rendering. 
 </div>
 </div><p>
 <a class="anchor" name="2173e179f4b2d7130cde46a48794ee66"></a><!-- doxytag: member="m3g::Graphics3D::bindTarget" ref="2173e179f4b2d7130cde46a48794ee66" args="(Graphics *g, bool depth_buffer_enabled=true, int hints=0)" -->
@@ -350,7 +312,7 @@ Retrieves the singleton <a class="el" href="classm3g_1_1Graphics3D.html">Graphic
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">Light * getLight           </td>
+          <td class="memname"><a class="el" href="classm3g_1_1Light.html">Light</a> * getLight           </td>
           <td>(</td>
           <td class="paramtype">int&nbsp;</td>
           <td class="paramname"> <em>index</em>, </td>
@@ -393,12 +355,12 @@ Returns a light int he current light array.
 Returns the size of the current light array. 
 </div>
 </div><p>
-<a class="anchor" name="a7d4779a1ea7779caf7f409c4d2bb31f"></a><!-- doxytag: member="m3g::Graphics3D::getProperties" ref="a7d4779a1ea7779caf7f409c4d2bb31f" args="() const " -->
+<a class="anchor" name="d87d3f8145ea47e2b736c6c3525dad5c"></a><!-- doxytag: member="m3g::Graphics3D::getProperties" ref="d87d3f8145ea47e2b736c6c3525dad5c" args="() const " -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::unordered_map&lt; const char *, int &gt; getProperties           </td>
+          <td class="memname">std::vector&lt; Property * &gt; getProperties           </td>
           <td>(</td>
           <td class="paramname">          </td>
           <td>&nbsp;)&nbsp;</td>
@@ -679,7 +641,7 @@ Renders the given submesh with the given transformation from local coordinates t
 <div class="memdoc">
 
 <p>
-Renders the given Sprite3D, <a class="el" href="classm3g_1_1Mesh.html">Mesh</a>, or Group node with the given transformation from local coordinates to world coordinates. 
+Renders the given <a class="el" href="classm3g_1_1Sprite3D.html">Sprite3D</a>, <a class="el" href="classm3g_1_1Mesh.html">Mesh</a>, or Group node with the given transformation from local coordinates to world coordinates. 
 </div>
 </div><p>
 <a class="anchor" name="b8821ec231e8ebd939ae0feaaf138542"></a><!-- doxytag: member="m3g::Graphics3D::resetLights" ref="b8821ec231e8ebd939ae0feaaf138542" args="()" -->
@@ -772,7 +734,7 @@ Specifies the mappin gof depth values from normalized device coordinates to wind
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">Light *&nbsp;</td>
+          <td class="paramtype"><a class="el" href="classm3g_1_1Light.html">Light</a> *&nbsp;</td>
           <td class="paramname"> <em>light</em>, </td>
         </tr>
         <tr>
@@ -791,7 +753,7 @@ Specifies the mappin gof depth values from normalized device coordinates to wind
 <div class="memdoc">
 
 <p>
-Replaces or modifies a Light currently bound for immediate mode rendering. 
+Replaces or modifies a <a class="el" href="classm3g_1_1Light.html">Light</a> currently bound for immediate mode rendering. 
 </div>
 </div><p>
 <a class="anchor" name="0b4ec48e9c19060e9be5648c118c23b1"></a><!-- doxytag: member="m3g::Graphics3D::setViewport" ref="0b4ec48e9c19060e9be5648c118c23b1" args="(int x, int y, int width, int height)" -->
@@ -838,7 +800,7 @@ Specifies a rectangular viewport on the currently bound rendering target.
 <hr>The documentation for this class was generated from the following files:<ul>
 <li>/work/desktop-m3g/src/<a class="el" href="Graphics3D_8hpp-source.html">Graphics3D.hpp</a><li>/work/desktop-m3g/src/Graphics3D.cpp</ul>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Fri Mar 12 10:22:41 2010 by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Wed Apr 7 10:24:28 2010 by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.8 </small></address>
 </body>

@@ -39,7 +39,7 @@ void \hyperlink{classm3g_1_1VertexBuffer_4aabe6277538d5aa8285759dab85002a}{setNo
 \item 
 void \hyperlink{classm3g_1_1VertexBuffer_527460407f488d5128bae7d0adb6da43}{setPositions} (\hyperlink{classm3g_1_1VertexArray}{VertexArray} $\ast$positios, float scale, float $\ast$bias)
 \item 
-void \hyperlink{classm3g_1_1VertexBuffer_626af19bd7702480ac9e8ea4532d27d5}{setTexCoords} (int index, \hyperlink{classm3g_1_1VertexArray}{VertexArray} $\ast$texCoords, float scale, float $\ast$bias)
+void \hyperlink{classm3g_1_1VertexBuffer_9fd3dd3f78138d654d18863e4f1329f4}{setTexCoords} (int index, \hyperlink{classm3g_1_1VertexArray}{VertexArray} $\ast$tex\_\-coords, float scale, float $\ast$bias)
 \item 
 virtual std::ostream \& \hyperlink{classm3g_1_1VertexBuffer_6fea17fa1532df3794f8cb39cb4f911f}{print} (std::ostream \&out) const 
 \end{CompactItemize}
@@ -59,7 +59,7 @@ class \textbf{Mesh}}
 
 
 \subsection{説明}
-VertexBufferは頂点位置、法線、色、テクスチャー座標を含むVertexArrayへのポインターを含む. 
+VertexBufferは頂点位置、法線、色、テクスチャー座標を保持する VertexArrayへのポインターを持つホルダークラス. 
 
 \subsection{コンストラクタとデストラクタ}
 \hypertarget{classm3g_1_1VertexBuffer_fd7b13840c99c57d27316c8f8434dc49}{
@@ -76,7 +76,7 @@ VertexBufferは頂点位置、法線、色、テクスチャー座標を含むVe
 \label{classm3g_1_1VertexBuffer_0e5e1dbdc4295ff9aa1e15e0ce3624af}
 
 
-デストラクタ. 
+このオブジェクトを削除するデストラクタ. 
 
 \subsection{関数}
 \hypertarget{classm3g_1_1VertexBuffer_415c0b110f95410ded9b85e5d99a496b}{
@@ -86,14 +86,16 @@ VertexBufferは頂点位置、法線、色、テクスチャー座標を含むVe
 \label{classm3g_1_1VertexBuffer_415c0b110f95410ded9b85e5d99a496b}
 
 
-アニメーショントラックの追加。 既存のトラックの順番とインデックスは変更されるかもしれない. \hypertarget{classm3g_1_1VertexBuffer_82cfeb67ca66b93e2ca7bda9a4f0e2aa}{
+このObject3Dに指定されたアニメーショントラックを追加する。 既存のトラックの順番とインデックスは変更されるかもしれない. 
+
+\hyperlink{classm3g_1_1Object3D_415c0b110f95410ded9b85e5d99a496b}{Object3D}を再定義しています。\hypertarget{classm3g_1_1VertexBuffer_82cfeb67ca66b93e2ca7bda9a4f0e2aa}{
 \index{m3g::VertexBuffer@{m3g::VertexBuffer}!animate@{animate}}
 \index{animate@{animate}!m3g::VertexBuffer@{m3g::VertexBuffer}}
-\subsubsection[{animate}]{\setlength{\rightskip}{0pt plus 5cm}int animate (int {\em time})\hspace{0.3cm}{\tt  \mbox{[}virtual\mbox{]}}}}
+\subsubsection[{animate}]{\setlength{\rightskip}{0pt plus 5cm}int animate (int {\em world\_\-time})\hspace{0.3cm}{\tt  \mbox{[}virtual\mbox{]}}}}
 \label{classm3g_1_1VertexBuffer_82cfeb67ca66b93e2ca7bda9a4f0e2aa}
 
 
-アニメーションの更新. 
+このObject3D自身とここから到達できるObject3Dのアニメーテッドプロパティを更新する. 
 
 \hyperlink{classm3g_1_1Object3D_8aad1ceab4c2a03609c8a42324ce484d}{Object3D}を再定義しています。\hypertarget{classm3g_1_1VertexBuffer_4dadb21b568b0230fac106f15040138c}{
 \index{m3g::VertexBuffer@{m3g::VertexBuffer}!findByObjectType@{findByObjectType}}
@@ -102,7 +104,7 @@ VertexBufferは頂点位置、法線、色、テクスチャー座標を含むVe
 \label{classm3g_1_1VertexBuffer_4dadb21b568b0230fac106f15040138c}
 
 
-オブジェクトタイプを指定して検索. 
+オブジェクトタイプを指定して検索するM3G非標準の関数. 
 
 \hyperlink{classm3g_1_1Object3D_4dadb21b568b0230fac106f15040138c}{Object3D}を再定義しています。\hypertarget{classm3g_1_1VertexBuffer_e3bdc8503242a6d278230352d03e5893}{
 \index{m3g::VertexBuffer@{m3g::VertexBuffer}!getColors@{getColors}}
@@ -111,7 +113,7 @@ VertexBufferは頂点位置、法線、色、テクスチャー座標を含むVe
 \label{classm3g_1_1VertexBuffer_e3bdc8503242a6d278230352d03e5893}
 
 
-カレントのカラー配列を取得する。もし頂点カラーが定義されていなければnullが返る. \hypertarget{classm3g_1_1VertexBuffer_4e33b93a98ce0632d51e7ae775ae5b1e}{
+カレントのカラー配列の取得. \hypertarget{classm3g_1_1VertexBuffer_4e33b93a98ce0632d51e7ae775ae5b1e}{
 \index{m3g::VertexBuffer@{m3g::VertexBuffer}!getDefaultColor@{getDefaultColor}}
 \index{getDefaultColor@{getDefaultColor}!m3g::VertexBuffer@{m3g::VertexBuffer}}
 \subsubsection[{getDefaultColor}]{\setlength{\rightskip}{0pt plus 5cm}int getDefaultColor () const}}
@@ -125,21 +127,21 @@ VertexBufferは頂点位置、法線、色、テクスチャー座標を含むVe
 \label{classm3g_1_1VertexBuffer_0f4341d1215ff8f4efeaa40a21327c0c}
 
 
-カレントの法線ベクトルの配列を取得する。もし頂点法線が定義されていなければnullが返る. \hypertarget{classm3g_1_1VertexBuffer_5ca059361f9f834dd00b5d595bf3df0b}{
+カレントの法線ベクトルの配列の取得. \hypertarget{classm3g_1_1VertexBuffer_5ca059361f9f834dd00b5d595bf3df0b}{
 \index{m3g::VertexBuffer@{m3g::VertexBuffer}!getPositions@{getPositions}}
 \index{getPositions@{getPositions}!m3g::VertexBuffer@{m3g::VertexBuffer}}
 \subsubsection[{getPositions}]{\setlength{\rightskip}{0pt plus 5cm}{\bf VertexArray} $\ast$ getPositions (float $\ast$ {\em scale\_\-bias}) const}}
 \label{classm3g_1_1VertexBuffer_5ca059361f9f834dd00b5d595bf3df0b}
 
 
-カレントの頂点座標の配列を取得する。もし頂点配列が定義されていなければnullが返る. \hypertarget{classm3g_1_1VertexBuffer_9015840c09da0691c31a8aab5e09404a}{
+カレントの頂点座標の配列の取得. \hypertarget{classm3g_1_1VertexBuffer_9015840c09da0691c31a8aab5e09404a}{
 \index{m3g::VertexBuffer@{m3g::VertexBuffer}!getTexCoords@{getTexCoords}}
 \index{getTexCoords@{getTexCoords}!m3g::VertexBuffer@{m3g::VertexBuffer}}
 \subsubsection[{getTexCoords}]{\setlength{\rightskip}{0pt plus 5cm}{\bf VertexArray} $\ast$ getTexCoords (int {\em index}, \/  float $\ast$ {\em scale\_\-bias}) const}}
 \label{classm3g_1_1VertexBuffer_9015840c09da0691c31a8aab5e09404a}
 
 
-カレントのテクスチャー座標の配列を取得する。もしテクスチャー座標が定義されていなければnullが返る. \hypertarget{classm3g_1_1VertexBuffer_6fea17fa1532df3794f8cb39cb4f911f}{
+カレントのテクスチャー座標の配列の取得. \hypertarget{classm3g_1_1VertexBuffer_6fea17fa1532df3794f8cb39cb4f911f}{
 \index{m3g::VertexBuffer@{m3g::VertexBuffer}!print@{print}}
 \index{print@{print}!m3g::VertexBuffer@{m3g::VertexBuffer}}
 \subsubsection[{print}]{\setlength{\rightskip}{0pt plus 5cm}std::ostream \& print (std::ostream \& {\em out}) const\hspace{0.3cm}{\tt  \mbox{[}virtual\mbox{]}}}}
@@ -180,11 +182,11 @@ x:\mbox{[}-128,127\mbox{]} --$>$ y:\mbox{[}-1,1\mbox{]}, or x:\mbox{[}-32768,327
 \label{classm3g_1_1VertexBuffer_527460407f488d5128bae7d0adb6da43}
 
 
-このVertexBufferに頂点座標を設定する. \hypertarget{classm3g_1_1VertexBuffer_626af19bd7702480ac9e8ea4532d27d5}{
+このVertexBufferに頂点座標を設定する. \hypertarget{classm3g_1_1VertexBuffer_9fd3dd3f78138d654d18863e4f1329f4}{
 \index{m3g::VertexBuffer@{m3g::VertexBuffer}!setTexCoords@{setTexCoords}}
 \index{setTexCoords@{setTexCoords}!m3g::VertexBuffer@{m3g::VertexBuffer}}
-\subsubsection[{setTexCoords}]{\setlength{\rightskip}{0pt plus 5cm}void setTexCoords (int {\em index}, \/  {\bf VertexArray} $\ast$ {\em texCoords}, \/  float {\em scale}, \/  float $\ast$ {\em bias})}}
-\label{classm3g_1_1VertexBuffer_626af19bd7702480ac9e8ea4532d27d5}
+\subsubsection[{setTexCoords}]{\setlength{\rightskip}{0pt plus 5cm}void setTexCoords (int {\em index}, \/  {\bf VertexArray} $\ast$ {\em tex\_\-coords}, \/  float {\em scale}, \/  float $\ast$ {\em bias})}}
+\label{classm3g_1_1VertexBuffer_9fd3dd3f78138d654d18863e4f1329f4}
 
 
 このVertexBufferにテクスチャー座標を設定する. 
