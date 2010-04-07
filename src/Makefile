@@ -2,7 +2,7 @@ SRCS = $(wildcard *.cpp)
 OBJS = $(SRCS:.cpp=.o)
 TARGET = libm3g.so
 CXX = g++
-CXXFLAGS = -Wall -g -shared -fPIC -std=c++0x
+CXXFLAGS = -Wall -g -shared -fPIC
 LD = g++
 LDFLAGS = -shared
 LIBS = 
@@ -66,14 +66,14 @@ Graphics3D.o: Graphics3D.hpp World.hpp Group.hpp Node.hpp Transformable.hpp
 Graphics3D.o: Object3D.hpp /usr/include/GL/glew.h /usr/include/GL/glu.h
 Graphics3D.o: /usr/include/GL/gl.h m3gdef.hpp m3ginternal.hpp Quaternion.hpp
 Graphics3D.o: Transform.hpp Matrix.hpp Camera.hpp Graphics.hpp Light.hpp
-Graphics3D.o: Exception.hpp
+Graphics3D.o: Exception.hpp Property.hpp
 Group.o: Group.hpp Node.hpp Transformable.hpp Object3D.hpp
 Group.o: /usr/include/GL/glew.h /usr/include/GL/glu.h /usr/include/GL/gl.h
 Group.o: m3gdef.hpp m3ginternal.hpp Quaternion.hpp Transform.hpp Matrix.hpp
 Group.o: RayIntersection.hpp Sprite3D.hpp Exception.hpp
-Image2D.o: Exception.hpp Image2D.hpp Object3D.hpp /usr/include/GL/glew.h
+Image2D.o: Image2D.hpp Object3D.hpp /usr/include/GL/glew.h
 Image2D.o: /usr/include/GL/glu.h /usr/include/GL/gl.h m3gdef.hpp
-Image2D.o: m3ginternal.hpp
+Image2D.o: m3ginternal.hpp Exception.hpp
 IndexBuffer.o: IndexBuffer.hpp /usr/include/GL/glew.h /usr/include/GL/glu.h
 IndexBuffer.o: /usr/include/GL/gl.h Object3D.hpp m3gdef.hpp m3ginternal.hpp
 IndexBuffer.o: Exception.hpp
@@ -115,6 +115,7 @@ Object3D.o: AnimationTrack.hpp Exception.hpp
 PolygonMode.o: PolygonMode.hpp Object3D.hpp /usr/include/GL/glew.h
 PolygonMode.o: /usr/include/GL/glu.h /usr/include/GL/gl.h m3gdef.hpp
 PolygonMode.o: m3ginternal.hpp Exception.hpp
+Property.o: Property.hpp Exception.hpp
 Quaternion.o: Quaternion.hpp Exception.hpp m3ginternal.hpp
 RayIntersection.o: RayIntersection.hpp Node.hpp Transformable.hpp
 RayIntersection.o: Object3D.hpp /usr/include/GL/glew.h /usr/include/GL/glu.h

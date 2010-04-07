@@ -1,5 +1,4 @@
 #include <iostream>
-#include <unordered_map>
 #include <cmath>
 #include "Graphics3D.hpp"
 #include "World.hpp"
