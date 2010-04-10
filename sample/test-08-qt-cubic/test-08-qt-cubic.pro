@@ -5,7 +5,7 @@
 TEMPLATE = app
 TARGET = a.out
 DEPENDPATH += .
-INCLUDEPATH += . /usr/local/include/m3g
+INCLUDEPATH += . ../../src
 
 
 # Input
@@ -13,10 +13,10 @@ HEADERS += MyWidget.hpp
 SOURCES += main.cpp MyWidget.cpp 
 
 CONFIG += opengl debug
-QMAKE_CXXFLAGS +=  -std=c++0x
-QMAKE_CFLAGS +=  -std=c++0x
-QMAKE_FLAGS +=  -std=c++0x
+#QMAKE_CXXFLAGS +=  -std=c++0x
+#QMAKE_CFLAGS +=  -std=c++0x
+#QMAKE_FLAGS +=  -std=c++0x
 
 
 # 
-LIBS +=  -L/usr/local/lib -lm3g -lQtOpenGL -lGLEW
+LIBS +=  -L../../src -lm3g -lQtOpenGL -lGLEW

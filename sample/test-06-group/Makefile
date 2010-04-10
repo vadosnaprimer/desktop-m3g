@@ -2,9 +2,9 @@ SRCS = $(wildcard *.cpp)
 OBJS = $(SRCS:.cpp=.o)
 TARGET = a.out
 CXX = g++
-CXXFLAGS = -Wall -g  -std=c++0x -I/usr/local/include/m3g
+CXXFLAGS = -Wall -g  -I../../src
 LD = g++
-LDFLAGS = -L/usr/local/lib
+LDFLAGS = -L../../lib
 LIBS = -lm3g  -lglut -lGLEW -lGL -lpng
 
 
