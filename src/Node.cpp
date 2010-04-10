@@ -240,7 +240,7 @@ void Node:: setAlignment (Node* z_ref, int z_target, Node* y_ref, int y_target)
 void Node:: setAlphaFactor (float alpha)
 {
   if (alpha < 0 || alpha > 1.0) {
-    throw IllegalArgumentException (__FILE__, __func__, "Alpha is invalid.");
+    throw IllegalArgumentException (__FILE__, __func__, "Alpha is invalid, alph=%f.", alpha);
   }
 
   alpha_factor = alpha;

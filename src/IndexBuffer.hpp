@@ -33,13 +33,13 @@ namespace m3g {
      * @~English  Returns the number of indices in this buffer.
      * @~Japanese このバッファーのインデックスの数を取得.
      */
-    virtual int getIndexCount () const = 0;
+    virtual int getIndexCount () const;
 
     /**
      * @~English  Retrieves vertex indices for the rendering primitives stored in this buffer.
      * @~Japanese このバッファーに収納されているインデックスを取得.
      */
-    virtual void getIndices (int* indices) = 0;
+    virtual void getIndices (int* indices);
 
 
     /**

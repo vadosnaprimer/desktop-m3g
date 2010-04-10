@@ -3,11 +3,6 @@
 #define __M3G_HPP__
 
 /**
- * M3Gで使用する例外の定義.
- */
-#include "m3gexcept.hpp"
-
-/**
  * M3Gで使用する定数値の定義.
  */
 #include "m3gdef.hpp"
@@ -44,8 +39,12 @@
 #include "VertexBuffer.hpp"
 #include "RayIntersection.hpp"
 #include "Transform.hpp"
+#include "Loader.hpp"
 
-
+/**
+ * その他
+ */
+#include "Exception.hpp"
 
 
 #endif

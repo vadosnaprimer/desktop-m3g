@@ -15,26 +15,17 @@ IndexBuffer:: IndexBuffer ()
 
 IndexBuffer:: ~IndexBuffer ()
 {
-  //if (indices) {
-  //  delete indices;
-  //  indices = 0;
-  //}
 }
-/*
+
 int IndexBuffer:: getIndexCount () const
 {
-    return index_count;
+    return 0;
 }
 
-void IndexBuffer:: getIndices (int* indices_)
+void IndexBuffer:: getIndices (int*)
 {
-  if (indices_ == NULL) {
-    throw NullPointException (__FILE__, __func__, "Indices is NULL.");
-  }
-
-  memcpy (indices_, indices, sizeof(int)*index_count);
 }
-*/
+
 /*
 void IndexBuffer:: setIndices (int index_count_, int* indices_)
 {

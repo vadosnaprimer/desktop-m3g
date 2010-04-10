@@ -123,7 +123,7 @@ std::ostream& TriangleStripArray:: print (std::ostream& out) const
     out << strips[i] << " ";
   }
   out << "]";
-  return out;
+  return out << "\n";
 }
 
 std::ostream& operator<< (std::ostream& out, const TriangleStripArray& tris)

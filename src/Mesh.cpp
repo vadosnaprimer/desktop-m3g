@@ -209,9 +209,9 @@ std::ostream& Mesh:: print (std::ostream& out) const
 {
   VertexArray* vary = vertices->getPositions(0);
   if (vary)
-    out << "Mesh: " << vary->getVertexCount() << " vertices\n";
+    out << "Mesh:  " << vary->getVertexCount() << " vertices\n";
   else
-    out << "Mesh: 0 vertices\n";
+    out << "Mesh:  0 vertices\n";
   return out;
 }
 

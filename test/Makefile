@@ -512,6 +512,36 @@ test-Light.o: ../src/Object3D.hpp /usr/include/GL/glew.h
 test-Light.o: /usr/include/GL/glu.h /usr/include/GL/gl.h ../src/m3gdef.hpp
 test-Light.o: ../src/m3ginternal.hpp ../src/Quaternion.hpp
 test-Light.o: ../src/Transform.hpp ../src/Matrix.hpp
+test-Loader.o: /usr/include/unittest++/UnitTest++.h
+test-Loader.o: /usr/include/unittest++/Config.h
+test-Loader.o: /usr/include/unittest++/Test.h
+test-Loader.o: /usr/include/unittest++/TestDetails.h
+test-Loader.o: /usr/include/unittest++/TestList.h
+test-Loader.o: /usr/include/unittest++/TestSuite.h
+test-Loader.o: /usr/include/unittest++/TestResults.h
+test-Loader.o: /usr/include/unittest++/TestMacros.h
+test-Loader.o: /usr/include/unittest++/Posix/SignalTranslator.h
+test-Loader.o: /usr/include/setjmp.h /usr/include/features.h
+test-Loader.o: /usr/include/sys/cdefs.h /usr/include/bits/wordsize.h
+test-Loader.o: /usr/include/gnu/stubs.h /usr/include/gnu/stubs-64.h
+test-Loader.o: /usr/include/bits/setjmp.h /usr/include/bits/sigset.h
+test-Loader.o: /usr/include/signal.h /usr/include/bits/types.h
+test-Loader.o: /usr/include/bits/typesizes.h /usr/include/bits/signum.h
+test-Loader.o: /usr/include/time.h /usr/include/bits/siginfo.h
+test-Loader.o: /usr/include/bits/sigaction.h /usr/include/bits/sigcontext.h
+test-Loader.o: /usr/include/bits/sigstack.h /usr/include/bits/pthreadtypes.h
+test-Loader.o: /usr/include/bits/sigthread.h
+test-Loader.o: /usr/include/unittest++/CheckMacros.h
+test-Loader.o: /usr/include/unittest++/Checks.h
+test-Loader.o: /usr/include/unittest++/MemoryOutStream.h
+test-Loader.o: /usr/include/unittest++/AssertException.h
+test-Loader.o: /usr/include/unittest++/TestRunner.h
+test-Loader.o: /usr/include/unittest++/TimeConstraint.h
+test-Loader.o: /usr/include/unittest++/TimeHelpers.h
+test-Loader.o: /usr/include/unittest++/Posix/TimeHelpers.h
+test-Loader.o: /usr/include/sys/time.h /usr/include/bits/time.h
+test-Loader.o: /usr/include/sys/select.h /usr/include/bits/select.h
+test-Loader.o: ../src/Loader.hpp
 test-Material.o: /usr/include/unittest++/UnitTest++.h
 test-Material.o: /usr/include/unittest++/Config.h
 test-Material.o: /usr/include/unittest++/Test.h

@@ -421,20 +421,20 @@ void VertexBuffer:: findByObjectType (int type, std::vector<Object3D*>& objs) co
 
 std::ostream& VertexBuffer:: print (std::ostream& out) const
 {
-  out << "VertexBuffer: \n";
+  out << "VertexBuffer: ";
   if (vertex_position_array)
     out << "  positions = " << *vertex_position_array;
   else
-    out << "  positions = 0\n";
+    out << "  positions = 0";
   if (normal_array)
     out << ", normals = " << *normal_array;
   else
-    out << ", normals = 0\n";
+    out << ", normals = 0";
   
   if (color_array)
     out << ", colors  = " << *color_array;
   else
-    out << ", colors  = 0\n";
+    out << ", colors  = 0";
   out << ", default color = 0x" << hex << default_color << dec;
   return out << "\n";;
 }

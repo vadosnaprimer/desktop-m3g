@@ -80,7 +80,7 @@ namespace m3g {
      * @~English  Sets the color to use in absence of per-vetex colors.
      * @~Japanese 頂点カラーが設定されていないときのカラーを設定する.
      */
-    void setDefaultColor (int rgb);
+    void setDefaultColor (int argb);
 
     /**
      * @~English  Sets the normal vectors for this VertexBuffer.
