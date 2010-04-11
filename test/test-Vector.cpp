@@ -1,5 +1,6 @@
 #include <unittest++/UnitTest++.h>
 #include <iostream>
+#include <cmath>
 #include "Vector.hpp"
 using namespace std;
 using namespace m3g;
@@ -22,17 +23,24 @@ TEST (Vector_set_variables)
   CHECK_EQUAL (999.f, f[3]);
 }
 
+TEST (Vector_length)
+{
+  Vector v (1,2,3,4);
+  float len = sqrtf((float)(1*1+2*2+3*3)/(4*4));
+  CHECK_EQUAL (len, v.length());
+}
+
 TEST (Vector_normal)
 {
-  Vector v0 (2,0,0);
-  Vector v1 (0,2,0);
-  Vector v2 (0,0,2);
+  Vector v0 (2,1,0);
+  Vector v1 (0,2,0,2);
+  Vector v2 (0,-1,2,1);
   v0.normalize();
   v1.normalize();
   v2.normalize();
-  CHECK_CLOSE (1, v0.x, 0.00001);
-  CHECK_CLOSE (1, v1.y, 0.00001);
-  CHECK_CLOSE (1, v2.z, 0.00001);
+  CHECK_CLOSE (1, v0.length(), 0.00001);
+  CHECK_CLOSE (1, v1.length(), 0.00001);
+  CHECK_CLOSE (1, v2.length(), 0.00001);
 }
 
 TEST (Vector_dot_cross)

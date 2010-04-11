@@ -80,6 +80,15 @@ SkinnedMesh:: ~SkinnedMesh ()
 {
 }
 
+int SkinnedMesh:: animate (int world_time)
+{
+  root->animate (world_time);
+
+  Mesh:: animate (world_time);
+
+  return 0;
+}
+
 void SkinnedMesh:: addTransform (Node* node, int weight, int first_vertex, int num_vertices)
 {
   if (node == NULL) {

@@ -127,7 +127,12 @@ std::ostream& World::print (std::ostream& out) const
     out << "  background = " << *background;
   else 
     out << "  background = 0\n";
-  Group::print (out);
+
+  //Group::print (out);
+  for (int i = 0; i < (int)children.size(); i++) {
+    out << "  [" << i << "] : ";
+    children[i]->print(out);
+  }
   return out;
 }
 

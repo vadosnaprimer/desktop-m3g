@@ -1,6 +1,7 @@
 #include "Quaternion.hpp"
 #include "Exception.hpp"
 #include "m3ginternal.hpp"
+#include "Vector.hpp"
 #include <iostream>
 #include <cmath>
 using namespace std;
@@ -14,17 +15,14 @@ Quaternion:: Quaternion () :
 Quaternion:: Quaternion (float angle, float ax, float ay, float az) :
   x(0), y(0), z(0), w(1)
 {
-  if (fabs((ax*ax+ay*ay+az*az)-1) > M3G_EPSILON) {
-    //cout << (ax*ax+ay*ay+az*az-1) << " <--> " << M3G_EPSILON << "\n";
-    //cout << ax << ", " << ay << ", " << az << "\n";
-    throw IllegalArgumentException (__FILE__, __func__, "Length of rotation axis must be 1 for Quaternion.");
-  }
-
+  Vector axis (ax, ay, az);
+  axis.normalize ();
+  
   float th = 2*M_PI*angle/360.f;
-  x = ax * sinf (th/2.f);
-  y = ay * sinf (th/2.f);
-  z = az * sinf (th/2.f);
-  w =      cosf (th/2.f);
+  x = axis.x * sinf (th/2.f);
+  y = axis.y * sinf (th/2.f);
+  z = axis.z * sinf (th/2.f);
+  w =          cosf (th/2.f);
 }
 
 Quaternion:: ~Quaternion ()

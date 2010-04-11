@@ -17,6 +17,8 @@ namespace m3g {
    */
   class Group : public Node
   {
+    friend class World;  // for printf
+
   public:
     /**
      * @~Enslish  Constructs a new Group node and initializes it with an empty list of children.

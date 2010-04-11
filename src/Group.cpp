@@ -125,10 +125,10 @@ void Group:: render (int pass, int index) const
 std::ostream& Group:: print (std::ostream& out) const
 {
   out << "Group: " << children.size() << " nodes\n";
-  for (int i = 0; i < (int)children.size(); i++) {
-    out << "  [" << i << "] : ";
-    children[i]->print(out);
-  }
+  //for (int i = 0; i < (int)children.size(); i++) {
+  //  out << "  [" << i << "] : ";
+  //  children[i]->print(out);
+  //}
   return out;
 }
 

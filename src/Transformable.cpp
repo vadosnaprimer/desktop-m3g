@@ -47,17 +47,16 @@ int Transformable:: animate (int world_time)
   Scale       new_scaling       = Scale(0,0,0);
   Translation new_translation   = Translation(0,0,0);
 
-  
-  
   for (int i = 0; i < getAnimationTrackCount(); i++) {
     AnimationTrack*      track      = getAnimationTrack (i);
     KeyframeSequence*    keyframe   = track->getKeyframeSequence();
     AnimationController* controller = track->getController();
     if (controller == NULL) {
-      //cout << "Node: missing controller, this animation track is ignored.\n";
+      //cout << "Transformable: missing controller, this animation track is ignored.\n";
       continue;
     }
     if (!controller->isActiveInterval(world_time)) {
+      //cout << "Transformable: not in active time.\n";
       continue;
     }
     float weight     = controller->getWeight ();
@@ -113,7 +112,7 @@ int Transformable:: animate (int world_time)
     translation = new_translation;
   }
 
-  //cout << *this << "\n";
+  //this->Transformable::print (cout);
   
   return 0;
 }

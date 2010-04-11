@@ -29,6 +29,11 @@ void Vector:: get (float* xyz) const
   xyz[2] = z/w;
 }
 
+float Vector:: length () const
+{
+  return sqrtf ((x*x+y*y+z*z)/(w*w));
+}
+
 float& Vector:: operator[] (int index)
 {
   if (index < 0 || index > 3) {
@@ -47,7 +52,7 @@ const float& Vector:: operator[] (int index) const
 
 void Vector:: normalize ()
 {
-  float len = sqrtf(x*x+y*y+z*z);
+  float len = length();
   if (len == 0) {
     throw ArithmeticException (__FILE__, __func__, "Normalized, but length of vector is 0.");
   }

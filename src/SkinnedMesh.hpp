@@ -44,6 +44,8 @@ namespace m3g {
      */
     virtual ~SkinnedMesh ();
 
+    virtual int animate (int world_time);
+
     /**
      * @~English  Associates a weighted transformation, or "bone", with a range of vertices int this SkinnedMesh.
      * @~Japanese このスキンメッシュの頂点配列に対してウェイト付き変形(ボーン)を関連づける.

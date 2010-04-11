@@ -1,0 +1,527 @@
+ident = �JSR184�
+
+
+----------start section--------------
+compression_scheme = 0
+total_section_length = 90
+uncompressed_length = 77
+object -------- 1 --------
+object type = header object(0)
+length = 72
+M3G Header ---
+  version_major = 1
+  version_minor = 0
+  has_external_refference  = 0
+  total_file_size          = 91209
+  approximate_content_size = 0
+  authoring_field          = Produced by h3texpv4 version 2.1; 3ds max file: blocklow.max
+  checksum = 217781891
+----------start section--------------
+compression_scheme = 0
+total_section_length = 65816
+uncompressed_length = 65803
+object -------- 1 --------
+object type = KeyframeSequence(19)
+length = 143
+Object3D:   user_id=1, animation_tracks=0
+KeyframeSequence:   keyframe_count=12, component_count=3, valid_range=0,11, duration=733, repeat_mode=LOOP, interp_type=LINEAR, keyframes=[0:(0)=[-898.272,-22796.7,197.169] 1:(67)=[-100080,-6700.29,5633.32] 2:(133)=[129421,6055.33,833.314] 3:(200)=[255,27314.7,255] 4:(267)=[1408.27,25492.5,486.326] 5:(333)=[82137.3,22151.7,1295.96] 6:(400)=[-116225,27314.7,2394.76] 7:(467)=[-109306,-37374.5,2973.08] 8:(533)=[-116225,-7003.99,5691.15] 9:(600)=[-147364,-21885.5,-3851.03] 10:(667)=[-68941.3,-37981.9,-1769.1] 11:(733)=[-898.272,-22796.7,197.169] ]
+object -------- 2 --------
+object type = KeyframeSequence(19)
+length = 163
+Object3D:   user_id=2, animation_tracks=0
+KeyframeSequence:   keyframe_count=12, component_count=4, valid_range=0,11, duration=733, repeat_mode=LOOP, interp_type=SLERP, keyframes=[0:(0)=[45559.7,-811052,-7979.68,42293.9] 1:(67)=[324815,5839.57,-686868,-357706] 2:(133)=[-177844,-226232,-91352,-54764.9] 3:(200)=[-34227.5,-3443.29,-377200,-22412] 4:(267)=[-6301.99,-439738,-764286,-16529.6] 5:(333)=[-30238.2,952691,206406,-1823.74] 6:(400)=[-161887,367871,-2024.52,-90059] 7:(467)=[-265610,451417,134944,-184177] 8:(533)=[440506,1.04552e+06,599447,257000] 9:(600)=[-2312.63,1.1105e+06,-317648,1117.44] 10:(667)=[5666.09,-1.03384e+06,-73486.5,30529.2] 11:(733)=[45559.7,-811052,-7979.68,42293.9] ]
+object -------- 3 --------
+object type = KeyframeSequence(19)
+length = 163
+Object3D:   user_id=3, animation_tracks=0
+KeyframeSequence:   keyframe_count=12, component_count=4, valid_range=0,11, duration=733, repeat_mode=LOOP, interp_type=SLERP, keyframes=[0:(0)=[-38794.3,-211.927,33604.8,1242.82] 1:(67)=[-365641,-56909.2,-8130.02,86337.4] 2:(133)=[-166.9,4742.2,-91599.7,-9071.67] 3:(200)=[68173.8,338.532,304881,-46.4925] 4:(267)=[97887.2,888.991,-1174.21,-3914.43] 5:(333)=[163257,5292.66,19693.2,-21964.8] 6:(400)=[53317.1,28411.9,-675888,-104481] 7:(467)=[56288.5,50980.7,-731534,155960] 8:(533)=[293995,-43698.2,569202,51526] 9:(600)=[-44736.9,-10670.6,-202893,21871.8] 10:(667)=[-3138.23,-5716.51,-780225,14135.9] 11:(733)=[-38794.3,-211.927,33604.8,1242.82] ]
+object -------- 4 --------
+object type = KeyframeSequence(19)
+length = 163
+Object3D:   user_id=4, animation_tracks=0
+KeyframeSequence:   keyframe_count=12, component_count=4, valid_range=0,11, duration=733, repeat_mode=LOOP, interp_type=SLERP, keyframes=[0:(0)=[-1672.32,1279.51,-14.1376,1611.22] 1:(67)=[105678,46771.1,-612643,30749] 2:(133)=[15926,-2592.12,303682,-4436.26] 3:(200)=[17685.9,-656.304,439822,-38.0936] 4:(267)=[31764.5,-1140.26,591670,-1137.63] 5:(333)=[63441.6,-3076.07,-366544,-5535.8] 6:(400)=[81039.9,-21950.3,-5250.28,-42370.4] 7:(467)=[87.5166,-45664,-251349,64285] 8:(533)=[91598.9,18701.8,-47139.4,10407.5] 9:(600)=[-43908.3,-172.35,439822,511.677] 10:(667)=[-61506.7,2731.37,120417,1611.22] 11:(733)=[-1672.32,1279.51,-14.1376,1611.22] ]
+object -------- 5 --------
+object type = KeyframeSequence(19)
+length = 163
+Object3D:   user_id=5, animation_tracks=0
+KeyframeSequence:   keyframe_count=12, component_count=4, valid_range=0,11, duration=733, repeat_mode=LOOP, interp_type=SLERP, keyframes=[0:(0)=[-132760,146847,-97993,178423] 1:(67)=[60779.6,386.478,14511.7,344.126] 2:(133)=[-70278.8,-108469,-43347.8,-334096] 3:(200)=[-13893.2,-21384.7,-9060.68,-138644] 4:(267)=[-177.798,-9509.52,-1560.37,-103897] 5:(333)=[-4749.6,-1592.72,-3703.31,-64806.6] 6:(400)=[-44371.9,-13467.9,-24061.3,-47433.1] 7:(467)=[-109901,-19405.5,-61562.9,-3999.26] 8:(533)=[1346.14,-150033,-488.892,-90866.9] 9:(600)=[155264,79554.4,101301,108929] 10:(667)=[-157143,99346.4,-118351,87211.8] 11:(733)=[-132760,146847,-97993,178423] ]
+object -------- 6 --------
+object type = KeyframeSequence(19)
+length = 163
+Object3D:   user_id=6, animation_tracks=0
+KeyframeSequence:   keyframe_count=12, component_count=4, valid_range=0,11, duration=733, repeat_mode=LOOP, interp_type=SLERP, keyframes=[0:(0)=[521679,-1298.54,-572138,68891] 1:(67)=[-592013,-11401.5,581499,-1.32074e+06] 2:(133)=[-291493,-940878,286168,-7.85201e+06] 3:(200)=[-88199.9,-809539,83127.6,-6.87927e+06] 4:(267)=[-26328.2,-738818,9294.81,-6.32342e+06] 5:(333)=[-35167,-607479,18523.9,-5.42015e+06] 6:(400)=[-8650.55,-708509,65.7112,-6.11497e+06] 7:(467)=[-282654,-910569,286168,-7.64357e+06] 8:(533)=[-88199.9,-132638,83127.6,-2.01556e+06] 9:(600)=[188.267,-122535,-9163.39,-590.592] 10:(667)=[283031,382616,-313724,2.91764e+06] 11:(733)=[521679,-1298.54,-572138,68891] ]
+object -------- 7 --------
+object type = KeyframeSequence(19)
+length = 163
+Object3D:   user_id=7, animation_tracks=0
+KeyframeSequence:   keyframe_count=12, component_count=4, valid_range=0,11, duration=733, repeat_mode=LOOP, interp_type=SLERP, keyframes=[0:(0)=[279.237,-2895.61,330.705,495541] 1:(67)=[281013,114505,-251585,-2.41698e+06] 2:(133)=[187435,21275,334771,-208.215] 3:(200)=[-636051,59257.4,-538249,-1.48746e+06] 4:(267)=[-374033,14369.1,-434008,-1.11564e+06] 5:(333)=[-158803,557.34,-281989,-1.23958e+06] 6:(400)=[-102657,24728,-134314,-1.76631e+06] 7:(467)=[-9078.56,107599,-47446.5,-2.94372e+06] 8:(533)=[-112014,342399,-4012.68,2.19968e+06] 9:(600)=[-130730,-296396,-216838,30776.1] 10:(667)=[1.01092e+06,-261866,386892,991290] 11:(733)=[279.237,-2895.61,330.705,495541] ]
+object -------- 8 --------
+object type = KeyframeSequence(19)
+length = 163
+Object3D:   user_id=8, animation_tracks=0
+KeyframeSequence:   keyframe_count=12, component_count=4, valid_range=0,11, duration=733, repeat_mode=LOOP, interp_type=SLERP, keyframes=[0:(0)=[-53173,-715.229,143110,4362.38] 1:(67)=[-431957,-29870,-903044,-37540.1] 2:(133)=[-228271,-2797.71,-11435.9,-293.457] 3:(200)=[436387,-98591.9,1.3557e+06,-200494] 4:(267)=[286303,-96509.4,880172,-167904] 5:(333)=[46883,-96509.4,119333,-116689] 6:(400)=[428.419,-136077,143110,-205150] 7:(467)=[32589.3,-211046,452.224,-386728] 8:(533)=[357772,117986,761291,293024] 9:(600)=[-199684,84666.6,404648,181284] 10:(667)=[-3145.01,140894,571082,269745] 11:(733)=[-53173,-715.229,143110,4362.38] ]
+object -------- 9 --------
+object type = KeyframeSequence(19)
+length = 163
+Object3D:   user_id=9, animation_tracks=0
+KeyframeSequence:   keyframe_count=12, component_count=4, valid_range=0,11, duration=733, repeat_mode=LOOP, interp_type=SLERP, keyframes=[0:(0)=[4966.7,-2746.15,-3503.56,-7065.93] 1:(67)=[-62156.3,303568,-72279.6,634619] 2:(133)=[-1745.6,224957,-8794.02,592770] 3:(200)=[-525305,-35.4024,-289188,-91.0914] 4:(267)=[-485031,18939.8,-268027,97556.6] 5:(333)=[-458182,83997.8,-262736,369575] 6:(400)=[-672975,135502,-410869,516047] 7:(467)=[750032,151766,-606616,488147] 8:(533)=[119076,205981,319215,474198] 9:(600)=[354006,-249424,387991,-704550] 10:(667)=[622498,-122019,499090,-355808] 11:(733)=[4966.7,-2746.15,-3503.56,-7065.93] ]
+object -------- 10 --------
+object type = KeyframeSequence(19)
+length = 163
+Object3D:   user_id=10, animation_tracks=0
+KeyframeSequence:   keyframe_count=12, component_count=4, valid_range=0,11, duration=733, repeat_mode=LOOP, interp_type=SLERP, keyframes=[0:(0)=[798476,-37637.5,-1.01481e+06,-3.52637e+06] 1:(67)=[890330,-1.8567e+06,-1.13056e+06,-1.2441e+07] 2:(133)=[-7010.13,-4.00651e+06,199.263,-1984.02] 3:(200)=[635966,3.33591e+06,-810031,1.90712e+07] 4:(267)=[487587,3.03824e+06,-623055,1.6998e+07] 5:(333)=[212026,2.87287e+06,-275813,1.61687e+07] 6:(400)=[55.5362,-3.21274e+06,-8704.37,-2.15629e+07] 7:(467)=[176697,789211,-231295,4.97362e+06] 8:(533)=[120172,756137,-160066,5.38825e+06] 9:(600)=[416930,-4563.54,-542922,205333] 10:(667)=[713688,2.67443e+06,-916875,1.61687e+07] 11:(733)=[798476,-37637.5,-1.01481e+06,-3.52637e+06] ]
+object -------- 11 --------
+object type = KeyframeSequence(19)
+length = 163
+Object3D:   user_id=11, animation_tracks=0
+KeyframeSequence:   keyframe_count=12, component_count=4, valid_range=0,11, duration=733, repeat_mode=LOOP, interp_type=SLERP, keyframes=[0:(0)=[-31583,-15709.5,2.01273e+06,126086] 1:(67)=[-317317,1.8456e+06,-38116.8,-6246.58] 2:(133)=[-222.001,1.5509e+06,-154203,-639144] 3:(200)=[10231.7,620239,-76812.1,-650651] 4:(267)=[59015.5,216955,-463765,-639144] 5:(333)=[128707,-198.54,-1.12158e+06,-627637] 6:(400)=[383079,201444,-4.48808e+06,-506811] 7:(467)=[-369585,185933,3.1349e+06,-408999] 8:(533)=[-108243,61845.3,619703,-650651] 9:(600)=[-3706.56,325531,1.12274e+06,338970] 10:(667)=[-87336,759838,3.87011e+06,-492.969] 11:(733)=[-31583,-15709.5,2.01273e+06,126086] ]
+object -------- 12 --------
+object type = KeyframeSequence(19)
+length = 163
+Object3D:   user_id=12, animation_tracks=0
+KeyframeSequence:   keyframe_count=12, component_count=4, valid_range=0,11, duration=733, repeat_mode=LOOP, interp_type=SLERP, keyframes=[0:(0)=[11415.4,231783,409871,-1.2646e+06] 1:(67)=[683.112,1344.19,23861.7,-493.873] 2:(133)=[923663,-571942,158380,2.1572e+06] 3:(200)=[-1.23353e+06,-66101.3,222715,370020] 4:(267)=[-922297,-4276.27,322141,21301] 5:(333)=[-739847,-172890,450811,370020] 6:(400)=[-1.29793e+06,524046,269504,-2.50691e+06] 7:(467)=[1.04172e+06,276746,467.188,-1.2428e+06] 8:(533)=[-1.07255e+06,507185,485903,-2.70306e+06] 9:(600)=[-10049.2,681419,-5381.44,1.35079e+06] 10:(667)=[-342751,642076,-321207,1.7213e+06] 11:(733)=[11415.4,231783,409871,-1.2646e+06] ]
+object -------- 13 --------
+object type = KeyframeSequence(19)
+length = 163
+Object3D:   user_id=13, animation_tracks=0
+KeyframeSequence:   keyframe_count=12, component_count=4, valid_range=0,11, duration=733, repeat_mode=LOOP, interp_type=SLERP, keyframes=[0:(0)=[221054,-236919,439130,785952] 1:(67)=[755085,266850,180.304,-1.16661e+06] 2:(133)=[-620046,585020,-394130,3.08823e+06] 3:(200)=[-373056,810391,-33298.9,1.68938e+06] 4:(267)=[-299627,730848,-18419.3,1.98081e+06] 5:(333)=[-32611.4,750734,-3539.61,1.48538e+06] 6:(400)=[-5909.86,585020,-89097.6,2.15566e+06] 7:(467)=[-159444,286736,-260214,-3.67289e+06] 8:(533)=[534797,1708.57,249414,-903.135] 9:(600)=[765.534,-581603,-394130,2.73852e+06] 10:(667)=[54168.7,-4919.97,-185815,28239.7] 11:(733)=[221054,-236919,439130,785952] ]
+object -------- 14 --------
+object type = KeyframeSequence(19)
+length = 163
+Object3D:   user_id=14, animation_tracks=0
+KeyframeSequence:   keyframe_count=12, component_count=4, valid_range=0,11, duration=733, repeat_mode=LOOP, interp_type=SLERP, keyframes=[0:(0)=[433313,-6102.51,476721,2.71961e+06] 1:(67)=[-385282,-565686,-4314.27,23902.9] 2:(133)=[-485675,510981,548365,-2.91466e+06] 3:(200)=[-501120,980.829,16155.3,-291811] 4:(267)=[-423894,185148,803.125,-607525] 5:(333)=[-91823.1,170981,87798.9,-1.19038e+06] 6:(400)=[-6874.57,858064,425547,2.76818e+06] 7:(467)=[-76377.9,-523186,-572346,1.26247e+06] 8:(533)=[958449,-268186,-244832,825330] 9:(600)=[108964,503898,297612,-753239] 10:(667)=[848.018,737648,16155.3,-382.742] 11:(733)=[433313,-6102.51,476721,2.71961e+06] ]
+object -------- 15 --------
+object type = KeyframeSequence(19)
+length = 163
+Object3D:   user_id=15, animation_tracks=0
+KeyframeSequence:   keyframe_count=12, component_count=4, valid_range=0,11, duration=733, repeat_mode=LOOP, interp_type=SLERP, keyframes=[0:(0)=[-735910,1.43661e+06,62665.7,-404044] 1:(67)=[-7338.41,21378.2,-3.89791e+06,-4.30547e+06] 2:(133)=[1.80562e+06,-2.91201e+06,-638051,1.08413e+06] 3:(200)=[992330,-1.6769e+06,-28732.1,-1836.08] 4:(267)=[789007,-1.34239e+06,-241994,118826] 5:(333)=[229871,-441788,-729449,360152] 6:(400)=[9605.12,-4353.25,-1.94809e+06,1.607e+06] 7:(467)=[551798,-776297,-3.28859e+06,3.37671e+06] 8:(533)=[-1.17644e+06,2.02843e+06,915712,-1.61067e+06] 9:(600)=[-159830,561739,1733.82,-42056.9] 10:(667)=[-532588,1.1021e+06,62665.7,-323603] 11:(733)=[-735910,1.43661e+06,62665.7,-404044] ]
+object -------- 16 --------
+object type = KeyframeSequence(19)
+length = 163
+Object3D:   user_id=16, animation_tracks=0
+KeyframeSequence:   keyframe_count=12, component_count=4, valid_range=0,11, duration=733, repeat_mode=LOOP, interp_type=SLERP, keyframes=[0:(0)=[161063,22372.6,82031,15661.8] 1:(67)=[-268489,-57946.6,-207388,-157781] 2:(133)=[264473,-15064.3,-24211.3,-44780.3] 3:(200)=[256519,-8938.28,-2230.16,-25071] 4:(267)=[301595,-6215.59,-18716,-18501.2] 5:(333)=[-239322,-770.221,-60846.6,-105.747] 6:(400)=[-61667.8,-2812.24,-156098,-7989.5] 7:(467)=[-3333.56,-14383.7,223077,-48722.2] 8:(533)=[-231367,-74282.8,-398.391,114209] 9:(600)=[-682.006,18288.6,83862.8,1208.21] 10:(667)=[60303.7,-89.5492,136984,1208.21] 11:(733)=[161063,22372.6,82031,15661.8] ]
+object -------- 17 --------
+object type = KeyframeSequence(19)
+length = 163
+Object3D:   user_id=17, animation_tracks=0
+KeyframeSequence:   keyframe_count=12, component_count=4, valid_range=0,11, duration=733, repeat_mode=LOOP, interp_type=SLERP, keyframes=[0:(0)=[230981,3031.84,25823.9,-1077.9] 1:(67)=[-200124,-176400,-248728,-85826] 2:(133)=[-2886.8,-21122.4,-4966.96,-19401.8] 3:(200)=[-28245.9,-418.766,-2401.05,-3368.39] 4:(267)=[-50787.4,-38375.5,-20362.4,-23982.8] 5:(333)=[-135318,-134993,-110169,-69792.6] 6:(400)=[-273384,-310974,-264124,-168284] 7:(467)=[323964,-428294,269585,-239289] 8:(533)=[-69.1177,147957,164.86,124899] 9:(600)=[-335373,113451,269585,90541.6] 10:(667)=[-253660,103100,249058,74508.2] 11:(733)=[230981,3031.84,25823.9,-1077.9] ]
+object -------- 18 --------
+object type = KeyframeSequence(19)
+length = 163
+Object3D:   user_id=18, animation_tracks=0
+KeyframeSequence:   keyframe_count=12, component_count=4, valid_range=0,11, duration=733, repeat_mode=LOOP, interp_type=SLERP, keyframes=[0:(0)=[-9344.16,-295589,-3037.39,18609.3] 1:(67)=[4.046e+06,773725,-380935,2.48467e+06] 2:(133)=[347526,56655.5,35721.3,-453615] 3:(200)=[23098.6,44.7854,192.502,-7625.37] 4:(267)=[120427,69235.7,13112.1,-165033] 5:(333)=[282640,81815.9,48640.9,-479849] 6:(400)=[1.38569e+06,270518,193986,-1.87029e+06] 7:(467)=[2.94294e+06,402610,371630,3.29794e+06] 8:(533)=[-3.64293e+06,-6245.3,-374475,2.56337e+06] 9:(600)=[-1.20973e+06,-270429,-112854,674476] 10:(667)=[-1.01507e+06,-415101,-77324.9,490833] 11:(733)=[-9344.16,-295589,-3037.39,18609.3] ]
+object -------- 19 --------
+object type = KeyframeSequence(19)
+length = 163
+Object3D:   user_id=19, animation_tracks=0
+KeyframeSequence:   keyframe_count=12, component_count=4, valid_range=0,11, duration=733, repeat_mode=LOOP, interp_type=SLERP, keyframes=[0:(0)=[-14734.6,27164.3,-1.62671e+06,-1.78495e+06] 1:(67)=[-39443.9,-6700.07,454918,477846] 2:(133)=[-434792,-616259,-438.769,-823.311] 3:(200)=[-1.17607e+06,-1.59833e+06,1.59331e+06,2.0444e+06] 4:(267)=[-1.37375e+06,-1.86924e+06,1.59331e+06,2.0444e+06] 5:(333)=[-2.06561e+06,-2.85131e+06,1.62584e+06,2.34901e+06] 6:(400)=[-2.46095e+06,-3.39314e+06,2.27635e+06,3.1758e+06] 7:(467)=[-2.3127e+06,-3.15609e+06,2.40645e+06,3.34986e+06] 8:(533)=[-360665,-311480,3.80505e+06,4.39423e+06] 9:(600)=[-3.15281e+06,-4.17202e+06,-1.56166e+06,-2.61175e+06] 10:(667)=[257067,467401,-32964.3,-44338.7] 11:(733)=[-14734.6,27164.3,-1.62671e+06,-1.78495e+06] ]
+object -------- 20 --------
+object type = KeyframeSequence(19)
+length = 163
+Object3D:   user_id=20, animation_tracks=0
+KeyframeSequence:   keyframe_count=12, component_count=4, valid_range=0,11, duration=733, repeat_mode=LOOP, interp_type=SLERP, keyframes=[0:(0)=[-46430.3,40076.7,132381,3149.76] 1:(67)=[99397.4,-37438.7,-3232.37,-267797] 2:(133)=[82532.9,-3848.7,-204314,-124582] 3:(200)=[64676.5,-86531.9,-396044,-178772] 4:(267)=[50788.1,-78780.3,-414749,-124582] 5:(333)=[20035.4,-76196.5,-428778,-12332.9] 6:(400)=[194.873,-120122,-480217,-720.913] 7:(467)=[13091.2,-182134,562603,-116841] 8:(533)=[114278,-290656,497134,452148] 9:(600)=[-11709.4,115008,408284,57339.2] 10:(667)=[-797.151,-1264.85,1443.95,10891.1] 11:(733)=[-46430.3,40076.7,132381,3149.76] ]
+object -------- 21 --------
+object type = KeyframeSequence(19)
+length = 163
+Object3D:   user_id=21, animation_tracks=0
+KeyframeSequence:   keyframe_count=12, component_count=4, valid_range=0,11, duration=733, repeat_mode=LOOP, interp_type=SLERP, keyframes=[0:(0)=[182839,-226497,-145567,-210295] 1:(67)=[-183429,-2677.04,-483107,2819.92] 2:(133)=[-39141.4,163258,-200515,338886] 3:(200)=[-5844.38,136245,-275088,314295] 4:(267)=[-3069.63,132386,-361435,293804] 5:(333)=[-8619.14,109233,435317,220033] 6:(400)=[-61339.5,147822,211598,191345] 7:(467)=[-122384,190271,137025,191345] 8:(533)=[227235,-458034,-345.704,400361] 9:(600)=[-294.873,-6535.99,-432083,-54557.2] 10:(667)=[96821.5,-72138.3,-4270.59,-1278.44] 11:(733)=[182839,-226497,-145567,-210295] ]
+object -------- 22 --------
+object type = KeyframeSequence(19)
+length = 163
+Object3D:   user_id=22, animation_tracks=0
+KeyframeSequence:   keyframe_count=12, component_count=4, valid_range=0,11, duration=733, repeat_mode=LOOP, interp_type=SLERP, keyframes=[0:(0)=[561364,-2818.78,371409,1.35758e+06] 1:(67)=[-103335,344000,-278926,-1.71608e+06] 2:(133)=[-405472,82416.4,-5101.03,-8490.98] 3:(200)=[-3.1247e+06,120.358,-210470,-1.11842e+06] 4:(267)=[-2.94342e+06,3059.5,-200691,-1.0615e+06] 5:(333)=[-2.39957e+06,44207.5,-254478,-1.37456e+06] 6:(400)=[-3.1247e+06,132382,-479406,-2.79755e+06] 7:(467)=[-6.50863e+06,202921,381188,2.23983e+06] 8:(533)=[4.00572e+06,308730,-211.286,19968.8] 9:(600)=[2.37418e+06,-190924,161150,333027] 10:(667)=[-42908.2,-11636.2,278504,902222] 11:(733)=[561364,-2818.78,371409,1.35758e+06] ]
+object -------- 23 --------
+object type = AnimationController(1)
+length = 36
+Object3D:   user_id=23, animation_tracks=0
+AnimationController:   active_interval=0,0, blending_weight=1, speed=1, refference_world_time=0, refference_sequence_time=0
+object -------- 24 --------
+object type = AnimationTrack(2)
+length = 24
+Object3D:   user_id=24, animation_tracks=0
+AnimationTrack:   property=TRANSLATION, keyframe_sequence=[0:0,1:67,2:133,3:200,4:267,5:333,6:400,7:467,8:533,9:600,10:667,11:733,], animation_controller=0x0x234f200
+object -------- 25 --------
+object type = AnimationTrack(2)
+length = 24
+Object3D:   user_id=25, animation_tracks=0
+AnimationTrack:   property=ORIENTATION, keyframe_sequence=[0:0,1:67,2:133,3:200,4:267,5:333,6:400,7:467,8:533,9:600,10:667,11:733,], animation_controller=0x0x234f200
+object -------- 26 --------
+object type = AnimationTrack(2)
+length = 24
+Object3D:   user_id=26, animation_tracks=0
+AnimationTrack:   property=ORIENTATION, keyframe_sequence=[0:0,1:67,2:133,3:200,4:267,5:333,6:400,7:467,8:533,9:600,10:667,11:733,], animation_controller=0x0x234f200
+object -------- 27 --------
+object type = AnimationTrack(2)
+length = 24
+Object3D:   user_id=27, animation_tracks=0
+AnimationTrack:   property=ORIENTATION, keyframe_sequence=[0:0,1:67,2:133,3:200,4:267,5:333,6:400,7:467,8:533,9:600,10:667,11:733,], animation_controller=0x0x234f200
+object -------- 28 --------
+object type = AnimationTrack(2)
+length = 24
+Object3D:   user_id=28, animation_tracks=0
+AnimationTrack:   property=ORIENTATION, keyframe_sequence=[0:0,1:67,2:133,3:200,4:267,5:333,6:400,7:467,8:533,9:600,10:667,11:733,], animation_controller=0x0x234f200
+object -------- 29 --------
+object type = AnimationTrack(2)
+length = 24
+Object3D:   user_id=29, animation_tracks=0
+AnimationTrack:   property=ORIENTATION, keyframe_sequence=[0:0,1:67,2:133,3:200,4:267,5:333,6:400,7:467,8:533,9:600,10:667,11:733,], animation_controller=0x0x234f200
+object -------- 30 --------
+object type = AnimationTrack(2)
+length = 24
+Object3D:   user_id=30, animation_tracks=0
+AnimationTrack:   property=ORIENTATION, keyframe_sequence=[0:0,1:67,2:133,3:200,4:267,5:333,6:400,7:467,8:533,9:600,10:667,11:733,], animation_controller=0x0x234f200
+object -------- 31 --------
+object type = AnimationTrack(2)
+length = 24
+Object3D:   user_id=31, animation_tracks=0
+AnimationTrack:   property=ORIENTATION, keyframe_sequence=[0:0,1:67,2:133,3:200,4:267,5:333,6:400,7:467,8:533,9:600,10:667,11:733,], animation_controller=0x0x234f200
+object -------- 32 --------
+object type = AnimationTrack(2)
+length = 24
+Object3D:   user_id=32, animation_tracks=0
+AnimationTrack:   property=ORIENTATION, keyframe_sequence=[0:0,1:67,2:133,3:200,4:267,5:333,6:400,7:467,8:533,9:600,10:667,11:733,], animation_controller=0x0x234f200
+object -------- 33 --------
+object type = AnimationTrack(2)
+length = 24
+Object3D:   user_id=33, animation_tracks=0
+AnimationTrack:   property=ORIENTATION, keyframe_sequence=[0:0,1:67,2:133,3:200,4:267,5:333,6:400,7:467,8:533,9:600,10:667,11:733,], animation_controller=0x0x234f200
+object -------- 34 --------
+object type = AnimationTrack(2)
+length = 24
+Object3D:   user_id=34, animation_tracks=0
+AnimationTrack:   property=ORIENTATION, keyframe_sequence=[0:0,1:67,2:133,3:200,4:267,5:333,6:400,7:467,8:533,9:600,10:667,11:733,], animation_controller=0x0x234f200
+object -------- 35 --------
+object type = AnimationTrack(2)
+length = 24
+Object3D:   user_id=35, animation_tracks=0
+AnimationTrack:   property=ORIENTATION, keyframe_sequence=[0:0,1:67,2:133,3:200,4:267,5:333,6:400,7:467,8:533,9:600,10:667,11:733,], animation_controller=0x0x234f200
+object -------- 36 --------
+object type = AnimationTrack(2)
+length = 24
+Object3D:   user_id=36, animation_tracks=0
+AnimationTrack:   property=ORIENTATION, keyframe_sequence=[0:0,1:67,2:133,3:200,4:267,5:333,6:400,7:467,8:533,9:600,10:667,11:733,], animation_controller=0x0x234f200
+object -------- 37 --------
+object type = AnimationTrack(2)
+length = 24
+Object3D:   user_id=37, animation_tracks=0
+AnimationTrack:   property=ORIENTATION, keyframe_sequence=[0:0,1:67,2:133,3:200,4:267,5:333,6:400,7:467,8:533,9:600,10:667,11:733,], animation_controller=0x0x234f200
+object -------- 38 --------
+object type = AnimationTrack(2)
+length = 24
+Object3D:   user_id=38, animation_tracks=0
+AnimationTrack:   property=ORIENTATION, keyframe_sequence=[0:0,1:67,2:133,3:200,4:267,5:333,6:400,7:467,8:533,9:600,10:667,11:733,], animation_controller=0x0x234f200
+object -------- 39 --------
+object type = AnimationTrack(2)
+length = 24
+Object3D:   user_id=39, animation_tracks=0
+AnimationTrack:   property=ORIENTATION, keyframe_sequence=[0:0,1:67,2:133,3:200,4:267,5:333,6:400,7:467,8:533,9:600,10:667,11:733,], animation_controller=0x0x234f200
+object -------- 40 --------
+object type = AnimationTrack(2)
+length = 24
+Object3D:   user_id=40, animation_tracks=0
+AnimationTrack:   property=ORIENTATION, keyframe_sequence=[0:0,1:67,2:133,3:200,4:267,5:333,6:400,7:467,8:533,9:600,10:667,11:733,], animation_controller=0x0x234f200
+object -------- 41 --------
+object type = AnimationTrack(2)
+length = 24
+Object3D:   user_id=41, animation_tracks=0
+AnimationTrack:   property=ORIENTATION, keyframe_sequence=[0:0,1:67,2:133,3:200,4:267,5:333,6:400,7:467,8:533,9:600,10:667,11:733,], animation_controller=0x0x234f200
+object -------- 42 --------
+object type = AnimationTrack(2)
+length = 24
+Object3D:   user_id=42, animation_tracks=0
+AnimationTrack:   property=ORIENTATION, keyframe_sequence=[0:0,1:67,2:133,3:200,4:267,5:333,6:400,7:467,8:533,9:600,10:667,11:733,], animation_controller=0x0x234f200
+object -------- 43 --------
+object type = AnimationTrack(2)
+length = 24
+Object3D:   user_id=43, animation_tracks=0
+AnimationTrack:   property=ORIENTATION, keyframe_sequence=[0:0,1:67,2:133,3:200,4:267,5:333,6:400,7:467,8:533,9:600,10:667,11:733,], animation_controller=0x0x234f200
+object -------- 44 --------
+object type = AnimationTrack(2)
+length = 24
+Object3D:   user_id=44, animation_tracks=0
+AnimationTrack:   property=ORIENTATION, keyframe_sequence=[0:0,1:67,2:133,3:200,4:267,5:333,6:400,7:467,8:533,9:600,10:667,11:733,], animation_controller=0x0x234f200
+object -------- 45 --------
+object type = AnimationTrack(2)
+length = 24
+Object3D:   user_id=45, animation_tracks=0
+AnimationTrack:   property=ORIENTATION, keyframe_sequence=[0:0,1:67,2:133,3:200,4:267,5:333,6:400,7:467,8:533,9:600,10:667,11:733,], animation_controller=0x0x234f200
+object -------- 46 --------
+object type = Image2D(10)
+length = 49182
+Object3D:   user_id=46, animation_tracks=0
+object -------- 47 --------
+object type = CompositingMode(6)
+length = 26
+Object3D:   user_id=47, animation_tracks=0
+object -------- 48 --------
+object type = Material(13)
+length = 30
+Object3D:   user_id=48, animation_tracks=0
+Material:   ambient=0x333333, diffuse=0xffcccccc, emissive=0x0, specular=0x0, shininess=0, vertex_color_tracking=0
+object -------- 49 --------
+object type = PolygonMode(8)
+length = 18
+Object3D:   user_id=49, animation_tracks=0
+PolygonMode:   culling=CULL_BACK, winding=WINDING_CCW, shading=SHADE_SMOOTH, two_sided_lighting=0, local_camera_lighting=0, perspective_correction=1
+object -------- 50 --------
+object type = Texture2D(17)
+length = 26
+Object3D:   user_id=50, animation_tracks=0
+Transformable:   translation=0,0,0, scale=1,1,1, orientation=0,0,0, transform=[ [1, 0, 0, 0] ][0, 1, 0, 0] ][0, 0, 1, 0] ][0, 0, 0, 1] ]
+Texture2D:   wrapping=REPEAT,REPEAT, filter=BASE_LEVEL,FILTER_NEAREST, blending=MODULATE, blend_color=0x0
+object -------- 51 --------
+object type = Appearance(3)
+length = 37
+Object3D:   user_id=51, animation_tracks=0
+object -------- 52 --------
+object type = VertexArray(20)
+length = 2327
+Object3D:   user_id=52, animation_tracks=0
+VertexArray: 770 vertices (1byte x 3comps / vertex),  
+object -------- 53 --------
+object type = VertexArray(20)
+length = 2327
+Object3D:   user_id=53, animation_tracks=0
+VertexArray: 770 vertices (1byte x 3comps / vertex),  
+object -------- 54 --------
+object type = VertexArray(20)
+length = 1557
+Object3D:   user_id=54, animation_tracks=0
+VertexArray: 770 vertices (1byte x 2comps / vertex),  
+object -------- 55 --------
+object type = VertexBuffer(21)
+length = 68
+Object3D:   user_id=55, animation_tracks=0
+positions_index = 53
+normals_index = 54
+colors_index = 0
+VertexBuffer:   positions = VertexArray: 770 vertices (1byte x 3comps / vertex),  
+, normals = VertexArray: 770 vertices (1byte x 3comps / vertex),  
+, colors  = 0, default color = 0xff000000
+object -------- 56 --------
+object type = TriangleStripArray(11)
+length = 3881
+Object3D:   user_id=56, animation_tracks=0
+encoding = 130
+1<<7 = 17
+A
+Triangle Strip Array : [13 13 20 22 19 21 13 17 13 17 9 23 14 14 10 9 9 9 23 13 14 9 9 9 9 8 7 5 5 5 5 4 6 9 5 7 9 9 7 4 6 9 5 7 9 7 3 10 7 5 8 17 19 11 11 5 11 7 13 5 4 15 4 9 8 5 3 3 6 7 7 7 5 9 7 6 9 3 8 6 3 3 3 5 7 3 5 6 6 4 7 3 3 3 3 7 3 7 3 5 4 3 3 3 5 6 3 3 3 4 3 3 3 4 3 4 7 3 5 3 3 3 6 3 3 3 3 3 3 3 3 3 3 4 5 3 7 7 17 20 11 11 5 11 7 13 6 5 4 15 4 10 7 5 3 3 5 3 8 8 5 5 8 7 6 10 3 9 5 3 3 11 5 3 5 5 4 6 4 3 3 3 5 3 3 3 7 5 5 4 5 5 5 5 4 3 3 3 3 3 4 3 7 3 3 4 5 3 3 6 3 3 3 3 4 3 3 3 3 3 3 5 5 3 4 4 5 3 3 3 3 ]
+object -------- 57 --------
+object type = Group(9)
+length = 70
+Object3D:   user_id=64, animation_tracks=1
+Transformable:   translation=3.2892,0,0, scale=1,1,1, orientation=0.0145977,-0.12853,-0.0139342, transform=[ [1, 0, 0, 0] ][0, 1, 0, 0] ][0, 0, 1, 0] ][0, 0, 0, 1] ]
+Node:   scope=-1, rendering_enable=1, picking_enable=1, alpha_factor=0.498039
+Group: 0 nodes
+object -------- 58 --------
+object type = Group(9)
+length = 74
+Object3D:   user_id=63, animation_tracks=1
+Transformable:   translation=9.4025,0.0382,0.0007, scale=1,1,1, orientation=0.773323,0.157617,-0.610119, transform=[ [1, 0, 0, 0] ][0, 1, 0, 0] ][0, 0, 1, 0] ][0, 0, 0, 1] ]
+Node:   scope=-1, rendering_enable=1, picking_enable=1, alpha_factor=0.498039
+Group: 1 nodes
+object -------- 59 --------
+object type = Group(9)
+length = 74
+Object3D:   user_id=62, animation_tracks=1
+Transformable:   translation=9.7828,0,0, scale=1,1,1, orientation=-0.0951821,-0.361692,-0.00269277, transform=[ [1, 0, 0, 0] ][0, 1, 0, 0] ][0, 0, 1, 0] ][0, 0, 0, 1] ]
+Node:   scope=-1, rendering_enable=1, picking_enable=1, alpha_factor=0.498039
+Group: 1 nodes
+object -------- 60 --------
+object type = Group(9)
+length = 74
+Object3D:   user_id=61, animation_tracks=1
+Transformable:   translation=2.7526,-1.969,-0.6485, scale=1,1,1, orientation=-0.137963,0.151748,-0.169579, transform=[ [1, 0, 0, 0] ][0, 1, 0, 0] ][0, 0, 1, 0] ][0, 0, 0, 1] ]
+Node:   scope=-1, rendering_enable=1, picking_enable=1, alpha_factor=0.498039
+Group: 1 nodes
+object -------- 61 --------
+object type = Group(9)
+length = 70
+Object3D:   user_id=68, animation_tracks=1
+Transformable:   translation=3.2892,0,0, scale=1,1,1, orientation=-0.00820818,-0.145688,0.00641173, transform=[ [1, 0, 0, 0] ][0, 1, 0, 0] ][0, 0, 1, 0] ][0, 0, 0, 1] ]
+Node:   scope=-1, rendering_enable=1, picking_enable=1, alpha_factor=0.498039
+Group: 0 nodes
+object -------- 62 --------
+object type = Group(9)
+length = 74
+Object3D:   user_id=67, animation_tracks=1
+Transformable:   translation=9.4025,-0.0382,0.0007, scale=1,1,1, orientation=0.739888,-0.107168,-0.662283, transform=[ [1, 0, 0, 0] ][0, 1, 0, 0] ][0, 0, 1, 0] ][0, 0, 0, 1] ]
+Node:   scope=-1, rendering_enable=1, picking_enable=1, alpha_factor=0.498039
+Group: 1 nodes
+object -------- 63 --------
+object type = Group(9)
+length = 74
+Object3D:   user_id=66, animation_tracks=1
+Transformable:   translation=9.7828,0,0, scale=1,1,1, orientation=0.0524781,-0.343448,0.0370351, transform=[ [1, 0, 0, 0] ][0, 1, 0, 0] ][0, 0, 1, 0] ][0, 0, 0, 1] ]
+Node:   scope=-1, rendering_enable=1, picking_enable=1, alpha_factor=0.498039
+Group: 1 nodes
+object -------- 64 --------
+object type = Group(9)
+length = 74
+Object3D:   user_id=65, animation_tracks=1
+Transformable:   translation=2.7526,2.0101,-0.6485, scale=1,1,1, orientation=0.0298455,0.0875595,0.0761413, transform=[ [1, 0, 0, 0] ][0, 1, 0, 0] ][0, 0, 1, 0] ][0, 0, 0, 1] ]
+Node:   scope=-1, rendering_enable=1, picking_enable=1, alpha_factor=0.498039
+Group: 1 nodes
+object -------- 65 --------
+object type = Group(9)
+length = 70
+Object3D:   user_id=72, animation_tracks=1
+Transformable:   translation=2.3637,0,0, scale=1,1,1, orientation=0.102497,0.102477,0.138709, transform=[ [1, 0, 0, 0] ][0, 1, 0, 0] ][0, 0, 1, 0] ][0, 0, 0, 1] ]
+Node:   scope=-1, rendering_enable=1, picking_enable=1, alpha_factor=0.498039
+Group: 0 nodes
+object -------- 66 --------
+object type = Group(9)
+length = 74
+Object3D:   user_id=71, animation_tracks=1
+Transformable:   translation=6.8705,0,0, scale=1,1,1, orientation=0.109789,0.224537,0.0167577, transform=[ [1, 0, 0, 0] ][0, 1, 0, 0] ][0, 0, 1, 0] ][0, 0, 0, 1] ]
+Node:   scope=-1, rendering_enable=1, picking_enable=1, alpha_factor=0.498039
+Group: 1 nodes
+object -------- 67 --------
+object type = Group(9)
+length = 66
+Object3D:   user_id=77, animation_tracks=0
+Transformable:   translation=2.413,0,0, scale=1,1,1, orientation=-0.0141057,-0.797785,-0.143246, transform=[ [1, 0, 0, 0] ][0, 1, 0, 0] ][0, 0, 1, 0] ][0, 0, 0, 1] ]
+Node:   scope=-1, rendering_enable=1, picking_enable=1, alpha_factor=0.498039
+Group: 0 nodes
+object -------- 68 --------
+object type = Group(9)
+length = 74
+Object3D:   user_id=76, animation_tracks=1
+Transformable:   translation=5.8196,0.0096,-0.0018, scale=1,1,1, orientation=0.704119,-0.0260811,-0.0193141, transform=[ [1, 0, 0, 0] ][0, 1, 0, 0] ][0, 0, 1, 0] ][0, 0, 0, 1] ]
+Node:   scope=-1, rendering_enable=1, picking_enable=1, alpha_factor=0.498039
+Group: 1 nodes
+object -------- 69 --------
+object type = Group(9)
+length = 74
+Object3D:   user_id=75, animation_tracks=1
+Transformable:   translation=6.1454,0,0, scale=1,1,1, orientation=-0.0534705,0.878646,0.0604411, transform=[ [1, 0, 0, 0] ][0, 1, 0, 0] ][0, 0, 1, 0] ][0, 0, 0, 1] ]
+Node:   scope=-1, rendering_enable=1, picking_enable=1, alpha_factor=0.498039
+Group: 1 nodes
+object -------- 70 --------
+object type = Group(9)
+length = 74
+Object3D:   user_id=74, animation_tracks=1
+Transformable:   translation=4.2515,0,0, scale=1,1,1, orientation=-0.280177,-0.180031,-0.242169, transform=[ [1, 0, 0, 0] ][0, 1, 0, 0] ][0, 0, 1, 0] ][0, 0, 0, 1] ]
+Node:   scope=-1, rendering_enable=1, picking_enable=1, alpha_factor=0.498039
+Group: 1 nodes
+object -------- 71 --------
+object type = Group(9)
+length = 74
+Object3D:   user_id=73, animation_tracks=1
+Transformable:   translation=6.8709,0.0989,0.0607, scale=1,1,1, orientation=0.554372,0.828712,0.0568254, transform=[ [1, 0, 0, 0] ][0, 1, 0, 0] ][0, 0, 1, 0] ][0, 0, 0, 1] ]
+Node:   scope=-1, rendering_enable=1, picking_enable=1, alpha_factor=0.498039
+Group: 1 nodes
+object -------- 72 --------
+object type = Group(9)
+length = 66
+Object3D:   user_id=82, animation_tracks=0
+Transformable:   translation=2.413,0,0, scale=1,1,1, orientation=-0.0175019,-0.813669,0.179352, transform=[ [1, 0, 0, 0] ][0, 1, 0, 0] ][0, 0, 1, 0] ][0, 0, 0, 1] ]
+Node:   scope=-1, rendering_enable=1, picking_enable=1, alpha_factor=0.498039
+Group: 0 nodes
+object -------- 73 --------
+object type = Group(9)
+length = 74
+Object3D:   user_id=81, animation_tracks=1
+Transformable:   translation=5.8196,-0.0096,-0.0018, scale=1,1,1, orientation=-0.710239,-0.0458495,-0.0587045, transform=[ [1, 0, 0, 0] ][0, 1, 0, 0] ][0, 0, 1, 0] ][0, 0, 0, 1] ]
+Node:   scope=-1, rendering_enable=1, picking_enable=1, alpha_factor=0.498039
+Group: 1 nodes
+object -------- 74 --------
+object type = Group(9)
+length = 74
+Object3D:   user_id=80, animation_tracks=1
+Transformable:   translation=6.1454,0,0, scale=1,1,1, orientation=-0.130038,-0.745043,-0.143973, transform=[ [1, 0, 0, 0] ][0, 1, 0, 0] ][0, 0, 1, 0] ][0, 0, 0, 1] ]
+Node:   scope=-1, rendering_enable=1, picking_enable=1, alpha_factor=0.498039
+Group: 1 nodes
+object -------- 75 --------
+object type = Group(9)
+length = 74
+Object3D:   user_id=79, animation_tracks=1
+Transformable:   translation=4.2515,0,0, scale=1,1,1, orientation=-0.0144715,-0.495867,0.302856, transform=[ [1, 0, 0, 0] ][0, 1, 0, 0] ][0, 0, 1, 0] ][0, 0, 0, 1] ]
+Node:   scope=-1, rendering_enable=1, picking_enable=1, alpha_factor=0.498039
+Group: 1 nodes
+object -------- 76 --------
+object type = Group(9)
+length = 74
+Object3D:   user_id=78, animation_tracks=1
+Transformable:   translation=6.8709,-0.1011,0.0607, scale=1,1,1, orientation=-0.596315,0.802151,-0.0197939, transform=[ [1, 0, 0, 0] ][0, 1, 0, 0] ][0, 0, 1, 0] ][0, 0, 0, 1] ]
+Node:   scope=-1, rendering_enable=1, picking_enable=1, alpha_factor=0.498039
+Group: 1 nodes
+object -------- 77 --------
+object type = Group(9)
+length = 82
+Object3D:   user_id=70, animation_tracks=1
+Transformable:   translation=3.0996,0,0.0001, scale=1,1,1, orientation=0.0635421,0.231839,0.0678632, transform=[ [1, 0, 0, 0] ][0, 1, 0, 0] ][0, 0, 1, 0] ][0, 0, 0, 1] ]
+Node:   scope=-1, rendering_enable=1, picking_enable=1, alpha_factor=0.498039
+Group: 3 nodes
+object -------- 78 --------
+object type = Group(9)
+length = 74
+Object3D:   user_id=69, animation_tracks=1
+Transformable:   translation=0.0009,0,0.0101, scale=1,1,1, orientation=-0.134655,-0.0292814,-0.986405, transform=[ [1, 0, 0, 0] ][0, 1, 0, 0] ][0, 0, 1, 0] ][0, 0, 0, 1] ]
+Node:   scope=-1, rendering_enable=1, picking_enable=1, alpha_factor=0.498039
+Group: 1 nodes
+object -------- 79 --------
+object type = Group(9)
+length = 86
+Object3D:   user_id=60, animation_tracks=2
+Transformable:   translation=0,22.7309,0, scale=1,1,1, orientation=-0.582752,0.610935,-0.382785, transform=[ [1, 0, 0, 0] ][0, 1, 0, 0] ][0, 0, 1, 0] ][0, 0, 0, 1] ]
+Node:   scope=-1, rendering_enable=1, picking_enable=1, alpha_factor=0.498039
+Group: 3 nodes
+object -------- 80 --------
+object type = Group(9)
+length = 30
+Object3D:   user_id=59, animation_tracks=0
+Transformable:   translation=0,0,0, scale=1,1,1, orientation=0,0,0, transform=[ [1, 0, 0, 0] ][0, 1, 0, 0] ][0, 0, 1, 0] ][0, 0, 0, 1] ]
+Node:   scope=-1, rendering_enable=1, picking_enable=1, alpha_factor=0.498039
+Group: 1 nodes
+object -------- 81 --------
+object type = Group(9)
+length = 30
+Object3D:   user_id=58, animation_tracks=0
+Transformable:   translation=0,0,0, scale=1,1,1, orientation=0,0,0, transform=[ [1, 0, 0, 0] ][0, 1, 0, 0] ][0, 0, 1, 0] ][0, 0, 0, 1] ]
+Node:   scope=-1, rendering_enable=1, picking_enable=1, alpha_factor=0.498039
+Group: 1 nodes
+object -------- 82 --------
+object type = Group(9)
+length = 30
+Object3D:   user_id=57, animation_tracks=0
+Transformable:   translation=0,0,0, scale=1,1,1, orientation=0,0,0, transform=[ [1, 0, 0, 0] ][0, 1, 0, 0] ][0, 0, 1, 0] ][0, 0, 0, 1] ]
+Node:   scope=-1, rendering_enable=1, picking_enable=1, alpha_factor=0.498039
+Group: 1 nodes
+  checksum = 659245774
+----------start section--------------
+compression_scheme = 0
+total_section_length = 25291
+uncompressed_length = 25278
+object -------- 1 --------
+object type = SkinnedMesh(16)
+length = 25230
+Object3D:   user_id=84, animation_tracks=0
+Transformable:   translation=0,0,0, scale=1,1,1, orientation=0,0,0, transform=[ [1, 0, 0, 0] ][0, 1, 0, 0] ][0, 0, 1, 0] ][0, 0, 0, 1] ]
+Node:   scope=-1, rendering_enable=1, picking_enable=1, alpha_factor=0.498039
+Mesh:  770 vertices
+SkinnedMesh: 770 vertices, 1574 bones
+object -------- 2 --------
+object type = World(22)
+length = 38
+Object3D:   user_id=83, animation_tracks=0
+Transformable:   translation=0,0,0, scale=1,1,1, orientation=0,0,0, transform=[ [1, 0, 0, 0] ][0, 1, 0, 0] ][0, 0, 1, 0] ][0, 0, 0, 1] ]
+Node:   scope=-1, rendering_enable=1, picking_enable=1, alpha_factor=0.498039
+Group: 1 nodes
+camera_index = 0
+background_index = 0
+World: 
+  active camera = 0
+  background = 0
+  [0] : SkinnedMesh: 770 vertices, 1574 bones
+  checksum = 1825848433
+----------start section--------------
+compression_scheme = 0
+total_section_length = 32643
+uncompressed_length = 32643
+World: 
+  active camera = 0
+  background = 0
+  [0] : SkinnedMesh: 770 vertices, 1574 bones
+
+Graphics3D: レンダー 2 ノード

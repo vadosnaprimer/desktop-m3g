@@ -99,7 +99,7 @@ namespace m3g {
     virtual void addAnimationTrack (AnimationTrack* animation_track);
 
 
-    virtual int animate (int time);
+    virtual int animate (int world_time);
 
     /**
      * @~English  

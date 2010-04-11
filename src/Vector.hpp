@@ -5,6 +5,9 @@
 
 namespace m3g {
 
+  /**
+   * @~Japanese ベクトルクラス。M3G非標準.
+   */
   class Vector
   {
   public:
@@ -13,6 +16,7 @@ namespace m3g {
     ~Vector ();
 
     void get (float* xyz) const;
+    float length () const;
 
     void normalize ();
     

@@ -45,7 +45,7 @@ namespace m3g {
      * @~English  Updates all animated properties in this Object3D and all Object3Ds that are reachable from this Object3D.
      * @~Japanese このObject3D自身とここから到達できるObject3Dのアニメーテッドプロパティを更新する.
      */
-    virtual int animate (int time);
+    virtual int animate (int world_time);
 
     /**
      * @~English  Gets the current Appearance of the specified submesh.
