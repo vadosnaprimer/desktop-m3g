@@ -124,14 +124,16 @@ namespace m3g {
     // normal_array --> normals に名前を変えようか？
 
   private:
-    VertexArray* vertex_position_array;
+    VertexArray* positions;
+    VertexArray* normals;
+    VertexArray* colors;
+    VertexArray* tex_coords[MAX_TEXTURE_UNITS];
+
     float        positions_scale;
     float        positions_bias[3];
-    VertexArray* texture_coordinate_arrays[MAX_TEXTURE_UNITS];
-    float        tex_coord_scale[MAX_TEXTURE_UNITS];
-    float        tex_coord_bias[MAX_TEXTURE_UNITS][3];
-    VertexArray* normal_array;
-    VertexArray* color_array;
+    float        tex_coords_scale[MAX_TEXTURE_UNITS];
+    float        tex_coords_bias[MAX_TEXTURE_UNITS][3];
+
     int          default_color;
 
   private:

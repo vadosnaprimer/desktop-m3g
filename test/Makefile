@@ -3,7 +3,7 @@ SRCS = $(wildcard *.cpp)
 OBJS = $(SRCS:.cpp=.o)
 TARGET = a.out
 CXX = g++
-CXXFLAGS = -Wall -g -std=c++0x -I../src
+CXXFLAGS = -Wall -g -I../src
 LD = g++
 LDFLAGS = -L../src
 LIBS =  -lm3g -lUnitTest++ -lglut -lGLEW -lGL
@@ -640,6 +640,43 @@ test-Mesh.o: /usr/include/GL/gl.h ../src/m3gdef.hpp ../src/m3ginternal.hpp
 test-Mesh.o: ../src/Quaternion.hpp ../src/Transform.hpp ../src/Matrix.hpp
 test-Mesh.o: ../src/VertexBuffer.hpp ../src/TriangleStripArray.hpp
 test-Mesh.o: ../src/IndexBuffer.hpp ../src/Appearance.hpp
+test-MorphingMesh.o: /usr/include/unittest++/UnitTest++.h
+test-MorphingMesh.o: /usr/include/unittest++/Config.h
+test-MorphingMesh.o: /usr/include/unittest++/Test.h
+test-MorphingMesh.o: /usr/include/unittest++/TestDetails.h
+test-MorphingMesh.o: /usr/include/unittest++/TestList.h
+test-MorphingMesh.o: /usr/include/unittest++/TestSuite.h
+test-MorphingMesh.o: /usr/include/unittest++/TestResults.h
+test-MorphingMesh.o: /usr/include/unittest++/TestMacros.h
+test-MorphingMesh.o: /usr/include/unittest++/Posix/SignalTranslator.h
+test-MorphingMesh.o: /usr/include/setjmp.h /usr/include/features.h
+test-MorphingMesh.o: /usr/include/sys/cdefs.h /usr/include/bits/wordsize.h
+test-MorphingMesh.o: /usr/include/gnu/stubs.h /usr/include/gnu/stubs-64.h
+test-MorphingMesh.o: /usr/include/bits/setjmp.h /usr/include/bits/sigset.h
+test-MorphingMesh.o: /usr/include/signal.h /usr/include/bits/types.h
+test-MorphingMesh.o: /usr/include/bits/typesizes.h /usr/include/bits/signum.h
+test-MorphingMesh.o: /usr/include/time.h /usr/include/bits/siginfo.h
+test-MorphingMesh.o: /usr/include/bits/sigaction.h
+test-MorphingMesh.o: /usr/include/bits/sigcontext.h
+test-MorphingMesh.o: /usr/include/bits/sigstack.h
+test-MorphingMesh.o: /usr/include/bits/pthreadtypes.h
+test-MorphingMesh.o: /usr/include/bits/sigthread.h
+test-MorphingMesh.o: /usr/include/unittest++/CheckMacros.h
+test-MorphingMesh.o: /usr/include/unittest++/Checks.h
+test-MorphingMesh.o: /usr/include/unittest++/MemoryOutStream.h
+test-MorphingMesh.o: /usr/include/unittest++/AssertException.h
+test-MorphingMesh.o: /usr/include/unittest++/TestRunner.h
+test-MorphingMesh.o: /usr/include/unittest++/TimeConstraint.h
+test-MorphingMesh.o: /usr/include/unittest++/TimeHelpers.h
+test-MorphingMesh.o: /usr/include/unittest++/Posix/TimeHelpers.h
+test-MorphingMesh.o: /usr/include/sys/time.h /usr/include/bits/time.h
+test-MorphingMesh.o: /usr/include/sys/select.h /usr/include/bits/select.h
+test-MorphingMesh.o: ../src/MorphingMesh.hpp ../src/Mesh.hpp ../src/Node.hpp
+test-MorphingMesh.o: ../src/Transformable.hpp ../src/Object3D.hpp
+test-MorphingMesh.o: /usr/include/GL/glew.h /usr/include/GL/glu.h
+test-MorphingMesh.o: /usr/include/GL/gl.h ../src/m3gdef.hpp
+test-MorphingMesh.o: ../src/m3ginternal.hpp ../src/Quaternion.hpp
+test-MorphingMesh.o: ../src/Transform.hpp ../src/Matrix.hpp
 test-Node.o: /usr/include/unittest++/UnitTest++.h
 test-Node.o: /usr/include/unittest++/Config.h /usr/include/unittest++/Test.h
 test-Node.o: /usr/include/unittest++/TestDetails.h

@@ -18,20 +18,20 @@ Graphics3D:: Graphics3D () :
   glEnable (GL_DEPTH_TEST);
 
   // プロパティは決めうち
-  properties.push_back (new Property("supportAntialiasing", 1));
-  properties.push_back (new Property("supportTrueColor", 1));
-  properties.push_back (new Property("supportDithering", 1));
-  properties.push_back (new Property("supportMipmapping", 1));
+  properties.push_back (new Property("supportAntialiasing"         , 1));
+  properties.push_back (new Property("supportTrueColor"            , 1));
+  properties.push_back (new Property("supportDithering"            , 1));
+  properties.push_back (new Property("supportMipmapping"           , 1));
   properties.push_back (new Property("supportPerspectiveCorrection", 1));
-  properties.push_back (new Property("supportLocalCameraLighting", 1));
-  properties.push_back (new Property("maxLights", 8));
-  properties.push_back (new Property("maxViewportWith", 2048));
-  properties.push_back (new Property("maxViewportHeight", 2048));
-  properties.push_back (new Property("maxViewportDimension", 2048));
-  properties.push_back (new Property("maxTextureDimension", 2048));
-  properties.push_back (new Property("maxSpriteCropDimension", 2048));
-  properties.push_back (new Property("maxTransformsPerVertex", 4));
-  properties.push_back (new Property("numTextureUnits", 4));
+  properties.push_back (new Property("supportLocalCameraLighting"  , 1));
+  properties.push_back (new Property("maxLights"                   , 8));
+  properties.push_back (new Property("maxViewportWith"             , 2048));
+  properties.push_back (new Property("maxViewportHeight"           , 2048));
+  properties.push_back (new Property("maxViewportDimension"        , 2048));
+  properties.push_back (new Property("maxTextureDimension"         , 2048));
+  properties.push_back (new Property("maxSpriteCropDimension"      , 2048));
+  properties.push_back (new Property("maxTransformsPerVertex"      , 2));
+  properties.push_back (new Property("numTextureUnits"             , 4));
 }
 
 Graphics3D:: ~Graphics3D ()
@@ -161,13 +161,13 @@ void Graphics3D:: render (World* world) const
 {
   cout << "Graphics3D: レンダー " << world->getChildCount() << " ノード\n";
 
-  // Zero pass for Background, Camera.
+  // pass 0 for Background, Camera.
   world->render (0);
 
-  // Fist pass for Lights.
+  // pass 1 for Lights.
   world->render (1);
 
-  // Second pass for Scene nodes.
+  // pass 2 for Scene nodes.
   world->render (2);
 
   /*

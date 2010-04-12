@@ -1,0 +1,10 @@
+
+
+
+
+2010/xx/xx  ver 0.1.1
+   - rewrote Loader class.
+   - implemented duplicate() method.
+
+2010/04/08  ver 0.1.0
+   - first release
