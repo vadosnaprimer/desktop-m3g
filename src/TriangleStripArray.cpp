@@ -72,6 +72,19 @@ TriangleStripArray:: ~TriangleStripArray ()
 {
 }
 
+TriangleStripArray* TriangleStripArray:: duplicate () const
+{
+  int index_count = getIndexCount();
+
+  TriangleStripArray* tris = new TriangleStripArray (*this);
+  tris->indices            = new int [index_count];
+  memcpy (tris->indices, this->indices, 4*index_count);
+  // 現状ではOpenGLのバッファーオブジェクトを共通で使用するのでコメントアウト
+  //glGenBuffers (1, &tris->ibuf);
+  //glBindBuffer (GL_ELEMENT_ARRAY_BUFFER, tris->ibuf); 
+  //glBufferData (GL_ELEMENT_ARRAY_BUFFER, sizeof(int)*index_count, tris->indices, GL_STATIC_DRAW);
+  return tris;
+}
 
 int TriangleStripArray:: getIndexCount () const
 {

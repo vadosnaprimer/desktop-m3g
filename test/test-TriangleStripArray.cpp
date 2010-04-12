@@ -40,3 +40,25 @@ TEST (TriangleStripArray_set_variables_implicit)
   CHECK_EQUAL (100, index_buf[0]);
   CHECK_EQUAL (109, index_buf[9]);
 }
+
+TEST (TriangleStripArray_duplicate)
+{
+  int strip_lengths[3] = {4,3,3};
+  TriangleStripArray* tris0 = new TriangleStripArray (100, 3, strip_lengths);
+  TriangleStripArray* tris1 = tris0->duplicate();
+
+  CHECK_EQUAL (tris0->getIndexCount(), tris1->getIndexCount());
+
+  int indices0[10];
+  tris0->getIndices (indices0);
+  CHECK_EQUAL (100, indices0[0]);
+  CHECK_EQUAL (109, indices0[9]);
+
+  int indices1[10];
+  tris1->getIndices (indices1);
+  CHECK_EQUAL (100, indices1[0]);
+  CHECK_EQUAL (109, indices1[9]);
+
+  // duplicate()は深いコピーなので
+  // インターフェースがないのでチェックできない……
+}

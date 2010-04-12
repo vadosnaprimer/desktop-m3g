@@ -58,6 +58,18 @@ Image2D:: ~Image2D ()
 
 }
 
+Image2D* Image2D:: duplicate () const
+{
+  int bpp  = format_to_bpp (format);
+  int size = height*width*bpp;
+
+  Image2D* img = new Image2D (*this);
+  img->image   = new char [size];
+  memcpy (img->image, this->image, size);
+
+  return img;
+}
+
 int Image2D:: getFormat () const
 {
     return format;

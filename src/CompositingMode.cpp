@@ -16,6 +16,11 @@ CompositingMode:: ~CompositingMode ()
 {
 }
 
+CompositingMode* CompositingMode:: duplicate () const
+{
+  return new CompositingMode (*this);
+}
+
 float CompositingMode:: getAlphaThreshold () const
 {
     return alpha_threshold;

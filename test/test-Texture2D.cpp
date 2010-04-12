@@ -46,3 +46,28 @@ TEST (Texure2D_set_variables)
   delete img;
   delete tex;
 }
+
+TEST (Texure2D_duplicate)
+{
+  Image2D*   img  = new Image2D(Image2D::RGBA, 64, 48);
+  Texture2D* tex0 = new Texture2D (img);
+
+  tex0->setBlendColor (0x12345678);
+  tex0->setBlending (Texture2D::FUNC_BLEND);
+  tex0->setFiltering (Texture2D::FILTER_LINEAR, Texture2D::FILTER_LINEAR);
+  tex0->setImage (img);
+  tex0->setWrapping (Texture2D::WRAP_CLAMP, Texture2D::WRAP_CLAMP);
+
+  Texture2D* tex1 = tex0->duplicate();
+
+  CHECK_EQUAL (tex0->getImage()      , tex1->getImage());
+  CHECK_EQUAL (tex0->getWrappingS()  , tex1->getWrappingS());
+  CHECK_EQUAL (tex0->getWrappingT()  , tex1->getWrappingT());
+  CHECK_EQUAL (tex0->getLevelFilter(), tex1->getLevelFilter());
+  CHECK_EQUAL (tex0->getImageFilter(), tex1->getImageFilter());
+  CHECK_EQUAL (tex0->getBlending()   , tex1->getBlending());
+
+  delete img;
+  delete tex0;
+  delete tex1;
+}

@@ -78,3 +78,16 @@ TEST (Image2D_set)
   //CHECK_EQUAL (0x002b2a29, img->get(19,19));
 
 }
+
+TEST (Image2D_duplicate)
+{
+  Image2D* img0 = new Image2D (Image2D::RGB, 64, 48);
+  Image2D* img1 = img0->duplicate();
+
+  CHECK_EQUAL (img0->isMutable(), img1->isMutable());
+  CHECK_EQUAL (img0->getWidth() , img1->getWidth());
+  CHECK_EQUAL (img0->getHeight(), img1->getHeight());
+  CHECK_EQUAL (img0->getFormat(), img1->getFormat());
+  // duplicate()は深いコピーなので
+  CHECK (img0->getOpenGLData() != img1->getOpenGLData());
+}

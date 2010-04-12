@@ -73,6 +73,12 @@ namespace m3g {
     virtual ~Background ();
 
     /**
+     * @~English  Creates a duplicate of this Object3D. 
+     * @~Japanese このオブジェクトの複製の作成.
+     */
+    virtual Background* duplicate () const;
+
+    /**
      * @~English  
      * @~Japanese 
      */

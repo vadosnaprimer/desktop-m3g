@@ -68,6 +68,15 @@ Mesh:: ~Mesh ()
 {
 }
 
+Mesh* Mesh:: duplicate () const
+{
+  Mesh* mesh = new Mesh (*this);
+  Node* node = Node::duplicate();
+  *(Node*)mesh = *node;
+  return mesh;
+}
+
+
 int Mesh:: animate (int world_time)
 {
   //cout << "Mesh: animate time=" << world_time << "\n";

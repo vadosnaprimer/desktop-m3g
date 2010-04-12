@@ -63,23 +63,10 @@ TEST (Object3D_find)
 
 TEST (Object3D_duplicate)
 {
-  /*
-  KeyframeSequence* keyframe = new KeyframeSequence (1,1,KeyframeSequence::STEP);
-  Object3D* obj = new Object3D;
-  obj->setUserID (100);
-  char buf[16] = {0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15};
-  obj->setUserObject ("test", buf);
-  AnimationTrack* anim_track = new AnimationTrack (keyframe, AnimationTrack::ALPHA);
-  obj->addAnimationTrack (anim_track);
+  Object3D* obj0 = new Object3D;
+  Object3D* obj1 = obj0->duplicate();
   
-  Object3D* dup = obj->duplicate();
-
-  CHECK_EQUAL (obj->getUserID(), dup->getUserID());
-  CHECK_EQUAL (obj->getUserObject(), dup->getUserObject());
-  CHECK_EQUAL (obj->getAnimationTrackCount(), dup->getAnimationTrackCount());
-  CHECK_EQUAL (obj->getAnimationTrack(0), dup->getAnimationTrack(0));
-  
-  delete obj;
-  delete dup;
-  */
+  CHECK_EQUAL (obj0->getObjectType(), obj1->getObjectType());
+  CHECK_EQUAL (obj0->getUserID(), obj1->getUserID());
+  // 後でgetUserObject()のテストも追加
 }

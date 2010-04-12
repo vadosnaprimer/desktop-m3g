@@ -51,6 +51,22 @@ TEST (AnimationController_set_variables)
   CHECK_EQUAL (70, controller->getPosition(2020));
 }
 
+TEST (AnimationController_duplicate)
+{
+  AnimationController* ctr0 = new AnimationController;
+  ctr0->setActiveInterval (1000, 5000);
+  ctr0->setPosition (10, 2000);
+  ctr0->setWeight (0.5);
+  ctr0->setSpeed (1, 2000);
+
+  AnimationController* ctr1 = ctr0->duplicate();
+  CHECK_EQUAL (ctr0->getActiveIntervalStart(), ctr1->getActiveIntervalStart());
+  CHECK_EQUAL (ctr0->getActiveIntervalEnd(), ctr1->getActiveIntervalEnd());
+  CHECK_EQUAL (ctr0->getPosition(100), ctr1->getPosition(100));
+  CHECK_EQUAL (ctr0->getRefWorldTime(), ctr1->getRefWorldTime());
+  CHECK_EQUAL (ctr0->getSpeed(), ctr1->getSpeed());
+  CHECK_EQUAL (ctr0->getWeight(), ctr1->getWeight());
+}
 
 
 

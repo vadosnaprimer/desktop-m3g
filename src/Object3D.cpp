@@ -32,10 +32,7 @@ int Object3D:: animate (int world_time)
 
 Object3D* Object3D:: duplicate () const
 {
-  Object3D* obj    = new Object3D;
-  obj->user_id     = this->user_id;
-  obj->anim_tracks = this->anim_tracks;
-  return obj;
+  return new Object3D (*this);
 }
 
 Object3D* Object3D:: find (int target_user_id) const

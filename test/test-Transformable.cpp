@@ -6,6 +6,9 @@ using namespace std;
 using namespace m3g;
 
 
+// TODO: なぜTransformableだけnewしてないの？
+// あとで修正
+
 TEST (Transformable_set_variables)
 {
   Transformable trans;
@@ -94,4 +97,31 @@ TEST (Transformable_append_variables)
   // cout << "\n";
 
 
+}
+
+
+
+TEST (Transformable_duplicate)
+{
+  Transformable* trans0 = new Transformable;
+
+  trans0->setOrientation (90, 1,0,0);
+  trans0->setScale (1,2,3);
+  trans0->setTranslation (-1,0,1);
+
+  Transform tra0;
+  trans0->getCompositeTransform (&tra0);
+  float m0[16];
+  tra0.get ((float*)m0);
+
+  Transformable* trans1 = trans0->duplicate();
+
+  Transform tra1;
+  trans1->getCompositeTransform (&tra1);
+  float m1[16];
+  tra1.get ((float*)m1);
+
+  for (int i = 0; i < 16; i++) {
+    CHECK_EQUAL (m0[i], m1[i]);
+  }
 }

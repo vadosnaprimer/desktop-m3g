@@ -15,76 +15,62 @@ using namespace m3g;
 SkinnedMesh:: SkinnedMesh (VertexBuffer* vertices,
 	   int num_submesh, IndexBuffer** submeshes,
 	   int num_appearance, Appearance** appearances_,
-	   Group* skeleton) :
+	   Group* skeleton_) :
   Mesh (vertices, num_submesh, submeshes, num_appearance, appearances_),
-  root(0)
+  skeleton(0)
 {
   setObjectType (OBJTYPE_SKINNED_MESH);
 
-  // このチェックはMeshでやっているので不要。あとで消す。
-  if (vertices == NULL) {
-    throw NullPointException (__FILE__, __func__, "Vertices is NULL.");
-  }
-  if (submeshes == NULL) {
-    throw NullPointException (__FILE__, __func__, "Submesh is NULL.");
-  }
-  if (skeleton == NULL) {
-    throw NullPointException (__FILE__, __func__, "Skeleton is NULL.");
-  }
-  if (skeleton->getObjectType() != OBJTYPE_GROUP) {
-    throw IllegalArgumentException (__FILE__, __func__, "Skelton root shoud be Group.");
-  }
-  if (skeleton->getParent() != NULL) {
-    throw IllegalArgumentException (__FILE__, __func__, "Skeleton root has parent. it must be NULL.");
-  }
+  // これはダメだなあ
+  // valuesの中身が同じなので、深いコピーをしないと。
+  float scale_bias[4];
+  bind_positions = new VertexArray (*vertices->getPositions(scale_bias));
+  bind_positions_scale   = scale_bias[0];
+  bind_positions_bias[0] = scale_bias[1];
+  bind_positions_bias[1] = scale_bias[2];
+  bind_positions_bias[2] = scale_bias[3];
 
-  // 間違い！
-  // positionsの深いコピーが必要。あとで修正する
-  bind_vertices = new VertexBuffer (*vertices);
+  bind_normals   = new VertexArray (*vertices->getNormals());
+  // bone_indicesも。(index,weight)=(-1,0)で全部
 
-  root = skeleton;
+  skeleton = skeleton_;
 }
 
 SkinnedMesh:: SkinnedMesh (VertexBuffer* vertices, 
 	   IndexBuffer* submeshes, 
 	   Appearance* appearances_, 
-	   Group* skeleton) :
+	   Group* skeleton_) :
     Mesh (vertices, submeshes, appearances_)
 {
   setObjectType (OBJTYPE_SKINNED_MESH);
 
-  // このチェックはMeshでやっているので不要。あとで消す。
 
-  /*
-  if (vertices == NULL) {
-    throw null_point_error ("vertices is NULL.");
-  }
-  if (submeshes == NULL) {
-    throw null_point_error ("submesh is NULL.");
-  }
-  if (skeleton == NULL) {
-    throw null_point_error ("skeleton is NULL.");
-  }
-  if (skeleton->getObjectType() != OBJTYPE_GROUP) {
-    throw invalid_argument ("Skelton root shoud be Group.");
-  }
-  if (skeleton->getParent() != NULL) {
-    throw invalid_argument ("Skeleton root has parent. it must be NULL.");
-  }
-  */
-
-  root = skeleton;
+  skeleton = skeleton_;
 }
 
 SkinnedMesh:: ~SkinnedMesh ()
 {
 }
 
+SkinnedMesh* SkinnedMesh:: duplicate () const
+{
+  SkinnedMesh* mesh = new SkinnedMesh (*this);
+  throw NotImplementedException (__FILE__, __func__, "not yet.");
+  
+  // skeletonの深いコピー
+  // bonesの差し替え（できるか？）
+}
+
 int SkinnedMesh:: animate (int world_time)
 {
-  root->animate (world_time);
-
   Mesh:: animate (world_time);
+
+  // ボーンの移動
+  skeleton->animate (world_time);
+
+  // スキンメッシュの更新
+  // マトリックスパレットの作成
+  // 全部の頂点に対して更新(bind_poses-->Mesh::poses)
 
   return 0;
 }
@@ -106,10 +92,20 @@ void SkinnedMesh:: addTransform (Node* node, int weight, int first_vertex, int n
   if (first_vertex + num_vertices > 65535) {
     throw IllegalArgumentException (__FILE__, __func__, "First vertex + number of vertices is invalid, first_vertex=%d, num_vertices=%d.", first_vertex, num_vertices);
   }
-  
-  Bone* bone = new Bone (node, weight, first_vertex, num_vertices);
 
-  // bind_poseの作成  
+  short index = bones.size();
+  bones.push_back (node);
+
+  // VertexArrayにindexとweightを追加
+  short* bindx = new short[first_vertex + num_vertices];
+  // get
+  for (int i = first_vertex; i < first_vertex + num_vertices; i++) {
+    
+
+  }
+  // set
+
+  // inv_bind_poseを追加
   Matrix global_pose;
   do {
     Transform trans;
@@ -119,10 +115,8 @@ void SkinnedMesh:: addTransform (Node* node, int weight, int first_vertex, int n
     trans.get (m);
     global_pose *= Matrix(m);
   } while ((node = node->getParent()) != NULL);
-  global_pose.invert();
-  bone->setInverseBindMatrix (global_pose);
-
-  bones.push_back (bone);
+  
+  inv_bind_poses.push_back (global_pose.invert());
 }
 
 /**
@@ -136,7 +130,7 @@ void SkinnedMesh:: getBoneTransorm (Node* node, Transform* transform) const
   if (transform == NULL) {
     throw NullPointException (__FILE__, __func__, "Transform is NULL.");
   }
-
+  /*
   for (int i = 0; i < (int)bones.size(); i++) {
     if (bones[i]->node == node) {
       Matrix mat = bones[i]->getInverseBindMatrix();
@@ -144,6 +138,7 @@ void SkinnedMesh:: getBoneTransorm (Node* node, Transform* transform) const
       return;
     }
   }
+  */
 
   // transform is undefined.
   *transform = Transform();
@@ -158,8 +153,10 @@ int SkinnedMesh:: getBoneVertices (Node* node, int* indices, float* weights) con
     throw NullPointException (__FILE__, __func__, "Positions are not set.");
   }
 
+  /*
   int n = 0;
   int index = 0;
+
 
   int vertex_count = vertices->getPositions(0)->getVertexCount();
   for (int i = 0; i < vertex_count; i++) {
@@ -181,20 +178,28 @@ int SkinnedMesh:: getBoneVertices (Node* node, int* indices, float* weights) con
       index += 1;
     }
   }
+  */
 
-  return n;
+  return 0;
 }
 
 Group* SkinnedMesh:: getSkeleton () const
 {
-    return root;
+    return skeleton;
 }
 
 void SkinnedMesh:: render (int pass, int index) const
 {
   //cout << "SkinnedMesh: render\n";
 
+  // SkinnedMeshでする事はない。
+  // Mesh::render()を呼び出すのみ。
+  Mesh::render (pass, index);
+
+  // これは間違え。render()ではなくanimate()で行う。
+  // 移動！
   // MatrixPaletteの作成
+  /*
   vector<Matrix> matrix_palette;
   matrix_palette.reserve (bones.size());
 
@@ -212,6 +217,7 @@ void SkinnedMesh:: render (int pass, int index) const
     };
     matrix_palette.push_back (global_pose * bones[i]->getInverseBindMatrix());
   }
+  */
 
   //cout << "Matrix Palette = " << matrix_palette.size() << "\n";
   //for (int i = 0; i < (int)matrix_palette.size(); i++) {
@@ -222,8 +228,6 @@ void SkinnedMesh:: render (int pass, int index) const
 
   
 
-  // レンダリング
-  Mesh:: render (pass, index);
 }
 
 std::ostream& SkinnedMesh:: print (std::ostream& out) const

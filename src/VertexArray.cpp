@@ -34,6 +34,18 @@ VertexArray:: ~VertexArray ()
   delete [] values;
 }
 
+VertexArray* VertexArray:: duplicate () const
+{
+  VertexArray* varry = new VertexArray (*this);
+  Object3D* obj      = Object3D::duplicate();
+  *(Object3D*)varry  = *obj;
+
+  int size           = vertex_count * component_count * component_size;
+  varry->values      = new char[size];
+  memcpy (varry->values, this->values, size);
+  return varry;
+}
+
 void VertexArray:: get (int first_vertex, int num_vertices, char* values_) const
 {
   if (first_vertex < 0 || first_vertex >= vertex_count) {

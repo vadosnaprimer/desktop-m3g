@@ -18,6 +18,11 @@ Fog:: ~Fog ()
 {
 }
 
+Fog* Fog:: duplicate () const
+{
+  return new Fog (*this);
+}
+
 void Fog:: addAnimationTrack (AnimationTrack* animation_track)
 {
   if (animation_track == NULL) {

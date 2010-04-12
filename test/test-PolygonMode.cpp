@@ -43,3 +43,28 @@ TEST (PolygonMode_set_variables)
   delete pmode;
 }
 
+TEST (PolygonMode_duplicate)
+{
+  PolygonMode* pmode0 = new PolygonMode;
+  
+  pmode0->setCulling (PolygonMode::CULL_NONE);
+  pmode0->setWinding (PolygonMode::WINDING_CW);
+  pmode0->setShading (PolygonMode::SHADE_FLAT);
+  pmode0->setTwoSidedLightingEnable (true);
+  pmode0->setLocalCameraLightingEnable (false);
+  pmode0->setPerspectiveCorrectionEnable (false);
+
+  PolygonMode* pmode1 = pmode0->duplicate();
+
+  CHECK_EQUAL (pmode0->getObjectType()                 , pmode1->getObjectType());
+  CHECK_EQUAL (pmode0->getCulling()                    , pmode1->getCulling());
+  CHECK_EQUAL (pmode0->getWinding()                    , pmode1->getWinding() );
+  CHECK_EQUAL (pmode0->getShading()                    , pmode1->getShading());
+  CHECK_EQUAL (pmode0->isTwoSidedLightingEnabled()     , pmode1->isTwoSidedLightingEnabled());
+  CHECK_EQUAL (pmode0->isLocalCameraLightingEnabled()  , pmode1->isLocalCameraLightingEnabled());
+  CHECK_EQUAL (pmode0->isPerspectiveCorrectionEnabled(), pmode1->isPerspectiveCorrectionEnabled());
+  
+  delete pmode0;
+  delete pmode1;
+}
+

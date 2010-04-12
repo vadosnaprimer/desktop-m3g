@@ -37,9 +37,23 @@ TEST (Fog_set_variables)
   delete fog;
 }
 
-TEST (Fog_Object3D)
+TEST (Fog_duplicate)
 {
-  Fog* fog = new Fog;
-  fog->setUserID (100);
-  CHECK_EQUAL (100, fog->getUserID());
+  Fog* fog0 = new Fog;
+  
+  fog0->setMode (Fog::EXPONENTIAL);
+  fog0->setColor (0x12345678);
+  fog0->setDensity (100);
+  fog0->setLinear (1,10);
+
+  Fog* fog1 = fog0->duplicate();
+
+  CHECK_EQUAL (fog0->getMode()        , fog1->getMode());
+  CHECK_EQUAL (fog0->getDensity()     , fog1->getDensity());
+  CHECK_EQUAL (fog0->getNearDistance(), fog1->getNearDistance());
+  CHECK_EQUAL (fog0->getFarDistance() , fog1->getFarDistance());
+  CHECK_EQUAL (fog0->getColor()       , fog1->getColor());
+
+  delete fog0;
+  delete fog1;
 }

@@ -49,6 +49,13 @@ namespace m3g {
      */
     virtual ~Material ();
 
+
+    /**
+     * @~English  Creates a duplicate of this Object3D. 
+     * @~Japanese このオブジェクトの複製の作成.
+     */
+    virtual Material* duplicate () const;
+
     /**
      * @~English  
      * @~Japanese 

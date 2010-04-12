@@ -19,6 +19,23 @@ World:: ~World ()
 {
 }
 
+World* World:: duplicate () const
+{
+  World* wld   = new World (*this);
+  Group* grp   = Group::duplicate ();
+  *(Group*)wld = *grp;
+  delete grp;
+
+  wld->background = this->background->duplicate();
+  for (int i = 0; i < getChildCount(); i++) {
+    if (getChild(i) == camera) {
+      wld->setActiveCamera (dynamic_cast<Camera*>(wld->getChild(i)));
+      break;
+    }
+  }
+  return wld;
+}
+
 int World:: animate (int world_time)
 {
   //cout << "World: animate, time=" << world_time << "\n";
@@ -50,6 +67,11 @@ void World:: setActiveCamera (Camera* cam)
   if (cam == NULL) {
     throw NullPointException (__FILE__, __func__, "Camera is NULL.");
   }
+
+  // TODO: 今ひとつ
+  // あとで修正する。
+  // カメラは問答無用でセットして良い。
+  // rendering()の時には子ノードとして存在していなければならない
 
   vector<Object3D*> objs;
   for (int i = 0; i < getChildCount(); i++) {
@@ -99,8 +121,10 @@ void World:: render (int pass, int index) const
       glClear      (GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     }
 
-    Camera* cam = getActiveCamera();
-    cam->render (0, index);
+    if (camera == NULL) {
+      throw IllegalStateException (__FILE__, __func__, "Active camera is NULL.");
+    }
+    camera->render (0, index);
     break;
   }
   case 1:

@@ -66,6 +66,12 @@ namespace m3g {
     virtual ~PolygonMode ();
 
     /**
+     * @~English  Creates a duplicate of this Object3D. 
+     * @~Japanese このオブジェクトの複製の作成.
+     */
+    virtual PolygonMode* duplicate () const;
+
+    /**
      * @~English  Retrieves the current poygon culling mode.
      * @~Japanese カレントのポリゴンのカリングモードの取得.
      */

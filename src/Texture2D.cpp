@@ -42,6 +42,17 @@ Texture2D:: ~Texture2D ()
 {
 }
 
+Texture2D* Texture2D:: duplicate () const
+{
+  Texture2D* tex  = new Texture2D (*this);
+  Transformable* trns = Transformable::duplicate ();
+  *(Transformable*)tex = *trns;
+  //glGenTextures (1, &tex->texobj);
+  //tex->setImage (image);
+  return tex;
+}
+
+
 void Texture2D:: addAnimationTrack (AnimationTrack* animation_track)
 {
   if (animation_track == NULL) {

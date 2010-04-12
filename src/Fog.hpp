@@ -41,6 +41,12 @@ namespace m3g {
     virtual ~Fog ();
 
     /**
+     * @~English  Creates a duplicate of this Object3D. 
+     * @~Japanese このオブジェクトの複製の作成.
+     */
+    virtual Fog* duplicate () const;
+
+    /**
      * @~English  
      * @~Japanese アニメーショントラックの追加。
      *            既存のトラックの順番とインデックスは変更されるかもしれない.

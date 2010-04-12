@@ -10,7 +10,7 @@
 using namespace std;
 using namespace m3g;
 
-
+#if 0
 TEST (SkinnedMesh_default_variables)
 {
   VertexBuffer* vbuf    = new VertexBuffer;
@@ -195,4 +195,11 @@ TEST (SkinnedMesh_getBoneVertices_2)
   
 }
 
+TEST (SkinnedMesh_duplicate)
+{
+  // TODO
+
+}
+
+#endif
 

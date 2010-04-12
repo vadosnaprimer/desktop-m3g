@@ -9,6 +9,9 @@ TEST (VertexArray_set_variables_1byte)
 {
   VertexArray* varry = new VertexArray(16, 3, 1);
   CHECK_EQUAL (OBJTYPE_VERTEX_ARRAY, varry->getObjectType());
+  CHECK_EQUAL (16, varry->getVertexCount());
+  CHECK_EQUAL (3, varry->getComponentCount());
+  CHECK_EQUAL (1, varry->getComponentType());
 
   char values[16*3];
   for (int i = 0; i < 16; i++) {
@@ -29,7 +32,6 @@ TEST (VertexArray_set_variables_1byte)
   CHECK_EQUAL ((int)buf[15*3+1], (int)values[15*3+1]);
   CHECK_EQUAL ((int)buf[15*3+2], (int)values[15*3+2]);
 
-
   char buf2[16*3];
   memset (buf2, 0, sizeof(buf2));
   varry->set (10, 1, values+10*3);
@@ -47,6 +49,11 @@ TEST (VertexArray_set_variables_1byte)
 TEST (VertexArray_set_variables_2byte)
 {
   VertexArray* varry = new VertexArray(16, 3, 2);
+  CHECK_EQUAL (OBJTYPE_VERTEX_ARRAY, varry->getObjectType());
+  CHECK_EQUAL (16, varry->getVertexCount());
+  CHECK_EQUAL (3, varry->getComponentCount());
+  CHECK_EQUAL (2, varry->getComponentType());
+
   short values[16*3];
   for (int i = 0; i < 16; i++) {
     values[i*3] = i;
@@ -109,4 +116,46 @@ TEST (VertexArray_set_variables_scale_bias)
   CHECK_EQUAL (46, values3[15]);
 
   
+}
+
+TEST (VertexArray_duplicate)
+{
+  VertexArray* varry0 = new VertexArray(16, 3, 2);
+
+  short values[16*3];
+  for (int i = 0; i < 16; i++) {
+    values[i*3]   = i;
+    values[i*3+1] = i;
+    values[i*3+2] = i;
+  }
+  varry0->set (0, 16, values);
+
+  // VertexArray::valuesは"深いコピー"
+  VertexArray* varry1 = varry0->duplicate();
+
+  CHECK_EQUAL (varry0->getVertexCount()   , varry1->getVertexCount());
+  CHECK_EQUAL (varry0->getComponentCount(), varry1->getComponentCount());
+  CHECK_EQUAL (varry0->getComponentType()    , varry1->getComponentType());
+
+  // ここでvarry0の方の値をセットし直す。
+  short values0[16*3];
+  for (int i = 0; i < 16; i++) {
+    values0[i*3]   = 0;
+    values0[i*3+1] = 0;
+    values0[i*3+2] = 0;
+  }
+  varry0->set (0, 16, values0);
+
+  // varry1の方は古い値のまま
+  short buf[16*3];
+  memset (buf, 0, sizeof(buf));
+  varry1->get (0, 16, buf);
+
+  CHECK_EQUAL ((int)buf[1*3+0], (int)values[1*3+0]);
+  CHECK_EQUAL ((int)buf[1*3+1], (int)values[1*3+1]);
+  CHECK_EQUAL ((int)buf[1*3+2], (int)values[1*3+2]);
+  CHECK_EQUAL ((int)buf[15*3+0], (int)values[15*3+0]);
+  CHECK_EQUAL ((int)buf[15*3+1], (int)values[15*3+1]);
+  CHECK_EQUAL ((int)buf[15*3+2], (int)values[15*3+2]);
+
 }

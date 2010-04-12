@@ -47,4 +47,31 @@ TEST (CompositingMode_set_variables)
   delete cmode;
 }
 
+TEST (CompositingMode_duplicate)
+{
+  CompositingMode* cmode0 = new CompositingMode;
+  
+  cmode0->setBlending (CompositingMode::MODULATE);
+  cmode0->setAlphaThreshold (1.0);
+  cmode0->setDepthOffset (1.0, 2.0);
+  cmode0->setDepthTestEnable (false);
+  cmode0->setDepthWriteEnable (false);
+  cmode0->setAlphaWriteEnable (false);
+  cmode0->setColorWriteEnable (false);
+
+  CompositingMode* cmode1 = cmode0->duplicate();
+
+  CHECK_EQUAL (cmode0->getBlending()         , cmode1->getBlending());
+  CHECK_EQUAL (cmode0->getAlphaThreshold()   , cmode1->getAlphaThreshold());
+  CHECK_EQUAL (cmode0->getDepthOffsetFactor(), cmode1->getDepthOffsetFactor());
+  CHECK_EQUAL (cmode0->getDepthOffsetUnits() , cmode1->getDepthOffsetUnits());
+  CHECK_EQUAL (cmode0->isDepthTestEnabled()  , cmode1->isDepthTestEnabled());
+  CHECK_EQUAL (cmode0->isDepthWriteEnabled() , cmode1->isDepthWriteEnabled());
+  CHECK_EQUAL (cmode0->isColorWriteEnabled() , cmode1->isColorWriteEnabled());
+  CHECK_EQUAL (cmode0->isAlphaWriteEnabled() , cmode1->isAlphaWriteEnabled());
+
+  delete cmode0;
+  delete cmode1;
+}
+
 

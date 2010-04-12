@@ -26,6 +26,11 @@ Appearance:: ~Appearance ()
 {
 }
 
+Appearance* Appearance:: duplicate () const
+{
+  return new Appearance (*this);
+}
+
 int Appearance:: animate (int world_time)
 {
   //cout << "Appearance: animate, time=" << world_time << "\n";
@@ -52,6 +57,8 @@ int Appearance:: animate (int world_time)
 
   return 0;
 }
+
+
 
 
 CompositingMode* Appearance:: getCompositingMode () const

@@ -27,15 +27,31 @@ VertexBuffer:: VertexBuffer () :
       tex_coord_bias[i][j] = 0;
     }
   }
-  glGenBuffers (1, &vbuf);
-  glGenBuffers (1, &ibuf);
-  glGenBuffers (1, &nbuf);
-  glGenBuffers (MAX_TEXTURE_UNITS, (GLuint*)&tcbuf);
+  //glGenBuffers (1, &vbuf);
+  //glGenBuffers (1, &ibuf);
+  //glGenBuffers (1, &nbuf);
+  //glGenBuffers (MAX_TEXTURE_UNITS, (GLuint*)&tcbuf);
 }
 
 VertexBuffer:: ~VertexBuffer ()
 {
 }
+
+VertexBuffer* VertexBuffer:: duplicate () const
+{
+  VertexBuffer* vbuf = new VertexBuffer (*this);
+  Object3D* obj      = Object3D:: duplicate();
+  *(Object3D*)vbuf   = *obj;
+  // 現状ではOpenGLのバッファーオブジェクトを共通で使用するのでコメントアウト
+  // vbuf->setPositons (vertex_position_array, positions_scale, positions_bias);
+  // vbuf->setNormals (normal_array);
+  // vbuf->setColors (color_array);
+  // for (int i = 0; i < MAX_TEXTURE_UNITS; i++) {
+  //  vbuf->setTexCoords (i, tex_coord_scale[i], tex_coord_bias[i]);
+  // }
+  return vbuf;
+}
+
 
 void VertexBuffer:: addAnimationTrack (AnimationTrack* animation_track)
 {
@@ -193,6 +209,7 @@ void VertexBuffer:: setColors (VertexArray* colors)
   //}
   //cout << "\n";
   
+  glGenBuffers (1, &ibuf);
   glBindBuffer (GL_ARRAY_BUFFER, ibuf);
   glBufferData (GL_ARRAY_BUFFER, size, values, GL_STATIC_DRAW);
 
@@ -245,6 +262,7 @@ void VertexBuffer:: setNormals (VertexArray* normals)
   float* values = new float [num];
   normals->get (0, normals->getVertexCount(), scale, bias, values);
 
+  glGenBuffers (1, &nbuf);
   glBindBuffer (GL_ARRAY_BUFFER, nbuf);
   glBufferData (GL_ARRAY_BUFFER, size, values, GL_STATIC_DRAW);
 
@@ -286,6 +304,7 @@ void VertexBuffer:: setPositions (VertexArray* positions, float scale, float* bi
   float* values = new float [num];
   positions->get (0, positions->getVertexCount(), scale, bias, values);
 
+  glGenBuffers (1, &vbuf);
   glBindBuffer (GL_ARRAY_BUFFER, vbuf);
   glBufferData (GL_ARRAY_BUFFER, size, values, GL_STATIC_DRAW);
 
@@ -337,6 +356,7 @@ void VertexBuffer:: setTexCoords (int index, VertexArray* tex_coords, float scal
   float* values = new float [num];
   tex_coords->get (0, tex_coords->getVertexCount(), scale, bias, values);
 
+  glGenBuffers (MAX_TEXTURE_UNITS, &tcbuf[index]);
   glBindBuffer (GL_ARRAY_BUFFER, tcbuf[index]);
   glBufferData (GL_ARRAY_BUFFER, size, values, GL_STATIC_DRAW);
 

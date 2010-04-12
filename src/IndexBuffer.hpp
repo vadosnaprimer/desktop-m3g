@@ -30,6 +30,12 @@ namespace m3g {
     virtual ~IndexBuffer ();
 
     /**
+     * @~English  Creates a duplicate of this Object3D. 
+     * @~Japanese このオブジェクトの複製の作成.
+     */
+    virtual IndexBuffer* duplicate () const;
+
+    /**
      * @~English  Returns the number of indices in this buffer.
      * @~Japanese このバッファーのインデックスの数を取得.
      */
@@ -56,22 +62,9 @@ namespace m3g {
      */
     virtual void render (int pass, int index=0) const;
 
-    /**
-     * @~English  Allocate indices, for inner use.
-     * @~Japanese インデックス配列を明示的に確保する.
-     */
-    // void setIndices (int num_index, int* indices);
-
-    /**
-     * @~English  Allocate indices, for inner use.
-     * @~Japanese インデックス配列を暗黙的に確保する.
-     */
-    // void setIndices (int num_index, int first_index);
 
   private:
-    //int    index_count;
-    //int*   indices;
-    //GLuint ibuf;
+
   };
 
 

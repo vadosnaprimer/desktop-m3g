@@ -52,6 +52,12 @@ namespace m3g {
     virtual ~Transformable ();
 
     /**
+     * @~English  Creates a duplicate of this Object3D. 
+     * @~Japanese このオブジェクトの複製の作成.
+     */
+    virtual Transformable* duplicate () const;
+
+    /**
      * @~English  Adds the given AnimationTrack to this Object3D, 
      *            potentially changing the order and indices of the previously added tracks.
      * @~Japanese このObject3Dに指定されたアニメーショントラックを追加する。

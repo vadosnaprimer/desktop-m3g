@@ -37,6 +37,13 @@ namespace m3g {
      */
     virtual ~AnimationController ();
 
+
+    /**
+     * @~English  Creates a duplicate of this Object3D. 
+     * @~Japanese このオブジェクトの複製の作成.
+     */
+    virtual AnimationController* duplicate () const;
+
     /**
      * @~English  Retrieve the ending time of the current active interval of this animation controller, in the world time units.
      * @~Japanese このアニメーションコントローラーのアクティブ期間の終了時刻を返す。単位はワールド時間.

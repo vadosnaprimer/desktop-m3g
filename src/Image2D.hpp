@@ -70,6 +70,12 @@ namespace m3g {
     virtual ~Image2D ();
 
     /**
+     * @~English  Creates a duplicate of this Object3D. 
+     * @~Japanese このオブジェクトの複製の作成.
+     */
+    virtual Image2D* duplicate () const;
+
+    /**
      * @~English  Gets the internal format of this Image2D.
      * @~Japanese このImage2Dクラスの内部フォーマットを取得.
      */
@@ -133,7 +139,6 @@ namespace m3g {
     char* image;
     bool  immutable;
 
-    GLuint         texobj;
   };
 
 } // namespace m3g {

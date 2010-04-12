@@ -95,11 +95,17 @@ namespace m3g {
      */
     virtual ~Texture2D ();
 
+    /**
+     * @~English  Creates a duplicate of this Object3D. 
+     * @~Japanese このオブジェクトの複製の作成.
+     */
+    Texture2D* duplicate () const;
+
+    virtual int animate (int world_time);
 
     virtual void addAnimationTrack (AnimationTrack* animation_track);
 
 
-    virtual int animate (int world_time);
 
     /**
      * @~English  

@@ -59,6 +59,11 @@ AnimationTrack:: ~AnimationTrack ()
 {
 }
 
+AnimationTrack* AnimationTrack:: duplicate () const
+{
+  return new AnimationTrack (*this);
+}
+
 AnimationController* AnimationTrack:: getController () const
 {
     return animation_controller;

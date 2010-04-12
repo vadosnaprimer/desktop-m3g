@@ -2,6 +2,7 @@
 #include "VertexBuffer.hpp"
 #include "IndexBuffer.hpp"
 #include "Appearance.hpp"
+#include "Exception.hpp"
 #include <iostream>
 using namespace std;
 using namespace m3g;
@@ -9,16 +10,25 @@ using namespace m3g;
 MorphingMesh:: MorphingMesh (VertexBuffer* base, int num_target, VertexBuffer** targets, int num_submesh, IndexBuffer** submeshes, int num_appearance, Appearance** appearances) :
     Mesh (base, num_submesh, submeshes, num_appearance, appearances)
 {
+  throw NotImplementedException (__FILE__, __func__, "Sorry, MrphingMesh is not implemented.");
 }
 
 MorphingMesh:: MorphingMesh (VertexBuffer* base, int num_target, VertexBuffer** targets, IndexBuffer* submeshes, Appearance* appearances) :
     Mesh (base, submeshes, appearances)
 {
+  throw NotImplementedException (__FILE__, __func__, "Sorry, MrphingMesh is not implemented.");
 }
 
 MorphingMesh:: ~MorphingMesh ()
 {
 }
+
+MorphingMesh* MorphingMesh:: duplicate () const
+{
+  return new MorphingMesh (*this);
+}
+
+
 
 void MorphingMesh:: addAnimationTrack (AnimationTrack* animation_track)
 {

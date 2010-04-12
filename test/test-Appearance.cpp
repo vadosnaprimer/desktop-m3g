@@ -60,3 +60,42 @@ TEST (Appearance_set_variables)
   delete cmode;
   delete app;
 }
+
+TEST (Appearance_duplicate)
+{
+  Appearance*  app0   = new Appearance;
+  CompositingMode* cmode = new CompositingMode;
+  Fog*         fog   = new Fog;
+  Material*    mat   = new Material;
+  PolygonMode* pmode = new PolygonMode;
+  Image2D*     img   = new Image2D (Image2D::RGBA, 64, 48);
+  Texture2D*   tex   = new Texture2D (img);
+
+  app0->setCompositingMode (cmode);
+  app0->setFog (fog);
+  app0->setLayer (1);
+  app0->setMaterial (mat);
+  app0->setPolygonMode (pmode);
+  app0->setTexture (1, tex);
+
+  Appearance* app1 = app0->duplicate();
+
+
+  CHECK_EQUAL (app0->getLayer()          , app1->getLayer());
+  CHECK_EQUAL (app0->getPolygonMode()    , app1->getPolygonMode());
+  CHECK_EQUAL (app0->getCompositingMode(), app1->getCompositingMode());
+  CHECK_EQUAL (app0->getTexture(0)       , app1->getTexture(0));
+  CHECK_EQUAL (app0->getTexture(1)       , app1->getTexture(1));
+  CHECK_EQUAL (app0->getMaterial()       , app1->getMaterial());
+  CHECK_EQUAL (app0->getFog()            , app1->getFog());
+
+  delete img;
+  delete tex;
+  delete pmode;
+  delete mat;
+  delete fog;
+  delete cmode;
+  delete app0;
+  delete app1;
+
+}

@@ -66,6 +66,13 @@ namespace m3g {
      */
     virtual ~CompositingMode ();
 
+
+    /**
+     * @~English  Creates a duplicate of this Object3D. 
+     * @~Japanese このオブジェクトの複製の作成.
+     */
+    virtual CompositingMode* duplicate () const;
+
     /**
      * @~English  Retrieves the current alpha testing threashold.
      * @~Japanese カレントのαテストの閾値を取得する.

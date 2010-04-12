@@ -246,7 +246,7 @@ test-Camera.o: ../src/Camera.hpp ../src/Node.hpp ../src/Transformable.hpp
 test-Camera.o: ../src/Object3D.hpp /usr/include/GL/glew.h
 test-Camera.o: /usr/include/GL/glu.h /usr/include/GL/gl.h ../src/m3gdef.hpp
 test-Camera.o: ../src/m3ginternal.hpp ../src/Quaternion.hpp
-test-Camera.o: ../src/Transform.hpp ../src/Matrix.hpp
+test-Camera.o: ../src/Transform.hpp ../src/Matrix.hpp ../src/Group.hpp
 test-CompositingMode.o: /usr/include/unittest++/UnitTest++.h
 test-CompositingMode.o: /usr/include/unittest++/Config.h
 test-CompositingMode.o: /usr/include/unittest++/Test.h
@@ -672,6 +672,7 @@ test-Node.o: ../src/Node.hpp ../src/Transformable.hpp ../src/Object3D.hpp
 test-Node.o: /usr/include/GL/glew.h /usr/include/GL/glu.h
 test-Node.o: /usr/include/GL/gl.h ../src/m3gdef.hpp ../src/m3ginternal.hpp
 test-Node.o: ../src/Quaternion.hpp ../src/Transform.hpp ../src/Matrix.hpp
+test-Node.o: ../src/Group.hpp
 test-Object3D.o: /usr/include/unittest++/UnitTest++.h
 test-Object3D.o: /usr/include/unittest++/Config.h
 test-Object3D.o: /usr/include/unittest++/Test.h

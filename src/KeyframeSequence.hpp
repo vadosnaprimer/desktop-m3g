@@ -76,6 +76,12 @@ namespace m3g {
     virtual ~KeyframeSequence ();
 
     /**
+     * @~English  Creates a duplicate of this Object3D. 
+     * @~Japanese このオブジェクトの複製の作成.
+     */
+    virtual KeyframeSequence* duplicate () const;
+
+    /**
      * @~English  Returns the number of components per keyframe in this ssequence.
      * @~Japanese このシーケンスの1キーフレーム当たりのコンポーネント数を取得.
      */

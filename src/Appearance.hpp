@@ -44,6 +44,12 @@ namespace m3g {
     virtual int animate (int world_time);
 
     /**
+     * @~English  Creates a duplicate of this Object3D. 
+     * @~Japanese このオブジェクトの複製の作成.
+     */
+    virtual Appearance* duplicate () const;
+
+    /**
      * @~English  Returns the current CompostingMode for this Appearance.
      * @~Japanese このアピアランスのCompositingModeの取得.
      */

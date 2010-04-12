@@ -20,6 +20,16 @@ Light:: ~Light ()
 {
 }
 
+Light* Light:: duplicate () const
+{
+  Light* lig  = new Light (*this);
+  Node*  node = Node::duplicate();
+  *(Node*)lig = *node;
+  delete node;
+  return lig;
+}
+
+
 void Light:: addAnimationTrack (AnimationTrack* animation_track)
 {
   if (animation_track == NULL) {

@@ -59,3 +59,33 @@ TEST (Group_pick)
   delete grp;
 }
 
+TEST (Group_duplicate)
+{
+  // parent --> grp0 --> child
+  Group* grp0   = new Group;
+  Group* parent = new Group;
+  Group* child  = new Group;
+  parent->addChild (grp0);
+  grp0->addChild (child);
+
+  Group* grp1   = grp0->duplicate();
+
+  // parent --> grp0 --> child
+  //             | (duplicate)
+  //      0 --> grp1 --> duplicated child
+
+  CHECK_EQUAL (grp0->getChildCount(), grp1->getChildCount());
+
+  CHECK_EQUAL ((Node*)parent, grp0->getParent());
+  CHECK_EQUAL ((Node*)0, grp1->getParent());
+
+  CHECK_EQUAL (child, grp0->getChild(0));
+  CHECK       (child != grp1->getChild(0));
+
+  CHECK_EQUAL (grp1, grp1->getChild(0)->getParent());
+
+  delete parent;
+  delete child;
+  delete grp0;
+  delete grp1;
+}

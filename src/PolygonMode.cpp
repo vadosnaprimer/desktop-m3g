@@ -16,6 +16,11 @@ PolygonMode:: ~PolygonMode ()
 {
 }
 
+PolygonMode* PolygonMode:: duplicate () const
+{
+  return new PolygonMode (*this);
+}
+
 int PolygonMode:: getCulling () const
 {
     return culling;

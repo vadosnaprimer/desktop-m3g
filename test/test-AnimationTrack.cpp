@@ -31,6 +31,19 @@ TEST (AnimationTrack_set_variables)
   delete keyframe;
 }
 
+TEST (AnimationTrack_duplicate)
+{
+  AnimationController* controller = new AnimationController;
+  KeyframeSequence* keyframe = new KeyframeSequence (10, 3, KeyframeSequence::LINEAR);
+  AnimationTrack* track0      = new AnimationTrack   (keyframe, AnimationTrack::COLOR);
+  track0->setController (controller);
+
+  AnimationTrack* track1 = track0->duplicate();
+  CHECK_EQUAL (track0->getController(), track1->getController());
+  CHECK_EQUAL (track0->getKeyframeSequence(), track1->getKeyframeSequence());
+  CHECK_EQUAL (track0->getTargetProperty(), track1->getTargetProperty());
+}
+
 
 
 

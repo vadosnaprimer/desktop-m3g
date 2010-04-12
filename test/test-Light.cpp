@@ -57,3 +57,27 @@ TEST (Light_findByObjectType)
   delete lig;
 }
 
+TEST (Light_duplicate)
+{
+  Light* lig0 = new Light;
+
+  lig0->setAttenuation (1,2,3);
+  lig0->setColor (0x12345678);
+  lig0->setIntensity (100);
+  lig0->setMode (Light::OMNI);
+  lig0->setSpotAngle (90);
+  lig0->setSpotExponent (2);
+
+  Light* lig1 = lig0->duplicate();
+
+  CHECK_EQUAL (lig0->getMode()                , lig1->getMode());
+  CHECK_EQUAL (lig0->getColor()               , lig1->getColor());
+  CHECK_EQUAL (lig0->getConstantAttenuation() , lig1->getConstantAttenuation());
+  CHECK_EQUAL (lig0->getLinearAttenuation()   , lig1->getLinearAttenuation());
+  CHECK_EQUAL (lig0->getQuadraticAttenuation(), lig1->getQuadraticAttenuation());
+  CHECK_EQUAL (lig0->getSpotAngle()           , lig1->getSpotAngle());
+  CHECK_EQUAL (lig0->getSpotExponent()        , lig1->getSpotExponent());
+
+  delete lig0;
+  delete lig1;
+}

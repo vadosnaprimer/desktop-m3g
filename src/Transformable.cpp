@@ -18,6 +18,12 @@ Transformable:: ~Transformable ()
 {
 }
 
+Transformable* Transformable:: duplicate () const
+{
+  return new Transformable (*this);
+}
+
+
 void Transformable:: addAnimationTrack (AnimationTrack* animation_track)
 {
    if (animation_track == NULL) {

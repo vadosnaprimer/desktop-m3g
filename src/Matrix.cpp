@@ -96,7 +96,7 @@ void Matrix:: setTranslate (float tx, float ty, float tz)
   m[2][3] = tz;
 }
 
-void Matrix:: invert ()
+Matrix Matrix:: invert ()
 {
   float n[4][4];
   memcpy (n, m, sizeof(m));
@@ -133,6 +133,8 @@ void Matrix:: invert ()
   m[3][1] = inv_det*(n[0][0]*n[2][1]*n[3][2] + n[0][1]*n[2][2]*n[3][0] + n[0][2]*n[2][0]*n[3][1] - n[0][0]*n[2][2]*n[3][1] - n[0][1]*n[2][0]*n[3][2] - n[0][2]*n[2][1]*n[3][0]);
   m[3][2] = inv_det*(n[0][0]*n[1][2]*n[3][1] + n[0][1]*n[1][0]*n[3][2] + n[0][2]*n[1][1]*n[3][0] - n[0][0]*n[1][1]*n[3][2] - n[0][1]*n[1][2]*n[3][0] - n[0][2]*n[1][0]*n[3][1]);
   m[3][3] = inv_det*(n[0][0]*n[1][1]*n[2][2] + n[0][1]*n[1][2]*n[2][0] + n[0][2]*n[1][0]*n[2][1] - n[0][0]*n[1][2]*n[2][1] - n[0][1]*n[1][0]*n[2][2] - n[0][2]*n[1][1]*n[2][0]);
+  
+  return *this;
 }
 
 void Matrix:: transpose ()

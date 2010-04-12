@@ -32,6 +32,12 @@ namespace m3g {
     virtual ~VertexArray ();
 
     /**
+     * @~English  Creates a duplicate of this Object3D. 
+     * @~Japanese このオブジェクトの複製の作成.
+     */
+    VertexArray* duplicate () const;
+
+    /**
      * @~English  Returns a range of 8-bit vertex attributes. 
      * @~Japanese 8bit頂点属性値のレンジの取得.
      */
@@ -79,7 +85,6 @@ namespace m3g {
      * @~Japanese このVertexArrayクラスの情報を表示する。デバッグ用.
      */
     virtual std::ostream& print (std::ostream& out) const;
-
 
     /**
      * @~English  Returns the scaled and biased value as float, this is not under M3G.

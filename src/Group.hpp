@@ -32,6 +32,12 @@ namespace m3g {
      */
     virtual ~Group ();
 
+    /**
+     * @~English  Creates a duplicate of this Object3D. 
+     * @~Japanese このオブジェクトの複製の作成.
+     */
+    virtual Group* duplicate () const;
+
     /** 
      * @~Enslish  Adds the given node to this Group, potentially changing the order and indices of the previously added children.
      * @~Japanese 指定されたノードを追加する。以前に追加されていた子ノードの順番とインデックスは変更される可能性がある.

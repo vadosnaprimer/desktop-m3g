@@ -17,6 +17,21 @@ Group:: ~Group ()
 {
 }
 
+Group* Group:: duplicate () const
+{
+  Group* grp  = new Group (*this);
+  Node*  node = Node::duplicate();
+  *(Node*)grp = *node;
+  delete node;
+
+  for (int i = 0; i < (int)children.size(); i++) {
+    grp->children[i] = this->children[i]->duplicate();
+    grp->children[i]->setParent (grp);
+  }
+  return grp;
+}
+
+
 void Group:: addChild (Node* child)
 {
   if (child == NULL) {

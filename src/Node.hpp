@@ -70,6 +70,12 @@ namespace m3g {
     virtual ~Node ();
 
     /**
+     * @~English  Creates a duplicate of this Object3D. 
+     * @~Japanese このオブジェクトの複製の作成.
+     */
+    virtual Node* duplicate () const;
+
+    /**
      * @~English   Applies alignments to this Node and its descendants.
      * @~Japanese このノードと子孫ノードにアライメントを適応する.
      */
@@ -184,7 +190,7 @@ namespace m3g {
     void setParent (Node* node);
 
     /**
-     * @~English  
+     * @~English  Render this object, for inner use.
      * @~Japanese このNodeをレンダリングする内部使用の関数.
      */
     virtual void render (int pass, int index=0) const;

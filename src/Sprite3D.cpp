@@ -47,6 +47,16 @@ Sprite3D:: ~Sprite3D ()
 {
 }
 
+Sprite3D* Sprite3D:: duplicate () const
+{
+  Sprite3D* spr = new Sprite3D (*this);
+  Node* node = Node::duplicate();
+  *(Node*)spr = *node;
+  // TODO: texobjの作り直し
+  return spr;
+}
+
+
 void Sprite3D:: addAnimationTrack (AnimationTrack* animation_track)
 {
   if (animation_track == NULL) {

@@ -72,6 +72,12 @@ namespace m3g {
     virtual ~Light ();
 
     /**
+     * @~English  Creates a duplicate of this Object3D. 
+     * @~Japanese このオブジェクトの複製の作成.
+     */
+    Light* duplicate () const;
+
+    /**
      * @~English  Adds the given AnimationTrack to this Object3D, 
      * @~Japanese アニメーショントラックの追加。
      *            既存のトラックの順番とインデックスは変更されるかもしれない.

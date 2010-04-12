@@ -13,8 +13,8 @@ TEST (World_default_variables)
 {
   World* wld = new World;
 
-  CHECK_EQUAL (OBJTYPE_WORLD, wld->getObjectType());
-  CHECK_EQUAL ((Camera*)0, wld->getActiveCamera());
+  CHECK_EQUAL (OBJTYPE_WORLD , wld->getObjectType());
+  CHECK_EQUAL ((Camera*)0    , wld->getActiveCamera());
   CHECK_EQUAL ((Background*)0, wld->getBackground());
 
   delete wld;
@@ -36,6 +36,33 @@ TEST (World_set_variables)
   delete bg;
   delete cam;
   delete wld;
+}
+
+TEST (World_duplicate)
+{
+  Background* bg   = new Background;
+  Camera*     cam  = new Camera;
+  World*      wld0 = new World;
+
+  wld0->addChild (cam);
+  wld0->setActiveCamera (cam);
+  wld0->setBackground (bg);
+
+  CHECK_EQUAL (1  , wld0->getChildCount());
+  CHECK_EQUAL (cam, wld0->getActiveCamera());
+  CHECK_EQUAL (bg , wld0->getBackground());
+
+  World* wld1 = wld0->duplicate();
+
+  CHECK_EQUAL (1, wld1->getChildCount());
+  CHECK (wld0->getChild(0) != wld1->getChild(0));
+  CHECK (cam != wld1->getActiveCamera());
+  CHECK (bg  != wld1->getBackground());
+
+  delete bg;
+  delete cam;
+  delete wld0;
+  delete wld1;
 }
 
 

@@ -64,3 +64,34 @@ TEST (Mesh_default_variables_2)
   delete mesh;
 }
 
+
+TEST (Mesh_duplicate)
+{
+  VertexBuffer* vbuf = new VertexBuffer;
+  int indices[] = {0,1,2};
+  int strips[] = {3};
+  TriangleStripArray* tris = new TriangleStripArray (indices, 1, strips);
+  Appearance* app = new Appearance;
+  Mesh* mesh0 = new Mesh (vbuf, tris, app);
+
+  CHECK_EQUAL (vbuf, mesh0->getVertexBuffer());
+  CHECK_EQUAL (1,    mesh0->getSubmeshCount());
+  CHECK_EQUAL (tris, mesh0->getIndexBuffer(0));
+  CHECK_EQUAL (app,  mesh0->getAppearance(0));
+
+  // duplicate()されるのはMesh本体だけ。
+  // VertexBufferやIndexBufferは同じ物が使われる。
+  Mesh* mesh1 = mesh0->duplicate();
+
+  CHECK_EQUAL (mesh0->getSubmeshCount(), mesh1->getSubmeshCount());
+  CHECK_EQUAL (mesh0->getVertexBuffer(), mesh1->getVertexBuffer());
+  CHECK_EQUAL (mesh0->getIndexBuffer(0), mesh1->getIndexBuffer(0));
+  CHECK_EQUAL (mesh0->getAppearance(0) , mesh1->getAppearance(0));
+
+  delete vbuf;
+  delete tris;
+  delete app;
+  delete mesh0;
+  delete mesh1;
+}
+

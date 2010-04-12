@@ -19,6 +19,15 @@ Node:: ~Node ()
 {
 }
 
+Node* Node:: duplicate () const
+{
+  // 注意：Nodeクラスを継承する全てのクラスはduplicate()する時に
+  // この関数を呼ばなければならない。
+  Node* node = new Node (*this);
+  node->parent = NULL;
+  return node;
+}
+
 void Node:: addAnimationTrack (AnimationTrack* animation_track)
 {
    if (animation_track == NULL) {

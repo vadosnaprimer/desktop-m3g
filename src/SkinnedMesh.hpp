@@ -44,6 +44,12 @@ namespace m3g {
      */
     virtual ~SkinnedMesh ();
 
+    /**
+     * @~English  Creates a duplicate of this Object3D. 
+     * @~Japanese このオブジェクトの複製の作成.
+     */
+    SkinnedMesh* duplicate () const;
+
     virtual int animate (int world_time);
 
     /**
@@ -86,10 +92,16 @@ namespace m3g {
 
 
   public:
-    Group* root;               ///< skeleton root node.
-    std::vector<Bone*> bones;
+    Group*             skeleton;
+    std::vector<Node*> bones;
 
-    VertexBuffer* bind_vertices;
+    VertexArray* bind_positions;
+    float        bind_positions_scale;
+    float        bind_positions_bias[3];
+    VertexArray* bind_normals;
+    VertexArray* bone_indices;
+
+    std::vector<Matrix> inv_bind_poses;
   };
 
 

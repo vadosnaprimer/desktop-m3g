@@ -49,6 +49,12 @@ namespace m3g {
     virtual ~Camera ();
 
     /**
+     * @~English  Creates a duplicate of this Object3D. 
+     * @~Japanese このオブジェクトの複製の作成.
+     */
+      virtual Camera* duplicate () const;
+
+    /**
      * @~English  Adds the given AnimationTrack to this Object3D, 
      *            potentially chaing the order and indices of the previously added tracks.
      * @~Japanese アニメーショントラックの追加。

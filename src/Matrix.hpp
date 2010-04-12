@@ -28,7 +28,7 @@ public:
   void setScale (float sx, float sy, float sz);
   void setTranslate (float tx, float ty, float tz);
 
-  void invert ();
+  Matrix invert ();
   void transpose ();
   Matrix& operator*= (const Matrix& rhs);
 

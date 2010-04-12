@@ -1,8 +1,6 @@
 #ifndef __TRIANGLE_STRIP_ARRAY_HPP__
 #define __TRIANGLE_STRIP_ARRAY_HPP__
 
-#include <unittest++/UnitTest++.h>
-
 #include "IndexBuffer.hpp"
 #include <iosfwd>
 
@@ -14,8 +12,6 @@ namespace m3g {
    */
   class TriangleStripArray : public IndexBuffer
   {
-    friend class UnitTest::Test;
-
   public:
     /**
      * @~English  Constructs a triangle strip array with explicit indices.
@@ -35,6 +31,12 @@ namespace m3g {
      * @~Japanese このオブジェクトを削除するデストラクタ.
      */
     virtual ~TriangleStripArray ();
+
+    /**
+     * @~English  Creates a duplicate of this Object3D. 
+     * @~Japanese このオブジェクトの複製の作成.
+     */
+    virtual TriangleStripArray* duplicate () const;
 
     /**
      * @~English  Returns the number of indices in this buffer.

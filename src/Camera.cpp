@@ -21,6 +21,15 @@ Camera:: ~Camera ()
 {
 }
 
+Camera* Camera:: duplicate () const
+{
+  Node*   node = Node::duplicate();
+  Camera* cam  = new Camera(*this);
+  *(Node*)cam  = *node;
+  delete node;
+  return cam;
+}
+
 void Camera:: addAnimationTrack (AnimationTrack* animation_track)
 {
   if (animation_track == NULL) {

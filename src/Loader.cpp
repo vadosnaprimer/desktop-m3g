@@ -39,14 +39,14 @@ std::vector<Object3D*> Loader:: load (const char* name)
 
   while (1) {
     // section
-    cout << "----------start section--------------\n";
+    //cout << "----------start section--------------\n";
 
     char         compression_scheme   = getByte();
     unsigned int total_section_length = getUInt32 ();
     unsigned int uncompressed_length  = getUInt32 ();
-    cout << "compression_scheme = "   << (int)compression_scheme << "\n";
-    cout << "total_section_length = " << total_section_length << "\n";
-    cout << "uncompressed_length = "  << uncompressed_length << "\n";
+    //cout << "compression_scheme = "   << (int)compression_scheme << "\n";
+    //cout << "total_section_length = " << total_section_length << "\n";
+    //cout << "uncompressed_length = "  << uncompressed_length << "\n";
 
     if (ifs.eof())
       break;
@@ -61,11 +61,11 @@ std::vector<Object3D*> Loader:: load (const char* name)
 
     while (1) {
       // object
-      cout << "object -------- " << i++ << " --------\n";
+      //cout << "object -------- " << i++ << " --------\n";
       char         object_type = getByte ();
       unsigned int length      = getUInt32 ();
-      cout << "object type = " << objtype_to_string(object_type) << "(" << (int)object_type << ")\n";
-      cout << "length = "      << length << "\n";
+      //cout << "object type = " << objtype_to_string(object_type) << "(" << (int)object_type << ")\n";
+      //cout << "length = "      << length << "\n";
 
       switch (object_type) {
       case OBJTYPE_HEADER_OBJECT       : parseHeader()             ; break;
@@ -102,7 +102,7 @@ std::vector<Object3D*> Loader:: load (const char* name)
     // checksum, 今だけノーチェック
     //unsigned int checksum = getUInt32 ();
     unsigned int checksum = getUInt32();
-    cout << "  checksum = " << checksum << "\n";
+    //cout << "  checksum = " << checksum << "\n";
 
   }
 
@@ -195,11 +195,11 @@ bool         Loader:: getM3GIdent ()
 {
   char ident[12];
   ifs.read ((char*)ident, 12);
-  cout << "ident = ";
-  for (int i = 0; i < 12; i++) {
-    cout << ident[i];
-  }
-  cout << "\n";
+  //cout << "ident = ";
+  //for (int i = 0; i < 12; i++) {
+  //  cout << ident[i];
+  //}
+  //cout << "\n";
   return true;
 }
 
@@ -249,13 +249,13 @@ void Loader:: parseHeader ()
   unsigned int approximate_content_size = getUInt32 ();
   const char* authoring_field           = getString ();
 
-  cout << "M3G Header ---\n";
-  cout << "  version_major = "            << (int)version_major       << "\n";
-  cout << "  version_minor = "            << (int)version_minor       << "\n";
-  cout << "  has_external_refference  = " << has_external_refference  << "\n";
-  cout << "  total_file_size          = " << total_file_size          << "\n";
-  cout << "  approximate_content_size = " << approximate_content_size << "\n";
-  cout << "  authoring_field          = " << authoring_field          << "\n";
+  //cout << "M3G Header ---\n";
+  //cout << "  version_major = "            << (int)version_major       << "\n";
+  //cout << "  version_minor = "            << (int)version_minor       << "\n";
+  //cout << "  has_external_refference  = " << has_external_refference  << "\n";
+  //cout << "  total_file_size          = " << total_file_size          << "\n";
+  //cout << "  approximate_content_size = " << approximate_content_size << "\n";
+  ////cout << "  authoring_field          = " << authoring_field          << "\n";
 
   if (has_external_refference) {
     throw NotImplementedException (__FILE__, __func__, "Has_external_reference is not implemented.");
@@ -274,7 +274,7 @@ void Loader:: parseHeader ()
 void Loader:: parseExref ()
 {
   const char* uri = getString();
-  cout << "uri = " << uri << "\n";
+  //cout << "uri = " << uri << "\n";
 }
 
 void Loader:: parseAnimationController ()
@@ -294,7 +294,7 @@ void Loader:: parseAnimationController ()
   ctr->setActiveInterval (active_interval_start, active_interval_end);
   ctr->setPosition (reference_sequence_time, reference_world_time);
 
-  ctr->AnimationController:: print (cout);
+  //ctr->AnimationController:: print (cout);
 
   objs.push_back (ctr);
 }
@@ -317,7 +317,7 @@ void Loader:: parseAnimationTrack ()
     track->setController (ctr);
   }
 
-  track->AnimationTrack:: print (cout);
+  //track->AnimationTrack:: print (cout);
 
   objs.push_back (track);
 }
@@ -359,7 +359,7 @@ void Loader:: parseAppearance ()
     app->setTexture (i, tex);
   }
 
-  app->Appearance:: print (cout);
+  //app->Appearance:: print (cout);
 
   objs.push_back (app);
 }
@@ -390,7 +390,7 @@ void Loader:: parseBackground ()
   bg->setDepthClearEnable (depth_clear_enabled);
   bg->setColorClearEnable (color_clear_enabled);
    
-  bg->Background:: print (cout);
+  //bg->Background:: print (cout);
 
   objs.push_back (bg);
 }
@@ -416,7 +416,7 @@ void Loader:: parseCamera ()
     cam->setPerspective (fovy, aspect_ratio, near, far);
   }
 
-  cam->print (cout);
+  //cam->print (cout);
 
   objs.push_back (cam);
 }
@@ -490,7 +490,7 @@ void Loader:: parseGroup (Group* grp)
 
   }
 
-  grp->Group:: print (cout);
+  //grp->Group:: print (cout);
 }
 
 void Loader:: parseImage2D ()
@@ -599,7 +599,7 @@ void Loader:: parseKeyframeSequence ()
   kseq->setDuration (duration);
   kseq->setValidRange (valid_range_first, valid_range_last);
 
-  kseq->KeyframeSequence:: print (cout);
+  //kseq->KeyframeSequence:: print (cout);
 
   objs.push_back (kseq);
 }
@@ -625,7 +625,7 @@ void Loader:: parseLight ()
   lig->setSpotAngle (spot_angle);
   lig->setSpotExponent (spot_exponent);
 
-  lig->Light:: print (cout);
+  //lig->Light:: print (cout);
 
   objs.push_back (lig);
 }
@@ -649,7 +649,7 @@ void Loader:: parseMaterial ()
   mat->setShininess (shininess);
   mat->setVertexColorTrackingEnable (vertex_color_tracking_enabled);
 
-  mat->Material:: print (cout);
+  //mat->Material:: print (cout);
 
   objs.push_back (mat);
 }
@@ -677,7 +677,7 @@ void Loader:: parseMesh ()
 
   Mesh* mesh = new Mesh (vbuf, submesh_count, indices, submesh_count, appears);
 
-  mesh->Mesh:: print (cout);
+  //mesh->Mesh:: print (cout);
 
   delete [] indices;
   delete [] appears;
@@ -711,7 +711,7 @@ void Loader:: parseNode (Node* node)
   node->setRenderingEnable (enable_rendering);
   node->setScope (scope);
 
-  node->Node::print (cout);
+  //node->Node::print (cout);
 }
 
 void Loader:: parseObject3D (Object3D* obj)
@@ -732,15 +732,15 @@ void Loader:: parseObject3D (Object3D* obj)
   for (int i = 0; i < (int)user_parameter_count; i++) {
     unsigned int parameter_id          = getUInt32();
     unsigned int parameter_value_count = getUInt32();
-    cout << "dummy" << parameter_id << parameter_value_count;
+    //cout << "dummy" << parameter_id << parameter_value_count;
     for (int i = 0; i < (int)parameter_value_count; i++) {
       char parameter_value = getByte ();
-      cout << "duumy" << parameter_value;
+      //cout << "duumy" << parameter_value;
     }
     throw NotImplementedException (__FILE__, __func__, "User object is not implemted.");
   }
    
-  obj->Object3D::print (cout);
+  //obj->Object3D::print (cout);
 }
 
 void Loader:: parsePolygonMode ()
@@ -762,7 +762,7 @@ void Loader:: parsePolygonMode ()
   pmode->setLocalCameraLightingEnable (local_camera_lighting_enabled);
   pmode->setPerspectiveCorrectionEnable (perspective_correction_enabled);
 
-  pmode->PolygonMode:: print (cout);
+  //pmode->PolygonMode:: print (cout);
 
   objs.push_back (pmode);
 }
@@ -799,7 +799,7 @@ void Loader:: parseSkinnedMesh ()
   SkinnedMesh* mesh = new SkinnedMesh (vbuf, submesh_count, indices, submesh_count, appears, skeleton);
   *(Node*)mesh = *node;
 
-  mesh->Mesh:: print (cout);
+  //mesh->Mesh:: print (cout);
 
   delete [] indices;
   delete [] appears;
@@ -815,7 +815,7 @@ void Loader:: parseSkinnedMesh ()
     mesh->addTransform (node, weight, first_vertex, vertex_count);
   }
 
-  mesh->SkinnedMesh:: print (cout);
+  //mesh->SkinnedMesh:: print (cout);
 
   objs.push_back (mesh);
 }
@@ -840,7 +840,7 @@ void Loader:: parseSprite3D ()
   *(Node*)spr = *node;
   spr->setCrop (crop_x, crop_y, crop_width, crop_height);
 
-  spr->Sprite3D:: print (cout);
+  //spr->Sprite3D:: print (cout);
 
   objs.push_back (spr);
 }
@@ -867,7 +867,7 @@ void Loader:: parseTexture2D ()
   tex->setWrapping (wrapping_s, wrapping_t);
   tex->setFiltering (level_filter, image_filter);
    
-  tex->Texture2D:: print (cout);
+  //tex->Texture2D:: print (cout);
    
   objs.push_back (tex);
 }
@@ -951,21 +951,21 @@ void Loader:: parseTriangleStripArray ()
 
   unsigned int strips_len = getUInt32();
   int*         strips     = (int*)getUInt32Array(strips_len);
-  cout << "encoding = " << (int)encoding << "\n";
-  cout << "1<<7 = " << 1<<7 << "\n";
+  //cout << "encoding = " << (int)encoding << "\n";
+  //cout << "1<<7 = " << 1<<7 << "\n";
 
   if (encoding & (1<<7)) {
     tris = new TriangleStripArray (indices, strips_len, strips);
-    cout << "A\n";
+    //cout << "A\n";
   }
   else {
     tris = new TriangleStripArray (start_index, strips_len, strips);
-    cout << "B\n";
+    //cout << "B\n";
   }
    
   *(IndexBuffer*)tris = *ibuf;
 
-  tris->TriangleStripArray:: print(cout);
+  //tris->TriangleStripArray:: print(cout);
 
   objs.push_back (tris);
 }
@@ -1003,7 +1003,7 @@ void Loader:: parseVertexArray ()
     throw IOException (__FILE__, __func__, "Component size is invalid, size=%d.", component_size);
   }
 
-  varr->VertexArray:: print (cout);
+  //varr->VertexArray:: print (cout);
 
   objs.push_back (varr);
 }
@@ -1020,9 +1020,9 @@ void Loader:: parseVertexBuffer ()
   unsigned int normals_index   = getUInt32();
   unsigned int colors_index    = getUInt32();
    
-  cout << "positions_index = " << positions_index << "\n";
-  cout << "normals_index = " << normals_index << "\n";
-  cout << "colors_index = " << colors_index << "\n";
+  //cout << "positions_index = " << positions_index << "\n";
+  //cout << "normals_index = " << normals_index << "\n";
+  //cout << "colors_index = " << colors_index << "\n";
 
   vbuf->setDefaultColor (default_color);
   if (positions_index > 0) {
@@ -1049,7 +1049,7 @@ void Loader:: parseVertexBuffer ()
     }
   }
    
-  vbuf->VertexBuffer:: print (cout);
+  //vbuf->VertexBuffer:: print (cout);
 
   objs.push_back (vbuf);
 }
@@ -1062,8 +1062,8 @@ void Loader:: parseWorld ()
   unsigned int active_camera_index = getUInt32();
   unsigned int background_index    = getUInt32();
 
-  cout << "camera_index = " << active_camera_index << "\n";
-  cout << "background_index = " << background_index << "\n";
+  //cout << "camera_index = " << active_camera_index << "\n";
+  //cout << "background_index = " << background_index << "\n";
 
   if (active_camera_index > 0) {
     Camera*     cam = dynamic_cast<Camera*>(objs.at(active_camera_index));

@@ -17,6 +17,12 @@ IndexBuffer:: ~IndexBuffer ()
 {
 }
 
+IndexBuffer* IndexBuffer:: duplicate () const
+{
+  return new IndexBuffer (*this);
+}
+
+
 int IndexBuffer:: getIndexCount () const
 {
     return 0;

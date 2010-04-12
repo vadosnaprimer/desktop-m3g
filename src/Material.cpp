@@ -21,6 +21,10 @@ Material:: ~Material ()
 {
 }
 
+Material* Material:: duplicate () const
+{
+  return new Material (*this);
+}
 
 void Material:: addAnimationTrack (AnimationTrack* animation_track)
 {

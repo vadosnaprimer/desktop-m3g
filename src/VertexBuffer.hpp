@@ -34,11 +34,18 @@ namespace m3g {
      */
     virtual ~VertexBuffer ();
 
+    /**
+     * @~English  Creates a duplicate of this Object3D. 
+     * @~Japanese このオブジェクトの複製の作成.
+     */
+    VertexBuffer* duplicate () const;
+
+    virtual int animate (int world_time);
 
     virtual void addAnimationTrack (AnimationTrack* animation_track);
 
 
-    virtual int animate (int world_time);
+
 
     /**
      * @~English  Gets the current color array.

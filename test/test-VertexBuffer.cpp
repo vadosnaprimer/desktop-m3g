@@ -51,3 +51,35 @@ TEST (VertexBuffer_set_variables)
     delete colors;
     delete vbuf;
 }
+
+TEST (VertexBuffer_duplicate)
+{
+    VertexBuffer* vbuf0    = new VertexBuffer;
+    VertexArray* colors    = new VertexArray (1, 3, 1);
+    VertexArray* normals   = new VertexArray (1, 3, 2);
+    VertexArray* positions = new VertexArray (1, 3, 2);
+    VertexArray* texcoords = new VertexArray (1, 2, 2);
+    float bias[4] = {32768/65535.f, 2*32768/65535.f, 3*32768/65535.f};
+
+    vbuf0->setDefaultColor (0x12345678);
+    vbuf0->setColors (colors);
+    vbuf0->setNormals (normals);
+    vbuf0->setPositions (positions, 1/65535.f, bias);
+    vbuf0->setTexCoords (1, texcoords, 1/65535.f, bias);
+
+    VertexBuffer* vbuf1 = vbuf0->duplicate();
+
+    CHECK_EQUAL (vbuf0->getDefaultColor(), vbuf1->getDefaultColor());
+    CHECK_EQUAL (vbuf0->getColors()      , vbuf1->getColors());
+    CHECK_EQUAL (vbuf0->getNormals()     , vbuf1->getNormals());
+    CHECK_EQUAL (vbuf0->getPositions(0)  , vbuf1->getPositions(0));
+    CHECK_EQUAL (vbuf0->getTexCoords(1,0), vbuf1->getTexCoords(1,0));
+    CHECK_EQUAL (vbuf0->getTexCoords(0,0), vbuf1->getTexCoords(0,0));
+
+    delete texcoords;
+    delete positions;
+    delete normals;
+    delete colors;
+    delete vbuf0;
+    delete vbuf1;
+}

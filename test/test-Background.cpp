@@ -47,3 +47,33 @@ TEST (Background_set_variables)
   delete img;
   delete bg;
 }
+
+TEST (Background_duplicate)
+{
+  Background* bg0 = new Background;
+  Image2D*    img = new Image2D (Image2D::RGBA, 64, 48);
+
+  bg0->setColor (0x12345678);
+  bg0->setColorClearEnable (false);
+  bg0->setDepthClearEnable (false);
+  bg0->setImage (img);
+  bg0->setImageMode (Background::REPEAT, Background::REPEAT);
+  bg0->setCrop (1,2,100,200);
+
+  Background* bg1 = bg0->duplicate();
+
+  CHECK_EQUAL (bg0->isDepthClearEnabled(), bg1->isDepthClearEnabled());
+  CHECK_EQUAL (bg0->isColorClearEnabled(), bg1->isColorClearEnabled());
+  CHECK_EQUAL (bg0->getColor()           , bg1->getColor());
+  CHECK_EQUAL (bg0->getImage()           , bg1->getImage());
+  CHECK_EQUAL (bg0->getImageModeX()      , bg1->getImageModeX());
+  CHECK_EQUAL (bg0->getImageModeY()      , bg1->getImageModeY());
+  CHECK_EQUAL (bg0->getCropX()           , bg1->getCropX());
+  CHECK_EQUAL (bg0->getCropY()           , bg1->getCropY());
+  CHECK_EQUAL (bg0->getCropWidth()       , bg1->getCropWidth());
+  CHECK_EQUAL (bg0->getCropHeight()      , bg1->getCropHeight());
+
+  delete img;
+  delete bg0;
+  delete bg1;
+}

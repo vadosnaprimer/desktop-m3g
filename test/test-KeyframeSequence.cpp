@@ -148,4 +148,30 @@ TEST (KeyframeSequence_interpolate_linear_loop)
 }
 
 
+TEST (KeyframeSequence_duplicate)
+{
+  KeyframeSequence* kseq0 = new KeyframeSequence (10, 3, KeyframeSequence::LINEAR);
+  kseq0->setDuration (1000);
+  kseq0->setRepeatMode (KeyframeSequence::LOOP);
+  kseq0->setValidRange (5,9);
+
+  float values[] = {0,1,3};
+  kseq0->setKeyframe (0,   0, &values[0]);
+  kseq0->setKeyframe (1, 100, &values[1]);
+  kseq0->setKeyframe (2, 200, &values[2]);
+
+  KeyframeSequence* kseq1 = kseq0->duplicate();
+
+  CHECK_EQUAL (kseq0->getKeyframeCount()    , kseq1->getKeyframeCount());
+  CHECK_EQUAL (kseq0->getComponentCount()   , kseq1->getComponentCount());
+  CHECK_EQUAL (kseq0->getInterpolationType(), kseq1->getInterpolationType());
+  CHECK_EQUAL (kseq0->getRepeatMode()       , kseq1->getRepeatMode());
+  CHECK_EQUAL (kseq0->getDuration()         , kseq1->getDuration());
+  CHECK_EQUAL (kseq0->getValidRangeFirst()  , kseq1->getValidRangeFirst());
+  CHECK_EQUAL (kseq0->getValidRangeLast()   , kseq1->getValidRangeLast());
+
+  delete kseq0;
+  delete kseq1;
+}
+
 

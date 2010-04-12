@@ -22,6 +22,10 @@ Background:: ~Background ()
 {
 }
 
+Background* Background:: duplicate () const
+{
+  return new Background (*this);
+}
 
 void Background:: addAnimationTrack (AnimationTrack* animation_track)
 {

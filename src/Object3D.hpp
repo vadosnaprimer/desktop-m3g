@@ -46,8 +46,8 @@ namespace m3g {
     virtual int animate (int world_time);
 
     /**
-     * @~English Creates a duplicate of this Object3D. 
-     * @~Japanese このObjct3Dの複製を作成する.
+     * @~English  Creates a duplicate of this Object3D. 
+     * @~Japanese このオブジェクトの複製の作成.
      */
     virtual Object3D* duplicate () const;
 
@@ -133,7 +133,7 @@ namespace m3g {
     /**
      * @~English  Render this object, for inner use.
      * @~Japanese このObject3Dをレンダリング(する内部使用の関数.
-     */
+    */
     virtual void render (int pass, int index=0) const;
 
     /**

@@ -15,6 +15,11 @@ AnimationController:: ~AnimationController ()
 {
 }
 
+AnimationController* AnimationController:: duplicate () const
+{
+  return new AnimationController(*this);
+}
+
 int AnimationController:: getActiveIntervalEnd () const
 {
     return active_interval.end;

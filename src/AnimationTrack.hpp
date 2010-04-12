@@ -155,6 +155,13 @@ namespace m3g {
      */
     virtual ~AnimationTrack ();
 
+
+    /**
+     * @~English Creates a duplicate of this Object3D. 
+     * @~Japanese このオブジェクトの複製の作成.
+     */
+    virtual AnimationTrack* duplicate () const;
+
     /**
      * @~English  Retrieves the animation controller used for 
      *            controllling this animation track.
