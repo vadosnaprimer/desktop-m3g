@@ -88,6 +88,29 @@ TEST (VertexArray_set_variables_2byte)
 
 }
 
+TEST (VertexArray_set_variables_2byte_auto_scale_bias)
+{
+  VertexArray* varry = new VertexArray(16, 3, 2);
+  float scale   = 0.5;
+  float bias[3] = {1,2,3};
+  float values[16*3];
+  for (int i = 0; i < 16; i++) {
+    values[i*3]   = 100;
+    values[i*3+1] = 200;
+    values[i*3+2] = 300;
+  }
+  varry->set (0, 16, scale, bias, values);
+
+  short buf[16*3];
+  varry->get (0, 16, buf);
+
+  for (int i = 0; i < 1; i++) {
+    CHECK_EQUAL (100.f, buf[i*3+0]*scale + bias[0]);
+    CHECK_EQUAL (200.f, buf[i*3+1]*scale + bias[1]);
+    CHECK_EQUAL (300.f, buf[i*3+2]*scale + bias[2]);
+  }
+}
+
 TEST (VertexArray_set_variables_scale_bias)
 {
   VertexArray* varry0 = new VertexArray(8, 2, 2);

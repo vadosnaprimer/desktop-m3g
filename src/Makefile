@@ -46,9 +46,6 @@ Background.o: Background.hpp Object3D.hpp /usr/include/GL/glew.h
 Background.o: /usr/include/GL/glu.h /usr/include/GL/gl.h m3gdef.hpp
 Background.o: m3ginternal.hpp Image2D.hpp Exception.hpp AnimationTrack.hpp
 Background.o: AnimationController.hpp KeyframeSequence.hpp Keyframe.hpp
-Bone.o: Bone.hpp Matrix.hpp Group.hpp Node.hpp Transformable.hpp Object3D.hpp
-Bone.o: /usr/include/GL/glew.h /usr/include/GL/glu.h /usr/include/GL/gl.h
-Bone.o: m3gdef.hpp m3ginternal.hpp Quaternion.hpp Transform.hpp Exception.hpp
 Camera.o: Camera.hpp Node.hpp Transformable.hpp Object3D.hpp
 Camera.o: /usr/include/GL/glew.h /usr/include/GL/glu.h /usr/include/GL/gl.h
 Camera.o: m3gdef.hpp m3ginternal.hpp Quaternion.hpp Transform.hpp Matrix.hpp
@@ -91,41 +88,21 @@ Loader.o: /usr/include/GL/glew.h /usr/include/GL/glu.h /usr/include/GL/gl.h
 Loader.o: m3ginternal.hpp AnimationController.hpp AnimationTrack.hpp
 Loader.o: Appearance.hpp Background.hpp CompositingMode.hpp Fog.hpp
 Loader.o: Image2D.hpp IndexBuffer.hpp TriangleStripArray.hpp
-Loader.o: /usr/include/unittest++/UnitTest++.h
-Loader.o: /usr/include/unittest++/Config.h /usr/include/unittest++/Test.h
-Loader.o: /usr/include/unittest++/TestDetails.h
-Loader.o: /usr/include/unittest++/TestList.h
-Loader.o: /usr/include/unittest++/TestSuite.h
-Loader.o: /usr/include/unittest++/TestResults.h
-Loader.o: /usr/include/unittest++/TestMacros.h
-Loader.o: /usr/include/unittest++/Posix/SignalTranslator.h
-Loader.o: /usr/include/setjmp.h /usr/include/features.h
+Loader.o: KeyframeSequence.hpp Keyframe.hpp Material.hpp PolygonMode.hpp
+Loader.o: Transformable.hpp Quaternion.hpp Transform.hpp Matrix.hpp Node.hpp
+Loader.o: Camera.hpp Group.hpp World.hpp Light.hpp Mesh.hpp MorphingMesh.hpp
+Loader.o: SkinnedMesh.hpp Sprite3D.hpp Texture2D.hpp VertexArray.hpp
+Loader.o: VertexBuffer.hpp RayIntersection.hpp Loader.hpp Exception.hpp
+Loader.o: /usr/include/stdlib.h /usr/include/features.h
 Loader.o: /usr/include/sys/cdefs.h /usr/include/bits/wordsize.h
 Loader.o: /usr/include/gnu/stubs.h /usr/include/gnu/stubs-64.h
-Loader.o: /usr/include/bits/setjmp.h /usr/include/bits/sigset.h
-Loader.o: /usr/include/signal.h /usr/include/bits/types.h
-Loader.o: /usr/include/bits/typesizes.h /usr/include/bits/signum.h
-Loader.o: /usr/include/time.h /usr/include/bits/siginfo.h
-Loader.o: /usr/include/bits/sigaction.h /usr/include/bits/sigcontext.h
-Loader.o: /usr/include/bits/sigstack.h /usr/include/bits/pthreadtypes.h
-Loader.o: /usr/include/bits/sigthread.h /usr/include/unittest++/CheckMacros.h
-Loader.o: /usr/include/unittest++/Checks.h
-Loader.o: /usr/include/unittest++/MemoryOutStream.h
-Loader.o: /usr/include/unittest++/AssertException.h
-Loader.o: /usr/include/unittest++/TestRunner.h
-Loader.o: /usr/include/unittest++/TimeConstraint.h
-Loader.o: /usr/include/unittest++/TimeHelpers.h
-Loader.o: /usr/include/unittest++/Posix/TimeHelpers.h /usr/include/sys/time.h
-Loader.o: /usr/include/bits/time.h /usr/include/sys/select.h
-Loader.o: /usr/include/bits/select.h KeyframeSequence.hpp Keyframe.hpp
-Loader.o: Material.hpp PolygonMode.hpp Transformable.hpp Quaternion.hpp
-Loader.o: Transform.hpp Matrix.hpp Node.hpp Camera.hpp Group.hpp World.hpp
-Loader.o: Light.hpp Mesh.hpp MorphingMesh.hpp SkinnedMesh.hpp Sprite3D.hpp
-Loader.o: Texture2D.hpp VertexArray.hpp VertexBuffer.hpp RayIntersection.hpp
-Loader.o: Loader.hpp Exception.hpp /usr/include/stdlib.h
-Loader.o: /usr/include/sys/types.h /usr/include/endian.h
-Loader.o: /usr/include/bits/endian.h /usr/include/bits/byteswap.h
-Loader.o: /usr/include/sys/sysmacros.h /usr/include/alloca.h
+Loader.o: /usr/include/sys/types.h /usr/include/bits/types.h
+Loader.o: /usr/include/bits/typesizes.h /usr/include/time.h
+Loader.o: /usr/include/endian.h /usr/include/bits/endian.h
+Loader.o: /usr/include/bits/byteswap.h /usr/include/sys/select.h
+Loader.o: /usr/include/bits/select.h /usr/include/bits/sigset.h
+Loader.o: /usr/include/bits/time.h /usr/include/sys/sysmacros.h
+Loader.o: /usr/include/bits/pthreadtypes.h /usr/include/alloca.h
 Material.o: Material.hpp Object3D.hpp /usr/include/GL/glew.h
 Material.o: /usr/include/GL/glu.h /usr/include/GL/gl.h m3gdef.hpp
 Material.o: m3ginternal.hpp Exception.hpp AnimationTrack.hpp
@@ -162,7 +139,7 @@ SkinnedMesh.o: SkinnedMesh.hpp Mesh.hpp Node.hpp Transformable.hpp
 SkinnedMesh.o: Object3D.hpp /usr/include/GL/glew.h /usr/include/GL/glu.h
 SkinnedMesh.o: /usr/include/GL/gl.h m3gdef.hpp m3ginternal.hpp Quaternion.hpp
 SkinnedMesh.o: Transform.hpp Matrix.hpp VertexBuffer.hpp IndexBuffer.hpp
-SkinnedMesh.o: VertexArray.hpp Bone.hpp Exception.hpp Group.hpp
+SkinnedMesh.o: VertexArray.hpp Vector.hpp Exception.hpp Group.hpp
 Sprite3D.o: Sprite3D.hpp Node.hpp Transformable.hpp Object3D.hpp
 Sprite3D.o: /usr/include/GL/glew.h /usr/include/GL/glu.h /usr/include/GL/gl.h
 Sprite3D.o: m3gdef.hpp m3ginternal.hpp Quaternion.hpp Transform.hpp
@@ -180,42 +157,10 @@ Transformable.o: /usr/include/GL/glu.h /usr/include/GL/gl.h m3gdef.hpp
 Transformable.o: m3ginternal.hpp Quaternion.hpp Transform.hpp Matrix.hpp
 Transformable.o: Exception.hpp AnimationTrack.hpp AnimationController.hpp
 Transformable.o: KeyframeSequence.hpp Keyframe.hpp
-TriangleStripArray.o: TriangleStripArray.hpp
-TriangleStripArray.o: /usr/include/unittest++/UnitTest++.h
-TriangleStripArray.o: /usr/include/unittest++/Config.h
-TriangleStripArray.o: /usr/include/unittest++/Test.h
-TriangleStripArray.o: /usr/include/unittest++/TestDetails.h
-TriangleStripArray.o: /usr/include/unittest++/TestList.h
-TriangleStripArray.o: /usr/include/unittest++/TestSuite.h
-TriangleStripArray.o: /usr/include/unittest++/TestResults.h
-TriangleStripArray.o: /usr/include/unittest++/TestMacros.h
-TriangleStripArray.o: /usr/include/unittest++/Posix/SignalTranslator.h
-TriangleStripArray.o: /usr/include/setjmp.h /usr/include/features.h
-TriangleStripArray.o: /usr/include/sys/cdefs.h /usr/include/bits/wordsize.h
-TriangleStripArray.o: /usr/include/gnu/stubs.h /usr/include/gnu/stubs-64.h
-TriangleStripArray.o: /usr/include/bits/setjmp.h /usr/include/bits/sigset.h
-TriangleStripArray.o: /usr/include/signal.h /usr/include/bits/types.h
-TriangleStripArray.o: /usr/include/bits/typesizes.h
-TriangleStripArray.o: /usr/include/bits/signum.h /usr/include/time.h
-TriangleStripArray.o: /usr/include/bits/siginfo.h
-TriangleStripArray.o: /usr/include/bits/sigaction.h
-TriangleStripArray.o: /usr/include/bits/sigcontext.h
-TriangleStripArray.o: /usr/include/bits/sigstack.h
-TriangleStripArray.o: /usr/include/bits/pthreadtypes.h
-TriangleStripArray.o: /usr/include/bits/sigthread.h
-TriangleStripArray.o: /usr/include/unittest++/CheckMacros.h
-TriangleStripArray.o: /usr/include/unittest++/Checks.h
-TriangleStripArray.o: /usr/include/unittest++/MemoryOutStream.h
-TriangleStripArray.o: /usr/include/unittest++/AssertException.h
-TriangleStripArray.o: /usr/include/unittest++/TestRunner.h
-TriangleStripArray.o: /usr/include/unittest++/TimeConstraint.h
-TriangleStripArray.o: /usr/include/unittest++/TimeHelpers.h
-TriangleStripArray.o: /usr/include/unittest++/Posix/TimeHelpers.h
-TriangleStripArray.o: /usr/include/sys/time.h /usr/include/bits/time.h
-TriangleStripArray.o: /usr/include/sys/select.h /usr/include/bits/select.h
-TriangleStripArray.o: IndexBuffer.hpp /usr/include/GL/glew.h
-TriangleStripArray.o: /usr/include/GL/glu.h /usr/include/GL/gl.h Object3D.hpp
-TriangleStripArray.o: m3gdef.hpp m3ginternal.hpp Exception.hpp
+TriangleStripArray.o: TriangleStripArray.hpp IndexBuffer.hpp
+TriangleStripArray.o: /usr/include/GL/glew.h /usr/include/GL/glu.h
+TriangleStripArray.o: /usr/include/GL/gl.h Object3D.hpp m3gdef.hpp
+TriangleStripArray.o: m3ginternal.hpp Exception.hpp
 Vector.o: Vector.hpp Exception.hpp
 VertexArray.o: VertexArray.hpp /usr/include/GL/glew.h /usr/include/GL/glu.h
 VertexArray.o: /usr/include/GL/gl.h Object3D.hpp m3gdef.hpp m3ginternal.hpp

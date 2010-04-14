@@ -23,6 +23,8 @@ namespace m3g {
     float& operator[] (int n);
     const float& operator[] (int n) const;
 
+    Vector& operator+= (const Vector& rhs);
+
     float x,y,z,w;
   };
 
@@ -32,6 +34,8 @@ namespace m3g {
 
 }; // namespace m3g {
 
+m3g::Vector operator* (const m3g::Vector& lhs, float f);
+m3g::Vector operator* (float f, const m3g::Vector& rhs);
 m3g::Vector operator+ (const m3g::Vector& lhs, const m3g::Vector& rhs);
 std::ostream& operator<< (std::ostream& out , const m3g::Vector& v);
 

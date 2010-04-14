@@ -80,6 +80,9 @@ namespace m3g {
      */
     void set (int first_vertex, int num_vertices, short* values);
 
+
+    void set (int first_vertex, int num_vertices, float scale, float* bias, float* values);
+
     /**
      * @~English  Print out information of this object, for debug only.
      * @~Japanese このVertexArrayクラスの情報を表示する。デバッグ用.
@@ -93,7 +96,8 @@ namespace m3g {
     void get (int first_vertex, int num_vertices, float scale, float* bias, float* values) const;
 
 
-  private:
+    //private:
+  public:
     int   component_count;
     int   component_size;
     int   vertex_count;

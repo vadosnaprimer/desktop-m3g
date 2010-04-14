@@ -141,7 +141,10 @@ void Mesh:: setAppearance (int index, Appearance* appearance)
 
 /**
  * Note: Mesh should be rendered only at second rendering pass(pass=2).
- * In other cases, do nothing.
+ *       In other cases, do nothing.
+ * 注意：この関数を修正した場合SkinnedMesh::render()も変更する。
+ *       両者は vertices が skinned_vertices に変わった事を除けば
+ *      まったく同一でなければならない。
  */
 void Mesh:: render (int pass, int index) const
 {

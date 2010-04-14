@@ -50,6 +50,19 @@ const float& Vector:: operator[] (int index) const
   return (&x)[index];
 }
 
+Vector& Vector:: operator+= (const Vector& rhs)
+{
+  if (w != rhs.w) {
+    throw IllegalArgumentException (__FILE__, __func__, "W component is invalid, %f, %f.", w, rhs.w);
+  }
+
+  x += rhs.x;
+  y += rhs.y;
+  z += rhs.z;
+  return *this;
+}
+
+
 void Vector:: normalize ()
 {
   float len = length();
@@ -70,6 +83,21 @@ Vector m3g::cross (const Vector& p, const Vector& q)
 {
   return Vector (p.y*q.z-p.z*q.y, p.z*q.x-p.x*q.z, p.x*q.y-p.y*q.x);
 }
+
+Vector operator* (const Vector& lhs, float f)
+{
+  Vector v (lhs);
+  v.x *= f;
+  v.y *= f;
+  v.z *= f;
+  return v;
+}
+
+Vector operator* (float f, const Vector& rhs)
+{
+  return rhs*f;
+}
+
 
 Vector operator+ (const Vector& lhs, const Vector& rhs)
 {

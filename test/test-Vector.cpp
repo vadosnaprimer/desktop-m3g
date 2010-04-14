@@ -81,3 +81,39 @@ TEST (Vector_plus)
   CHECK_CLOSE (2, v3.w, 0.00001);
 }
 
+TEST (Vector_plus_equal)
+{
+  Vector v0(1,2,3,2);
+  Vector v1(2,4,6,2);
+  Vector v3;
+
+  v0 += v1;
+
+  CHECK_CLOSE (3, v0.x, 0.00001);
+  CHECK_CLOSE (6, v0.y, 0.00001);
+  CHECK_CLOSE (9, v0.z, 0.00001);
+  CHECK_CLOSE (2, v0.w, 0.00001);
+}
+
+TEST (Vector_mul_float)
+{
+  Vector v0(1,2,3,2);
+  Vector v1;
+  Vector v3;
+
+  v0 = v0 * 2;
+
+  CHECK_CLOSE (2, v0.x, 0.00001);
+  CHECK_CLOSE (4, v0.y, 0.00001);
+  CHECK_CLOSE (6, v0.z, 0.00001);
+  CHECK_CLOSE (2, v0.w, 0.00001);
+
+  v0 = 3 * v0;
+
+  CHECK_CLOSE (6, v0.x, 0.00001);
+  CHECK_CLOSE (12, v0.y, 0.00001);
+  CHECK_CLOSE (18, v0.z, 0.00001);
+  CHECK_CLOSE (2, v0.w, 0.00001);
+}
+
+

@@ -1,4 +1,5 @@
 #include "m3g.hpp"
+#include "data.hpp"
 #include <GL/glut.h>
 #include <iostream>
 #include <cmath>
@@ -20,6 +21,7 @@ void resize(int w, int h)
   g3d->setViewport (0,0,w,h);
   Camera* cam = wld->getActiveCamera();
   cam->setPerspective (45, w/(float)w, 0.1, 100);
+  glutPostRedisplay();
 }
 
 int main (int argc, char** argv)
@@ -29,41 +31,35 @@ int main (int argc, char** argv)
   glutCreateWindow(argv[0]);
   glewInit ();
 
-  VertexArray* poss = new VertexArray (4, 3, 1);
-  char vertices[] = {1,-1,0, 1,1,0, -1,-1,0, -1,1,0};
-  poss->set (0, 4, vertices);
+  VertexArray* positions = new VertexArray (42, 3, 2);
+  positions->set (0, 42, (short*)xyz);
 
-  VertexArray* cols = new VertexArray (4, 3, 1);
-  char colors[] = {127,-128,-128, -128,127,-128, -128,-128,127, 127,127,127};
-  cols->set (0, 4, (char*)colors);
-
-  float scale = 1;
+  float scale = 0.001;
   float bias[3] = {0,0,0};
   VertexBuffer* vbuf = new VertexBuffer;
-  vbuf->setPositions (poss, scale, bias);
-  vbuf->setColors (cols);
+  vbuf->setPositions (positions, scale, bias);
   
-  int strips[1] = {4};
-  int indices[] = {0,1,2,3};
-
-  TriangleStripArray* tris = new TriangleStripArray (indices, 1, strips);
+  int strips[1] = {42};
+  TriangleStripArray* tris = new TriangleStripArray (0, 1, strips);
 
   Appearance* app = new Appearance;
 
-  Group* bone_0 = new Group;
-  Group* bone_1 = new Group;
-  bone_0->translate (0,1,0);
-  bone_1->translate (0,2,0);
-  bone_0->addChild (bone_1);
+  Group* bone0 = new Group;
+  Group* bone1 = new Group;
+  bone1->translate (0,10,0);
+  bone0->addChild (bone1);
   
-  SkinnedMesh* mesh = new SkinnedMesh (vbuf, tris, app, bone_0);
-  mesh->addTransform (bone_0, 1, 0, 2);
-  mesh->addTransform (bone_1, 1, 2, 2);
+  SkinnedMesh* mesh = new SkinnedMesh (vbuf, tris, app, bone0);
+  //mesh->addTransform (bone0, 1, 0, 21);
+  //mesh->addTransform (bone1, 1, 21, 21);
+  mesh->addTransform (bone0, 1, 0, 26);
+  mesh->addTransform (bone1, 1, 16, 26);
   
-  cout << "hello world\n";
+  //bone0->translate (10,0,0);
+  bone1->postRotate (-20, 0,0,1);
 
   Camera* cam = new Camera;
-  cam->translate (0,0,5);
+  cam->translate (0,10,50);
 
   wld = new World;
   wld->addChild (cam);
@@ -71,6 +67,8 @@ int main (int argc, char** argv)
   wld->addChild (mesh);
 
   cout << *wld << "\n";
+
+  mesh->animate (0);
 
 
   glutDisplayFunc(display);

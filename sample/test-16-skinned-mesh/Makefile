@@ -41,5 +41,5 @@ main.o: ../../src/Light.hpp ../../src/Mesh.hpp ../../src/MorphingMesh.hpp
 main.o: ../../src/SkinnedMesh.hpp ../../src/Sprite3D.hpp
 main.o: ../../src/Texture2D.hpp ../../src/VertexArray.hpp
 main.o: ../../src/VertexBuffer.hpp ../../src/RayIntersection.hpp
-main.o: ../../src/Loader.hpp ../../src/Exception.hpp /usr/include/GL/glut.h
-main.o: /usr/include/GL/freeglut_std.h
+main.o: ../../src/Loader.hpp ../../src/Exception.hpp data.hpp
+main.o: /usr/include/GL/glut.h /usr/include/GL/freeglut_std.h

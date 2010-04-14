@@ -19,6 +19,14 @@ namespace m3g {
    */
   class SkinnedMesh : public Mesh
   {
+
+    // 注意：逆行列(inv_bind_pose)を渡す事。
+    struct BindPose {
+      BindPose (Node* n, const Matrix& m) : bone(n), inverse(m) {};
+      Node*  bone;
+      Matrix inverse;
+    };
+
   public:
     /**
      * @~English  Constructs a new SkinnedMesh witdh the given vertices, submeshes and skeleton.
@@ -56,19 +64,19 @@ namespace m3g {
      * @~English  Associates a weighted transformation, or "bone", with a range of vertices int this SkinnedMesh.
      * @~Japanese このスキンメッシュの頂点配列に対してウェイト付き変形(ボーン)を関連づける.
      */
-    void addTransform (Node* bone, int weight, int firstVertex, int numVertices);
+    void addTransform (Node* bone, int weight, int first_vertex, int num_vertices);
 
     /**
      * @~English  Returns the at-rest tarnsformation (from local coordinate to bone coordinate)  for a bone node.
      * @~Japanese ボーンノードの基本姿勢の変形(ローカル座標系からボーン座標系への変換行列)を返す.
      */
-    void getBoneTransorm (Node* bone, Transform* transform) const;
+    void getBoneTransform (Node* bone, Transform* transform) const;
 
     /**
      * @~English Returns the number of vertices influenced by the given bone, filling in the vertices and their weights to given arrays. 
      * @~Japanese 指定されたボーンに影響を受ける頂点の数を返す。与えられた配列に頂点のインデックスとウェイト値が入る.
      */
-    int getBoneVertices (Node* bone, int* indices, float* weights) const;
+    int getBoneVertices (Node* bone, int* vertex_indices, float* weights) const;
 
     /**
      * @~English  Returns the skeleton Group of this SkinnedMesh.
@@ -90,18 +98,30 @@ namespace m3g {
      */
     virtual void render (int pass, int index=0) const;
 
+  public:
+    /**
+     * @~Japanese  M3G非標準。スコープどうするか未定
+     */
+    static Matrix getGlobalPose (Node* node);
+
+  private:
+    int addBoneIndex (Node* bone);
+    int getBoneIndex (Node* bone) const;
 
   public:
-    Group*             skeleton;
-    std::vector<Node*> bones;
+    Group*       skeleton;
+    
+    VertexBuffer* skinned_vertices;
 
-    VertexArray* bind_positions;
-    float        bind_positions_scale;
-    float        bind_positions_bias[3];
-    VertexArray* bind_normals;
+    //VertexArray* skinned_positions;
+    //float        skinned_positions_scale;
+    //float        skinned_positions_bias[3];
+    //VertexArray* skinned_normals;
     VertexArray* bone_indices;
 
-    std::vector<Matrix> inv_bind_poses;
+    //std::vector<Node*>  bones;
+    //std::vector<Matrix> inv_bind_poses;
+    std::vector<BindPose*> bind_poses;
   };
 
 

@@ -6,200 +6,225 @@
 #include "TriangleStripArray.hpp"
 #include "Appearance.hpp"
 #include "Group.hpp"
-#include "Bone.hpp"
 using namespace std;
 using namespace m3g;
 
-#if 0
 TEST (SkinnedMesh_default_variables)
 {
-  VertexBuffer* vbuf    = new VertexBuffer;
-  int indices[] = {0,1,2};
-  int strips[] = {3};
-  TriangleStripArray* tris[2] = {new TriangleStripArray (indices, 1, strips),
-                                  new TriangleStripArray (indices, 1, strips)};
-  Appearance*  app[2]   = {new Appearance, new Appearance};
-  Group*       skeleton = new Group;
-  SkinnedMesh* mesh     = new SkinnedMesh (vbuf, 2, (IndexBuffer**)tris, 2, app, skeleton);
+  VertexArray*  varry       = new VertexArray (16, 3, 2);
+  VertexBuffer* vbuf        = new VertexBuffer;
+  int           indices[]   = {0,1,2};
+  int           strips[]    = {3};
+  TriangleStripArray* tris  = new TriangleStripArray (indices, 1, strips);
+  Appearance*   app         = new Appearance;
+  Group*        skeleton    = new Group;
 
+  float scale  = 1;
+  float bias[] = {0,0,0};
+  vbuf->setPositions (varry, scale, bias);
+
+  SkinnedMesh*  mesh        = new SkinnedMesh (vbuf, 1, (IndexBuffer**)&tris, 1, &app, skeleton);
 
   CHECK_EQUAL (OBJTYPE_SKINNED_MESH, mesh->getObjectType());
   CHECK_EQUAL (skeleton, mesh->getSkeleton());
 
   delete vbuf;
-  delete tris[0];
-  delete tris[1];
-  delete app[0];
-  delete app[1];
+  delete tris;
+  delete app;
   delete skeleton;
   delete mesh;
 }
 
-TEST (SkinnedMesh_addTransform)
+
+TEST (SkinnedMesh_getGlobalPose)
 {
-  VertexBuffer* vbuf    = new VertexBuffer;
-  int indices[] = {0,1,2};
-  int strips[] = {3};
-  TriangleStripArray* tris = new TriangleStripArray (indices, 1, strips);
-  Appearance*  app      = new Appearance;
-  Group*       root   = new Group;
-  root->translate (0,0,2);
-  Group*       bone_1 = new Group;
-  bone_1->translate (0,3,0);
-  root->addChild (bone_1);
-  SkinnedMesh* mesh     = new SkinnedMesh (vbuf, tris, app, root);
+  // grp0 --> grp1 --> grp2
+  Group* grp2 = new Group;
+  Group* grp1 = new Group;
+  Group* grp0 = new Group;
+  grp0->addChild (grp1);
+  grp1->addChild (grp2);
 
-  //root->Transformable::print(cout);
-
-  mesh->addTransform (root, 1, 0, 10);
-  mesh->addTransform (bone_1, 1, 0, 10);
-
-  CHECK_EQUAL (2, mesh->bones.size());
+  Matrix global_pose;
   
-  Bone* bone;
-  Matrix mat;
+  global_pose = SkinnedMesh:: getGlobalPose (grp2);
+  CHECK_CLOSE (1, global_pose.m[0][0], 0.0001f);
+  CHECK_CLOSE (1, global_pose.m[1][1], 0.0001f);
+  CHECK_CLOSE (1, global_pose.m[2][2], 0.0001f);
+  CHECK_CLOSE (1, global_pose.m[3][3], 0.0001f);
+  CHECK_CLOSE (0, global_pose.m[0][1], 0.0001f);
+  CHECK_CLOSE (0, global_pose.m[0][2], 0.0001f);
+  CHECK_CLOSE (0, global_pose.m[0][3], 0.0001f);
 
-  bone = mesh->bones[0];
-  CHECK_EQUAL (root, bone->node);
+  grp0->translate (0,0,1);
+  global_pose = SkinnedMesh:: getGlobalPose (grp2);
+  CHECK_CLOSE (1, global_pose.m[2][3], 0.0001f);
 
-  mat = bone->getInverseBindMatrix();
-  CHECK_CLOSE (1.f, mat.m[0][0], 0.00001f);
-  CHECK_CLOSE (0.f, mat.m[0][1], 0.00001f);
-  CHECK_CLOSE (0.f, mat.m[0][2], 0.00001f);
-  CHECK_CLOSE (0.f, mat.m[0][3], 0.00001f);
-  CHECK_CLOSE (0.f, mat.m[1][0], 0.00001f);
-  CHECK_CLOSE (1.f, mat.m[1][1], 0.00001f);
-  CHECK_CLOSE (0.f, mat.m[1][2], 0.00001f);
-  CHECK_CLOSE (0.f, mat.m[1][3], 0.00001f);
-  CHECK_CLOSE (0.f, mat.m[2][0], 0.00001f);
-  CHECK_CLOSE (0.f, mat.m[2][1], 0.00001f);
-  CHECK_CLOSE (1.f, mat.m[2][2], 0.00001f);
-  CHECK_CLOSE (-2.f, mat.m[2][3], 0.00001f);
-  CHECK_CLOSE (0.f, mat.m[3][0], 0.00001f);
-  CHECK_CLOSE (0.f, mat.m[3][1], 0.00001f);
-  CHECK_CLOSE (0.f, mat.m[3][2], 0.00001f);
-  CHECK_CLOSE (1.f, mat.m[3][3], 0.00001f);
 
-  bone = mesh->bones[1];
-  CHECK_EQUAL (bone_1, bone->node);
+  grp1->translate (0,2,0);
+  global_pose = SkinnedMesh:: getGlobalPose (grp2);
+  CHECK_CLOSE (2, global_pose.m[1][3], 0.0001f);
 
-  mat = bone->getInverseBindMatrix();
-  CHECK_CLOSE (1.f, mat.m[0][0], 0.00001f);
-  CHECK_CLOSE (0.f, mat.m[0][1], 0.00001f);
-  CHECK_CLOSE (0.f, mat.m[0][2], 0.00001f);
-  CHECK_CLOSE (0.f, mat.m[0][3], 0.00001f);
-  CHECK_CLOSE (0.f, mat.m[1][0], 0.00001f);
-  CHECK_CLOSE (1.f, mat.m[1][1], 0.00001f);
-  CHECK_CLOSE (0.f, mat.m[1][2], 0.00001f);
-  CHECK_CLOSE (-3.f, mat.m[1][3], 0.00001f);
-  CHECK_CLOSE (0.f, mat.m[2][0], 0.00001f);
-  CHECK_CLOSE (0.f, mat.m[2][1], 0.00001f);
-  CHECK_CLOSE (1.f, mat.m[2][2], 0.00001f);
-  CHECK_CLOSE (-2.f, mat.m[2][3], 0.00001f);
-  CHECK_CLOSE (0.f, mat.m[3][0], 0.00001f);
-  CHECK_CLOSE (0.f, mat.m[3][1], 0.00001f);
-  CHECK_CLOSE (0.f, mat.m[3][2], 0.00001f);
-  CHECK_CLOSE (1.f, mat.m[3][3], 0.00001f);
-
-  //cout << "mat = " << mat << "\n";
+  grp2->translate (3,0,0);
+  global_pose = SkinnedMesh:: getGlobalPose (grp2);
+  CHECK_CLOSE (3, global_pose.m[0][3], 0.0001f);
+  
+  cout << "global_pose = " << global_pose << "\n";
 }
 
-TEST (SkinnedMesh_getBoneVertices_1)
+TEST (SkinnedMesh_addTransform_getBoneVertices)
 {
-  VertexArray* positions = new VertexArray (10, 3, 2);
-  VertexBuffer* vbuf    = new VertexBuffer;
-  float scale = 1;
-  float bias[3] = {0,0,0};
-  vbuf->setPositions (positions, scale, bias);
-  int tri_indices[] = {0,1,2};
-  int strips[] = {3};
-  TriangleStripArray* tris = new TriangleStripArray (tri_indices, 1, strips);
-  Appearance*  app      = new Appearance;
-  Group*       root   = new Group;
-  SkinnedMesh* mesh     = new SkinnedMesh (vbuf, tris, app, root);
+  VertexArray*  varry       = new VertexArray (10, 3, 2);
+  VertexBuffer* vbuf        = new VertexBuffer;
+  int           indices[]   = {0,1,2};
+  int           strips[]    = {3};
+  TriangleStripArray* tris  = new TriangleStripArray (indices, 1, strips);
+  Appearance*   app         = new Appearance;
 
-  mesh->addTransform (root, 2, 0, 10);
+  Group*        bone0    = new Group;
+  Group*        bone1    = new Group;
+  Group*        bone2    = new Group;
+  bone1->translate (0,1,0);
+  bone2->translate (1,0,0);
+  bone0->addChild (bone1);
+  bone0->addChild (bone2);
 
-  int n;
-  int indices[10];
-  float weights[10];
+  float scale  = 1;
+  float bias[] = {0,0,0};
+  vbuf->setPositions (varry, scale, bias);
 
-  n = mesh->getBoneVertices (root, NULL, NULL);
+  SkinnedMesh*  mesh        = new SkinnedMesh (vbuf, 1, (IndexBuffer**)&tris, 1, &app, bone0);
 
-  CHECK_EQUAL (10, n);
-
-  mesh->getBoneVertices (root, indices, weights);
-
-  CHECK_EQUAL (0, indices[0]);
-  CHECK_EQUAL (9, indices[9]);
-  CHECK_EQUAL (1.f, weights[0]);
-  CHECK_EQUAL (1.f, weights[9]);
-
-  mesh->addTransform (root, 4, 5, 5);
-  mesh->getBoneVertices (root, indices, weights);
-
-  CHECK_EQUAL (0, indices[0]);
-  CHECK_EQUAL (9, indices[9]);
-  CHECK_EQUAL (1.f, weights[0]);
-  CHECK_EQUAL (1.f, weights[9]);
-
-
+  // vertices 0, 1, 2, 3, 4, 5, 6, 7, 8, 9
+  // bone0    ----------        ----
+  // bone1          ----------
+  // bone2          ----                   
+  mesh->addTransform (bone0, 100, 0, 4);
+  mesh->addTransform (bone0, 100, 6, 2);
+  mesh->addTransform (bone1, 100, 2, 4);
+  mesh->addTransform (bone2, 20,  2, 2);  // ウェイトの小さな3つ目のボーンは無視
   
+  int vertex_indices[10] = {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1};
+  float weights[10] = {0,0,0,0,0,0,0,0,0,0};
+  int num = 0;
+
+  num = mesh->getBoneVertices (bone0, vertex_indices, weights);
+  CHECK_EQUAL (6, num);
+  CHECK_EQUAL (0, vertex_indices[0]);
+  CHECK_EQUAL (1, vertex_indices[1]);
+  CHECK_EQUAL (2, vertex_indices[2]);
+  CHECK_EQUAL (3, vertex_indices[3]);
+  CHECK_EQUAL (6, vertex_indices[4]);
+  CHECK_EQUAL (7, vertex_indices[5]);
+  CHECK_CLOSE (1,   weights[0], 0.00001);
+  CHECK_CLOSE (1,   weights[1], 0.00001);
+  CHECK_CLOSE (0.5, weights[2], 0.00001);
+  CHECK_CLOSE (0.5, weights[3], 0.00001);
+  CHECK_CLOSE (1,   weights[4], 0.00001);
+  CHECK_CLOSE (1,   weights[5], 0.00001);
+
+  num = mesh->getBoneVertices (bone1, vertex_indices, weights);
+  CHECK_EQUAL (4, num);
+  CHECK_EQUAL (2, vertex_indices[0]);
+  CHECK_EQUAL (3, vertex_indices[1]);
+  CHECK_EQUAL (4, vertex_indices[2]);
+  CHECK_EQUAL (5, vertex_indices[3]);
+  CHECK_CLOSE (0.5, weights[0], 0.00001);
+  CHECK_CLOSE (0.5, weights[1], 0.00001);
+  CHECK_CLOSE (1,   weights[2], 0.00001);
+  CHECK_CLOSE (1,   weights[3], 0.00001);
+
+  num = mesh->getBoneVertices (bone2, vertex_indices, weights);
+  CHECK_EQUAL (0, num);
+
+
 }
 
-
-TEST (SkinnedMesh_getBoneVertices_2)
+TEST (SkinnedMesh_getBoneTransform)
 {
-  VertexArray* positions = new VertexArray (10, 3, 2);
-  VertexBuffer* vbuf    = new VertexBuffer;
-  float scale = 1;
-  float bias[3] = {0,0,0};
-  vbuf->setPositions (positions, scale, bias);
-  int tri_indices[] = {0,1,2};
-  int strips[] = {3};
-  TriangleStripArray* tris = new TriangleStripArray (tri_indices, 1, strips);
-  Appearance*  app      = new Appearance;
-  Group*       root   = new Group;
-  Group*       bone_1   = new Group;
-  root->addChild (bone_1);
-  SkinnedMesh* mesh     = new SkinnedMesh (vbuf, tris, app, root);
+  VertexArray*  varry       = new VertexArray (10, 3, 2);
+  VertexBuffer* vbuf        = new VertexBuffer;
+  int           indices[]   = {0,1,2};
+  int           strips[]    = {3};
+  TriangleStripArray* tris  = new TriangleStripArray (indices, 1, strips);
+  Appearance*   app         = new Appearance;
 
-  mesh->addTransform (root, 1, 0, 6);
-  mesh->addTransform (bone_1, 2, 4, 6);
+  Group*        bone0    = new Group;
+  Group*        bone1    = new Group;
+  Group*        bone2    = new Group;
+  bone1->translate (0,1,0);
+  bone2->translate (1,0,0);
+  bone0->addChild (bone1);
+  bone0->addChild (bone2);
 
-  int n;
-  int indices[10];
-  float weights[10];
+  float scale  = 1;
+  float bias[] = {0,0,0};
+  vbuf->setPositions (varry, scale, bias);
 
-  n = mesh->getBoneVertices (root, NULL, NULL);
+  SkinnedMesh*  mesh        = new SkinnedMesh (vbuf, 1, (IndexBuffer**)&tris, 1, &app, bone0);
 
-  CHECK_EQUAL (6, n);
+  // vertices 0, 1, 2, 3, 4, 5, 6, 7, 8, 9
+  // bone0    ----------        ----
+  // bone1          ----------
+  // bone2          ----                   
+  mesh->addTransform (bone0, 100, 0, 4);
+  mesh->addTransform (bone0, 100, 6, 2);
+  mesh->addTransform (bone1, 100, 2, 4);
+  mesh->addTransform (bone2, 20,  2, 2);  // ウェイトの小さな3つ目のボーンは無視
 
-  mesh->getBoneVertices (root, indices, weights);
+  Transform trns;
+  float m[16];
 
-  CHECK_EQUAL (0, indices[0]);
-  CHECK_EQUAL (5, indices[5]);
-  CHECK_CLOSE (1.f,       weights[0], 0.00001f);
-  CHECK_CLOSE (1.f,       weights[3], 0.00001f);
-  CHECK_CLOSE (0.333333f, weights[4], 0.00001f);
-  CHECK_CLOSE (0.333333f, weights[5], 0.00001f);
+  mesh->getBoneTransform (bone1, &trns);
+  trns.get (m);
+  CHECK_CLOSE (-1, m[7], 0.00001);   // m[1][3] = ty
 
-  mesh->getBoneVertices (bone_1, indices, weights);
+  mesh->getBoneTransform (bone2, &trns);
+  trns.get (m);
+  CHECK_CLOSE (-1, m[3], 0.00001);   // m[0][3] = tx
 
-  CHECK_EQUAL (4, indices[0]);
-  CHECK_EQUAL (9, indices[5]);
-  CHECK_CLOSE (0.666667f, weights[0], 0.00001f);
-  CHECK_CLOSE (0.666667f, weights[1], 0.00001f);
-  CHECK_CLOSE (1.f,       weights[2], 0.00001f);
-  CHECK_CLOSE (1.f,       weights[5], 0.00001f);
-  
+  cout << trns << "\n";
 }
 
 TEST (SkinnedMesh_duplicate)
 {
-  // TODO
+  VertexArray*  varry       = new VertexArray (10, 3, 2);
+  VertexBuffer* vbuf        = new VertexBuffer;
+  int           indices[]   = {0,1,2};
+  int           strips[]    = {3};
+  TriangleStripArray* tris  = new TriangleStripArray (indices, 1, strips);
+  Appearance*   app         = new Appearance;
+
+  Group*        bone0    = new Group;
+  Group*        bone1    = new Group;
+  Group*        bone2    = new Group;
+  bone1->translate (0,1,0);
+  bone2->translate (1,0,0);
+  bone0->addChild (bone1);
+  bone0->addChild (bone2);
+
+  float scale  = 1;
+  float bias[] = {0,0,0};
+  vbuf->setPositions (varry, scale, bias);
+
+  SkinnedMesh* mesh0 = new SkinnedMesh (vbuf, 1, (IndexBuffer**)&tris, 1, &app, bone0);
+
+  // vertices 0, 1, 2, 3, 4, 5, 6, 7, 8, 9
+  // bone0    ----------        ----
+  // bone1          ----------
+  // bone2          ----                   
+  mesh0->addTransform (bone0, 100, 0, 4);
+  mesh0->addTransform (bone0, 100, 6, 2);
+  mesh0->addTransform (bone1, 100, 2, 4);
+  mesh0->addTransform (bone2, 20,  2, 2);  // ウェイトの小さな3つ目のボーンは無視
+
+
+  SkinnedMesh* mesh1  = mesh0->duplicate();
+
+  CHECK (mesh0->getSkeleton() != mesh1->getSkeleton());
+  CHECK_EQUAL (mesh0->getBoneVertices(bone0,0,0), mesh1->getBoneVertices(bone0,0,0));
+  CHECK_EQUAL (mesh0->getBoneVertices(bone1,0,0), mesh1->getBoneVertices(bone1,0,0));
+  CHECK_EQUAL (mesh0->getBoneVertices(bone2,0,0), mesh1->getBoneVertices(bone2,0,0));
 
 }
-
-#endif
 

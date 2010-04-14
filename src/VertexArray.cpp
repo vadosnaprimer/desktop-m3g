@@ -102,44 +102,92 @@ int VertexArray:: getVertexCount () const
 
 void VertexArray:: set (int first_vertex, int num_vertices, char* values_)
 {
-  if (first_vertex < 0 || first_vertex >= vertex_count) {
-    throw IllegalArgumentException (__FILE__, __func__, "First vertex is invalid, first_vertex=%d.", first_vertex);
-  }
-  if (num_vertices < 0 || first_vertex + num_vertices > vertex_count) {
-    throw IllegalArgumentException (__FILE__, __func__, "Number of vertices is invalid, first_vertex=%d, num_vertices=%d", first_vertex, num_vertices);
-  }
   if (values_ == NULL) {
     throw NullPointException (__FILE__, __func__, "Values is NULL.");
+  }
+  if (num_vertices < 0) {
+    throw IllegalArgumentException (__FILE__, __func__, "Number of vertices is invalid, num_vertices=%d.", num_vertices);
+  }
+  if (first_vertex < 0 || first_vertex + num_vertices > vertex_count) {
+    throw IndexOutOfBoundsException (__FILE__, __func__, "Vertex is out of bounds, [%d,%d) in [0,%d).", first_vertex, first_vertex+num_vertices, vertex_count);
   }
   if (component_size != 1) {
     throw IllegalStateException (__FILE__, __func__, "Component size of this vertex array is not 1 byte, component_size=%d.", component_size);
   }
 
-  char* p  = values + first_vertex * component_count * component_size;
-  int size = num_vertices * component_count * component_size;
+  char* p    = values + first_vertex * component_count * component_size;
+  int   size = num_vertices * component_count * component_size;
   memcpy (p, values_, size);
 
 }
 
 void VertexArray:: set (int first_vertex, int num_vertices, short* values_)
 {
-  if (first_vertex < 0 || first_vertex >= vertex_count) {
-    throw IllegalStateException (__FILE__, __func__, "First vertex is NULL.");
-  }
-  if (num_vertices < 0 || first_vertex + num_vertices > vertex_count) {
-    throw IllegalStateException (__FILE__, __func__, "Number of vertices is invalid, first_vertex=%d, num_vertices=%d.", first_vertex, num_vertices);
-  }
   if (values_ == NULL) {
     throw NullPointException (__FILE__, __func__, "Values is NULL.");
+  }
+  if (num_vertices < 0) {
+    throw IllegalArgumentException (__FILE__, __func__, "Number of vertices is invalid, num_vertices=%d.", num_vertices);
+  }
+  if (first_vertex < 0 || first_vertex + num_vertices > vertex_count) {
+    throw IndexOutOfBoundsException (__FILE__, __func__, "Vertex is out of bounds, [%d,%d) in [0,%d).", first_vertex, first_vertex+num_vertices, vertex_count);
   }
   if (component_size != 2) {
     throw IllegalStateException (__FILE__, __func__, "Component size of this vertex array is not 2 byte, component_size=%d.", component_size);
   }
-  char* p  = values + first_vertex * component_count * component_size;
-  int size = num_vertices * component_count * component_size;
+  char* p    = values + first_vertex * component_count * component_size;
+  int   size = num_vertices * component_count * component_size;
   memcpy (p, values_, size);
 
 }
+
+void VertexArray:: set (int first_vertex, int num_vertices, float scale, float* bias, float* values_)
+{
+  if (values_ == NULL) {
+    throw NullPointException (__FILE__, __func__, "Values is NULL.");
+  }
+  if (num_vertices < 0) {
+    throw IllegalArgumentException (__FILE__, __func__, "Number of vertices is invalid, num_vertices=%d.", num_vertices);
+  }
+  if (first_vertex < 0 || first_vertex + num_vertices > vertex_count) {
+    throw IndexOutOfBoundsException (__FILE__, __func__, "Vertex is out of bounds, [%d,%d) in [0,%d).", first_vertex, first_vertex+num_vertices, vertex_count);
+  }
+  if (scale == 0) {
+    throw IllegalArgumentException (__FILE__, __func__, "Divied by 0, scale=%f.", scale);
+  }
+
+  switch (component_size) {
+  case 1: {
+    char* encoded_values = new char [vertex_count*component_count];
+    for (int i = 0; i < vertex_count*component_count; i+=component_count) {
+      for (int j = 0; j < component_count; j++) {
+	encoded_values[i+j] = (values_[i+j] - bias[j]) / scale;
+      }
+    }
+    char* p    = values + first_vertex * component_count * component_size;
+    int   size = num_vertices * component_count * component_size;
+    memcpy (p, encoded_values, size);
+    break;
+  }
+  case 2: {
+   short* encoded_values = new short [vertex_count*component_count];
+    for (int i = 0; i < vertex_count*component_count; i+=component_count) {
+      for (int j = 0; j < component_count; j++) {
+	encoded_values[i+j] = (values_[i+j] - bias[j]) / scale;
+      }
+    }
+    char* p    = values + first_vertex * component_count * component_size;
+    int   size = num_vertices * component_count * component_size;
+    memcpy (p, encoded_values, size);
+    break;
+  }
+  default : {
+    throw IllegalStateException (__FILE__, __func__, "Component size is invalid, size=%d.", component_size);
+  }
+  }
+
+}
+
 
 void VertexArray:: get (int first_vertex, int num_vertices, float scale, float* bias, float* out_values) const
 {
@@ -164,8 +212,26 @@ std::ostream& VertexArray:: print (std::ostream& out) const
 {
   out << "VertexArray: ";
   out << vertex_count << " vertices (";
-  out << component_size << "byte x " << component_count << "comps / vertex),  ";
-  return out << "\n";;
+  out << component_size << "byte x " << component_count << "comps / vertex),  \n";
+  /*
+  for (int i = 0; i < vertex_count*component_count; i+=component_count) {
+    cout << i/component_count << " : (";
+    for (int j = 0; j < component_count; j++) {
+      switch (component_size) {
+      case 1:
+	out << (int)((char*)values)[i+j] << ",";
+	break;
+      case 2:
+	out << (int)((short*)values)[i+j] << ",";
+	break;
+      default:
+	throw IllegalStateException (__FILE__, __func__, "component size is invalid. size=%d.", component_size);
+    }
+    }
+    cout << "),\n";
+  }
+  */
+  return out << "\n";
 }
 
 std::ostream& operator<< (std::ostream& out, const VertexArray& vary)
