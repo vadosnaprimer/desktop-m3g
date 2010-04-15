@@ -28,8 +28,8 @@ public:
   void setScale (float sx, float sy, float sz);
   void setTranslate (float tx, float ty, float tz);
 
-  Matrix invert ();
-  void transpose ();
+  Matrix& invert ();
+  Matrix& transpose ();
   Matrix& operator*= (const Matrix& rhs);
 
   std::ostream& print (std::ostream& out) const;

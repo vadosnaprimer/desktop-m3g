@@ -96,7 +96,7 @@ void Matrix:: setTranslate (float tx, float ty, float tz)
   m[2][3] = tz;
 }
 
-Matrix Matrix:: invert ()
+Matrix& Matrix:: invert ()
 {
   float n[4][4];
   memcpy (n, m, sizeof(m));
@@ -137,7 +137,7 @@ Matrix Matrix:: invert ()
   return *this;
 }
 
-void Matrix:: transpose ()
+Matrix& Matrix:: transpose ()
 {
   float n[4][4];
   memcpy (&n, &m, sizeof(m));
@@ -147,6 +147,8 @@ void Matrix:: transpose ()
       m[i][j] = n[j][i];
     }
   }
+
+  return *this;
 }
 
 Matrix& Matrix:: operator*= (const Matrix& rhs)

@@ -30,7 +30,7 @@ Graphics3D:: Graphics3D () :
   properties.push_back (new Property("maxViewportDimension"        , 2048));
   properties.push_back (new Property("maxTextureDimension"         , 2048));
   properties.push_back (new Property("maxSpriteCropDimension"      , 2048));
-  properties.push_back (new Property("maxTransformsPerVertex"      , 2));
+  properties.push_back (new Property("maxTransformsPerVertex"      , 65535));
   properties.push_back (new Property("numTextureUnits"             , 4));
 }
 

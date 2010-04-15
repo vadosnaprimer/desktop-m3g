@@ -213,7 +213,12 @@ std::ostream& VertexArray:: print (std::ostream& out) const
   out << "VertexArray: ";
   out << vertex_count << " vertices (";
   out << component_size << "byte x " << component_count << "comps / vertex),  \n";
-  /*
+  return out << "\n";
+}
+
+std::ostream& VertexArray:: print_raw_data (std::ostream& out) const
+{
+  print (cout);
   for (int i = 0; i < vertex_count*component_count; i+=component_count) {
     cout << i/component_count << " : (";
     for (int j = 0; j < component_count; j++) {
@@ -230,7 +235,6 @@ std::ostream& VertexArray:: print (std::ostream& out) const
     }
     cout << "),\n";
   }
-  */
   return out << "\n";
 }
 

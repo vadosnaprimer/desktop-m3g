@@ -91,8 +91,9 @@ std::vector<Object3D*> Loader:: load (const char* name)
       case OBJTYPE_VERTEX_BUFFER       : parseVertexBuffer ()      ; break;
       case OBJTYPE_WORLD               : parseWorld ()             ; break;
       default: 
-	cout << "Unknown obj type = " << object_type << " is ignored.\n";
-	ifs.seekg (length, ios_base::cur);
+	throw IOException (__FILE__, __func__, "Object type is invalid, type=%d.", object_type);
+	//cout << "Unknown obj type = " << object_type << " is ignored.\n";
+	//ifs.seekg (length, ios_base::cur);
       }
 
       if (ifs.tellg() >= end_of_objects)
@@ -902,7 +903,7 @@ void Loader:: parseTransformable (Transformable* trans)
     trans->setTransform (tra);
   }
 
-  trans->Transformable::print (cout);
+  //trans->Transformable::print (cout);
 }
 
 
@@ -1075,7 +1076,7 @@ void Loader:: parseWorld ()
     wld->setBackground (bg);
   }
 
-  wld->World:: print (cout);
+  //wld->World:: print (cout);
 
   objs.push_back (wld);
 }

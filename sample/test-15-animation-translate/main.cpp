@@ -71,14 +71,14 @@ int main (int argc, char** argv)
                                      {q1.x, q1.y, q1.z, q1.w},
                                      {q2.x, q2.y, q2.z, q2.w}};
   keyframe_mesh_translate->setKeyframe (0, 0,   frame_mesh_translate[0]);
-  keyframe_mesh_translate->setKeyframe (1, 100,  frame_mesh_translate[1]);
+  keyframe_mesh_translate->setKeyframe (1, 100, frame_mesh_translate[1]);
   keyframe_mesh_translate->setKeyframe (2, 300, frame_mesh_translate[2]);
   keyframe_mesh_translate->setKeyframe (3, 400, frame_mesh_translate[0]);
   keyframe_mesh_translate->setRepeatMode (KeyframeSequence::LOOP);
   keyframe_mesh_translate->setValidRange (0, 3);
   keyframe_mesh_translate->setDuration (400);
   keyframe_mesh_orientation->setKeyframe (0, 0,   frame_mesh_orientation[0]);
-  keyframe_mesh_orientation->setKeyframe (1, 100,  frame_mesh_orientation[1]);
+  keyframe_mesh_orientation->setKeyframe (1, 100, frame_mesh_orientation[1]);
   keyframe_mesh_orientation->setKeyframe (2, 200, frame_mesh_orientation[2]);
   keyframe_mesh_orientation->setRepeatMode (KeyframeSequence::LOOP);
   keyframe_mesh_orientation->setValidRange (0, 2);

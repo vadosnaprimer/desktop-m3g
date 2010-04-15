@@ -19,8 +19,20 @@ namespace m3g {
    */
   class SkinnedMesh : public Mesh
   {
+    /**
+     * @~English  Store bone index and weight, for inner use.
+     * @~Japanese ボーンインデックスとウェイトを保持する内部使用の構造体.
+     */
+    struct BoneIndex {
+      BoneIndex (int i, int w) : index(i), weight(w) {};
+      int index;
+      int weight;
+    };
 
-    // 注意：逆行列(inv_bind_pose)を渡す事。
+    /**
+     * @~English  Store bind pose (at rest).
+     * @~Japanese バインドポーズを保存する内部使用の構造体.
+     */
     struct BindPose {
       BindPose (Node* n, const Matrix& m) : bone(n), inverse(m) {};
       Node*  bone;
@@ -90,6 +102,13 @@ namespace m3g {
      */
     virtual std::ostream& print (std::ostream& out) const;
 
+    /**
+     * @~English   Get global pose matrix (bone coordinate to local coordinate), for inner use.
+     * @~Japanese  グローバルポーズ（ボーン座標からローカル座標）を計算するM3G非標準の関数.
+     */
+    Matrix getGlobalPose (Node* node) const;
+
+
   protected:
 
     /**
@@ -98,30 +117,26 @@ namespace m3g {
      */
     virtual void render (int pass, int index=0) const;
 
-  public:
-    /**
-     * @~Japanese  M3G非標準。スコープどうするか未定
-     */
-    static Matrix getGlobalPose (Node* node);
-
   private:
+
+    /**
+     * @~English   Register bone and retriev it's index.
+     * @~Japanese  ボーンの登録とそのインデックスの取得.
+     */
     int addBoneIndex (Node* bone);
+
+    /**
+     * @~English   Retriev bone index.
+     * @~Japanese  ボーンインデックスの取得.
+     */
     int getBoneIndex (Node* bone) const;
 
-  public:
-    Group*       skeleton;
-    
+  private:
+    Group*        skeleton;
     VertexBuffer* skinned_vertices;
 
-    //VertexArray* skinned_positions;
-    //float        skinned_positions_scale;
-    //float        skinned_positions_bias[3];
-    //VertexArray* skinned_normals;
-    VertexArray* bone_indices;
-
-    //std::vector<Node*>  bones;
-    //std::vector<Matrix> inv_bind_poses;
-    std::vector<BindPose*> bind_poses;
+    std::vector<std::vector<BoneIndex> > bone_indices;
+    std::vector<BindPose>                bind_poses;
   };
 
 

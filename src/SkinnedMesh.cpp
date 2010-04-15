@@ -17,7 +17,7 @@ SkinnedMesh:: SkinnedMesh (VertexBuffer* vertices,
 	   int num_appearance, Appearance** appearances_,
 	   Group* skeleton_) :
   Mesh (vertices, num_submesh, submeshes, num_appearance, appearances_),
-  skeleton(0), skinned_vertices(0), bone_indices(0)
+  skeleton(0), skinned_vertices(0)
 {
   setObjectType (OBJTYPE_SKINNED_MESH);
   if (vertices->getPositions(0) == NULL) {
@@ -31,28 +31,17 @@ SkinnedMesh:: SkinnedMesh (VertexBuffer* vertices,
   // 変形後の頂点位置と法線の保存用
   float scale_bias[4];
   VertexArray* positions = vertices->getPositions(scale_bias);
-  if (positions) {
+  VertexArray* normals   = vertices->getNormals();
+  if (positions)
     skinned_vertices->setPositions (positions->duplicate(), scale_bias[0], &scale_bias[1]);
-  }
- VertexArray* normals   = vertices->getNormals();
- if (normals) {
+ if (normals)
    skinned_vertices->setNormals (normals->duplicate());
- }
 
-  int    vertex_count = positions->getVertexCount();
-
-  // (空の)ボーンインデックスの作成
-  bone_indices        = new VertexArray (vertex_count, 4, 2);
-  short* values       = new short[vertex_count*4];
-  for (int i = 0; i < vertex_count*4; i+=4) {
-    values[i]   = -1;  // bone1 index
-    values[i+1] =  0;  // bone1 weight
-    values[i+2] = -1;  // bone2 index
-    values[i+3] =  0;  // bone2 weight
+  int vertex_count = positions->getVertexCount();
+  bone_indices.clear();
+  for (int v = 0; v < vertex_count; v++) {
+    bone_indices.push_back (std::vector<BoneIndex>());
   }
-  bone_indices->set (0, vertex_count, values);
-
-  delete [] values;
   bind_poses.clear();
 }
 
@@ -61,7 +50,7 @@ SkinnedMesh:: SkinnedMesh (VertexBuffer* vertices,
 	   Appearance* appearances_, 
 	   Group* skeleton_) :
   Mesh (vertices, submeshes, appearances_),
-  skeleton(0), skinned_vertices(0), bone_indices(0)
+  skeleton(0), skinned_vertices(0)
 {
   setObjectType (OBJTYPE_SKINNED_MESH);
 
@@ -80,7 +69,6 @@ SkinnedMesh* SkinnedMesh:: duplicate () const
   delete mesh;
   skinned_mesh->skeleton = this->skeleton->duplicate();
   // メモ:skinned_verticesはduplicate()しなくて良いんだよな？
-  skinned_mesh->bone_indices = this->bone_indices->duplicate();
   return skinned_mesh;
 }
 
@@ -92,57 +80,75 @@ int SkinnedMesh:: animate (int world_time)
   skeleton->animate (world_time);
 
   // マトリックスパレットの作成
-  std::vector<Matrix> matrix_palette (bind_poses.size());
-  for (int i = 0; i < (int)bind_poses.size(); i++) {
-    Matrix global_pose = getGlobalPose (bind_poses[i]->bone);
-    matrix_palette[i]  = global_pose * bind_poses[i]->inverse;
+  int bone_count = bind_poses.size();
+  std::vector<Matrix> matrix_palette (bone_count);
+  for (int b = 0; b < bone_count; b++) {
+    Matrix global_pose = getGlobalPose (bind_poses[b].bone);
+    matrix_palette[b]  = global_pose * bind_poses[b].inverse;
   }
-
-  float        scale_bias[4];
-  VertexArray* bind_positions = vertices->getPositions(scale_bias);
-
-  //  short* values = (short*)bind_positions->values;
-  //  for (int i = 0; i < 42*3; i+=3) {
-  //        cout << values[i] << ", " << values[i+1] << ", " << values[i+2] << "\n";
-  //  }
 
   // スキンメッシュの更新
-  // 法線は省略
-  int vertex_count = bind_positions->getVertexCount();
-  float* xyz_values = new float[vertex_count*3];
-  short* bone_index_values = new short[vertex_count*4];
-  bind_positions->get (0, vertex_count, scale_bias[0], &scale_bias[1], xyz_values);
+  float        scale_bias[4];
+  VertexArray* bind_positions    = vertices->getPositions (scale_bias);
+  VertexArray* bind_normals      = vertices->getNormals ();
+  VertexArray* skinned_positions = skinned_vertices->getPositions(0);
+  VertexArray* skinned_normals   = skinned_vertices->getNormals ();
+  int          vertex_count      = bind_positions->getVertexCount();
 
-  bone_indices->get (0, vertex_count, bone_index_values);
-  for (int i = 0; i < vertex_count; i++) {
-    Vector v0 (xyz_values[i*3], xyz_values[i*3+1], xyz_values[i*3+2]);
-    int bone_index_1  = bone_index_values[i*4];
-    int bone_weight_1 = bone_index_values[i*4+1];
-    int bone_index_2  = bone_index_values[i*4+2];
-    int bone_weight_2 = bone_index_values[i*4+3];
-    float weight = 0;
-    weight += (bone_index_1 > -1) ? bone_weight_1 : 0;
-    weight += (bone_index_2 > -1) ? bone_weight_2 : 0;
+  float* values       = new float[vertex_count*3];
+
+  // 位置
+  bind_positions->get (0, vertex_count, scale_bias[0], &scale_bias[1], values);
+  for (int v = 0; v < vertex_count; v++) {
+    Vector v0 (values[v*3], values[v*3+1], values[v*3+2]);
     Vector v1 (0,0,0);
-    v1 += (bone_index_1 > -1) ? matrix_palette[bone_index_1] * v0 * (bone_weight_1/weight) : Vector(0,0,0);
-    v1 += (bone_index_2 > -1) ? matrix_palette[bone_index_2] * v0 * (bone_weight_2/weight) : Vector(0,0,0);
+    float  weight     = 0;
+    int    bone_count = bone_indices[v].size();
+    for (int b = 0; b < bone_count; b++) {
+      weight += bone_indices[v][b].weight;
+    }
+    for (int b = 0; b < bone_count; b++) {
+      int i = bone_indices[v][b].index;
+      v1 += matrix_palette[i] * v0 * (bone_indices[v][b].weight/weight);
+    }
     if (weight > 0) {
-      xyz_values[i*3]   = v1.x/v1.w;
-      xyz_values[i*3+1] = v1.y/v1.w;
-      xyz_values[i*3+2] = v1.z/v1.w;
+      values[v*3]   = v1.x/v1.w;
+      values[v*3+1] = v1.y/v1.w;
+      values[v*3+2] = v1.z/v1.w;
     }
   }
-
-  VertexArray* skinned_positions = skinned_vertices->getPositions(0);
-  //cout << "skinned_positions = " << *skinned_positions << "\n";
-  skinned_positions->set (0, vertex_count, scale_bias[0], &scale_bias[1], xyz_values);
-
-    //short* values = (short*)skinned_positions->values;
- //  for (int i = 0; i < 42*3; i+=3) {
- //        cout << values[i] << ", " << values[i+1] << ", " << values[i+2] << "\n";
- //  }
-
+  skinned_positions->set (0, vertex_count, scale_bias[0], &scale_bias[1], values);
   skinned_vertices->setPositions (skinned_positions, scale_bias[0], &scale_bias[1]);
+
+  // 法線
+  if (bind_normals) {
+    int component_size = bind_normals->getComponentType();
+    scale_bias[0] = (component_size == 1) ? 2/255.f : 2/65535.f;
+    scale_bias[1] = scale_bias[2] = scale_bias[3] = (component_size == 2) ? 1/255.f : 1/65535.f;
+    bind_normals->get (0, vertex_count, scale_bias[0], &scale_bias[1], values);
+    for (int v = 0; v < vertex_count; v++) {
+      Vector v0 (values[v*3], values[v*3+1], values[v*3+2]);
+      Vector v1 (0,0,0);
+      float  weight     = 0;
+      int    bone_count = bone_indices[v].size();
+      for (int b = 0; b < bone_count; b++) {
+	weight += bone_indices[v][b].weight;
+      }
+      for (int b = 0; b < bone_count; b++) {
+	int i = bone_indices[v][b].index;
+	v1 += matrix_palette[i].invert().transpose() * v0 * (bone_indices[v][b].weight/weight);
+      }
+      if (weight > 0) {
+	values[v*3]   = v1.x/v1.w;
+	values[v*3+1] = v1.y/v1.w;
+	values[v*3+2] = v1.z/v1.w;
+      }
+    }
+    skinned_normals->set (0, vertex_count, scale_bias[0], &scale_bias[1], values);
+    skinned_vertices->setNormals (skinned_normals);
+  }
+
+  delete [] values;
 
   //cout << "skinned_positions = " << *skinned_positions << "\n";
 
@@ -164,41 +170,21 @@ void SkinnedMesh:: addTransform (Node* node, int weight, int first_vertex, int n
   if (first_vertex < 0) {
     throw IllegalArgumentException (__FILE__, __func__, "First vertex is invalid, first_vertex=%d.", first_vertex);
   }
+  if (num_vertices <= 0) {
+    throw IllegalArgumentException (__FILE__, __func__, "Number of vertices is invalid, num_vertex=%d.", num_vertices);
+  }
   if (first_vertex + num_vertices > 65535) {
     throw IllegalArgumentException (__FILE__, __func__, "First vertex + number of vertices is invalid, first_vertex=%d, num_vertices=%d.", first_vertex, num_vertices);
   }
 
   // ボーンインデックスの決定
-  short index = addBoneIndex (node);
+  int index = addBoneIndex (node);
 
   // ボーンインデックス（index,weight）の保存
-  short* values = new short[num_vertices*4];
-  bone_indices->get (first_vertex, num_vertices, values);
-
-  for (int i = 0; i < num_vertices*4; i+=4) {
-    if (values[i] == -1) {
-      values[i]   = index;   // bone1に格納
-      values[i+1] = weight;
-    } else if (values[i+2] == -1) {
-      values[i+2] = index;
-      values[i+3] = weight;  // bone2に格納
-    } else if (weight > values[i+1] || weight > values[i+3] ) {
-      if (values[i+1] < values[i+3]) {    // weightの小さい方と差し替え
-	values[i]   = index;
-	values[i+1] = weight;
-      } else {
-	values[i+2] = index;
-	values[i+3] = weight;
-      }
-    }
+  for (int v = first_vertex; v < first_vertex+num_vertices; v++) {
+    bone_indices[v].push_back (BoneIndex(index,weight));
   }
-  bone_indices->set (first_vertex, num_vertices, values);
 
-  //cout << "bone_indices = " << *bone_indices << "\n";
-
-
-  // メモ：同じボーンを2回addTransformすると
-  // inv_bind_poseとindexの値が違くなる。バグ
 }
 
 /**
@@ -235,32 +221,27 @@ int SkinnedMesh:: getBoneVertices (Node* node, int* vertex_indices, float* weigh
   }
 
   int bone_index      = getBoneIndex (node);
-  int vertex_count    = bone_indices->getVertexCount();
+  int vertex_count    = bone_indices.size();
+  int find            = 0;
 
-  short* values = new short[vertex_count*4];
-  bone_indices->get (0, vertex_count, values);
-
-  int num = 0;
-  for (int i = 0; i < vertex_count*4; i+=4) {
-    float weight = 0;
-    if (values[i] == bone_index || values[i+2] == bone_index) {
-      weight += (values[i] > -1) ? values[i+1] : 0;
-      weight += (values[i+2] > -1) ? values[i+3] : 0;
-      if (vertex_indices) {
-	*vertex_indices++ = i/4;
+  for (int v = 0; v < vertex_count; v++) {
+    float weight     = 0;
+    int   bone_count = bone_indices[v].size();
+    for (int b = 0; b < bone_count; b++) {
+      weight += bone_indices[v][b].weight;
+    }
+    for (int b = 0; b < bone_count; b++) {
+      if (bone_indices[v][b].index == bone_index) {
+	find++;
+	if (vertex_indices)
+	  *vertex_indices++ = v;
+	if (weights)
+	  *weights++        = bone_indices[v][b].weight/weight;
       }
-      if (weights) {
-	if (values[i] == bone_index)
-	  *weights++ = values[i+1]/weight;
-	else
-	  *weights++ = values[i+3]/weight;
-      }
-      num += 1;
     }
   }
 
-
-  return num;
+  return find;
 }
 
 Group* SkinnedMesh:: getSkeleton () const
@@ -270,7 +251,7 @@ Group* SkinnedMesh:: getSkeleton () const
 
 void SkinnedMesh:: render (int pass, int index) const
 {
-  cout << "SkinnedMesh: render\n";
+  //cout << "SkinnedMesh: render\n";
 
   // 注意：vertices が skinned_vertices に変わった事を除けば Mesh::render()と同一。
   // M3Gの仕様で vertices を書き換える事は禁止されているので元に戻す。
@@ -281,11 +262,10 @@ void SkinnedMesh:: render (int pass, int index) const
   Mesh::render (pass, index);
 
   (const_cast<SkinnedMesh*>(this))->vertices = tmp;
-
 }
 
 
-Matrix SkinnedMesh:: getGlobalPose (Node* node)
+Matrix SkinnedMesh:: getGlobalPose (Node* node) const
 {
   Matrix global_pose;
   do {
@@ -302,22 +282,22 @@ Matrix SkinnedMesh:: getGlobalPose (Node* node)
 int SkinnedMesh:: addBoneIndex (Node* bone)
 {
   for (int i = 0; i < (int)bind_poses.size(); i++) {
-    if (bind_poses[i]->bone == bone) {
+    if (bind_poses[i].bone == bone) {
       Matrix bind_pose = getGlobalPose (bone);
-      bind_poses[i]->inverse = bind_pose.invert();
+      bind_poses[i].inverse = bind_pose.invert();
       return i;
     }
   }
   // ボーンとバインドポーズ（の逆行列）を保存
   Matrix bind_pose = getGlobalPose (bone);
-  bind_poses.push_back (new BindPose(bone, bind_pose.invert()));
+  bind_poses.push_back (BindPose(bone, bind_pose.invert()));
   return bind_poses.size()-1;
 }
 
 int SkinnedMesh:: getBoneIndex (Node* bone) const
 {
   for (int i = 0; i < (int)bind_poses.size(); i++) {
-    if (bind_poses[i]->bone == bone)
+    if (bind_poses[i].bone == bone)
       return i;
   }
   return -1;

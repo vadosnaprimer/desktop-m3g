@@ -81,7 +81,6 @@ namespace m3g {
     void set (int first_vertex, int num_vertices, short* values);
 
 
-    void set (int first_vertex, int num_vertices, float scale, float* bias, float* values);
 
     /**
      * @~English  Print out information of this object, for debug only.
@@ -90,14 +89,25 @@ namespace m3g {
     virtual std::ostream& print (std::ostream& out) const;
 
     /**
+     * @~English  Print out raw data of this object, for debug only.
+     * @~Japanese このVertexArrayクラスの保持しているデータを表示する。デバッグ用.
+     */
+    std::ostream& print_raw_data (std::ostream& out) const;
+
+    /**
      * @~English  Returns the scaled and biased value as float, this is not under M3G.
      * @~Japanese 値にscale,biasをかけてfloatで取り出すM3G非標準の関数.
      */
     void get (int first_vertex, int num_vertices, float scale, float* bias, float* values) const;
 
+    /**
+     * @~English  Store the scaled and biased value as char or short, this is not under M3G.
+     * @~Japanese 値にscale,biasをかけてcharまたはshortでセットするM3G非標準の関数.
+     */
+    void set (int first_vertex, int num_vertices, float scale, float* bias, float* values);
 
-    //private:
-  public:
+
+  private:
     int   component_count;
     int   component_size;
     int   vertex_count;

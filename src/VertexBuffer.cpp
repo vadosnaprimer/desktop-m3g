@@ -10,8 +10,8 @@ using namespace m3g;
 
 
 VertexBuffer:: VertexBuffer () :
-  positions(0), positions_scale(1), normals(0), colors(0), 
-  default_color(0xffffffff), vbuf(0), ibuf(0)
+  positions(0), normals(0), colors(0), positions_scale(1),
+  default_color(0xffffffff), vbuf(0), ibuf(0), nbuf(0)
 {
   setObjectType (OBJTYPE_VERTEX_BUFFER);
 
@@ -24,6 +24,7 @@ VertexBuffer:: VertexBuffer () :
     for (int j = 0; j < 3; j++) {
       tex_coords_bias[i][j] = 0;
     }
+    tcbuf[i] = 0;
   }
   //glGenBuffers (1, &vbuf);
   //glGenBuffers (1, &ibuf);
