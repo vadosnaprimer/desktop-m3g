@@ -52,9 +52,9 @@ const float& Vector:: operator[] (int index) const
 
 Vector& Vector:: operator+= (const Vector& rhs)
 {
-  if (w != rhs.w) {
-    throw IllegalArgumentException (__FILE__, __func__, "W component is invalid, %f, %f.", w, rhs.w);
-  }
+  //  if (w != rhs.w) {
+  //  throw IllegalArgumentException (__FILE__, __func__, "W component is invalid, %f, %f.", w, rhs.w);
+  //}
 
   x += rhs.x;
   y += rhs.y;

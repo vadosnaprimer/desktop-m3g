@@ -71,6 +71,7 @@ int Transformable:: animate (int world_time)
     switch (track->getTargetProperty()) {
     case AnimationTrack:: ORIENTATION: {
       float value[4] = {0,0,0,0};  // Quaternion(x,y,z,w)
+      //cout << "Transformable: keyfram = " << *keyframe << "\n";
       keyframe->getFrame (local_time, value);
       Quaternion q;
       q.set (value[0], value[1], value[2], value[3]);
@@ -240,9 +241,9 @@ std::ostream& Transformable:: print (std::ostream& out) const
 {
   out << "Transformable: ";
   out << "  translation=" << translation.x << "," << translation.y << "," << translation.z;
-  out << ", scale=" << scaling.x << "," << scaling.y << "," << scaling.z;
+  out << ", scale="       << scaling.x     << "," << scaling.y     << "," << scaling.z;
   out << ", orientation=" << orientation.x << "," << orientation.y << "," << orientation.z;
-  out << ", transform=" << transform;
+  out << ", transform="   << transform;
   return out << "\n";
 }
 

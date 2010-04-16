@@ -1,16 +1,19 @@
 #include <iostream>
 #include <fstream>
+#include <strstream>
+#include "Exception.hpp"
 #include "m3g.hpp"
 #include "Loader.hpp"
 using namespace std;
 using namespace m3g;
 #include <stdlib.h>
 
-std::ifstream Loader::ifs;
+std::istrstream* Loader::iss = 0;
 std::vector<Object3D*> Loader::objs;
 
+const char m3g_ident[12] = {0xAB,0x4A,0x53,0x52,0x31,0x38,0x34,0xBB,0x0D,0x0A,0x1A,0x0A};
 
-Loader:: Loader ()
+Loader:: Loader () 
 {
 }
 
@@ -19,22 +22,24 @@ Loader:: ~Loader ()
 }
 
 
-std::vector<Object3D*> Loader:: load (void* data, int offset)
+std::vector<Object3D*> Loader:: load (int length, const char* data, int offset)
 {
-  throw NotImplementedException (__FILE__, __func__, "Load from memory is not implemented.");
-  return objs;
-}
+  if (data == NULL) {
+    throw NullPointException (__FILE__, __func__, "Data is NULL.");
+  }
+  if (length <= 0) {
+    throw IllegalArgumentException (__FILE__, __func__, "length is invalid, len=%d.", length);
+  }
+  if (offset < 0 || offset >= length) {
+    throw IndexOutOfBoundsException (__FILE__, __func__, "Offset is invalid, %d in [0, ).", offset, length);
+  }
 
-const char m3g_ident[12] = {0xAB,0x4A,0x53,0x52,0x31,0x38,0x34,0xBB,0x0D,0x0A,0x1A,0x0A};
-
-std::vector<Object3D*> Loader:: load (const char* name)
-{
-  ifs.open (name);
-  if (!ifs) {
-    throw IOException (__FILE__, __func__, "Can't load %s.", name);
+  iss = new istrstream ((char*)data+offset, length-offset);
+  if (iss == 0) {
+    throw IOException (__FILE__, __func__, "Can't load from memory 0x%p.", data);
   }
   if (!getM3GIdent()) {
-    throw IOException (__FILE__, __func__, "This is not M3G format file=%s.", name);
+    throw IOException (__FILE__, __func__, "This is not M3G format.");
   }
 
   while (1) {
@@ -48,13 +53,13 @@ std::vector<Object3D*> Loader:: load (const char* name)
     //cout << "total_section_length = " << total_section_length << "\n";
     //cout << "uncompressed_length = "  << uncompressed_length << "\n";
 
-    if (ifs.eof())
+    if (iss->eof())
       break;
     if (compression_scheme != 0) {
       throw NotImplementedException (__FILE__, __func__, "Compressed file is not implemtened.");
     }
 
-    int end_of_objects = (int)ifs.tellg() + total_section_length - 13;
+    int end_of_objects = (int)iss->tellg() + total_section_length - 13;
 
     // 注意：オブジェクトインデックスは１から始まる
     int i = 1;
@@ -93,10 +98,10 @@ std::vector<Object3D*> Loader:: load (const char* name)
       default: 
 	throw IOException (__FILE__, __func__, "Object type is invalid, type=%d.", object_type);
 	//cout << "Unknown obj type = " << object_type << " is ignored.\n";
-	//ifs.seekg (length, ios_base::cur);
+	//iss->seekg (length, ios_base::cur);
       }
 
-      if (ifs.tellg() >= end_of_objects)
+      if (iss->tellg() >= end_of_objects)
 	break;
     }
 
@@ -110,92 +115,110 @@ std::vector<Object3D*> Loader:: load (const char* name)
   return objs;
 }
 
+
+std::vector<Object3D*> Loader:: load (const char* name)
+{
+  ifstream ifs (name);
+  if (!ifs) {
+    throw IOException (__FILE__, __func__, "Can't open file, name=%s.", name);
+  }
+  int size = ifs.seekg(0, ios::end).tellg();
+  ifs.seekg(0, ios::beg); 
+  char* buf = new char[size];
+  ifs.read (buf, size);
+
+  load (size, buf, 0);
+
+  delete [] buf;
+  return objs;
+}
+
 bool Loader:: getBoolean ()
 {
   bool buf;
-  ifs.read ((char*)&buf, 1);
+  iss->read ((char*)&buf, 1);
   return buf;
 }
 
 char Loader:: getByte ()
 {
   char buf;
-  ifs.read ((char*)&buf, 1);
+  iss->read ((char*)&buf, 1);
   return buf;
 }
 
 short Loader:: getInt16 ()
 {
   short buf;
-  ifs.read ((char*)&buf, 2);
+  iss->read ((char*)&buf, 2);
   return buf;
 }
 
 unsigned short Loader:: getUInt16 ()
 {
   unsigned short buf;
-  ifs.read ((char*)&buf, 2);
+  iss->read ((char*)&buf, 2);
   return buf;
 }
 
 int Loader:: getInt32 ()
 {
   int buf;
-  ifs.read ((char*)&buf, 4);
+  iss->read ((char*)&buf, 4);
   return buf;
 }
 
 unsigned int Loader:: getUInt32 ()
 {
   unsigned int buf;
-  ifs.read ((char*)&buf, 4);
+  iss->read ((char*)&buf, 4);
   return buf;
 }
 
 float        Loader:: getFloat32 ()
 {
   float buf;
-  ifs.read ((char*)&buf, 4);
+  iss->read ((char*)&buf, 4);
   return buf;
 }
 
 const char* Loader:: getString ()
 {
   static char buf[128];
-  ifs.getline (buf, 128, '\0');
+  iss->getline (buf, 128, '\0');
   return buf;
 }
 
 unsigned int Loader:: getObjectIndex ()
 {
   unsigned int buf;
-  ifs.read ((char*)&buf, 4);
+  iss->read ((char*)&buf, 4);
   return buf;
 }
 
 int          Loader:: getColorRGBA ()
 {
   unsigned char r,g,b,a;
-  ifs.read ((char*)&r, 1);
-  ifs.read ((char*)&g, 1);
-  ifs.read ((char*)&b, 1);
-  ifs.read ((char*)&a, 1);
+  iss->read ((char*)&r, 1);
+  iss->read ((char*)&g, 1);
+  iss->read ((char*)&b, 1);
+  iss->read ((char*)&a, 1);
   return (a << 24) | (r << 16) | (g << 8) | (b << 0);
 }
 
 int          Loader:: getColorRGB ()
 {
   unsigned char r,g,b;
-  ifs.read ((char*)&r, 1);
-  ifs.read ((char*)&g, 1);
-  ifs.read ((char*)&b, 1);
+  iss->read ((char*)&r, 1);
+  iss->read ((char*)&g, 1);
+  iss->read ((char*)&b, 1);
   return (r << 16) | (g << 8) | (b << 0);
 }
 
 bool         Loader:: getM3GIdent ()
 {
   char ident[12];
-  ifs.read ((char*)ident, 12);
+  iss->read ((char*)ident, 12);
   //cout << "ident = ";
   //for (int i = 0; i < 12; i++) {
   //  cout << ident[i];
@@ -207,7 +230,7 @@ bool         Loader:: getM3GIdent ()
 char* Loader:: getByteArray (int n)
 {
   char* p = new char[n];
-  ifs.read ((char*)p, n);
+  iss->read ((char*)p, n);
   return p;
 }
 
@@ -215,14 +238,14 @@ char* Loader:: getByteArray (int n)
 short* Loader:: getInt16Array (int n)
 {
   short* p = new short[n];
-  ifs.read ((char*)p, n*2);
+  iss->read ((char*)p, n*2);
   return p;
 }
 
 unsigned short* Loader:: getUInt16Array (int n)
 {
   unsigned short* p = new unsigned short[n];
-  ifs.read ((char*)p, n*2);
+  iss->read ((char*)p, n*2);
   return p;
 }
 
@@ -230,14 +253,14 @@ unsigned short* Loader:: getUInt16Array (int n)
 unsigned int* Loader:: getUInt32Array (int n)
 {
   unsigned int* p = new unsigned int[n];
-  ifs.read ((char*)p, n*4);
+  iss->read ((char*)p, n*4);
   return p;
 }
 
 float* Loader:: getFloat32Array (int n)
 {
   float* p = new float[n];
-  ifs.read ((char*)p, n*4);
+  iss->read ((char*)p, n*4);
   return p;
 }
 
@@ -559,11 +582,11 @@ void Loader:: parseKeyframeSequence ()
     float* bias  = getFloat32Array (component_count);
     float* scale = getFloat32Array (component_count);
     for (int i = 0; i < (int)keyframe_count; i++) {
-      unsigned int time = getUInt32 ();
-      char* encoded_values = getByteArray (component_count);
+      unsigned int   time           = getUInt32 ();
+      unsigned char* encoded_values = (unsigned char*)getByteArray (component_count);
       float* values = new float[component_count];
       for (int j = 0; j < (int)component_count; j++) {
-	values[j] = (encoded_values[j] - bias[j]) / scale[j] * 255;
+	values[j] = encoded_values[j]*scale[j]/255.f + bias[j];
       }
       kseq->setKeyframe (i, time, values);
       delete [] encoded_values;
@@ -577,18 +600,18 @@ void Loader:: parseKeyframeSequence ()
     float* bias  = getFloat32Array (component_count);
     float* scale = getFloat32Array (component_count);
     for (int i = 0; i < (int)keyframe_count; i++) {
-      unsigned int time    = getUInt32 ();
-      short* encoded_values = getInt16Array (component_count);
+      unsigned int    time           = getUInt32 ();
+      unsigned short* encoded_values = (unsigned short*)getInt16Array (component_count);
       float* values = new float[component_count];
       for (int j = 0; j < (int)component_count; j++) {
-	values[j] = (encoded_values[j] - bias[j]) / scale[j] * 255;
+	values[j] = encoded_values[j]*scale[j]/65535.f + bias[j];
       }
       kseq->setKeyframe (i, time, values);
-      delete bias;
-      delete scale;
       delete encoded_values;
       delete values;
     }
+    delete [] bias;
+    delete [] scale;
     break;
   }
   default: {
@@ -599,8 +622,8 @@ void Loader:: parseKeyframeSequence ()
   kseq->setRepeatMode (repeat_mode);
   kseq->setDuration (duration);
   kseq->setValidRange (valid_range_first, valid_range_last);
-
-  //kseq->KeyframeSequence:: print (cout);
+  
+  kseq->KeyframeSequence:: print (cout);
 
   objs.push_back (kseq);
 }
@@ -890,7 +913,7 @@ void Loader:: parseTransformable (Transformable* trans)
     float ay    = getFloat32();
     float az    = getFloat32();
     trans->setTranslation (tx, ty, tz);
-    trans->setScale (sx, sy, sz);
+    trans->setScale       (sx, sy, sz);
     trans->setOrientation (angle, ax, ay, az);
   }
   bool has_general_transform = getBoolean();
@@ -905,7 +928,7 @@ void Loader:: parseTransformable (Transformable* trans)
 
   //trans->Transformable::print (cout);
 }
-
+ 
 
 void Loader:: parseTriangleStripArray ()
 {

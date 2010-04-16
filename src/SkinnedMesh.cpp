@@ -74,6 +74,15 @@ SkinnedMesh* SkinnedMesh:: duplicate () const
 
 int SkinnedMesh:: animate (int world_time)
 {
+  cout << "SkinnedMesh: animate\n";
+  cout << "  bones = " << bind_poses.size() << "\n";
+  
+  //for (int i = 0; i < (int)bind_poses.size(); i++) {
+  //  cout << "i = " << i << ", " << bind_poses[i].bone->Transformable::print (cout) << "\n";
+  //  cout << "global_pose = \n" << getGlobalPose (bind_poses[i].bone) << "\n";
+  //  cout << "inv_bind_pose = \n" << bind_poses[i].inverse << "\n"; 
+  //}
+
   Mesh:: animate (world_time);
 
   // ボーンの移動
@@ -83,9 +92,14 @@ int SkinnedMesh:: animate (int world_time)
   int bone_count = bind_poses.size();
   std::vector<Matrix> matrix_palette (bone_count);
   for (int b = 0; b < bone_count; b++) {
+    //cout << "b = " << b << "\n";
+    //cout << "bind_poses.inverse = " << bind_poses[b].inverse << "\n";
     Matrix global_pose = getGlobalPose (bind_poses[b].bone);
+    //cout << "global_pose = " << global_pose << "\n";
     matrix_palette[b]  = global_pose * bind_poses[b].inverse;
+    //cout << "matrix_palette[" << b << "] = " << matrix_palette[b] << "\n";
   }
+
 
   // スキンメッシュの更新
   float        scale_bias[4];
@@ -109,13 +123,13 @@ int SkinnedMesh:: animate (int world_time)
     }
     for (int b = 0; b < bone_count; b++) {
       int i = bone_indices[v][b].index;
+      //cout << "b = " << b << ", i = " << i << "\n";
+      //cout << "matrix_palette[" << i << "] = " << matrix_palette[i] << "\n";
+      //cout << "v0 = " << v0 << "\n";
       v1 += matrix_palette[i] * v0 * (bone_indices[v][b].weight/weight);
     }
-    if (weight > 0) {
-      values[v*3]   = v1.x/v1.w;
-      values[v*3+1] = v1.y/v1.w;
-      values[v*3+2] = v1.z/v1.w;
-    }
+    if (weight > 0)
+      v1.get (&values[v*3]);
   }
   skinned_positions->set (0, vertex_count, scale_bias[0], &scale_bias[1], values);
   skinned_vertices->setPositions (skinned_positions, scale_bias[0], &scale_bias[1]);
@@ -176,6 +190,13 @@ void SkinnedMesh:: addTransform (Node* node, int weight, int first_vertex, int n
   if (first_vertex + num_vertices > 65535) {
     throw IllegalArgumentException (__FILE__, __func__, "First vertex + number of vertices is invalid, first_vertex=%d, num_vertices=%d.", first_vertex, num_vertices);
   }
+
+  // void SkinnedMesh:: addTransform (Node* node, int weight, int first_vertex, int num_vertices)
+  cout << "addTransform : \n";
+  cout << "  node = "         << *node << "\n";
+  cout << "  weight = "       << weight << "\n";
+  cout << "  first_vertex = " << first_vertex << "\n";
+  cout << "  num_vertices = " << num_vertices << "\n";
 
   // ボーンインデックスの決定
   int index = addBoneIndex (node);
@@ -267,10 +288,14 @@ void SkinnedMesh:: render (int pass, int index) const
 
 Matrix SkinnedMesh:: getGlobalPose (Node* node) const
 {
+  //int i = 0;
   Matrix global_pose;
   do {
+    //cout << "global_pose = " << global_pose << "\n";
     Transform trans;
+    //cout << i++ << " : node transform = " << node->Transformable::print(cout) << "\n";    
     node->getCompositeTransform (&trans);
+    //cout << i++ << " : composite transform = " << trans << "\n";
     float m[16];
     trans.get (m);
     global_pose *= Matrix(m);

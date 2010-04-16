@@ -3,6 +3,7 @@
 
 #include <vector>
 #include <iosfwd>
+#include <strstream>
 
 namespace m3g {
 
@@ -26,7 +27,7 @@ namespace m3g {
    * @~English  Deserializes Object3D instances form the given byte array.
      * @~Japanese 与えられたバイトストリームのオフセット位置からObject3Dのインスタンスを生成する.
      */
-    static std::vector<Object3D*> load (void* data, int offset);
+    static std::vector<Object3D*> load (int length, const char* data, int offset);
 
     /**
    * @~English  Deserializes Object3D instances from the named resource.
@@ -95,7 +96,8 @@ namespace m3g {
     static void parseVertexBuffer ();
     static void parseWorld ();
 
-    static std::ifstream ifs;
+    //static std::ifstream ifs;
+    static std::istrstream* iss;
     static std::vector<Object3D*> objs;
   };
 

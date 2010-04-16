@@ -289,12 +289,14 @@ std::ostream& KeyframeSequence:: print (std::ostream& out) const
   out << ", keyframes=[";
   for (int i = 0; i < keyframe_count; i++) {
     out << i << ":(" << keyframes[i].time << ")=[";
-    for (int j = 0; j < component_count; j++) {
-      out << keyframes[i].value[j];
-      if (j < component_count-1)
-	out << ",";
-      else
-	out << "] ";
+    if (keyframes[i].value) {
+      for (int j = 0; j < component_count; j++) {
+	out << keyframes[i].value[j];
+	if (j < component_count-1)
+	  out << ",";
+	else
+	  out << "] ";
+      }
     }
   }
   return out << "]\n";
