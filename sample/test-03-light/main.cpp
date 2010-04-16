@@ -85,17 +85,17 @@ int main (int argc, char** argv)
   animation_light_color->setController (controller);
 
 
-  VertexArray* pos_array = new VertexArray (800, 3, 2);
-  pos_array->set (0, 800, vertices3);
-  VertexArray* norm_array = new VertexArray (800, 3, 1);
-  norm_array->set (0, 800, normals1);
+  VertexArray*  positions = new VertexArray (800, 3, 2);
+  VertexArray*  normals   = new VertexArray (800, 3, 1);
+  positions->set (0, 800, position_values);
+  normals->set (0, 800, normal_values);
 
-  float scale = 1;
-  float bias[3] = {0,0,0};
-  VertexBuffer* vbuf = new VertexBuffer;
-  vbuf->setPositions (pos_array, scale, bias);
-  vbuf->setNormals (norm_array);
-  vbuf->setDefaultColor (0xffffffff);
+  float         scale    = 1;
+  float         bias[3]  = {0,0,0};
+  VertexBuffer* vertices = new VertexBuffer;
+  vertices->setPositions (positions, scale, bias);
+  vertices->setNormals (normals);
+  vertices->setDefaultColor (0xffffffff);
 
   int strips[20] = {40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40};
   TriangleStripArray* tris = new TriangleStripArray (0, 20, strips);
@@ -106,24 +106,24 @@ int main (int argc, char** argv)
   Appearance* app = new Appearance;
   app->setMaterial (mat);
 
-  Mesh* mesh = new Mesh (vbuf, tris, app);
+  Mesh* mesh = new Mesh (vertices, tris, app);
   //mesh->translate (0,0,-10);
-
-  cout << "hello world\n";
 
   Camera* cam = new Camera;
   cam->lookAt (0,20,20,
                0,0,0,
                0,1,0);
 
+  // メッシュは(x,z)平面
   lig = new Light;
   lig->setColor (0xffffff00);
-  lig->setIntensity (3);
-  lig->setMode (Light::SPOT);
+  lig->setIntensity (1);
+  //  lig->setMode (Light::SPOT);
+  lig->setMode (Light::OMNI);
   lig->translate (0,1,0);
-  lig->postRotate (-90, 1,0,0);
-  lig->setSpotAngle (60);
-  lig->addAnimationTrack (animation_light_color);
+  //  lig->postRotate (-90, 1,0,0);
+  //  lig->setSpotAngle (60);
+  //  lig->addAnimationTrack (animation_light_color);
 
   wld = new World;
   wld->addChild (cam);
