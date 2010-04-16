@@ -13,10 +13,10 @@ HEADERS += MyWidget.hpp
 SOURCES += main.cpp MyWidget.cpp 
 
 CONFIG += opengl debug
-#QMAKE_CXXFLAGS +=  -std=c++0x
-#QMAKE_CFLAGS +=  -std=c++0x
-#QMAKE_FLAGS +=  -std=c++0x
+QMAKE_CXXFLAGS +=  -Wno-deprecated
+QMAKE_CFLAGS +=  -Wno-deprecated
+QMAKE_FLAGS +=  -Wno-deprecated
 
 
 # 
-LIBS +=  -L../../src -lm3g -lQtOpenGL -lGLEW
+LIBS +=  -L../../src -lm3g -lQtOpenGL -lGLEW -lz

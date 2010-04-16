@@ -113,7 +113,12 @@ void Group:: render (int pass, int index) const
 {
   //cout << "Group: render\n";
   Node::render (pass, index);
-  
+
+  for (int i = 0; i < (int)children.size(); i++) {
+    children[i]->render (pass, index);
+  }
+
+#if 0  
   vector<Sprite3D*> sprts;
 
   for (int i = 0; i < (int)children.size(); i++) {
@@ -133,6 +138,8 @@ void Group:: render (int pass, int index) const
       sprts[i]->render (pass, index);
       glPopMatrix ();
   }
+#endif
+
 }
   
 

@@ -20,6 +20,16 @@ namespace m3g {
    */
   class Loader
   {
+    struct FileInfo {
+      int          version_major;
+      int          version_minor;
+      bool         has_external_refference;
+      const char*  external_refference_uri;
+      unsigned int total_file_size;
+      unsigned int approximate_content_size;
+      const char*  authoring_field;
+    };
+
 
   public:
 
@@ -67,6 +77,9 @@ namespace m3g {
     static unsigned int*   getUInt32Array (int n);
     static float*          getFloat32Array (int n);
 
+    static void            read_raw (char* buf, int length);
+    static void            read_zlib (char* decoded_buf, int decoded_buf_length, int compressed_length);
+
     static unsigned int adler32 (const unsigned char* data, int len);
 
     static void parseHeader();
@@ -101,6 +114,7 @@ namespace m3g {
     //static std::ifstream ifs;
     static std::istrstream* iss;
     static std::vector<Object3D*> objs;
+    static FileInfo file_info;
   };
 
 

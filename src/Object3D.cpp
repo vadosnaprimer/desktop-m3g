@@ -91,7 +91,7 @@ void Object3D:: setUserID (int new_user_id)
   user_id = new_user_id;
 }
 
-void Object3D:: setUserObject (const char* name, void* value)
+void Object3D:: setUserObject (int id, char* value)
 {
   throw NotImplementedException (__FILE__, __func__, "User Object is not implemented, yte");
 }

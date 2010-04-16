@@ -108,7 +108,7 @@ namespace m3g {
      *            ユーザーオブジェクトはコピーされない.
      *            注意：本当はkey,valueのペアでなければならない。あとで修正する。
      */
-    void setUserObject (const char* name, void* value);
+    void setUserObject (int id, char* value);
 
     /**
      * @~English  Retrievs object type, for inner use.

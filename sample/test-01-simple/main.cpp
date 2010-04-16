@@ -34,7 +34,7 @@ int main (int argc, char** argv)
   poss->set (0, 4, vertices);
 
   VertexArray* cols = new VertexArray (4, 3, 1);
-  char colors[] = {127,-127,-127, -127,127,-127, -127,-127,127, 127,127,127};
+  unsigned char colors[] = {255,0,0, 0,255,0, 0,0,255, 255,255,255};
   cols->set (0, 4, (char*)colors);
 
   float scale = 1;

@@ -36,7 +36,7 @@ int main (int argc, char** argv)
   pos_array->set (0, 4, vertices);
 
   VertexArray* color_array = new VertexArray (4, 3, 1);
-  char colors[] = {127,127,127, 127,127,127, 127,127,127, 127,127,127};
+  char colors[] = {255,255,255, 255,255,255, 255,255,255, 255,255,255};
   color_array->set (0, 4, colors);
 
   VertexArray* tex_coord_array = new VertexArray (4, 2, 2);

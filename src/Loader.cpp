@@ -1,6 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <strstream>
+#include <zlib.h>
 #include "Exception.hpp"
 #include "m3g.hpp"
 #include "Loader.hpp"
@@ -10,6 +11,7 @@ using namespace m3g;
 
 std::istrstream* Loader::iss = 0;
 std::vector<Object3D*> Loader::objs;
+Loader::FileInfo Loader::file_info;
 
 const char m3g_ident[12] = {0xAB,0x4A,0x53,0x52,0x31,0x38,0x34,0xBB,0x0D,0x0A,0x1A,0x0A};
 
@@ -56,22 +58,36 @@ std::vector<Object3D*> Loader:: load (int length, const char* data, int offset)
 
     if (iss->eof())
       break;
-    if (compression_scheme != 0) {
-      throw NotImplementedException (__FILE__, __func__, "Compressed file is not implemtened.");
+    if (compression_scheme != 0 && compression_scheme != 1) {
     }
 
-    int end_of_objects = (int)iss->tellg() + total_section_length - 13;
+    char* uncompressed_objects = new char[uncompressed_length];
+    switch (compression_scheme) {
+    case 0: read_raw (uncompressed_objects,
+                      total_section_length-13); break;
+    case 1: read_zlib (uncompressed_objects, 
+                       uncompressed_length,
+                       total_section_length-13); break;
+    default: 
+      throw IOException (__FILE__, __func__, "Compression scheme is invalid, scheme=%d.", compression_scheme);
+    }
+    istrstream* tmp = iss;
+    iss = new istrstream (uncompressed_objects, uncompressed_length);
 
     // 注意：オブジェクトインデックスは１から始まる
-    int i = 1;
+    // int i = 0;
 
     while (1) {
-      // object
+
       //cout << "object -------- " << i++ << " --------\n";
-      char         object_type = getByte ();
-      unsigned int length      = getUInt32 ();
-      //cout << "object type = " << objtype_to_string(object_type) << "(" << (int)object_type << ")\n";
-      //cout << "length = "      << length << "\n";
+      int          start_of_object = (int)iss->tellg();
+      char         object_type     = getByte ();
+      unsigned int length          = getUInt32 ();
+
+      if (iss->eof())
+	break;
+
+      //cout << "object type = " << objtype_to_string(object_type) << "(" << (int)obje
 
       switch (object_type) {
       case OBJTYPE_HEADER_OBJECT       : parseHeader()             ; break;
@@ -102,13 +118,16 @@ std::vector<Object3D*> Loader:: load (int length, const char* data, int offset)
 	//iss->seekg (length, ios_base::cur);
       }
 
-      if (iss->tellg() >= end_of_objects)
-	break;
+      int end_of_object = (int)iss->tellg();
+      if (end_of_object - start_of_object != (int)length+5) {
+	throw IOException (__FILE__, __func__, "Object length is invalid. %d != %d.", end_of_object - start_of_object, length+5);
+      }
     }
 
-    // checksum, 今だけノーチェック
-    //unsigned int checksum = getUInt32 ();
-    unsigned int file_checksum = getUInt32();
+    delete iss;
+    iss = tmp;
+
+    unsigned int file_checksum    = getUInt32();
     unsigned int memory_checksum  = adler32 ((const unsigned char*)data+start_of_section, total_section_length-4);
     if (memory_checksum != file_checksum) {
       throw IOException (__FILE__, __func__, "Checksum is invalid. file=0x%x, mem=0x%x.", file_checksum, memory_checksum);
@@ -188,8 +207,8 @@ float        Loader:: getFloat32 ()
 
 const char* Loader:: getString ()
 {
-  static char buf[128];
-  iss->getline (buf, 128, '\0');
+  char* buf = new char[256];
+  iss->getline (buf, 256, '\0');
   return buf;
 }
 
@@ -284,14 +303,46 @@ unsigned int Loader:: adler32 (const unsigned char* data, int len)
   return (b << 16) | a;
 }
 
+void Loader:: read_raw (char* buf, int length)
+{
+  iss->read (buf, length);
+}
+
+void Loader:: read_zlib (char* uncomporessed_buf, int uncomporessed_buf_length, int compressed_length)
+{
+  char* compressed_buf = new char[compressed_length];
+  iss->read (compressed_buf, compressed_length);
+
+  int ret;
+  int uncomporessed_length = uncomporessed_buf_length;
+  ret = uncompress ((Bytef*)uncomporessed_buf, (uLongf*)&uncomporessed_length,
+                    (const Bytef*)compressed_buf, (uLong)compressed_length);
+  if (ret != Z_OK) {
+    throw IOException (__FILE__, __func__, "Decode error(zlib), err=%d.", ret);
+  }
+  if (uncomporessed_length != uncomporessed_buf_length) {
+    throw IOException (__FILE__, __func__, "Decode error(zlib), %d != %d.", uncomporessed_length, uncomporessed_buf_length);
+  }
+
+  delete [] compressed_buf;
+}
+
+
 void Loader:: parseHeader ()
 {
-  char version_major                    = getByte();
-  char version_minor                    = getByte();
-  bool has_external_refference          = getBoolean();
+  char         version_major            = getByte();
+  char         version_minor            = getByte();
+  bool         has_external_refference  = getBoolean();
   unsigned int total_file_size          = getUInt32 ();
   unsigned int approximate_content_size = getUInt32 ();
-  const char* authoring_field           = getString ();
+  const char*  authoring_field          = getString ();
+
+  file_info.version_major            = version_major;
+  file_info.version_minor            = version_minor;
+  file_info.has_external_refference  = has_external_refference;
+  file_info.total_file_size          = total_file_size;
+  file_info.approximate_content_size = approximate_content_size;
+  file_info.authoring_field          = authoring_field;
 
   //cout << "M3G Header ---\n";
   //cout << "  version_major = "            << (int)version_major       << "\n";
@@ -318,6 +369,7 @@ void Loader:: parseHeader ()
 void Loader:: parseExref ()
 {
   const char* uri = getString();
+  file_info.external_refference_uri = uri;
   //cout << "uri = " << uri << "\n";
 }
 
@@ -643,7 +695,7 @@ void Loader:: parseKeyframeSequence ()
   kseq->setDuration (duration);
   kseq->setValidRange (valid_range_first, valid_range_last);
   
-  kseq->KeyframeSequence:: print (cout);
+  //kseq->KeyframeSequence:: print (cout);
 
   objs.push_back (kseq);
 }
@@ -776,12 +828,8 @@ void Loader:: parseObject3D (Object3D* obj)
   for (int i = 0; i < (int)user_parameter_count; i++) {
     unsigned int parameter_id          = getUInt32();
     unsigned int parameter_value_count = getUInt32();
-    //cout << "dummy" << parameter_id << parameter_value_count;
-    for (int i = 0; i < (int)parameter_value_count; i++) {
-      char parameter_value = getByte ();
-      //cout << "duumy" << parameter_value;
-    }
-    throw NotImplementedException (__FILE__, __func__, "User object is not implemted.");
+    char*        parameter_value       = getByteArray (parameter_value_count);
+    obj->setUserObject (parameter_id, parameter_value);
   }
    
   //obj->Object3D::print (cout);

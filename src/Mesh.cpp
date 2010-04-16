@@ -157,7 +157,7 @@ void Mesh:: render (int pass, int index) const
   //}
 
 
-  //cout << "Mesh: " << indices.size() << "メッシュ\n";
+  //cout << "Mesh: render " << indices.size() << "メッシュ\n";
   Node::render (pass, index);
 
   if (vertices->getPositions(0)) {
@@ -219,12 +219,14 @@ void Mesh:: render (int pass, int index) const
 
 std::ostream& Mesh:: print (std::ostream& out) const
 {
+  out << "Mesh: ";
+  out << "  " << indices.size() << " submesh";
   VertexArray* vary = vertices->getPositions(0);
   if (vary)
-    out << "Mesh:  " << vary->getVertexCount() << " vertices\n";
+    out << ",  " << vary->getVertexCount() << " vertices";
   else
-    out << "Mesh:  0 vertices\n";
-  return out;
+    out << ",  0 vertices";
+  return out << "\n";
 }
 
 

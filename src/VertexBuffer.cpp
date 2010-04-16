@@ -196,26 +196,26 @@ void VertexBuffer:: setColors (VertexArray* colors_)
 
   colors = colors_;
 
-  float scale = 1/255.f;
-  float bias[4] = {128/255.f,128/255.f,128/255.f};
+  float scale   = 1/255.f;
+  float bias[4] = {0,0,0};
+  int   num     = colors->getComponentCount()*colors->getVertexCount();
+  int   size    = sizeof(float)* num;
 
-  int    num    = colors->getComponentCount()*colors->getVertexCount();
-  int    size   = sizeof(float)* num;
-  float* values = new float [num];
-  colors->get (0, colors->getVertexCount(), scale, bias, values);
+  // メモ： Colorの場合に限りデータを0〜255のunsigned型として解釈する
+  unsigned char* uchar_values = new unsigned char[num];
+  colors->get (0, colors->getVertexCount(), (char*)uchar_values);
 
-  //cout << "size = "<< size << "\n";
-  //for (int i = 0; i < size/4; i++) {
-  //  cout << values[i] << ", ";
-  //}
-  //cout << "\n";
-  
+  float* float_values = new float[num];
+  for (int i = 0; i < num; i++) {
+    float_values[i] = uchar_values[i]*scale + bias[i%3];
+  }
+
   glGenBuffers (1, &ibuf);
   glBindBuffer (GL_ARRAY_BUFFER, ibuf);
-  glBufferData (GL_ARRAY_BUFFER, size, values, GL_STATIC_DRAW);
+  glBufferData (GL_ARRAY_BUFFER, size, float_values, GL_STATIC_DRAW);
 
-  delete [] values;
-
+  delete [] uchar_values;
+  delete [] float_values;
 }
 
 void VertexBuffer:: setDefaultColor (int argb)

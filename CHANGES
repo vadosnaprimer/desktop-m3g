@@ -4,7 +4,9 @@
 
 2010/xx/xx  ver 0.1.1
    - rewrote Loader class.
+       - Now, compressed file is ok.
    - implemented duplicate() method.
+   - fix color component from (-128,127) to (0,255)
 
 2010/04/08  ver 0.1.0
    - first release

@@ -90,7 +90,7 @@ int main (int argc, char** argv)
 
   KeyframeSequence* keyframe_color = new KeyframeSequence (3, 3, KeyframeSequence::LINEAR);
   float frame0_color[] = {0,0,1};
-  float frame1_color[] = {1,1,1};
+  float frame1_color[] = {1,0,0};
   float frame2_color[] = {0,0,1};
   keyframe_color->setKeyframe (0, 0, frame0_color);
   keyframe_color->setKeyframe (1, 100, frame1_color);

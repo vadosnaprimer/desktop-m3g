@@ -129,8 +129,10 @@ void World:: render (int pass, int index) const
   }
   case 1:
     Light::resetGLIndex ();
-    // fall through
+    Group::render (1, index);
+    break;
   case 2:
+    // fall throu;
   default: {
     Group::render (pass, index);
   }

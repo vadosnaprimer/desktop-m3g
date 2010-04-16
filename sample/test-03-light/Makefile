@@ -2,7 +2,7 @@ SRCS = $(wildcard *.cpp)
 OBJS = $(SRCS:.cpp=.o)
 TARGET = a.out
 CXX = g++
-CXXFLAGS = -Wall -g -I../../src
+CXXFLAGS = -Wall -g -Wno-deprecated -I../../src 
 LD = g++
 LDFLAGS = -L../../src
 LIBS = -lm3g  -lglut -lGLEW -lGL -lpng
