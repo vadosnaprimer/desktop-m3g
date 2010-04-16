@@ -115,7 +115,9 @@ void Group:: render (int pass, int index) const
   Node::render (pass, index);
 
   for (int i = 0; i < (int)children.size(); i++) {
+    glPushMatrix ();
     children[i]->render (pass, index);
+    glPopMatrix ();
   }
 
 #if 0  
