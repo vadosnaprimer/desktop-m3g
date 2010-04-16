@@ -2,9 +2,10 @@
 #include <fstream>
 #include <strstream>
 #include <zlib.h>
-#include "Exception.hpp"
+#include <cstring>
 #include "m3g.hpp"
 #include "Loader.hpp"
+#include "Exception.hpp"
 using namespace std;
 using namespace m3g;
 #include <stdlib.h>
@@ -602,13 +603,25 @@ void Loader:: parseImage2D ()
   unsigned int height = getUInt32 ();
   if (!is_mutable) {
     unsigned int palette_count = getUInt32 ();
-    if (palette_count > 0) {
-      throw NotImplementedException (__FILE__, __func__, "Paletted Image is not supported.");
+    if (palette_count == 0) {
+      unsigned int pixel_count = getUInt32 ();
+      char*        pixels      = getByteArray(pixel_count);
+      img = new Image2D (format, width, height, pixels);
+      delete [] pixels;
+    } else {
+      char*          palette       = getByteArray (palette_count);
+      unsigned int   pixel_count   = getUInt32 ();
+      unsigned char* palette_index = (unsigned char*)getByteArray (pixel_count);
+      int            bpp           = format_to_bpp (format);
+      char*          pixels        = new char[pixel_count*bpp];
+      for (int i = 0; i < (int)pixel_count; i++) {
+	memcpy (&pixels[i*bpp], &palette[palette_index[i]*bpp], bpp);
+      }
+      img = new Image2D (format, width, height, pixels);
+      delete [] palette;
+      delete [] palette_index;
+      delete [] pixels;
     }
-    unsigned int pixel_count = getUInt32 ();
-    char*        pixels      = getByteArray(pixel_count);
-    img = new Image2D (format, width, height, pixels);
-    delete [] pixels;
   }
 
   // img->print (cout);

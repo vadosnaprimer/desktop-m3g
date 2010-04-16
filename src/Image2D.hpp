@@ -141,6 +141,8 @@ namespace m3g {
 
   };
 
+  int format_to_bpp (int format);
+
 } // namespace m3g {
 
 std::ostream& operator<< (std::ostream& out, const m3g::Image2D& img);

@@ -6,7 +6,6 @@
 using namespace m3g;
 using namespace std;
 
-static int format_to_bpp (int format);
 
 
 Image2D:: Image2D (int format_, int width_, int height_) : 
@@ -152,8 +151,7 @@ void* Image2D:: getOpenGLData () const
   return image;
 }
 
-static
-int format_to_bpp (int format)
+int m3g::format_to_bpp (int format)
 {
   switch (format) {
   case Image2D::ALPHA          : return 1;

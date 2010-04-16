@@ -83,26 +83,29 @@ Light.o: /usr/include/GL/glew.h /usr/include/GL/glu.h /usr/include/GL/gl.h
 Light.o: m3gdef.hpp m3ginternal.hpp Quaternion.hpp Transform.hpp Matrix.hpp
 Light.o: Exception.hpp AnimationTrack.hpp AnimationController.hpp
 Light.o: KeyframeSequence.hpp Keyframe.hpp
-Loader.o: m3g.hpp m3gdef.hpp Graphics3D.hpp Object3D.hpp
-Loader.o: /usr/include/GL/glew.h /usr/include/GL/glu.h /usr/include/GL/gl.h
-Loader.o: m3ginternal.hpp AnimationController.hpp AnimationTrack.hpp
-Loader.o: Appearance.hpp Background.hpp CompositingMode.hpp Fog.hpp
-Loader.o: Image2D.hpp IndexBuffer.hpp TriangleStripArray.hpp
-Loader.o: KeyframeSequence.hpp Keyframe.hpp Material.hpp PolygonMode.hpp
-Loader.o: Transformable.hpp Quaternion.hpp Transform.hpp Matrix.hpp Node.hpp
-Loader.o: Camera.hpp Group.hpp World.hpp Light.hpp Mesh.hpp MorphingMesh.hpp
-Loader.o: SkinnedMesh.hpp Sprite3D.hpp Texture2D.hpp VertexArray.hpp
-Loader.o: VertexBuffer.hpp RayIntersection.hpp Loader.hpp Exception.hpp
-Loader.o: /usr/include/stdlib.h /usr/include/features.h
+Loader.o: /usr/include/zlib.h /usr/include/zconf.h /usr/include/zlibdefs.h
+Loader.o: /usr/include/sys/types.h /usr/include/features.h
 Loader.o: /usr/include/sys/cdefs.h /usr/include/bits/wordsize.h
 Loader.o: /usr/include/gnu/stubs.h /usr/include/gnu/stubs-64.h
-Loader.o: /usr/include/sys/types.h /usr/include/bits/types.h
-Loader.o: /usr/include/bits/typesizes.h /usr/include/time.h
-Loader.o: /usr/include/endian.h /usr/include/bits/endian.h
-Loader.o: /usr/include/bits/byteswap.h /usr/include/sys/select.h
-Loader.o: /usr/include/bits/select.h /usr/include/bits/sigset.h
-Loader.o: /usr/include/bits/time.h /usr/include/sys/sysmacros.h
-Loader.o: /usr/include/bits/pthreadtypes.h /usr/include/alloca.h
+Loader.o: /usr/include/bits/types.h /usr/include/bits/typesizes.h
+Loader.o: /usr/include/time.h /usr/include/endian.h
+Loader.o: /usr/include/bits/endian.h /usr/include/bits/byteswap.h
+Loader.o: /usr/include/sys/select.h /usr/include/bits/select.h
+Loader.o: /usr/include/bits/sigset.h /usr/include/bits/time.h
+Loader.o: /usr/include/sys/sysmacros.h /usr/include/bits/pthreadtypes.h
+Loader.o: /usr/include/unistd.h /usr/include/bits/posix_opt.h
+Loader.o: /usr/include/bits/confname.h /usr/include/getopt.h m3g.hpp
+Loader.o: m3gdef.hpp Graphics3D.hpp Object3D.hpp /usr/include/GL/glew.h
+Loader.o: /usr/include/GL/glu.h /usr/include/GL/gl.h m3ginternal.hpp
+Loader.o: AnimationController.hpp AnimationTrack.hpp Appearance.hpp
+Loader.o: Background.hpp CompositingMode.hpp Fog.hpp Image2D.hpp
+Loader.o: IndexBuffer.hpp TriangleStripArray.hpp KeyframeSequence.hpp
+Loader.o: Keyframe.hpp Material.hpp PolygonMode.hpp Transformable.hpp
+Loader.o: Quaternion.hpp Transform.hpp Matrix.hpp Node.hpp Camera.hpp
+Loader.o: Group.hpp World.hpp Light.hpp Mesh.hpp MorphingMesh.hpp
+Loader.o: SkinnedMesh.hpp Sprite3D.hpp Texture2D.hpp VertexArray.hpp
+Loader.o: VertexBuffer.hpp RayIntersection.hpp Loader.hpp Exception.hpp
+Loader.o: /usr/include/stdlib.h /usr/include/alloca.h
 Material.o: Material.hpp Object3D.hpp /usr/include/GL/glew.h
 Material.o: /usr/include/GL/glu.h /usr/include/GL/gl.h m3gdef.hpp
 Material.o: m3ginternal.hpp Exception.hpp AnimationTrack.hpp
