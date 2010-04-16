@@ -3,10 +3,10 @@ SRCS = $(wildcard *.cpp)
 OBJS = $(SRCS:.cpp=.o)
 TARGET = a.out
 CXX = g++
-CXXFLAGS = -Wall -g -I../src
+CXXFLAGS = -Wall -g -Wno-deprecate -I../src
 LD = g++
 LDFLAGS = -L../src
-LIBS =  -lm3g -lUnitTest++ -lglut -lGLEW -lGL
+LIBS =  -lm3g -lUnitTest++ -lglut -lGLEW -lGL -lz
 
 all: $(OBJS)
 	$(LD)  $(LDFLAGS) $^ $(LIBS) -o $(TARGET)

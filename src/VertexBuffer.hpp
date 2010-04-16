@@ -45,8 +45,6 @@ namespace m3g {
     virtual void addAnimationTrack (AnimationTrack* animation_track);
 
 
-
-
     /**
      * @~English  Gets the current color array.
      * @~Japanese カレントのカラー配列の取得.

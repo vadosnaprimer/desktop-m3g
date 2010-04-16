@@ -242,10 +242,10 @@ void Material:: render (int pass, int index) const
 
   //cout << "Material: render\n";
 
-  GLfloat ambient_rgba[4] = {((ambient_color & 0x00ff0000) >> 16) / 255.f,
-                             ((ambient_color & 0x0000ff00) >> 8 ) / 255.f,
-                             ((ambient_color & 0x000000ff) >> 0 ) / 255.f, 1};
-  glMaterialfv (GL_FRONT_AND_BACK, GL_AMBIENT, ambient_rgba);
+  GLfloat ambient_rgb[4] = {((ambient_color & 0x00ff0000) >> 16) / 255.f,
+                            ((ambient_color & 0x0000ff00) >> 8 ) / 255.f,
+                            ((ambient_color & 0x000000ff) >> 0 ) / 255.f, 1};
+  glMaterialfv (GL_FRONT_AND_BACK, GL_AMBIENT, ambient_rgb);
 
   GLfloat diffuse_rgba[4] = {((diffuse_color & 0x00ff0000) >> 16) / 255.f,
                              ((diffuse_color & 0x0000ff00) >> 8 ) / 255.f,
@@ -253,16 +253,16 @@ void Material:: render (int pass, int index) const
                              ((diffuse_color & 0xff000000) >> 24) / 255.f};
   glMaterialfv (GL_FRONT_AND_BACK, GL_DIFFUSE, diffuse_rgba);
   
-  GLfloat specular_rgba[4] = {((specular_color & 0x00ff0000) >> 16) / 255.f,
-                              ((specular_color & 0x0000ff00) >> 8 ) / 255.f,
-                              ((specular_color & 0x000000ff) >> 0 ) / 255.f, 1};
-  glMaterialfv (GL_FRONT_AND_BACK, GL_SPECULAR, specular_rgba);
+  GLfloat specular_rgb[4] = {((specular_color & 0x00ff0000) >> 16) / 255.f,
+                             ((specular_color & 0x0000ff00) >> 8 ) / 255.f,
+                             ((specular_color & 0x000000ff) >> 0 ) / 255.f, 1};
+  glMaterialfv (GL_FRONT_AND_BACK, GL_SPECULAR, specular_rgb);
   glMaterialf  (GL_FRONT_AND_BACK, GL_SHININESS, shininess);
 
-  GLfloat emissive_rgba[4] = {((emissive_color & 0x00ff0000) >> 16) / 255.f,
-                              ((emissive_color & 0x0000ff00) >> 8 ) / 255.f,
-                              ((emissive_color & 0x000000ff) >> 0 ) / 255.f, 1};
-  glMaterialfv (GL_FRONT_AND_BACK, GL_EMISSION, emissive_rgba);
+  GLfloat emissive_rgb[4] = {((emissive_color & 0x00ff0000) >> 16) / 255.f,
+                             ((emissive_color & 0x0000ff00) >> 8 ) / 255.f,
+                             ((emissive_color & 0x000000ff) >> 0 ) / 255.f, 1};
+  glMaterialfv (GL_FRONT_AND_BACK, GL_EMISSION, emissive_rgb);
 
   // Diffuse color of material shoud be used as "Color" too.
   glColor4fv (diffuse_rgba);

@@ -192,11 +192,11 @@ void SkinnedMesh:: addTransform (Node* node, int weight, int first_vertex, int n
   }
 
   // void SkinnedMesh:: addTransform (Node* node, int weight, int first_vertex, int num_vertices)
-  cout << "addTransform : \n";
-  cout << "  node = "         << *node << "\n";
-  cout << "  weight = "       << weight << "\n";
-  cout << "  first_vertex = " << first_vertex << "\n";
-  cout << "  num_vertices = " << num_vertices << "\n";
+  //cout << "addTransform : \n";
+  //cout << "  node = "         << *node << "\n";
+  //cout << "  weight = "       << weight << "\n";
+  //cout << "  first_vertex = " << first_vertex << "\n";
+  //cout << "  num_vertices = " << num_vertices << "\n";
 
   // ボーンインデックスの決定
   int index = addBoneIndex (node);

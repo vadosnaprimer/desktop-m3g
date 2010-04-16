@@ -52,7 +52,8 @@ int main (int argc, char** argv)
 
   //std::vector<Object3D*> objs = Loader::load ("blocklow.m3g");
   //std::vector<Object3D*> objs = Loader::load ("simple.m3g");
-  std::vector<Object3D*> objs = Loader::load ("test.m3g");
+  //std::vector<Object3D*> objs = Loader::load ("test.m3g");
+  std::vector<Object3D*> objs = Loader::load ("building.m3g");
 
   for (int i = 0; i < (int)objs.size(); i++) {
     wld = dynamic_cast<World*>(objs[i]);
@@ -63,21 +64,13 @@ int main (int argc, char** argv)
   }
   assert (wld != 0);
 
-  //for (int i = 0; i < (int)objs.size(); i++) {
-  //  Light* lig = dynamic_cast<Light*>(objs[i]);
-  //  wld->removeChild (lig);
-  //}
-
   Camera* cam = wld->getActiveCamera ();
-#if 0
   if (cam == 0) {
     cam = new Camera;
     cam->translate (0,20,80);
     wld->addChild (cam);
     wld->setActiveCamera (cam);
   }
-#endif
-
 
   glutKeyboardFunc(keyboard);
   glutDisplayFunc(display);
