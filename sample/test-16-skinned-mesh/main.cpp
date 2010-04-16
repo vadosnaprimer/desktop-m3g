@@ -95,8 +95,16 @@ int main (int argc, char** argv)
   SkinnedMesh* mesh = new SkinnedMesh (vbuf, tris, app, bone0);
   //mesh->addTransform (bone0, 1, 0, 21);
   //mesh->addTransform (bone1, 1, 21, 21);
-  mesh->addTransform (bone0, 1, 0, 26);
-  mesh->addTransform (bone1, 1, 16, 26);
+  mesh->addTransform (bone0, 10, 0, 18);
+  mesh->addTransform (bone0, 8 , 18, 2 );
+  mesh->addTransform (bone0, 6 , 20, 2 );
+  mesh->addTransform (bone0, 4 , 22, 2 );
+  mesh->addTransform (bone0, 2 , 24, 2 );
+  mesh->addTransform (bone1, 2 , 18, 2 );
+  mesh->addTransform (bone1, 4 , 20, 2 );
+  mesh->addTransform (bone1, 6 , 22, 2 );
+  mesh->addTransform (bone1, 8 , 24, 2 );
+  mesh->addTransform (bone1, 10, 26, 16);
 
   bone1->addAnimationTrack (animation_track);
 
