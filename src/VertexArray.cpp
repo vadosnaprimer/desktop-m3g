@@ -100,7 +100,7 @@ int VertexArray:: getVertexCount () const
     return vertex_count;
 }
 
-void VertexArray:: set (int first_vertex, int num_vertices, char* values_)
+void VertexArray:: set (int first_vertex, int num_vertices, const char* values_)
 {
   if (values_ == NULL) {
     throw NullPointException (__FILE__, __func__, "Values is NULL.");
@@ -121,7 +121,7 @@ void VertexArray:: set (int first_vertex, int num_vertices, char* values_)
 
 }
 
-void VertexArray:: set (int first_vertex, int num_vertices, short* values_)
+void VertexArray:: set (int first_vertex, int num_vertices, const short* values_)
 {
   if (values_ == NULL) {
     throw NullPointException (__FILE__, __func__, "Values is NULL.");
@@ -141,7 +141,7 @@ void VertexArray:: set (int first_vertex, int num_vertices, short* values_)
 
 }
 
-void VertexArray:: set (int first_vertex, int num_vertices, float scale, float* bias, float* values_)
+void VertexArray:: set (int first_vertex, int num_vertices, float scale, const float* bias, const float* values_)
 {
   if (values_ == NULL) {
     throw NullPointException (__FILE__, __func__, "Values is NULL.");
@@ -189,7 +189,7 @@ void VertexArray:: set (int first_vertex, int num_vertices, float scale, float* 
 }
 
 
-void VertexArray:: get (int first_vertex, int num_vertices, float scale, float* bias, float* out_values) const
+void VertexArray:: get (int first_vertex, int num_vertices, float scale, const float* bias, float* out_values) const
 {
   //cout << "scale = " << scale << "\n";
   //cout << "bias[0] = " << bias[0] << "\n";

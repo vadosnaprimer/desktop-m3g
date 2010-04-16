@@ -72,13 +72,13 @@ namespace m3g {
      * @~English  Copies in an array of 8-bit vertex attributes.
      * @~Japanese 8bit頂点属性値のコピー.
      */
-    void set (int first_vertex, int num_vertices, char* values);
+    void set (int first_vertex, int num_vertices, const char* values);
 
     /**
      * @~English  Copies in an array of 16-bit vertex attributes.
      * @~Japanese 16bit頂点属性値のコピー.
      */
-    void set (int first_vertex, int num_vertices, short* values);
+    void set (int first_vertex, int num_vertices, const short* values);
 
 
 
@@ -98,13 +98,13 @@ namespace m3g {
      * @~English  Returns the scaled and biased value as float, this is not under M3G.
      * @~Japanese 値にscale,biasをかけてfloatで取り出すM3G非標準の関数.
      */
-    void get (int first_vertex, int num_vertices, float scale, float* bias, float* values) const;
+    void get (int first_vertex, int num_vertices, float scale, const float* bias, float* values) const;
 
     /**
      * @~English  Store the scaled and biased value as char or short, this is not under M3G.
      * @~Japanese 値にscale,biasをかけてcharまたはshortでセットするM3G非標準の関数.
      */
-    void set (int first_vertex, int num_vertices, float scale, float* bias, float* values);
+    void set (int first_vertex, int num_vertices, float scale, const float* bias, const float* values);
 
 
   private:
