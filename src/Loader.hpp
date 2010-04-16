@@ -67,6 +67,8 @@ namespace m3g {
     static unsigned int*   getUInt32Array (int n);
     static float*          getFloat32Array (int n);
 
+    static unsigned int adler32 (const unsigned char* data, int len);
+
     static void parseHeader();
     static void parseExref();
     static void parseAnimationController ();

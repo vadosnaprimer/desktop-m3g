@@ -45,6 +45,7 @@ std::vector<Object3D*> Loader:: load (int length, const char* data, int offset)
   while (1) {
     // section
     //cout << "----------start section--------------\n";
+    int start_of_section = (int)iss->tellg();
 
     char         compression_scheme   = getByte();
     unsigned int total_section_length = getUInt32 ();
@@ -107,8 +108,11 @@ std::vector<Object3D*> Loader:: load (int length, const char* data, int offset)
 
     // checksum, 今だけノーチェック
     //unsigned int checksum = getUInt32 ();
-    unsigned int checksum = getUInt32();
-    //cout << "  checksum = " << checksum << "\n";
+    unsigned int file_checksum = getUInt32();
+    unsigned int memory_checksum  = adler32 ((const unsigned char*)data+start_of_section, total_section_length-4);
+    if (memory_checksum != file_checksum) {
+      throw IOException (__FILE__, __func__, "Checksum is invalid. file=0x%x, mem=0x%x.", file_checksum, memory_checksum);
+    }
 
   }
 
@@ -262,6 +266,22 @@ float* Loader:: getFloat32Array (int n)
   float* p = new float[n];
   iss->read ((char*)p, n*4);
   return p;
+}
+
+unsigned int Loader:: adler32 (const unsigned char* data, int len)
+{
+  unsigned int a = 1, b = 0;
+  while (len > 0) {
+    int tlen = len > 5550 ? 5550 : len;
+    len -= tlen;
+    do {
+      a += *data++;
+      b += a;
+    } while (--tlen);
+    a %= 65521;
+    b %= 65521;
+  }
+  return (b << 16) | a;
 }
 
 void Loader:: parseHeader ()
