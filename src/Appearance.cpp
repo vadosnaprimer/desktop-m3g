@@ -17,9 +17,8 @@ Appearance:: Appearance () :
 {
   setObjectType (OBJTYPE_APPEARANCE);
 
-  for (int i = 0; i < MAX_TEXTURE_UNITS; i++) {
-    textures[i] = 0;
-  }
+  for (int i = 0; i < 4; i++)
+    textures.push_back (0);
 }
 
 Appearance:: ~Appearance ()
@@ -43,10 +42,9 @@ int Appearance:: animate (int world_time)
   if (compositing_mode) {
     compositing_mode->animate (world_time);
   }
-  for (int i = 0; i < MAX_TEXTURE_UNITS; i++) {
-    if (textures[i]) {
-      textures[i]->animate (world_time);
-    }
+
+  for (int i = 0; i < (int)textures.size(); i++) {
+    textures[i]->animate (world_time);
   }
   if (material) {
     material->animate (world_time);
@@ -88,8 +86,8 @@ PolygonMode* Appearance:: getPolygonMode () const
 
 Texture2D* Appearance:: getTexture (int index) const
 {
-  if (index < 0 || index >= MAX_TEXTURE_UNITS) {
-    throw IllegalArgumentException (__FILE__, __func__, "Texture index is inalid, index=%d", index);
+  if (index < 0 || index >= (int)textures.size()) {
+    throw IndexOutOfBoundsException (__FILE__, __func__, "Texture index is inalid, index=%d", index);
   }
   return textures[index];
 }
@@ -127,8 +125,8 @@ void Appearance:: setPolygonMode (PolygonMode* mode)
 
 void Appearance:: setTexture (int index, Texture2D* texture)
 {
-  if (index < 0 || index >= MAX_TEXTURE_UNITS) {
-    throw NullPointException (__FILE__, __func__, "Too large texture index rather than you can use is specifi");
+  if (index < 0 || index >= (int)textures.size()) {
+    throw IndexOutOfBoundsException (__FILE__, __func__, "Texture unit index is invalid, i=%d in [0,%d).", index, textures.size());
   }
   if (texture == NULL) {
     throw NullPointException (__FILE__, __func__, "Null texture is specified.");
@@ -146,10 +144,8 @@ void Appearance:: findByObjectType (int type, std::vector<Object3D*>& objs) cons
   if (compositing_mode) {
     compositing_mode->findByObjectType (type, objs);
   }
-  for (int i = 0; i < MAX_TEXTURE_UNITS; i++) {
-    if (textures[i]) {
-      textures[i]->findByObjectType (type, objs);
-    }
+  for (int i = 0; i < (int)textures.size(); i++) {
+    textures[i]->findByObjectType (type, objs);
   }
   if (material) {
     material->findByObjectType (type, objs);
@@ -188,8 +184,10 @@ void Appearance:: render (int pass, int index) const
     polygon_mode->render (pass, index);
   }
 
-  for (int i = 0; i < MAX_TEXTURE_UNITS; i++) {
+  glDisable (GL_TEXTURE_2D);
+  for (int i = 0; i < (int)textures.size(); i++) {
     if (textures[i]) {
+      glEnable (GL_TEXTURE_2D);
       textures[i]->render (pass, i);
     }
   }
@@ -200,12 +198,36 @@ void Appearance:: render (int pass, int index) const
 
 std::ostream& Appearance:: print (std::ostream& out) const
 {
-  return out;
+  out << "Appearance: ";
+  out << "  layer=" << rendering_layer;
+  if (polygon_mode)
+    out << ", polygon_mode=" << *polygon_mode;
+  else
+    out << ", polygon_mode=DEFAULT";
+  if (compositing_mode)
+    out << ", compositing_mode=" << *compositing_mode;
+  else
+    out << ", compositing_mode=DEFAULT";
+  if (material)
+    out << ", material=" << *material;
+  else
+    out << ", mterial=DEFAULT";
+  for (int i = 0; i < (int)textures.size(); i++) {
+    if (textures[i])
+      out << ", textures[" << i << "]=" << *textures[i];
+    else
+      out << ", textures[" << i << "]=NOT FOUND";
+  }
+  if (fog) 
+    out << ", fog=" << *fog;
+  else
+    out << ", fog=DEFAULT";
+  return out << "\n";
 }
 
 
-ostream& operator<< (ostream& out, const Appearance& a)
+ostream& operator<< (ostream& out, const Appearance& app)
 {
-    return out;
+  return app.print(out);
 }
 

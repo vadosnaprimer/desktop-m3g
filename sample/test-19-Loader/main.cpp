@@ -53,7 +53,7 @@ int main (int argc, char** argv)
   //std::vector<Object3D*> objs = Loader::load ("blocklow.m3g");
   //std::vector<Object3D*> objs = Loader::load ("simple.m3g");
   //std::vector<Object3D*> objs = Loader::load ("test.m3g");
-  std::vector<Object3D*> objs = Loader::load ("building.m3g");
+  std::vector<Object3D*> objs = Loader::load ("test.m3g");
 
   for (int i = 0; i < (int)objs.size(); i++) {
     wld = dynamic_cast<World*>(objs[i]);
@@ -71,6 +71,18 @@ int main (int argc, char** argv)
     wld->addChild (cam);
     wld->setActiveCamera (cam);
   }
+  
+  std::vector<Mesh*> meshs;
+  for (int i = 0; i < (int)objs.size(); i++) {
+    Mesh* mesh = dynamic_cast<Mesh*>(objs[i]);
+    if (mesh) {
+      //wld->removeChild (mesh);
+      //mesh->Transformable:: print (cout);
+      meshs.push_back (mesh);
+    }
+  }
+
+  //wld->addChild (meshs[2]);
 
   glutKeyboardFunc(keyboard);
   glutDisplayFunc(display);

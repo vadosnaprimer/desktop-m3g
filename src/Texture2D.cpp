@@ -261,7 +261,7 @@ void Texture2D:: render (int pass, int index) const
   default: throw IllegalStateException (__FILE__, __func__, "Wraping mode T is invalid, mode=%d.", wrapping.t);
   }
 
-  glEnable        (GL_TEXTURE_2D);
+  //glEnable        (GL_TEXTURE_2D);
   //cout << "Texture2D: enabled = " << index << "\n";
   //cout << "Texture2D: error = " << glGetError() << "\n";
 }

@@ -136,6 +136,11 @@ std::vector<Object3D*> Loader:: load (int length, const char* data, int offset)
 
   }
 
+  for (int i = 0; i < (int)objs.size(); i++) {
+    if (objs[i])
+      objs[i]->print(cout); 
+  }
+
   return objs;
 }
 
@@ -785,6 +790,7 @@ void Loader:: parseMesh ()
   }
 
   Mesh* mesh = new Mesh (vbuf, submesh_count, indices, submesh_count, appears);
+  *(Node*)mesh = *node;
 
   //mesh->Mesh:: print (cout);
 

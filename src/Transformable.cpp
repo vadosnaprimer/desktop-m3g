@@ -239,10 +239,13 @@ void Transformable:: render (int pass, int index) const
 
 std::ostream& Transformable:: print (std::ostream& out) const
 {
+  float angle_axis[4];
+  orientation.getAngleAxis (angle_axis);
+
   out << "Transformable: ";
   out << "  translation=" << translation.x << "," << translation.y << "," << translation.z;
   out << ", scale="       << scaling.x     << "," << scaling.y     << "," << scaling.z;
-  out << ", orientation=" << orientation.x << "," << orientation.y << "," << orientation.z;
+  out << ", orientation=" << angle_axis[0] << "," << angle_axis[1] << "," << angle_axis[2] << "," << angle_axis[3];
   out << ", transform="   << transform;
   return out << "\n";
 }

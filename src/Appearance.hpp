@@ -4,6 +4,7 @@
 #include "Object3D.hpp"
 #include "m3gdef.hpp"
 #include <iosfwd>
+#include <vector>
 
 namespace m3g {
 
@@ -145,11 +146,11 @@ namespace m3g {
 
 
   private:
-    int              rendering_layer;
+    int              rendering_layer;    // 短くlayerではどうか？
     PolygonMode*     polygon_mode;
     CompositingMode* compositing_mode;
-    Texture2D*       textures[MAX_TEXTURE_UNITS];
     Material*        material;
+    std::vector<Texture2D*> textures;
     Fog*             fog;
   };
 
