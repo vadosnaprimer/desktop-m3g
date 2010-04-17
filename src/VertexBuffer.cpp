@@ -424,6 +424,9 @@ void VertexBuffer:: render (RenderState& state) const
       glClientActiveTexture (GL_TEXTURE0+i);              // (クライアントを含む）テクスチャーユニットの選択
       glEnableClientState   (GL_TEXTURE_COORD_ARRAY);     // 頂点配列の有効化
       glTexCoordPointer     (cc, GL_FLOAT, 0, 0);         // テクスチャー座標の指定
+    } else {
+      glClientActiveTexture (GL_TEXTURE0+i);            // クライアント部分のテクスチャーユニット選択
+      glDisableClientState  (GL_TEXTURE_COORD_ARRAY);   // テクスチャー座標配列の無効化
     }
   }
   
