@@ -10,11 +10,12 @@ namespace m3g {
     struct RenderState
     {
     public:
-      RenderState () : pass(0), light_index(0), layer(0) {};
+      RenderState () : pass(0), light_index(0), layer(0), alpha(1) {};
 
-      int pass;
-      int light_index;
-      int layer;
+      int   pass;
+      int   light_index;
+      int   layer;
+      float alpha;
     };
 
 

@@ -3,6 +3,7 @@
 #include "AnimationTrack.hpp"
 #include "AnimationController.hpp"
 #include "KeyframeSequence.hpp"
+#include "RenderState.hpp"
 #include <iostream>
 using namespace std;
 using namespace m3g;
@@ -282,9 +283,14 @@ void Node:: setParent (Node* node)
 void Node:: render (RenderState& state) const
 {
   Transformable::render (state);
+  
+  float alpha = 1;
+  const Node* node  = this;
+  do {
+    alpha *= node->getAlphaFactor();
+  } while ((node = node->getParent()) != 0);
 
-
-
+  state.alpha = alpha;
 }
 
 std::ostream& Node:: print (std::ostream& out) const

@@ -242,6 +242,7 @@ void Material:: render (RenderState& state) const
   }
 
   //cout << "Material: render\n";
+  //cout << "Material: state.alpha = " << state.alpha << "\n";
 
   GLfloat ambient_rgb[4] = {((ambient_color & 0x00ff0000) >> 16) / 255.f,
                             ((ambient_color & 0x0000ff00) >> 8 ) / 255.f,
@@ -251,7 +252,7 @@ void Material:: render (RenderState& state) const
   GLfloat diffuse_rgba[4] = {((diffuse_color & 0x00ff0000) >> 16) / 255.f,
                              ((diffuse_color & 0x0000ff00) >> 8 ) / 255.f,
                              ((diffuse_color & 0x000000ff) >> 0 ) / 255.f,
-                             ((diffuse_color & 0xff000000) >> 24) / 255.f};
+                             ((diffuse_color & 0xff000000) >> 24) / 255.f * state.alpha};
   glMaterialfv (GL_FRONT_AND_BACK, GL_DIFFUSE, diffuse_rgba);
   
   GLfloat specular_rgb[4] = {((specular_color & 0x00ff0000) >> 16) / 255.f,

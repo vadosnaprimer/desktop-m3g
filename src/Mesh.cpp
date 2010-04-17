@@ -150,9 +150,9 @@ void Mesh:: render (RenderState& state) const
     return;
   }
 
-  //cout << "Mesh: render " << indices.size() << "メッシュ\n";
+   //cout << "Mesh: render " << indices.size() << "メッシュ\n";
   Node::render (state);
-  
+
   // 頂点データの指定
   vertices->render (state);
 

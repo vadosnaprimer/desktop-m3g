@@ -418,7 +418,7 @@ void VertexBuffer:: render (RenderState& state) const
 
   for (int i = 0; i < MAX_TEXTURE_UNITS; i++) {
     if (tex_coords[i]) {
-      cout << "VertexBuffer: render " << i << "th texture coordinate array\n";
+      //cout << "VertexBuffer: render " << i << "th texture coordinate array\n";
       int cc = tex_coords[i]->getComponentCount();
       glBindBuffer          (GL_ARRAY_BUFFER, tcbuf[i]);  // VBOの選択
       glClientActiveTexture (GL_TEXTURE0+i);              // (クライアントを含む）テクスチャーユニットの選択

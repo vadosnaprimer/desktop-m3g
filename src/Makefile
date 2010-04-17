@@ -127,7 +127,7 @@ Node.o: Node.hpp Transformable.hpp Object3D.hpp /usr/include/GL/glew.h
 Node.o: /usr/include/GL/glu.h /usr/include/GL/gl.h m3gdef.hpp m3ginternal.hpp
 Node.o: Quaternion.hpp Transform.hpp Matrix.hpp Exception.hpp
 Node.o: AnimationTrack.hpp AnimationController.hpp KeyframeSequence.hpp
-Node.o: Keyframe.hpp
+Node.o: Keyframe.hpp RenderState.hpp
 Object3D.o: Object3D.hpp /usr/include/GL/glew.h /usr/include/GL/glu.h
 Object3D.o: /usr/include/GL/gl.h m3gdef.hpp m3ginternal.hpp
 Object3D.o: AnimationTrack.hpp Exception.hpp
@@ -177,6 +177,7 @@ VertexBuffer.o: VertexBuffer.hpp /usr/include/GL/glew.h /usr/include/GL/glu.h
 VertexBuffer.o: /usr/include/GL/gl.h Object3D.hpp m3gdef.hpp m3ginternal.hpp
 VertexBuffer.o: VertexArray.hpp AnimationTrack.hpp AnimationController.hpp
 VertexBuffer.o: KeyframeSequence.hpp Keyframe.hpp Exception.hpp
+VertexBuffer.o: RenderState.hpp
 World.o: World.hpp Group.hpp Node.hpp Transformable.hpp Object3D.hpp
 World.o: /usr/include/GL/glew.h /usr/include/GL/glu.h /usr/include/GL/gl.h
 World.o: m3gdef.hpp m3ginternal.hpp Quaternion.hpp Transform.hpp Matrix.hpp

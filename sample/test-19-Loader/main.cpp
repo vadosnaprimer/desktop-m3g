@@ -83,6 +83,8 @@ int main (int argc, char** argv)
   }
   //wld->addChild (meshs[0]);
   //wld->addChild (meshs[1]);
+
+  wld->setAlphaFactor(1);
   
   glutKeyboardFunc(keyboard);
   glutDisplayFunc(display);

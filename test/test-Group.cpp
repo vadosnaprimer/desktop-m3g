@@ -27,6 +27,7 @@ TEST (Group_set_variables)
   delete grp;
 }
 
+
 TEST (Group_findByType)
 {
   Group* grp = new Group;

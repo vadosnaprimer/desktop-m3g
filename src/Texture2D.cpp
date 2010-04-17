@@ -217,7 +217,7 @@ void Texture2D:: render (RenderState& state) const
     return;
   }
 
-  cout << "Texture2D: render \n";
+  //cout << "Texture2D: render \n";
 
   glBindTexture   (GL_TEXTURE_2D, texobj);
 
