@@ -197,7 +197,7 @@ namespace m3g {
      * @~English  
      * @~Japanese このBackgroundをレンダリングする内部使用の関数.
      */
-    virtual void render (int pass, int index=0) const;
+    virtual void render (RenderState& state) const;
 
   private:
     bool      color_clear_enable;

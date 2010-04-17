@@ -1,5 +1,6 @@
 #include "PolygonMode.hpp"
 #include "Exception.hpp"
+#include "RenderState.hpp"
 #include <iostream>
 using namespace std;
 using namespace m3g;
@@ -90,9 +91,9 @@ void PolygonMode:: setWinding (int mode)
   winding = mode;
 }
 
-void PolygonMode:: render (int pass, int index) const
+void PolygonMode:: render (RenderState& state) const
 {
-  if (pass != 2) {
+  if (state.pass != 2) {
     return;
   }
 

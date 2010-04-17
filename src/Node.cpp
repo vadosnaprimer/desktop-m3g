@@ -279,9 +279,9 @@ void Node:: setParent (Node* node)
 /**
  * Note: Node should be rendered via all rendering pass.
  */
-void Node:: render (int pass, int index) const
+void Node:: render (RenderState& state) const
 {
-  Transformable::render (pass, index);
+  Transformable::render (state);
 
 
 

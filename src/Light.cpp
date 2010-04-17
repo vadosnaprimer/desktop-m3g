@@ -4,10 +4,10 @@
 #include "AnimationTrack.hpp"
 #include "AnimationController.hpp"
 #include "KeyframeSequence.hpp"
+#include "RenderState.hpp"
 using namespace std;
 using namespace m3g;
 
-int Light:: gl_light_index = 0;
 
 Light:: Light () :
   mode(DIRECTIONAL), color(0x00ffffff), intensity(1),
@@ -232,29 +232,20 @@ void Light:: setSpotExponent (float exponent)
 }
 
 
-void Light:: resetGLIndex ()
-{
-  gl_light_index = 0;
-}
-
-int Light:: getGLIndex ()
-{
-  return gl_light_index++;
-}
 
 /**
  * Note: Light should be rendered only at first rendering pass(pass=1).
  * In other cases, do nothing.
  */
-void Light:: render (int pass, int index_do_not_use) const
+void Light:: render (RenderState& state) const
 {
-  if (pass != 1) {
+  if (state.pass != 1) {
     return;
   }
 
   //cout << "Light: render ================\n";
   
-  int index = getGLIndex ();
+  int index = state.light_index++;
 
   GLfloat black[4] = {0,0,0,1};
   GLfloat rgba[4];

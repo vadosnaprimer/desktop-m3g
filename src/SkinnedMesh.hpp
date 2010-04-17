@@ -109,13 +109,12 @@ namespace m3g {
     Matrix getGlobalPose (Node* node) const;
 
 
-  protected:
-
     /**
      * @~English  Render this object.
      * @~Japanese このSkinnedMeshをレンダリングする内部使用の関数.
      */
-    virtual void render (int pass, int index=0) const;
+    virtual void render (RenderState& state) const;
+
 
   private:
 

@@ -160,7 +160,7 @@ namespace m3g {
      * @~English  Render this object, for inner use.
      * @~Japanese このTransformableをレンダリングする内部使用の関数.
      */
-    virtual void render (int pass, int index=0) const;
+    virtual void render (RenderState& state) const;
 
   private:
     Scale       scaling;

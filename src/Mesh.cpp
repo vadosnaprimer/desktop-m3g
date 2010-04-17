@@ -4,6 +4,7 @@
 #include "IndexBuffer.hpp"
 #include "Appearance.hpp"
 #include "Exception.hpp"
+#include "RenderState.hpp"
 #include <iostream>
 using namespace std;
 using namespace m3g;
@@ -142,78 +143,24 @@ void Mesh:: setAppearance (int index, Appearance* appearance)
 /**
  * Note: Mesh should be rendered only at second rendering pass(pass=2).
  *       In other cases, do nothing.
- * 注意：この関数を修正した場合SkinnedMesh::render()も変更する。
- *       両者は vertices が skinned_vertices に変わった事を除けば
- *      まったく同一でなければならない。
  */
-void Mesh:: render (int pass, int index) const
+void Mesh:: render (RenderState& state) const
 {
-  if (pass != 2) {
+  if (state.pass != 2) {
     return;
   }
 
-  //for (int i = 0; i < (int)indices.size(); i++) {
-  //  cout << "indices[" << i << "] = "<< indices[i] << "\n";
-  //}
-
-
   //cout << "Mesh: render " << indices.size() << "メッシュ\n";
-  Node::render (pass, index);
-
-  if (vertices->getPositions(0)) {
-    //cout << "Mesh: glEnableClientState (GL_VERTEX_ARRAY)\n";
-    glEnableClientState (GL_VERTEX_ARRAY);
-  }
-  if (vertices->getNormals()) {
-    //cout << "Mesh: glEnableClientState (GL_NORMAL_ARRAY)\n";
-    glEnableClientState (GL_NORMAL_ARRAY);
-  }
-  if (vertices->getColors()) {
-    //cout << "Mesh: glEnableClientState (GL_COLOR_ARRAY)\n";
-    glEnableClientState (GL_COLOR_ARRAY);
-  }
-  
-  for (int i = 0; i < MAX_TEXTURE_UNITS; i++) {
-    if (vertices->getTexCoords(i, 0)) {
-      //cout << "Mesh: glEnableClientState (GL_TEXTURE_COORD_ARRAY)\n";
-      glClientActiveTexture (GL_TEXTURE0+i);
-      glEnableClientState (GL_TEXTURE_COORD_ARRAY);
-    }
-  }
+  Node::render (state);
   
   // 頂点データの指定
-  vertices->render (pass, index);
+  vertices->render (state);
 
-  //cout << "Mesh: size = " << indices.size() << "\n";
-
-  // インデックスの指定
+  // マテリアルとインデックスの指定
   for (int i = 0; i < (int)indices.size(); i++) {
-    //cout << "i = " << i << "\n";
-    //cout << "app = " << appearances[i] << "\n";
-    //cout << "ind = " << indices[i] << "\n";
-    appearances[i]->render (pass, index);
-    indices[i]->render (pass, index);
+    appearances[i]->render (state);
+    indices[i]->render (state);
   }
-  
-
-  if (vertices->getPositions(0)) {
-    glDisableClientState (GL_VERTEX_ARRAY);
-  }
-  if (vertices->getNormals()) {
-    glDisableClientState (GL_NORMAL_ARRAY);
-  }
-  if (vertices->getColors()) {
-    glDisableClientState (GL_COLOR_ARRAY);
-  }
-  
-  for (int i = 0; i < MAX_TEXTURE_UNITS; i++) {
-    if (vertices->getTexCoords(i, 0)) {
-      glClientActiveTexture (GL_TEXTURE0+i);
-      glDisableClientState (GL_TEXTURE_COORD_ARRAY);
-    }
-  }
-  
-
 
 }
 

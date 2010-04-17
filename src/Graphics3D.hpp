@@ -39,6 +39,7 @@ namespace m3g {
       float height;
     };
 
+
   public:
     static const int ANTIALIAS   = 1<<1;
     static const int DITHER      = 1<<2;

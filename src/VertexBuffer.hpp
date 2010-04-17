@@ -112,14 +112,18 @@ namespace m3g {
     virtual std::ostream& print (std::ostream& out) const;
 
 
+    /**
+     * @~English  Render this object, for inner use.
+     * @~Japanese このオブジェクトをレンダリングする内部使用の関数.
+     */
+    virtual void render (RenderState& state) const;
+
+
   protected:
     virtual void findByObjectType (int obj_type, std::vector<Object3D*>& objs) const;
 
-  private:
-    virtual void render (int pass, int index=0) const;
 
 
-    // normal_array --> normals に名前を変えようか？
 
   private:
     VertexArray* positions;

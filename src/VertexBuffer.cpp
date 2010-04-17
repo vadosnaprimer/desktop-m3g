@@ -4,6 +4,7 @@
 #include "AnimationController.hpp"
 #include "KeyframeSequence.hpp"
 #include "Exception.hpp"
+#include "RenderState.hpp"
 #include <iostream>
 using namespace std;
 using namespace m3g;
@@ -370,9 +371,9 @@ void VertexBuffer:: setTexCoords (int index, VertexArray* tex_coords_, float sca
  * Note: VertexBuffer should be rendered only at second rendering pass(pass=2).
  * In other cases, do nothing.
  */
-void VertexBuffer:: render (int pass, int index) const
+void VertexBuffer:: render (RenderState& state) const
 {
-  if (pass != 2) {
+  if (state.pass != 2) {
     return;
   }
 
@@ -382,7 +383,10 @@ void VertexBuffer:: render (int pass, int index) const
     //cout << "render vertex array\n";
     int cc = positions->getComponentCount();
     glBindBuffer (GL_ARRAY_BUFFER, vbuf);
+    glEnableClientState (GL_VERTEX_ARRAY);
     glVertexPointer (cc, GL_FLOAT, 0, 0);  // 0,0=stride,offset
+  } else {
+    glDisableClientState (GL_VERTEX_ARRAY);
   }
 
   // TODO: vertex_color_tracking=enableの時のみ頂点カラーを使うべき。
@@ -391,9 +395,11 @@ void VertexBuffer:: render (int pass, int index) const
     //cout << "VertexBuffer: render color array\n";
     int cc = colors->getComponentCount();
     glBindBuffer (GL_ARRAY_BUFFER, ibuf);
+    glEnableClientState (GL_COLOR_ARRAY);
     glColorPointer (cc, GL_FLOAT, 0, 0);  // 0,0=stride,offset
   } else {
     //cout << "VertexBuffer: render default color\n";
+    glDisableClientState (GL_COLOR_ARRAY);
     float r = ((default_color & 0x00ff0000) >> 16) / 255.f;
     float g = ((default_color & 0x0000ff00) >>  8) / 255.f;
     float b = ((default_color & 0x000000ff) >>  0) / 255.f;
@@ -404,16 +410,20 @@ void VertexBuffer:: render (int pass, int index) const
   if (normals) {
     //cout << "render normal array\n";
     glBindBuffer (GL_ARRAY_BUFFER, nbuf);
-    glNormalPointer (GL_FLOAT, 0, 0);  // 0,0=stride,offset
+    glEnableClientState (GL_NORMAL_ARRAY);
+    glNormalPointer (GL_FLOAT, 0, 0);
+  } else {
+    glDisableClientState (GL_NORMAL_ARRAY);
   }
 
   for (int i = 0; i < MAX_TEXTURE_UNITS; i++) {
     if (tex_coords[i]) {
-      //cout << "render " << i << "th texture coordinate array\n";
+      cout << "VertexBuffer: render " << i << "th texture coordinate array\n";
       int cc = tex_coords[i]->getComponentCount();
-      glClientActiveTexture (GL_TEXTURE0 + i);
-      glBindBuffer (GL_ARRAY_BUFFER, tcbuf[i]);
-      glTexCoordPointer (cc, GL_FLOAT, 0, 0);  // 0,0=stride,offset
+      glBindBuffer          (GL_ARRAY_BUFFER, tcbuf[i]);  // VBOの選択
+      glClientActiveTexture (GL_TEXTURE0+i);              // (クライアントを含む）テクスチャーユニットの選択
+      glEnableClientState   (GL_TEXTURE_COORD_ARRAY);     // 頂点配列の有効化
+      glTexCoordPointer     (cc, GL_FLOAT, 0, 0);         // テクスチャー座標の指定
     }
   }
   

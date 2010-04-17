@@ -45,7 +45,7 @@
  * その他
  */
 #include "Exception.hpp"
-
+#include "RenderState.hpp"
 
 #endif
 

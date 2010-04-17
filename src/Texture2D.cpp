@@ -6,6 +6,7 @@
 #include "AnimationTrack.hpp"
 #include "AnimationController.hpp"
 #include "KeyframeSequence.hpp"
+#include "RenderState.hpp"
 using namespace std;
 using namespace m3g;
 //#include <cstdlib>
@@ -210,23 +211,22 @@ void Texture2D:: setWrapping (int wrap_s, int wrap_t)
  * Note: Texture2D should be rendered only at second rendering pass(pass=2).
  * In other cases, do nothing.
  */
-void Texture2D:: render (int pass, int index) const
+void Texture2D:: render (RenderState& state) const
 {
-  if (pass != 2) {
+  if (state.pass != 2) {
     return;
   }
 
-  //cout << "Texture2D: render\n";
+  cout << "Texture2D: render \n";
 
-  glActiveTexture (GL_TEXTURE0+index);
   glBindTexture   (GL_TEXTURE_2D, texobj);
 
   switch (blending_mode) {
-  case FUNC_ADD     : glTexEnvi (GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_ADD); break;
-  case FUNC_BLEND   : glTexEnvi (GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_BLEND); break;
-  case FUNC_DECAL   : glTexEnvi (GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_DECAL); break;
+  case FUNC_ADD     : glTexEnvi (GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_ADD)     ; break;
+  case FUNC_BLEND   : glTexEnvi (GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_BLEND)   ; break;
+  case FUNC_DECAL   : glTexEnvi (GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_DECAL)   ; break;
   case FUNC_MODULATE: glTexEnvi (GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE); break;
-  case FUNC_REPLACE : glTexEnvi (GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE); break;
+  case FUNC_REPLACE : glTexEnvi (GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE) ; break;
   default: throw IllegalStateException (__FILE__, __func__, "Blending mode is invalid, mode=%d.", blending_mode);
   }
 
@@ -250,20 +250,17 @@ void Texture2D:: render (int pass, int index) const
   // filter.levelは？
 
   switch (wrapping.s) {
-  case WRAP_CLAMP :  glTexParameteri (GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP); break;
+  case WRAP_CLAMP :  glTexParameteri (GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP) ; break;
   case WRAP_REPEAT:  glTexParameteri (GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT); break;
   default: throw IllegalStateException (__FILE__, __func__, "Wraping mode S is invalid, mode=%d.", wrapping.s);
   }
 
   switch (wrapping.t) {
-  case WRAP_CLAMP :  glTexParameteri (GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP); break;
+  case WRAP_CLAMP :  glTexParameteri (GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP) ; break;
   case WRAP_REPEAT:  glTexParameteri (GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT); break;
   default: throw IllegalStateException (__FILE__, __func__, "Wraping mode T is invalid, mode=%d.", wrapping.t);
   }
 
-  //glEnable        (GL_TEXTURE_2D);
-  //cout << "Texture2D: enabled = " << index << "\n";
-  //cout << "Texture2D: error = " << glGetError() << "\n";
 }
 
 void Texture2D:: findByObjectType (int type, std::vector<Object3D*>& objs) const

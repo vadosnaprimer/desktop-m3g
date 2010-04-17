@@ -9,6 +9,7 @@
 #include "AnimationTrack.hpp"
 #include "AnimationController.hpp"
 #include "KeyframeSequence.hpp"
+#include "RenderState.hpp"
 using namespace std;
 using namespace m3g;
 
@@ -201,9 +202,9 @@ void Sprite3D:: setImage (Image2D* image_)
  * Note: Sprite3D should be rendered only at second rendering pass(pass=2).
  * In other cases, do nothing.
  */
-void Sprite3D:: render (int pass, int index) const
+void Sprite3D:: render (RenderState& state) const
 {
-  if (pass != 2) {
+  if (state.pass != 2) {
     return;
   }
 
@@ -214,9 +215,9 @@ void Sprite3D:: render (int pass, int index) const
     //cout << "Sprite3D: render, layer=0\n";
   }
 
-  Node:: render (pass, index);
+  Node:: render (state);
   if (appearance) {
-    appearance->render(pass, index);
+    appearance->render(state);
   }
 
   Matrix model_view;

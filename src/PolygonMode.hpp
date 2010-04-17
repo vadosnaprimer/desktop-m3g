@@ -154,7 +154,7 @@ namespace m3g {
      * @~English  Render this object, for inner use.
      * @~Japanese  このオブジェクトの描画.
      */
-    virtual void render (int pass, int index=0) const;
+    virtual void render (RenderState& state) const;
 
   private:
     int  culling;

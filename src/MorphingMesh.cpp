@@ -57,7 +57,7 @@ void MorphingMesh:: setWeights (float* wights)
 {
 }
 
-void MorphingMesh:: render (int pass, int index) const
+void MorphingMesh:: render (RenderState& state) const
 {
 }
 

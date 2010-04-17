@@ -112,9 +112,9 @@ void Object3D:: findByObjectType (int type, std::vector<Object3D*>& objs) const
   }
 }
 
-void Object3D:: render (int pass, int index) const
+void Object3D:: render (RenderState& state) const
 {
-  // do nothing
+  // nothing to do
 }
 
 std::ostream& Object3D:: print (std::ostream& out) const

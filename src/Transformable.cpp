@@ -225,7 +225,7 @@ void Transformable:: translate (float tx, float ty, float tz)
   translation.z += tz;
 }
 
-void Transformable:: render (int pass, int index) const
+void Transformable:: render (RenderState& state) const
 {
   Transform trans;
   getCompositeTransform(&trans);

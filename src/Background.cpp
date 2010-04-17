@@ -6,6 +6,7 @@
 #include "AnimationTrack.hpp"
 #include "AnimationController.hpp"
 #include "KeyframeSequence.hpp"
+#include "RenderState.hpp"
 using namespace std;
 using namespace m3g;
 
@@ -239,9 +240,9 @@ void Background:: setImageMode (int mode_x, int mode_y)
  * Note: Background should be rendered only at 0th rendering pass(pass=0).
  * In other cases, do nothing.
  */
-void Background:: render (int pass, int index) const
+void Background:: render (RenderState& state) const
 {
-  if (pass != 0) {
+  if (state.pass != 0) {
     return;
   }
 

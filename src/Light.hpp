@@ -181,24 +181,11 @@ namespace m3g {
      */
     virtual std::ostream& print (std::ostream& out) const;
 
-  private:
     /**
      * @~English  Render this object, for inner use.
      * @~Japanese このLightをレンダリングする内部使用の関数.
      */
-    virtual void render (int pass, int index=0) const;
-
-    /**
-     * @~English  Reset opengl index, for inner use.
-     * @~Japanese OpenGLのライト番号をリセットする内部使用の関数. 
-     */
-    static void resetGLIndex ();
-
-    /**
-     * @~English  Retrieves current opengl index, for inner use.
-     * @~Japanese OpenGLのライト番号を取得する内部使用の関数.
-     */
-    static int getGLIndex ();
+    virtual void render (RenderState& state) const;
 
   private:
     int         mode;
@@ -206,8 +193,6 @@ namespace m3g {
     int         intensity;
     Attenuation attenuation;
     Spot        spot;
-
-    static int gl_light_index; ///< OpenGLのライトのインデックス
   };
 
 

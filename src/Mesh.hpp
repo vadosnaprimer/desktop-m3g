@@ -90,13 +90,11 @@ namespace m3g {
      */
     virtual std::ostream& print (std::ostream& out) const;
 
-  protected:
-
     /**
      * @~English  Render this object, for inner use.
      * @~Japanese このノードをレンダリングする内部使用の関数.
      */
-    virtual void render (int pass, int index=0) const;
+    virtual void render (RenderState& state) const;
 
   protected:
     VertexBuffer*             vertices;

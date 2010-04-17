@@ -109,14 +109,14 @@ void Group:: findByObjectType (int type, std::vector<Object3D*>& objs) const
 /**
  * Note: Group should be rendered via all rendering pass.
  */
-void Group:: render (int pass, int index) const
+void Group:: render (RenderState& state) const
 {
   //cout << "Group: render\n";
-  Node::render (pass, index);
+  Node::render (state);
 
   for (int i = 0; i < (int)children.size(); i++) {
     glPushMatrix ();
-    children[i]->render (pass, index);
+    children[i]->render (state);
     glPopMatrix ();
   }
 
@@ -129,7 +129,7 @@ void Group:: render (int pass, int index) const
     }
     else {
       glPushMatrix ();
-      children[i]->render (pass, index);
+      children[i]->render (state);
       glPopMatrix ();
     }
   }
@@ -137,7 +137,7 @@ void Group:: render (int pass, int index) const
   sort (sprts.begin(), sprts.end(), Sprite3D::sort_by_layer);
   for (int i = 0; i < (int)sprts.size(); i++) {
       glPushMatrix ();
-      sprts[i]->render (pass, index);
+      sprts[i]->render (state);
       glPopMatrix ();
   }
 #endif

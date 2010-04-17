@@ -174,7 +174,7 @@ namespace m3g {
      * @~English  Render this object, for inner use.
      * @~Japanese このCompositingModeノードをレンダリングする内部使用の関数.
      */
-    virtual void render (int pass, int index=0) const;
+    virtual void render (RenderState& state) const;
 
   private:
     int         blending_mode;

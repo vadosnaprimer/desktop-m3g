@@ -7,6 +7,7 @@
 #include "Texture2D.hpp"
 #include "CompositingMode.hpp"
 #include "Exception.hpp"
+#include "RenderState.hpp"
 using namespace std;
 using namespace m3g;
 
@@ -17,7 +18,7 @@ Appearance:: Appearance () :
 {
   setObjectType (OBJTYPE_APPEARANCE);
 
-  for (int i = 0; i < 4; i++)
+  for (int i = 0; i < MAX_TEXTURE_UNITS; i++)
     textures.push_back (0);
 }
 
@@ -44,7 +45,8 @@ int Appearance:: animate (int world_time)
   }
 
   for (int i = 0; i < (int)textures.size(); i++) {
-    textures[i]->animate (world_time);
+    if (textures[i])
+      textures[i]->animate (world_time);
   }
   if (material) {
     material->animate (world_time);
@@ -163,34 +165,45 @@ void Appearance:: findByObjectType (int type, std::vector<Object3D*>& objs) cons
  * Note: Appearance should be rendered only at second rendering pass(pass=2).
  * In other cases, do nothing.
  */
-void Appearance:: render (int pass, int index) const
+void Appearance:: render (RenderState& state) const
 {
-  if (pass != 2) {
+  if (state.pass != 2) {
     return;
   }
 
   //cout << "Appearance: render\n";
 
   if (fog) {
-    fog->render (pass, index);
+    fog->render (state);
   }
   if (material) {
-    material->render (pass, index);
+    material->render (state);
   }
   if (compositing_mode) {
-    compositing_mode->render (pass, index);
+    compositing_mode->render (state);
   }
   if (polygon_mode) {
-    polygon_mode->render (pass, index);
+    polygon_mode->render (state);
   }
 
-  glDisable (GL_TEXTURE_2D);
+
+  glEnable (GL_TEXTURE_2D);
   for (int i = 0; i < (int)textures.size(); i++) {
     if (textures[i]) {
-      glEnable (GL_TEXTURE_2D);
-      textures[i]->render (pass, i);
+      glActiveTexture       (GL_TEXTURE0+i);           // テクスチャーユニットの選択     
+      glEnable              (GL_TEXTURE_2D);           // テクスチャーユニットの有効化
+      //glClientActiveTexture (GL_TEXTURE0+i);           // クライアント部分のテクスチャーユニット選択
+      //glEnableClientState   (GL_TEXTURE_COORD_ARRAY);  // テクスチャー座標配列の有効化
+
+      textures[i]->render (state);
+    } else {
+      glActiveTexture       (GL_TEXTURE0+i);            // テクスチャーユニットの選択     
+      glDisable             (GL_TEXTURE_2D);            // テクスチャーユニットの無効化
+      //glClientActiveTexture (GL_TEXTURE0+i);            // クライアント部分のテクスチャーユニット選択
+      //glDisableClientState  (GL_TEXTURE_COORD_ARRAY);   // テクスチャー座標配列の無効化
     }
   }
+
 
 }
 

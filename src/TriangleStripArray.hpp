@@ -56,12 +56,12 @@ namespace m3g {
      */
     virtual std::ostream& print (std::ostream& out) const;
 
-  protected:
+
     /**
      * @~English  Render this object, for inner use.
      * @~Japanese このオブジェクトのレンダリング.
      */
-    virtual void render (int pass, int index=0) const;
+    virtual void render (RenderState& state) const;
 
 
   private:

@@ -4,6 +4,7 @@
 #include <numeric>
 #include <cstring>
 #include "Exception.hpp"
+#include "RenderState.hpp"
 using namespace std;
 using namespace m3g;
 
@@ -105,9 +106,9 @@ void TriangleStripArray:: getIndices (int* indices_)
  * Note: TriangleStripArray should be rendered only at second rendering pass(pass=2).
  * In other cases, do nothing.
  */
-void TriangleStripArray:: render (int pass, int index) const
+void TriangleStripArray:: render (RenderState& state) const
 {
-  if (pass != 2) {
+  if (state.pass != 2) {
     return;
   }
 

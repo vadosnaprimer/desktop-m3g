@@ -88,7 +88,7 @@ void IndexBuffer:: setIndices (int index_count_, int first_index)
  * Note: Background should be rendered only at second rendering pass(pass=2).
  * In other cases, do nothing.
  */
-void IndexBuffer:: render (int pass, int index) const
+void IndexBuffer:: render (RenderState& state) const
 {
   //if (pass != 2) {
   //  return;

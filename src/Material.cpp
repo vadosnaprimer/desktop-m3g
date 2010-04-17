@@ -4,6 +4,7 @@
 #include "AnimationTrack.hpp"
 #include "AnimationController.hpp"
 #include "KeyframeSequence.hpp"
+#include "RenderState.hpp"
 using namespace std;
 using namespace m3g;
 
@@ -234,9 +235,9 @@ void Material:: setVertexColorTrackingEnable (bool enable)
  * Note: Material should be rendered only at second rendering pass(pass=2).
  * In other cases, do nothing.
  */
-void Material:: render (int pass, int index) const
+void Material:: render (RenderState& state) const
 {
-  if (pass != 2) {
+  if (state.pass != 2) {
     return;
   }
 

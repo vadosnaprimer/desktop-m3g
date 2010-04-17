@@ -8,6 +8,7 @@
 #include "Light.hpp"
 #include "Exception.hpp"
 #include "Property.hpp"
+#include "RenderState.hpp"
 using namespace m3g;
 using namespace std;
 
@@ -161,14 +162,15 @@ void Graphics3D:: render (World* world) const
 {
   cout << "Graphics3D: レンダー " << world->getChildCount() << " ノード\n";
 
+  RenderState state;
+
   // pass 0 for Background, Camera.
-  world->render (0);
-
   // pass 1 for Lights.
-  world->render (1);
-
   // pass 2 for Scene nodes.
-  world->render (2);
+  for (int i = 0; i < 3; i++) {
+    state.pass = i;
+    world->render (state);
+  }
 
   /*
   // This is for Debug.

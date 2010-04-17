@@ -81,8 +81,6 @@ int main (int argc, char** argv)
   Mesh* mesh = new Mesh (vbuf, tris, app);
   mesh->translate (0,0,2);
   
-  cout << "hello world\n";
-
   Camera* cam = new Camera;
   cam->translate (0,0,5);
 

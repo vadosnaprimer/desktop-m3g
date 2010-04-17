@@ -7,10 +7,15 @@
 #include "m3gdef.hpp"
 #include "m3ginternal.hpp"
 
+// これいらないような？
+//#include "RenderState.hpp"
+
+
 namespace m3g {
 
   class AnimationTrack;
-
+  class Graphics3D;
+  struct RenderState;
 
   /**
    * @~English  An abstract base class for all objects that can be part of a 3D world.
@@ -130,13 +135,14 @@ namespace m3g {
     virtual std::ostream& print (std::ostream& out) const;
 
 
-  protected:
     /**
      * @~English  Render this object, for inner use.
-     * @~Japanese このObject3Dをレンダリング(する内部使用の関数.
-    */
-    virtual void render (int pass, int index=0) const;
+     * @~Japanese このObject3Dをレンダリングする内部使用の関数.
+     */
+    virtual void render (RenderState& state) const;
 
+
+  protected:
     /**
      * @~English  Sets object type.
      * @~Japanese オブジェクトタイプの設定.
@@ -148,7 +154,6 @@ namespace m3g {
   private:
     int   obj_type;     ///< M3G非標準のオブジェクトタイプ
     int   user_id;
-    //std::vector<UserObject> user_objects;
     std::vector<AnimationTrack*> anim_tracks;
 
   };

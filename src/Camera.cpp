@@ -7,6 +7,7 @@
 #include "AnimationController.hpp"
 #include "KeyframeSequence.hpp"
 #include "Exception.hpp"
+#include "RenderState.hpp"
 using namespace std;
 using namespace m3g;
 
@@ -211,9 +212,9 @@ void Camera:: setPerspective (float fovy_, float aspect_ratio_, float near_, flo
  * Note: Camera should be rendered only at 0th rendering pass(pass=0).
  * In other cases, do nothing.
  */
-void Camera:: render (int pass, int index) const
+void Camera:: render (RenderState& state) const
 {
-  if (pass != 0) {
+  if (state.pass != 0) {
     return;
   }
 

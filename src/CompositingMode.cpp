@@ -1,6 +1,7 @@
 #include <iostream>
 #include "CompositingMode.hpp"
 #include "Exception.hpp"
+#include "RenderState.hpp"
 using namespace m3g;
 using namespace std;
 
@@ -108,9 +109,9 @@ void CompositingMode:: setDepthWriteEnable (bool enable)
  * Note: CompositingMode should be rendered only at second rendering pass(pass=2).
  * In other cases, do nothing.
  */
-void CompositingMode:: render (int pass, int index) const
+void CompositingMode:: render (RenderState& state) const
 {
-  if (pass != 2) {
+  if (state.pass != 2) {
     return;
   }
 

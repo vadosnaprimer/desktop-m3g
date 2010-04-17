@@ -5,6 +5,7 @@
 #include <iostream>
 #include <cmath>
 #include "Exception.hpp"
+#include "RenderState.hpp"
 using namespace m3g;
 using namespace std;
 
@@ -106,36 +107,36 @@ void World:: setBackground (Background* bg)
  *   pass=1: render lights.
  *   pass=2: render objets.
  */
-void World:: render (int pass, int index) const
+void World:: render (RenderState& state) const
 {
+  if (camera == NULL) {
+    throw IllegalStateException (__FILE__, __func__, "Active camera is NULL.");
+  }
+  
   //cout << "World render\n";
 
-  switch (pass) {
+  switch (state.pass) {
   case 0: {
     if (background) {
-      background->render (0, index);
+      background->render (state);
     }
     else {
       glClearColor (0,0,0,0);   // r,g,b,a
       glClearDepth (1.0f);
       glClear      (GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     }
-
-    if (camera == NULL) {
-      throw IllegalStateException (__FILE__, __func__, "Active camera is NULL.");
-    }
-    camera->render (0, index);
+    camera->render (state);
     break;
   }
   case 1:
-    Light::resetGLIndex ();
-    Group::render (1, index);
+    state.light_index = 0;
+    Group::render (state);
     break;
   case 2:
-    // fall throu;
-  default: {
-    Group::render (pass, index);
-  }
+    Group::render (state);
+    break;
+  default:
+    throw IllegalStateException (__FILE__, __func__, "Render pass is invalid, pass=%d.", state.pass);
   }
 
 }

@@ -270,7 +270,7 @@ Group* SkinnedMesh:: getSkeleton () const
     return skeleton;
 }
 
-void SkinnedMesh:: render (int pass, int index) const
+void SkinnedMesh:: render (RenderState& state) const
 {
   //cout << "SkinnedMesh: render\n";
 
@@ -280,7 +280,7 @@ void SkinnedMesh:: render (int pass, int index) const
   VertexBuffer* tmp = vertices;
   (const_cast<SkinnedMesh*>(this))->vertices = skinned_vertices;
 
-  Mesh::render (pass, index);
+  Mesh::render (state);
 
   (const_cast<SkinnedMesh*>(this))->vertices = tmp;
 }
