@@ -136,10 +136,10 @@ std::vector<Object3D*> Loader:: load (int length, const char* data, int offset)
 
   }
 
-  for (int i = 0; i < (int)objs.size(); i++) {
-    if (objs[i])
-      objs[i]->print(cout); 
-  }
+  //for (int i = 0; i < (int)objs.size(); i++) {
+  //  if (objs[i])
+  //    objs[i]->print(cout); 
+  //}
 
   return objs;
 }

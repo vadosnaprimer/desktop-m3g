@@ -47,7 +47,7 @@ int main (int argc, char** argv)
   TriangleStripArray* tris = new TriangleStripArray (0, 1, strips);
 
   CompositingMode* cmp = new CompositingMode;
-  cmp->setBlending (CompositingMode::REPLACE);
+  cmp->setBlending (CompositingMode::ALPHA);
   cmp->setDepthTestEnable (false);
   cmp->setDepthWriteEnable (false);
   cmp->setAlphaThreshold (0.0);

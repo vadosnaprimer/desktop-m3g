@@ -64,6 +64,10 @@ bool CompositingMode:: isDepthWriteEnabled () const
 
 void CompositingMode:: setAlphaThreshold (float threashold)
 {
+  if (threashold < 0 || threashold > 1) {
+    throw IllegalArgumentException (__FILE__, __func__, "Alpha threashold is invalid, th=%f.", threashold);
+  }
+
   alpha_threshold = threashold;
 }
 
@@ -74,6 +78,9 @@ void CompositingMode:: setAlphaWriteEnable (bool enable)
 
 void CompositingMode:: setBlending (int mode)
 {
+  if (mode < ALPHA || mode > REPLACE) {
+    throw IllegalArgumentException (__FILE__, __func__, "Blending mode is invalid, mode=%d.", mode);
+  }
   blending_mode = mode;
 }
 
@@ -167,7 +174,7 @@ std::ostream& CompositingMode:: print (std::ostream& out) const
   out << ", depth_write="      << depth_write;
   out << ", color_write="      << color_write;
   out << ", alpha_write="      << alpha_write;
-  return out << "\n";;
+  return out << "\n";
 }
 
 std::ostream& operator<< (std::ostream& out, const CompositingMode& cm)

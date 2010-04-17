@@ -282,6 +282,9 @@ void Node:: setParent (Node* node)
 void Node:: render (int pass, int index) const
 {
   Transformable::render (pass, index);
+
+
+
 }
 
 std::ostream& Node:: print (std::ostream& out) const

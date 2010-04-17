@@ -11,6 +11,7 @@ namespace m3g {
 
   class AnimationTrack;
 
+
   /**
    * @~English  An abstract base class for all objects that can be part of a 3D world.
    * @~Japanese 3Dワールドに存在する全てのオブジェクトの基底となる抽象クラス.

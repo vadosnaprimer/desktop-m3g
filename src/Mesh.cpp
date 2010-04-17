@@ -226,6 +226,11 @@ std::ostream& Mesh:: print (std::ostream& out) const
     out << ",  " << vary->getVertexCount() << " vertices";
   else
     out << ",  0 vertices";
+  out << ", node_alpha=" << getAlphaFactor();
+  //for (int i = 0; i < (int)appearances.size(); i++) {
+  //  out << *appearances[i];
+  //}
+
   return out << "\n";
 }
 

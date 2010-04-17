@@ -76,14 +76,14 @@ int main (int argc, char** argv)
   for (int i = 0; i < (int)objs.size(); i++) {
     Mesh* mesh = dynamic_cast<Mesh*>(objs[i]);
     if (mesh) {
+      mesh->print (cout);
       //wld->removeChild (mesh);
-      //mesh->Transformable:: print (cout);
       meshs.push_back (mesh);
     }
   }
-
-  //wld->addChild (meshs[2]);
-
+  //wld->addChild (meshs[0]);
+  //wld->addChild (meshs[1]);
+  
   glutKeyboardFunc(keyboard);
   glutDisplayFunc(display);
   glutReshapeFunc(resize);
