@@ -70,28 +70,7 @@ void World:: setActiveCamera (Camera* cam)
   if (cam == NULL) {
     throw NullPointException (__FILE__, __func__, "Camera is NULL.");
   }
-
-  // TODO: 今ひとつ
-  // あとで修正する。
-  // カメラは問答無用でセットして良い。
-  // rendering()の時には子ノードとして存在していなければならない
-
-  vector<Object3D*> objs;
-  for (int i = 0; i < getChildCount(); i++) {
-    Node* node = getChild(i);
-    node->findByObjectType (OBJTYPE_CAMERA, objs);
-  }
-  Camera* c = 0;
-  for (int i = 0; i < (int)objs.size(); i++) {
-    if (cam == dynamic_cast<Camera*>(objs[i])) {
-      c = cam;
-    }
-  }
-  if (c == 0) {
-    throw IllegalArgumentException (__FILE__, __func__, "Can't find such camera in World.");
-  }
-
-  camera = c;
+  camera = cam;
 }
 
 void World:: setBackground (Background* bg)
@@ -158,16 +137,22 @@ void World:: render (RenderState& state) const
 std::ostream& World::print (std::ostream& out) const
 {
   out << "World: \n";
-  if (camera)
-    out << "  active camera = " << *camera;
+  int index = -1;
+  for (int i = 0; i < (int)children.size(); i++) {
+    if (children[i] == camera) {
+      index = i;
+      break;
+    }
+  }
+  if (index >= 0)
+    out << "  active camera = [" << index << "]\n";
   else 
-    out << "  active camera = 0\n";
+    out << "  active camera = NOT FOUND\n";
   if (background)
-    out << "  background = " << *background;
+    out << "  background    = " << *background;
   else 
-    out << "  background = 0\n";
+    out << "  background    = NOT FOUND\n";
 
-  //Group::print (out);
   for (int i = 0; i < (int)children.size(); i++) {
     out << "  [" << i << "] : ";
     children[i]->print(out);
