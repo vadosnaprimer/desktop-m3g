@@ -1,6 +1,8 @@
 #ifndef __RENDER_STATE_HPP__
 #define __RENDER_STATE_HPP__
 
+#include <vector>
+
 namespace m3g {
 
     /**
@@ -10,12 +12,12 @@ namespace m3g {
     struct RenderState
     {
     public:
-      RenderState () : pass(0), light_index(0), layer(0), alpha(1) {};
-
+      RenderState () : pass(0), light_index(0), layer(-999), alpha(1) {};
       int   pass;
       int   light_index;
       int   layer;
       float alpha;
+      std::vector<int>   valid_layers;
     };
 
 

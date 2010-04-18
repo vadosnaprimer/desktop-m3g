@@ -158,18 +158,19 @@ void Graphics3D:: render (VertexBuffer* vertices, IndexBuffer* triangles, Appear
   throw NotImplementedException (__FILE__, __func__, "Sorry, immediate render mode is not implemented.");
 }
 
-void Graphics3D:: render (World* world) const
+void Graphics3D:: render (World* wld) const
 {
-  cout << "Graphics3D: レンダー " << world->getChildCount() << " ノード\n";
+  cout << "Graphics3D: レンダー " << wld->getChildCount() << " ノード\n";
 
   RenderState state;
 
+  // pass -1 for set up valid layers.
   // pass 0 for Background, Camera.
   // pass 1 for Lights.
   // pass 2 for Scene nodes.
-  for (int i = 0; i < 3; i++) {
+  for (int i = -1; i < 3; i++) {
     state.pass = i;
-    world->render (state);
+    wld->render (state);
   }
 
   /*

@@ -146,6 +146,11 @@ void Mesh:: setAppearance (int index, Appearance* appearance)
  */
 void Mesh:: render (RenderState& state) const
 {
+  if (state.pass == -1) {
+    for (int i = 0; i < (int)appearances.size(); i++) {
+      state.valid_layers.push_back (appearances[i]->getLayer());
+    }
+  }
   if (state.pass != 2) {
     return;
   }
@@ -158,8 +163,10 @@ void Mesh:: render (RenderState& state) const
 
   // マテリアルとインデックスの指定
   for (int i = 0; i < (int)indices.size(); i++) {
-    appearances[i]->render (state);
-    indices[i]->render (state);
+    if (state.layer == appearances[i]->getLayer()) {
+      appearances[i]->render (state);
+      indices[i]->render (state);
+    }
   }
 
 }

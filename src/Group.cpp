@@ -120,27 +120,6 @@ void Group:: render (RenderState& state) const
     glPopMatrix ();
   }
 
-#if 0  
-  vector<Sprite3D*> sprts;
-
-  for (int i = 0; i < (int)children.size(); i++) {
-    if (children[i]->getObjectType() == OBJTYPE_SPRITE3D) {
-      sprts.push_back (dynamic_cast<Sprite3D*>(children[i]));
-    }
-    else {
-      glPushMatrix ();
-      children[i]->render (state);
-      glPopMatrix ();
-    }
-  }
-
-  sort (sprts.begin(), sprts.end(), Sprite3D::sort_by_layer);
-  for (int i = 0; i < (int)sprts.size(); i++) {
-      glPushMatrix ();
-      sprts[i]->render (state);
-      glPopMatrix ();
-  }
-#endif
 
 }
   

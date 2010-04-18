@@ -5,6 +5,8 @@
 using namespace m3g;
 using namespace std;
 
+static
+const char* mode_to_string (int mode);
 
 CompositingMode:: CompositingMode () :
   blending_mode(REPLACE), alpha_threshold(0), depth_offset(0,0),

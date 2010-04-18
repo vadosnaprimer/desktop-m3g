@@ -110,6 +110,10 @@ void Appearance:: setFog (Fog* f)
 
 void Appearance:: setLayer (int layer)
 {
+  // TODO: ここ値の範囲チェック忘れてないか？
+  if (layer < -63 || layer > 64) {
+    throw IllegalArgumentException (__FILE__, __func__, "Lyaer is invalid, layer=%d.", layer);
+  }
   rendering_layer = layer;
 }
 

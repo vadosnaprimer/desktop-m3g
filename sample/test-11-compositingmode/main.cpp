@@ -41,7 +41,7 @@ int main (int argc, char** argv)
   VertexBuffer* vbuf = new VertexBuffer;
   vbuf->setPositions (pos_array, scale, bias);
   //vbuf->setDefaultColor (0x3f7f7fff);
-  vbuf->setDefaultColor (0xcf7f7fff);
+  vbuf->setDefaultColor (0x3f7f7fff);
 
   int strips[1] = {4};
   TriangleStripArray* tris = new TriangleStripArray (0, 1, strips);

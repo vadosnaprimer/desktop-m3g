@@ -201,21 +201,27 @@ void Sprite3D:: setImage (Image2D* image_)
 /**
  * Note: Sprite3D should be rendered only at second rendering pass(pass=2).
  * In other cases, do nothing.
+ * メモ： 改良の余地があるな……。あとappearanceがNULLの時は”何もしない”ではなく
+ * ”デフォルトでレンダー”にすべき。
  */
 void Sprite3D:: render (RenderState& state) const
 {
+  if (state.pass == -1) {
+    if (appearance)
+      state.valid_layers.push_back (appearance->getLayer());
+  }
   if (state.pass != 2) {
     return;
   }
 
-  if (appearance) {
-    //cout << "Sprite3D: render, layer=" << appearance->getLayer() <<  "\n";
-  }
-  else {
-    //cout << "Sprite3D: render, layer=0\n";
-  }
+  // レイヤーが異なるときは何もしない
+  if (appearance == 0 && state.layer != 0)
+    return;
+  if (appearance != 0 && appearance->getLayer() != state.layer)
+    return;
 
   Node:: render (state);
+
   if (appearance) {
     appearance->render(state);
   }

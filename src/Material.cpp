@@ -242,7 +242,7 @@ void Material:: render (RenderState& state) const
   }
 
   //cout << "Material: render\n";
-  //cout << "Material: state.alpha = " << state.alpha << "\n";
+  cout << "Material: state.alpha = " << state.alpha << "\n";
 
   GLfloat ambient_rgb[4] = {((ambient_color & 0x00ff0000) >> 16) / 255.f,
                             ((ambient_color & 0x0000ff00) >> 8 ) / 255.f,

@@ -4,10 +4,12 @@
 #include "Light.hpp"
 #include <iostream>
 #include <cmath>
+#include <algorithm>
 #include "Exception.hpp"
 #include "RenderState.hpp"
 using namespace m3g;
 using namespace std;
+#include <iterator>
 
 
 World:: World () :
@@ -103,6 +105,7 @@ void World:: setBackground (Background* bg)
 
 /**
  * Note: World should be rendered via all rendering pass.
+ *   pass=-1: setup valid layers.
  *   pass=0: render background and camera.
  *   pass=1: render lights.
  *   pass=2: render objets.
@@ -114,8 +117,14 @@ void World:: render (RenderState& state) const
   }
   
   //cout << "World render\n";
+  vector<int>& v = state.valid_layers;
 
   switch (state.pass) {
+  case -1:
+    Group::render (state);
+    sort (v.begin(), v.end());
+    v.erase (unique(v.begin(), v.end()), v.end());
+    break;
   case 0: {
     if (background) {
       background->render (state);
@@ -133,7 +142,10 @@ void World:: render (RenderState& state) const
     Group::render (state);
     break;
   case 2:
-    Group::render (state);
+    for (int i = 0; i < (int)v.size(); i++) {
+      state.layer = state.valid_layers[i];
+      Group::render (state);
+    }
     break;
   default:
     throw IllegalStateException (__FILE__, __func__, "Render pass is invalid, pass=%d.", state.pass);

@@ -76,15 +76,16 @@ int main (int argc, char** argv)
   for (int i = 0; i < (int)objs.size(); i++) {
     Mesh* mesh = dynamic_cast<Mesh*>(objs[i]);
     if (mesh) {
-      mesh->print (cout);
-      //wld->removeChild (mesh);
       meshs.push_back (mesh);
     }
   }
-  //wld->addChild (meshs[0]);
-  //wld->addChild (meshs[1]);
 
-  wld->setAlphaFactor(1);
+  Mesh* floor = meshs[0];  // 床
+  Mesh* cube  = meshs[1];  // 直方体
+
+  cube->getAppearance(0)->setLayer(1);
+  floor->setAlphaFactor (1);
+  wld->setAlphaFactor (1);
   
   glutKeyboardFunc(keyboard);
   glutDisplayFunc(display);

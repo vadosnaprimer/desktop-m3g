@@ -270,8 +270,14 @@ Group* SkinnedMesh:: getSkeleton () const
     return skeleton;
 }
 
+/**
+ * Note: Mesh should be rendered only at second rendering pass(pass=2).
+ *       In other cases, do nothing.
+ */
 void SkinnedMesh:: render (RenderState& state) const
 {
+  // Mesh::render()でチェックするのでここでは何もしなくて良い
+
   //cout << "SkinnedMesh: render\n";
 
   // 注意：vertices が skinned_vertices に変わった事を除けば Mesh::render()と同一。
