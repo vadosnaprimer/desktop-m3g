@@ -254,7 +254,10 @@ void Material:: render (RenderState& state) const
                              ((diffuse_color & 0x000000ff) >> 0 ) / 255.f,
                              ((diffuse_color & 0xff000000) >> 24) / 255.f * state.alpha};
   glMaterialfv (GL_FRONT_AND_BACK, GL_DIFFUSE, diffuse_rgba);
-  
+
+  // Diffuse color is used as 'Color' too.
+  glColor4fv (diffuse_rgba);
+
   GLfloat specular_rgb[4] = {((specular_color & 0x00ff0000) >> 16) / 255.f,
                              ((specular_color & 0x0000ff00) >> 8 ) / 255.f,
                              ((specular_color & 0x000000ff) >> 0 ) / 255.f, 1};
@@ -266,8 +269,23 @@ void Material:: render (RenderState& state) const
                              ((emissive_color & 0x000000ff) >> 0 ) / 255.f, 1};
   glMaterialfv (GL_FRONT_AND_BACK, GL_EMISSION, emissive_rgb);
 
-  // Diffuse color of material shoud be used as "Color" too.
-  glColor4fv (diffuse_rgba);
+
+  // 頂点カラーが有効なとき
+  if (vertex_color_tracking) {
+    cout << "Material: enable vertex color tracking.\n";
+    glDisable (GL_LIGHTING);
+    if (state.vertex_color_buffer_enabled) {
+      cout << "Material: enable colors per vertex .\n";
+      glEnableClientState (GL_COLOR_ARRAY);
+    } else {
+      cout << "Material: enabled colors as default color.\n";
+      GLfloat vertex_color_rgba[4] = {((state.default_vertex_color & 0x00ff0000) >> 16) / 255.f,
+                                      ((state.default_vertex_color & 0x0000ff00) >> 8 ) / 255.f,
+                                      ((state.default_vertex_color & 0x000000ff) >> 0 ) / 255.f,
+                                      ((state.default_vertex_color & 0xff000000) >> 24) / 255.f * state.alpha};
+      glColor4fv (vertex_color_rgba);
+    }
+  }
 
   //cout << *this;
 }

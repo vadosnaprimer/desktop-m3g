@@ -85,7 +85,7 @@ int main (int argc, char** argv)
   animation_light_color->setController (controller);
 
 
-  VertexArray*  positions = new VertexArray (800, 3, 2);
+  VertexArray*  positions = new VertexArray (800, 3, 1);
   VertexArray*  normals   = new VertexArray (800, 3, 1);
   positions->set (0, 800, position_values);
   normals->set (0, 800, normal_values);
@@ -97,7 +97,7 @@ int main (int argc, char** argv)
   vertices->setNormals (normals);
   vertices->setDefaultColor (0xffffffff);
 
-  int strips[20] = {40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40};
+  int strips[20] = {42,42,42,42,42,42,42,42,42,42,42,42,42,42,42,42,42,42,42,42};
   TriangleStripArray* tris = new TriangleStripArray (0, 20, strips);
 
   Material* mat = new Material;

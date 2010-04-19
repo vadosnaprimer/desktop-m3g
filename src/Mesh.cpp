@@ -155,7 +155,11 @@ void Mesh:: render (RenderState& state) const
     return;
   }
 
-   //cout << "Mesh: render " << indices.size() << "メッシュ\n";
+  //cout << "Mesh: render " << indices.size() << "メッシュ\n";
+
+  // 注意：下の３つは厳密にこの順番でなければならない。変更不可
+
+  // ノードαの設定
   Node::render (state);
 
   // 頂点データの指定
@@ -168,7 +172,6 @@ void Mesh:: render (RenderState& state) const
       indices[i]->render (state);
     }
   }
-
 
 }
 

@@ -52,8 +52,13 @@ int main (int argc, char** argv)
   cmp->setDepthWriteEnable (false);
   cmp->setAlphaThreshold (0.0);
 
+  Material* mat = new Material;
+  mat->setColor (Material::DIFFUSE, 0x3f7f7fff);
+
   Appearance* app = new Appearance;
   app->setCompositingMode (cmp);
+  app->setMaterial (mat);
+
 
   Mesh* mesh1 = new Mesh (vbuf, tris, app);
   mesh1->translate (0,0,-1);

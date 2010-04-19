@@ -29,32 +29,28 @@ int main (int argc, char** argv)
   glutCreateWindow(argv[0]);
   glewInit ();
 
-  VertexArray* poss = new VertexArray (4, 3, 1);
-  char vertices[] = {1,-1,0, 1,1,0, -1,-1,0, -1,1,0};
-  poss->set (0, 4, vertices);
-
-  VertexArray* cols = new VertexArray (4, 3, 1);
-  unsigned char colors[] = {255,0,0, 0,255,0, 0,0,255, 255,255,255};
-  cols->set (0, 4, (char*)colors);
+  VertexArray* positions = new VertexArray (4, 3, 1);
+  char positions_value[] = {1,-1,0, 1,1,0, -1,-1,0, -1,1,0};
+  positions->set (0, 4, positions_value);
 
   float scale = 1;
   float bias[3] = {0,0,0};
-  VertexBuffer* vbuf = new VertexBuffer;
-  vbuf->setPositions (poss, scale, bias);
-  vbuf->setColors (cols);
+  VertexBuffer* vertices = new VertexBuffer;
+  vertices->setPositions (positions, scale, bias);
   
   int strips[1] = {4};
   int indices[] = {0,1,2,3};
 
   TriangleStripArray* tris = new TriangleStripArray (indices, 1, strips);
 
+  Material* mat = new Material;
+  mat->setColor (Material::DIFFUSE, 0xffcf37cf);
+
   Appearance* app = new Appearance;
+  app->setMaterial (mat);
 
-  Mesh* mesh = new Mesh (vbuf, tris, app);
+  Mesh* mesh = new Mesh (vertices, tris, app);
   
-  
-  cout << "hello world\n";
-
   Camera* cam = new Camera;
   cam->translate (0,0,5);
 

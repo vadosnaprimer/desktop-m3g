@@ -72,21 +72,7 @@ int main (int argc, char** argv)
     wld->setActiveCamera (cam);
   }
   
-  std::vector<Mesh*> meshs;
-  for (int i = 0; i < (int)objs.size(); i++) {
-    Mesh* mesh = dynamic_cast<Mesh*>(objs[i]);
-    if (mesh) {
-      meshs.push_back (mesh);
-    }
-  }
 
-  Mesh* floor = meshs[0];  // 床
-  Mesh* cube  = meshs[1];  // 直方体
-
-  cube->getAppearance(0)->setLayer(1);
-  floor->setAlphaFactor (1);
-  wld->setAlphaFactor (1);
-  
   glutKeyboardFunc(keyboard);
   glutDisplayFunc(display);
   glutReshapeFunc(resize);

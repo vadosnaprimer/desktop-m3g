@@ -68,7 +68,7 @@ int main (int argc, char** argv)
   float bias[3] = {0,0,0};
   VertexBuffer* vertices = new VertexBuffer;
   vertices->setPositions (positions, scale, bias);
-  vertices->setDefaultColor (0xff0000ff);
+  //vertices->setDefaultColor (0xff0000ff);
 
   int strips[1] = {4};
   int indices[4] = {0,1,2,3};
@@ -77,8 +77,12 @@ int main (int argc, char** argv)
   CompositingMode* comp = new CompositingMode;
   comp->setBlending (CompositingMode::ALPHA);
 
+  Material* mat = new Material;
+  mat->setColor (Material::DIFFUSE, 0xff0000ff);
+
   Appearance* app = new Appearance;
   app->setCompositingMode (comp);
+  app->setMaterial (mat);
 
   float frame0_alpha[] = {1};
   float frame1_alpha[] = {0.1};
@@ -104,15 +108,14 @@ int main (int argc, char** argv)
   controller->setSpeed (0.5, 0);
 
   AnimationTrack* track_alpha = new AnimationTrack (keyframe_alpha, AnimationTrack::ALPHA);
-  AnimationTrack* track_color = new AnimationTrack (keyframe_color, AnimationTrack::COLOR);
+  AnimationTrack* track_color = new AnimationTrack (keyframe_color, AnimationTrack::DIFFUSE_COLOR);
   track_alpha->setController (controller);
   track_color->setController (controller);
 
-  //vertices->addAnimationTrack (track_alpha);
-  vertices->addAnimationTrack (track_color);
+  //mat->addAnimationTrack (track_alpha);
+  mat->addAnimationTrack (track_color);
 
   mesh = new Mesh (vertices, tris, app);
-
 
   wld = new World;
   wld->addChild (cam);

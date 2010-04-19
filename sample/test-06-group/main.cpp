@@ -39,22 +39,32 @@ int main (int argc, char** argv)
   short xyz[] = {1,-1,0, 1,1,0, -1,-1,0, -1,1,0};
   VertexArray* positions = new VertexArray (4, 3, 2);
   positions->set (0, 4, xyz);
+
   VertexBuffer* vertices1 = new VertexBuffer;
   vertices1->setPositions (positions, scale, bias);
-  vertices1->setDefaultColor (0xff4c4cb2);  // 0.3, 0.3, 0.7
 
   VertexBuffer* vertices2 = new VertexBuffer;
   vertices2->setPositions (positions, scale, bias);
-  vertices2->setDefaultColor (0xff4cb2b2);  // 0.3, 0.7, 0.7
 
   int strips[1] = {4};
   TriangleStripArray* tris = new TriangleStripArray (0, 1, strips);
-  Appearance* app = new Appearance;
 
-  Mesh* mesh1 = new Mesh (vertices1, tris, app);
+  Material* mat1 = new Material;
+  mat1->setColor (Material::DIFFUSE, 0xff4c4cb2);
+
+  Material* mat2 = new Material;
+  mat2->setColor (Material::DIFFUSE, 0xff4cb2b2);
+
+  Appearance* app1 = new Appearance;
+  app1->setMaterial (mat1);
+
+  Appearance* app2 = new Appearance;
+  app2->setMaterial (mat2);
+
+  Mesh* mesh1 = new Mesh (vertices1, tris, app1);
   mesh1->translate (1,0,0);
 
-  Mesh* mesh2 = new Mesh (vertices2, tris, app);
+  Mesh* mesh2 = new Mesh (vertices2, tris, app2);
   mesh2->translate (-1,0,0);
   
   Group* grp = new Group;

@@ -105,13 +105,20 @@ int main (int argc, char** argv)
   float scale = 1;
   float bias[3] = {0,0,0};
   vertices->setPositions (positions, scale, bias);
-  vertices->setDefaultColor (0xff0000ff);
 
   int strips[1] = {4};
   int indices[4] = {0,1,2,3};
   TriangleStripArray* tris = new TriangleStripArray (indices, 1, strips);
 
+  Material* mat = new Material;
+  mat->setColor (Material::DIFFUSE, 0xff0000ff);
+
+  PolygonMode* pmode = new PolygonMode;
+  pmode->setCulling (PolygonMode::CULL_NONE);
+
   Appearance* app = new Appearance;
+  app->setMaterial (mat);
+  app->setPolygonMode (pmode);
 
   Mesh* mesh = new Mesh (vertices, tris, app);
   mesh->addAnimationTrack (animation_mesh_translate);

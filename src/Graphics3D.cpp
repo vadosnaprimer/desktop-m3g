@@ -17,6 +17,8 @@ Graphics3D:: Graphics3D () :
 {
   // 今だけZテストを常時有効
   glEnable (GL_DEPTH_TEST);
+  // 念のため
+  //glEnable (GL_RESCALE_NORMAL);
 
   // プロパティは決めうち
   properties.push_back (new Property("supportAntialiasing"         , 1));

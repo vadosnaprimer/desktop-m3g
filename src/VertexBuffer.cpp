@@ -198,7 +198,7 @@ void VertexBuffer:: setColors (VertexArray* colors_)
   colors = colors_;
 
   float scale   = 1/255.f;
-  float bias[4] = {0,0,0};
+  float bias[4] = {0,0,0,0};
   int   num     = colors->getComponentCount()*colors->getVertexCount();
   int   size    = sizeof(float)* num;
 
@@ -212,6 +212,7 @@ void VertexBuffer:: setColors (VertexArray* colors_)
   }
 
   glGenBuffers (1, &ibuf);
+  cout << "VertexBuffer: send color to GPU, ibuf=" << ibuf << "\n";
   glBindBuffer (GL_ARRAY_BUFFER, ibuf);
   glBufferData (GL_ARRAY_BUFFER, size, float_values, GL_STATIC_DRAW);
 
@@ -389,22 +390,6 @@ void VertexBuffer:: render (RenderState& state) const
     glDisableClientState (GL_VERTEX_ARRAY);
   }
 
-  if (colors) {
-    //cout << "VertexBuffer: render color array\n";
-    int cc = colors->getComponentCount();
-    glBindBuffer (GL_ARRAY_BUFFER, ibuf);
-    glEnableClientState (GL_COLOR_ARRAY);
-    glColorPointer (cc, GL_FLOAT, 0, 0);  // 0,0=stride,offset
-  } else {
-    //cout << "VertexBuffer: render default color\n";
-    glDisableClientState (GL_COLOR_ARRAY);
-    float r = ((default_color & 0x00ff0000) >> 16) / 255.f;
-    float g = ((default_color & 0x0000ff00) >>  8) / 255.f;
-    float b = ((default_color & 0x000000ff) >>  0) / 255.f;
-    float a = ((default_color & 0xff000000) >> 24) / 255.f;
-    glColor4f (r,g,b,a);
-  }
-
   if (normals) {
     //cout << "render normal array\n";
     glBindBuffer (GL_ARRAY_BUFFER, nbuf);
@@ -413,6 +398,22 @@ void VertexBuffer:: render (RenderState& state) const
   } else {
     glDisableClientState (GL_NORMAL_ARRAY);
   }
+
+    if (colors) {
+      cout << "VertexBuffer: send vertex color data\n";
+      int cc = colors->getComponentCount();
+      glBindBuffer (GL_ARRAY_BUFFER, ibuf);
+      glEnableClientState (GL_COLOR_ARRAY);
+      glColorPointer (cc, GL_FLOAT, 0, 0);  // 0,0=stride,offset
+      glDisableClientState (GL_COLOR_ARRAY);
+      state.vertex_color_buffer_enabled = true;
+      state.default_vertex_color        = 0xffffffff;
+    } else {
+      cout << "VertexBuffer: send vertex color data, default color\n";
+      glDisableClientState (GL_COLOR_ARRAY);
+      state.vertex_color_buffer_enabled = false;
+      state.default_vertex_color        = default_color;
+    }
 
   for (int i = 0; i < MAX_TEXTURE_UNITS; i++) {
     if (tex_coords[i]) {
