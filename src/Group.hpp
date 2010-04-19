@@ -87,7 +87,6 @@ namespace m3g {
      */
     virtual void findByObjectType (int obj_type, std::vector<Object3D*>& objs) const;
 
-  protected:
     /**
      * @~Enslish  Renderr this object, for inner use.
      * @~Japanese このGroupをレンダリングする内部使用の関数.

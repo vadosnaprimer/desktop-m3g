@@ -272,13 +272,13 @@ void Material:: render (RenderState& state) const
 
   // 頂点カラーが有効なとき
   if (vertex_color_tracking) {
-    cout << "Material: enable vertex color tracking.\n";
+    //cout << "Material: enable vertex color tracking.\n";
     glDisable (GL_LIGHTING);
     if (state.vertex_color_buffer_enabled) {
-      cout << "Material: enable colors per vertex .\n";
+      //cout << "Material: enable colors per vertex .\n";
       glEnableClientState (GL_COLOR_ARRAY);
     } else {
-      cout << "Material: enabled colors as default color.\n";
+      //cout << "Material: enabled colors as default color.\n";
       GLfloat vertex_color_rgba[4] = {((state.default_vertex_color & 0x00ff0000) >> 16) / 255.f,
                                       ((state.default_vertex_color & 0x0000ff00) >> 8 ) / 255.f,
                                       ((state.default_vertex_color & 0x000000ff) >> 0 ) / 255.f,

@@ -289,6 +289,9 @@ void SkinnedMesh:: render (RenderState& state) const
   Mesh::render (state);
 
   (const_cast<SkinnedMesh*>(this))->vertices = tmp;
+
+  // 注意：骨には（レンダリングすべき）任意のノードを付加できるのでこれは必要。
+  skeleton->render (state);
 }
 
 

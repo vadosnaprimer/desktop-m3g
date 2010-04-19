@@ -1,3 +1,30 @@
+
+
+World:
+  active camera = [0]
+  background    = Background:   color clear=1, depth clear=1, background color=0xff000000, background image=0, image mode=BORDER,BORDER, crop rectangle=0,0,0,0
+  [0] : Camera:   type="PERSPECTIVE", fovy=37.8493, aspect_ratio=1.5, near=0.1, far=1000
+  [1] : Group: 1 nodes
+  [2] : Light: mode=DIRECTIONAL, color=0xffffff, intensity=1, attenuation=1,0,0, spot=45,0
+  [3] : Light: mode=AMBIENT, color=0xffffff, intensity=1, attenuation=1,0,0, spot=45,0
+
+
+Mesh:   1 submesh,  863 vertices, node_alpha=0.498039
+Mesh:   2 submesh,  121 vertices, node_alpha=0.498039
+SkinnedMesh: 1720 vertices, 37 bones
+
+
+
+
+
+
+
+
+
+
+
+
+
 encoding = 1
 values[j] = -898
 values[j] = -22796
