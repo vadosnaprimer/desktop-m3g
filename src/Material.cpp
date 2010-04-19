@@ -242,7 +242,7 @@ void Material:: render (RenderState& state) const
   }
 
   //cout << "Material: render\n";
-  cout << "Material: state.alpha = " << state.alpha << "\n";
+  //cout << "Material: state.alpha = " << state.alpha << "\n";
 
   GLfloat ambient_rgb[4] = {((ambient_color & 0x00ff0000) >> 16) / 255.f,
                             ((ambient_color & 0x0000ff00) >> 8 ) / 255.f,
@@ -270,6 +270,22 @@ void Material:: render (RenderState& state) const
   glColor4fv (diffuse_rgba);
 
   //cout << *this;
+}
+
+
+void Material:: renderX ()
+{
+  GLfloat gray[4]  = {0.8,0.8,0.8,1};
+  GLfloat dark[3]  = {0.2,0.2,0.2};
+  GLfloat black[3] = {0,0,0};
+  GLfloat zero     = 0;
+
+  glMaterialfv (GL_FRONT_AND_BACK, GL_AMBIENT,   dark);
+  glMaterialfv (GL_FRONT_AND_BACK, GL_DIFFUSE,   gray);
+  glMaterialfv (GL_FRONT_AND_BACK, GL_SPECULAR,  black);
+  glMaterialf  (GL_FRONT_AND_BACK, GL_SHININESS, zero);
+  glMaterialfv (GL_FRONT_AND_BACK, GL_EMISSION,  black);
+  glColor4fv   (gray);
 }
 
 

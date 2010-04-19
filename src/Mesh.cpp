@@ -169,6 +169,7 @@ void Mesh:: render (RenderState& state) const
     }
   }
 
+
 }
 
 std::ostream& Mesh:: print (std::ostream& out) const

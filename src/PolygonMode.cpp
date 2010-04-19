@@ -139,6 +139,18 @@ void PolygonMode:: render (RenderState& state) const
 
 }
 
+void PolygonMode:: renderX ()
+{
+  glFrontFace   (GL_CCW);
+  glCullFace    (GL_BACK);
+  glEnable      (GL_CULL_FACE);
+  glShadeModel  (GL_SMOOTH);
+  glLightModeli (GL_LIGHT_MODEL_TWO_SIDE, GL_FALSE);
+  glLightModeli (GL_LIGHT_MODEL_LOCAL_VIEWER, GL_TRUE);
+  glHint        (GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
+}
+
+
 static
 const char* culling_to_string (int culling)
 {

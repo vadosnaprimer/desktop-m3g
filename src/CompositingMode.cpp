@@ -116,6 +116,10 @@ void CompositingMode:: render (RenderState& state) const
   if (state.pass != 2) {
     return;
   }
+  if (this == NULL) {
+    renderX ();
+    return;
+  }
 
   //cout << "CompositingMode: render\n";
 
@@ -138,6 +142,8 @@ void CompositingMode:: render (RenderState& state) const
   default: throw InternalException (__FILE__, __func__, "Blending mode is invalid, mode=%d.", blending_mode);
   }
 
+  // TODO: 完全にdisableにするのではなく0にした方が
+  // ドライバーレベルで高速化してくれそう
   if (alpha_threshold > 0) {
     glEnable    (GL_ALPHA_TEST);
     glAlphaFunc (GL_GEQUAL, alpha_threshold);      
@@ -153,6 +159,18 @@ void CompositingMode:: render (RenderState& state) const
   }
 
 }
+
+void CompositingMode:: renderX ()
+{
+  glDepthFunc (GL_LESS);
+  glDepthMask (GL_TRUE);
+  glColorMask (GL_TRUE, GL_TRUE, GL_TRUE, GL_TRUE);
+  glBlendFunc (GL_ONE, GL_ZERO);
+  glDisable   (GL_ALPHA_TEST);
+  glDisable   (GL_POLYGON_OFFSET_FILL);
+}
+
+
 
 static
 const char* mode_to_string (int mode)

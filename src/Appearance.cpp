@@ -177,34 +177,37 @@ void Appearance:: render (RenderState& state) const
 
   //cout << "Appearance: render\n";
 
-  if (fog) {
+  if (fog)
     fog->render (state);
-  }
-  if (material) {
+  else
+    Fog:: renderX ();
+
+  if (material)
     material->render (state);
-  }
-  if (compositing_mode) {
+  else
+    Material:: renderX ();
+
+  if (compositing_mode)
     compositing_mode->render (state);
-  }
-  if (polygon_mode) {
+  else
+    CompositingMode:: renderX ();
+
+  if (polygon_mode)
     polygon_mode->render (state);
-  }
+  else
+    PolygonMode:: renderX ();
 
-
+  // ここのgl関数はTexture2Dの中に移動しようか？
   glEnable (GL_TEXTURE_2D);
   for (int i = 0; i < (int)textures.size(); i++) {
     if (textures[i]) {
       glActiveTexture       (GL_TEXTURE0+i);           // テクスチャーユニットの選択     
       glEnable              (GL_TEXTURE_2D);           // テクスチャーユニットの有効化
-      //glClientActiveTexture (GL_TEXTURE0+i);           // クライアント部分のテクスチャーユニット選択
-      //glEnableClientState   (GL_TEXTURE_COORD_ARRAY);  // テクスチャー座標配列の有効化
-
       textures[i]->render (state);
     } else {
       glActiveTexture       (GL_TEXTURE0+i);            // テクスチャーユニットの選択     
       glDisable             (GL_TEXTURE_2D);            // テクスチャーユニットの無効化
-      //glClientActiveTexture (GL_TEXTURE0+i);            // クライアント部分のテクスチャーユニット選択
-      //glDisableClientState  (GL_TEXTURE_COORD_ARRAY);   // テクスチャー座標配列の無効化
+      Texture2D:: renderX ();
     }
   }
 

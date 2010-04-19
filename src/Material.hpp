@@ -114,9 +114,15 @@ namespace m3g {
 
     /**
      * @~English  Render this object, for inner use.
-     * @~Japanese このMaterialをレンダリングする内部使用の関数.
+     * @~Japanese このオブジェクトをレンダリングする内部使用の関数.
      */
     virtual void render (RenderState& state) const;
+
+    /**
+     * @~English  Render this object, for inner use.
+     * @~Japanese このオブジェクトをレンダリングする内部使用の関数.
+     */
+    static void renderX ();
 
   private:
     bool  vertex_color_tracking;

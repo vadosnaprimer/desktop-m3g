@@ -389,8 +389,6 @@ void VertexBuffer:: render (RenderState& state) const
     glDisableClientState (GL_VERTEX_ARRAY);
   }
 
-  // TODO: vertex_color_tracking=enableの時のみ頂点カラーを使うべき。
-  // あとこれだとDIFFUSE COLORが設定されていない。
   if (colors) {
     //cout << "VertexBuffer: render color array\n";
     int cc = colors->getComponentCount();

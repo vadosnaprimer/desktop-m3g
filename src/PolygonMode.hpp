@@ -149,12 +149,19 @@ namespace m3g {
      */
     virtual std::ostream& print (std::ostream& out) const;
 
-  protected:
+
     /**
-     * @~English  Render this object, for inner use.
-     * @~Japanese  このオブジェクトの描画.
+     * @~English   Render this object, for inner use.
+     * @~Japanese  このオブジェクトをレンダリングする内部使用の関数.
      */
     virtual void render (RenderState& state) const;
+
+  private:
+    /**
+     * @~English   Render default, for inner use.
+     * @~Japanese  デフォルトでレンダリングする内部使用の関数.
+     */
+    static void renderX ();
 
   private:
     int  culling;

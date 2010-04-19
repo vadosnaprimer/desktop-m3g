@@ -236,6 +236,12 @@ void Fog:: render (RenderState& state) const
 
 }
 
+
+void Fog:: renderX ()
+{
+  glDisable (GL_FOG);
+}
+
 static
 const char* mode_to_string (int mode)
 {

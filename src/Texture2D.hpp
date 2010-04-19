@@ -186,6 +186,12 @@ namespace m3g {
      */
     virtual std::ostream& print (std::ostream& out) const;
 
+    /**
+     * @~English  Render this object, for inner use.
+     * @~Japanese このオブジェクトをレンダリングする内部使用の関数.
+     */
+    virtual void render (RenderState& state) const;
+
   protected:
     virtual void findByObjectType (int obj_type, std::vector<Object3D*>& objs) const;
 
@@ -193,9 +199,9 @@ namespace m3g {
   private:
     /**
      * @~English  Render this object, for inner use.
-     * @~Japanese このTexture2Dをレンダリングする内部使用の関数.
+     * @~Japanese デフォルトでレンダリングする内部使用の関数.
      */
-    virtual void render (RenderState& state) const;
+    static void renderX ();
 
 
   private:
