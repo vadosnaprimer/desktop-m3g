@@ -74,8 +74,8 @@ SkinnedMesh* SkinnedMesh:: duplicate () const
 
 int SkinnedMesh:: animate (int world_time)
 {
-  cout << "SkinnedMesh: animate\n";
-  cout << "  bones = " << bind_poses.size() << "\n";
+  //cout << "SkinnedMesh: animate\n";
+  //cout << "  bones = " << bind_poses.size() << "\n";
   
   //for (int i = 0; i < (int)bind_poses.size(); i++) {
   //  cout << "i = " << i << ", " << bind_poses[i].bone->Transformable::print (cout) << "\n";
@@ -87,6 +87,7 @@ int SkinnedMesh:: animate (int world_time)
 
   // ボーンの移動
   skeleton->animate (world_time);
+  //skeleton->translate (0.1,0,0);
 
   // マトリックスパレットの作成
   int bone_count = bind_poses.size();
@@ -128,6 +129,7 @@ int SkinnedMesh:: animate (int world_time)
       //cout << "v0 = " << v0 << "\n";
       v1 += matrix_palette[i] * v0 * (bone_indices[v][b].weight/weight);
     }
+    //v1 = v0;
     if (weight > 0)
       v1.get (&values[v*3]);
   }
@@ -307,7 +309,7 @@ Matrix SkinnedMesh:: getGlobalPose (Node* node) const
     //cout << i++ << " : composite transform = " << trans << "\n";
     float m[16];
     trans.get (m);
-    global_pose *= Matrix(m);
+    global_pose = Matrix(m) * global_pose;
   } while ((node = node->getParent()) != NULL);
 
   return global_pose;

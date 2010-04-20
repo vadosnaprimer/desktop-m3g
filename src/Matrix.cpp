@@ -153,6 +153,7 @@ Matrix& Matrix:: transpose ()
 
 Matrix& Matrix:: operator*= (const Matrix& rhs)
 {
+  // this = this * rhs;
   float m1[4][4];
   float m2[4][4];
 

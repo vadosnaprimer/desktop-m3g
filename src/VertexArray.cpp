@@ -218,9 +218,9 @@ std::ostream& VertexArray:: print (std::ostream& out) const
 
 std::ostream& VertexArray:: print_raw_data (std::ostream& out) const
 {
-  print (cout);
+  print (out);
   for (int i = 0; i < vertex_count*component_count; i+=component_count) {
-    cout << i/component_count << " : (";
+    out << i/component_count << " : (";
     for (int j = 0; j < component_count; j++) {
       switch (component_size) {
       case 1:
@@ -233,7 +233,7 @@ std::ostream& VertexArray:: print_raw_data (std::ostream& out) const
 	throw IllegalStateException (__FILE__, __func__, "component size is invalid. size=%d.", component_size);
     }
     }
-    cout << "),\n";
+    out << "),\n";
   }
   return out << "\n";
 }

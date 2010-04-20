@@ -52,13 +52,13 @@ const float& Vector:: operator[] (int index) const
 
 Vector& Vector:: operator+= (const Vector& rhs)
 {
-  //  if (w != rhs.w) {
-  //  throw IllegalArgumentException (__FILE__, __func__, "W component is invalid, %f, %f.", w, rhs.w);
-  //}
+  if (rhs.w == 0) {
+    throw IllegalArgumentException (__FILE__, __func__, "Divided by 0.");
+  }
 
-  x += rhs.x;
-  y += rhs.y;
-  z += rhs.z;
+  x += rhs.x * w/rhs.w;
+  y += rhs.y * w/rhs.w;
+  z += rhs.z * w/rhs.w;
   return *this;
 }
 
