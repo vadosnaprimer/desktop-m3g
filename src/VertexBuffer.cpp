@@ -236,7 +236,7 @@ void VertexBuffer:: setNormals (VertexArray* normals_)
     return;
   }
 
-  if (normals_->getComponentType() != 1 && normals_->getComponentType() != 2) {
+  if (normals_->getComponentType() != 1 && normals_->getComponentType() != 2 && normals_->getComponentType() != 4) {
     throw IllegalArgumentException (__FILE__, __func__, "Component size must be 1 or 2, size=%d.", normals_->getComponentType());
   }
   if (normals_->getComponentCount() != 3) {
@@ -281,7 +281,7 @@ void VertexBuffer:: setPositions (VertexArray* positions_, float scale, float* b
     return;
   }
 
-  if (positions_->getComponentType() != 1 && positions_->getComponentType() != 2) {
+  if (positions_->getComponentType() != 1 && positions_->getComponentType() != 2 && positions_->getComponentType() != 4) {
     throw IllegalArgumentException (__FILE__, __func__, "Component size must be 1 or 2, size=%d.", positions_->getComponentType());
   }
   if (positions_->getComponentCount() != 3) {

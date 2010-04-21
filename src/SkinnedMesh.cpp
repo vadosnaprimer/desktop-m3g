@@ -28,16 +28,44 @@ SkinnedMesh:: SkinnedMesh (VertexBuffer* vertices,
 
   skinned_vertices = vertices->duplicate ();
 
-  // 変形後の頂点位置と法線の保存用
-  float scale_bias[4];
-  VertexArray* positions = vertices->getPositions(scale_bias);
-  VertexArray* normals   = vertices->getNormals();
-  if (positions)
-    skinned_vertices->setPositions (positions->duplicate(), scale_bias[0], &scale_bias[1]);
- if (normals)
-   skinned_vertices->setNormals (normals->duplicate());
+  // 注意：スキン変形後のpositionsとnormalsを保存するために新しくnewし直す。
+  // duplicate()しただけでは同じインスタンスを指している。
+  // 内部float型でデータを保持しないと精度・有効範囲が足りない。
+  // 内部float型の時はscaleとbiasは適用済み。
 
-  int vertex_count = positions->getVertexCount();
+  float scale_bias[4];
+  VertexArray* bind_positions = vertices->getPositions(scale_bias);
+  if (bind_positions) {
+    VertexArray* skinned_positions = new VertexArray (bind_positions->getVertexCount(),
+                                                      bind_positions->getComponentCount(),
+                                                      4);
+    int          size   = bind_positions->getVertexCount() * bind_positions->getComponentCount();
+    float*       values = new float[size];
+    bind_positions->get (0, bind_positions->getVertexCount(), scale_bias[0], &scale_bias[1], values);
+    skinned_positions->set (0, bind_positions->getVertexCount(), values);
+    delete [] values;
+
+    scale_bias[0] = 1;
+    scale_bias[1] = scale_bias[2] = scale_bias[3] = 0;
+    skinned_vertices->setPositions (skinned_positions, scale_bias[0], &scale_bias[1]);
+  }
+
+  VertexArray* bind_normals   = vertices->getNormals();
+  if (bind_normals) {
+    VertexArray* skinned_normals = new VertexArray (bind_normals->getVertexCount(),
+                                                    bind_normals->getComponentCount(),
+                                                    4);
+    int          size   = bind_normals->getVertexCount() * bind_normals->getComponentCount();
+    float*       values = new float[size];
+    bind_normals->get (0, bind_normals->getVertexCount(), scale_bias[0], &scale_bias[1], values);
+    skinned_normals->set (0, bind_normals->getVertexCount(), values);
+    delete [] values;
+
+    skinned_vertices->setNormals (skinned_normals);
+  }
+
+
+  int vertex_count = bind_positions->getVertexCount();
   bone_indices.clear();
   for (int v = 0; v < vertex_count; v++) {
     bone_indices.push_back (std::vector<BoneIndex>());

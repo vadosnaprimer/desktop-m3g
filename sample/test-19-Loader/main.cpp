@@ -36,7 +36,7 @@ static void keyboard(unsigned char key, int x, int y)
     exit(0);
   case ' ':
     wld->animate (animation_time);
-    animation_time += 10;
+    animation_time += 100;
     cout << "animation time = " << animation_time << "\n";
   default:
     break;

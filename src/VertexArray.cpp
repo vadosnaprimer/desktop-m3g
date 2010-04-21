@@ -27,6 +27,7 @@ VertexArray:: VertexArray (int num_vertices, int num_components, int component_s
 
   int size = vertex_count * component_count * component_size;
   char_values = new char[size];
+  memset (char_values, 0, size);
 }
 
 VertexArray:: ~VertexArray ()
