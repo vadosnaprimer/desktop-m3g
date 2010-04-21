@@ -251,7 +251,7 @@ std::ostream& VertexArray:: print_raw_data (std::ostream& out) const
       default: throw IllegalStateException (__FILE__, __func__, "Component size is invalid, size=%d.", component_size);
       }
     }
-    cout << ")\n";
+    out << ")\n";
   }
 
   return out;

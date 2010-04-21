@@ -29,12 +29,39 @@ Quaternion:: ~Quaternion ()
 {
 }
 
+void Quaternion:: setIdentity ()
+{
+  x = y = z = 0;
+  w = 1;
+}
+
+void Quaternion:: setZero ()
+{
+  x = y = z = w  = 0;
+}
+
+Quaternion& Quaternion:: normalize ()
+{
+  float len = sqrtf(x*x + y*y + z*z + w*w);
+  x = x/len;
+  y = y/len;
+  z = z/len;
+  w = w/len;
+  return *this;
+}
+
 void Quaternion:: set (float qx, float qy, float qz, float qw)
 {
   x = qx;
   y = qy;
   z = qz;
   w = qw;
+  normalize ();
+}
+
+float Quaternion:: getLength () const
+{
+  return sqrtf(x*x+y*y+z*z+w*w);
 }
 
 /**
@@ -59,13 +86,21 @@ void Quaternion:: getAngleAxis (float* angle_axis) const
   }
 }
 
-
+/**
+ * a=0のときp, a=1のときq
+ */
 Quaternion m3g::slerp (const Quaternion& p, const Quaternion& q, float a)
   {
     float th = acosf(p.x*q.x + p.y*q.y + p.z*q.z + p.w*q.w);
-    float w0 = sinf((1-a)*th)/sinf(th);
-    float w1 = sinf(a*th)/sinf(th);
-    return w0*p + w1*q;
+    if (sinf(th) != 0) {
+      float w0 = sinf((1-a)*th)/sinf(th);
+      float w1 = sinf(a*th)/sinf(th);
+      return w0*p + w1*q;
+    } else {
+      // 注意：thがNAN化した時もこちらが実行される
+      // p,qがほぼ等しい時に内積が1を超える事はあり得る。
+      return (a < 0.5) ? p : q;
+    }
   }
 
 Quaternion operator* (float f, const Quaternion& p)

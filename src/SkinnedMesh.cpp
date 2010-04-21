@@ -115,7 +115,7 @@ int SkinnedMesh:: animate (int world_time)
 
   // ボーンの移動
   skeleton->animate (world_time);
-  //skeleton->translate (0.1,0,0);
+
 
   // マトリックスパレットの作成
   int bone_count = bind_poses.size();

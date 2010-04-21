@@ -5,6 +5,27 @@
 using namespace std;
 using namespace m3g;
 
+TEST (Quaternion_default_values)
+{
+  Quaternion q1;
+  CHECK_EQUAL (0, q1.x);
+  CHECK_EQUAL (0, q1.y);
+  CHECK_EQUAL (0, q1.z);
+  CHECK_EQUAL (1, q1.w);
+
+  q1.setIdentity ();
+  CHECK_EQUAL (0, q1.x);
+  CHECK_EQUAL (0, q1.y);
+  CHECK_EQUAL (0, q1.z);
+  CHECK_EQUAL (1, q1.w);
+
+  q1.setZero ();
+  CHECK_EQUAL (0, q1.x);
+  CHECK_EQUAL (0, q1.y);
+  CHECK_EQUAL (0, q1.z);
+  CHECK_EQUAL (0, q1.w);
+}
+
 
 TEST (Quaternion_set_values) 
 {
@@ -17,12 +38,14 @@ TEST (Quaternion_set_values)
   CHECK_CLOSE (0.5f, a[1], 0.00001);
   CHECK_CLOSE (0.3f, a[2], 0.00001);
   CHECK_CLOSE (0.812403840463596f, a[3], 0.00001);
+  CHECK_CLOSE (1.f, q.getLength(), 0.00001);
 
   q.set (1,2,3,4);
-  CHECK_CLOSE (1.f, q.x, 0.00001);
-  CHECK_CLOSE (2.f, q.y, 0.00001);
-  CHECK_CLOSE (3.f, q.z, 0.00001);
-  CHECK_CLOSE (4.f, q.w, 0.00001);
+  CHECK_CLOSE (0.182575f, q.x, 0.00001);
+  CHECK_CLOSE (0.365148f, q.y, 0.00001);
+  CHECK_CLOSE (0.547723f, q.z, 0.00001);
+  CHECK_CLOSE (0.730297f, q.w, 0.00001);
+  CHECK_CLOSE (1.f, q.getLength(), 0.00001);
 }
 
 
@@ -87,4 +110,31 @@ TEST (Quaternion_slerp)
   CHECK_CLOSE (0.f, a[1], 0.00001);
   CHECK_CLOSE (0.f, a[2], 0.00001);
   CHECK_CLOSE (1.f, a[3], 0.00001);
+}
+
+TEST (Quaternion_slerp_2)
+{
+  // このデータは以前実際にアプリで使ってNAN化したもの。
+  Quaternion q1;
+  Quaternion q2;
+  Quaternion q3;
+
+  q1.set (0.60664, -0.79462, 0.0139204, 0.0191728);
+  q2.set (0.605992, -0.795152, 0.01349, 0.01892);
+  q3 = slerp (q1, q2, 0.5);
+
+  CHECK_CLOSE (0.6063120, q3.x, 0.00001f);
+  CHECK_CLOSE (-0.794881, q3.y, 0.00001f);
+  CHECK_CLOSE (0.0137051, q3.z, 0.00001f);
+  CHECK_CLOSE (0.0190463, q3.w, 0.00001f);
+
+  q1.set (0.602674, -0.797573, 0.0156422,0.0205976);
+  q2.set (0.602917, -0.797366, 0.0157651,0.0206895);
+  q3 = slerp (q1, q2, 0);
+
+  CHECK_CLOSE (0.602672,  q3.x, 0.00001f);
+  CHECK_CLOSE (-0.79757,  q3.y, 0.00001f);
+  CHECK_CLOSE (0.0156421, q3.z, 0.00001f);
+  CHECK_CLOSE (0.0205975, q3.w, 0.00001f);
+
 }

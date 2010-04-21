@@ -45,13 +45,13 @@ int Transformable:: animate (int world_time)
 
   Object3D:: animate (world_time);
 
-  bool  is_orientation_modefied = false;
-  bool  is_scaling_modefied     = false;
-  bool  is_translation_modefied = false;
-  Quaternion  new_orientation   = Quaternion();
-  new_orientation.set (0,0,0,0);
+  bool        is_orientation_modefied = false;
+  bool        is_scaling_modefied     = false;
+  bool        is_translation_modefied = false;
   Scale       new_scaling       = Scale(0,0,0);
   Translation new_translation   = Translation(0,0,0);
+  Quaternion  new_orientation   = Quaternion();
+  new_orientation.setZero();
 
   for (int i = 0; i < getAnimationTrackCount(); i++) {
     AnimationTrack*      track      = getAnimationTrack (i);
@@ -73,8 +73,11 @@ int Transformable:: animate (int world_time)
       float value[4] = {0,0,0,0};  // Quaternion(x,y,z,w)
       //cout << "Transformable: keyfram = " << *keyframe << "\n";
       keyframe->getFrame (local_time, value);
+      //keyframe->print (cout);
       Quaternion q;
+      //cout << "value = " << value[0] << ", " << value[1] << ", " << value[2] << ", " << value[3] << "\n";
       q.set (value[0], value[1], value[2], value[3]);
+      //cout << "q = " << q << "\n";
       new_orientation = new_orientation + q * weight;
       is_orientation_modefied = true;
       //cout << "Transformable: orientation --> " << new_orientation << "\n";
@@ -109,8 +112,7 @@ int Transformable:: animate (int world_time)
   }
 
   if (is_orientation_modefied) {
-    // メモ：正規化必要？
-    orientation = new_orientation;
+    orientation = new_orientation.normalize();
   }
   if (is_scaling_modefied) {
     scaling = new_scaling;
