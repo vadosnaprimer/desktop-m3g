@@ -88,6 +88,48 @@ TEST (VertexArray_set_variables_2byte)
 
 }
 
+TEST (VertexArray_set_variables_4byte)
+{
+  VertexArray* varry = new VertexArray(16, 3, 4);
+  CHECK_EQUAL (OBJTYPE_VERTEX_ARRAY, varry->getObjectType());
+  CHECK_EQUAL (16, varry->getVertexCount());
+  CHECK_EQUAL (3, varry->getComponentCount());
+  CHECK_EQUAL (4, varry->getComponentType());
+
+  float values[16*3];
+  for (int i = 0; i < 16; i++) {
+    values[i*3]   = i;
+    values[i*3+1] = i;
+    values[i*3+2] = i;
+  }
+  varry->set (0, 16, values);
+
+  float buf[16*3];
+  memset (buf, 0, sizeof(buf));
+  varry->get (0, 16, buf);
+
+  CHECK_EQUAL (buf[1*3+0], values[1*3+0]);
+  CHECK_EQUAL (buf[1*3+1], values[1*3+1]);
+  CHECK_EQUAL (buf[1*3+2], values[1*3+2]);
+  CHECK_EQUAL (buf[15*3+0], values[15*3+0]);
+  CHECK_EQUAL (buf[15*3+1], values[15*3+1]);
+  CHECK_EQUAL (buf[15*3+2], values[15*3+2]);
+
+
+  float buf2[16*3];
+  memset (buf2, 0, sizeof(buf2));
+  varry->set (10, 1, values+10*3);
+  varry->get (10, 1, buf2);
+
+  CHECK_EQUAL (values[10*3+0], buf2[0]);
+  CHECK_EQUAL (values[10*3+1], buf2[1]);
+  CHECK_EQUAL (values[10*3+2], buf2[2]);
+  CHECK_EQUAL (0, buf2[1*3+0]);
+  CHECK_EQUAL (0, buf2[1*3+1]);
+  CHECK_EQUAL (0, buf2[1*3+2]);
+
+}
+
 TEST (VertexArray_set_variables_2byte_auto_scale_bias)
 {
   VertexArray* varry = new VertexArray(16, 3, 2);

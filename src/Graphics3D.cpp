@@ -33,7 +33,7 @@ Graphics3D:: Graphics3D () :
   properties.push_back (new Property("maxViewportDimension"        , 2048));
   properties.push_back (new Property("maxTextureDimension"         , 2048));
   properties.push_back (new Property("maxSpriteCropDimension"      , 2048));
-  properties.push_back (new Property("maxTransformsPerVertex"      , 65535));
+  properties.push_back (new Property("maxTransformsPerVertex"      , 65535)); // unlimited.
   properties.push_back (new Property("numTextureUnits"             , 4));
 }
 
@@ -162,7 +162,7 @@ void Graphics3D:: render (VertexBuffer* vertices, IndexBuffer* triangles, Appear
 
 void Graphics3D:: render (World* wld) const
 {
-  cout << "Graphics3D: レンダー " << wld->getChildCount() << " ノード\n";
+  //cout << "Graphics3D: レンダー " << wld->getChildCount() << " ノード\n";
 
   RenderState state;
 

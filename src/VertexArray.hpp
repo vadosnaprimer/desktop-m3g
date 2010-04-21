@@ -39,15 +39,21 @@ namespace m3g {
 
     /**
      * @~English  Returns a range of 8-bit vertex attributes. 
-     * @~Japanese 8bit頂点属性値のレンジの取得.
+     * @~Japanese 8bitレンジの頂点データの取得.
      */
     void get (int first_vertex, int num_vertices, char* values) const;
 
     /**
      * @~English  Returns a range of 16-bit vertex attributes.
-     * @~Japanese 16bit頂点属性値のレンジの取得.
+     * @~Japanese 16bitレンジの頂点データの取得.
      */
     void get (int first_vertex, int num_vertices, short* values) const;
+
+    /**
+     * @~English  Returns a range of 32-bit float vertex attributes.
+     * @~Japanese 32bit浮動小数点レンジの頂点データの取得.
+     */
+    void get (int first_vertex, int num_vertices, float* values) const;
 
     /**
      * @~English  Returns the number of components per vertex.
@@ -70,16 +76,21 @@ namespace m3g {
 
     /**
      * @~English  Copies in an array of 8-bit vertex attributes.
-     * @~Japanese 8bit頂点属性値のコピー.
+     * @~Japanese 8bit頂点データの設定.
      */
     void set (int first_vertex, int num_vertices, const char* values);
 
     /**
      * @~English  Copies in an array of 16-bit vertex attributes.
-     * @~Japanese 16bit頂点属性値のコピー.
+     * @~Japanese 16bit頂点データの設定.
      */
     void set (int first_vertex, int num_vertices, const short* values);
 
+    /**
+     * @~English  Copies in an array of 32-bit float vertex attributes.
+     * @~Japanese 32bit浮動小数点頂点データの設定.
+     */
+    void set (int first_vertex, int num_vertices, const float* values);
 
 
     /**
@@ -111,7 +122,11 @@ namespace m3g {
     int   component_count;
     int   component_size;
     int   vertex_count;
-    char* values;
+    union {
+      char* char_values;
+      short* short_values;
+      float* float_values;
+    };
 
   };
 
