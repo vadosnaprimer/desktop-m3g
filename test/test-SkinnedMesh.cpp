@@ -45,31 +45,68 @@ TEST (SkinnedMesh_getGlobalPose)
   grp0->addChild (grp1);
   grp1->addChild (grp2);
 
+  grp0->translate (0,1,0);
+  grp1->postRotate (90, 1,0,0);
+  grp2->translate (0,0,3);
+
   Matrix global_pose;
   
-  global_pose = ((SkinnedMesh*)0)-> getGlobalPose (grp2);
+  global_pose = ((SkinnedMesh*)0)-> getGlobalPose (grp0);
   CHECK_CLOSE (1, global_pose.m[0][0], 0.0001f);
-  CHECK_CLOSE (1, global_pose.m[1][1], 0.0001f);
-  CHECK_CLOSE (1, global_pose.m[2][2], 0.0001f);
-  CHECK_CLOSE (1, global_pose.m[3][3], 0.0001f);
   CHECK_CLOSE (0, global_pose.m[0][1], 0.0001f);
   CHECK_CLOSE (0, global_pose.m[0][2], 0.0001f);
   CHECK_CLOSE (0, global_pose.m[0][3], 0.0001f);
+  CHECK_CLOSE (0, global_pose.m[1][0], 0.0001f);
+  CHECK_CLOSE (1, global_pose.m[1][1], 0.0001f);
+  CHECK_CLOSE (0, global_pose.m[1][2], 0.0001f);
+  CHECK_CLOSE (1, global_pose.m[1][3], 0.0001f);
+  CHECK_CLOSE (0, global_pose.m[2][0], 0.0001f);
+  CHECK_CLOSE (0, global_pose.m[2][1], 0.0001f);
+  CHECK_CLOSE (1, global_pose.m[2][2], 0.0001f);
+  CHECK_CLOSE (0, global_pose.m[2][3], 0.0001f);
+  CHECK_CLOSE (0, global_pose.m[3][0], 0.0001f);
+  CHECK_CLOSE (0, global_pose.m[3][1], 0.0001f);
+  CHECK_CLOSE (0, global_pose.m[3][2], 0.0001f);
+  CHECK_CLOSE (1, global_pose.m[3][3], 0.0001f);
+  //cout << global_pose << "\n";
 
-  grp0->translate (0,0,1);
+  global_pose = ((SkinnedMesh*)0)-> getGlobalPose (grp1);
+  CHECK_CLOSE (1, global_pose.m[0][0], 0.0001f);
+  CHECK_CLOSE (0, global_pose.m[0][1], 0.0001f);
+  CHECK_CLOSE (0, global_pose.m[0][2], 0.0001f);
+  CHECK_CLOSE (0, global_pose.m[0][3], 0.0001f);
+  CHECK_CLOSE (0, global_pose.m[1][0], 0.0001f);
+  CHECK_CLOSE (0, global_pose.m[1][1], 0.0001f);
+  CHECK_CLOSE (-1, global_pose.m[1][2], 0.0001f);
+  CHECK_CLOSE (1, global_pose.m[1][3], 0.0001f);
+  CHECK_CLOSE (0, global_pose.m[2][0], 0.0001f);
+  CHECK_CLOSE (1, global_pose.m[2][1], 0.0001f);
+  CHECK_CLOSE (0, global_pose.m[2][2], 0.0001f);
+  CHECK_CLOSE (0, global_pose.m[2][3], 0.0001f);
+  CHECK_CLOSE (0, global_pose.m[3][0], 0.0001f);
+  CHECK_CLOSE (0, global_pose.m[3][1], 0.0001f);
+  CHECK_CLOSE (0, global_pose.m[3][2], 0.0001f);
+  CHECK_CLOSE (1, global_pose.m[3][3], 0.0001f);
+  //cout << global_pose << "\n";
+
   global_pose = ((SkinnedMesh*)0)-> getGlobalPose (grp2);
-  CHECK_CLOSE (1, global_pose.m[2][3], 0.0001f);
-
-
-  grp1->translate (0,2,0);
-  global_pose = ((SkinnedMesh*)0)-> getGlobalPose (grp2);
-  CHECK_CLOSE (2, global_pose.m[1][3], 0.0001f);
-
-  grp2->translate (3,0,0);
-  global_pose = ((SkinnedMesh*)0)-> getGlobalPose (grp2);
-  CHECK_CLOSE (3, global_pose.m[0][3], 0.0001f);
-  
-
+  CHECK_CLOSE (1, global_pose.m[0][0], 0.0001f);
+  CHECK_CLOSE (0, global_pose.m[0][1], 0.0001f);
+  CHECK_CLOSE (0, global_pose.m[0][2], 0.0001f);
+  CHECK_CLOSE (0, global_pose.m[0][3], 0.0001f);
+  CHECK_CLOSE (0, global_pose.m[1][0], 0.0001f);
+  CHECK_CLOSE (0, global_pose.m[1][1], 0.0001f);
+  CHECK_CLOSE (-1, global_pose.m[1][2], 0.0001f);
+  CHECK_CLOSE (-2, global_pose.m[1][3], 0.0001f);
+  CHECK_CLOSE (0, global_pose.m[2][0], 0.0001f);
+  CHECK_CLOSE (1, global_pose.m[2][1], 0.0001f);
+  CHECK_CLOSE (0, global_pose.m[2][2], 0.0001f);
+  CHECK_CLOSE (0, global_pose.m[2][3], 0.0001f);
+  CHECK_CLOSE (0, global_pose.m[3][0], 0.0001f);
+  CHECK_CLOSE (0, global_pose.m[3][1], 0.0001f);
+  CHECK_CLOSE (0, global_pose.m[3][2], 0.0001f);
+  CHECK_CLOSE (1, global_pose.m[3][3], 0.0001f);
+  //cout << global_pose << "\n";
 }
 
 TEST (SkinnedMesh_addTransform_getBoneVertices)
