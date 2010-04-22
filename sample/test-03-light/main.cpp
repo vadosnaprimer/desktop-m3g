@@ -107,7 +107,7 @@ int main (int argc, char** argv)
   app->setMaterial (mat);
 
   Mesh* mesh = new Mesh (vertices, tris, app);
-  //mesh->translate (0,0,-10);
+  mesh->scale (0.5,0.5,10);
 
   Camera* cam = new Camera;
   cam->lookAt (0,20,20,
@@ -120,7 +120,7 @@ int main (int argc, char** argv)
   lig->setIntensity (1);
   //  lig->setMode (Light::SPOT);
   lig->setMode (Light::OMNI);
-  lig->translate (0,1,0);
+  lig->translate (0,2,0);
   //  lig->postRotate (-90, 1,0,0);
   //  lig->setSpotAngle (60);
   //  lig->addAnimationTrack (animation_light_color);

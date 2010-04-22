@@ -17,8 +17,11 @@ Graphics3D:: Graphics3D () :
 {
   // 今だけZテストを常時有効
   glEnable (GL_DEPTH_TEST);
-  // 念のため
-  //glEnable (GL_RESCALE_NORMAL);
+
+  // M3Gの規格では何も言及がないが
+  // リスケールしないとscaleした時に
+  // 法線の長さが1でなくなるので。
+  glEnable (GL_NORMALIZE);
 
   // プロパティは決めうち
   properties.push_back (new Property("supportAntialiasing"         , 1));

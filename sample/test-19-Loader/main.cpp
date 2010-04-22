@@ -73,12 +73,12 @@ int main (int argc, char** argv)
   Camera* cam = wld->getActiveCamera ();
   if (cam == 0) {
     cam = new Camera;
-    cam->translate (0,20,80);
     wld->addChild (cam);
     wld->setActiveCamera (cam);
   }
-
-  wld->setAlphaFactor (1);
+  cam->lookAt (-70,20,0,
+               0,0,0,
+               0,1,0);
 
   Background* bg = wld->getBackground ();
   if (bg == 0) {
