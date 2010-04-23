@@ -300,7 +300,7 @@ std::ostream& Node:: print (std::ostream& out) const
   out << ", rendering_enable=" << rendering_enable;
   out << ", picking_enable=" << picking_enable;
   out << ", alpha_factor=" << alpha_factor;
-  return out << "\n";
+  return out;
 }
 
 std::ostream& operator<< (std::ostream& out, const Node& node)

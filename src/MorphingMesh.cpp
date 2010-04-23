@@ -67,9 +67,9 @@ std::ostream& MorphingMesh:: print (std::ostream& out) const
   return out;
 }
 
-std::ostream& operator<< (std::ostream& out, const MorphingMesh& m)
+std::ostream& operator<< (std::ostream& out, const MorphingMesh& mesh)
 {
-    return out;
+  return mesh.print (out);
 }
 
 

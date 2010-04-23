@@ -107,7 +107,6 @@ int main (int argc, char** argv)
   app->setMaterial (mat);
 
   Mesh* mesh = new Mesh (vertices, tris, app);
-  mesh->scale (0.5,0.5,10);
 
   Camera* cam = new Camera;
   cam->lookAt (0,20,20,

@@ -69,6 +69,11 @@ public:
    */
   float getLength () const;
 
+    /**
+     * @~English  Print out information of this object, for debug only.
+     * @~Japanese このオブジェクトの情報を表示する。デバッグ用.
+     */
+  std::ostream& print (std::ostream& out) const;
 
 public:
   float x;   //< vector component i of Quaternion
@@ -83,6 +88,7 @@ public:
  * @~Japanese  クォータニオンの球面線形補間を行う。a=0の時q0, a=1の時q1が返る.
  */
   m3g::Quaternion slerp (const m3g::Quaternion& q0, const m3g::Quaternion& q1, float alpha);
+
 
 
 } // namespace m3g {

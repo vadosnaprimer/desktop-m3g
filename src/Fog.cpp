@@ -260,7 +260,7 @@ std::ostream& Fog:: print (std::ostream& out) const
   out << ", near=" << near;
   out << ", far=" << far;
   out << ", color=0x" << hex << color << dec; 
-  return out << "\n";
+  return out;
 }
 
  std::ostream& operator<< (std::ostream& out, const Fog& fog)

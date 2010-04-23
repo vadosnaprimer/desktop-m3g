@@ -8,7 +8,7 @@
 namespace m3g {
 
 /**
- * キーフレーム情報を定義する内部使用構造体.
+ * @~Japanese キーフレーム情報を定義する内部使用構造体.
  * time=-1は無効データを表す。
  */
 class Keyframe
@@ -18,34 +18,40 @@ public:
   Keyframe (int t, float* v);
   ~Keyframe ();
 
+  /**
+   * @~Japanese このオブジェクトの情報を表示する内部使用の関数, デバッグ用.
+   */
+  std::ostream& print (std::ostream& out) const;
+
   int    time;
   float* value;
 };
 
   /**
-   * キーフレームのステップ補完を行う.
+   * @~Japanese キーフレームのステップ補完を行う.
    */
   void step   (float s, const Keyframe& k0, const Keyframe& k1, int component_count, float* value);
 
   /**
-   * キーフレームの線形補完を行う.
+   * @~Japanese キーフレームの線形補完を行う.
    */
   void linear (float s, const Keyframe& k0, const Keyframe& k1, int component_count, float* value);
 
   /**
-   * キーフレームの球面線形補完を行う.
+   * @~Japanese キーフレームの球面線形補完を行う.
    */
 
   void slerp  (float s, const Keyframe& k0, const Keyframe& k1, int component_count, float* value);
   /**
-   * キーフレームの？補完を行う.
+   * @~Japanese キーフレームの？補完を行う.
    */
   void squad  (float s, const Keyframe& k0, const Keyframe& k1, int component_count, float* value);
 
   /**
-   * キーフレームのスプライン補完を行う.
+   * @~Japanese キーフレームのスプライン補完を行う.
    */
   void spline (float s, const Keyframe& k0, const Keyframe& k1, const Keyframe& k2, const Keyframe& key_3, int component_count, float* value);
+
 
 } // namespace m3g {
 

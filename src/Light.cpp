@@ -338,7 +338,7 @@ std::ostream& Light:: print (std::ostream& out) const
   out << ","              << attenuation.quadratic;
   out << ", spot="        << spot.angle;
   out << ","              << spot.exponent;
-  return out << "\n";
+  return out;
 }
 
 std::ostream& operator<< (std::ostream& out, const Light& lig)

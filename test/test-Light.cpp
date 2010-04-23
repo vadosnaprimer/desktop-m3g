@@ -43,19 +43,6 @@ TEST (Light_set_variables)
   delete lig;
 }
 
-TEST (Light_findByObjectType)
-{
-  Light* lig = new Light;
-
-  vector<Object3D*> objs;
-
-  lig->findByObjectType (OBJTYPE_LIGHT, objs);
-
-  CHECK_EQUAL (1, objs.size());
-  CHECK_EQUAL (lig, dynamic_cast<Light*>(objs[0]));
-
-  delete lig;
-}
 
 TEST (Light_duplicate)
 {

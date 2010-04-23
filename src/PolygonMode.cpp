@@ -189,7 +189,7 @@ std::ostream& PolygonMode:: print (std::ostream& out) const
   out << ", two_sided_lighting=" << two_sided_lighting;
   out << ", local_camera_lighting=" << local_camera_lighting;
   out << ", perspective_correction=" << perspective_correction;
-  return out << "\n";;
+  return out;
 }
 
 std::ostream& operator<< (std::ostream& out, const PolygonMode& pmode)

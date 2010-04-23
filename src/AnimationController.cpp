@@ -91,7 +91,7 @@ std::ostream& AnimationController:: print (std::ostream& out) const
   out << ", speed=" << speed;
   out << ", refference_world_time=" << refference_world_time;
   out << ", refference_sequence_time=" << refference_sequence_time;
-  return out << "\n";
+  return out;
 }
 
 std::ostream& operator<< (std::ostream& out, const AnimationController& a)

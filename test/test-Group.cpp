@@ -28,29 +28,6 @@ TEST (Group_set_variables)
 }
 
 
-TEST (Group_findByType)
-{
-  Group* grp = new Group;
-  Node* node1 = new Node;
-  Node* node2 = new Node;
-
-  grp->addChild (node1);
-  grp->addChild (node2);
-
-  vector<Object3D*> objs;
-
-  grp->findByObjectType (OBJTYPE_NODE, objs);
-  CHECK_EQUAL (2, objs.size());
-  CHECK_EQUAL (node1, dynamic_cast<Node*>(objs[0]));
-  CHECK_EQUAL (node2, dynamic_cast<Node*>(objs[1]));
-
-  objs.clear();
-  grp->findByObjectType (OBJTYPE_GROUP, objs);
-  CHECK_EQUAL (1, objs.size());
-  CHECK_EQUAL (grp, dynamic_cast<Group*>(objs[0]));
-
-}
-
 TEST (Group_pick)
 {
   Group* grp = new Group;

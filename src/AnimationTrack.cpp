@@ -128,7 +128,7 @@ std::ostream& AnimationTrack:: print (std::ostream& out) const
     out << ", animation_controller=0x" << hex << animation_controller << dec;
   else
     out << ", animation_controller=0";
-  return out << "\n";
+  return out;
 }
 
 std::ostream& operator<< (std::ostream& out, const AnimationTrack& track)

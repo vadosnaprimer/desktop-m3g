@@ -123,12 +123,6 @@ namespace m3g {
     int  getObjectType () const;
 
     /**
-     * @~English  Find all objects by object type.
-     * @~Japanese オブジェクトタイプを指定して検索するM3G非標準の関数.
-     */
-    virtual void findByObjectType (int obj_type, std::vector<Object3D*>& objs) const;
-
-    /**
      * @~English  Print out information of this object, for debug only.
      * @~Japanese このObject3Dの情報を表示する。デバッグ用.
      */

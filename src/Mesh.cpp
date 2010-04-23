@@ -166,8 +166,8 @@ void Mesh:: render (RenderState& state) const
   vertices->render (state);
 
   // マテリアルとインデックスの指定
-  for (int i = 0; i < (int)indices.size(); i++) {
-    if (state.layer == appearances[i]->getLayer()) {
+  for (int i = 0; i < (int)appearances.size(); i++) {
+    if (appearances[i] && appearances[i]->getLayer() == state.layer) {
       appearances[i]->render (state);
       indices[i]->render (state);
     }
@@ -189,7 +189,7 @@ std::ostream& Mesh:: print (std::ostream& out) const
   //  out << *appearances[i];
   //}
 
-  return out << "\n";
+  return out;
 }
 
 

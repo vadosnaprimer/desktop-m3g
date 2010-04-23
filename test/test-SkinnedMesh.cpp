@@ -52,60 +52,27 @@ TEST (SkinnedMesh_getGlobalPose)
   Matrix global_pose;
   
   global_pose = ((SkinnedMesh*)0)-> getGlobalPose (grp0);
-  CHECK_CLOSE (1, global_pose.m[0][0], 0.0001f);
-  CHECK_CLOSE (0, global_pose.m[0][1], 0.0001f);
-  CHECK_CLOSE (0, global_pose.m[0][2], 0.0001f);
-  CHECK_CLOSE (0, global_pose.m[0][3], 0.0001f);
-  CHECK_CLOSE (0, global_pose.m[1][0], 0.0001f);
-  CHECK_CLOSE (1, global_pose.m[1][1], 0.0001f);
-  CHECK_CLOSE (0, global_pose.m[1][2], 0.0001f);
-  CHECK_CLOSE (1, global_pose.m[1][3], 0.0001f);
-  CHECK_CLOSE (0, global_pose.m[2][0], 0.0001f);
-  CHECK_CLOSE (0, global_pose.m[2][1], 0.0001f);
-  CHECK_CLOSE (1, global_pose.m[2][2], 0.0001f);
-  CHECK_CLOSE (0, global_pose.m[2][3], 0.0001f);
-  CHECK_CLOSE (0, global_pose.m[3][0], 0.0001f);
-  CHECK_CLOSE (0, global_pose.m[3][1], 0.0001f);
-  CHECK_CLOSE (0, global_pose.m[3][2], 0.0001f);
-  CHECK_CLOSE (1, global_pose.m[3][3], 0.0001f);
+  float m1[16] = {1,0,0,0,
+                  0,1,0,1,
+                  0,0,1,0,
+                  0,0,0,1};
+  CHECK_ARRAY_CLOSE (m1, global_pose.m, 16, 0.0001f);
   //cout << global_pose << "\n";
 
   global_pose = ((SkinnedMesh*)0)-> getGlobalPose (grp1);
-  CHECK_CLOSE (1, global_pose.m[0][0], 0.0001f);
-  CHECK_CLOSE (0, global_pose.m[0][1], 0.0001f);
-  CHECK_CLOSE (0, global_pose.m[0][2], 0.0001f);
-  CHECK_CLOSE (0, global_pose.m[0][3], 0.0001f);
-  CHECK_CLOSE (0, global_pose.m[1][0], 0.0001f);
-  CHECK_CLOSE (0, global_pose.m[1][1], 0.0001f);
-  CHECK_CLOSE (-1, global_pose.m[1][2], 0.0001f);
-  CHECK_CLOSE (1, global_pose.m[1][3], 0.0001f);
-  CHECK_CLOSE (0, global_pose.m[2][0], 0.0001f);
-  CHECK_CLOSE (1, global_pose.m[2][1], 0.0001f);
-  CHECK_CLOSE (0, global_pose.m[2][2], 0.0001f);
-  CHECK_CLOSE (0, global_pose.m[2][3], 0.0001f);
-  CHECK_CLOSE (0, global_pose.m[3][0], 0.0001f);
-  CHECK_CLOSE (0, global_pose.m[3][1], 0.0001f);
-  CHECK_CLOSE (0, global_pose.m[3][2], 0.0001f);
-  CHECK_CLOSE (1, global_pose.m[3][3], 0.0001f);
+  float m2[16] = {1,0,0,0,
+                  0,0,-1,1,
+                  0,1,0,0,
+                  0,0,0,1};
+  CHECK_ARRAY_CLOSE (m2, global_pose.m, 16, 0.0001f);
   //cout << global_pose << "\n";
 
   global_pose = ((SkinnedMesh*)0)-> getGlobalPose (grp2);
-  CHECK_CLOSE (1, global_pose.m[0][0], 0.0001f);
-  CHECK_CLOSE (0, global_pose.m[0][1], 0.0001f);
-  CHECK_CLOSE (0, global_pose.m[0][2], 0.0001f);
-  CHECK_CLOSE (0, global_pose.m[0][3], 0.0001f);
-  CHECK_CLOSE (0, global_pose.m[1][0], 0.0001f);
-  CHECK_CLOSE (0, global_pose.m[1][1], 0.0001f);
-  CHECK_CLOSE (-1, global_pose.m[1][2], 0.0001f);
-  CHECK_CLOSE (-2, global_pose.m[1][3], 0.0001f);
-  CHECK_CLOSE (0, global_pose.m[2][0], 0.0001f);
-  CHECK_CLOSE (1, global_pose.m[2][1], 0.0001f);
-  CHECK_CLOSE (0, global_pose.m[2][2], 0.0001f);
-  CHECK_CLOSE (0, global_pose.m[2][3], 0.0001f);
-  CHECK_CLOSE (0, global_pose.m[3][0], 0.0001f);
-  CHECK_CLOSE (0, global_pose.m[3][1], 0.0001f);
-  CHECK_CLOSE (0, global_pose.m[3][2], 0.0001f);
-  CHECK_CLOSE (1, global_pose.m[3][3], 0.0001f);
+  float m3[16] = {1,0,0,0,
+                  0,0,-1,-2,
+                  0,1,0,0,
+                  0,0,0,1};
+  CHECK_ARRAY_CLOSE (m3, global_pose.m, 16, 0.0001f);
   //cout << global_pose << "\n";
 }
 

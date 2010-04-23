@@ -73,14 +73,16 @@ int main (int argc, char** argv)
   float bias[3] = {0,0,0};
   VertexBuffer* vbuf = new VertexBuffer;
   vbuf->setPositions (pos_array, scale, bias);
-  vbuf->setDefaultColor (0xff4c4cb2);  // 0.3, 0.3, 0.7
-  //vbuf->setDefaultColor (0xffff00ff);
 
   //int strips[20] = {40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40};
   int strips[1] = {4};
   TriangleStripArray* tris = new TriangleStripArray (0, 1, strips);
 
+  Material* mat = new Material;
+  mat->setColor (Material::DIFFUSE, 0xff4c4cb2);  // 0.3, 0.3, 0.7
+
   Appearance* app = new Appearance;
+  app->setMaterial (mat);
 
   Mesh* mesh = new Mesh (vbuf, tris, app);
   

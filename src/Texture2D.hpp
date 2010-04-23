@@ -192,9 +192,6 @@ namespace m3g {
      */
     virtual void render (RenderState& state) const;
 
-  protected:
-    virtual void findByObjectType (int obj_type, std::vector<Object3D*>& objs) const;
-
 
   private:
     /**

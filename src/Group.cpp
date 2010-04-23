@@ -96,16 +96,6 @@ void Group:: removeChild (Node* child)
   // 仕様書を見よ。
 }
 
-void Group:: findByObjectType (int type, std::vector<Object3D*>& objs) const
-{
-  for (int i = 0; i < (int)children.size(); i++) {
-    children[i]->findByObjectType (type, objs);
-  }
-  if (getObjectType() == type) {
-    objs.push_back (const_cast<Group*>(this));
-  }
-}
-
 /**
  * Note: Group should be rendered via all rendering pass.
  */
@@ -127,7 +117,7 @@ void Group:: render (RenderState& state) const
 
 std::ostream& Group:: print (std::ostream& out) const
 {
-  out << "Group: " << children.size() << " nodes\n";
+  out << "Group: " << children.size() << " nodes";
   //for (int i = 0; i < (int)children.size(); i++) {
   //  out << "  [" << i << "] : ";
   //  children[i]->print(out);

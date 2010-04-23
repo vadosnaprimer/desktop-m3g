@@ -183,7 +183,7 @@ const char* format_to_string (int format)
    out << ", width="     << width;
    out << ", height="    << height;
    out << ", immutable=" << immutable;
-   return out << "\n";
+   return out;
  }
 
 std::ostream& operator<< (std::ostream& out, const Image2D& img)

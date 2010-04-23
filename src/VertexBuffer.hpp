@@ -119,12 +119,6 @@ namespace m3g {
     virtual void render (RenderState& state) const;
 
 
-  protected:
-    virtual void findByObjectType (int obj_type, std::vector<Object3D*>& objs) const;
-
-
-
-
   private:
     VertexArray* positions;
     VertexArray* normals;
@@ -139,14 +133,17 @@ namespace m3g {
     int          default_color;
 
   private:
-    GLuint vbuf, ibuf, nbuf, tcbuf[MAX_TEXTURE_UNITS];
+    GLuint       vbo_positions;
+    GLuint       vbo_colors;
+    GLuint       vbo_normals;
+    GLuint       vbo_texcoords[MAX_TEXTURE_UNITS];
 
   };
 
 
 } // namespace m3g {
 
-std::ostream& operator<< (std::ostream& out, const m3g::VertexBuffer& vb);
+std::ostream& operator<< (std::ostream& out, const m3g::VertexBuffer& vbuf);
 
 
 #endif

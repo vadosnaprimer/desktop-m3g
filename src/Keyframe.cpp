@@ -96,12 +96,18 @@ void m3g::spline (float s, const Keyframe& k0, const Keyframe& k1, const Keyfram
   }
 }
 
-std::ostream& operator<< (std::ostream& out, const m3g::Keyframe& key)
+std::ostream& Keyframe:: print (std::ostream& out) const
 {
-  out << "time=" << key.time << ",value=";
-  if (key.value == NULL)
+  out << "time=" << time << ",value=";
+  if (value == NULL)
     out << "0";
   else
-    out << key.value[0] << "," << key.value[1] << "," << key.value[2];
+    out << value[0] << "," << value[1] << "," << value[2] << ",...";
   return out;
+}
+
+
+std::ostream& operator<< (std::ostream& out, const m3g::Keyframe& key)
+{
+  return key.print (out);
 }

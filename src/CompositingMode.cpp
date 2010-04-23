@@ -195,7 +195,7 @@ std::ostream& CompositingMode:: print (std::ostream& out) const
   out << ", depth_write="      << depth_write;
   out << ", color_write="      << color_write;
   out << ", alpha_write="      << alpha_write;
-  return out << "\n";
+  return out;
 }
 
 std::ostream& operator<< (std::ostream& out, const CompositingMode& cm)

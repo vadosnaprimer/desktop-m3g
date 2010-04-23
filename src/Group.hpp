@@ -82,12 +82,6 @@ namespace m3g {
     virtual std::ostream& print (std::ostream& out) const;
 
     /**
-     * @~English   Find by object type.
-     * @~Japanese オブジェクトタイプで検索する.
-     */
-    virtual void findByObjectType (int obj_type, std::vector<Object3D*>& objs) const;
-
-    /**
      * @~Enslish  Renderr this object, for inner use.
      * @~Japanese このGroupをレンダリングする内部使用の関数.
      */

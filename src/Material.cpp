@@ -274,7 +274,7 @@ void Material:: render (RenderState& state) const
   if (vertex_color_tracking) {
     //cout << "Material: enable vertex color tracking.\n";
     glDisable (GL_LIGHTING);
-    if (state.vertex_color_buffer_enabled) {
+    if (state.vertex_color_buffer_ready) {
       //cout << "Material: enable colors per vertex .\n";
       glEnableClientState (GL_COLOR_ARRAY);
     } else {
@@ -316,7 +316,7 @@ void Material:: renderX ()
    out << ", specular=0x" << specular_color << dec;
    out << ", shininess="  << shininess;
    out << ", vertex_color_tracking=" << vertex_color_tracking;
-   return out << "\n";
+   return out;
  }
 
 

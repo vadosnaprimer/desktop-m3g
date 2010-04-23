@@ -5,52 +5,28 @@
 using namespace std;
 using namespace m3g;
 
-TEST (Matrix_new)
+TEST (Matrix_default_value)
 {
-  float m[16] = {0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15};
-  Matrix mat (m);
-  
-  CHECK_EQUAL (0.f, mat.m[0][0]);
-  CHECK_EQUAL (1.f, mat.m[0][1]);
-  CHECK_EQUAL (2.f, mat.m[0][2]);
-  CHECK_EQUAL (3.f, mat.m[0][3]);
-  CHECK_EQUAL (4.f, mat.m[1][0]);
-  CHECK_EQUAL (5.f, mat.m[1][1]);
-  CHECK_EQUAL (6.f, mat.m[1][2]);
-  CHECK_EQUAL (7.f, mat.m[1][3]);
-  CHECK_EQUAL (8.f, mat.m[2][0]);
-  CHECK_EQUAL (9.f, mat.m[2][1]);
-  CHECK_EQUAL (10.f, mat.m[2][2]);
-  CHECK_EQUAL (11.f, mat.m[2][3]);
-  CHECK_EQUAL (12.f, mat.m[3][0]);
-  CHECK_EQUAL (13.f, mat.m[3][1]);
-  CHECK_EQUAL (14.f, mat.m[3][2]);
-  CHECK_EQUAL (15.f, mat.m[3][3]);
+  float  m1[16] = {1,0,0,0, 0,1,0,0, 0,0,1,0, 0,0,0,1};
+  Matrix mat1;
+  CHECK_ARRAY_EQUAL (m1, mat1.m, 16);
+
+  float  m2[16] = {0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15};
+  Matrix mat2 (m2);
+  CHECK_ARRAY_EQUAL (m2, mat2.m, 16);
+
+  mat2.set (m1);
+  CHECK_ARRAY_EQUAL (m1, mat2.m, 16);
 }
+
 
 TEST (Matrix_setIdentity)
 {
-  Matrix mat;
+  float  m[16] = {1,0,0,0, 0,1,0,0, 0,0,1,0, 0,0,0,1};
+  Matrix mat (999,999,999,999, 999,999,999,999, 999,999,999,999, 999,999,999,999);
 
-  CHECK_EQUAL (1.f, mat.m[0][0]);
-  CHECK_EQUAL (1.f, mat.m[1][1]);
-  CHECK_EQUAL (1.f, mat.m[2][2]);
-  CHECK_EQUAL (1.f, mat.m[3][3]);
-  CHECK_EQUAL (0.f, mat.m[1][0]);
-  CHECK_EQUAL (0.f, mat.m[0][1]);
-  CHECK_EQUAL (0.f, mat.m[3][0]);
-  CHECK_EQUAL (0.f, mat.m[2][3]);
-  
   mat.setIdentity();
-
-  CHECK_EQUAL (1.f, mat.m[0][0]);
-  CHECK_EQUAL (1.f, mat.m[1][1]);
-  CHECK_EQUAL (1.f, mat.m[2][2]);
-  CHECK_EQUAL (1.f, mat.m[3][3]);
-  CHECK_EQUAL (0.f, mat.m[1][0]);
-  CHECK_EQUAL (0.f, mat.m[0][1]);
-  CHECK_EQUAL (0.f, mat.m[3][0]);
-  CHECK_EQUAL (0.f, mat.m[2][3]);
+  CHECK_ARRAY_EQUAL (m, mat.m, 16);
 }
 
 TEST (Matrix_setRotate)
@@ -60,8 +36,9 @@ TEST (Matrix_setRotate)
 
     mat.setRotate (90, 1,0,0);
 
+
     Vector v0 = mat * Vector(0,1,0);
-    
+
     CHECK_CLOSE (0.f, v0[0], 0.00001);
     CHECK_CLOSE (0.f, v0[1], 0.00001);
     CHECK_CLOSE (1.f, v0[2], 0.00001);
@@ -79,7 +56,7 @@ TEST (Matrix_setRotate)
     CHECK_CLOSE (0.f, v2[0], 0.00001);
     CHECK_CLOSE (-1.f, v2[1], 0.00001);
     CHECK_CLOSE (0.f, v2[2], 0.00001);
-  
+
 }
 
 TEST (Matrix_setScale)
@@ -107,76 +84,125 @@ TEST (Matrix_setTranslate)
 
 }
 
-TEST (Matrix_invert)
+TEST (Matrix_invert_1)
 {
-  Matrix m (1, 2, 3, 4,  
-	    0, 2, 4, 6,  
-	    3, 1, 3, 1,  
-	    -1, 1, 0, -1);
-  m.invert();
+  Matrix mat1 (1, 2, 3, 4,  
+               0, 2, 4, 6,  
+               3, 1, 3, 1,  
+               -1, 1, 0, -1);
+  Matrix mat2;
+
+  mat2 = mat1.invert();
 
     //    0.6666667  - 0.5      8.327D-17  - 0.3333333  
     //    1.0833333  - 0.625  - 0.25         0.3333333  
     //  - 1.1666667    0.75     0.5          0.3333333  
     //    0.4166667  - 0.125  - 0.25       - 0.3333333  
 
-  CHECK_CLOSE (0.6666667f, m.m[0][0], 0.00001);
-  CHECK_CLOSE (-0.625f,    m.m[1][1], 0.00001);
-  CHECK_CLOSE (0.4166667f, m.m[3][0], 0.00001);
-  CHECK_CLOSE (0.3333333f, m.m[2][3], 0.00001);
+  float m[16] = {0.6666667,  -0.5,     0.0,   -0.3333333,
+                 1.0833333,  -0.625,  -0.25,   0.3333333,
+                 -1.1666667,  0.75,    0.5,    0.3333333,
+                 0.4166667, - 0.125, - 0.25,   - 0.3333333};
+  
+  CHECK_ARRAY_CLOSE (m, mat1.m, 16, 0.00001);
+  CHECK_ARRAY_CLOSE (m, mat2.m, 16, 0.00001);
+}
+
+TEST (Matrix_invert_2)
+{
+  // 念のためもう1つ
+  Matrix mat1 (3,  2, -1, -2,
+               1,  5,  7,  3,
+               -2, -1, 1,  2,
+               3,   4,  2, 1);
+  Matrix mat2 = mat1;
+
+  mat1.invert();
+
+  Matrix mat3 = mat1 * mat2;
+  
+  float m[16] = {1,0,0,0,
+                 0,1,0,0,
+                 0,0,1,0,
+                 0,0,0,1};
+  CHECK_ARRAY_CLOSE (m, mat3.m, 16, 0.00001);
 }
 
 TEST (Matrix_transpose)
 {
-  Matrix m (1, 2, 3, 4,  
+  Matrix mat1 (1, 2, 3, 4,  
 	    0, 2, 4, 6,  
 	    3, 1, 3, 1,  
 	    -1, 1, 0, -1);
-  m.transpose();
+  Matrix mat2;
+
+  mat2 = mat1.transpose();
 
   //    1.    0.    3.  - 1.  
   //    2.    2.    1.    1.  
   //    3.    4.    3.    0.  
   //    4.    6.    1.  - 1.  
  
-  CHECK_CLOSE (1.f, m.m[0][0], 0.00001);
-  CHECK_CLOSE (2.f, m.m[1][1], 0.00001);
-  CHECK_CLOSE (4.f, m.m[3][0], 0.00001);
-  CHECK_CLOSE (0.f, m.m[2][3], 0.00001);
+  float m[16] = {1,0,3,-1, 2,2,1,1, 3,4,3,0, 4,6,1,-1};
+
+  CHECK_ARRAY_CLOSE (m, mat1.m, 16, 0.0001);
+  CHECK_ARRAY_CLOSE (m, mat2.m, 16, 0.0001);
+
 }
 
  
 TEST (Matrix_multiply)
 {
-  Matrix m0 (1,2,3,4,
+  Matrix mat0 (1,2,3,4,
 	     5,6,7,8,
 	     1,2,3,4,
 	     5,6,7,8);
-  Matrix m1 (1,2,1,2,
+  Matrix mat1 (1,2,1,2,
 	     -1,0,-1,0,
 	     1,1,-1,-1,
 	     1,2,3,4);
-  Matrix m2 (1,1,1,1,
+  Matrix mat2 (1,1,1,1,
 	     2,2,2,2,
 	     3,3,3,3,
 	     4,4,4,4);
 
-  m2 *= m0;
-  Matrix m3 = m0 * m1;
+  mat2 *= mat0;
+  Matrix mat3 = mat0 * mat1;
   
   //    12.    16.    20.    24.  
   //    24.    32.    40.    48.  
   //    36.    48.    60.    72.  
   //    48.    64.    80.    96. 
-  CHECK_CLOSE (12.f, m2.m[0][0], 0.0001);
-  CHECK_CLOSE (80.f, m2.m[3][2], 0.0001);
 
+  float m2[16] = {12,16,20,24, 24,32,40,48, 36,48,60,72, 48,64,80,96};
 
+  CHECK_ARRAY_CLOSE (m2, mat2.m, 16, 0.00001);
+  
   //    6.     13.    8.     15.  
   //    14.    33.    16.    35.  
   //    6.     13.    8.     15.  
   //    14.    33.    16.    35.  
- 
-  CHECK_CLOSE (6.f, m3.m[0][0], 0.0001);
-  CHECK_CLOSE (16.f, m3.m[3][2], 0.0001);
+
+  float m3[16] = {6,13,8,15, 14,33,16,35, 6,13,8,15, 14,33,16,35};
+
+  CHECK_ARRAY_CLOSE (m3, mat3.m, 16, 0.00001);
+
+}
+
+TEST (Matrix_multiply_Vector)
+{
+  Matrix mat1 (1, 2, 3, 4,  
+	    0, 2, 4, 6,  
+	    3, 1, 3, 1,  
+	    -1, 1, 0, -1);
+  Vector vec (5,6,7,8);
+  Vector vec2;
+
+  vec2 = mat1 * vec;
+  
+  CHECK_CLOSE (70, vec2.x, 0.0001);
+  CHECK_CLOSE (88, vec2.y, 0.0001);
+  CHECK_CLOSE (50, vec2.z, 0.0001);
+  CHECK_CLOSE (-7, vec2.w, 0.0001);
+
 }

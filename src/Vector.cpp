@@ -112,8 +112,13 @@ Vector operator+ (const Vector& lhs, const Vector& rhs)
   }
 }
 
+std::ostream& Vector:: print (std::ostream& out) const
+{
+  return out << x << ", " << y << ", " << z << ", " << w;
+}
+
 std::ostream& operator<< (std::ostream& out , const m3g::Vector& v)
 {
-  return out << v.x << ", " << v.y << ", " << v.z << ", " << v.w;
+  return v.print (out);
 }
 

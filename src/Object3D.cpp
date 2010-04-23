@@ -105,12 +105,6 @@ int Object3D:: getObjectType () const
   return obj_type;
 }
 
-void Object3D:: findByObjectType (int type, std::vector<Object3D*>& objs) const
-{
-  if (obj_type == type) {
-    objs.push_back (const_cast<Object3D*>(this));
-  }
-}
 
 void Object3D:: render (RenderState& state) const
 {
@@ -122,7 +116,7 @@ std::ostream& Object3D:: print (std::ostream& out) const
   out << "Object3D: ";
   out << "  user_id=" << user_id;
   out << ", animation_tracks=" << anim_tracks.size();
-  return out << "\n";
+  return out;
 }
 
 std::ostream& operator<< (std::ostream& out, const Object3D& obj)

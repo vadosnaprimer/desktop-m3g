@@ -25,11 +25,15 @@ namespace m3g {
 
     Vector& operator+= (const Vector& rhs);
 
+    std::ostream& print (std::ostream& out) const;
+
+  public:
     float x,y,z,w;
   };
 
   float dot (const Vector& v0, const Vector& v1);
   Vector cross (const Vector& v0, const Vector& v1);
+
 
 
 }; // namespace m3g {

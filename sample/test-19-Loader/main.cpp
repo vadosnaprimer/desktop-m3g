@@ -36,7 +36,7 @@ static void keyboard(unsigned char key, int x, int y)
     exit(0);
   case ' ':
     wld->animate (animation_time);
-    animation_time += 5;
+    animation_time += 33;
     cout << "animation time = " << animation_time << "\n";
   default:
     break;
@@ -57,8 +57,17 @@ int main (int argc, char** argv)
   std::vector<Object3D*> objs = Loader::load ("test.m3g");
   for (int i = 0; i < (int)objs.size(); i++) {
     Node* node = dynamic_cast<Node*>(objs[i]);
-    if (node)
+    if (node) {
       node->setAlphaFactor(1);
+    }
+    //if (objs[i])
+    //  objs[i]->print (cout);
+    Light* lig = dynamic_cast<Light*>(objs[i]);
+    if (lig) {
+      lig->print (cout);
+      lig->setAttenuation (1,0,0);
+      lig->setIntensity (1);
+    }
   }
 
   for (int i = 0; i < (int)objs.size(); i++) {
@@ -73,12 +82,10 @@ int main (int argc, char** argv)
   Camera* cam = wld->getActiveCamera ();
   if (cam == 0) {
     cam = new Camera;
+    cam->translate (0,20,80);
     wld->addChild (cam);
     wld->setActiveCamera (cam);
   }
-  cam->lookAt (-70,20,0,
-               0,0,0,
-               0,1,0);
 
   Background* bg = wld->getBackground ();
   if (bg == 0) {

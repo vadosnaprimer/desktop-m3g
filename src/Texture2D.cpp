@@ -274,16 +274,6 @@ void Texture2D:: renderX ()
   glTexParameteri  (GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
 }
 
-void Texture2D:: findByObjectType (int type, std::vector<Object3D*>& objs) const
-{
-  if (image) {
-    image->findByObjectType (type, objs);
-  }
-
-  if (getObjectType() == type) {
-    objs.push_back (const_cast<Texture2D*>(this));
-  }
-}
 
 static 
 const char* wrap_to_string (int wrap)
@@ -326,7 +316,7 @@ std::ostream& Texture2D:: print (std::ostream& out) const
   out << ", filter="   << filter_to_string(filter.level) << "," << filter_to_string(filter.image);
   out << ", blending=" << blending_to_string(blending_mode);
   out << ", blend_color=0x" << hex << blend_color << dec;
-  return out << "\n";
+  return out;
 }
 
 std::ostream& operator<< (std::ostream& out, const Texture2D& tex)

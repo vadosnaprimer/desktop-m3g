@@ -12,7 +12,7 @@ using namespace m3g;
 
 VertexBuffer:: VertexBuffer () :
   positions(0), normals(0), colors(0), positions_scale(1),
-  default_color(0xffffffff), vbuf(0), ibuf(0), nbuf(0)
+  default_color(0xffffffff), vbo_positions(0), vbo_colors(0), vbo_normals(0)
 {
   setObjectType (OBJTYPE_VERTEX_BUFFER);
 
@@ -25,12 +25,8 @@ VertexBuffer:: VertexBuffer () :
     for (int j = 0; j < 3; j++) {
       tex_coords_bias[i][j] = 0;
     }
-    tcbuf[i] = 0;
+    vbo_texcoords[i] = 0;
   }
-  //glGenBuffers (1, &vbuf);
-  //glGenBuffers (1, &ibuf);
-  //glGenBuffers (1, &nbuf);
-  //glGenBuffers (MAX_TEXTURE_UNITS, (GLuint*)&tcbuf);
 }
 
 VertexBuffer:: ~VertexBuffer ()
@@ -39,17 +35,17 @@ VertexBuffer:: ~VertexBuffer ()
 
 VertexBuffer* VertexBuffer:: duplicate () const
 {
-  VertexBuffer* vbuf = new VertexBuffer (*this);
+  VertexBuffer* vbo_positions = new VertexBuffer (*this);
   Object3D* obj      = Object3D:: duplicate();
-  *(Object3D*)vbuf   = *obj;
+  *(Object3D*)vbo_positions   = *obj;
   // 現状ではOpenGLのバッファーオブジェクトを共通で使用するのでコメントアウト
-  // vbuf->setPositons (vertex_position_array, positions_scale, positions_bias);
-  // vbuf->setNormals (normals);
-  // vbuf->setColors (colors);
+  // vbo_positions->setPositons (vertex_position_array, positions_scale, positions_bias);
+  // vbo_positions->setNormals (normals);
+  // vbo_positions->setColors (colors);
   // for (int i = 0; i < MAX_TEXTURE_UNITS; i++) {
-  //  vbuf->setTexCoords (i, tex_coord_scale[i], tex_coords_bias[i]);
+  //  vbo_positions->setTexCoords (i, tex_coord_scale[i], tex_coords_bias[i]);
   // }
-  return vbuf;
+  return vbo_positions;
 }
 
 
@@ -132,9 +128,6 @@ int VertexBuffer:: animate (int world_time)
 
   //cout << hex << "VertexBuffer: default_color = 0x" << default_color << dec << "\n";
 
-  // メモ：
-  // 0でも間違えではないが仕様書をよく読んでから実装する。
-
   return 0;
 }
 
@@ -170,54 +163,43 @@ VertexArray* VertexBuffer:: getTexCoords (int index, float* scale_bias) const
     throw IllegalArgumentException (__FILE__, __func__, "Texture index is invalid.");
   }
 
-  VertexArray* tex = tex_coords[index];
-
-  if (tex && scale_bias) {
+  if (tex_coords[index] && scale_bias) {
     scale_bias[0] = tex_coords_scale[index];
-    for (int i = 0; i < tex->getComponentCount(); i++) {
+    for (int i = 0; i < tex_coords[index]->getComponentCount(); i++) {
       scale_bias[i+1] = tex_coords_bias[index][i];
     }
   }
-
-  return tex;
+  return tex_coords[index];
 }
 
 /**
- * x:[-128,127] --> y:[0,1]
- * y = (x+128)/255
+ * x:[0,255] --> y:[0,1]
  */
 void VertexBuffer:: setColors (VertexArray* colors_)
 {
-  if (colors_->getComponentType() != 1) {
-    throw IllegalArgumentException (__FILE__, __func__, "Component size must be 1, size=%d.", colors_->getComponentType());
+  int component_type  = colors_->getComponentType ();
+  int component_count = colors_->getComponentCount ();
+  if (component_type != 1) {
+    throw IllegalArgumentException (__FILE__, __func__, "Component size must be 1, size=%d.", component_type);
   }
-  if (colors_->getComponentCount() != 3 && colors_->getComponentCount() != 4) {
-    throw IllegalArgumentException (__FILE__, __func__, "Component count must be 3 or 4, size=%d.", colors_->getComponentCount());
+  if (component_count != 3 && component_count != 4) {
+    throw IllegalArgumentException (__FILE__, __func__, "Component count must be 3 or 4, size=%d.", component_count);
   }
 
   colors = colors_;
 
-  float scale   = 1/255.f;
-  float bias[4] = {0,0,0,0};
-  int   num     = colors->getComponentCount()*colors->getVertexCount();
-  int   size    = sizeof(float)* num;
+  int   num   = colors->getComponentCount()*colors->getVertexCount();
+  int   size  = sizeof(unsigned char)* num;
 
   // メモ： Colorの場合に限りデータを0〜255のunsigned型として解釈する
-  unsigned char* uchar_values = new unsigned char[num];
-  colors->get (0, colors->getVertexCount(), (char*)uchar_values);
+  unsigned char* values = new unsigned char[num];
+  colors->get (0, colors->getVertexCount(), (char*)values);
 
-  float* float_values = new float[num];
-  for (int i = 0; i < num; i++) {
-    float_values[i] = uchar_values[i]*scale + bias[i%3];
-  }
+  glGenBuffers (1, &vbo_colors);
+  glBindBuffer (GL_ARRAY_BUFFER, vbo_colors);
+  glBufferData (GL_ARRAY_BUFFER, size, values, GL_STATIC_DRAW);
 
-  glGenBuffers (1, &ibuf);
-  //cout << "VertexBuffer: send color to GPU, ibuf=" << ibuf << "\n";
-  glBindBuffer (GL_ARRAY_BUFFER, ibuf);
-  glBufferData (GL_ARRAY_BUFFER, size, float_values, GL_STATIC_DRAW);
-
-  delete [] uchar_values;
-  delete [] float_values;
+  delete [] values;
 }
 
 void VertexBuffer:: setDefaultColor (int argb)
@@ -236,42 +218,45 @@ void VertexBuffer:: setNormals (VertexArray* normals_)
     return;
   }
 
-  if (normals_->getComponentType() != 1 && normals_->getComponentType() != 2 && normals_->getComponentType() != 4) {
-    throw IllegalArgumentException (__FILE__, __func__, "Component size must be 1 or 2, size=%d.", normals_->getComponentType());
+  int vertex_count    = normals_->getVertexCount ();
+  int component_type  = normals_->getComponentType ();
+  int component_count = normals_->getComponentCount ();
+  if (component_count != 3) {
+    throw IllegalArgumentException (__FILE__, __func__, "Component count must be 3, count=%d.", component_count);
   }
-  if (normals_->getComponentCount() != 3) {
-    throw IllegalArgumentException (__FILE__, __func__, "Component count must be 3, size=%d.", normals_->getComponentCount());
+  if (positions && positions->getVertexCount() != vertex_count) {
+    throw IllegalArgumentException (__FILE__, __func__, "Vertex count is invalid, %d <--> %d.", positions->getVertexCount(), vertex_count);
   }
-  if (positions && positions->getVertexCount() != normals_->getVertexCount()) {
-    throw IllegalArgumentException (__FILE__, __func__, "Number of Positions is different from number of Normals_., count(pos)=%d, count(normals_)", positions->getVertexCount(), normals_->getVertexCount());
+  if (colors && colors->getVertexCount() != vertex_count) {
+    throw IllegalArgumentException (__FILE__, __func__, "Vertex count is invalid. %d <--> %d.", colors->getVertexCount(), vertex_count);
   }
   for (int i = 0; i < MAX_TEXTURE_UNITS; i++) {
-    if (tex_coords[i] && tex_coords[i]->getVertexCount() != normals_->getVertexCount()) {
-      throw IllegalArgumentException (__FILE__, __func__, "Number of Texture Coordinate is different from number of Normals_, count(tex)=%d, count(normals_)=%d.",  tex_coords[i]->getVertexCount(), normals_->getVertexCount());
+    if (tex_coords[i] && tex_coords[i]->getVertexCount() != vertex_count) {
+      throw IllegalArgumentException (__FILE__, __func__, "Vertex count is invalid. %d <--> %d.", tex_coords[i]->getVertexCount(), vertex_count);
     }
-  }
-  if (colors && colors->getVertexCount() != normals_->getVertexCount()) {
-    throw IllegalArgumentException (__FILE__, __func__, "Number of Colors is different from number of Normals_, count(color)=%d, count(normals_)=%d.", colors->getVertexCount(), normals_->getVertexCount());
   }
 
   normals = normals_;
 
-  float scale;
-  float bias[4];
-  scale   = (normals->getComponentType() == 1) ? 2/255.f : 2/65535;
-  bias[0] = bias[1] = bias[2] = bias[3] = (normals->getComponentType() == 1) ? 1/255.f : 1/65535.f;
-
-  int    num    = normals->getComponentCount()*normals->getVertexCount();
-  int    size   = sizeof(float)* num;
-  float* values = new float [num];
-  normals->get (0, normals->getVertexCount(), scale, bias, values);
-
-  glGenBuffers (1, &nbuf);
-  glBindBuffer (GL_ARRAY_BUFFER, nbuf);
+  int    num    = vertex_count * component_count;
+  int    size   = vertex_count * component_count * component_type;
+  void*  values = 0;
+  switch (component_type) {
+  case 1: values = new char[num] ; normals->get (0, vertex_count, (char*)values); break;
+  case 2: values = new short[num]; normals->get (0, vertex_count, (short*)values); break;
+  case 4: values = new float[num]; normals->get (0, vertex_count, (float*)values); break;
+  default: throw IllegalStateException (__FILE__, __func__, "Invalid componentype, type=%d.", component_type);
+  }
+ 
+  glGenBuffers (1, &vbo_normals);
+  glBindBuffer (GL_ARRAY_BUFFER, vbo_normals);
   glBufferData (GL_ARRAY_BUFFER, size, values, GL_STATIC_DRAW);
 
-  delete [] values;
-
+  switch (component_type) {
+  case 1: delete [] (char*)values; break;
+  case 2: delete [] (short*)values; break;
+  case 4: delete [] (float*)values; break;
+  }
 }
 
 void VertexBuffer:: setPositions (VertexArray* positions_, float scale, float* bias)
@@ -280,42 +265,39 @@ void VertexBuffer:: setPositions (VertexArray* positions_, float scale, float* b
     positions = NULL;
     return;
   }
-
-  if (positions_->getComponentType() != 1 && positions_->getComponentType() != 2 && positions_->getComponentType() != 4) {
-    throw IllegalArgumentException (__FILE__, __func__, "Component size must be 1 or 2, size=%d.", positions_->getComponentType());
-  }
-  if (positions_->getComponentCount() != 3) {
-    throw IllegalArgumentException (__FILE__, __func__, "Component count must be 3, count=%d.", positions_->getComponentCount());
-  }
-  if (normals && normals->getVertexCount() != positions_->getVertexCount()) {
-    throw IllegalArgumentException (__FILE__, __func__, "Number of Normals is different from one of Vertex Positions_, count(normal)=%d, count(pos)=%d.", normals->getVertexCount(), positions_->getVertexCount());
-  }
-  for (int i = 0; i < MAX_TEXTURE_UNITS; i++) {
-    if (tex_coords[i] && tex_coords[i]->getVertexCount() != positions_->getVertexCount()) {
-      throw IllegalArgumentException (__FILE__, __func__, "Number of Texture Coordinate is different from one of Vertex Positions_, count(tex)=%d, count(pos)=%d.", tex_coords[i]->getVertexCount(), positions_->getVertexCount());
-    }
-  }
-  if (colors && colors->getVertexCount() != positions_->getVertexCount()) {
-    throw IllegalArgumentException (__FILE__, __func__, "Number of Colors is different from number of Vertex Positions_.", colors->getVertexCount(), positions_->getVertexCount());
-  }
   if (bias == NULL) {
     throw NullPointException (__FILE__, __func__, "Bias is NULL.");
   }
+  int vertex_count    = positions_->getVertexCount ();
+  int component_count = positions_->getComponentCount ();
+  if (component_count != 3) {
+    throw IllegalArgumentException (__FILE__, __func__, "Component count must be 3, count=%d.", component_count);
+  }
+  if (normals && normals->getVertexCount() != vertex_count) {
+    throw IllegalArgumentException (__FILE__, __func__, "Vertex count is invalid, %d <--> %d.", normals->getVertexCount(), vertex_count);
+  }
+  if (colors && colors->getVertexCount() != vertex_count) {
+    throw IllegalArgumentException (__FILE__, __func__, "Vertex count is invalid, %d <--> %d.", colors->getVertexCount(), vertex_count);
+  }
+  for (int i = 0; i < MAX_TEXTURE_UNITS; i++) {
+    if (tex_coords[i] && tex_coords[i]->getVertexCount() != vertex_count) {
+      throw IllegalArgumentException (__FILE__, __func__, "Vertex count is invalid, %d <--> %d.", tex_coords[i]->getVertexCount(), vertex_count);
+    }
+  }
 
-  positions = positions_;
+  positions         = positions_;
   positions_scale   = scale;
   positions_bias[0] = bias[0];
   positions_bias[1] = bias[1];
   positions_bias[2] = bias[2];
 
-  int    num    = positions->getComponentCount()*positions->getVertexCount();
-  int    size   = sizeof(float)* num;
+  int    num    = vertex_count * component_count;
   float* values = new float [num];
-  positions->get (0, positions->getVertexCount(), scale, bias, values);
+  positions->get (0, vertex_count, scale, bias, values);
 
-  glGenBuffers (1, &vbuf);
-  glBindBuffer (GL_ARRAY_BUFFER, vbuf);
-  glBufferData (GL_ARRAY_BUFFER, size, values, GL_STATIC_DRAW);
+  glGenBuffers (1, &vbo_positions);
+  glBindBuffer (GL_ARRAY_BUFFER, vbo_positions);
+  glBufferData (GL_ARRAY_BUFFER, num*sizeof(float), values, GL_STATIC_DRAW);
 
   delete [] values;
 }
@@ -325,45 +307,38 @@ void VertexBuffer:: setTexCoords (int index, VertexArray* tex_coords_, float sca
   if (index < 0 || index >= MAX_TEXTURE_UNITS) {
     throw IllegalArgumentException (__FILE__, __func__, "Index is invalid, index=%d.", index);
   }
-  if (bias == NULL) {
-    throw NullPointException (__FILE__, __func__, "Bias is NULL.");
-  }
-
   if (tex_coords_ == NULL) {
     tex_coords[index] = NULL;
     return;
   }
-
-  if (tex_coords_->getComponentType() != 1 && tex_coords_->getComponentType() != 2) {
-    throw IllegalArgumentException (__FILE__, __func__, "Component size must be 1 or 2, size=%d.", tex_coords_->getComponentType());
-  }
-  if (tex_coords_->getComponentCount() != 2 && tex_coords_->getComponentCount() != 3) {
-    throw IllegalArgumentException (__FILE__, __func__, "Component count must be 2 or 3, count=%d.", tex_coords_->getComponentCount());
-  }
-
-  if (positions && positions->getVertexCount() != tex_coords_->getVertexCount()) {
-    throw IllegalArgumentException (__FILE__, __func__, "Number of Vertex Positions is different from number of Texture Coordinates, count(color)=%d, count(texture)=%d.", positions->getVertexCount(), tex_coords_->getVertexCount());
-  }
-  if (normals && normals->getVertexCount() != tex_coords_->getVertexCount()) {
-    throw IllegalArgumentException (__FILE__, __func__, "Number of Normals is different from number of Texture Coordinates, count(normal)=%d, count(texture)=%d.", normals->getVertexCount(), tex_coords_->getVertexCount());
-  }
-  if (colors && colors->getVertexCount() != tex_coords_->getVertexCount()) {
-    throw IllegalArgumentException (__FILE__, __func__, "Number of Colors is different from number of Texture Coordinagtes, count(color)=%d, count(texture)=%d.", colors->getVertexCount(), tex_coords_->getVertexCount());
-  }
   if (bias == NULL) {
     throw NullPointException (__FILE__, __func__, "Bias is NULL.");
   }
+  int vertex_count    = tex_coords_->getVertexCount ();
+  int component_count = tex_coords_->getComponentCount ();
 
+  if (component_count != 2 && component_count != 3) {
+    throw IllegalArgumentException (__FILE__, __func__, "Component count must be 2 or 3, count=%d.", component_count);
+  }
+  if (positions && positions->getVertexCount() != vertex_count) {
+    throw IllegalArgumentException (__FILE__, __func__, "Vertex count is invalid. %d <--> %d.", positions->getVertexCount(), vertex_count);
+  }
+  if (normals && normals->getVertexCount() != vertex_count) {
+    throw IllegalArgumentException (__FILE__, __func__, "Vertex count is invalid. %d <--> %d.", normals->getVertexCount(), vertex_count);
+  }
+  if (colors && colors->getVertexCount() != vertex_count) {
+    throw IllegalArgumentException (__FILE__, __func__, "Vertex count is invalid. %d <--> %d.", colors->getVertexCount(), vertex_count);
+  }
+ 
   tex_coords[index] = tex_coords_;
 
-  int    num    = tex_coords[index]->getComponentCount() * tex_coords[index]->getVertexCount();
-  int    size   = sizeof(float)* num;
+  int    num    = vertex_count * component_count;
   float* values = new float [num];
-  tex_coords[index]->get (0, tex_coords[index]->getVertexCount(), scale, bias, values);
+  tex_coords[index]->get (0, vertex_count, scale, bias, values);
 
-  glGenBuffers (MAX_TEXTURE_UNITS, &tcbuf[index]);
-  glBindBuffer (GL_ARRAY_BUFFER, tcbuf[index]);
-  glBufferData (GL_ARRAY_BUFFER, size, values, GL_STATIC_DRAW);
+  glGenBuffers (1, &vbo_texcoords[index]);
+  glBindBuffer (GL_ARRAY_BUFFER, vbo_texcoords[index]);
+  glBufferData (GL_ARRAY_BUFFER, num*sizeof(float), values, GL_STATIC_DRAW);
 
   delete [] values;
 }
@@ -378,48 +353,56 @@ void VertexBuffer:: render (RenderState& state) const
     return;
   }
 
-  //cout << "VertexBuffer: vbuf = " << vbuf << "\n";
+  //cout << "VertexBuffer: vbo_positions = " << vbo_positions << "\n";
 
   if (positions) {
     //cout << "render vertex array\n";
     int cc = positions->getComponentCount();
-    glBindBuffer (GL_ARRAY_BUFFER, vbuf);
+    glBindBuffer        (GL_ARRAY_BUFFER, vbo_positions);
     glEnableClientState (GL_VERTEX_ARRAY);
-    glVertexPointer (cc, GL_FLOAT, 0, 0);  // 0,0=stride,offset
+    glVertexPointer     (cc, GL_FLOAT, 0, 0);
   } else {
     glDisableClientState (GL_VERTEX_ARRAY);
   }
 
   if (normals) {
     //cout << "render normal array\n";
-    glBindBuffer (GL_ARRAY_BUFFER, nbuf);
+    glBindBuffer        (GL_ARRAY_BUFFER, vbo_normals);
     glEnableClientState (GL_NORMAL_ARRAY);
-    glNormalPointer (GL_FLOAT, 0, 0);
+    int component_type = normals->getComponentType();
+    switch (component_type) {
+    case 1: glNormalPointer (GL_BYTE, 0, 0); break;
+    case 2: glNormalPointer (GL_SHORT, 0, 0); break;
+    case 4: glNormalPointer (GL_FLOAT, 0, 0); break;
+    default: IllegalStateException (__FILE__, __func__, "Component type is invalid, type=%d.", component_type);
+    }
   } else {
     glDisableClientState (GL_NORMAL_ARRAY);
   }
 
-    if (colors) {
-      //cout << "VertexBuffer: send vertex color data\n";
-      int cc = colors->getComponentCount();
-      glBindBuffer (GL_ARRAY_BUFFER, ibuf);
-      glEnableClientState (GL_COLOR_ARRAY);
-      glColorPointer (cc, GL_FLOAT, 0, 0);  // 0,0=stride,offset
+  if (colors) {
+      //cout << "VertexBuffer: send vertex color array\n";
+    // 注意：頂点カラーを使うかどうかはMaterial::render()で決定される。
+    // ここではデータを送るだけでdisableにしておく。
+      int component_count = colors->getComponentCount();
+      glBindBuffer         (GL_ARRAY_BUFFER, vbo_colors);
+      glEnableClientState  (GL_COLOR_ARRAY);
+      glColorPointer       (component_count, GL_UNSIGNED_BYTE, 0, 0);
       glDisableClientState (GL_COLOR_ARRAY);
-      state.vertex_color_buffer_enabled = true;
-      state.default_vertex_color        = 0xffffffff;
+      state.vertex_color_buffer_ready = true;
+      state.default_vertex_color      = 0xffffffff;
     } else {
       //cout << "VertexBuffer: send vertex color data, default color\n";
       glDisableClientState (GL_COLOR_ARRAY);
-      state.vertex_color_buffer_enabled = false;
-      state.default_vertex_color        = default_color;
+      state.vertex_color_buffer_ready = false;
+      state.default_vertex_color      = default_color;
     }
 
   for (int i = 0; i < MAX_TEXTURE_UNITS; i++) {
     if (tex_coords[i]) {
       //cout << "VertexBuffer: render " << i << "th texture coordinate array\n";
       int cc = tex_coords[i]->getComponentCount();
-      glBindBuffer          (GL_ARRAY_BUFFER, tcbuf[i]);  // VBOの選択
+      glBindBuffer          (GL_ARRAY_BUFFER, vbo_texcoords[i]);  // VBOの選択
       glClientActiveTexture (GL_TEXTURE0+i);              // (クライアントを含む）テクスチャーユニットの選択
       glEnableClientState   (GL_TEXTURE_COORD_ARRAY);     // 頂点配列の有効化
       glTexCoordPointer     (cc, GL_FLOAT, 0, 0);         // テクスチャー座標の指定
@@ -431,45 +414,24 @@ void VertexBuffer:: render (RenderState& state) const
   
 }
 
-void VertexBuffer:: findByObjectType (int type, std::vector<Object3D*>& objs) const
-{
-  if (positions) {
-    positions->findByObjectType (type, objs);
-  }
-  for (int i = 0;i < MAX_TEXTURE_UNITS; i++) {
-    if (tex_coords[i]) {
-      tex_coords[i]->findByObjectType (type, objs);
-    }
-  }
-  if (normals) {
-    normals->findByObjectType (type, objs);
-  }
-  if (colors) {
-    colors->findByObjectType (type, objs);
-  }
-
-}
-
-
-
 std::ostream& VertexBuffer:: print (std::ostream& out) const
 {
   out << "VertexBuffer: ";
   if (positions)
     out << "  positions = " << *positions;
   else
-    out << "  positions = 0";
+    out << "  positions = NOT FOUND";
   if (normals)
     out << ", normals = " << *normals;
   else
-    out << ", normals = 0";
+    out << ", normals = NOT FOUND";
   
   if (colors)
     out << ", colors  = " << *colors;
   else
-    out << ", colors  = 0";
+    out << ", colors  = NOT FOUND";
   out << ", default color = 0x" << hex << default_color << dec;
-  return out << "\n";;
+  return out;
 }
 
 std::ostream& operator<< (std::ostream& out, const VertexBuffer& vbuf)

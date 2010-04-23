@@ -108,7 +108,7 @@ namespace m3g {
 
     /**
      * @~English  Print out information of this object, for debug only.
-     * @~Japanese このObject3Dの情報を表示する。デバッグ用.
+     * @~Japanese このオブジェクトの情報を表示する。デバッグ用.
      */
     virtual std::ostream& print (std::ostream& out) const;
 

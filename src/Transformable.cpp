@@ -249,7 +249,7 @@ std::ostream& Transformable:: print (std::ostream& out) const
   out << ", scale="       << scaling.x     << "," << scaling.y     << "," << scaling.z;
   out << ", orientation=" << angle_axis[0] << "," << angle_axis[1] << "," << angle_axis[2] << "," << angle_axis[3];
   out << ", transform="   << transform;
-  return out << "\n";
+  return out;
 }
 
 std::ostream& operator<< (std::ostream& out, const Transformable& t)

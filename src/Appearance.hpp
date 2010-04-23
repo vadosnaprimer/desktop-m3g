@@ -130,13 +130,6 @@ namespace m3g {
 
   
 
-  protected:
-    /**
-     * @~English  Find by object type, inner use only.
-     * @~Japanese オブジェクトタイプで検索する内部使用の関数.
-     */
-    virtual void findByObjectType (int obj_type, std::vector<Object3D*>& objs) const;
-
   private:
     /**
      * @~English  Render this object, inner use only.

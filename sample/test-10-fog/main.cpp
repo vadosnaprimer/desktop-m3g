@@ -80,7 +80,7 @@ int main (int argc, char** argv)
 
   Fog* fog = new Fog;
   fog->setLinear (4, 10);
-  fog->setColor (0x00ff0000);
+  fog->setColor (0x000000ff);
   fog->addAnimationTrack (animation_fog_far);
   fog->setMode (Fog::LINEAR);
 

@@ -235,7 +235,7 @@ std::ostream& VertexArray:: print (std::ostream& out) const
   out << "VertexArray: ";
   out << vertex_count << " vertices (";
   out << component_size << "byte x " << component_count << "comps / vertex),  \n";
-  return out << "\n";
+  return out;
 }
 
 std::ostream& VertexArray:: print_raw_data (std::ostream& out) const

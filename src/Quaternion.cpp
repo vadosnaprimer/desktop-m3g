@@ -141,11 +141,16 @@ Quaternion operator* (float f, const Quaternion& p)
     return r;
   }
 
+std::ostream& Quaternion:: print (std::ostream& out) const
+{
+    out << "[ " << x << "," << y << "," << z << "," << w << " or ";
+    float a[4];
+    getAngleAxis (a);
+    out << "" << a[0] << " ," << a[1] << "," << a[2] << "," << a[3] << " ]";
+    return out;
+}
+
 std::ostream& operator<< (std::ostream& out, const Quaternion& q)
 {
-  out << "(" << q.x << "," << q.y << "," << q.z << "," << q.w << ") or ";
-  float a[4];
-  q.getAngleAxis (a);
-  out << "(" << a[0] << " ," << a[1] << "," << a[2] << "," << a[3] << ")";
-  return out;
+  return q.print (out);
 }

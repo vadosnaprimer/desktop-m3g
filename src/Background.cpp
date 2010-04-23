@@ -339,7 +339,7 @@ std::ostream& Background:: print (std::ostream& out) const
   out << ","                     << crop_rectangle.y;
   out << ","                     << crop_rectangle.width;
   out << ","                     << crop_rectangle.height;
-  return out << "\n";
+  return out;
 }
 
 std::ostream& operator<< (std::ostream& out, const Background& bg)

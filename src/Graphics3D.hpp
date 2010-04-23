@@ -216,6 +216,13 @@ namespace m3g {
      */
     void setViewport (int x, int y, int width, int height);
 
+
+    /**
+     * @~English  Print out information of this object, for debug only.
+     * @~Japanese このオブジェクトの情報を表示する。デバッグ用.
+     */
+    std::ostream& print (std::ostream& out) const;
+
   private:
     /**
      * @~English  Forbiddened constructor of Graphics3D.
@@ -232,7 +239,7 @@ namespace m3g {
 
 } // namespace m3g {
 
-std::ostream& operator<< (std::ostream& out, const m3g::Graphics3D& g);
+std::ostream& operator<< (std::ostream& out, const m3g::Graphics3D& g3d);
 
 
 #endif

@@ -142,29 +142,6 @@ void Appearance:: setTexture (int index, Texture2D* texture)
 }
 
 
-void Appearance:: findByObjectType (int type, std::vector<Object3D*>& objs) const
-{
-  if (polygon_mode) {
-    polygon_mode->findByObjectType (type, objs);
-  }
-  if (compositing_mode) {
-    compositing_mode->findByObjectType (type, objs);
-  }
-  for (int i = 0; i < (int)textures.size(); i++) {
-    textures[i]->findByObjectType (type, objs);
-  }
-  if (material) {
-    material->findByObjectType (type, objs);
-  }
-  if (fog) {
-    fog->findByObjectType (type, objs);
-  }
-
-  if (getObjectType() == type) {
-    objs.push_back (const_cast<Appearance*>(this));
-  }
-}
-
 /**
  * Note: Appearance should be rendered only at second rendering pass(pass=2).
  * In other cases, do nothing.
@@ -242,7 +219,7 @@ std::ostream& Appearance:: print (std::ostream& out) const
     out << ", fog=" << *fog;
   else
     out << ", fog=DEFAULT";
-  return out << "\n";
+  return out;
 }
 
 

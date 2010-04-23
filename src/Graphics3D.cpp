@@ -228,3 +228,13 @@ void Graphics3D:: setViewport (int x, int y, int width, int height)
   glViewport (viewport.x, viewport.y, viewport.width, viewport.height);
 }
 
+std::ostream& Graphics3D:: print (std::ostream& out) const
+{
+  out << "Grapphics3D: no info.";
+  return out;
+}
+
+std::ostream& operator<< (std::ostream& out, const m3g::Graphics3D& g3d)
+{
+  return g3d.print (out);
+}

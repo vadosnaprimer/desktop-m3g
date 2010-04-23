@@ -13,12 +13,12 @@ namespace m3g {
     {
     public:
       RenderState () : pass(0), light_index(0), layer(-999), alpha(1),
-                       vertex_color_buffer_enabled(false), default_vertex_color(0xffffffff) {};
+                       vertex_color_buffer_ready(false), default_vertex_color(0xffffffff) {};
       int   pass;
       int   light_index;
       int   layer;
       float alpha;
-      bool  vertex_color_buffer_enabled;
+      bool  vertex_color_buffer_ready;
       int   default_vertex_color;
       std::vector<int>   valid_layers;
     };

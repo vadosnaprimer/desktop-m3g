@@ -2,9 +2,8 @@
 #include <GL/glut.h>
 #include <iostream>
 #include <cstring>
+#include <cstdlib>
 #include <cmath>
-#include "libpng.hpp"
-#include "data.hpp"
 using namespace std;
 using namespace m3g;
 
@@ -26,12 +25,56 @@ void resize(int w, int h)
   cam->setPerspective (45, w/(float)h, 0.1, 100);
 }
 
+int world_time = 0;
+
+static void keyboard(unsigned char key, int x, int y)
+{
+  switch (key) {
+  case 'q':
+    exit(0);
+  case ' ':
+    cout << "glut: Space, time = " << world_time << "\n";
+    wld->animate (world_time);
+    world_time += 5;
+  default:
+    break;
+  }
+  glutPostRedisplay();
+}
+
+
 int main (int argc, char** argv)
 {
   glutInit(&argc, argv);
   glutInitDisplayMode(GLUT_RGB);
   glutCreateWindow(argv[0]);
   glewInit ();
+
+  AnimationController* controller = new AnimationController;
+
+  KeyframeSequence* keyframe_sequence1 = new KeyframeSequence (3, 3, KeyframeSequence::LINEAR);
+  float keyframes1[3][3] = {{1,0,0}, {0,0,0}, {1,0,0}};
+  keyframe_sequence1->setKeyframe (0, 0,   keyframes1[0]);
+  keyframe_sequence1->setKeyframe (1, 100, keyframes1[1]);
+  keyframe_sequence1->setKeyframe (2, 200, keyframes1[2]);
+  keyframe_sequence1->setRepeatMode (KeyframeSequence::LOOP);
+  keyframe_sequence1->setValidRange (0, 2);
+  keyframe_sequence1->setDuration (200);
+
+  KeyframeSequence* keyframe_sequence2 = new KeyframeSequence (3, 3, KeyframeSequence::LINEAR);
+  float keyframes2[3][3] = {{-1,0,0}, {0,0,0}, {-1,0,0}};
+  keyframe_sequence2->setKeyframe (0, 0,   keyframes2[0]);
+  keyframe_sequence2->setKeyframe (1, 100, keyframes2[1]);
+  keyframe_sequence2->setKeyframe (2, 200, keyframes2[2]);
+  keyframe_sequence2->setRepeatMode (KeyframeSequence::LOOP);
+  keyframe_sequence2->setValidRange (0, 2);
+  keyframe_sequence2->setDuration (200);
+
+  AnimationTrack* animation_track1 = new AnimationTrack (keyframe_sequence1, AnimationTrack::TRANSLATION);
+  animation_track1->setController (controller);
+
+  AnimationTrack* animation_track2 = new AnimationTrack (keyframe_sequence2, AnimationTrack::TRANSLATION);
+  animation_track2->setController (controller);
 
   float scale = 1;
   float bias[3] = {0,0,0};
@@ -50,21 +93,31 @@ int main (int argc, char** argv)
   TriangleStripArray* tris = new TriangleStripArray (0, 1, strips);
 
   Material* mat1 = new Material;
-  mat1->setColor (Material::DIFFUSE, 0xff4c4cb2);
+  mat1->setColor (Material::DIFFUSE, 0xcf4c4cb2);
 
+  CompositingMode* cmode1 = new CompositingMode;
+  cmode1->setBlending (CompositingMode::ALPHA);
+  
   Material* mat2 = new Material;
-  mat2->setColor (Material::DIFFUSE, 0xff4cb2b2);
+  mat2->setColor (Material::DIFFUSE, 0xcf4cb2b2);
+
+  CompositingMode* cmode2 = new CompositingMode;
+  cmode2->setBlending (CompositingMode::ALPHA);
 
   Appearance* app1 = new Appearance;
   app1->setMaterial (mat1);
+  app1->setCompositingMode (cmode1);
 
   Appearance* app2 = new Appearance;
   app2->setMaterial (mat2);
+  app2->setCompositingMode (cmode2);
 
   Mesh* mesh1 = new Mesh (vertices1, tris, app1);
+  mesh1->addAnimationTrack (animation_track1);
   mesh1->translate (1,0,0);
 
   Mesh* mesh2 = new Mesh (vertices2, tris, app2);
+  mesh2->addAnimationTrack (animation_track2);
   mesh2->translate (-1,0,0);
   
   Group* grp = new Group;
@@ -83,6 +136,7 @@ int main (int argc, char** argv)
 
   cout << *wld << "\n";
 
+  glutKeyboardFunc(keyboard);
   glutDisplayFunc(display);
   glutReshapeFunc(resize);
   glutMainLoop ();

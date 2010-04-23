@@ -220,6 +220,8 @@ void Sprite3D:: render (RenderState& state) const
   if (appearance != 0 && appearance->getLayer() != state.layer)
     return;
 
+  cout << "Sprite3D: render \n";
+
   Node:: render (state);
 
   if (appearance) {
@@ -238,9 +240,9 @@ void Sprite3D:: render (RenderState& state) const
   projection.transpose ();
   model_view_projection = projection * model_view;
   //cout << model_view_projection << "\n";
-  float tx = model_view_projection.m[0][3]/model_view_projection.m[3][3];
-  float ty = model_view_projection.m[1][3]/model_view_projection.m[3][3];
-  float tz = model_view_projection.m[2][3]/model_view_projection.m[3][3];
+  float tx = model_view_projection.m[3]/model_view_projection.m[15];
+  float ty = model_view_projection.m[7]/model_view_projection.m[15];
+  float tz = model_view_projection.m[11]/model_view_projection.m[15];
 
   Graphics3D* g3d = Graphics3D::getInstance();
   float viewport_width  = g3d->getViewportWidth();
@@ -377,7 +379,7 @@ std::ostream& Sprite3D:: print (std::ostream& out) const
   out << ", image=0x" << image << "(" << width << "x" << height << ")";
   out << ", appearance=0x" << appearance;
   out << ", crop=" << crop.x << "," << crop.y << "," << crop.width << "," << crop.height;
-  return out << "\n";;
+  return out;
 }
 
 std::ostream& operator<< (std::ostream& out, const Sprite3D& spr)

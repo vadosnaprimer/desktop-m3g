@@ -299,7 +299,8 @@ std::ostream& KeyframeSequence:: print (std::ostream& out) const
       }
     }
   }
-  return out << "]\n";
+  out << "]";
+  return out;
 }
 
 std::ostream& operator<< (std::ostream& out, const KeyframeSequence& keys)

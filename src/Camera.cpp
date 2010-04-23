@@ -308,7 +308,7 @@ std::ostream& Camera:: print (std::ostream& out) const
     out << "  type=\"GENERIC\"";
     out << ", matrix=" << trns;
   }
-  return out << "\n";
+  return out;
 }
 
 

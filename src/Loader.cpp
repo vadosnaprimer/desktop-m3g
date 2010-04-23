@@ -1191,8 +1191,3 @@ void Loader:: parseWorld ()
   objs.push_back (wld);
 }
 
-std::ostream& operator<< (std::ostream& out, const Loader& ldr)
-{
-  out << "Loader: ";
-  return out << "\n";
-}
