@@ -41,6 +41,10 @@ TEST (Vector_normal)
   CHECK_CLOSE (1, v0.length(), 0.00001);
   CHECK_CLOSE (1, v1.length(), 0.00001);
   CHECK_CLOSE (1, v2.length(), 0.00001);
+
+  //cout << "v0 = " << v0 << "\n";
+  //cout << "v1 = " << v1 << "\n";
+  //cout << "v2 = " << v2 << "\n";
 }
 
 TEST (Vector_dot_cross)

@@ -136,10 +136,10 @@ PolygonMode.o: /usr/include/GL/glu.h /usr/include/GL/gl.h m3gdef.hpp
 PolygonMode.o: m3ginternal.hpp Exception.hpp RenderState.hpp
 Property.o: Property.hpp Exception.hpp
 Quaternion.o: Quaternion.hpp Exception.hpp m3ginternal.hpp Vector.hpp
-RayIntersection.o: RayIntersection.hpp Node.hpp Transformable.hpp
-RayIntersection.o: Object3D.hpp /usr/include/GL/glew.h /usr/include/GL/glu.h
-RayIntersection.o: /usr/include/GL/gl.h m3gdef.hpp m3ginternal.hpp
-RayIntersection.o: Quaternion.hpp Transform.hpp Matrix.hpp
+RayIntersection.o: RayIntersection.hpp Exception.hpp Node.hpp
+RayIntersection.o: Transformable.hpp Object3D.hpp /usr/include/GL/glew.h
+RayIntersection.o: /usr/include/GL/glu.h /usr/include/GL/gl.h m3gdef.hpp
+RayIntersection.o: m3ginternal.hpp Quaternion.hpp Transform.hpp Matrix.hpp
 RenderState.o: RenderState.hpp
 SkinnedMesh.o: SkinnedMesh.hpp Mesh.hpp Node.hpp Transformable.hpp
 SkinnedMesh.o: Object3D.hpp /usr/include/GL/glew.h /usr/include/GL/glu.h

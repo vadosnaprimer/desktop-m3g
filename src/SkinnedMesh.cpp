@@ -29,9 +29,8 @@ SkinnedMesh:: SkinnedMesh (VertexBuffer* vertices,
   skinned_vertices = vertices->duplicate ();
 
   // 注意：スキン変形後のpositionsとnormalsを保存するために新しくnewし直す。
-  // duplicate()しただけでは同じインスタンスを指している。
-  // 内部float型でデータを保持しないと精度・有効範囲が足りない。
-  // 内部float型の時はscaleとbiasは適用済み。
+  // VertexBufferをduplicate()しただけでは同じインスタンスを指している。
+  // positionsは内部float型でデータを保持しないと精度・有効範囲が足りない。
 
   float scale_bias[4];
   VertexArray* bind_positions = vertices->getPositions(scale_bias);
@@ -52,37 +51,7 @@ SkinnedMesh:: SkinnedMesh (VertexBuffer* vertices,
 
   VertexArray* bind_normals   = vertices->getNormals();
   if (bind_normals) {
-    int    vertex_count    = bind_normals->getVertexCount();
-    int    component_count = bind_normals->getComponentCount();
-    int    component_type  = bind_normals->getComponentType();
-    int    num             = vertex_count * component_count;
-    VertexArray* skinned_normals = new VertexArray (vertex_count, component_count, component_type);
-    switch (component_type) {
-    case 1: {
-      char* values = new char[num];
-      bind_normals->get    (0, vertex_count, values);
-      skinned_normals->set (0, vertex_count, values);
-      delete values;
-      break;
-    }
-    case 2: {
-      short* values = new short[num];
-      bind_normals->get    (0, vertex_count, values);
-      skinned_normals->set (0, vertex_count, values);
-      delete values;
-      break;
-    }
-    case 4: {
-      float* values = new float[num];
-      bind_normals->get    (0, vertex_count, values);
-      skinned_normals->set (0, vertex_count, values);
-      delete values;
-      break;
-    }
-    default:
-      throw IllegalStateException (__FILE__, __func__, "Component type is invalid, type=%d.", component_type);
-    }
-
+    VertexArray* skinned_normals = bind_normals->duplicate();
     skinned_vertices->setNormals (skinned_normals);
   }
 
@@ -125,19 +94,11 @@ SkinnedMesh* SkinnedMesh:: duplicate () const
 int SkinnedMesh:: animate (int world_time)
 {
   //cout << "SkinnedMesh: animate\n";
-  //cout << "  bones = " << bind_poses.size() << "\n";
   
-  //for (int i = 0; i < (int)bind_poses.size(); i++) {
-  //  cout << "i = " << i << ", " << bind_poses[i].bone->Transformable::print (cout) << "\n";
-  //  cout << "global_pose = \n" << getGlobalPose (bind_poses[i].bone) << "\n";
-  //  cout << "inv_bind_pose = \n" << bind_poses[i].inverse << "\n"; 
-  //}
-
   Mesh:: animate (world_time);
 
   // ボーンの移動
   skeleton->animate (world_time);
-
 
   // マトリックスパレットの作成
   int bone_count = bind_poses.size();
@@ -181,20 +142,23 @@ int SkinnedMesh:: animate (int world_time)
 
   // 法線
   if (bind_normals) {
-    // 注意：法線のマトリックスパレットは逆行列の転置
+    // 注意：法線はマトリックスパレットの3x3成分の逆行列の転置
     for (int b = 0; b < bone_count; b++) {
       matrix_palette[b].invert().transpose();
+      matrix_palette[b][3]  = matrix_palette[b][7]  = matrix_palette[b][11] = 0;
+      matrix_palette[b][12] = matrix_palette[b][13] = matrix_palette[b][14] = 0;
+      matrix_palette[b][15] = 1;
+
     }
     int   component_type = bind_normals->getComponentType();
     float scale_bias[4];
-    scale_bias[0] = (component_type == 1) ? 2/255.f : 2/65535.f;
-    scale_bias[1] = (component_type == 1) ? 1/255.f : 1/65535.f;
-    scale_bias[2] = (component_type == 1) ? 1/255.f : 1/65535.f;
-    scale_bias[3] = (component_type == 1) ? 1/255.f : 1/65535.f;
+    scale_bias[0] = (component_type == 1) ? 2/255.f : (component_type == 2) ? 2/65535.f : 1;
+    scale_bias[1] = (component_type == 1) ? 1/255.f : (component_type == 2) ? 1/65535.f : 0;
+    scale_bias[2] = (component_type == 1) ? 1/255.f : (component_type == 2) ? 1/65535.f : 0;
+    scale_bias[3] = (component_type == 1) ? 1/255.f : (component_type == 2) ? 1/65535.f : 0;
     bind_normals->get (0, vertex_count, scale_bias[0], &scale_bias[1], values);
     for (int v = 0; v < vertex_count; v++) {
-      Vector v0 (values[v*3], values[v*3+1], values[v*3+2], 1);
-      //v0.normalize();
+      Vector v0 (values[v*3], values[v*3+1], values[v*3+2]);
       Vector v1 (0,0,0);
       float  weight     = 0;
       int    bone_count = bone_indices[v].size();
@@ -206,10 +170,9 @@ int SkinnedMesh:: animate (int world_time)
 	v1 += matrix_palette[i] * v0 * (bone_indices[v][b].weight/weight);
       }
       if (weight > 0) {
-	//v1.normalize();
+	v1.normalize();
 	v1.get (&values[v*3]);
       }
-      //cout << "v0 = "<< v0 << ", v1 = " << v1 << "\n";
     }
     skinned_normals->set (0, vertex_count, scale_bias[0], &scale_bias[1], values);
     skinned_vertices->setNormals (skinned_normals);
@@ -218,7 +181,6 @@ int SkinnedMesh:: animate (int world_time)
   delete [] values;
 
   //cout << "skinned_positions = " << *skinned_positions << "\n";
-
  
   return 0;
 }
