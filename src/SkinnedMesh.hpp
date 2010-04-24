@@ -45,18 +45,19 @@ namespace m3g {
      * @~Japanese 指定された頂点、サブメッシュ、スケルトンを持つSkinnedMeshを新しく作成する.
      */
     SkinnedMesh (VertexBuffer* vertices, 
-		 int num_submesh, IndexBuffer** submeshes,
-		 int num_appearance, Appearance** apperarances,
-		 Group* skelton);
+                 int           num_submesh,
+                 IndexBuffer** submeshes,
+                 Appearance**  apperarances,
+                 Group*        skelton);
 
     /**
      * @~English  Constructs a new SkinnedMesh witdh the given vertices, submeshes and skeleton.
      * @~Japanese 指定された頂点、サブメッシュ、スケルトンを持つSkinnedMeshを新しく作成する.
      */
     SkinnedMesh (VertexBuffer* vertices, 
-		 IndexBuffer* submeshes, 
-		 Appearance* apperarances,
-		 Group* skelton);
+                 IndexBuffer*  submeshes, 
+                 Appearance*   apperarances,
+                 Group*        skelton);
 
     /**
      * @~English  Destructs this object.

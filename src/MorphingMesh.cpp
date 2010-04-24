@@ -8,7 +8,7 @@ using namespace std;
 using namespace m3g;
     
 MorphingMesh:: MorphingMesh (VertexBuffer* base, int num_target, VertexBuffer** targets, int num_submesh, IndexBuffer** submeshes, int num_appearance, Appearance** appearances) :
-    Mesh (base, num_submesh, submeshes, num_appearance, appearances)
+    Mesh (base, num_submesh, submeshes, appearances)
 {
   throw NotImplementedException (__FILE__, __func__, "Sorry, MrphingMesh is not implemented.");
 }

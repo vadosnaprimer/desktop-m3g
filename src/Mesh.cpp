@@ -9,10 +9,8 @@
 using namespace std;
 using namespace m3g;
 
-Mesh:: Mesh (VertexBuffer* vertices_,
-	     int num_submesh, IndexBuffer** submeshes,
-	     int num_appearance, Appearance** appearances_) :
-  vertices(0)
+Mesh:: Mesh (VertexBuffer* vertices_, int num_submesh,
+             IndexBuffer** submeshes, Appearance** appearances_) : vertices(0)
 {
   setObjectType (OBJTYPE_MESH);
 
@@ -25,9 +23,6 @@ Mesh:: Mesh (VertexBuffer* vertices_,
   if (submeshes == 0) {
     throw NullPointException (__FILE__, __func__, "IndexBuffer is NULL.");
   }
-  if (num_appearance == 0) {
-    throw IllegalArgumentException (__FILE__, __func__, "Number of appearance is invalid, num_appearance=%d.", num_appearance);
-  }
   if (appearances_ == 0) {
     throw NullPointException (__FILE__, __func__, "Appearances is NULL.");
   }
@@ -37,32 +32,15 @@ Mesh:: Mesh (VertexBuffer* vertices_,
   for (int i = 0; i < num_submesh; i++ ) {
     indices.push_back (*submeshes++);
   }
-  appearances.reserve (num_appearance);
-  for (int i = 0; i < num_appearance; i++ ) {
+  appearances.reserve (num_submesh);
+  for (int i = 0; i < num_submesh; i++ ) {
     appearances.push_back (*appearances_++);
   }
 }
 
-Mesh:: Mesh (VertexBuffer* vertices_, IndexBuffer* submesh, Appearance* appearance)
+Mesh:: Mesh (VertexBuffer* vertices, IndexBuffer* submesh, Appearance* appearance)
 {
-  if (vertices_ == 0) {
-    throw NullPointException (__FILE__, __func__, "VertexBuffer is NULL.");
-  }
-  if (submesh == 0) {
-    throw NullPointException (__FILE__, __func__, "IndexBuffer is NULL.");
-  }
-  if (appearance == 0) {
-    throw NullPointException (__FILE__, __func__, "Appearance is NULL.");
-  }
-  //cout << "Mesh: add submesh = " << submesh << "\n";
-
-  vertices = vertices_;
-  indices.push_back (submesh);
-  appearances.push_back (appearance);
-
-  //for (int i = 0; i < (int)indices.size(); i++) {
-  //  cout << "indices[" << i << "] = "<< indices[i] << "\n";
-  //}
+  *this = Mesh (vertices, 1, &submesh, &appearance);
 }
 
 Mesh:: ~Mesh ()

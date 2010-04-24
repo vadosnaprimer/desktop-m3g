@@ -796,7 +796,7 @@ void Loader:: parseMesh ()
     appears[i] = dynamic_cast<Appearance*>(objs.at(appearance_index));
   }
 
-  Mesh* mesh = new Mesh (vbuf, submesh_count, indices, submesh_count, appears);
+  Mesh* mesh = new Mesh (vbuf, submesh_count, indices, appears);
   *(Node*)mesh = *node;
 
   //mesh->Mesh:: print (cout);
@@ -914,7 +914,7 @@ void Loader:: parseSkinnedMesh ()
   unsigned int skeleton_index = getUInt32();
   Group*       skeleton       = dynamic_cast<Group*>(objs.at(skeleton_index));
 
-  SkinnedMesh* mesh = new SkinnedMesh (vbuf, submesh_count, indices, submesh_count, appears, skeleton);
+  SkinnedMesh* mesh = new SkinnedMesh (vbuf, submesh_count, indices, appears, skeleton);
   *(Node*)mesh = *node;
 
   //mesh->Mesh:: print (cout);

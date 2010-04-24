@@ -23,7 +23,7 @@ TEST (SkinnedMesh_default_variables)
   float bias[] = {0,0,0};
   vbuf->setPositions (varry, scale, bias);
 
-  SkinnedMesh*  mesh        = new SkinnedMesh (vbuf, 1, (IndexBuffer**)&tris, 1, &app, skeleton);
+  SkinnedMesh*  mesh        = new SkinnedMesh (vbuf, 1, (IndexBuffer**)&tris, &app, skeleton);
 
   CHECK_EQUAL (OBJTYPE_SKINNED_MESH, mesh->getObjectType());
   CHECK_EQUAL (skeleton, mesh->getSkeleton());
@@ -102,7 +102,7 @@ TEST (SkinnedMesh_addTransform_getBoneVertices)
   float bias[] = {0,0,0};
   vbuf->setPositions (varry, scale, bias);
 
-  SkinnedMesh*  mesh        = new SkinnedMesh (vbuf, 1, (IndexBuffer**)&tris, 1, &app, bone0);
+  SkinnedMesh*  mesh        = new SkinnedMesh (vbuf, 1, (IndexBuffer**)&tris, &app, bone0);
 
   // vertices 0, 1, 2, 3, 4, 5, 6, 7, 8, 9
   // bone0    ----------        ----
@@ -187,7 +187,7 @@ TEST (SkinnedMesh_getBoneTransform)
   float bias[] = {0,0,0};
   vbuf->setPositions (varry, scale, bias);
 
-  SkinnedMesh*  mesh        = new SkinnedMesh (vbuf, 1, (IndexBuffer**)&tris, 1, &app, bone0);
+  SkinnedMesh*  mesh        = new SkinnedMesh (vbuf, 1, (IndexBuffer**)&tris, &app, bone0);
 
   // vertices 0, 1, 2, 3, 4, 5, 6, 7, 8, 9
   // bone0    ----------        ----
@@ -232,7 +232,7 @@ TEST (SkinnedMesh_duplicate)
   float bias[] = {0,0,0};
   vbuf->setPositions (varry, scale, bias);
 
-  SkinnedMesh* mesh0 = new SkinnedMesh (vbuf, 1, (IndexBuffer**)&tris, 1, &app, bone0);
+  SkinnedMesh* mesh0 = new SkinnedMesh (vbuf, 1, (IndexBuffer**)&tris, &app, bone0);
 
   // vertices 0, 1, 2, 3, 4, 5, 6, 7, 8, 9
   // bone0    ----------        ----

@@ -16,7 +16,7 @@ TEST (Mesh_default_variables_1)
   TriangleStripArray* tris[2] = {new TriangleStripArray (indices, 1, strips),
                                   new TriangleStripArray (indices, 1, strips)};
   Appearance*  app[2]  = {new Appearance, new Appearance};
-  Mesh* mesh = new Mesh (vbuf, 2, (IndexBuffer**)tris, 2, app);
+  Mesh* mesh = new Mesh (vbuf, 2, (IndexBuffer**)tris, app);
 
   CHECK_EQUAL (OBJTYPE_MESH, mesh->getObjectType());
   CHECK_EQUAL (vbuf,    mesh->getVertexBuffer());

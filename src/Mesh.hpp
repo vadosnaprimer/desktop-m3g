@@ -24,16 +24,17 @@ namespace m3g {
      * @~Japanese 指定された頂点バッファーとサブメッシュから新しいメッシュを作成する.
      */
     Mesh (VertexBuffer* vertices,
-	  int num_submesh, IndexBuffer** submeshes,
-	  int num_appearance, Appearance** appearances);
+          int           num_submesh,
+          IndexBuffer** submeshes,
+          Appearance**  appearances);
 
     /**
      * @~English Constructs a new Mesh consisting of only one submesh. 
      * @~Japanese サブメッシュ1つからなる新しいメッシュを作成する.
      */
     Mesh (VertexBuffer* vertices, 
-	  IndexBuffer* submesh,
-	  Appearance* appearance);
+          IndexBuffer*  submesh,
+          Appearance*   appearance);
 
     /**
      * @~English  Destruct this object.

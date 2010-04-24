@@ -46,7 +46,7 @@ static void keyboard(unsigned char key, int x, int y)
 int main (int argc, char** argv)
 {
   glutInit(&argc, argv);
-  glutInitDisplayMode(GLUT_RGB);
+  glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGBA);
   glutCreateWindow(argv[0]);
   glewInit ();
 

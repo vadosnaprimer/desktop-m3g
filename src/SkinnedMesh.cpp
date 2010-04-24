@@ -12,11 +12,10 @@ using namespace std;
 using namespace m3g;
 
 
-SkinnedMesh:: SkinnedMesh (VertexBuffer* vertices,
-	   int num_submesh, IndexBuffer** submeshes,
-	   int num_appearance, Appearance** appearances_,
-	   Group* skeleton_) :
-  Mesh (vertices, num_submesh, submeshes, num_appearance, appearances_),
+SkinnedMesh:: SkinnedMesh (VertexBuffer* vertices, int num_submesh,
+                           IndexBuffer** submeshes, Appearance** appearances_,
+                           Group* skeleton_) :
+  Mesh (vertices, num_submesh, submeshes, appearances_),
   skeleton(0), skinned_vertices(0)
 {
   setObjectType (OBJTYPE_SKINNED_MESH);
@@ -71,9 +70,7 @@ SkinnedMesh:: SkinnedMesh (VertexBuffer* vertices,
   Mesh (vertices, submeshes, appearances_),
   skeleton(0), skinned_vertices(0)
 {
-  setObjectType (OBJTYPE_SKINNED_MESH);
-
-  *this = SkinnedMesh (vertices, 1, &submeshes, 1, &appearances_, skeleton_);
+  *this = SkinnedMesh (vertices, 1, &submeshes, &appearances_, skeleton_);
 }
 
 SkinnedMesh:: ~SkinnedMesh ()

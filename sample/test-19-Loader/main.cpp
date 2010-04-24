@@ -62,8 +62,7 @@ int main (int argc, char** argv)
     if (node) {
       node->setAlphaFactor(1);
     }
-    //if (objs[i])
-    //  cout << *objs[i] << "\n";
+    cout << *objs[i] << "\n";
   }
 
   for (int i = 0; i < (int)objs.size(); i++) {

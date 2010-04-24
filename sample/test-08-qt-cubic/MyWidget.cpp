@@ -89,9 +89,9 @@ void MyWidget:: initializeGL ()
     cube_appears[i]->setTexture (0, tex);
   }
 
-  Mesh* cube = new Mesh (cube_vertices,
-                         6, (IndexBuffer**)cube_strips,
-                         6, (Appearance**)cube_appears);
+  Mesh* cube = new Mesh (cube_vertices, 6,
+                         (IndexBuffer**)cube_strips,
+                         (Appearance**)cube_appears);
   wld->addChild (cube);
 }
 
