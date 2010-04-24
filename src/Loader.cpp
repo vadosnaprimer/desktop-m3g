@@ -136,6 +136,13 @@ std::vector<Object3D*> Loader:: load (int length, const char* data, int offset)
 
   }
 
+  std::vector<Object3D*>::iterator it;
+  for (it = objs.begin(); it != objs.end(); ) {
+    if (*it == NULL)
+      it = objs.erase (it);
+    else
+      it++;
+  }
   //for (int i = 0; i < (int)objs.size(); i++) {
   //  if (objs[i])
   //    objs[i]->print(cout); 
