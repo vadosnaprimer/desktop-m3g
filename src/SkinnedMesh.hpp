@@ -131,6 +131,10 @@ namespace m3g {
      */
     int getBoneIndex (Node* bone) const;
 
+    
+    void updateSkinnedVertices ();
+
+
   private:
     Group*        skeleton;
     VertexBuffer* skinned_vertices;

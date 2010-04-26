@@ -97,6 +97,16 @@ int SkinnedMesh:: animate (int world_time)
   // ボーンの移動
   skeleton->animate (world_time);
 
+  // スキンメッシュの更新
+  updateSkinnedVertices ();
+
+
+  return 0;
+}
+
+void SkinnedMesh:: updateSkinnedVertices ()
+{
+
   // マトリックスパレットの作成
   int bone_count = bind_poses.size();
   std::vector<Matrix> matrix_palette (bone_count);
@@ -104,7 +114,6 @@ int SkinnedMesh:: animate (int world_time)
     Matrix global_pose = getGlobalPose (bind_poses[b].bone);
     matrix_palette[b]  = global_pose * bind_poses[b].inverse;
   }
-
 
   // スキンメッシュの更新
   float        scale_bias[4];
@@ -180,9 +189,10 @@ int SkinnedMesh:: animate (int world_time)
   delete [] values;
 
   //cout << "skinned_positions = " << *skinned_positions << "\n";
- 
-  return 0;
+
 }
+
+
 
 void SkinnedMesh:: addTransform (Node* node, int weight, int first_vertex, int num_vertices)
 {

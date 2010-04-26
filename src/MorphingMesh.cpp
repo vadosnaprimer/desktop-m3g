@@ -123,11 +123,6 @@ int MorphingMesh:: animate (int world_time)
 {
   Mesh:: animate (world_time);
 
-  for (int i = 0; i < (int)morph_weights.size(); i++) {
-    cout << "morph_weights[" << i << "] = " << morph_weights[i] << "\n";
-  }
-
-
   bool   is_weights_modefied = false;
   float* new_weights         = new float[morph_weights.size()];
   fill (new_weights, new_weights+morph_weights.size(), 0);
@@ -169,12 +164,12 @@ int MorphingMesh:: animate (int world_time)
   }
 
   if (is_weights_modefied) {
-    cout << "MorphingMesh: weights --> ";
+    //cout << "MorphingMesh: weights --> ";
     for (int i = 0; i < (int)morph_weights.size(); i++) {
-      cout << new_weights[i] << ", ";
+      //cout << new_weights[i] << ", ";
       morph_weights[i] = new_weights[i];
     }
-    cout << "\n";
+    //cout << "\n";
     updateMorphedVertices ();
   }
 
@@ -210,7 +205,7 @@ void MorphingMesh:: updateMorphedVertices ()
       VertexArray* target_positions = morph_targets[t]->getPositions (0);
       if (target_positions) {
 	target_positions->get (0, vertex_count, scale_bias[0], &scale_bias[1], target_values);
-	cout << "morph_weights[" << t << "] = " << morph_weights[t] << "\n";
+	//cout << "morph_weights[" << t << "] = " << morph_weights[t] << "\n";
 	for (int v = 0; v < vertex_count; v++) {
 	  morphed_values[v*3  ] += morph_weights[t] * (target_values[v*3  ] - base_values[v*3  ]);
 	  morphed_values[v*3+1] += morph_weights[t] * (target_values[v*3+1] - base_values[v*3+1]);
@@ -329,7 +324,7 @@ void MorphingMesh:: setWeights (int num_weights, float* weights)
 
   for (int i = 0; i < (int)morph_weights.size(); i++) {
     morph_weights[i] = *weights++;
-    cout << "weights = " << morph_weights[i] << "\n";
+    //cout << "weights = " << morph_weights[i] << "\n";
   }
 
   updateMorphedVertices ();
