@@ -122,7 +122,9 @@ MorphingMesh.o: MorphingMesh.hpp Mesh.hpp Node.hpp Transformable.hpp
 MorphingMesh.o: Object3D.hpp /usr/include/GL/glew.h /usr/include/GL/glu.h
 MorphingMesh.o: /usr/include/GL/gl.h m3gdef.hpp m3ginternal.hpp
 MorphingMesh.o: Quaternion.hpp Transform.hpp Matrix.hpp VertexBuffer.hpp
-MorphingMesh.o: IndexBuffer.hpp Appearance.hpp Exception.hpp
+MorphingMesh.o: VertexArray.hpp IndexBuffer.hpp Appearance.hpp
+MorphingMesh.o: AnimationTrack.hpp AnimationController.hpp
+MorphingMesh.o: KeyframeSequence.hpp Keyframe.hpp Vector.hpp Exception.hpp
 Node.o: Node.hpp Transformable.hpp Object3D.hpp /usr/include/GL/glew.h
 Node.o: /usr/include/GL/glu.h /usr/include/GL/gl.h m3gdef.hpp m3ginternal.hpp
 Node.o: Quaternion.hpp Transform.hpp Matrix.hpp Exception.hpp

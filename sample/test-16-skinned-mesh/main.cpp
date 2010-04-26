@@ -73,7 +73,6 @@ int main (int argc, char** argv)
   animation_track->setController (animation_controller);
 
 
-
   VertexArray* positions = new VertexArray (42, 3, 2);
   positions->set (0, 42, (short*)xyz);
 

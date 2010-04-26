@@ -137,7 +137,7 @@ int Material:: animate (int world_time)
     }
     default: {
       // Unknwon target should be ignored.
-      // animate() of Base class (of Derived class) retrieve it.
+      // animate() of Base class handle it.
     }
     }
   }

@@ -26,10 +26,10 @@ Transformable* Transformable:: duplicate () const
 
 void Transformable:: addAnimationTrack (AnimationTrack* animation_track)
 {
-   if (animation_track == NULL) {
-     throw NullPointException (__FILE__, __func__, "Animation track is NULL.");
+  if (animation_track == NULL) {
+    throw NullPointException (__FILE__, __func__, "Animation track is NULL.");
   }
-   int property = animation_track->getTargetProperty();
+  int property = animation_track->getTargetProperty();
   if (property != AnimationTrack::ORIENTATION &&
       property != AnimationTrack::SCALE &&
       property != AnimationTrack::TRANSLATION) {

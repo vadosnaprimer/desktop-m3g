@@ -56,7 +56,7 @@ SkinnedMesh:: SkinnedMesh (VertexBuffer* vertices, int num_submesh,
 
 
   int vertex_count = bind_positions->getVertexCount();
-  bone_indices.clear();
+  bone_indices.reserve(vertex_count);
   for (int v = 0; v < vertex_count; v++) {
     bone_indices.push_back (std::vector<BoneIndex>());
   }
@@ -134,6 +134,8 @@ int SkinnedMesh:: animate (int world_time)
     if (weight > 0)
       v1.get (&values[v*3]);
   }
+  // TODO: 注意！ 訂正！
+  // ここscale=1,bias=0にした方が良い。
   skinned_positions->set (0, vertex_count, scale_bias[0], &scale_bias[1], values);
   skinned_vertices->setPositions (skinned_positions, scale_bias[0], &scale_bias[1]);
 

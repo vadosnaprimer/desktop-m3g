@@ -105,6 +105,7 @@ std::vector<Object3D*> Loader:: load (int length, const char* data, int offset)
       case OBJTYPE_LIGHT               : parseLight ()             ; break;
       case OBJTYPE_MATERIAL            : parseMaterial ()          ; break;
       case OBJTYPE_MESH                : parseMesh ()              ; break;
+      case OBJTYPE_MORPHING_MESH       : parseMorphingMesh ()      ; break;
       case OBJTYPE_POLYGON_MODE        : parsePolygonMode ()       ; break;
       case OBJTYPE_SKINNED_MESH        : parseSkinnedMesh ()       ; break;
       case OBJTYPE_SPRITE3D            : parseSprite3D ()          ; break;
@@ -777,6 +778,8 @@ void Loader:: parseMaterial ()
 
 void Loader:: parseMesh ()
 {
+  // 注意：parseMesh()を書き換えたらparseSkinnedMesh()と
+  //       parseMorphingMeshも書き換える。
   Node* node = new Node;
   parseNode (node);
 
@@ -803,6 +806,67 @@ void Loader:: parseMesh ()
 
   delete [] indices;
   delete [] appears;
+
+  objs.push_back (mesh);
+}
+
+void Loader:: parseMorphingMesh ()
+{
+  // 注意：Mesh部分はparseMesh()と完全に同じ。
+  // ---- ここからparseMesh()と同じ ----
+  Node* node = new Node;
+  parseNode (node);
+
+  unsigned int vertex_buffer_index = getUInt32 ();
+  unsigned int submesh_count       = getUInt32 ();
+
+  IndexBuffer** indices = new IndexBuffer* [submesh_count];
+  Appearance**  appears = new Appearance* [submesh_count];
+   
+  VertexBuffer*  vbuf = dynamic_cast<VertexBuffer*>(objs.at(vertex_buffer_index));
+
+  for (int i = 0; i < (int)submesh_count; i++) {
+    unsigned int index_buffer_index = getUInt32();
+    unsigned int appearance_index   = getUInt32();
+    
+    indices[i] = dynamic_cast<IndexBuffer*>(objs.at(index_buffer_index));
+    appears[i] = dynamic_cast<Appearance*>(objs.at(appearance_index));
+  }
+
+  // ---- ここまでparseMesh()と同じ ----
+
+
+  unsigned int morph_target_count = getUInt32();
+  VertexBuffer** morph_targets     = new VertexBuffer*[morph_target_count];
+  float* initial_weights          = new float[morph_target_count];
+
+  for (int i = 0; i < (int)morph_target_count; i++) {
+    unsigned int morph_target_index = getUInt32();
+    morph_targets[i]   = 0;
+    initial_weights[i] = 0;
+    if (morph_target_index > 0) {
+      morph_targets[i]  = dynamic_cast<VertexBuffer*>(objs.at(morph_target_index));
+      initial_weights[i] = getFloat32();
+    }
+  }
+
+  MorphingMesh* mesh = new MorphingMesh (vbuf,               // base_vertices
+                                   morph_target_count,
+ 		     morph_targets,
+                                   submesh_count,
+		     indices,
+                                   appears);
+  *(Node*)mesh = *node;
+
+  mesh->setWeights (morph_target_count, initial_weights);
+
+  delete [] morph_targets;
+  delete [] initial_weights;
+  delete [] indices;
+  delete [] appears;
+
+  //mesh->MorhpingMesh:: print (cout);
+
 
   objs.push_back (mesh);
 }

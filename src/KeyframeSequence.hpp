@@ -67,7 +67,7 @@ namespace m3g {
      *            number of components per keyframe, and number of keyframes.
      * @~Japanese 指定された補間方法、キーフレーム構成、キーフレーム数でキーフレームシーケンスを作成する.
      */
-    KeyframeSequence (int numKeyframes, int numComponents, int interpolation);
+    KeyframeSequence (int num_keyframes, int num_components, int interpolation);
 
     /**
      * @~English  Destruct this object.
@@ -165,6 +165,7 @@ namespace m3g {
      * @~Japanese 指定された時刻のフレームを取得する内部使用の関数.
      */
     void getFrame (int local_time, float* value) const;
+
 
   private:
     int        repeat_mode;

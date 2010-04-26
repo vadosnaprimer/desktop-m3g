@@ -644,6 +644,9 @@ test-MorphingMesh.o: /usr/include/GL/glew.h /usr/include/GL/glu.h
 test-MorphingMesh.o: /usr/include/GL/gl.h ../src/m3gdef.hpp
 test-MorphingMesh.o: ../src/m3ginternal.hpp ../src/Quaternion.hpp
 test-MorphingMesh.o: ../src/Transform.hpp ../src/Matrix.hpp
+test-MorphingMesh.o: ../src/VertexArray.hpp ../src/VertexBuffer.hpp
+test-MorphingMesh.o: ../src/TriangleStripArray.hpp ../src/IndexBuffer.hpp
+test-MorphingMesh.o: ../src/Appearance.hpp ../src/Group.hpp
 test-Node.o: /usr/include/unittest++/UnitTest++.h
 test-Node.o: /usr/include/unittest++/Config.h /usr/include/unittest++/Test.h
 test-Node.o: /usr/include/unittest++/TestDetails.h

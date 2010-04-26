@@ -10,6 +10,7 @@ namespace m3g {
   class VertexBuffer;
   class IndexBuffer;
   class Appearance;
+  class AnimationTrack;
 
   /**
    * @~English  A scene graph node that represents a vertex morphing polygon mesh.
@@ -22,13 +23,13 @@ namespace m3g {
      * @~English  Construct a new MorphingMesh with the given base mesh and morph targets.
      * @~Japanese 指定されたベースメッシュとモーフターゲットを持つ新しいモーフィングメッシュを作成.
      */
-    MorphingMesh (VertexBuffer* base, int num_target, VertexBuffer** targets, int num_submesh, IndexBuffer** sumeshes, int num_appearance, Appearance** appearances);
+    MorphingMesh (VertexBuffer* base, int num_target, VertexBuffer** targets, int num_submesh, IndexBuffer** submeshs, Appearance** appearances);
 
     /**
      * @~English  Constructs a new MorphingMesh with the given base mesh and morph targets.
      * @~Japanese 指定されたベースメッシュとモーフターゲットを持つ新しいモーフィングメッシュを作成.
      */
-    MorphingMesh (VertexBuffer* base, int num_target, VertexBuffer** targets, IndexBuffer* sumeshes, Appearance* appearances);
+    MorphingMesh (VertexBuffer* base, int num_target, VertexBuffer** targets, IndexBuffer* submesh, Appearance* appearance);
 
     /**
      * @~English  Destruct this object.
@@ -43,18 +44,17 @@ namespace m3g {
     MorphingMesh* duplicate () const;
 
     /**
-     * @~English  Adds the given AnimationTrack to this Object3D, 
-     *            potentially changing the order and indices of the previously added tracks.
-     * @~Japanese アニメーショントラックの追加。
-     *            既存のトラックの順番とインデックスは変更されるかもしれない.
-     */
-    virtual void addAnimationTrack (AnimationTrack* animation_track);
-
-    /**
      * @~English  Updates all animated properties in this Object3D and all Object3Ds that are reachable from this Object3D.
      * @~Japanese このObject3D自身とここから到達できるObject3Dのアニメーテッドプロパティを更新する.
      */
     virtual int animate (int world_time);
+
+
+
+    virtual void addAnimationTrack (AnimationTrack* animation_track);
+
+
+
 
     /**
      * @~English  Returns the morph target VertxBuffer at the given index.
@@ -78,7 +78,7 @@ namespace m3g {
      * @~English  Sets the weights for all morph targets in this mesh.
      * @~Japanese このメッシュの全てのモーフターゲットのウエイトの設定.
      */
-    void setWeights (float* weights);
+    void setWeights (int num_weights, float* weights);
 
     /**
      * @~English  Print out information of this object.
@@ -92,6 +92,15 @@ namespace m3g {
      */
     virtual void render (RenderState& state) const;
 
+  private:
+    void updateMorphedVertices ();
+
+  public:
+
+    VertexBuffer*              morphed_vertices;
+    std::vector<VertexBuffer*> morph_targets;
+    std::vector<float>         morph_weights;
+    
   };
 
 } // namespace m3g {

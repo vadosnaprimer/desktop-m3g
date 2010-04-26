@@ -20,7 +20,7 @@ bool is_property_has_valid_component (int property, int component_count)
   case AnimationTrack:: FAR_DISTANCE:  return (component_count == 1) ? true : false;
   case AnimationTrack:: FIELD_OF_VIEW: return (component_count == 1) ? true : false;
   case AnimationTrack:: INTENSITY:     return (component_count == 1) ? true : false;
-  case AnimationTrack:: MORPH_WEIGHTS: return (component_count == 1) ? true : false;
+  case AnimationTrack:: MORPH_WEIGHTS: return (component_count >= 1) ? true : false;
   case AnimationTrack:: NEAR_DISTANCE: return (component_count == 1) ? true : false;
   case AnimationTrack:: ORIENTATION:   return (component_count == 4) ? true : false;
   case AnimationTrack:: PICKABILITY:   return (component_count == 1) ? true : false;

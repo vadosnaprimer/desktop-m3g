@@ -99,6 +99,7 @@ namespace m3g {
     static void parseLight ();
     static void parseMaterial ();
     static void parseMesh ();
+    static void parseMorphingMesh ();
     static void parseNode (Node* node);
     static void parseObject3D (Object3D* obj);
     static void parsePolygonMode ();
