@@ -58,7 +58,7 @@ TEST (MorphingMesh_set_variable)
   CHECK_EQUAL (2, mesh->getMorphTargetCount());
   
   float weights[3] = {1,2,998};
-  mesh->setWeights(weights);
+  mesh->setWeights(2, weights);
 
   float values[3] = {999,999,999};
   mesh->getWeights(values);
@@ -93,7 +93,7 @@ TEST (MorphingMesh_duplicate)
   MorphingMesh*  mesh1        = new MorphingMesh (base_vertices, 2, target_vertices, tris, app);
 
   float weights[2] = {1,2};
-  mesh1->setWeights(weights);
+  mesh1->setWeights(2, weights);
 
   MorphingMesh* mesh2 = mesh1->duplicate();
 

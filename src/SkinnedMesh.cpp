@@ -40,12 +40,13 @@ SkinnedMesh:: SkinnedMesh (VertexBuffer* vertices, int num_submesh,
     int          num    = bind_positions->getVertexCount() * bind_positions->getComponentCount();
     float*       values = new float[num];
     bind_positions->get (0, bind_positions->getVertexCount(), scale_bias[0], &scale_bias[1], values);
-    skinned_positions->set (0, bind_positions->getVertexCount(), values);
-    delete [] values;
 
     scale_bias[0] = 1;
     scale_bias[1] = scale_bias[2] = scale_bias[3] = 0;
+    skinned_positions->set (0, bind_positions->getVertexCount(), values);
     skinned_vertices->setPositions (skinned_positions, scale_bias[0], &scale_bias[1]);
+
+    delete [] values;
   }
 
   VertexArray* bind_normals   = vertices->getNormals();
@@ -145,6 +146,8 @@ void SkinnedMesh:: updateSkinnedVertices ()
   }
   // TODO: 注意！ 訂正！
   // ここscale=1,bias=0にした方が良い。
+  scale_bias[0] = 1;
+  scale_bias[1] = scale_bias[2] = scale_bias[3] = 0;
   skinned_positions->set (0, vertex_count, scale_bias[0], &scale_bias[1], values);
   skinned_vertices->setPositions (skinned_positions, scale_bias[0], &scale_bias[1]);
 
