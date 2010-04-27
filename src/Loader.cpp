@@ -776,21 +776,34 @@ void Loader:: parseMaterial ()
   objs.push_back (mat);
 }
 
+
 void Loader:: parseMesh ()
 {
-  // 注意：parseMesh()を書き換えたらparseSkinnedMesh()と
-  //       parseMorphingMeshも書き換える。
-  Node* node = new Node;
-  parseNode (node);
+  VertexBuffer* vbuf = new VertexBuffer;
+  IndexBuffer*  ibuf = new IndexBuffer;
+  Appearance*   app  = new Appearance; 
+
+  Mesh* mesh         = new Mesh (vbuf, ibuf, app);
+  parseMesh (mesh);
+
+  delete vbuf;
+  delete ibuf;
+  delete app;
+
+  objs.push_back (mesh);
+}
+
+void Loader:: parseMesh (Mesh* mesh)
+{
+  Node* base_node = new Node;
+  parseNode (base_node);
 
   unsigned int vertex_buffer_index = getUInt32 ();
   unsigned int submesh_count       = getUInt32 ();
 
-  IndexBuffer** indices = new IndexBuffer* [submesh_count];
-  Appearance**  appears = new Appearance* [submesh_count];
-   
-  VertexBuffer*  vbuf = dynamic_cast<VertexBuffer*>(objs.at(vertex_buffer_index));
-
+  VertexBuffer*  vbuf    = dynamic_cast<VertexBuffer*>(objs.at(vertex_buffer_index));
+  IndexBuffer**  indices = new IndexBuffer* [submesh_count];
+  Appearance**   appears = new Appearance* [submesh_count];
   for (int i = 0; i < (int)submesh_count; i++) {
     unsigned int index_buffer_index = getUInt32();
     unsigned int appearance_index   = getUInt32();
@@ -799,74 +812,73 @@ void Loader:: parseMesh ()
     appears[i] = dynamic_cast<Appearance*>(objs.at(appearance_index));
   }
 
-  Mesh* mesh = new Mesh (vbuf, submesh_count, indices, appears);
-  *(Node*)mesh = *node;
+  Mesh* base_mesh = new Mesh (vbuf, submesh_count, indices, appears);
 
-  //mesh->Mesh:: print (cout);
+  *mesh        = *base_mesh;
+  *(Node*)mesh = *base_node;
 
+
+  delete base_node;
+  delete base_mesh;
   delete [] indices;
   delete [] appears;
 
-  objs.push_back (mesh);
+  mesh->Mesh:: print (cout) << "\n";
 }
 
 void Loader:: parseMorphingMesh ()
 {
-  // 注意：Mesh部分はparseMesh()と完全に同じ。
-  // ---- ここからparseMesh()と同じ ----
-  Node* node = new Node;
-  parseNode (node);
+  VertexBuffer* vbuf = new VertexBuffer;
+  IndexBuffer*  ibuf = new IndexBuffer;
+  Appearance*   app  = new Appearance; 
 
-  unsigned int vertex_buffer_index = getUInt32 ();
-  unsigned int submesh_count       = getUInt32 ();
+  Mesh* base_mesh = new Mesh (vbuf, ibuf, app);
+  parseMesh (base_mesh);
 
-  IndexBuffer** indices = new IndexBuffer* [submesh_count];
-  Appearance**  appears = new Appearance* [submesh_count];
-   
-  VertexBuffer*  vbuf = dynamic_cast<VertexBuffer*>(objs.at(vertex_buffer_index));
+  delete vbuf;
+  delete ibuf;
+  delete app;
 
-  for (int i = 0; i < (int)submesh_count; i++) {
-    unsigned int index_buffer_index = getUInt32();
-    unsigned int appearance_index   = getUInt32();
-    
-    indices[i] = dynamic_cast<IndexBuffer*>(objs.at(index_buffer_index));
-    appears[i] = dynamic_cast<Appearance*>(objs.at(appearance_index));
+  vbuf                        = base_mesh->getVertexBuffer ();
+  int           submesh_count = base_mesh->getSubmeshCount ();
+  IndexBuffer** indices       = new IndexBuffer* [submesh_count];
+  Appearance**  appears       = new Appearance* [submesh_count];
+  for (int i = 0; i < submesh_count; i++) {
+    indices[i] = base_mesh->getIndexBuffer (i);
+    appears[i] = base_mesh->getAppearance (i);
   }
 
-  // ---- ここまでparseMesh()と同じ ----
-
-
-  unsigned int morph_target_count = getUInt32();
-  VertexBuffer** morph_targets     = new VertexBuffer*[morph_target_count];
-  float* initial_weights          = new float[morph_target_count];
+  unsigned int   morph_target_count = getUInt32();
+  VertexBuffer** morph_targets      = new VertexBuffer* [morph_target_count];
+  float*         initial_weights    = new float [morph_target_count];
 
   for (int i = 0; i < (int)morph_target_count; i++) {
     unsigned int morph_target_index = getUInt32();
     morph_targets[i]   = 0;
     initial_weights[i] = 0;
     if (morph_target_index > 0) {
-      morph_targets[i]  = dynamic_cast<VertexBuffer*>(objs.at(morph_target_index));
+      morph_targets[i]   = dynamic_cast<VertexBuffer*>(objs.at(morph_target_index));
       initial_weights[i] = getFloat32();
     }
   }
 
-  MorphingMesh* mesh = new MorphingMesh (vbuf,               // base_vertices
+  MorphingMesh* mesh = new MorphingMesh (vbuf,
                                    morph_target_count,
  		     morph_targets,
                                    submesh_count,
 		     indices,
                                    appears);
-  *(Node*)mesh = *node;
+  *(Node*)mesh = *(Node*)base_mesh;
 
   mesh->setWeights (morph_target_count, initial_weights);
 
+  delete base_mesh;
   delete [] morph_targets;
   delete [] initial_weights;
   delete [] indices;
   delete [] appears;
 
   //mesh->MorhpingMesh:: print (cout);
-
 
   objs.push_back (mesh);
 }
@@ -951,41 +963,32 @@ void Loader:: parsePolygonMode ()
 
 void Loader:: parseSkinnedMesh ()
 {
-  // 注意：Mesh部分はparseMesh()と完全に同じ。
-  // ---- ここからparseMesh()と同じ ----
+  VertexBuffer* vbuf = new VertexBuffer;
+  IndexBuffer*  ibuf = new IndexBuffer;
+  Appearance*   app  = new Appearance; 
 
-  Node* node = new Node;
-  parseNode (node);
+  Mesh* base_mesh = new Mesh (vbuf, ibuf, app);
+  parseMesh (base_mesh);
 
-  unsigned int vertex_buffer_index = getUInt32 ();
-  unsigned int submesh_count       = getUInt32 ();
+  delete vbuf;
+  delete ibuf;
+  delete app;
 
-  IndexBuffer** indices = new IndexBuffer* [submesh_count];
-  Appearance**  appears = new Appearance*  [submesh_count];
-   
-  VertexBuffer*  vbuf = dynamic_cast<VertexBuffer*>(objs.at(vertex_buffer_index));
-
-  for (int i = 0; i < (int)submesh_count; i++) {
-    unsigned int index_buffer_index = getUInt32();
-    unsigned int appearance_index   = getUInt32();
-     
-    indices[i] = dynamic_cast<IndexBuffer*>(objs.at(index_buffer_index));
-    appears[i] = dynamic_cast<Appearance*>(objs.at(appearance_index));
+  vbuf                        = base_mesh->getVertexBuffer ();
+  int           submesh_count = base_mesh->getSubmeshCount ();
+  IndexBuffer** indices       = new IndexBuffer* [submesh_count];
+  Appearance**  appears       = new Appearance* [submesh_count];
+  for (int i = 0; i < submesh_count; i++) {
+    indices[i] = base_mesh->getIndexBuffer (i);
+    appears[i] = base_mesh->getAppearance (i);
   }
-
-  // ---- ここまでparseMesh()と同じ ----
 
   unsigned int skeleton_index = getUInt32();
   Group*       skeleton       = dynamic_cast<Group*>(objs.at(skeleton_index));
 
+
   SkinnedMesh* mesh = new SkinnedMesh (vbuf, submesh_count, indices, appears, skeleton);
-  *(Node*)mesh = *node;
-
-  //mesh->Mesh:: print (cout);
-
-  delete [] indices;
-  delete [] appears;
-
+  *(Node*)mesh = *(Node*)base_mesh;
 
   unsigned int transform_reference_count = getUInt32();
   for (int i = 0; i < (int)transform_reference_count; i++) {
@@ -996,6 +999,10 @@ void Loader:: parseSkinnedMesh ()
     Node* node = dynamic_cast<Node*>(objs.at(transfrom_node_index));
     mesh->addTransform (node, weight, first_vertex, vertex_count);
   }
+
+  delete base_mesh;
+  delete [] indices;
+  delete [] appears;
 
   //mesh->SkinnedMesh:: print (cout);
 

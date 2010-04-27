@@ -1,5 +1,4 @@
 #include "m3g.hpp"
-#include "data.hpp"
 #include <GL/glut.h>
 #include <iostream>
 #include <cmath>

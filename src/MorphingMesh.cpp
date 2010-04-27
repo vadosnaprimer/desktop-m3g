@@ -28,29 +28,20 @@ MorphingMesh:: MorphingMesh (VertexBuffer* base, int num_target, VertexBuffer** 
       throw NullPointException (__FILE__, __func__, " Target vertices is NULL, index=%d.", i);
     }
   }
+  if (base->getPositions(0) == NULL) {
+    throw NullPointException (__FILE__, __func__, "Base vertices has no positions.");
+  }
 
    morphed_vertices = base->duplicate ();
   
    // 注意：モーフィング変形後のpositions,normals,colorsを保存するために新しくnewし直す。
    // VertexBufferをduplicate()しただけでは同じインスタンスを指している。
-   // モーフィング後のpositionsは内部floatで表現する（単なる利便性のため）
 
    float scale_bias[4];
    VertexArray* base_positions = base->getPositions (scale_bias);
    if (base_positions) {
      VertexArray* morphed_positions = base_positions->duplicate();
      morphed_vertices->setPositions (morphed_positions, scale_bias[0], &scale_bias[1]);
-#if 0
-     VertexArray* morphed_positions = new VertexArray (base_positions->getVertexCount(),
-                                                       base_positions->getComponentCount(),
-                                                       4);
-     int    num    = base_positions->getVertexCount() * base_positions->getComponentCount();
-     float* values = new float[num];
-     base_positions->get (0, base_positions->getVertexCount(), scale_bias[0], &scale_bias[1], values);
-     morphed_positions->set (0, base_positions->getVertexCount(), scale_bias[0], &scale_bias[1], values);
-     morphed_vertices->setPositions (morphed_positions);
-     delete [] values;
-#endif
    }
    
    VertexArray* base_normals = base->getNormals ();
