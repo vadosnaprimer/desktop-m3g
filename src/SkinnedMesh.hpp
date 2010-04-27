@@ -103,12 +103,6 @@ namespace m3g {
      */
     virtual std::ostream& print (std::ostream& out) const;
 
-    /**
-     * @~English   Get global pose matrix (bone coordinate to local coordinate), for inner use.
-     * @~Japanese  グローバルポーズ（ボーン座標からローカル座標）を計算するM3G非標準の関数.
-     */
-    Matrix getGlobalPose (Node* node) const;
-
 
     /**
      * @~English  Render this object.

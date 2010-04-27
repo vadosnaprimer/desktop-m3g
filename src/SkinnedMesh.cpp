@@ -112,7 +112,7 @@ void SkinnedMesh:: updateSkinnedVertices ()
   int bone_count = bind_poses.size();
   std::vector<Matrix> matrix_palette (bone_count);
   for (int b = 0; b < bone_count; b++) {
-    Matrix global_pose = getGlobalPose (bind_poses[b].bone);
+    Matrix global_pose = bind_poses[b].bone->getGlobalPose ();
     matrix_palette[b]  = global_pose * bind_poses[b].inverse;
   }
 
@@ -250,7 +250,7 @@ void SkinnedMesh:: getBoneTransform (Node* node, Transform* transform) const
     throw IllegalArgumentException (__FILE__, __func__, "Node is not bone of this SkinnedmEsh, node=0x%x.", node);
   }
   
-  Matrix global_pose = getGlobalPose(node);
+  Matrix global_pose = node->getGlobalPose();
   global_pose.invert ();
 
   transform->set ((float*)global_pose.m);
@@ -322,35 +322,18 @@ void SkinnedMesh:: render (RenderState& state) const
 }
 
 
-Matrix SkinnedMesh:: getGlobalPose (Node* node) const
-{
-  //int i = 0;
-  Matrix global_pose;
-  do {
-    //cout << "global_pose = " << global_pose << "\n";
-    Transform trans;
-    //cout << i++ << " : node transform = " << node->Transformable::print(cout) << "\n";    
-    node->getCompositeTransform (&trans);
-    //cout << i++ << " : composite transform = " << trans << "\n";
-    float m[16];
-    trans.get (m);
-    global_pose = Matrix(m) * global_pose;
-  } while ((node = node->getParent()) != NULL);
-
-  return global_pose;
-}
 
 int SkinnedMesh:: addBoneIndex (Node* bone)
 {
   for (int i = 0; i < (int)bind_poses.size(); i++) {
     if (bind_poses[i].bone == bone) {
-      Matrix bind_pose = getGlobalPose (bone);
+      Matrix bind_pose = bone->getGlobalPose ();
       bind_poses[i].inverse = bind_pose.invert();
       return i;
     }
   }
   // ボーンとバインドポーズ（の逆行列）を保存
-  Matrix bind_pose = getGlobalPose (bone);
+  Matrix bind_pose = bone->getGlobalPose ();
   bind_poses.push_back (BindPose(bone, bind_pose.invert()));
   return bind_poses.size()-1;
 }

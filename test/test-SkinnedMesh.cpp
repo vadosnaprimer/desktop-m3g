@@ -36,45 +36,6 @@ TEST (SkinnedMesh_default_variables)
 }
 
 
-TEST (SkinnedMesh_getGlobalPose)
-{
-  // grp0 --> grp1 --> grp2
-  Group* grp2 = new Group;
-  Group* grp1 = new Group;
-  Group* grp0 = new Group;
-  grp0->addChild (grp1);
-  grp1->addChild (grp2);
-
-  grp0->translate (0,1,0);
-  grp1->postRotate (90, 1,0,0);
-  grp2->translate (0,0,3);
-
-  Matrix global_pose;
-  
-  global_pose = ((SkinnedMesh*)0)-> getGlobalPose (grp0);
-  float m1[16] = {1,0,0,0,
-                  0,1,0,1,
-                  0,0,1,0,
-                  0,0,0,1};
-  CHECK_ARRAY_CLOSE (m1, global_pose.m, 16, 0.0001f);
-  //cout << global_pose << "\n";
-
-  global_pose = ((SkinnedMesh*)0)-> getGlobalPose (grp1);
-  float m2[16] = {1,0,0,0,
-                  0,0,-1,1,
-                  0,1,0,0,
-                  0,0,0,1};
-  CHECK_ARRAY_CLOSE (m2, global_pose.m, 16, 0.0001f);
-  //cout << global_pose << "\n";
-
-  global_pose = ((SkinnedMesh*)0)-> getGlobalPose (grp2);
-  float m3[16] = {1,0,0,0,
-                  0,0,-1,-2,
-                  0,1,0,0,
-                  0,0,0,1};
-  CHECK_ARRAY_CLOSE (m3, global_pose.m, 16, 0.0001f);
-  //cout << global_pose << "\n";
-}
 
 TEST (SkinnedMesh_addTransform_getBoneVertices)
 {

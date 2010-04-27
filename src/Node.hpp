@@ -8,6 +8,7 @@
 namespace m3g {
 
   class Transform;
+  class Matrix;
 
   /**
    * @~English  An abstract base class for all scene graph nodes.
@@ -112,6 +113,12 @@ namespace m3g {
      * @~Japanese このノードのα値の取得.
      */
     float getAlphaFactor () const;
+
+    /**
+     * @~English   Get global pose matrix (bone coordinate to local coordinate), for inner use.
+     * @~Japanese  グローバルポーズ（ボーン座標からローカル座標）を計算するM3G非標準の関数.
+     */
+    Matrix getGlobalPose () const;
 
     /**
      * @~English   Returns the scene graph parent of this node.

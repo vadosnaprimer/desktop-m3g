@@ -155,6 +155,21 @@ float Node:: getAlphaFactor () const
     return alpha_factor;
 }
 
+Matrix Node:: getGlobalPose () const
+{
+  const Node* node = this;
+  Matrix global_pose;
+  do {
+    Transform trans;
+    node->getCompositeTransform (&trans);
+    float m[16];
+    trans.get (m);
+    global_pose = Matrix(m) * global_pose;
+  } while ((node = node->getParent()));
+
+  return global_pose;
+}
+
 Node* Node:: getParent () const
 {
     return parent;
@@ -167,58 +182,35 @@ int Node:: getScope () const
 
 bool Node:: getTransformTo (Node* target, Transform* transform) const
 {
-  std::vector<const Node*> v0, v1;
-  const Node* node;
+  if (target == NULL) {
+    throw NullPointException (__FILE__, __func__, "Target is NULL.");
+  }
+  if (transform == NULL) {
+    throw NullPointException (__FILE__, __func__, "Transform is NULL.");
+  }
 
+  const Node *root_a, *root_b, *node;
+  
   node = this;
-  while ((node = node->parent) != 0) {
-    v0.push_back (node);
-  }
+  do {
+    root_a = node;
+  } while ((node = node->parent));
+
   node = target;
-  while ((node = node->parent) != 0) {
-    v1.push_back (node);
-  }
+  do {
+    root_b = node;
+  } while ((node = node->parent));
 
-  const Node* root = 0;
-  for (int i = 0; i < (int)v0.size(); i++) {
-    for (int j = 0; j < (int)v1.size(); j++) {
-      if (v0[i] == v1[j]) {
-        root = v0[i];
-        break;
-      }
-    }
-  }
-
-  if (root == 0) {
+  if (root_a != root_b) {
     return false;
   }
 
-  Transform t0;
-  node->getTransform (&t0);
+  Matrix global_pose_a = this->getGlobalPose ();
+  Matrix global_pose_b = target->getGlobalPose ();
 
-  node = this;
-  while ((node = node->parent) != root) {
-    Transform t;
-    node->getTransform (&t);
-    t.postMultiply (t0);
-    t0 = t;
-  }
+  Matrix transform_matrix = global_pose_b.invert() * global_pose_a;
+  transform->set (transform_matrix.m);
 
-  Transform t1;
-  node->getTransform (&t1);
-
-  node = this;
-  while ((node = node->parent) != root) {
-    Transform t;
-    node->getTransform (&t);
-    t.postMultiply (t1);
-    t1 = t;
-  }
-
-  t1.invert ();
-  t1.postMultiply (t0);
-  
-  *transform = t1;
   return true;
 }
 
