@@ -25,6 +25,7 @@ private:
   float cur_x;
   float cur_y;
 
+  std::vector<m3g::Object3D*> objs;
 };
 
 

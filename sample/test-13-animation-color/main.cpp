@@ -3,13 +3,13 @@
 #include <iostream>
 #include <cstring>
 #include <cmath>
+#include <vector>
 #include <cstdlib>
 using namespace std;
 using namespace m3g;
 
-
+std::vector<Object3D*> objs;
 World* wld = 0;
-Mesh* mesh = 0;
 
 void display(void)
 {
@@ -26,7 +26,17 @@ void resize(int w, int h)
   cam->setPerspective (45, w/(float)h, 0.1, 100);
 }
 
-int animation_time = 0;
+void quit ()
+{
+  for (int i = 0; i < (int)objs.size(); i++) {
+    delete objs[i];
+  }
+  Graphics3D* g3d = Graphics3D::getInstance();
+  delete g3d;
+  exit (0);
+}
+
+int world_time = 0;
 
 static void keyboard(unsigned char key, int x, int y)
 {
@@ -34,12 +44,12 @@ static void keyboard(unsigned char key, int x, int y)
   case 'q':
   case 'Q':
   case '\033':
-    /* ESC か q か Q をタイプしたら終了 */
-    exit(0);
+    quit ();
+  break;
   case ' ':
-    cout << "glut: Space, time = " << animation_time << "\n";
-    mesh->animate (animation_time);
-    animation_time += 2;
+    cout << "main: time = " << world_time << "\n";
+    wld->animate (world_time);
+    world_time += 2;
   default:
     break;
   }
@@ -60,9 +70,9 @@ int main (int argc, char** argv)
   Background* bg = new Background;
   bg->setColor (0xff3f3f3f);
 
-  short pos[] = {1,-1,0, 1,1,0, -1,-1,0, -1,1,0};
   VertexArray* positions = new VertexArray (4, 3, 2);
-  positions->set (0, 4, pos);
+  short        position_values[] = {1,-1,0, 1,1,0, -1,-1,0, -1,1,0};
+  positions->set (0, 4, position_values);
 
   float scale = 1;
   float bias[3] = {0,0,0};
@@ -115,7 +125,7 @@ int main (int argc, char** argv)
   //mat->addAnimationTrack (track_alpha);
   mat->addAnimationTrack (track_color);
 
-  mesh = new Mesh (vertices, tris, app);
+  Mesh* mesh = new Mesh (vertices, tris, app);
 
   wld = new World;
   wld->addChild (cam);
@@ -124,6 +134,21 @@ int main (int argc, char** argv)
   wld->addChild (mesh);
 
   cout << *wld << "\n";
+
+  objs.push_back (cam);
+  objs.push_back (bg);
+  objs.push_back (positions);
+  objs.push_back (tris);
+  objs.push_back (comp);
+  objs.push_back (mat);
+  objs.push_back (app);
+  objs.push_back (keyframe_alpha);
+  objs.push_back (keyframe_color);
+  objs.push_back (controller);
+  objs.push_back (track_alpha);
+  objs.push_back (track_color);
+  objs.push_back (mesh);
+  objs.push_back (wld);
 
   glutKeyboardFunc(keyboard);
   glutDisplayFunc(display);

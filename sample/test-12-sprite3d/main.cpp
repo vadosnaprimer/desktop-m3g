@@ -3,12 +3,13 @@
 #include <iostream>
 #include <cstring>
 #include <cmath>
+#include <vector>
+#include <cstdlib>
 #include "libpng.hpp"
-#include "data.hpp"
 using namespace std;
 using namespace m3g;
 
-
+std::vector<Object3D*> objs;
 World* wld = 0;
 
 void display(void)
@@ -26,6 +27,28 @@ void resize(int w, int h)
   cam->setPerspective (45, w/(float)h, 0.1, 100);
 }
 
+void quit ()
+{
+  for (int i = 0; i < (int)objs.size(); i++) {
+    delete objs[i];
+  }
+  Graphics3D* g3d = Graphics3D::getInstance();
+  delete g3d;
+  exit (0);
+}
+
+void keyboard(unsigned char key, int x, int y)
+{
+  switch (key) {
+  case 'q':
+    quit ();
+    break;
+  default:
+    break;
+  }
+  glutPostRedisplay();
+}
+
 int main (int argc, char** argv)
 {
   glutInit(&argc, argv);
@@ -40,12 +63,11 @@ int main (int argc, char** argv)
   bg->setColor (0xff3f3f3f);
 
   int width, height;
-  void* pixel = 0;
+  char*  png = (char*)readpng ("moe-small.png", &width, &height);
+  //cout << "png = " << width << "x" << height << "\n";
 
-  pixel = readpng ("moe-small.png", &width, &height);
-  cout << "png = " << width << "x" << height << "\n";
-
-  Image2D* img = new Image2D (Image2D::RGB, width, height, pixel);
+  Image2D* img = new Image2D (Image2D::RGB, width, height, png);
+  delete png;
 
   CompositingMode* cmp = new CompositingMode;
   cmp->setDepthTestEnable (true);
@@ -78,6 +100,19 @@ int main (int argc, char** argv)
 
   cout << *wld << "\n";
 
+  objs.push_back (cam);
+  objs.push_back (bg);
+  objs.push_back (img);
+  objs.push_back (cmp);
+  objs.push_back (app0);
+  objs.push_back (spr0);
+  objs.push_back (app1);
+  objs.push_back (spr1);
+  objs.push_back (app2);
+  objs.push_back (spr2);
+  objs.push_back (wld);
+
+  glutKeyboardFunc(keyboard);
   glutDisplayFunc(display);
   glutReshapeFunc(resize);
   glutMainLoop ();

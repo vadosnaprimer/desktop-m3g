@@ -38,11 +38,11 @@ void* readpng (const char* name, int* width, int* height)
   // Get data
   png_read_png (png_ptr, info_ptr, PNG_TRANSFORM_IDENTITY, png_voidp_NULL);
   
-    cout << "width = " << info_ptr->width << "\n";
-    cout << "height = " << info_ptr->height << "\n";
-    cout << "bit_depth = " << (int)info_ptr->bit_depth << "\n";
-    cout << "pixel_depth = " << (int)info_ptr->pixel_depth << "\n";
-    cout << "channels = " << (int)info_ptr->channels << "\n";
+  //  cout << "width = " << info_ptr->width << "\n";
+  //  cout << "height = " << info_ptr->height << "\n";
+  //  cout << "bit_depth = " << (int)info_ptr->bit_depth << "\n";
+  //  cout << "pixel_depth = " << (int)info_ptr->pixel_depth << "\n";
+  //  cout << "channels = " << (int)info_ptr->channels << "\n";
   	
   png_byte** row_pointers;
   row_pointers = png_get_rows(png_ptr, info_ptr);
@@ -61,7 +61,7 @@ void* readpng (const char* name, int* width, int* height)
   */
 
   int size = info_ptr->width * info_ptr->height * info_ptr->channels;
-  cout << "size = " << size << " byte\n";
+  //cout << "size = " << size << " byte\n";
 
   unsigned char* img = (unsigned char*)malloc(size);
   unsigned char* p = img;

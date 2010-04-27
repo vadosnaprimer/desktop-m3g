@@ -2,9 +2,12 @@
 #include <GL/glut.h>
 #include <iostream>
 #include <cmath>
+#include <cstdlib>
+#include <vector>
 using namespace std;
 using namespace m3g;
 
+std::vector<Object3D*> objs;
 World* wld = 0;
 
 void display(void)
@@ -21,6 +24,30 @@ void resize(int w, int h)
   Camera* cam = wld->getActiveCamera();
   cam->setPerspective (45, h/(float)w, 0.1, 100);
 }
+
+void quit ()
+{
+  for (int i = 0; i < (int)objs.size(); i++) {
+    delete objs[i];
+  }
+  Graphics3D* g3d = Graphics3D::getInstance();
+  delete g3d;
+
+  exit (0);
+}
+
+void keyboard(unsigned char key, int x, int y)
+{
+  switch (key) {
+  case 'q':
+    quit ();
+    break;
+  default:
+    break;
+  }
+  glutPostRedisplay();
+}
+
 
 int main (int argc, char** argv)
 {
@@ -62,8 +89,16 @@ int main (int argc, char** argv)
   cout << *wld << "\n";
 
 
+  objs.push_back (positions);
+  objs.push_back (vertices);
+  objs.push_back (tris);
+  objs.push_back (mat);
+  objs.push_back (app);
+  objs.push_back (cam);
+  objs.push_back (mesh);
+  objs.push_back (wld);
 
-
+  glutKeyboardFunc(keyboard);
   glutDisplayFunc(display);
   glutReshapeFunc(resize);
   glutMainLoop ();

@@ -40,7 +40,8 @@ void Node:: addAnimationTrack (AnimationTrack* animation_track)
       property != AnimationTrack::VISIBILITY  &&
       property != AnimationTrack::ORIENTATION &&
       property != AnimationTrack::SCALE       &&
-      property != AnimationTrack::TRANSLATION ) {
+      property != AnimationTrack::TRANSLATION &&
+      property != AnimationTrack::MORPH_WEIGHTS ) {
     throw IllegalArgumentException (__FILE__, __func__, "Annimation target is invlid for this Node, property=%d.", property);
   }
 

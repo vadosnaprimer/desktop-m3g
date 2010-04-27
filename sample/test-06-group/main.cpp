@@ -7,7 +7,7 @@
 using namespace std;
 using namespace m3g;
 
-
+std::vector<Object3D*> objs;
 World* wld = 0;
 
 void display(void)
@@ -25,15 +25,28 @@ void resize(int w, int h)
   cam->setPerspective (45, w/(float)h, 0.1, 100);
 }
 
+void quit ()
+{
+  for (int i = 0; i < (int)objs.size(); i++) {
+    delete objs[i];
+  }
+  Graphics3D* g3d = Graphics3D::getInstance();
+  delete g3d;
+
+  exit (0);
+}
+
+
 int world_time = 0;
 
-static void keyboard(unsigned char key, int x, int y)
+void keyboard(unsigned char key, int x, int y)
 {
   switch (key) {
   case 'q':
-    exit(0);
+    quit();
+    break;
   case ' ':
-    cout << "glut: Space, time = " << world_time << "\n";
+    cout << "main: time = " << world_time << "\n";
     wld->animate (world_time);
     world_time += 5;
   default:
@@ -79,9 +92,9 @@ int main (int argc, char** argv)
   float scale = 1;
   float bias[3] = {0,0,0};
 
-  short xyz[] = {1,-1,0, 1,1,0, -1,-1,0, -1,1,0};
-  VertexArray* positions = new VertexArray (4, 3, 2);
-  positions->set (0, 4, xyz);
+  short        position_values[] = {1,-1,0, 1,1,0, -1,-1,0, -1,1,0};
+  VertexArray* positions         = new VertexArray (4, 3, 2);
+  positions->set (0, 4, position_values);
 
   VertexBuffer* vertices1 = new VertexBuffer;
   vertices1->setPositions (positions, scale, bias);
@@ -135,6 +148,27 @@ int main (int argc, char** argv)
   wld->addChild (grp);
 
   cout << *wld << "\n";
+
+  objs.push_back (controller);
+  objs.push_back (keyframe_sequence1);
+  objs.push_back (keyframe_sequence2);
+  objs.push_back (animation_track1);
+  objs.push_back (animation_track2);
+  objs.push_back (positions);
+  objs.push_back (vertices1);
+  objs.push_back (vertices2);
+  objs.push_back (tris);
+  objs.push_back (mat1);
+  objs.push_back (mat2);
+  objs.push_back (cmode1);
+  objs.push_back (cmode2);
+  objs.push_back (app1);
+  objs.push_back (app2);
+  objs.push_back (mesh1);
+  objs.push_back (mesh2);
+  objs.push_back (grp);
+  objs.push_back (cam);
+  objs.push_back (wld);
 
   glutKeyboardFunc(keyboard);
   glutDisplayFunc(display);

@@ -267,8 +267,7 @@ void Background:: render (RenderState& state) const
   }
   if (background_image) {
     //cout << "Background: render image, texobj = " << texobj << "\n";
-    glEnable (GL_TEXTURE_2D);
-    glBindTexture (GL_TEXTURE_2D, texobj);
+    glBindTexture    (GL_TEXTURE_2D, texobj);
     glTexParameteri  (GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
     glTexParameteri  (GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
     glTexEnvi        (GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
@@ -307,12 +306,15 @@ void Background:: render (RenderState& state) const
     glVertex3f   (-1, 1,  0.99999);
     glEnd        ();
 
-    glDisable (GL_TEXTURE_2D);  // これ要らないと思う。あとで消す
+    //glDisable (GL_TEXTURE_2D);  // これ要らないと思う。あとで消す
     
     glMatrixMode (GL_PROJECTION);
     glPopMatrix ();
     glMatrixMode (GL_MODELVIEW);
     glPopMatrix ();
+
+    glEnable (GL_TEXTURE_2D);
+
   }
 }
 

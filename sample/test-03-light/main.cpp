@@ -9,7 +9,7 @@
 using namespace std;
 using namespace m3g;
 
-
+std::vector<Object3D*> objs;
 World* wld = 0;
 Light* lig = 0;
 
@@ -21,6 +21,7 @@ void display(void)
 
 }
 
+
 void resize(int w, int h)
 {
   Graphics3D* g3d = Graphics3D::getInstance();
@@ -29,14 +30,25 @@ void resize(int w, int h)
   cam->setPerspective (45, w/(float)h, 0.1, 100);
 }
 
+void quit ()
+{
+  for (int i = 0; i < (int)objs.size(); i++) {
+    delete objs[i];
+  }
+  Graphics3D* g3d = Graphics3D::getInstance();
+  delete g3d;
+  exit (0);
+}
 
 int animation_time = 0;
 
-static void keyboard(unsigned char key, int x, int y)
+void keyboard(unsigned char key, int x, int y)
 {
   switch (key) {
-  case 'q':
-    exit(0);
+  case 'q': {
+    quit ();
+    break;
+  }
   case 's': {
     lig->setMode (Light::SPOT);
     cout << "Swith to SPOT light.";
@@ -132,6 +144,20 @@ int main (int argc, char** argv)
 
 
   cout << *wld << "\n";
+
+  objs.push_back (controller);
+  objs.push_back (keyframe_light_color);
+  objs.push_back (animation_light_color);
+  objs.push_back (positions);
+  objs.push_back (normals);
+  objs.push_back (vertices);
+  objs.push_back (tris);
+  objs.push_back (mat);
+  objs.push_back (app);
+  objs.push_back (mesh);
+  objs.push_back (cam);
+  objs.push_back (lig);
+  objs.push_back (wld);
 
   glutKeyboardFunc(keyboard);
   glutDisplayFunc(display);

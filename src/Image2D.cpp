@@ -50,11 +50,7 @@ Image2D:: Image2D (int format_, int width_, int height_, void* image_, void* pal
 
 Image2D:: ~Image2D ()
 {
-  if (image) {
-    delete [] image;
-    image = 0;
-  }
-
+  delete [] image;
 }
 
 Image2D* Image2D:: duplicate () const

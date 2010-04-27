@@ -3,10 +3,15 @@
 #include <iostream>
 #include <cstring>
 #include <cmath>
+#include <vector>
+#include <cstdlib>
 #include "libpng.hpp"
 using namespace std;
 using namespace m3g;
 
+std::vector<Object3D*> objs;
+char* png1;
+char* png2;
 World* wld = 0;
 
 void display(void)
@@ -24,6 +29,30 @@ void resize(int w, int h)
   cam->setPerspective (45, w/(float)h, 0.1, 100);
 }
 
+void quit ()
+{
+  for (int i = 0; i < (int)objs.size(); i++) {
+    delete objs[i];
+  }
+  Graphics3D* g3d = Graphics3D::getInstance();
+  delete g3d;
+  delete png1;
+  delete png2;
+  exit (0);
+}
+
+void keyboard(unsigned char key, int x, int y)
+{
+  switch (key) {
+  case 'q':
+    quit ();
+  default:
+    break;
+  }
+  glutPostRedisplay();
+}
+
+
 int main (int argc, char** argv)
 {
   glutInit(&argc, argv);
@@ -31,25 +60,25 @@ int main (int argc, char** argv)
   glutCreateWindow(argv[0]);
   glewInit ();
 
-  VertexArray* pos_array = new VertexArray (4, 3, 1);
-  char vertices[] = {1,-1,0, 1,1,0, -1,-1,0, -1,1,0};
-  pos_array->set (0, 4, vertices);
+  VertexArray* positions         = new VertexArray (4, 3, 1);
+  char         position_values[] = {1,-1,0, 1,1,0, -1,-1,0, -1,1,0};
+  positions->set (0, 4, position_values);
 
-  VertexArray* color_array = new VertexArray (4, 3, 1);
-  unsigned char colors[] = {255,255,255, 255,255,255, 255,255,255, 255,255,255};
-  color_array->set (0, 4, (char*)colors);
+  VertexArray*  colors         = new VertexArray (4, 3, 1);
+  unsigned char color_values[] = {255,255,255, 255,255,255, 255,255,255, 255,255,255};
+  colors->set (0, 4, (char*)color_values);
 
-  VertexArray* tex_coord_array = new VertexArray (4, 2, 1);
-  char texs[] = {1,0, 1,1, 0,0, 0,1};
-  tex_coord_array->set (0, 4, texs);
+  VertexArray* tex_coords         = new VertexArray (4, 2, 1);
+  char         tex_coord_values[] = {1,0, 1,1, 0,0, 0,1};
+  tex_coords->set (0, 4, tex_coord_values);
 
   float scale = 1;
   float bias[3] = {0,0,0};
-  VertexBuffer* vbuf = new VertexBuffer;
-  vbuf->setPositions (pos_array, scale, bias);
-  vbuf->setColors (color_array);
-  vbuf->setTexCoords (0, tex_coord_array, scale, bias);
-  vbuf->setTexCoords (1, tex_coord_array, scale, bias);
+  VertexBuffer* vertices = new VertexBuffer;
+  vertices->setPositions (positions, scale, bias);
+  vertices->setColors (colors);
+  vertices->setTexCoords (0, tex_coords, scale, bias);
+  vertices->setTexCoords (1, tex_coords, scale, bias);
   
   int strips[2] = {3, 3};
   int indices[] = {0,1,2, 2,1,3};
@@ -57,20 +86,17 @@ int main (int argc, char** argv)
   TriangleStripArray* tris = new TriangleStripArray (indices, 2, strips);
 
   int width, height;
-  unsigned char* pixel;
-  pixel = (unsigned char*)readpng ("yumemi.png", &width, &height);
-  cout << "png = " << width << "x" << height << "\n";
+  png1 = (char*)readpng ("yumemi.png", &width, &height);
+  //cout << "png = " << width << "x" << height << "\n";
   
-  Image2D* img0    = new Image2D (Image2D::RGB, width, height, pixel);
-  img0->write_ppm ("img0.ppm");
+  Image2D*   img0  = new Image2D (Image2D::RGB, width, height, png1);
   Texture2D* tex0  = new Texture2D (img0);
   tex0->setBlending (Texture2D::FUNC_REPLACE);
 
-  pixel = (unsigned char*)readpng ("onnanoko.png", &width, &height);
-  cout << "png = " << width << "x" << height << "\n";
+  png2 = (char*)readpng ("onnanoko.png", &width, &height);
+  //cout << "png = " << width << "x" << height << "\n";
 
-  Image2D* img1    = new Image2D (Image2D::RGBA, width, height, pixel);
-  img1->write_ppm ("img1.ppm");
+  Image2D*   img1  = new Image2D (Image2D::RGBA, width, height, png2);
   Texture2D* tex1  = new Texture2D (img1);
   tex1->setBlending (Texture2D::FUNC_DECAL);
 
@@ -78,7 +104,7 @@ int main (int argc, char** argv)
   app->setTexture (0, tex0);
   app->setTexture (1, tex1);
 
-  Mesh* mesh = new Mesh (vbuf, tris, app);
+  Mesh* mesh = new Mesh (vertices, tris, app);
   mesh->translate (0,0,2);
   
   Camera* cam = new Camera;
@@ -91,9 +117,21 @@ int main (int argc, char** argv)
 
   cout << *wld << "\n";
 
+  objs.push_back (positions);
+  objs.push_back (colors);
+  objs.push_back (tex_coords);
+  objs.push_back (vertices);
+  objs.push_back (tris);
+  objs.push_back (img0);
+  objs.push_back (tex0);
+  objs.push_back (img1);
+  objs.push_back (tex1);
+  objs.push_back (app);
+  objs.push_back (mesh);
+  objs.push_back (cam);
+  objs.push_back (wld);
 
-
-
+  glutKeyboardFunc(keyboard);
   glutDisplayFunc(display);
   glutReshapeFunc(resize);
   glutMainLoop ();

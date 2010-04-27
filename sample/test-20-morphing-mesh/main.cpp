@@ -2,10 +2,12 @@
 #include <GL/glut.h>
 #include <iostream>
 #include <cmath>
+#include <vector>
 #include <cstdlib>
 using namespace std;
 using namespace m3g;
 
+std::vector<Object3D*> objs;
 World* wld = 0;
 
 void display(void)
@@ -24,7 +26,17 @@ void resize(int w, int h)
   glutPostRedisplay();
 }
 
-int animation_time = 0;
+void quit ()
+{
+  for (int i = 0; i < (int)objs.size(); i++) {
+    delete objs[i];
+  }
+  Graphics3D* g3d = Graphics3D::getInstance();
+  delete g3d;
+  exit (0);
+}
+
+int world_time = 0;
 
 static void keyboard(unsigned char key, int x, int y)
 {
@@ -32,12 +44,12 @@ static void keyboard(unsigned char key, int x, int y)
   case 'q':
   case 'Q':
   case '\033':
-    /* ESC か q か Q をタイプしたら終了 */
-    exit (0);
+    quit ();
+    break;
   case ' ':
-    cout << "glut: Space, time = " << animation_time << "\n";
-    wld->animate (animation_time);
-    animation_time += 20;
+    cout << "glut: Space, time = " << world_time << "\n";
+    wld->animate (world_time);
+    world_time += 20;
   default:
     break;
   }
@@ -119,6 +131,20 @@ int main (int argc, char** argv)
 
   //  mesh->animate (0);
 
+  objs.push_back (keyframe_sequence);
+  objs.push_back (animation_controller);
+  objs.push_back (animation_track);
+  objs.push_back (base_positions);
+  objs.push_back (target1_positions);
+  objs.push_back (target2_positions);
+  objs.push_back (base_vertices);
+  objs.push_back (target_vertices[0]);
+  objs.push_back (target_vertices[1]);
+  objs.push_back (tris);
+  objs.push_back (app);
+  objs.push_back (mesh);
+  objs.push_back (cam);
+  objs.push_back (wld);
 
   glutKeyboardFunc(keyboard);
   glutDisplayFunc(display);

@@ -21,6 +21,9 @@ namespace m3g {
   class Loader
   {
     struct FileInfo {
+      FileInfo () : version_major(0), version_minor(0), has_external_refference(false),
+                    external_refference_uri(0), total_file_size(0), 
+                    approximate_content_size(0), authoring_field(0) {};
       int          version_major;
       int          version_minor;
       bool         has_external_refference;
@@ -44,6 +47,11 @@ namespace m3g {
      * @~Japanese 与えられた名前のリソースからObject3Dのインスタンスを生成する.
      */
     static std::vector<Object3D*> load (const char* name);
+
+    /**
+     * @~  直前にロードしたファイルの情報。取り扱い未定.
+     */
+    static FileInfo file_info;
 
 
   private:
@@ -116,7 +124,6 @@ namespace m3g {
     //static std::ifstream ifs;
     static std::istrstream* iss;
     static std::vector<Object3D*> objs;
-    static FileInfo file_info;
   };
 
 

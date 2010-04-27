@@ -1,25 +1,741 @@
-0
-21.6
-43.2
-64.8
-86.4
-108
-129.6
-151.2
-172.8
-187.2
-198
-208.8
-219.6
-230.4
-241.2
-252
-262.8
-273.6
-284.4
-295.2
-306
-316.8
-327.6
-338.4
-349.2
+==19901== Memcheck, a memory error detector.
+==19901== Copyright (C) 2002-2008, and GNU GPL'd, by Julian Seward et al.
+==19901== Using LibVEX rev 1884, a library for dynamic binary translation.
+==19901== Copyright (C) 2004-2008, and GNU GPL'd, by OpenWorks LLP.
+==19901== Using valgrind-3.4.1-Debian, a dynamic binary instrumentation framework.
+==19901== Copyright (C) 2000-2008, and GNU GPL'd, by Julian Seward et al.
+==19901== For more details, rerun with: -v
+==19901== 
+==19901== Mismatched free() / delete / delete []
+==19901==    at 0x4C260AD: operator delete(void*) (vg_replace_malloc.c:342)
+==19901==    by 0x4E89A11: m3g::KeyframeSequence::~KeyframeSequence() (KeyframeSequence.cpp:41)
+==19901==    by 0x4041C1: quit() (main.cpp:31)
+==19901==    by 0x40424C: keyboard(unsigned char, int, int) (main.cpp:46)
+==19901==    by 0x50FA644: glutMainLoopEvent (in /usr/lib/libglut.so.3.8.0)
+==19901==    by 0x50FAC96: glutMainLoop (in /usr/lib/libglut.so.3.8.0)
+==19901==    by 0x404086: main (main.cpp:165)
+==19901==  Address 0x9a63ec8 is 0 bytes inside a block of size 12 alloc'd
+==19901==    at 0x4C26B2C: operator new[](unsigned long) (vg_replace_malloc.c:274)
+==19901==    by 0x4E8992D: m3g::KeyframeSequence::setKeyframe(int, int, float*) (KeyframeSequence.cpp:131)
+==19901==    by 0x4035E5: main (main.cpp:83)
+Allocate = 0x9a63ec8
+Allocate = 0x9a63f08
+Allocate = 0x9a63f48
+Allocate = 0x9a63f88
+Allocate = 0x9a63fc8
+Allocate = 0x9a64008
+Allocate = 0x9a64048
+World: 
+  active camera = [0]
+  background    = Background:   color clear=1, depth clear=1, background color=0xff7f7f7f, background image=0, image mode=BORDER,BORDER, crop rectangle=0,0,0,0  [0] : Camera:   type="GENERIC", matrix=[ 1,0,-0,0; -0,1,-0,0; 0,0,1,10; 0,0,0,1 ]
+  [1] : Mesh:   1 submesh,  4 vertices, node_alpha=1
+
+==19901== 
+==19901== ERROR SUMMARY: 7 errors from 1 contexts (suppressed: 11 from 2)
+==19901== malloc/free: in use at exit: 363,726 bytes in 469 blocks.
+==19901== malloc/free: 2,301 allocs, 1,832 frees, 3,087,593 bytes allocated.
+==19901== For counts of detected errors, rerun with: -v
+==19901== searching for pointers to 469 not-freed blocks.
+==19901== checked 5,680,536 bytes.
+==19901== 
+==19901== 
+==19901== 1 bytes in 1 blocks are still reachable in loss record 1 of 53
+==19901==    at 0x4C278AE: malloc (vg_replace_malloc.c:207)
+==19901==    by 0x55E1705: (within /usr/lib/libGL.so.190.42)
+==19901==    by 0x86C125F: ???
+==19901==    by 0x4DBC: ???
+==19901==    by 0x86C125F: ???
+==19901==    by 0x7B07CCF: (within /usr/lib/libGLcore.so.190.42)
+==19901==    by 0x575B63F: ???
+==19901==    by 0x55E6CF4: (within /usr/lib/libGL.so.190.42)
+==19901== 
+==19901== 
+==19901== 2 bytes in 1 blocks are still reachable in loss record 2 of 53
+==19901==    at 0x4C278AE: malloc (vg_replace_malloc.c:207)
+==19901==    by 0x6B8FC09: _XlcResolveLocaleName (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6B92D2B: (within /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6B921A2: (within /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6B92975: _XlcCreateLC (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6BB07EF: _XlcDefaultLoader (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6B99692: _XOpenLC (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6B99787: _XlcCurrentLC (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6BCF364: _XkbGetCharset (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6BCCB84: XkbTranslateKeySym (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6BCD273: XLookupString (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x50FA5DD: glutMainLoopEvent (in /usr/lib/libglut.so.3.8.0)
+==19901== 
+==19901== 
+==19901== 2 bytes in 1 blocks are still reachable in loss record 3 of 53
+==19901==    at 0x4C278AE: malloc (vg_replace_malloc.c:207)
+==19901==    by 0x6B929C5: _XlcCreateLC (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6BB07EF: _XlcDefaultLoader (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6B99692: _XOpenLC (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6B99787: _XlcCurrentLC (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6BCF364: _XkbGetCharset (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6BCCB84: XkbTranslateKeySym (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6BCD273: XLookupString (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x50FA5DD: glutMainLoopEvent (in /usr/lib/libglut.so.3.8.0)
+==19901==    by 0x50FAC96: glutMainLoop (in /usr/lib/libglut.so.3.8.0)
+==19901==    by 0x404086: main (main.cpp:165)
+==19901== 
+==19901== 
+==19901== 7 bytes in 1 blocks are still reachable in loss record 4 of 53
+==19901==    at 0x4C278AE: malloc (vg_replace_malloc.c:207)
+==19901==    by 0x6B92E75: (within /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6B921A2: (within /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6B92975: _XlcCreateLC (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6BB07EF: _XlcDefaultLoader (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6B99692: _XOpenLC (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6B99787: _XlcCurrentLC (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6BCF364: _XkbGetCharset (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6BCCB84: XkbTranslateKeySym (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6BCD273: XLookupString (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x50FA5DD: glutMainLoopEvent (in /usr/lib/libglut.so.3.8.0)
+==19901==    by 0x50FAC96: glutMainLoop (in /usr/lib/libglut.so.3.8.0)
+==19901== 
+==19901== 
+==19901== 8 bytes in 1 blocks are still reachable in loss record 5 of 53
+==19901==    at 0x4C278AE: malloc (vg_replace_malloc.c:207)
+==19901==    by 0x63C59A1: strdup (in /lib/libc-2.9.so)
+==19901==    by 0x50F8DD2: glutInit (in /usr/lib/libglut.so.3.8.0)
+==19901==    by 0x403269: main (main.cpp:61)
+==19901== 
+==19901== 
+==19901== 16 bytes in 1 blocks are still reachable in loss record 6 of 53
+==19901==    at 0x4C279E1: realloc (vg_replace_malloc.c:429)
+==19901==    by 0x6B90501: (within /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6B90E35: (within /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6B921B4: (within /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6B92975: _XlcCreateLC (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6BB07EF: _XlcDefaultLoader (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6B99692: _XOpenLC (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6B99787: _XlcCurrentLC (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6BCF364: _XkbGetCharset (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6BCCB84: XkbTranslateKeySym (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6BCD273: XLookupString (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x50FA5DD: glutMainLoopEvent (in /usr/lib/libglut.so.3.8.0)
+==19901== 
+==19901== 
+==19901== 16 bytes in 2 blocks are still reachable in loss record 7 of 53
+==19901==    at 0x4C278AE: malloc (vg_replace_malloc.c:207)
+==19901==    by 0x6B914C5: (within /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6B921B4: (within /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6B92975: _XlcCreateLC (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6BB07EF: _XlcDefaultLoader (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6B99692: _XOpenLC (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6B99787: _XlcCurrentLC (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6BCF364: _XkbGetCharset (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6BCCB84: XkbTranslateKeySym (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6BCD273: XLookupString (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x50FA5DD: glutMainLoopEvent (in /usr/lib/libglut.so.3.8.0)
+==19901==    by 0x50FAC96: glutMainLoop (in /usr/lib/libglut.so.3.8.0)
+==19901== 
+==19901== 
+==19901== 16 bytes in 1 blocks are still reachable in loss record 8 of 53
+==19901==    at 0x4C278AE: malloc (vg_replace_malloc.c:207)
+==19901==    by 0x6B84F71: _XReply (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6BD0377: (within /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6BD0DFA: XkbGetUpdatedMap (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6BD0EF5: XkbGetMap (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6BCC8E8: (within /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6BCD007: XkbLookupKeySym (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6BCD0CA: XLookupString (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x50FA5DD: glutMainLoopEvent (in /usr/lib/libglut.so.3.8.0)
+==19901==    by 0x50FAC96: glutMainLoop (in /usr/lib/libglut.so.3.8.0)
+==19901==    by 0x404086: main (main.cpp:165)
+==19901== 
+==19901== 
+==19901== 24 bytes in 1 blocks are still reachable in loss record 9 of 53
+==19901==    at 0x4C278AE: malloc (vg_replace_malloc.c:207)
+==19901==    by 0x6B996A4: _XOpenLC (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6B99787: _XlcCurrentLC (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6BCF364: _XkbGetCharset (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6BCCB84: XkbTranslateKeySym (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6BCD273: XLookupString (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x50FA5DD: glutMainLoopEvent (in /usr/lib/libglut.so.3.8.0)
+==19901==    by 0x50FAC96: glutMainLoop (in /usr/lib/libglut.so.3.8.0)
+==19901==    by 0x404086: main (main.cpp:165)
+==19901== 
+==19901== 
+==19901== 24 bytes in 1 blocks are still reachable in loss record 10 of 53
+==19901==    at 0x4C278AE: malloc (vg_replace_malloc.c:207)
+==19901==    by 0x6B9058F: (within /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6B92953: _XlcCreateLC (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6BB07EF: _XlcDefaultLoader (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6B99692: _XOpenLC (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6B99787: _XlcCurrentLC (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6BCF364: _XkbGetCharset (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6BCCB84: XkbTranslateKeySym (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6BCD273: XLookupString (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x50FA5DD: glutMainLoopEvent (in /usr/lib/libglut.so.3.8.0)
+==19901==    by 0x50FAC96: glutMainLoop (in /usr/lib/libglut.so.3.8.0)
+==19901==    by 0x404086: main (main.cpp:165)
+==19901== 
+==19901== 
+==19901== 29 bytes in 3 blocks are still reachable in loss record 11 of 53
+==19901==    at 0x4C278AE: malloc (vg_replace_malloc.c:207)
+==19901==    by 0x6B8C548: _XlcAddCT (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6B8C657: _XlcInitCTInfo (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6B92BB6: (within /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6B921A2: (within /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6B92975: _XlcCreateLC (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6BB49AF: _XlcUtf8Loader (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6B99692: _XOpenLC (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6B99787: _XlcCurrentLC (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6BCF364: _XkbGetCharset (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6BCCB84: XkbTranslateKeySym (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6BCD273: XLookupString (in /usr/lib/libX11.so.6.2.0)
+==19901== 
+==19901== 
+==19901== 32 bytes in 1 blocks are still reachable in loss record 12 of 53
+==19901==    at 0x4C278AE: malloc (vg_replace_malloc.c:207)
+==19901==    by 0x55E03E8: (within /usr/lib/libGL.so.190.42)
+==19901==    by 0x5: ???
+==19901==    by 0x1C: ???
+==19901==    by 0x6F55F022: ???
+==19901==    by 0x7FF00027F: ???
+==19901==    by 0x97CA95F: ???
+==19901==    by 0x97B6C67: ???
+==19901==    by 0x1BD57BF: ???
+==19901==    by 0x7FF0000AF: ???
+==19901==    by 0x97CAC37: ???
+==19901==    by 0x97B6C67: ???
+==19901== 
+==19901== 
+==19901== 32 bytes in 1 blocks are still reachable in loss record 13 of 53
+==19901==    at 0x4C278AE: malloc (vg_replace_malloc.c:207)
+==19901==    by 0x4C27A37: realloc (vg_replace_malloc.c:429)
+==19901==    by 0x55A9C88: (within /usr/lib/libGL.so.190.42)
+==19901== 
+==19901== 
+==19901== 40 bytes in 1 blocks are still reachable in loss record 14 of 53
+==19901==    at 0x4C278AE: malloc (vg_replace_malloc.c:207)
+==19901==    by 0x6B8EA72: _XlcCreateLocaleDataBase (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6B92D7E: (within /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6B921A2: (within /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6B92975: _XlcCreateLC (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6BB07EF: _XlcDefaultLoader (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6B99692: _XOpenLC (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6B99787: _XlcCurrentLC (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6BCF364: _XkbGetCharset (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6BCCB84: XkbTranslateKeySym (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6BCD273: XLookupString (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x50FA5DD: glutMainLoopEvent (in /usr/lib/libglut.so.3.8.0)
+==19901== 
+==19901== 
+==19901== 48 bytes in 3 blocks are still reachable in loss record 15 of 53
+==19901==    at 0x4C278AE: malloc (vg_replace_malloc.c:207)
+==19901==    by 0x6B99489: _XlcAddLoader (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6B92201: _XlcInitLoader (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6B99668: _XOpenLC (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6B99787: _XlcCurrentLC (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6BCF364: _XkbGetCharset (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6BCCB84: XkbTranslateKeySym (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6BCD273: XLookupString (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x50FA5DD: glutMainLoopEvent (in /usr/lib/libglut.so.3.8.0)
+==19901==    by 0x50FAC96: glutMainLoop (in /usr/lib/libglut.so.3.8.0)
+==19901==    by 0x404086: main (main.cpp:165)
+==19901== 
+==19901== 
+==19901== 48 bytes in 1 blocks are still reachable in loss record 16 of 53
+==19901==    at 0x4C25684: calloc (vg_replace_malloc.c:397)
+==19901==    by 0x6BD0EB1: XkbGetMap (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6BCC8E8: (within /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6BCD007: XkbLookupKeySym (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6BCD0CA: XLookupString (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x50FA5DD: glutMainLoopEvent (in /usr/lib/libglut.so.3.8.0)
+==19901==    by 0x50FAC96: glutMainLoop (in /usr/lib/libglut.so.3.8.0)
+==19901==    by 0x404086: main (main.cpp:165)
+==19901== 
+==19901== 
+==19901== 48 bytes in 1 blocks are definitely lost in loss record 17 of 53
+==19901==    at 0x4C278AE: malloc (vg_replace_malloc.c:207)
+==19901==    by 0x55FF5BE: (within /usr/lib/libGL.so.190.42)
+==19901==    by 0x1BD7: ???
+==19901==    by 0x2F: ???
+==19901==    by 0x2F: ???
+==19901==    by 0x23: ???
+==19901==    by 0x9A6EEFF: ???
+==19901==    by 0x9A6D2F7: ???
+==19901==    by 0x9A6D29F: ???
+==19901==    by 0x7FEFFFCA7: ???
+==19901==    by 0x7FEFFF52F: ???
+==19901==    by 0x12C00190004: ???
+==19901== 
+==19901== 
+==19901== 48 bytes in 1 blocks are definitely lost in loss record 18 of 53
+==19901==    at 0x4C278AE: malloc (vg_replace_malloc.c:207)
+==19901==    by 0x55FF5A9: (within /usr/lib/libGL.so.190.42)
+==19901==    by 0x1BD7: ???
+==19901==    by 0x2F: ???
+==19901== 
+==19901== 
+==19901== 60 bytes in 2 blocks are still reachable in loss record 19 of 53
+==19901==    at 0x4C278AE: malloc (vg_replace_malloc.c:207)
+==19901==    by 0x6B67123: _XUpdateAtomCache (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6B67749: XInternAtom (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6B7BCC4: XSetWMProperties (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x50FF0EE: fgOpenWindow (in /usr/lib/libglut.so.3.8.0)
+==19901==    by 0x50FD993: fgCreateWindow (in /usr/lib/libglut.so.3.8.0)
+==19901==    by 0x50FEA90: glutCreateWindow (in /usr/lib/libglut.so.3.8.0)
+==19901==    by 0x403282: main (main.cpp:63)
+==19901== 
+==19901== 
+==19901== 64 bytes in 1 blocks are still reachable in loss record 20 of 53
+==19901==    at 0x4C278AE: malloc (vg_replace_malloc.c:207)
+==19901==    by 0x6B71EFC: _XrmInternalStringToQuark (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6B8C788: _XlcGetCharSet (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6B8C328: _XlcAddCT (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6B8C657: _XlcInitCTInfo (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6B92BB6: (within /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6B921A2: (within /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6B92975: _XlcCreateLC (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6BB49AF: _XlcUtf8Loader (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6B99692: _XOpenLC (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6B99787: _XlcCurrentLC (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6BCF364: _XkbGetCharset (in /usr/lib/libX11.so.6.2.0)
+==19901== 
+==19901== 
+==19901== 72 bytes in 1 blocks are still reachable in loss record 21 of 53
+==19901==    at 0x4C25684: calloc (vg_replace_malloc.c:397)
+==19901==    by 0x6BD0E93: XkbGetMap (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6BCC8E8: (within /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6BCD007: XkbLookupKeySym (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6BCD0CA: XLookupString (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x50FA5DD: glutMainLoopEvent (in /usr/lib/libglut.so.3.8.0)
+==19901==    by 0x50FAC96: glutMainLoop (in /usr/lib/libglut.so.3.8.0)
+==19901==    by 0x404086: main (main.cpp:165)
+==19901== 
+==19901== 
+==19901== 104 bytes in 3 blocks are still reachable in loss record 22 of 53
+==19901==    at 0x4C25684: calloc (vg_replace_malloc.c:397)
+==19901==    by 0x6BCFE4E: _XkbReadGetMapReply (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6BD0390: (within /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6BD0DFA: XkbGetUpdatedMap (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6BD0EF5: XkbGetMap (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6BCC8E8: (within /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6BCD007: XkbLookupKeySym (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6BCD0CA: XLookupString (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x50FA5DD: glutMainLoopEvent (in /usr/lib/libglut.so.3.8.0)
+==19901==    by 0x50FAC96: glutMainLoop (in /usr/lib/libglut.so.3.8.0)
+==19901==    by 0x404086: main (main.cpp:165)
+==19901== 
+==19901== 
+==19901== 104 bytes in 1 blocks are definitely lost in loss record 23 of 53
+==19901==    at 0x4C278AE: malloc (vg_replace_malloc.c:207)
+==19901==    by 0x55E0400: (within /usr/lib/libGL.so.190.42)
+==19901==    by 0x5: ???
+==19901==    by 0x1C: ???
+==19901==    by 0x6F55F022: ???
+==19901==    by 0x7FF00027F: ???
+==19901==    by 0x97CA95F: ???
+==19901==    by 0x97B6C67: ???
+==19901==    by 0x97CC3AF: ???
+==19901==    by 0x7FF0000AF: ???
+==19901==    by 0x97CAC37: ???
+==19901==    by 0x97B6C67: ???
+==19901== 
+==19901== 
+==19901== 120 bytes in 3 blocks are still reachable in loss record 24 of 53
+==19901==    at 0x4C278AE: malloc (vg_replace_malloc.c:207)
+==19901==    by 0x400D0BF: (within /lib/ld-2.9.so)
+==19901==    by 0x4013524: (within /lib/ld-2.9.so)
+==19901==    by 0x400E8B5: (within /lib/ld-2.9.so)
+==19901==    by 0x4012DAA: (within /lib/ld-2.9.so)
+==19901==    by 0x86C3F5A: (within /lib/libdl-2.9.so)
+==19901==    by 0x400E8B5: (within /lib/ld-2.9.so)
+==19901==    by 0x86C42CB: (within /lib/libdl-2.9.so)
+==19901==    by 0x86C3EC0: dlopen (in /lib/libdl-2.9.so)
+==19901==    by 0x55AAE72: (within /usr/lib/libGL.so.190.42)
+==19901==    by 0x7B0716F: (within /usr/lib/libGLcore.so.190.42)
+==19901==    by 0xFF000717: ???
+==19901== 
+==19901== 
+==19901== 142 bytes in 18 blocks are still reachable in loss record 25 of 53
+==19901==    at 0x4C278AE: malloc (vg_replace_malloc.c:207)
+==19901==    by 0x6B8D7E9: (within /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6B8E0B3: (within /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6B8E2EC: (within /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6B8E887: _XlcCreateLocaleDataBase (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6B92D7E: (within /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6B921A2: (within /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6B92975: _XlcCreateLC (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6BB07EF: _XlcDefaultLoader (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6B99692: _XOpenLC (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6B99787: _XlcCurrentLC (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6BCF364: _XkbGetCharset (in /usr/lib/libX11.so.6.2.0)
+==19901== 
+==19901== 
+==19901== 160 bytes in 2 blocks are still reachable in loss record 26 of 53
+==19901==    at 0x4C278AE: malloc (vg_replace_malloc.c:207)
+==19901==    by 0x6B904C4: (within /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6B90E35: (within /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6B921B4: (within /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6B92975: _XlcCreateLC (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6BB07EF: _XlcDefaultLoader (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6B99692: _XOpenLC (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6B99787: _XlcCurrentLC (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6BCF364: _XkbGetCharset (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6BCCB84: XkbTranslateKeySym (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6BCD273: XLookupString (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x50FA5DD: glutMainLoopEvent (in /usr/lib/libglut.so.3.8.0)
+==19901== 
+==19901== 
+==19901== 168 bytes in 1 blocks are still reachable in loss record 27 of 53
+==19901==    at 0x4C278AE: malloc (vg_replace_malloc.c:207)
+==19901==    by 0x6B905DB: (within /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6B92953: _XlcCreateLC (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6BB07EF: _XlcDefaultLoader (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6B99692: _XOpenLC (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6B99787: _XlcCurrentLC (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6BCF364: _XkbGetCharset (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6BCCB84: XkbTranslateKeySym (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6BCD273: XLookupString (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x50FA5DD: glutMainLoopEvent (in /usr/lib/libglut.so.3.8.0)
+==19901==    by 0x50FAC96: glutMainLoop (in /usr/lib/libglut.so.3.8.0)
+==19901==    by 0x404086: main (main.cpp:165)
+==19901== 
+==19901== 
+==19901== 176 bytes in 1 blocks are still reachable in loss record 28 of 53
+==19901==    at 0x4C278AE: malloc (vg_replace_malloc.c:207)
+==19901==    by 0x6B905BB: (within /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6B92953: _XlcCreateLC (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6BB07EF: _XlcDefaultLoader (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6B99692: _XOpenLC (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6B99787: _XlcCurrentLC (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6BCF364: _XkbGetCharset (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6BCCB84: XkbTranslateKeySym (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6BCD273: XLookupString (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x50FA5DD: glutMainLoopEvent (in /usr/lib/libglut.so.3.8.0)
+==19901==    by 0x50FAC96: glutMainLoop (in /usr/lib/libglut.so.3.8.0)
+==19901==    by 0x404086: main (main.cpp:165)
+==19901== 
+==19901== 
+==19901== 216 bytes in 18 blocks are still reachable in loss record 29 of 53
+==19901==    at 0x4C278AE: malloc (vg_replace_malloc.c:207)
+==19901==    by 0x6B8DFBC: (within /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6B8E2EC: (within /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6B8E887: _XlcCreateLocaleDataBase (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6B92D7E: (within /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6B921A2: (within /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6B92975: _XlcCreateLC (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6BB07EF: _XlcDefaultLoader (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6B99692: _XOpenLC (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6B99787: _XlcCurrentLC (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6BCF364: _XkbGetCharset (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6BCCB84: XkbTranslateKeySym (in /usr/lib/libX11.so.6.2.0)
+==19901== 
+==19901== 
+==19901== 256 bytes in 1 blocks are still reachable in loss record 30 of 53
+==19901==    at 0x4C25684: calloc (vg_replace_malloc.c:397)
+==19901==    by 0x6BDF722: XkbAllocClientMap (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6BD02D3: _XkbReadGetMapReply (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6BD0390: (within /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6BD0DFA: XkbGetUpdatedMap (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6BD0EF5: XkbGetMap (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6BCC8E8: (within /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6BCD007: XkbLookupKeySym (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6BCD0CA: XLookupString (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x50FA5DD: glutMainLoopEvent (in /usr/lib/libglut.so.3.8.0)
+==19901==    by 0x50FAC96: glutMainLoop (in /usr/lib/libglut.so.3.8.0)
+==19901==    by 0x404086: main (main.cpp:165)
+==19901== 
+==19901== 
+==19901== 274 bytes in 18 blocks are still reachable in loss record 31 of 53
+==19901==    at 0x4C278AE: malloc (vg_replace_malloc.c:207)
+==19901==    by 0x6B8E197: (within /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6B8E2EC: (within /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6B8E887: _XlcCreateLocaleDataBase (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6B92D7E: (within /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6B921A2: (within /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6B92975: _XlcCreateLC (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6BB07EF: _XlcDefaultLoader (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6B99692: _XOpenLC (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6B99787: _XlcCurrentLC (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6BCF364: _XkbGetCharset (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6BCCB84: XkbTranslateKeySym (in /usr/lib/libX11.so.6.2.0)
+==19901== 
+==19901== 
+==19901== 288 bytes in 18 blocks are still reachable in loss record 32 of 53
+==19901==    at 0x4C278AE: malloc (vg_replace_malloc.c:207)
+==19901==    by 0x6B8D839: (within /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6B8E0B3: (within /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6B8E2EC: (within /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6B8E887: _XlcCreateLocaleDataBase (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6B92D7E: (within /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6B921A2: (within /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6B92975: _XlcCreateLC (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6BB07EF: _XlcDefaultLoader (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6B99692: _XOpenLC (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6B99787: _XlcCurrentLC (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6BCF364: _XkbGetCharset (in /usr/lib/libX11.so.6.2.0)
+==19901== 
+==19901== 
+==19901== 456 bytes in 1 blocks are still reachable in loss record 33 of 53
+==19901==    at 0x4C278AE: malloc (vg_replace_malloc.c:207)
+==19901==    by 0x6B8EA0F: _XlcCreateLocaleDataBase (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6B92D7E: (within /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6B921A2: (within /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6B92975: _XlcCreateLC (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6BB07EF: _XlcDefaultLoader (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6B99692: _XOpenLC (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6B99787: _XlcCurrentLC (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6BCF364: _XkbGetCharset (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6BCCB84: XkbTranslateKeySym (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6BCD273: XLookupString (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x50FA5DD: glutMainLoopEvent (in /usr/lib/libglut.so.3.8.0)
+==19901== 
+==19901== 
+==19901== 512 bytes in 1 blocks are still reachable in loss record 34 of 53
+==19901==    at 0x4C279E1: realloc (vg_replace_malloc.c:429)
+==19901==    by 0x55A6848: (within /usr/lib/libGL.so.190.42)
+==19901== 
+==19901== 
+==19901== 615 bytes in 47 blocks are still reachable in loss record 35 of 53
+==19901==    at 0x4C278AE: malloc (vg_replace_malloc.c:207)
+==19901==    by 0x6B8C907: _XlcCreateDefaultCharSet (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6B8C5E2: _XlcAddCT (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6B8C657: _XlcInitCTInfo (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6B92BB6: (within /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6B921A2: (within /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6B92975: _XlcCreateLC (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6BB49AF: _XlcUtf8Loader (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6B99692: _XOpenLC (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6B99787: _XlcCurrentLC (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6BCF364: _XkbGetCharset (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6BCCB84: XkbTranslateKeySym (in /usr/lib/libX11.so.6.2.0)
+==19901== 
+==19901== 
+==19901== 720 bytes in 18 blocks are still reachable in loss record 36 of 53
+==19901==    at 0x4C278AE: malloc (vg_replace_malloc.c:207)
+==19901==    by 0x6B8DF67: (within /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6B8E2EC: (within /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6B8E887: _XlcCreateLocaleDataBase (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6B92D7E: (within /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6B921A2: (within /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6B92975: _XlcCreateLC (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6BB07EF: _XlcDefaultLoader (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6B99692: _XOpenLC (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6B99787: _XlcCurrentLC (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6BCF364: _XkbGetCharset (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6BCCB84: XkbTranslateKeySym (in /usr/lib/libX11.so.6.2.0)
+==19901== 
+==19901== 
+==19901== 768 bytes in 48 blocks are still reachable in loss record 37 of 53
+==19901==    at 0x4C278AE: malloc (vg_replace_malloc.c:207)
+==19901==    by 0x6B8C7F4: _XlcAddCharSet (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6B8C5F6: _XlcAddCT (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6B8C657: _XlcInitCTInfo (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6B92BB6: (within /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6B921A2: (within /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6B92975: _XlcCreateLC (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6BB49AF: _XlcUtf8Loader (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6B99692: _XOpenLC (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6B99787: _XlcCurrentLC (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6BCF364: _XkbGetCharset (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6BCCB84: XkbTranslateKeySym (in /usr/lib/libX11.so.6.2.0)
+==19901== 
+==19901== 
+==19901== 990 bytes in 48 blocks are still reachable in loss record 38 of 53
+==19901==    at 0x4C278AE: malloc (vg_replace_malloc.c:207)
+==19901==    by 0x6B8C8A8: _XlcCreateDefaultCharSet (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6B8C5E2: _XlcAddCT (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6B8C657: _XlcInitCTInfo (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6B92BB6: (within /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6B921A2: (within /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6B92975: _XlcCreateLC (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6BB49AF: _XlcUtf8Loader (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6B99692: _XOpenLC (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6B99787: _XlcCurrentLC (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6BCF364: _XkbGetCharset (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6BCCB84: XkbTranslateKeySym (in /usr/lib/libX11.so.6.2.0)
+==19901== 
+==19901== 
+==19901== 1,000 bytes in 1 blocks are still reachable in loss record 39 of 53
+==19901==    at 0x4C25684: calloc (vg_replace_malloc.c:397)
+==19901==    by 0x6BDF843: XkbAllocClientMap (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6BCF975: _XkbReadGetMapReply (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6BD0390: (within /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6BD0DFA: XkbGetUpdatedMap (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6BD0EF5: XkbGetMap (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6BCC8E8: (within /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6BCD007: XkbLookupKeySym (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6BCD0CA: XLookupString (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x50FA5DD: glutMainLoopEvent (in /usr/lib/libglut.so.3.8.0)
+==19901==    by 0x50FAC96: glutMainLoop (in /usr/lib/libglut.so.3.8.0)
+==19901==    by 0x404086: main (main.cpp:165)
+==19901== 
+==19901== 
+==19901== 1,248 bytes in 6 blocks are still reachable in loss record 40 of 53
+==19901==    at 0x4C278AE: malloc (vg_replace_malloc.c:207)
+==19901==    by 0x6B7D7D9: _XEnq (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6B848B6: (within /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6B85344: _XEventsQueued (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6B6DE4C: XPending (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x50FA190: glutMainLoopEvent (in /usr/lib/libglut.so.3.8.0)
+==19901==    by 0x50FAC25: glutMainLoop (in /usr/lib/libglut.so.3.8.0)
+==19901==    by 0x404086: main (main.cpp:165)
+==19901== 
+==19901== 
+==19901== 1,308 bytes in 24 blocks are still reachable in loss record 41 of 53
+==19901==    at 0x4C25684: calloc (vg_replace_malloc.c:397)
+==19901==    by 0x6BCFE3C: _XkbReadGetMapReply (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6BD0390: (within /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6BD0DFA: XkbGetUpdatedMap (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6BD0EF5: XkbGetMap (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6BCC8E8: (within /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6BCD007: XkbLookupKeySym (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6BCD0CA: XLookupString (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x50FA5DD: glutMainLoopEvent (in /usr/lib/libglut.so.3.8.0)
+==19901==    by 0x50FAC96: glutMainLoop (in /usr/lib/libglut.so.3.8.0)
+==19901==    by 0x404086: main (main.cpp:165)
+==19901== 
+==19901== 
+==19901== 1,408 bytes in 22 blocks are still reachable in loss record 42 of 53
+==19901==    at 0x4C278AE: malloc (vg_replace_malloc.c:207)
+==19901==    by 0x6B8CE91: _XlcSetConverter (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6B8C6A7: _XlcInitCTInfo (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6B92BB6: (within /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6B921A2: (within /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6B92975: _XlcCreateLC (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6BB49AF: _XlcUtf8Loader (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6B99692: _XOpenLC (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6B99787: _XlcCurrentLC (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6BCF364: _XkbGetCharset (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6BCCB84: XkbTranslateKeySym (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6BCD273: XLookupString (in /usr/lib/libX11.so.6.2.0)
+==19901== 
+==19901== 
+==19901== 2,048 bytes in 1 blocks are still reachable in loss record 43 of 53
+==19901==    at 0x4C278AE: malloc (vg_replace_malloc.c:207)
+==19901==    by 0x6B8E94E: _XlcCreateLocaleDataBase (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6B92D7E: (within /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6B921A2: (within /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6B92975: _XlcCreateLC (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6BB49AF: _XlcUtf8Loader (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6B99692: _XOpenLC (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6B99787: _XlcCurrentLC (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6BCF364: _XkbGetCharset (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6BCCB84: XkbTranslateKeySym (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6BCD273: XLookupString (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x50FA5DD: glutMainLoopEvent (in /usr/lib/libglut.so.3.8.0)
+==19901== 
+==19901== 
+==19901== 2,048 bytes in 1 blocks are still reachable in loss record 44 of 53
+==19901==    at 0x4C25684: calloc (vg_replace_malloc.c:397)
+==19901==    by 0x6BD00BF: _XkbReadGetMapReply (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6BD0390: (within /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6BD0DFA: XkbGetUpdatedMap (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6BD0EF5: XkbGetMap (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6BCC8E8: (within /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6BCD007: XkbLookupKeySym (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6BCD0CA: XLookupString (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x50FA5DD: glutMainLoopEvent (in /usr/lib/libglut.so.3.8.0)
+==19901==    by 0x50FAC96: glutMainLoop (in /usr/lib/libglut.so.3.8.0)
+==19901==    by 0x404086: main (main.cpp:165)
+==19901== 
+==19901== 
+==19901== 2,228 bytes in 1 blocks are still reachable in loss record 45 of 53
+==19901==    at 0x4C279E1: realloc (vg_replace_malloc.c:429)
+==19901==    by 0x55A9C88: (within /usr/lib/libGL.so.190.42)
+==19901==    by 0x25: ???
+==19901== 
+==19901== 
+==19901== 2,525 bytes in 48 blocks are still reachable in loss record 46 of 53
+==19901==    at 0x4C278AE: malloc (vg_replace_malloc.c:207)
+==19901==    by 0x6B8C359: _XlcAddCT (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6B8C657: _XlcInitCTInfo (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6B92BB6: (within /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6B921A2: (within /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6B92975: _XlcCreateLC (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6BB49AF: _XlcUtf8Loader (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6B99692: _XOpenLC (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6B99787: _XlcCurrentLC (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6BCF364: _XkbGetCharset (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6BCCB84: XkbTranslateKeySym (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6BCD273: XLookupString (in /usr/lib/libX11.so.6.2.0)
+==19901== 
+==19901== 
+==19901== 3,072 bytes in 1 blocks are still reachable in loss record 47 of 53
+==19901==    at 0x4C25684: calloc (vg_replace_malloc.c:397)
+==19901==    by 0x6BD0316: _XkbReadGetMapReply (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6BD0390: (within /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6BD0DFA: XkbGetUpdatedMap (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6BD0EF5: XkbGetMap (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6BCC8E8: (within /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6BCD007: XkbLookupKeySym (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6BCD0CA: XLookupString (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x50FA5DD: glutMainLoopEvent (in /usr/lib/libglut.so.3.8.0)
+==19901==    by 0x50FAC96: glutMainLoop (in /usr/lib/libglut.so.3.8.0)
+==19901==    by 0x404086: main (main.cpp:165)
+==19901== 
+==19901== 
+==19901== 3,456 bytes in 48 blocks are still reachable in loss record 48 of 53
+==19901==    at 0x4C278AE: malloc (vg_replace_malloc.c:207)
+==19901==    by 0x6B8C853: _XlcCreateDefaultCharSet (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6B8C5E2: _XlcAddCT (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6B8C657: _XlcInitCTInfo (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6B92BB6: (within /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6B921A2: (within /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6B92975: _XlcCreateLC (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6BB49AF: _XlcUtf8Loader (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6B99692: _XOpenLC (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6B99787: _XlcCurrentLC (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6BCF364: _XkbGetCharset (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6BCCB84: XkbTranslateKeySym (in /usr/lib/libX11.so.6.2.0)
+==19901== 
+==19901== 
+==19901== 4,096 bytes in 1 blocks are still reachable in loss record 49 of 53
+==19901==    at 0x4C278AE: malloc (vg_replace_malloc.c:207)
+==19901==    by 0x6B71CC7: _XrmInternalStringToQuark (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6B8C788: _XlcGetCharSet (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6B8C328: _XlcAddCT (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6B8C657: _XlcInitCTInfo (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6B92BB6: (within /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6B921A2: (within /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6B92975: _XlcCreateLC (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6BB49AF: _XlcUtf8Loader (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6B99692: _XOpenLC (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6B99787: _XlcCurrentLC (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6BCF364: _XkbGetCharset (in /usr/lib/libX11.so.6.2.0)
+==19901== 
+==19901== 
+==19901== 8,176 bytes in 1 blocks are still reachable in loss record 50 of 53
+==19901==    at 0x4C278AE: malloc (vg_replace_malloc.c:207)
+==19901==    by 0x6B71A94: (within /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6B71EBB: _XrmInternalStringToQuark (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6B8C788: _XlcGetCharSet (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6B8C328: _XlcAddCT (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6B8C657: _XlcInitCTInfo (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6B92BB6: (within /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6B921A2: (within /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6B92975: _XlcCreateLC (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6BB49AF: _XlcUtf8Loader (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6B99692: _XOpenLC (in /usr/lib/libX11.so.6.2.0)
+==19901==    by 0x6B99787: _XlcCurrentLC (in /usr/lib/libX11.so.6.2.0)
+==19901== 
+==19901== 
+==19901== 20,515 bytes in 26 blocks are still reachable in loss record 51 of 53
+==19901==    at 0x4C278AE: malloc (vg_replace_malloc.c:207)
+==19901==    by 0x55A9DA0: (within /usr/lib/libGL.so.190.42)
+==19901== 
+==19901== 
+==19901== 41,760 bytes in 13 blocks are still reachable in loss record 52 of 53
+==19901==    at 0x4C25684: calloc (vg_replace_malloc.c:397)
+==19901==    by 0x55A9D28: (within /usr/lib/libGL.so.190.42)
+==19901==    by 0x7FF000DF0: ???
+==19901==    by 0x7FF000717: ???
+==19901==    by 0x4030DF: (within /work/desktop-m3g/sample/test-15-animation-translate/a.out)
+==19901==    by 0x7FF00044B: ???
+==19901== 
+==19901== 
+==19901== 262,132 bytes in 1 blocks are definitely lost in loss record 53 of 53
+==19901==    at 0x4C278AE: malloc (vg_replace_malloc.c:207)
+==19901==    by 0x55E2A40: (within /usr/lib/libGL.so.190.42)
+==19901==    by 0x7FF00008F: ???
+==19901== 
+==19901== LEAK SUMMARY:
+==19901==    definitely lost: 262,332 bytes in 4 blocks.
+==19901==      possibly lost: 0 bytes in 0 blocks.
+==19901==    still reachable: 101,394 bytes in 465 blocks.
+==19901==         suppressed: 0 bytes in 0 blocks.

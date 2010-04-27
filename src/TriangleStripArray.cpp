@@ -28,8 +28,8 @@ TriangleStripArray:: TriangleStripArray (int* indices_, int num_strips, int* str
   for (int i = 0; i < num_strips; i++) {
     strips.push_back (strip_array[i]);
   }
-  int num = accumulate (strips.begin(), strips.end(), 0);
 
+  int num = accumulate (strips.begin(), strips.end(), 0);
   indices = new int[num];
   memcpy (indices, indices_, sizeof(int)*num);
 
@@ -71,6 +71,10 @@ TriangleStripArray:: TriangleStripArray (int first_index, int num_strips, int* s
 
 TriangleStripArray:: ~TriangleStripArray ()
 {
+  if (glIsBuffer(ibuf)) {
+    glDeleteBuffers (1, &ibuf);
+  }
+  delete [] indices;
 }
 
 TriangleStripArray* TriangleStripArray:: duplicate () const
@@ -79,7 +83,7 @@ TriangleStripArray* TriangleStripArray:: duplicate () const
 
   TriangleStripArray* tris = new TriangleStripArray (*this);
   tris->indices            = new int [index_count];
-  memcpy (tris->indices, this->indices, 4*index_count);
+  memcpy (tris->indices, this->indices, sizeof(int)*index_count);
   // 現状ではOpenGLのバッファーオブジェクトを共通で使用するのでコメントアウト
   //glGenBuffers (1, &tris->ibuf);
   //glBindBuffer (GL_ELEMENT_ARRAY_BUFFER, tris->ibuf); 

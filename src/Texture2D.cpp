@@ -9,7 +9,7 @@
 #include "RenderState.hpp"
 using namespace std;
 using namespace m3g;
-//#include <cstdlib>
+
 
 Texture2D:: Texture2D (Image2D* img) :
   image(0), wrapping(WRAP_REPEAT, WRAP_REPEAT),

@@ -3,12 +3,11 @@
 #include <iostream>
 #include <cstring>
 #include <cmath>
-#include "libpng.hpp"
-#include "data.hpp"
+#include <cstdlib>
 using namespace std;
 using namespace m3g;
 
-
+std::vector<Object3D*> objs;
 World* wld = 0;
 
 void display(void)
@@ -26,6 +25,28 @@ void resize(int w, int h)
   cam->setPerspective (45, w/(float)h, 0.1, 100);
 }
 
+void quit ()
+{
+  for (int i = 0; i < (int)objs.size(); i++) {
+    delete objs[i];
+  }
+  Graphics3D* g3d = Graphics3D::getInstance();
+  delete g3d;
+  exit (0);
+}
+
+void keyboard(unsigned char key, int x, int y)
+{
+  switch (key) {
+  case 'q':
+    quit ();
+    break;
+  default:
+    break;
+  }
+  glutPostRedisplay();
+}
+
 int main (int argc, char** argv)
 {
   glutInit(&argc, argv);
@@ -33,15 +54,15 @@ int main (int argc, char** argv)
   glutCreateWindow(argv[0]);
   glewInit ();
 
-  VertexArray* pos_array = new VertexArray (4, 3, 2);
-  pos_array->set (0, 4, vertices1);
+  VertexArray* positions         = new VertexArray (4, 3, 2);
+  short        position_values[] = {1,-1,0, 1,1,0, -1,-1,0, -1,1};
+  positions->set (0, 4, position_values);
 
-  float scale = 1;
+  float scale   = 1;
   float bias[3] = {0,0,0};
-  VertexBuffer* vbuf = new VertexBuffer;
-  vbuf->setPositions (pos_array, scale, bias);
-  //vbuf->setDefaultColor (0x3f7f7fff);
-  vbuf->setDefaultColor (0x3f7f7fff);
+  VertexBuffer* vertices = new VertexBuffer;
+  vertices->setPositions (positions, scale, bias);
+  vertices->setDefaultColor (0x3f7f7fff);
 
   int strips[1] = {4};
   TriangleStripArray* tris = new TriangleStripArray (0, 1, strips);
@@ -60,19 +81,19 @@ int main (int argc, char** argv)
   app->setMaterial (mat);
 
 
-  Mesh* mesh1 = new Mesh (vbuf, tris, app);
+  Mesh* mesh1 = new Mesh (vertices, tris, app);
   mesh1->translate (0,0,-1);
 
-  Mesh* mesh2 = new Mesh (vbuf, tris, app);
+  Mesh* mesh2 = new Mesh (vertices, tris, app);
   mesh2->translate (0,0,-2);
 
-  Mesh* mesh3 = new Mesh (vbuf, tris, app);
+  Mesh* mesh3 = new Mesh (vertices, tris, app);
   mesh3->translate (0,0,-3);
 
-  Mesh* mesh4 = new Mesh (vbuf, tris, app);
+  Mesh* mesh4 = new Mesh (vertices, tris, app);
   mesh4->translate (0,0,-4);
 
-  Mesh* mesh5 = new Mesh (vbuf, tris, app);
+  Mesh* mesh5 = new Mesh (vertices, tris, app);
   mesh5->translate (0,0,-5);
 
   Group* grp = new Group;
@@ -94,9 +115,25 @@ int main (int argc, char** argv)
   wld->addChild (grp);
   wld->setBackground (bg);
 
-
   cout << *wld << "\n";
 
+  objs.push_back (positions);
+  objs.push_back (vertices);
+  objs.push_back (tris);
+  objs.push_back (cmp);
+  objs.push_back (mat);
+  objs.push_back (app);
+  objs.push_back (mesh1);
+  objs.push_back (mesh2);
+  objs.push_back (mesh3);
+  objs.push_back (mesh4);
+  objs.push_back (mesh5);
+  objs.push_back (grp);
+  objs.push_back (cam);
+  objs.push_back (bg);
+  objs.push_back (wld);
+
+  glutKeyboardFunc(keyboard);
   glutDisplayFunc(display);
   glutReshapeFunc(resize);
   glutMainLoop ();

@@ -37,6 +37,9 @@ KeyframeSequence:: KeyframeSequence (int num_keyframes, int num_components, int 
 
 KeyframeSequence:: ~KeyframeSequence ()
 {
+  for (int i = 0; i < (int)keyframes.size(); i++) {
+    delete keyframes[i].value;
+  }
 }
 
 KeyframeSequence* KeyframeSequence:: duplicate () const
@@ -47,7 +50,7 @@ KeyframeSequence* KeyframeSequence:: duplicate () const
       kseq->keyframes[i].value = new float [component_count];
       memcpy (kseq->keyframes[i].value, 
 	      this->keyframes[i].value,
-	      4*component_count);
+	      sizeof(float)*component_count);
     }
   }
   return kseq;

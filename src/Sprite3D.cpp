@@ -195,7 +195,6 @@ void Sprite3D:: setImage (Image2D* image_)
   crop.y      = 0;
   crop.width  = image->getWidth();
   crop.height = image->getHeight();
-  
 }
 
 /**
@@ -220,7 +219,7 @@ void Sprite3D:: render (RenderState& state) const
   if (appearance != 0 && appearance->getLayer() != state.layer)
     return;
 
-  cout << "Sprite3D: render \n";
+  // cout << "Sprite3D: render \n";
 
   Node:: render (state);
 
@@ -252,9 +251,11 @@ void Sprite3D:: render (RenderState& state) const
   //cout << "Sprite3D: crop width = " << crop.width << "\n";
   //cout << "Sprite3D: crop height = " << crop.height << "\n";
 
+  glEnable (GL_ALPHA_TEST);  // これ多分いらない。後で消す。
+
   GLfloat rgba[4] = {1,1,1,0};
-  glEnable (GL_TEXTURE_2D);
-  glEnable (GL_ALPHA_TEST);
+  glActiveTexture  (GL_TEXTURE0);  // テクスチャーユニットは必ず０を使う
+  glEnable         (GL_TEXTURE_2D);
   glBindTexture    (GL_TEXTURE_2D, texobj);
   glTexParameteri  (GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
   glTexParameteri  (GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);

@@ -2,13 +2,14 @@
 #include <GL/glut.h>
 #include <iostream>
 #include <cstring>
-#include <cassert>
 #include <cmath>
+#include <cassert>
 #include <cstdlib>
 using namespace std;
 using namespace m3g;
 #include <typeinfo>
 
+std::vector<Object3D*> objs;
 World* wld = 0;
 
 void display(void)
@@ -26,18 +27,28 @@ void resize(int w, int h)
   cam->setPerspective (45, w/(float)h, 0.1, 10000);
 }
 
+void quit ()
+{
+  for (int i = 0; i < (int)objs.size(); i++) {
+    delete objs[i];
+  }
+  Graphics3D* g3d = Graphics3D::getInstance();
+  delete g3d;
+  exit (0);
+}
 
-int animation_time = 0;
+int world_time = 0;
 
 static void keyboard(unsigned char key, int x, int y)
 {
   switch (key) {
   case 'q':
-    exit(0);
+    quit();
+    break;
   case ' ':
-    wld->animate (animation_time);
-    animation_time += 33;
-    cout << "animation time = " << animation_time << "\n";
+    wld->animate (world_time);
+    world_time += 33;
+    cout << "main: time = " << world_time << "\n";
   default:
     break;
   }
@@ -51,19 +62,8 @@ int main (int argc, char** argv)
   glutCreateWindow(argv[0]);
   glewInit ();
 
-  //std::vector<Object3D*> objs = Loader::load ("blocklow.m3g");
-  //std::vector<Object3D*> objs = Loader::load ("simple.m3g");
-  //std::vector<Object3D*> objs = Loader::load ("test.m3g");
-  std::vector<Object3D*> objs = Loader::load ("test.m3g");
-
-  for (int i = 0; i < (int)objs.size(); i++) {
-    cout << objs[i] << "\n";
-    Node* node = dynamic_cast<Node*>(objs[i]);
-    if (node) {
-      node->setAlphaFactor(1);
-    }
-    cout << *objs[i] << "\n";
-  }
+  //objs = Loader::load ("simple.m3g");
+  objs = Loader::load ("test.m3g");
 
   for (int i = 0; i < (int)objs.size(); i++) {
     wld = dynamic_cast<World*>(objs[i]);
@@ -73,6 +73,15 @@ int main (int argc, char** argv)
     }
   }
   assert (wld != 0);
+
+  for (int i = 0; i < (int)objs.size(); i++) {
+    Node* node = dynamic_cast<Node*>(objs[i]);
+    if (node) {
+      node->setAlphaFactor(1);
+    }
+    //cout << *objs[i] << "\n";
+  }
+
 
   Background* bg = wld->getBackground ();
   if (bg == 0) {

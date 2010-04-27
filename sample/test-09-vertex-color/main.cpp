@@ -3,10 +3,11 @@
 #include <iostream>
 #include <cstring>
 #include <cmath>
+#include <cstdlib>
 using namespace std;
 using namespace m3g;
 
-
+std::vector<Object3D*> objs;
 World* wld = 0;
 
 void display(void)
@@ -24,29 +25,51 @@ void resize(int w, int h)
   cam->setPerspective (45, w/(float)h, 0.1, 100);
 }
 
+void quit ()
+{
+  for (int i = 0; i < (int)objs.size(); i++) {
+    delete objs[i];
+  }
+  Graphics3D* g3d = Graphics3D::getInstance();
+  delete g3d;
+  exit (0);
+}
+
+void keyboard(unsigned char key, int x, int y)
+{
+  switch (key) {
+  case 'q':
+    quit ();
+    break;
+  default:
+    break;
+  }
+  glutPostRedisplay();
+}
+
 int main (int argc, char** argv)
 {
   glutInit(&argc, argv);
-  glutInitDisplayMode(GLUT_RGB);
+  glutInitDisplayMode(GLUT_RGB|GLUT_DOUBLE);
   glutCreateWindow(argv[0]);
   glewInit ();
 
-  VertexArray* position_values = new VertexArray (4, 3, 2);
-  short vertices[] = {1,-1,0, 1,1,0, -1,-1,0, -1,1,0};
-  position_values->set (0, 4, vertices);
+  VertexArray* positions         = new VertexArray (4, 3, 2);
+  short        position_values[] = {1,-1,0, 1,1,0, -1,-1,0, -1,1,0};
+  positions->set (0, 4, position_values);
 
-  VertexArray* color_values = new VertexArray (4, 3, 1);
-  char colors[] = {255,0,0, 0,255,0, 0,0,255, 255,255,255};
-  color_values->set (0, 4, colors);
+  VertexArray*  colors           = new VertexArray (4, 3, 1);
+  unsigned char color_values[]   = {255,0,0, 0,255,0, 0,0,255, 255,255,255};
+  colors->set (0, 4, (char*)color_values);
 
   float scale   = 1;
   float bias[3] = {0,0,0};
-  VertexBuffer* vbuf = new VertexBuffer;
-  vbuf->setPositions (position_values, scale, bias);
-  vbuf->setColors    (color_values);
+  VertexBuffer* vertices = new VertexBuffer;
+  vertices->setPositions (positions, scale, bias);
+  vertices->setColors    (colors);
   
-  int strips[]  = {4};
   int indices[] = {0,1,2,3};
+  int strips[]  = {4};
   TriangleStripArray* tris = new TriangleStripArray (indices, 1, strips);
 
   Material* mat = new Material;
@@ -55,7 +78,7 @@ int main (int argc, char** argv)
   Appearance* app = new Appearance;
   app->setMaterial (mat);
 
-  Mesh* mesh = new Mesh (vbuf, tris, app);
+  Mesh* mesh  = new Mesh (vertices, tris, app);
 
   Camera* cam = new Camera;
   cam->translate (0,0,5);
@@ -67,6 +90,17 @@ int main (int argc, char** argv)
 
   cout << *wld << "\n";
 
+  objs.push_back (positions);
+  objs.push_back (colors);
+  objs.push_back (vertices);
+  objs.push_back (tris);
+  objs.push_back (mat);
+  objs.push_back (app);
+  objs.push_back (mesh);
+  objs.push_back (cam);
+  objs.push_back (wld);
+
+  glutKeyboardFunc(keyboard);
   glutDisplayFunc(display);
   glutReshapeFunc(resize);
   glutMainLoop ();

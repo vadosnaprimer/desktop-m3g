@@ -7,6 +7,7 @@
 using namespace std;
 using namespace m3g;
 
+std::vector<Object3D*> objs;
 World* wld = 0;
 
 void display(void)
@@ -25,20 +26,29 @@ void resize(int w, int h)
   glutPostRedisplay();
 }
 
-int animation_time = 0;
+void quit ()
+{
+  for (int i = 0; i < (int)objs.size(); i++) {
+    delete objs[i];
+  }
+  Graphics3D* g3d = Graphics3D::getInstance();
+  delete g3d;
+  exit (0);
+}
+
+
+int world_time = 0;
 
 static void keyboard(unsigned char key, int x, int y)
 {
   switch (key) {
   case 'q':
-  case 'Q':
-  case '\033':
-    /* ESC か q か Q をタイプしたら終了 */
-    exit (0);
+    quit ();
+    break;
   case ' ':
-    cout << "glut: Space, time = " << animation_time << "\n";
-    wld->animate (animation_time);
-    animation_time += 5;
+    cout << "main: time = " << world_time << "\n";
+    wld->animate (world_time);
+    world_time += 5;
   default:
     break;
   }
@@ -76,10 +86,10 @@ int main (int argc, char** argv)
   VertexArray* positions = new VertexArray (42, 3, 2);
   positions->set (0, 42, (short*)xyz);
 
-  float scale = 0.001;
+  float scale   = 0.001;
   float bias[3] = {0,0,0};
-  VertexBuffer* vbuf = new VertexBuffer;
-  vbuf->setPositions (positions, scale, bias);
+  VertexBuffer* vertices = new VertexBuffer;
+  vertices->setPositions (positions, scale, bias);
   
   int strips[1] = {42};
   TriangleStripArray* tris = new TriangleStripArray (0, 1, strips);
@@ -91,7 +101,7 @@ int main (int argc, char** argv)
   bone1->translate (0,10,0);
   bone0->addChild (bone1);
   
-  SkinnedMesh* mesh = new SkinnedMesh (vbuf, tris, app, bone0);
+  SkinnedMesh* mesh = new SkinnedMesh (vertices, tris, app, bone0);
   //mesh->addTransform (bone0, 1, 0, 21);
   //mesh->addTransform (bone1, 1, 21, 21);
   mesh->addTransform (bone0, 10, 0, 18);
@@ -117,7 +127,16 @@ int main (int argc, char** argv)
 
   cout << *wld << "\n";
 
-  mesh->animate (0);
+  objs.push_back (keyframe_sequence);
+  objs.push_back (animation_controller);
+  objs.push_back (animation_track);
+  objs.push_back (positions);
+  objs.push_back (tris);
+  objs.push_back (bone0);
+  objs.push_back (bone1);
+  objs.push_back (mesh);
+  objs.push_back (cam);
+  objs.push_back (wld);
 
   glutKeyboardFunc(keyboard);
   glutDisplayFunc(display);

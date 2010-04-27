@@ -4,12 +4,10 @@
 #include <cstring>
 #include <cstdlib>
 #include <cmath>
-#include "libpng.hpp"
-#include "data.hpp"
 using namespace std;
 using namespace m3g;
 
-
+std::vector<Object3D*> objs;
 World* wld = 0;
 
 void display(void)
@@ -27,17 +25,29 @@ void resize(int w, int h)
   cam->setPerspective (45, w/(float)h, 0.1, 100);
 }
 
-int animation_time = 0;
+void quit ()
+{
+  for (int i = 0; i < (int)objs.size(); i++) {
+    delete objs[i];
+  }
+  Graphics3D* g3d = Graphics3D::getInstance();
+  delete g3d;
 
-static void keyboard(unsigned char key, int x, int y)
+  exit (0);
+}
+
+int world_time = 0;
+
+void keyboard(unsigned char key, int x, int y)
 {
   switch (key) {
   case 'q':
-    exit(0);
+    quit ();
+    break;
   case ' ':
-    cout << "glut: Space, time = " << animation_time << "\n";
-    wld->animate (animation_time);
-    animation_time += 2;
+    cout << "main: time = " << world_time << "\n";
+    wld->animate (world_time);
+    world_time += 2;
   default:
     break;
   }
@@ -66,13 +76,14 @@ int main (int argc, char** argv)
   AnimationTrack* animation_fovy = new AnimationTrack (keyframe_fovy, AnimationTrack::FIELD_OF_VIEW);
   animation_fovy->setController (controller);
 
-  VertexArray* pos_array = new VertexArray (4, 3, 2);
-  pos_array->set (0, 4, vertices1);
+  short        position_values[] = {10,-10,0, 10,10,0, -10,-10,0, -10,10};
+  VertexArray* positions         = new VertexArray (4, 3, 2);
+  positions->set (0, 4, position_values);
 
   float scale = 1;
   float bias[3] = {0,0,0};
-  VertexBuffer* vbuf = new VertexBuffer;
-  vbuf->setPositions (pos_array, scale, bias);
+  VertexBuffer* vertices = new VertexBuffer;
+  vertices->setPositions (positions, scale, bias);
 
   //int strips[20] = {40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40};
   int strips[1] = {4};
@@ -84,7 +95,7 @@ int main (int argc, char** argv)
   Appearance* app = new Appearance;
   app->setMaterial (mat);
 
-  Mesh* mesh = new Mesh (vbuf, tris, app);
+  Mesh* mesh = new Mesh (vertices, tris, app);
   
   cout << "hello world\n";
 
@@ -103,6 +114,18 @@ int main (int argc, char** argv)
   //  wld->addChild (lig);
 
   cout << *wld << "\n";
+
+  objs.push_back (controller);
+  objs.push_back (keyframe_fovy);
+  objs.push_back (animation_fovy);
+  objs.push_back (positions);
+  objs.push_back (vertices);
+  objs.push_back (tris);
+  objs.push_back (mat);
+  objs.push_back (app);
+  objs.push_back (mesh);
+  objs.push_back (cam);
+  objs.push_back (wld);
 
   glutKeyboardFunc(keyboard);
   glutDisplayFunc(display);

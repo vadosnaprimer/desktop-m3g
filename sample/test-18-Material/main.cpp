@@ -4,12 +4,11 @@
 #include <cstring>
 #include <cmath>
 #include <cstdlib>
-#include "libpng.hpp"
 #include "data.hpp"
 using namespace std;
 using namespace m3g;
 
-
+std::vector<Object3D*> objs;
 World* wld = 0;
 Light* lig = 0;
 
@@ -18,7 +17,6 @@ void display(void)
   Graphics3D* g3d = Graphics3D::getInstance();
   g3d->render (wld);
   glutSwapBuffers();
-
 }
 
 void resize(int w, int h)
@@ -29,14 +27,25 @@ void resize(int w, int h)
   cam->setPerspective (45, w/(float)h, 0.1, 100);
 }
 
+void quit ()
+{
+  for (int i = 0; i < (int)objs.size(); i++) {
+    delete objs[i];
+  }
+  Graphics3D* g3d = Graphics3D::getInstance();
+  delete g3d;
+  exit (0);
+}
 
-int animation_time = 0;
+
+int world_time = 0;
 
 static void keyboard(unsigned char key, int x, int y)
 {
   switch (key) {
   case 'q':
-    exit(0);
+    quit ();
+    break;
   case 's': {
     lig->setMode (Light::SPOT);
     cout << "Swith to SPOT light.";
@@ -53,9 +62,9 @@ static void keyboard(unsigned char key, int x, int y)
     break;
   }
   case ' ':
-    cout << "glut: Space, time = " << animation_time << "\n";
-    wld->animate (animation_time);
-    animation_time += 2;
+    cout << "glut: Space, time = " << world_time << "\n";
+    wld->animate (world_time);
+    world_time += 2;
     break;
   default:
     break;
@@ -87,10 +96,11 @@ int main (int argc, char** argv)
 
   VertexArray* positions = new VertexArray (800, 3, 1);
   positions->set (0, 800, position_values);
+
   VertexArray* normals = new VertexArray (800, 3, 1);
   normals->set (0, 800, normal_values);
 
-  float scale = 1;
+  float scale   = 1;
   float bias[3] = {0,0,0};
   VertexBuffer* vertices = new VertexBuffer;
   vertices->setPositions (positions, scale, bias);
@@ -129,8 +139,21 @@ int main (int argc, char** argv)
   wld->addChild (lig);
   wld->addChild (mesh);
 
-
   cout << *wld << "\n";
+
+  objs.push_back (controller);
+  objs.push_back (keyframe_light_color);
+  objs.push_back (animation_light_color);
+  objs.push_back (positions);
+  objs.push_back (normals);
+  objs.push_back (vertices);
+  objs.push_back (tris);
+  objs.push_back (mat);
+  objs.push_back (app);
+  objs.push_back (mesh);
+  objs.push_back (cam);
+  objs.push_back (lig);
+  objs.push_back (wld);
 
   glutKeyboardFunc(keyboard);
   glutDisplayFunc(display);

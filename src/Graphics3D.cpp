@@ -9,6 +9,7 @@
 #include "Exception.hpp"
 #include "Property.hpp"
 #include "RenderState.hpp"
+#include "Loader.hpp"
 using namespace m3g;
 using namespace std;
 
@@ -42,6 +43,15 @@ Graphics3D:: Graphics3D () :
 
 Graphics3D:: ~Graphics3D ()
 {
+  for (int i = 0; i < (int)properties.size(); i++) {
+    delete properties[i];
+  }
+  if (Loader::file_info.authoring_field) {
+    delete [] Loader::file_info.authoring_field;
+  }
+  if (Loader::file_info.authoring_field) {
+    delete [] Loader::file_info.external_refference_uri;
+  }
 }  
 
 int Graphics3D:: addLight (Light* light, Transform& transform)

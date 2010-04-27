@@ -52,6 +52,7 @@ Mesh* Mesh:: duplicate () const
   Mesh* mesh = new Mesh (*this);
   Node* node = Node::duplicate();
   *(Node*)mesh = *node;
+  delete node;
   return mesh;
 }
 

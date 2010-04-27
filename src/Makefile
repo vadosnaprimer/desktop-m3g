@@ -64,7 +64,7 @@ Graphics3D.o: Graphics3D.hpp World.hpp Group.hpp Node.hpp Transformable.hpp
 Graphics3D.o: Object3D.hpp /usr/include/GL/glew.h /usr/include/GL/glu.h
 Graphics3D.o: /usr/include/GL/gl.h m3gdef.hpp m3ginternal.hpp Quaternion.hpp
 Graphics3D.o: Transform.hpp Matrix.hpp Camera.hpp Graphics.hpp Light.hpp
-Graphics3D.o: Exception.hpp Property.hpp RenderState.hpp
+Graphics3D.o: Exception.hpp Property.hpp RenderState.hpp Loader.hpp
 Group.o: Group.hpp Node.hpp Transformable.hpp Object3D.hpp
 Group.o: /usr/include/GL/glew.h /usr/include/GL/glu.h /usr/include/GL/gl.h
 Group.o: m3gdef.hpp m3ginternal.hpp Quaternion.hpp Transform.hpp Matrix.hpp

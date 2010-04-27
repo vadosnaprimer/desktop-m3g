@@ -7,7 +7,7 @@
 using namespace std;
 using namespace m3g;
 
-
+std::vector<Object3D*> objs;
 World* wld = 0;
 
 void display(void)
@@ -25,7 +25,17 @@ void resize(int w, int h)
   cam->setPerspective (45, w/(float)h, 0.1, 100);
 }
 
-int animation_time = 0;
+void quit ()
+{
+  for (int i = 0; i < (int)objs.size(); i++) {
+    delete objs[i];
+  }
+  Graphics3D* g3d = Graphics3D::getInstance();
+  delete g3d;
+  exit (0);
+}
+
+int world_time = 0;
 
 static void keyboard(unsigned char key, int x, int y)
 {
@@ -33,12 +43,12 @@ static void keyboard(unsigned char key, int x, int y)
   case 'q':
   case 'Q':
   case '\033':
-    /* ESC か q か Q をタイプしたら終了 */
-    exit(0);
+    quit ();
+    break;
   case ' ':
-    cout << "glut: Space, time = " << animation_time << "\n";
-    wld->animate (animation_time);
-    animation_time += 2;
+    cout << "glut: Space, time = " << world_time << "\n";
+    wld->animate (world_time);
+    world_time += 2;
   default:
     break;
   }
@@ -84,8 +94,8 @@ int main (int argc, char** argv)
   keyframe_mesh_orientation->setValidRange (0, 2);
   keyframe_mesh_orientation->setDuration (200);
 
-  AnimationTrack* animation_mesh_translate = new AnimationTrack (keyframe_mesh_translate, AnimationTrack::TRANSLATION);
-  animation_mesh_translate->setController (controller_translation);
+  AnimationTrack* animation_mesh_translation = new AnimationTrack (keyframe_mesh_translate, AnimationTrack::TRANSLATION);
+  animation_mesh_translation->setController (controller_translation);
   AnimationTrack* animation_mesh_orientation = new AnimationTrack (keyframe_mesh_orientation, AnimationTrack::ORIENTATION);
   animation_mesh_orientation->setController (controller_orientation);
 
@@ -97,16 +107,16 @@ int main (int argc, char** argv)
                0,0,0,
                0,1,0);
 
-  short pos[] = {1,-1,0, 1,1,0, -1,-1,0, -1,1,0};
-  VertexArray* positions = new VertexArray (4, 3, sizeof(short));
-  positions->set (0, 4, pos);
+  VertexArray* positions         = new VertexArray (4, 3, 2);
+  short        position_values[] = {1,-1,0, 1,1,0, -1,-1,0, -1,1,0};
+  positions->set (0, 4, position_values);
 
-  VertexBuffer* vertices = new VertexBuffer;
   float scale = 1;
   float bias[3] = {0,0,0};
+  VertexBuffer* vertices = new VertexBuffer;
   vertices->setPositions (positions, scale, bias);
 
-  int strips[1] = {4};
+  int strips[1]  = {4};
   int indices[4] = {0,1,2,3};
   TriangleStripArray* tris = new TriangleStripArray (indices, 1, strips);
 
@@ -121,7 +131,7 @@ int main (int argc, char** argv)
   app->setPolygonMode (pmode);
 
   Mesh* mesh = new Mesh (vertices, tris, app);
-  mesh->addAnimationTrack (animation_mesh_translate);
+  mesh->addAnimationTrack (animation_mesh_translation);
   mesh->addAnimationTrack (animation_mesh_orientation);
 
   wld = new World;
@@ -131,6 +141,23 @@ int main (int argc, char** argv)
   wld->addChild (mesh);
 
   cout << *wld << "\n";
+
+  objs.push_back (controller_translation);
+  objs.push_back (controller_orientation);
+  objs.push_back (keyframe_mesh_translate);
+  objs.push_back (keyframe_mesh_orientation);
+  objs.push_back (animation_mesh_translation);
+  objs.push_back (animation_mesh_orientation);
+  objs.push_back (bg);
+  objs.push_back (cam);
+  objs.push_back (positions);
+  objs.push_back (vertices);
+  objs.push_back (tris);
+  objs.push_back (mat);
+  objs.push_back (pmode);
+  objs.push_back (app);
+  objs.push_back (mesh);
+  objs.push_back (wld);
 
   glutKeyboardFunc(keyboard);
   glutDisplayFunc(display);

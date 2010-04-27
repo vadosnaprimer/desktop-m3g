@@ -37,7 +37,7 @@ MorphingMesh:: MorphingMesh (VertexBuffer* base, int num_target, VertexBuffer** 
    // 注意：モーフィング変形後のpositions,normals,colorsを保存するために新しくnewし直す。
    // VertexBufferをduplicate()しただけでは同じインスタンスを指している。
 
-   float scale_bias[4];
+   float        scale_bias[4];
    VertexArray* base_positions = base->getPositions (scale_bias);
    if (base_positions) {
      VertexArray* morphed_positions = base_positions->duplicate();
@@ -209,7 +209,8 @@ void MorphingMesh:: updateMorphedVertices ()
   }
 
   // 法線
-  if (base_normals) {
+  base_normals->print_raw_data(cout) << "\n";
+  if (0 && base_normals) {
     int   component_type = base_normals->getComponentType ();
     float scale_bias[4];
     scale_bias[0] = (component_type == 1) ? 2/255.f : (component_type == 2) ? 2/65535.f : 1;
