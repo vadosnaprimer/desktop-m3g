@@ -12,7 +12,7 @@ using namespace m3g;
 
 VertexBuffer:: VertexBuffer () :
   positions(0), normals(0), colors(0), positions_scale(1),
-  default_color(0xffffffff), vbo_positions(0), vbo_colors(0), vbo_normals(0)
+  default_color(0xffffffff), vbo_positions(0), vbo_normals(0), vbo_colors(0)
 {
   setObjectType (OBJTYPE_VERTEX_BUFFER);
 
@@ -27,6 +27,11 @@ VertexBuffer:: VertexBuffer () :
     }
     vbo_texcoords[i] = 0;
   }
+
+  glGenBuffers (1, &vbo_positions);
+  glGenBuffers (1, &vbo_normals);
+  glGenBuffers (1, &vbo_colors);
+  glGenBuffers (MAX_TEXTURE_UNITS, vbo_texcoords);
 }
 
 VertexBuffer:: ~VertexBuffer ()
@@ -35,17 +40,16 @@ VertexBuffer:: ~VertexBuffer ()
 
 VertexBuffer* VertexBuffer:: duplicate () const
 {
-  VertexBuffer* vbo_positions = new VertexBuffer (*this);
+  VertexBuffer* vbuf = new VertexBuffer (*this);
   Object3D* obj      = Object3D:: duplicate();
-  *(Object3D*)vbo_positions   = *obj;
-  // 現状ではOpenGLのバッファーオブジェクトを共通で使用するのでコメントアウト
-  // vbo_positions->setPositons (vertex_position_array, positions_scale, positions_bias);
-  // vbo_positions->setNormals (normals);
-  // vbo_positions->setColors (colors);
-  // for (int i = 0; i < MAX_TEXTURE_UNITS; i++) {
-  //  vbo_positions->setTexCoords (i, tex_coord_scale[i], tex_coords_bias[i]);
-  // }
-  return vbo_positions;
+  *(Object3D*)vbuf   = *obj;
+  delete obj;
+
+  glGenBuffers (1, &vbuf->vbo_positions);
+  glGenBuffers (1, &vbuf->vbo_normals);
+  glGenBuffers (1, &vbuf->vbo_colors);
+  glGenBuffers (MAX_TEXTURE_UNITS, vbuf->vbo_texcoords);
+  return vbuf;
 }
 
 
@@ -195,7 +199,6 @@ void VertexBuffer:: setColors (VertexArray* colors_)
   unsigned char* values = new unsigned char[num];
   colors->get (0, colors->getVertexCount(), (char*)values);
 
-  glGenBuffers (1, &vbo_colors);
   glBindBuffer (GL_ARRAY_BUFFER, vbo_colors);
   glBufferData (GL_ARRAY_BUFFER, size, values, GL_STATIC_DRAW);
 
@@ -248,7 +251,6 @@ void VertexBuffer:: setNormals (VertexArray* normals_)
   default: throw IllegalStateException (__FILE__, __func__, "Invalid componentype, type=%d.", component_type);
   }
  
-  glGenBuffers (1, &vbo_normals);
   glBindBuffer (GL_ARRAY_BUFFER, vbo_normals);
   glBufferData (GL_ARRAY_BUFFER, size, values, GL_STATIC_DRAW);
 
@@ -295,7 +297,6 @@ void VertexBuffer:: setPositions (VertexArray* positions_, float scale, float* b
   float* values = new float [num];
   positions->get (0, vertex_count, scale, bias, values);
 
-  glGenBuffers (1, &vbo_positions);
   glBindBuffer (GL_ARRAY_BUFFER, vbo_positions);
   glBufferData (GL_ARRAY_BUFFER, num*sizeof(float), values, GL_STATIC_DRAW);
 
@@ -336,7 +337,6 @@ void VertexBuffer:: setTexCoords (int index, VertexArray* tex_coords_, float sca
   float* values = new float [num];
   tex_coords[index]->get (0, vertex_count, scale, bias, values);
 
-  glGenBuffers (1, &vbo_texcoords[index]);
   glBindBuffer (GL_ARRAY_BUFFER, vbo_texcoords[index]);
   glBufferData (GL_ARRAY_BUFFER, num*sizeof(float), values, GL_STATIC_DRAW);
 
