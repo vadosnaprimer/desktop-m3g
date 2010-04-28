@@ -132,12 +132,6 @@ namespace m3g {
 
     int          default_color;
 
-  private:
-    GLuint       vbo_positions;
-    GLuint       vbo_normals;
-    GLuint       vbo_colors;
-    GLuint       vbo_texcoords[MAX_TEXTURE_UNITS];
-
   };
 
 

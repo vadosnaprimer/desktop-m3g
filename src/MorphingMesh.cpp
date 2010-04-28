@@ -209,8 +209,7 @@ void MorphingMesh:: updateMorphedVertices ()
   }
 
   // 法線
-  base_normals->print_raw_data(cout) << "\n";
-  if (0 && base_normals) {
+  if (base_normals) {
     int   component_type = base_normals->getComponentType ();
     float scale_bias[4];
     scale_bias[0] = (component_type == 1) ? 2/255.f : (component_type == 2) ? 2/65535.f : 1;

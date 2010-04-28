@@ -12,7 +12,7 @@ using namespace m3g;
 
 VertexBuffer:: VertexBuffer () :
   positions(0), normals(0), colors(0), positions_scale(1),
-  default_color(0xffffffff), vbo_positions(0), vbo_normals(0), vbo_colors(0)
+  default_color(0xffffffff)
 {
   setObjectType (OBJTYPE_VERTEX_BUFFER);
 
@@ -25,13 +25,7 @@ VertexBuffer:: VertexBuffer () :
     for (int j = 0; j < 3; j++) {
       tex_coords_bias[i][j] = 0;
     }
-    vbo_texcoords[i] = 0;
   }
-
-  glGenBuffers (1, &vbo_positions);
-  glGenBuffers (1, &vbo_normals);
-  glGenBuffers (1, &vbo_colors);
-  glGenBuffers (MAX_TEXTURE_UNITS, vbo_texcoords);
 }
 
 VertexBuffer:: ~VertexBuffer ()
@@ -44,11 +38,6 @@ VertexBuffer* VertexBuffer:: duplicate () const
   Object3D* obj      = Object3D:: duplicate();
   *(Object3D*)vbuf   = *obj;
   delete obj;
-
-  glGenBuffers (1, &vbuf->vbo_positions);
-  glGenBuffers (1, &vbuf->vbo_normals);
-  glGenBuffers (1, &vbuf->vbo_colors);
-  glGenBuffers (MAX_TEXTURE_UNITS, vbuf->vbo_texcoords);
   return vbuf;
 }
 
@@ -199,7 +188,8 @@ void VertexBuffer:: setColors (VertexArray* colors_)
   unsigned char* values = new unsigned char[num];
   colors->get (0, colors->getVertexCount(), (char*)values);
 
-  glBindBuffer (GL_ARRAY_BUFFER, vbo_colors);
+  unsigned int vbo = colors->getOpenGLVBO();
+  glBindBuffer (GL_ARRAY_BUFFER, vbo);
   glBufferData (GL_ARRAY_BUFFER, size, values, GL_STATIC_DRAW);
 
   delete [] values;
@@ -251,7 +241,8 @@ void VertexBuffer:: setNormals (VertexArray* normals_)
   default: throw IllegalStateException (__FILE__, __func__, "Invalid componentype, type=%d.", component_type);
   }
  
-  glBindBuffer (GL_ARRAY_BUFFER, vbo_normals);
+  unsigned int vbo = normals->getOpenGLVBO();
+  glBindBuffer (GL_ARRAY_BUFFER, vbo);
   glBufferData (GL_ARRAY_BUFFER, size, values, GL_STATIC_DRAW);
 
   switch (component_type) {
@@ -297,7 +288,8 @@ void VertexBuffer:: setPositions (VertexArray* positions_, float scale, float* b
   float* values = new float [num];
   positions->get (0, vertex_count, scale, bias, values);
 
-  glBindBuffer (GL_ARRAY_BUFFER, vbo_positions);
+  unsigned int vbo = positions->getOpenGLVBO();
+  glBindBuffer (GL_ARRAY_BUFFER, vbo);
   glBufferData (GL_ARRAY_BUFFER, num*sizeof(float), values, GL_STATIC_DRAW);
 
   delete [] values;
@@ -337,7 +329,8 @@ void VertexBuffer:: setTexCoords (int index, VertexArray* tex_coords_, float sca
   float* values = new float [num];
   tex_coords[index]->get (0, vertex_count, scale, bias, values);
 
-  glBindBuffer (GL_ARRAY_BUFFER, vbo_texcoords[index]);
+  unsigned int vbo = tex_coords[index]->getOpenGLVBO();
+  glBindBuffer (GL_ARRAY_BUFFER, vbo);
   glBufferData (GL_ARRAY_BUFFER, num*sizeof(float), values, GL_STATIC_DRAW);
 
   delete [] values;
@@ -353,12 +346,11 @@ void VertexBuffer:: render (RenderState& state) const
     return;
   }
 
-  //cout << "VertexBuffer: vbo_positions = " << vbo_positions << "\n";
-
   if (positions) {
     //cout << "render vertex array\n";
     int cc = positions->getComponentCount();
-    glBindBuffer        (GL_ARRAY_BUFFER, vbo_positions);
+    unsigned int vbo = positions->getOpenGLVBO();
+    glBindBuffer        (GL_ARRAY_BUFFER, vbo);
     glEnableClientState (GL_VERTEX_ARRAY);
     glVertexPointer     (cc, GL_FLOAT, 0, 0);
   } else {
@@ -367,7 +359,8 @@ void VertexBuffer:: render (RenderState& state) const
 
   if (normals) {
     //cout << "render normal array\n";
-    glBindBuffer        (GL_ARRAY_BUFFER, vbo_normals);
+    unsigned int vbo = normals->getOpenGLVBO();
+    glBindBuffer        (GL_ARRAY_BUFFER, vbo);
     glEnableClientState (GL_NORMAL_ARRAY);
     int component_type = normals->getComponentType();
     switch (component_type) {
@@ -383,9 +376,10 @@ void VertexBuffer:: render (RenderState& state) const
   if (colors) {
       //cout << "VertexBuffer: send vertex color array\n";
     // 注意：頂点カラーを使うかどうかはMaterial::render()で決定される。
-    // ここではデータを送るだけでdisableにしておく。
+    // ここではデータをGPUに送るだけでdisableにしておく。
       int component_count = colors->getComponentCount();
-      glBindBuffer         (GL_ARRAY_BUFFER, vbo_colors);
+      unsigned int vbo = colors->getOpenGLVBO();
+      glBindBuffer         (GL_ARRAY_BUFFER, vbo);
       glEnableClientState  (GL_COLOR_ARRAY);
       glColorPointer       (component_count, GL_UNSIGNED_BYTE, 0, 0);
       glDisableClientState (GL_COLOR_ARRAY);
@@ -402,7 +396,8 @@ void VertexBuffer:: render (RenderState& state) const
     if (tex_coords[i]) {
       //cout << "VertexBuffer: render " << i << "th texture coordinate array\n";
       int cc = tex_coords[i]->getComponentCount();
-      glBindBuffer          (GL_ARRAY_BUFFER, vbo_texcoords[i]);  // VBOの選択
+    unsigned int vbo = tex_coords[i]->getOpenGLVBO();
+    glBindBuffer          (GL_ARRAY_BUFFER, vbo);  // VBOの選択
       glClientActiveTexture (GL_TEXTURE0+i);              // (クライアントを含む）テクスチャーユニットの選択
       glEnableClientState   (GL_TEXTURE_COORD_ARRAY);     // 頂点配列の有効化
       glTexCoordPointer     (cc, GL_FLOAT, 0, 0);         // テクスチャー座標の指定

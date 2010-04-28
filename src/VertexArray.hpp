@@ -118,6 +118,8 @@ namespace m3g {
     void set (int first_vertex, int num_vertices, float scale, const float* bias, const float* values);
 
 
+    unsigned int getOpenGLVBO () const;
+
   private:
     int   component_count;
     int   component_size;
@@ -127,7 +129,7 @@ namespace m3g {
       short* short_values;
       float* float_values;
     };
-
+    GLuint vbo;
   };
 
 } // namespace m3g {

@@ -11,7 +11,7 @@ VertexArray:: VertexArray (int num_vertices, int num_components, int component_s
   component_count(num_components),
   component_size(component_size_),
   vertex_count(num_vertices),
-  char_values(0)
+  char_values(0), vbo(0)
 {
   setObjectType (OBJTYPE_VERTEX_ARRAY);
 
@@ -28,11 +28,16 @@ VertexArray:: VertexArray (int num_vertices, int num_components, int component_s
   int size = vertex_count * component_count * component_size;
   char_values = new char[size];
   memset (char_values, 0, size);
+
+  glGenBuffers (1, &vbo);
 }
 
 VertexArray:: ~VertexArray ()
 {
   delete [] char_values;
+  if (glIsBuffer(vbo)) {
+    glDeleteBuffers (1, &vbo);
+  }
 }
 
 VertexArray* VertexArray:: duplicate () const
@@ -44,6 +49,8 @@ VertexArray* VertexArray:: duplicate () const
   int size           = vertex_count * component_count * component_size;
   varry->char_values = new char[size];
   memcpy (varry->char_values, this->char_values, size);
+
+  glGenBuffers (1, &varry->vbo);
   return varry;
 }
 
@@ -228,13 +235,18 @@ void VertexArray:: get (int first_vertex, int num_vertices, float scale, const f
   }
 }
 
-//  glBufferData (GL_ARRAY_BUFFER, size, p, GL_STATIC_DRAW);
+unsigned int VertexArray:: getOpenGLVBO () const
+{
+  return vbo;
+}
+
 
 std::ostream& VertexArray:: print (std::ostream& out) const
 {
   out << "VertexArray: ";
   out << vertex_count << " vertices (";
-  out << component_size << "byte x " << component_count << "comps / vertex),  \n";
+  out << component_size << "byte x " << component_count << "comps / vertex)";
+  out << ", vbo=" << vbo;
   return out;
 }
 
