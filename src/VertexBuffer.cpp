@@ -233,9 +233,6 @@ void VertexBuffer:: setPositions (VertexArray* positions_, float scale, float* b
   if (component_count != 3) {
     throw IllegalArgumentException (__FILE__, __func__, "Component count must be 3, count=%d.", component_count);
   }
-  if (component_type != 2 && component_type != 4) {
-    throw IllegalArgumentException (__FILE__, __func__, "Component type must be 2 or 4, type=%d.", component_type);
-  }
   if (normals && normals->getVertexCount() != vertex_count) {
     throw IllegalArgumentException (__FILE__, __func__, "Vertex count is invalid, %d <--> %d.", normals->getVertexCount(), vertex_count);
   }
@@ -253,6 +250,12 @@ void VertexBuffer:: setPositions (VertexArray* positions_, float scale, float* b
   positions_bias[0] = bias[0];
   positions_bias[1] = bias[1];
   positions_bias[2] = bias[2];
+
+  if (component_type == 1) {
+    cout << "VertexBuffer:setPositions() converted postions from char to short.\n";
+    positions->convert (2);
+  }
+
 }
 
 void VertexBuffer:: setTexCoords (int index, VertexArray* tex_coords_, float scale, float* bias)
@@ -274,9 +277,6 @@ void VertexBuffer:: setTexCoords (int index, VertexArray* tex_coords_, float sca
   if (component_count != 2 && component_count != 3) {
     throw IllegalArgumentException (__FILE__, __func__, "Component count must be 2 or 3, count=%d.", component_count);
   }
-  if (component_type != 2 && component_type != 4) {
-    throw IllegalArgumentException (__FILE__, __func__, "Component type must be 2 or 4, type=%d.", component_type);
-  }
   if (positions && positions->getVertexCount() != vertex_count) {
     throw IllegalArgumentException (__FILE__, __func__, "Vertex count is invalid. %d <--> %d.", positions->getVertexCount(), vertex_count);
   }
@@ -292,6 +292,10 @@ void VertexBuffer:: setTexCoords (int index, VertexArray* tex_coords_, float sca
   tex_coords_bias[index][0] = bias[0];
   tex_coords_bias[index][1] = bias[1];
   tex_coords_bias[index][2] = bias[2];
+
+  if (component_type == 1) {
+    tex_coords[index]->convert (2);
+  }
 }
 
 /**
@@ -309,7 +313,7 @@ void VertexBuffer:: render (RenderState& state) const
     //cout << "component_type = " << component_type << "\n";
     //cout << "scale = " << positions_scale << "\n";
     //cout << "translate = " << positions_bias[0] << ", "<< positions_bias[1] << ", " << positions_bias[2] << "\n";
-    //positions->print_raw_data (cout) << "\n";
+    positions->print_raw_data (cout) << "\n";
 
     int component_count = positions->getComponentCount ();
     unsigned int format = positions->getOpenGLFormat ();

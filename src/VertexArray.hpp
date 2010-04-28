@@ -96,6 +96,9 @@ namespace m3g {
                    const std::vector<const VertexArray*>& morph_target_positions,
                    const std::vector<float>& morph_wegiths);
 
+
+    void convert (int component_size);
+
     /**
      * @~English  Retrieve OpenGL' vbo name.
      * @~Japanese OpenGLのvbo名を取得する.

@@ -273,6 +273,67 @@ void VertexArray:: setMorphing (const VertexArray* base,
                    char_values);
 }
 
+void VertexArray:: convert (int to)
+{
+  int from = component_size;
+  int num  = vertex_count * component_count;
+  union {
+    char*  target_char_values;
+    short* target_short_values;
+    float* target_float_values;
+  };
+
+  switch (to) {
+  case 1: target_char_values  = new char[num]; break;
+  case 2: target_short_values = new short[num]; break;
+  case 4: target_float_values = new float[num]; break;
+  default: throw IllegalStateException (__FILE__, __func__, "Target component type is invalid, type=%d.", to);
+  }
+
+  switch (from) {
+  case 1: {
+    switch (to) {
+    case 1: for (int i = 0; i < num; i++) target_char_values[i]  = char_values[i]; break;
+    case 2: for (int i = 0; i < num; i++) target_short_values[i] = char_values[i]; break;
+    case 4: for (int i = 0; i < num; i++) target_float_values[i] = char_values[i]; break;
+    }
+    break;
+  }
+  case 2: {
+    switch (to) {
+    case 1: for (int i = 0; i < num; i++) target_char_values[i]  = short_values[i]; break;
+    case 2: for (int i = 0; i < num; i++) target_short_values[i] = short_values[i]; break;
+    case 4: for (int i = 0; i < num; i++) target_float_values[i] = short_values[i]; break;
+    }
+    break;
+  }
+  case 4: {
+    switch (to) {
+    case 1: for (int i = 0; i < num; i++) target_char_values[i]  = float_values[i]; break;
+    case 2: for (int i = 0; i < num; i++) target_short_values[i] = float_values[i]; break;
+    case 4: for (int i = 0; i < num; i++) target_float_values[i] = float_values[i]; break;
+    }
+    break;
+  }
+  default: {
+    throw IllegalStateException (__FILE__, __func__, "Source component type is invalid, type=%d.", from);
+  }
+  }
+
+  component_size = to;
+  delete [] char_values;
+  char_values = target_char_values;
+
+  if (glIsBuffer (vbo)) {
+    glDeleteBuffers (1, &vbo);
+  }
+  int size = vertex_count * component_count * component_size;
+
+  glGenBuffers (1, &vbo);
+  glBindBuffer (GL_ARRAY_BUFFER, vbo);
+  glBufferData (GL_ARRAY_BUFFER, size, char_values, GL_STATIC_DRAW);
+}
+
 
 unsigned int VertexArray:: getOpenGLVBO () const
 {
