@@ -305,43 +305,36 @@ void VertexBuffer:: render (RenderState& state) const
   }
 
   if (positions) {
-    int component_type = positions->getComponentType();
     //cout << "render vertex array\n";
     //cout << "component_type = " << component_type << "\n";
     //cout << "scale = " << positions_scale << "\n";
     //cout << "translate = " << positions_bias[0] << ", "<< positions_bias[1] << ", " << positions_bias[2] << "\n";
     //positions->print_raw_data (cout) << "\n";
 
-    glScalef (positions_scale, positions_scale, positions_scale);
+    int component_count = positions->getComponentCount ();
+    unsigned int format = positions->getOpenGLFormat ();
+    unsigned int vbo    = positions->getOpenGLVBO();
+
+    glScalef     (positions_scale, positions_scale, positions_scale);
     glTranslatef (positions_bias[0], positions_bias[1], positions_bias[2]);
 
-    int cc = positions->getComponentCount();
-    unsigned int vbo = positions->getOpenGLVBO();
     glBindBuffer        (GL_ARRAY_BUFFER, vbo);
     glEnableClientState (GL_VERTEX_ARRAY);
-    switch (component_type) {
-    case 1: glVertexPointer (cc, GL_BYTE, 0, 0); break;
-    case 2: glVertexPointer (cc, GL_SHORT, 0, 0); break;
-    case 4: glVertexPointer (cc, GL_FLOAT, 0, 0); break;
-    default: IllegalStateException (__FILE__, __func__, "Component type is invalid, type=%d.", component_type);
-    }
-
+    glVertexPointer     (component_count, format, 0, 0);
+ 
   } else {
     glDisableClientState (GL_VERTEX_ARRAY);
   }
 
   if (normals) {
     //cout << "render normal array\n";
-    unsigned int vbo = normals->getOpenGLVBO();
+    unsigned int format = normals->getOpenGLFormat ();
+    unsigned int vbo    = normals->getOpenGLVBO ();
+
     glBindBuffer        (GL_ARRAY_BUFFER, vbo);
     glEnableClientState (GL_NORMAL_ARRAY);
-    int component_type = normals->getComponentType();
-    switch (component_type) {
-    case 1: glNormalPointer (GL_BYTE, 0, 0); break;
-    case 2: glNormalPointer (GL_SHORT, 0, 0); break;
-    case 4: glNormalPointer (GL_FLOAT, 0, 0); break;
-    default: IllegalStateException (__FILE__, __func__, "Component type is invalid, type=%d.", component_type);
-    }
+    glNormalPointer     (format, 0, 0);
+
   } else {
     glDisableClientState (GL_NORMAL_ARRAY);
   }
@@ -351,7 +344,7 @@ void VertexBuffer:: render (RenderState& state) const
     // 注意：頂点カラーを使うかどうかはMaterial::render()で決定される。
     // ここではデータをGPUに送るだけでdisableにしておく。
       int component_count = colors->getComponentCount();
-      unsigned int vbo = colors->getOpenGLVBO();
+      unsigned int vbo    = colors->getOpenGLVBO();
       glBindBuffer         (GL_ARRAY_BUFFER, vbo);
       glEnableClientState  (GL_COLOR_ARRAY);
       glColorPointer       (component_count, GL_UNSIGNED_BYTE, 0, 0);
@@ -368,34 +361,31 @@ void VertexBuffer:: render (RenderState& state) const
   for (int i = 0; i < MAX_TEXTURE_UNITS; i++) {
     if (tex_coords[i]) {
 
+      // 注意：テクスチャーマトリックスはコメントアウト！
+
       //cout << "VertexBuffer: render " << i << "th texture coordinate array\n";
       //cout << " scale = " << tex_coords_scale[i] << "\n";
       //cout << " bias = " << tex_coords_bias[i][0] << ", " << tex_coords_bias[i][1] << ", " << tex_coords_bias[i][2] << "\n";
-      glMatrixMode(GL_TEXTURE);
-      glLoadIdentity();
+      //glMatrixMode(GL_TEXTURE);
+      //glLoadIdentity();
 
-      glScalef (tex_coords_scale[i], tex_coords_scale[i], tex_coords_scale[i]);
-      glTranslatef (tex_coords_bias[i][0], tex_coords_bias[i][1], tex_coords_bias[i][2]);
+      //glScalef (tex_coords_scale[i], tex_coords_scale[i], tex_coords_scale[i]);
+      //glTranslatef (tex_coords_bias[i][0], tex_coords_bias[i][1], tex_coords_bias[i][2]);
 
-      int cc = tex_coords[i]->getComponentCount();
-      unsigned int vbo = tex_coords[i]->getOpenGLVBO();
+      int component_count = tex_coords[i]->getComponentCount();
+      unsigned int format = tex_coords[i]->getOpenGLFormat ();
+      unsigned int vbo    = tex_coords[i]->getOpenGLVBO ();
 
-      glBindBuffer          (GL_ARRAY_BUFFER, vbo);  // VBOの選択
-      glClientActiveTexture (GL_TEXTURE0+i);              // (クライアントを含む）テクスチャーユニットの選択
-      glEnableClientState   (GL_TEXTURE_COORD_ARRAY);     // 頂点配列の有効化
+      glBindBuffer          (GL_ARRAY_BUFFER, vbo);    // VBOの選択
+      glClientActiveTexture (GL_TEXTURE0+i);           // (クライアントを含む）テクスチャーユニットの選択
+      glEnableClientState   (GL_TEXTURE_COORD_ARRAY);  // 頂点配列の有効化
+      glTexCoordPointer (component_count, format, 0, 0);
 
-      int component_type = tex_coords[i]->getComponentType();
-      switch (component_type) {
-      case 1: glTexCoordPointer (cc, GL_BYTE, 0, 0); break;
-      case 2: glTexCoordPointer (cc, GL_SHORT, 0, 0); break;
-      case 4: glTexCoordPointer (cc, GL_FLOAT, 0, 0); break;
-      default: IllegalStateException (__FILE__, __func__, "Component type is invalid, type=%d.", component_type);
-      }
-      glMatrixMode(GL_MODELVIEW);
+      //glMatrixMode(GL_MODELVIEW);
 
     } else {
-      glClientActiveTexture (GL_TEXTURE0+i);            // クライアント部分のテクスチャーユニット選択
-      glDisableClientState  (GL_TEXTURE_COORD_ARRAY);   // テクスチャー座標配列の無効化
+      glClientActiveTexture (GL_TEXTURE0+i);          // クライアント部分のテクスチャーユニット選択
+      glDisableClientState  (GL_TEXTURE_COORD_ARRAY); // テクスチャー座標配列の無効化
     }
   }
   

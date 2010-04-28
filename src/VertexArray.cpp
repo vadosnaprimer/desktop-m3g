@@ -230,17 +230,10 @@ void VertexArray:: set (int first_vertex, int num_vertices, const float* values)
 }
 
 
-unsigned int VertexArray:: getOpenGLVBO () const
-{
-  return vbo;
-}
-
 void VertexArray:: setMorphing (const VertexArray* base,
                    const std::vector<const VertexArray*>& targets,
                    const std::vector<float>& weights)
 {
-
-
   int size = vertex_count * component_count * component_size;
   memcpy (char_values, base->char_values, size);
 
@@ -281,11 +274,22 @@ void VertexArray:: setMorphing (const VertexArray* base,
 }
 
 
-void VertexArray:: render (RenderState& state) const
+unsigned int VertexArray:: getOpenGLVBO () const
 {
-
-
+  return vbo;
 }
+
+unsigned int VertexArray:: getOpenGLFormat () const
+{
+   switch (component_size) {
+   case 1: return GL_BYTE;
+   case 2: return GL_SHORT;
+   case 4: return GL_FLOAT;
+   default: IllegalStateException (__FILE__, __func__, "Component type is invalid, type=%d.", component_size);
+   }
+   return 0;
+}
+
 
 std::ostream& VertexArray:: print (std::ostream& out) const
 {

@@ -198,15 +198,11 @@ void MorphingMesh:: updateMorphedVertices ()
 
   // 法線
   if (base_normals) {
-    // 注意：これ正規化しないとまずいような？
-    // 今は何もしていない。
     morphed_normals->setMorphing (base_normals, morph_target_normals, morph_weights);
   }
 
   // 頂点カラー
   if (base_colors) {
-   // 注意：これクランプしないとまずいような？
-    // 今は何もしていない。
     morphed_colors->setMorphing (base_colors, morph_target_colors, morph_weights);
   }
 
