@@ -313,7 +313,7 @@ void VertexBuffer:: render (RenderState& state) const
     //cout << "component_type = " << component_type << "\n";
     //cout << "scale = " << positions_scale << "\n";
     //cout << "translate = " << positions_bias[0] << ", "<< positions_bias[1] << ", " << positions_bias[2] << "\n";
-    positions->print_raw_data (cout) << "\n";
+    //positions->print_raw_data (cout) << "\n";
 
     int component_count = positions->getComponentCount ();
     unsigned int format = positions->getOpenGLFormat ();
@@ -362,37 +362,44 @@ void VertexBuffer:: render (RenderState& state) const
       state.default_vertex_color      = default_color;
     }
 
+  glMatrixMode (GL_TEXTURE);
+
   for (int i = 0; i < MAX_TEXTURE_UNITS; i++) {
     if (tex_coords[i]) {
 
-      // 注意：テクスチャーマトリックスはコメントアウト！
+      // テクスチャーユニットの選択
+      glActiveTexture (GL_TEXTURE0+i);
+      glEnable        (GL_TEXTURE_2D);
+
+      // テクスチャーマトリックスの設定
+      glLoadIdentity ();
+      glScalef (tex_coords_scale[i], tex_coords_scale[i], tex_coords_scale[i]);
+      glTranslatef (tex_coords_bias[i][0], tex_coords_bias[i][1], tex_coords_bias[i][2]);
 
       //cout << "VertexBuffer: render " << i << "th texture coordinate array\n";
       //cout << " scale = " << tex_coords_scale[i] << "\n";
       //cout << " bias = " << tex_coords_bias[i][0] << ", " << tex_coords_bias[i][1] << ", " << tex_coords_bias[i][2] << "\n";
-      //glMatrixMode(GL_TEXTURE);
-      //glLoadIdentity();
-
-      //glScalef (tex_coords_scale[i], tex_coords_scale[i], tex_coords_scale[i]);
-      //glTranslatef (tex_coords_bias[i][0], tex_coords_bias[i][1], tex_coords_bias[i][2]);
 
       int component_count = tex_coords[i]->getComponentCount();
       unsigned int format = tex_coords[i]->getOpenGLFormat ();
       unsigned int vbo    = tex_coords[i]->getOpenGLVBO ();
 
+      // テクスチャー座標の頂点配列を使った設定
       glBindBuffer          (GL_ARRAY_BUFFER, vbo);    // VBOの選択
       glClientActiveTexture (GL_TEXTURE0+i);           // (クライアントを含む）テクスチャーユニットの選択
       glEnableClientState   (GL_TEXTURE_COORD_ARRAY);  // 頂点配列の有効化
       glTexCoordPointer (component_count, format, 0, 0);
 
-      //glMatrixMode(GL_MODELVIEW);
 
     } else {
+      // これ発行しなくても同じでは？
       glClientActiveTexture (GL_TEXTURE0+i);          // クライアント部分のテクスチャーユニット選択
       glDisableClientState  (GL_TEXTURE_COORD_ARRAY); // テクスチャー座標配列の無効化
     }
   }
   
+      glMatrixMode (GL_MODELVIEW);
+
 }
 
 std::ostream& VertexBuffer:: print (std::ostream& out) const

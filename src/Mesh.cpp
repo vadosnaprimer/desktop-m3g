@@ -144,6 +144,7 @@ void Mesh:: render (RenderState& state) const
   // 頂点データの指定
   vertices->render (state);
 
+
   // マテリアルとインデックスの指定
   for (int i = 0; i < (int)appearances.size(); i++) {
     if (appearances[i] && appearances[i]->getLayer() == state.layer) {

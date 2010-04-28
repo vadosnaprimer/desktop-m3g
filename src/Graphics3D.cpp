@@ -177,6 +177,13 @@ void Graphics3D:: render (World* wld) const
 {
   //cout << "Graphics3D: レンダー " << wld->getChildCount() << " ノード\n";
 
+  glMatrixMode (GL_TEXTURE);
+  glLoadIdentity ();
+  glMatrixMode (GL_PROJECTION);
+  glLoadIdentity ();
+  glMatrixMode (GL_MODELVIEW);
+  glLoadIdentity ();
+
   RenderState state;
 
   // pass -1 for set up valid layers.

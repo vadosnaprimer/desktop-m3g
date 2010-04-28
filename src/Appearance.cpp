@@ -175,6 +175,11 @@ void Appearance:: render (RenderState& state) const
     PolygonMode:: renderX ();
 
   // ここのgl関数はTexture2Dの中に移動しようか？
+  // 注意：テクスチャーマトリックスは独立に複数あるので
+  // それぞれについて初期化が必要。
+
+  glMatrixMode (GL_TEXTURE);
+
   glEnable (GL_TEXTURE_2D);
   for (int i = 0; i < (int)textures.size(); i++) {
     if (textures[i]) {
@@ -188,7 +193,7 @@ void Appearance:: render (RenderState& state) const
     }
   }
 
-
+  glMatrixMode (GL_MODELVIEW);
 }
 
 

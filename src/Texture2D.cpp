@@ -221,6 +221,9 @@ void Texture2D:: render (RenderState& state) const
 
   glBindTexture   (GL_TEXTURE_2D, texobj);
 
+  // マトリックスパレットの設定
+  Transformable:: render (state);
+
   switch (blending_mode) {
   case FUNC_ADD     : glTexEnvi (GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_ADD)     ; break;
   case FUNC_BLEND   : glTexEnvi (GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_BLEND)   ; break;
