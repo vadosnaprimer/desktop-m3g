@@ -184,84 +184,261 @@ void MorphingMesh:: updateMorphedVertices ()
   VertexArray* morphed_normals   = morphed_vertices->getNormals ();
   VertexArray* morphed_colors    = morphed_vertices->getColors ();
 
-  float* base_values     = new float[vertex_count*3];
-  float* target_values   = new float[vertex_count*3];
-  float* morphed_values  = new float[vertex_count*3];
 
   // 位置
   if (base_positions) {
-    base_positions->get (0, vertex_count, scale_bias[0], &scale_bias[1], base_values);
-    base_positions->get (0, vertex_count, scale_bias[0], &scale_bias[1], morphed_values);
-    for (int t = 0; t < (int)morph_targets.size(); t++) {
-      VertexArray* target_positions = morph_targets[t]->getPositions (0);
-      if (target_positions) {
-	target_positions->get (0, vertex_count, scale_bias[0], &scale_bias[1], target_values);
-	//cout << "morph_weights[" << t << "] = " << morph_weights[t] << "\n";
-	for (int v = 0; v < vertex_count; v++) {
-	  morphed_values[v*3  ] += morph_weights[t] * (target_values[v*3  ] - base_values[v*3  ]);
-	  morphed_values[v*3+1] += morph_weights[t] * (target_values[v*3+1] - base_values[v*3+1]);
-	  morphed_values[v*3+2] += morph_weights[t] * (target_values[v*3+2] - base_values[v*3+2]);
+    int component_type = base_positions->getComponentType ();
+    switch (component_type) {
+    case 1: {
+      char* base_values     = new char[vertex_count*3];
+      char* target_values   = new char[vertex_count*3];
+      char* morphed_values  = new char[vertex_count*3];
+      base_positions->get (0, vertex_count, base_values);
+      base_positions->get (0, vertex_count, morphed_values);
+      for (int t = 0; t < (int)morph_targets.size(); t++) {
+	VertexArray* target_positions = morph_targets[t]->getPositions (0);
+	if (target_positions) {
+	  target_positions->get (0, vertex_count, target_values);
+	  for (int v = 0; v < vertex_count; v++) {
+	    morphed_values[v*3  ] += morph_weights[t] * (target_values[v*3  ] - base_values[v*3  ]);
+	    morphed_values[v*3+1] += morph_weights[t] * (target_values[v*3+1] - base_values[v*3+1]);
+	    morphed_values[v*3+2] += morph_weights[t] * (target_values[v*3+2] - base_values[v*3+2]);
+	  }
 	}
       }
+      morphed_positions->set (0, vertex_count, morphed_values);
+      morphed_vertices->setPositions (morphed_positions, scale_bias[0], &scale_bias[1]);
+      break;
     }
-    morphed_positions->set (0, vertex_count, scale_bias[0], &scale_bias[1], morphed_values);
-    morphed_vertices->setPositions (morphed_positions, scale_bias[0], &scale_bias[1]);
+    case 2: {
+      short* base_values     = new short[vertex_count*3];
+      short* target_values   = new short[vertex_count*3];
+      short* morphed_values  = new short[vertex_count*3];
+      base_positions->get (0, vertex_count, base_values);
+      base_positions->get (0, vertex_count, morphed_values);
+      for (int t = 0; t < (int)morph_targets.size(); t++) {
+	VertexArray* target_positions = morph_targets[t]->getPositions (0);
+	if (target_positions) {
+	  target_positions->get (0, vertex_count, target_values);
+	  for (int v = 0; v < vertex_count; v++) {
+	    morphed_values[v*3  ] += morph_weights[t] * (target_values[v*3  ] - base_values[v*3  ]);
+	    morphed_values[v*3+1] += morph_weights[t] * (target_values[v*3+1] - base_values[v*3+1]);
+	    morphed_values[v*3+2] += morph_weights[t] * (target_values[v*3+2] - base_values[v*3+2]);
+	  }
+	}
+      }
+      morphed_positions->set (0, vertex_count, morphed_values);
+      morphed_vertices->setPositions (morphed_positions, scale_bias[0], &scale_bias[1]);
+      break;
+    }
+    case 4: {
+      float* base_values     = new float[vertex_count*3];
+      float* target_values   = new float[vertex_count*3];
+      float* morphed_values  = new float[vertex_count*3];
+      base_positions->get (0, vertex_count, base_values);
+      base_positions->get (0, vertex_count, morphed_values);
+      for (int t = 0; t < (int)morph_targets.size(); t++) {
+	VertexArray* target_positions = morph_targets[t]->getPositions (0);
+	if (target_positions) {
+	  target_positions->get (0, vertex_count, target_values);
+	  for (int v = 0; v < vertex_count; v++) {
+	    morphed_values[v*3  ] += morph_weights[t] * (target_values[v*3  ] - base_values[v*3  ]);
+	    morphed_values[v*3+1] += morph_weights[t] * (target_values[v*3+1] - base_values[v*3+1]);
+	    morphed_values[v*3+2] += morph_weights[t] * (target_values[v*3+2] - base_values[v*3+2]);
+	  }
+	}
+      }
+      morphed_positions->set (0, vertex_count, morphed_values);
+      morphed_vertices->setPositions (morphed_positions, scale_bias[0], &scale_bias[1]);
+      break;
+    }
+    default: {
+	 throw IllegalStateException (__FILE__, __func__, "Component type is invalid, type=%d.", component_type);
+    }
+    }
+      
   }
 
   // 法線
   if (base_normals) {
     int   component_type = base_normals->getComponentType ();
-    float scale_bias[4];
-    scale_bias[0] = (component_type == 1) ? 2/255.f : (component_type == 2) ? 2/65535.f : 1;
-    scale_bias[1] = (component_type == 1) ? 1/255.f : (component_type == 2) ? 1/65535.f : 0;
-    scale_bias[2] = (component_type == 1) ? 1/255.f : (component_type == 2) ? 1/65535.f : 0;
-    scale_bias[3] = (component_type == 1) ? 1/255.f : (component_type == 2) ? 1/65535.f : 0;
-    base_normals->get (0, vertex_count, scale_bias[0], &scale_bias[1], base_values);
-    base_normals->get (0, vertex_count, scale_bias[0], &scale_bias[1], morphed_values);
-    for (int t = 0; t < (int)morph_targets.size(); t++) {
-      VertexArray* target_normal = morph_targets[t]->getNormals ();
-      if (target_normal) {
-	target_normal->get (0, vertex_count, scale_bias[0], &scale_bias[1], target_values);
-	for (int v = 0; v < vertex_count; v++) {
-	  morphed_values[v*3  ] += morph_weights[t] * (target_values[v*3  ] - base_values[v*3  ]);
-	  morphed_values[v*3+1] += morph_weights[t] * (target_values[v*3+1] - base_values[v*3+1]);
-	  morphed_values[v*3+2] += morph_weights[t] * (target_values[v*3+2] - base_values[v*3+2]);
+    switch (component_type) {
+    case 1: {
+      char* base_values     = new char[vertex_count*3];
+      char* target_values   = new char[vertex_count*3];
+      char* morphed_values  = new char[vertex_count*3];
+      base_normals->get (0, vertex_count, base_values);
+      base_normals->get (0, vertex_count, morphed_values);
+      for (int t = 0; t < (int)morph_targets.size(); t++) {
+	VertexArray* target_normal = morph_targets[t]->getNormals ();
+	if (target_normal) {
+	  target_normal->get (0, vertex_count, target_values);
+	  for (int v = 0; v < vertex_count; v++) {
+	    morphed_values[v*3  ] += morph_weights[t] * (target_values[v*3  ] - base_values[v*3  ]);
+	    morphed_values[v*3+1] += morph_weights[t] * (target_values[v*3+1] - base_values[v*3+1]);
+	    morphed_values[v*3+2] += morph_weights[t] * (target_values[v*3+2] - base_values[v*3+2]);
+	  }
 	}
       }
+      for (int v = 0; v < vertex_count; v++) {
+	Vector n (morphed_values[v*3], morphed_values[v*3+1], morphed_values[v*3+2]);
+	n.normalize();
+	morphed_values[v*3  ] = n.x/n.w;
+	morphed_values[v*3+1] = n.y/n.w;
+	morphed_values[v*3+2] = n.z/n.w;
+      }
+      morphed_normals->set (0, vertex_count, morphed_values);
+      morphed_vertices->setNormals (morphed_normals);
+      break;
     }
-    for (int v = 0; v < vertex_count; v++) {
-      Vector n (morphed_values[v*3], morphed_values[v*3+1], morphed_values[v*3+2]);
-      n.normalize();
-      n.get (&morphed_values[v*3]);
+    case 2: {
+      short* base_values     = new short[vertex_count*3];
+      short* target_values   = new short[vertex_count*3];
+      short* morphed_values  = new short[vertex_count*3];
+      base_normals->get (0, vertex_count, base_values);
+      base_normals->get (0, vertex_count, morphed_values);
+      for (int t = 0; t < (int)morph_targets.size(); t++) {
+	VertexArray* target_normal = morph_targets[t]->getNormals ();
+	if (target_normal) {
+	  target_normal->get (0, vertex_count, target_values);
+	  for (int v = 0; v < vertex_count; v++) {
+	    morphed_values[v*3  ] += morph_weights[t] * (target_values[v*3  ] - base_values[v*3  ]);
+	    morphed_values[v*3+1] += morph_weights[t] * (target_values[v*3+1] - base_values[v*3+1]);
+	    morphed_values[v*3+2] += morph_weights[t] * (target_values[v*3+2] - base_values[v*3+2]);
+	  }
+	}
+      }
+      for (int v = 0; v < vertex_count; v++) {
+	Vector n (morphed_values[v*3], morphed_values[v*3+1], morphed_values[v*3+2]);
+	n.normalize();
+	morphed_values[v*3  ] = n.x/n.w;
+	morphed_values[v*3+1] = n.y/n.w;
+	morphed_values[v*3+2] = n.z/n.w;
+      }
+      morphed_normals->set (0, vertex_count, morphed_values);
+      morphed_vertices->setNormals (morphed_normals);
+      break;
     }
-    morphed_normals->set (0, vertex_count, scale_bias[0], &scale_bias[1], morphed_values);
-    morphed_vertices->setNormals (morphed_normals);
+    case 4: {
+      float* base_values     = new float[vertex_count*3];
+      float* target_values   = new float[vertex_count*3];
+      float* morphed_values  = new float[vertex_count*3];
+      base_normals->get (0, vertex_count, base_values);
+      base_normals->get (0, vertex_count, morphed_values);
+      for (int t = 0; t < (int)morph_targets.size(); t++) {
+	VertexArray* target_normal = morph_targets[t]->getNormals ();
+	if (target_normal) {
+	  target_normal->get (0, vertex_count, target_values);
+	  for (int v = 0; v < vertex_count; v++) {
+	    morphed_values[v*3  ] += morph_weights[t] * (target_values[v*3  ] - base_values[v*3  ]);
+	    morphed_values[v*3+1] += morph_weights[t] * (target_values[v*3+1] - base_values[v*3+1]);
+	    morphed_values[v*3+2] += morph_weights[t] * (target_values[v*3+2] - base_values[v*3+2]);
+	  }
+	}
+      }
+      for (int v = 0; v < vertex_count; v++) {
+	Vector n (morphed_values[v*3], morphed_values[v*3+1], morphed_values[v*3+2]);
+	n.normalize();
+	morphed_values[v*3  ] = n.x/n.w;
+	morphed_values[v*3+1] = n.y/n.w;
+	morphed_values[v*3+2] = n.z/n.w;
+      }
+      morphed_normals->set (0, vertex_count, morphed_values);
+      morphed_vertices->setNormals (morphed_normals);
+      break;
+    }
+    default: {
+      throw IllegalStateException (__FILE__, __func__, "Component type is invalid. type=%d.", component_type);
+    }
+    }
   }
 
   // 頂点カラー
   if (base_colors) {
-    scale_bias[0] = 2/255.f;
-    scale_bias[1] = 1/255.f;
-    scale_bias[2] = 1/255.f;
-    scale_bias[3] = 1/255.f;
-    base_colors->get (0, vertex_count, scale_bias[0], &scale_bias[1], target_values);
-    base_colors->get (0, vertex_count, scale_bias[0], &scale_bias[1], morphed_values);
-    for (int t = 0; t < (int)morph_targets.size(); t++) {
-      VertexArray* morph_colors = morph_targets[t]->getColors();
-      if (morph_colors) {
-	morph_colors->get (0, vertex_count, scale_bias[0], &scale_bias[1], target_values);
-	for (int v = 0; v < vertex_count; v++) {
-	  morphed_values[v*3  ] += morph_weights[t] * (target_values[v*3  ] - base_values[v*3  ]);
-	  morphed_values[v*3+1] += morph_weights[t] * (target_values[v*3+1] - base_values[v*3+1]);
-	  morphed_values[v*3+2] += morph_weights[t] * (target_values[v*3+2] - base_values[v*3+2]);
+    int   component_type = base_colors->getComponentType ();
+    switch (component_type) {
+    case 1: {
+      char* base_values     = new char[vertex_count*3];
+      char* target_values   = new char[vertex_count*3];
+      char* morphed_values  = new char[vertex_count*3];
+      base_colors->get (0, vertex_count, target_values);
+      base_colors->get (0, vertex_count, morphed_values);
+      for (int t = 0; t < (int)morph_targets.size(); t++) {
+	VertexArray* morph_colors = morph_targets[t]->getColors();
+	if (morph_colors) {
+	  morph_colors->get (0, vertex_count, target_values);
+	  for (int v = 0; v < vertex_count; v++) {
+	    morphed_values[v*3  ] += morph_weights[t] * (target_values[v*3  ] - base_values[v*3  ]);
+	    morphed_values[v*3+1] += morph_weights[t] * (target_values[v*3+1] - base_values[v*3+1]);
+	    morphed_values[v*3+2] += morph_weights[t] * (target_values[v*3+2] - base_values[v*3+2]);
+	  }
 	}
       }
+      for (int v = 0; v < vertex_count; v++) {
+	morphed_values[v*3  ] = clamp (0, 1, morphed_values[v*3  ]);
+	morphed_values[v*3+1] = clamp (0, 1, morphed_values[v*3+1]);
+	morphed_values[v*3+2] = clamp (0, 1, morphed_values[v*3+2]);
+      }
+      morphed_colors->set (0, vertex_count, morphed_values);
+      morphed_vertices->setColors (morphed_colors);
+      break;
     }
-    for (int v = 0; v < vertex_count; v++) {
-      morphed_values[v*3] = clamp (0, 1, morphed_values[v*3]);
+    case 2: {
+      short* base_values     = new short[vertex_count*3];
+      short* target_values   = new short[vertex_count*3];
+      short* morphed_values  = new short[vertex_count*3];
+      base_colors->get (0, vertex_count, target_values);
+      base_colors->get (0, vertex_count, morphed_values);
+      for (int t = 0; t < (int)morph_targets.size(); t++) {
+	VertexArray* morph_colors = morph_targets[t]->getColors();
+	if (morph_colors) {
+	  morph_colors->get (0, vertex_count, target_values);
+	  for (int v = 0; v < vertex_count; v++) {
+	    morphed_values[v*3  ] += morph_weights[t] * (target_values[v*3  ] - base_values[v*3  ]);
+	    morphed_values[v*3+1] += morph_weights[t] * (target_values[v*3+1] - base_values[v*3+1]);
+	    morphed_values[v*3+2] += morph_weights[t] * (target_values[v*3+2] - base_values[v*3+2]);
+	  }
+	}
+      }
+      for (int v = 0; v < vertex_count; v++) {
+	morphed_values[v*3  ] = clamp (0, 1, morphed_values[v*3  ]);
+	morphed_values[v*3+1] = clamp (0, 1, morphed_values[v*3+1]);
+	morphed_values[v*3+2] = clamp (0, 1, morphed_values[v*3+2]);
+      }
+      morphed_colors->set (0, vertex_count, morphed_values);
+      morphed_vertices->setColors (morphed_colors);
+      break;
     }
-    morphed_colors->set (0, vertex_count, scale_bias[0], &scale_bias[1], morphed_values);
-    morphed_vertices->setColors (morphed_colors);
+    case 4: {
+      float* base_values     = new float[vertex_count*3];
+      float* target_values   = new float[vertex_count*3];
+      float* morphed_values  = new float[vertex_count*3];
+      base_colors->get (0, vertex_count, target_values);
+      base_colors->get (0, vertex_count, morphed_values);
+      for (int t = 0; t < (int)morph_targets.size(); t++) {
+	VertexArray* morph_colors = morph_targets[t]->getColors();
+	if (morph_colors) {
+	  morph_colors->get (0, vertex_count, target_values);
+	  for (int v = 0; v < vertex_count; v++) {
+	    morphed_values[v*3  ] += morph_weights[t] * (target_values[v*3  ] - base_values[v*3  ]);
+	    morphed_values[v*3+1] += morph_weights[t] * (target_values[v*3+1] - base_values[v*3+1]);
+	    morphed_values[v*3+2] += morph_weights[t] * (target_values[v*3+2] - base_values[v*3+2]);
+	  }
+	}
+      }
+      for (int v = 0; v < vertex_count; v++) {
+	morphed_values[v*3  ] = clamp (0, 1, morphed_values[v*3  ]);
+	morphed_values[v*3+1] = clamp (0, 1, morphed_values[v*3+1]);
+	morphed_values[v*3+2] = clamp (0, 1, morphed_values[v*3+2]);
+      }
+      morphed_colors->set (0, vertex_count, morphed_values);
+      morphed_vertices->setColors (morphed_colors);
+      break;
+    }
+    default: {
+      throw IllegalStateException (__FILE__, __func__, "Component type is invalid, type=%d.", component_type);
+    }
+    }
   }
 
   // デフォルトカラー
@@ -275,7 +452,7 @@ void MorphingMesh:: updateMorphedVertices ()
     morphed_color = clamp (0,1, morphed_color);
     morphed_vertices->setDefaultColor (morphed_color);
   }
-
+  
 
 }
 

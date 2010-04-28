@@ -60,23 +60,24 @@ int main (int argc, char** argv)
   glutCreateWindow(argv[0]);
   glewInit ();
 
-  VertexArray* positions         = new VertexArray (4, 3, 1);
-  char         position_values[] = {1,-1,0, 1,1,0, -1,-1,0, -1,1,0};
+  VertexArray* positions         = new VertexArray (4, 3, 2);
+  short        position_values[] = {1,-1,0, 1,1,0, -1,-1,0, -1,1,0};
   positions->set (0, 4, position_values);
 
   VertexArray*  colors         = new VertexArray (4, 3, 1);
   unsigned char color_values[] = {255,255,255, 255,255,255, 255,255,255, 255,255,255};
   colors->set (0, 4, (char*)color_values);
 
-  VertexArray* tex_coords         = new VertexArray (4, 2, 1);
-  char         tex_coord_values[] = {1,0, 1,1, 0,0, 0,1};
+  VertexArray* tex_coords         = new VertexArray (4, 2, 2);
+  short        tex_coord_values[] = {1,0, 1,1, 0,0, 0,1};
   tex_coords->set (0, 4, tex_coord_values);
 
-  float scale = 1;
+  float scale   = 1;
   float bias[3] = {0,0,0};
   VertexBuffer* vertices = new VertexBuffer;
   vertices->setPositions (positions, scale, bias);
   vertices->setColors (colors);
+  scale = 0.5;
   vertices->setTexCoords (0, tex_coords, scale, bias);
   vertices->setTexCoords (1, tex_coords, scale, bias);
   

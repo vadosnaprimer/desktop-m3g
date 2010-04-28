@@ -306,8 +306,6 @@ void Background:: render (RenderState& state) const
     glVertex3f   (-1, 1,  0.99999);
     glEnd        ();
 
-    //glDisable (GL_TEXTURE_2D);  // これ要らないと思う。あとで消す
-    
     glMatrixMode (GL_PROJECTION);
     glPopMatrix ();
     glMatrixMode (GL_MODELVIEW);

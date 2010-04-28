@@ -263,8 +263,12 @@ void VertexBuffer:: setPositions (VertexArray* positions_, float scale, float* b
   }
   int vertex_count    = positions_->getVertexCount ();
   int component_count = positions_->getComponentCount ();
+  int component_type  = positions_->getComponentType ();
   if (component_count != 3) {
     throw IllegalArgumentException (__FILE__, __func__, "Component count must be 3, count=%d.", component_count);
+  }
+  if (component_type != 2 && component_type != 4) {
+    throw IllegalArgumentException (__FILE__, __func__, "Component type must be 2 or 4, type=%d.", component_type);
   }
   if (normals && normals->getVertexCount() != vertex_count) {
     throw IllegalArgumentException (__FILE__, __func__, "Vertex count is invalid, %d <--> %d.", normals->getVertexCount(), vertex_count);
@@ -285,14 +289,38 @@ void VertexBuffer:: setPositions (VertexArray* positions_, float scale, float* b
   positions_bias[2] = bias[2];
 
   int    num    = vertex_count * component_count;
-  float* values = new float [num];
-  positions->get (0, vertex_count, scale, bias, values);
 
-  unsigned int vbo = positions->getOpenGLVBO();
-  glBindBuffer (GL_ARRAY_BUFFER, vbo);
-  glBufferData (GL_ARRAY_BUFFER, num*sizeof(float), values, GL_STATIC_DRAW);
+  switch (component_type) {
+  case 1: {
+    char* values = new char [num];
+    positions->get (0, vertex_count, values);
+    unsigned int vbo = positions->getOpenGLVBO();
+    glBindBuffer (GL_ARRAY_BUFFER, vbo);
+    glBufferData (GL_ARRAY_BUFFER, num*sizeof(char), values, GL_STATIC_DRAW);
+    //cout << "setPositions: vbo = " << vbo << ", num = " << num << "\n";
+    break;
+  }
+  case 2: {
+    short* values = new short [num];
+    positions->get (0, vertex_count, values);
+    unsigned int vbo = positions->getOpenGLVBO();
+    glBindBuffer (GL_ARRAY_BUFFER, vbo);
+    glBufferData (GL_ARRAY_BUFFER, num*sizeof(short), values, GL_STATIC_DRAW);
+    break;
+  }
+  case 4: {
+    float* values = new float [num];
+    positions->get (0, vertex_count, values);
+    unsigned int vbo = positions->getOpenGLVBO();
+    glBindBuffer (GL_ARRAY_BUFFER, vbo);
+    glBufferData (GL_ARRAY_BUFFER, num*sizeof(float), values, GL_STATIC_DRAW);
+    break;
+  }
+  default: {
+    throw IllegalStateException (__FILE__, __func__, "Component type is invalid, type=%d.", component_type);
+  }
+  }
 
-  delete [] values;
 }
 
 void VertexBuffer:: setTexCoords (int index, VertexArray* tex_coords_, float scale, float* bias)
@@ -309,9 +337,13 @@ void VertexBuffer:: setTexCoords (int index, VertexArray* tex_coords_, float sca
   }
   int vertex_count    = tex_coords_->getVertexCount ();
   int component_count = tex_coords_->getComponentCount ();
+  int component_type  = tex_coords_->getComponentType ();
 
   if (component_count != 2 && component_count != 3) {
     throw IllegalArgumentException (__FILE__, __func__, "Component count must be 2 or 3, count=%d.", component_count);
+  }
+  if (component_type != 2 && component_type != 4) {
+    throw IllegalArgumentException (__FILE__, __func__, "Component type must be 2 or 4, type=%d.", component_type);
   }
   if (positions && positions->getVertexCount() != vertex_count) {
     throw IllegalArgumentException (__FILE__, __func__, "Vertex count is invalid. %d <--> %d.", positions->getVertexCount(), vertex_count);
@@ -323,17 +355,45 @@ void VertexBuffer:: setTexCoords (int index, VertexArray* tex_coords_, float sca
     throw IllegalArgumentException (__FILE__, __func__, "Vertex count is invalid. %d <--> %d.", colors->getVertexCount(), vertex_count);
   }
  
-  tex_coords[index] = tex_coords_;
+  tex_coords[index]         = tex_coords_;
+  tex_coords_scale[index]   = scale;
+  tex_coords_bias[index][0] = bias[0];
+  tex_coords_bias[index][1] = bias[1];
+  tex_coords_bias[index][2] = bias[2];
 
   int    num    = vertex_count * component_count;
-  float* values = new float [num];
-  tex_coords[index]->get (0, vertex_count, scale, bias, values);
 
-  unsigned int vbo = tex_coords[index]->getOpenGLVBO();
-  glBindBuffer (GL_ARRAY_BUFFER, vbo);
-  glBufferData (GL_ARRAY_BUFFER, num*sizeof(float), values, GL_STATIC_DRAW);
+  switch (component_type) {
+  case 1: {
+    char* values = new char [num];
+    tex_coords[index]->get (0, vertex_count, values);
+    unsigned int vbo = tex_coords[index]->getOpenGLVBO();
+    glBindBuffer (GL_ARRAY_BUFFER, vbo);
+    glBufferData (GL_ARRAY_BUFFER, num*sizeof(char), values, GL_STATIC_DRAW);
+    break;
+  }
+  case 2: {
+    short* values = new short [num];
+    tex_coords[index]->get (0, vertex_count, values);
+    unsigned int vbo = tex_coords[index]->getOpenGLVBO();
+    glBindBuffer (GL_ARRAY_BUFFER, vbo);
+    glBufferData (GL_ARRAY_BUFFER, num*sizeof(short), values, GL_STATIC_DRAW);
+    break;
+  }
+  case 4: {
+    float* values = new float [num];
+    tex_coords[index]->get (0, vertex_count, values);
+    unsigned int vbo = tex_coords[index]->getOpenGLVBO();
+    glBindBuffer (GL_ARRAY_BUFFER, vbo);
+    glBufferData (GL_ARRAY_BUFFER, num*sizeof(float), values, GL_STATIC_DRAW);
+    break;
+  }
+  default: {
+    throw IllegalStateException (__FILE__, __func__, "Component type is invalid, type=%d.", component_type);
+  }
+  }
 
-  delete [] values;
+
 }
 
 /**
@@ -347,12 +407,27 @@ void VertexBuffer:: render (RenderState& state) const
   }
 
   if (positions) {
+    int component_type = positions->getComponentType();
     //cout << "render vertex array\n";
+    //cout << "component_type = " << component_type << "\n";
+    //cout << "scale = " << positions_scale << "\n";
+    //cout << "translate = " << positions_bias[0] << ", "<< positions_bias[1] << ", " << positions_bias[2] << "\n";
+    //positions->print_raw_data (cout) << "\n";
+
+    glScalef (positions_scale, positions_scale, positions_scale);
+    glTranslatef (positions_bias[0], positions_bias[1], positions_bias[2]);
+
     int cc = positions->getComponentCount();
     unsigned int vbo = positions->getOpenGLVBO();
     glBindBuffer        (GL_ARRAY_BUFFER, vbo);
     glEnableClientState (GL_VERTEX_ARRAY);
-    glVertexPointer     (cc, GL_FLOAT, 0, 0);
+    switch (component_type) {
+    case 1: glVertexPointer (cc, GL_BYTE, 0, 0); break;
+    case 2: glVertexPointer (cc, GL_SHORT, 0, 0); break;
+    case 4: glVertexPointer (cc, GL_FLOAT, 0, 0); break;
+    default: IllegalStateException (__FILE__, __func__, "Component type is invalid, type=%d.", component_type);
+    }
+
   } else {
     glDisableClientState (GL_VERTEX_ARRAY);
   }
@@ -394,13 +469,32 @@ void VertexBuffer:: render (RenderState& state) const
 
   for (int i = 0; i < MAX_TEXTURE_UNITS; i++) {
     if (tex_coords[i]) {
+
       //cout << "VertexBuffer: render " << i << "th texture coordinate array\n";
+      //cout << " scale = " << tex_coords_scale[i] << "\n";
+      //cout << " bias = " << tex_coords_bias[i][0] << ", " << tex_coords_bias[i][1] << ", " << tex_coords_bias[i][2] << "\n";
+      glMatrixMode(GL_TEXTURE);
+      glLoadIdentity();
+
+      glScalef (tex_coords_scale[i], tex_coords_scale[i], tex_coords_scale[i]);
+      glTranslatef (tex_coords_bias[i][0], tex_coords_bias[i][1], tex_coords_bias[i][2]);
+
       int cc = tex_coords[i]->getComponentCount();
-    unsigned int vbo = tex_coords[i]->getOpenGLVBO();
-    glBindBuffer          (GL_ARRAY_BUFFER, vbo);  // VBOの選択
+      unsigned int vbo = tex_coords[i]->getOpenGLVBO();
+
+      glBindBuffer          (GL_ARRAY_BUFFER, vbo);  // VBOの選択
       glClientActiveTexture (GL_TEXTURE0+i);              // (クライアントを含む）テクスチャーユニットの選択
       glEnableClientState   (GL_TEXTURE_COORD_ARRAY);     // 頂点配列の有効化
-      glTexCoordPointer     (cc, GL_FLOAT, 0, 0);         // テクスチャー座標の指定
+
+      int component_type = tex_coords[i]->getComponentType();
+      switch (component_type) {
+      case 1: glTexCoordPointer (cc, GL_BYTE, 0, 0); break;
+      case 2: glTexCoordPointer (cc, GL_SHORT, 0, 0); break;
+      case 4: glTexCoordPointer (cc, GL_FLOAT, 0, 0); break;
+      default: IllegalStateException (__FILE__, __func__, "Component type is invalid, type=%d.", component_type);
+      }
+      glMatrixMode(GL_MODELVIEW);
+
     } else {
       glClientActiveTexture (GL_TEXTURE0+i);            // クライアント部分のテクスチャーユニット選択
       glDisableClientState  (GL_TEXTURE_COORD_ARRAY);   // テクスチャー座標配列の無効化

@@ -190,50 +190,6 @@ void VertexArray:: set (int first_vertex, int num_vertices, const float* values)
           num_vertices*component_count*sizeof(float));
 }
 
-void VertexArray:: set (int first_vertex, int num_vertices, float scale, const float* bias, const float* values)
-{
-  if (values == NULL) {
-    throw NullPointException (__FILE__, __func__, "Values is NULL.");
-  }
-  if (num_vertices < 0) {
-    throw IllegalArgumentException (__FILE__, __func__, "Number of vertices is invalid, num_vertices=%d.", num_vertices);
-  }
-  if (first_vertex < 0 || first_vertex + num_vertices > vertex_count) {
-    throw IndexOutOfBoundsException (__FILE__, __func__, "Vertex is out of bounds, [%d,%d) in [0,%d).", first_vertex, first_vertex+num_vertices, vertex_count);
-  }
-  if (scale == 0) {
-    throw IllegalArgumentException (__FILE__, __func__, "Divied by 0, scale=%f.", scale);
-  }
-
-  for (int i = first_vertex*component_count; i < (first_vertex+num_vertices)*component_count; i+=component_count) {
-    for (int j = 0; j < component_count; j++) {
-      int offset = first_vertex*component_count;
-      switch (component_size) {
-      case 1: char_values[i+j]  = (values[i+j-offset] - bias[j]) / scale; break;
-      case 2: short_values[i+j] = (values[i+j-offset] - bias[j]) / scale; break;
-      case 4: float_values[i+j] = (values[i+j-offset] - bias[j]) / scale; break;
-      default: throw IllegalStateException (__FILE__, __func__, "Component size is invalid, size=%d.", component_size);
-      }
-    }
-  }
-
-}
-
-
-void VertexArray:: get (int first_vertex, int num_vertices, float scale, const float* bias, float* values) const
-{
-  for (int i = first_vertex*component_count; i < (first_vertex+num_vertices)*component_count; i+=component_count) {
-    int offset = first_vertex*component_count;
-    for (int j = 0; j < component_count; j++) {
-      switch (component_size) {
-      case 1:  values[i+j-offset] = char_values[i+j]*scale + bias[j] ; break;
-      case 2:  values[i+j-offset] = short_values[i+j]*scale + bias[j]; break;
-      case 4:  values[i+j-offset] = float_values[i+j]*scale + bias[j]; break;
-      default: throw IllegalStateException (__FILE__, __func__, "Component size is invalid, size=%d.", component_size);
-      }
-    }
-  }
-}
 
 unsigned int VertexArray:: getOpenGLVBO () const
 {
@@ -252,7 +208,7 @@ std::ostream& VertexArray:: print (std::ostream& out) const
 
 std::ostream& VertexArray:: print_raw_data (std::ostream& out) const
 {
-  print (out);
+  print (out) << "\n";
   for (int i = 0; i < vertex_count*component_count; i+=component_count) {
     out << i/component_count << " : (";
     for (int j = 0; j < component_count; j++) {

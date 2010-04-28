@@ -115,7 +115,8 @@ int main (int argc, char** argv)
   mesh->addTransform (bone1, 8 , 24, 2 );
   mesh->addTransform (bone1, 10, 26, 16);
 
-  bone1->addAnimationTrack (animation_track);
+  //bone1->addAnimationTrack (animation_track);
+  bone1->postRotate (30, 0,0,1);
 
   Camera* cam = new Camera;
   cam->translate (0,10,50);

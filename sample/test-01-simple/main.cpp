@@ -56,11 +56,11 @@ int main (int argc, char** argv)
   glutCreateWindow(argv[0]);
   glewInit ();
 
-  VertexArray* positions = new VertexArray (4, 3, 1);
-  char positions_value[] = {1,-1,0, 1,1,0, -1,-1,0, -1,1,0};
+  VertexArray* positions = new VertexArray (4, 3, 2);
+  short positions_value[] = {1,-1,0, 1,1,0, -1,-1,0, -1,1,0};
   positions->set (0, 4, positions_value);
 
-  float scale = 1;
+  float scale = 0.2;
   float bias[3] = {0,0,0};
   VertexBuffer* vertices = new VertexBuffer;
   vertices->setPositions (positions, scale, bias);

@@ -105,19 +105,11 @@ namespace m3g {
      */
     std::ostream& print_raw_data (std::ostream& out) const;
 
-    /**
-     * @~English  Returns the scaled and biased value as float, this is not under M3G.
-     * @~Japanese 値にscale,biasをかけてfloatで取り出すM3G非標準の関数.
-     */
-    void get (int first_vertex, int num_vertices, float scale, const float* bias, float* values) const;
 
     /**
-     * @~English  Store the scaled and biased value as char or short, this is not under M3G.
-     * @~Japanese 値にscale,biasをかけてcharまたはshortでセットするM3G非標準の関数.
+     * @~English  Retrieve OpenGL' vbo name.
+     * @~Japanese OpenGLのvbo名を取得する.
      */
-    void set (int first_vertex, int num_vertices, float scale, const float* bias, const float* values);
-
-
     unsigned int getOpenGLVBO () const;
 
   private:
