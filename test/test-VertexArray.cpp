@@ -131,6 +131,18 @@ TEST (VertexArray_set_variables_4byte)
 }
 
 
+TEST (VertexArray_getOpenGLFormat)
+{
+    VertexArray* varry1 = new VertexArray (4,3,1);
+    CHECK_EQUAL (GL_BYTE, varry1->getOpenGLFormat());
+
+    VertexArray* varry2 = new VertexArray (4,3,2);
+    CHECK_EQUAL (GL_SHORT, varry2->getOpenGLFormat());
+
+    VertexArray* varry4 = new VertexArray (4,3,4);
+    CHECK_EQUAL (GL_FLOAT, varry4->getOpenGLFormat());
+}
+
 TEST (VertexArray_duplicate)
 {
   VertexArray* varry0 = new VertexArray(16, 3, 2);
@@ -171,4 +183,54 @@ TEST (VertexArray_duplicate)
   CHECK_EQUAL ((int)buf[15*3+1], (int)values[15*3+1]);
   CHECK_EQUAL ((int)buf[15*3+2], (int)values[15*3+2]);
 
+}
+
+TEST (VertexArray_convert)
+{
+  char  initial_values[] = {1,2,3, 4,5,6, -1,-2,-3, -4,-5,-6}; 
+  char  char_values[] = {0,0,0, 0,0,0, 0,0,0, 0,0,0};
+  short short_values[] = {0,0,0, 0,0,0, 0,0,0, 0,0,0};
+  float float_values[] = {0,0,0, 0,0,0, 0,0,0, 0,0,0};
+  char  char_values_answer[] = {1,2,3, 4,5,6, -1,-2,-3, -4,-5,-6};
+  short short_values_answer[] = {1,2,3, 4,5,6, -1,-2,-3, -4,-5,-6};
+  float float_values_answer[] = {1,2,3, 4,5,6, -1,-2,-3, -4,-5,-6};
+
+  VertexArray* varry = new VertexArray (4,3,1);
+  varry->set (0, 4, initial_values);
+
+  varry->get (0, 4, char_values);
+
+  varry->convert (1);  
+  CHECK_EQUAL (1, varry->getComponentType());
+  CHECK_ARRAY_CLOSE (char_values_answer, char_values, 12, 0.0001f);
+
+  varry->convert (2);
+  varry->get (0, 4, short_values);
+  CHECK_EQUAL (2, varry->getComponentType());
+  CHECK_ARRAY_CLOSE (short_values_answer, short_values, 12, 0.0001f);
+
+  varry->convert (4);
+  varry->get (0, 4, float_values);
+  CHECK_EQUAL (4, varry->getComponentType());
+  CHECK_ARRAY_CLOSE (float_values_answer, float_values, 12, 0.0001f);
+
+  varry->convert (2);
+  varry->get (0, 4, short_values);
+  CHECK_EQUAL (2, varry->getComponentType());
+  CHECK_ARRAY_CLOSE (short_values_answer, short_values, 12, 0.0001f);
+
+  varry->convert (1);  
+  CHECK_EQUAL (1, varry->getComponentType());
+  CHECK_ARRAY_CLOSE (char_values_answer, char_values, 12, 0.0001f);
+
+  varry->convert (4);
+  varry->get (0, 4, float_values);
+  CHECK_EQUAL (4, varry->getComponentType());
+  CHECK_ARRAY_CLOSE (float_values_answer, float_values, 12, 0.0001f);
+
+  varry->convert (1);  
+  CHECK_EQUAL (1, varry->getComponentType());
+  CHECK_ARRAY_CLOSE (char_values_answer, char_values, 12, 0.0001f);
+
+  delete varry;
 }

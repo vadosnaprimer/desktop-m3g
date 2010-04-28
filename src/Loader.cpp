@@ -1216,6 +1216,10 @@ void Loader:: parseVertexBuffer ()
   vbuf->setDefaultColor (default_color);
   if (positions_index > 0) {
     VertexArray* positions = dynamic_cast<VertexArray*>(objs.at(positions_index));
+    if (positions->getComponentType() == 1) {
+      // Desktop-M3GではOpenGLを使うためGL_BYTE型は受けつけないので
+      positions->convert (2);
+    }
     vbuf->setPositions (positions, scale, bias);
   }
   if (normals_index > 0) {
@@ -1233,7 +1237,13 @@ void Loader:: parseVertexBuffer ()
     float        bias[3]          = {getFloat32(), getFloat32(), getFloat32()};
     float        scale            = getFloat32();
     if (tex_coords_index > 0) {
+      //cout << "scale = " << scale << "\n";
+      //cout << "bias = " << bias[0] << "," << bias[1] << ", " << bias[2] << "\n";
       VertexArray* tex_coords = dynamic_cast<VertexArray*>(objs.at(tex_coords_index));
+      if (tex_coords->getComponentType() == 1) {
+      // Desktop-M3GではOpenGLを使うためGL_BYTE型は受けつけないので
+	tex_coords->convert (2);
+      }
       vbuf->setTexCoords (i, tex_coords, scale, bias);
     }
   }

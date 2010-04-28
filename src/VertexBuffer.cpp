@@ -8,7 +8,7 @@
 #include <iostream>
 using namespace std;
 using namespace m3g;
-
+#include <cstdlib>
 
 VertexBuffer:: VertexBuffer () :
   positions(0), normals(0), colors(0), positions_scale(1),
@@ -233,6 +233,9 @@ void VertexBuffer:: setPositions (VertexArray* positions_, float scale, float* b
   if (component_count != 3) {
     throw IllegalArgumentException (__FILE__, __func__, "Component count must be 3, count=%d.", component_count);
   }
+  if (component_type != 2 && component_type != 4) {
+    throw IllegalArgumentException (__FILE__, __func__, "Component size must be 2 or 4, size=%d", component_type);
+  }
   if (normals && normals->getVertexCount() != vertex_count) {
     throw IllegalArgumentException (__FILE__, __func__, "Vertex count is invalid, %d <--> %d.", normals->getVertexCount(), vertex_count);
   }
@@ -251,10 +254,6 @@ void VertexBuffer:: setPositions (VertexArray* positions_, float scale, float* b
   positions_bias[1] = bias[1];
   positions_bias[2] = bias[2];
 
-  if (component_type == 1) {
-    cout << "VertexBuffer:setPositions() converted postions from char to short.\n";
-    positions->convert (2);
-  }
 
 }
 
@@ -277,6 +276,9 @@ void VertexBuffer:: setTexCoords (int index, VertexArray* tex_coords_, float sca
   if (component_count != 2 && component_count != 3) {
     throw IllegalArgumentException (__FILE__, __func__, "Component count must be 2 or 3, count=%d.", component_count);
   }
+  if (component_type != 2 && component_type != 4) {
+    throw IllegalArgumentException (__FILE__, __func__, "Component size must be 2 or 4, size=%d", component_type);
+  }
   if (positions && positions->getVertexCount() != vertex_count) {
     throw IllegalArgumentException (__FILE__, __func__, "Vertex count is invalid. %d <--> %d.", positions->getVertexCount(), vertex_count);
   }
@@ -292,10 +294,6 @@ void VertexBuffer:: setTexCoords (int index, VertexArray* tex_coords_, float sca
   tex_coords_bias[index][0] = bias[0];
   tex_coords_bias[index][1] = bias[1];
   tex_coords_bias[index][2] = bias[2];
-
-  if (component_type == 1) {
-    tex_coords[index]->convert (2);
-  }
 }
 
 /**
