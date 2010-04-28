@@ -26,10 +26,13 @@ VertexArray:: VertexArray (int num_vertices, int num_components, int component_s
   }
 
   int size = vertex_count * component_count * component_size;
+
   char_values = new char[size];
   memset (char_values, 0, size);
 
   glGenBuffers (1, &vbo);
+  glBindBuffer (GL_ARRAY_BUFFER, vbo);
+  glBufferData (GL_ARRAY_BUFFER, size, 0, GL_STATIC_DRAW);
 }
 
 VertexArray:: ~VertexArray ()
@@ -51,6 +54,8 @@ VertexArray* VertexArray:: duplicate () const
   memcpy (varry->char_values, this->char_values, size);
 
   glGenBuffers (1, &varry->vbo);
+  glBindBuffer (GL_ARRAY_BUFFER, vbo);
+  glBufferData (GL_ARRAY_BUFFER, size, varry->char_values, GL_STATIC_DRAW);
   return varry;
 }
 
@@ -144,9 +149,19 @@ void VertexArray:: set (int first_vertex, int num_vertices, const char* values)
     throw IllegalStateException (__FILE__, __func__, "Component size of this vertex array is not 1 byte, component_size=%d.", component_size);
   }
 
-  memcpy ((char*)&char_values[first_vertex*component_count],
+  int offset      = first_vertex*component_count;
+  int offset_size = first_vertex*component_count*sizeof(char);
+  int size        = num_vertices*component_count*sizeof(char);
+
+  memcpy ((char*)&char_values[offset],
           (char*)values,
-          num_vertices*component_count*sizeof(char));
+          size);
+
+  glBindBuffer (GL_ARRAY_BUFFER, vbo);
+  glBufferSubData (GL_ARRAY_BUFFER,
+                   offset_size,
+                   size, 
+                   &char_values[offset]);
 }
 
 void VertexArray:: set (int first_vertex, int num_vertices, const short* values)
@@ -164,10 +179,24 @@ void VertexArray:: set (int first_vertex, int num_vertices, const short* values)
     throw IllegalStateException (__FILE__, __func__, "Component size of this vertex array is not 2 byte, component_size=%d.", component_size);
   }
 
-  memcpy ((char*)&short_values[first_vertex*component_count],
-          (char*)values,
-          num_vertices*component_count*sizeof(short));
+  int offset      = first_vertex*component_count;
+  int offset_size = first_vertex*component_count*sizeof(short);
+  int size        = num_vertices*component_count*sizeof(short);
 
+  //cout << "vbo         = " << vbo << "\n";
+  //cout << "offset      = " << offset      << "\n";
+  //cout << "offset_size = " << offset_size << "\n";
+  //cout << "size        = " << size        << "\n";
+
+  memcpy ((char*)&short_values[offset],
+          (char*)values,
+          size);
+
+  glBindBuffer (GL_ARRAY_BUFFER, vbo);
+  glBufferSubData (GL_ARRAY_BUFFER,
+                   offset_size,
+                   size,
+                   &short_values[offset]);
 }
 
 void VertexArray:: set (int first_vertex, int num_vertices, const float* values)
@@ -185,9 +214,19 @@ void VertexArray:: set (int first_vertex, int num_vertices, const float* values)
     throw IllegalStateException (__FILE__, __func__, "Component size of this vertex array is not 4 byte, component_size=%d.", component_size);
   }
 
-  memcpy ((char*)&float_values[first_vertex*component_count],
+  int offset      = first_vertex*component_count;
+  int offset_size = first_vertex*component_count*sizeof(float);
+  int size        = num_vertices*component_count*sizeof(float);
+
+  memcpy ((char*)&float_values[offset],
           (char*)values,
-          num_vertices*component_count*sizeof(float));
+          size);
+
+  glBindBuffer (GL_ARRAY_BUFFER, vbo);
+  glBufferSubData (GL_ARRAY_BUFFER,
+                   offset_size,
+                   size,
+                   &float_values[offset]);
 }
 
 

@@ -180,19 +180,6 @@ void VertexBuffer:: setColors (VertexArray* colors_)
   }
 
   colors = colors_;
-
-  int   num   = colors->getComponentCount()*colors->getVertexCount();
-  int   size  = sizeof(unsigned char)* num;
-
-  // メモ： Colorの場合に限りデータを0〜255のunsigned型として解釈する
-  unsigned char* values = new unsigned char[num];
-  colors->get (0, colors->getVertexCount(), (char*)values);
-
-  unsigned int vbo = colors->getOpenGLVBO();
-  glBindBuffer (GL_ARRAY_BUFFER, vbo);
-  glBufferData (GL_ARRAY_BUFFER, size, values, GL_STATIC_DRAW);
-
-  delete [] values;
 }
 
 void VertexBuffer:: setDefaultColor (int argb)
@@ -231,25 +218,6 @@ void VertexBuffer:: setNormals (VertexArray* normals_)
 
   normals = normals_;
 
-  int    num    = vertex_count * component_count;
-  int    size   = vertex_count * component_count * component_type;
-  void*  values = 0;
-  switch (component_type) {
-  case 1: values = new char[num] ; normals->get (0, vertex_count, (char*)values); break;
-  case 2: values = new short[num]; normals->get (0, vertex_count, (short*)values); break;
-  case 4: values = new float[num]; normals->get (0, vertex_count, (float*)values); break;
-  default: throw IllegalStateException (__FILE__, __func__, "Invalid componentype, type=%d.", component_type);
-  }
- 
-  unsigned int vbo = normals->getOpenGLVBO();
-  glBindBuffer (GL_ARRAY_BUFFER, vbo);
-  glBufferData (GL_ARRAY_BUFFER, size, values, GL_STATIC_DRAW);
-
-  switch (component_type) {
-  case 1: delete [] (char*)values; break;
-  case 2: delete [] (short*)values; break;
-  case 4: delete [] (float*)values; break;
-  }
 }
 
 void VertexBuffer:: setPositions (VertexArray* positions_, float scale, float* bias)
@@ -287,40 +255,6 @@ void VertexBuffer:: setPositions (VertexArray* positions_, float scale, float* b
   positions_bias[0] = bias[0];
   positions_bias[1] = bias[1];
   positions_bias[2] = bias[2];
-
-  int    num    = vertex_count * component_count;
-
-  switch (component_type) {
-  case 1: {
-    char* values = new char [num];
-    positions->get (0, vertex_count, values);
-    unsigned int vbo = positions->getOpenGLVBO();
-    glBindBuffer (GL_ARRAY_BUFFER, vbo);
-    glBufferData (GL_ARRAY_BUFFER, num*sizeof(char), values, GL_STATIC_DRAW);
-    //cout << "setPositions: vbo = " << vbo << ", num = " << num << "\n";
-    break;
-  }
-  case 2: {
-    short* values = new short [num];
-    positions->get (0, vertex_count, values);
-    unsigned int vbo = positions->getOpenGLVBO();
-    glBindBuffer (GL_ARRAY_BUFFER, vbo);
-    glBufferData (GL_ARRAY_BUFFER, num*sizeof(short), values, GL_STATIC_DRAW);
-    break;
-  }
-  case 4: {
-    float* values = new float [num];
-    positions->get (0, vertex_count, values);
-    unsigned int vbo = positions->getOpenGLVBO();
-    glBindBuffer (GL_ARRAY_BUFFER, vbo);
-    glBufferData (GL_ARRAY_BUFFER, num*sizeof(float), values, GL_STATIC_DRAW);
-    break;
-  }
-  default: {
-    throw IllegalStateException (__FILE__, __func__, "Component type is invalid, type=%d.", component_type);
-  }
-  }
-
 }
 
 void VertexBuffer:: setTexCoords (int index, VertexArray* tex_coords_, float scale, float* bias)
@@ -360,40 +294,6 @@ void VertexBuffer:: setTexCoords (int index, VertexArray* tex_coords_, float sca
   tex_coords_bias[index][0] = bias[0];
   tex_coords_bias[index][1] = bias[1];
   tex_coords_bias[index][2] = bias[2];
-
-  int    num    = vertex_count * component_count;
-
-  switch (component_type) {
-  case 1: {
-    char* values = new char [num];
-    tex_coords[index]->get (0, vertex_count, values);
-    unsigned int vbo = tex_coords[index]->getOpenGLVBO();
-    glBindBuffer (GL_ARRAY_BUFFER, vbo);
-    glBufferData (GL_ARRAY_BUFFER, num*sizeof(char), values, GL_STATIC_DRAW);
-    break;
-  }
-  case 2: {
-    short* values = new short [num];
-    tex_coords[index]->get (0, vertex_count, values);
-    unsigned int vbo = tex_coords[index]->getOpenGLVBO();
-    glBindBuffer (GL_ARRAY_BUFFER, vbo);
-    glBufferData (GL_ARRAY_BUFFER, num*sizeof(short), values, GL_STATIC_DRAW);
-    break;
-  }
-  case 4: {
-    float* values = new float [num];
-    tex_coords[index]->get (0, vertex_count, values);
-    unsigned int vbo = tex_coords[index]->getOpenGLVBO();
-    glBindBuffer (GL_ARRAY_BUFFER, vbo);
-    glBufferData (GL_ARRAY_BUFFER, num*sizeof(float), values, GL_STATIC_DRAW);
-    break;
-  }
-  default: {
-    throw IllegalStateException (__FILE__, __func__, "Component type is invalid, type=%d.", component_type);
-  }
-  }
-
-
 }
 
 /**
