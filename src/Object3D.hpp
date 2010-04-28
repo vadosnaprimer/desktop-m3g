@@ -7,9 +7,6 @@
 #include "m3gdef.hpp"
 #include "m3ginternal.hpp"
 
-// これいらないような？
-//#include "RenderState.hpp"
-
 
 namespace m3g {
 

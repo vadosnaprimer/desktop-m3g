@@ -199,7 +199,6 @@ void VertexBuffer:: setNormals (VertexArray* normals_)
   }
 
   int vertex_count    = normals_->getVertexCount ();
-  int component_type  = normals_->getComponentType ();
   int component_count = normals_->getComponentCount ();
   if (component_count != 3) {
     throw IllegalArgumentException (__FILE__, __func__, "Component count must be 3, count=%d.", component_count);
@@ -217,7 +216,6 @@ void VertexBuffer:: setNormals (VertexArray* normals_)
   }
 
   normals = normals_;
-
 }
 
 void VertexBuffer:: setPositions (VertexArray* positions_, float scale, float* bias)

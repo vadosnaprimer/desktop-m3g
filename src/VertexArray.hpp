@@ -92,6 +92,7 @@ namespace m3g {
      */
     void set (int first_vertex, int num_vertices, const float* values);
 
+    virtual void render (RenderState& state) const;
 
     /**
      * @~English  Print out information of this object, for debug only.
@@ -106,6 +107,10 @@ namespace m3g {
     std::ostream& print_raw_data (std::ostream& out) const;
 
 
+    void setMorphing (const VertexArray* base_positions,
+                   const std::vector<const VertexArray*>& morph_target_positions,
+                   const std::vector<float>& morph_wegiths);
+
     /**
      * @~English  Retrieve OpenGL' vbo name.
      * @~Japanese OpenGLのvbo名を取得する.
@@ -117,7 +122,7 @@ namespace m3g {
     int   component_size;
     int   vertex_count;
     union {
-      char* char_values;
+      char*  char_values;
       short* short_values;
       float* float_values;
     };

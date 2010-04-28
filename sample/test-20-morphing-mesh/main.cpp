@@ -84,16 +84,16 @@ int main (int argc, char** argv)
   float scale   = 1;
   float bias[3] = {0,0,0};
 
-  float base_positions_values[12] = {1,-1,0, 1,1,0, -1,-1,0, -1,1,0};
-  VertexArray* base_positions = new VertexArray (4, 3, 4);
+  VertexArray* base_positions            = new VertexArray (4, 3, 4);
+  float        base_positions_values[12] = {1,-1,0, 1,1,0, -1,-1,0, -1,1,0};
   base_positions->set (0, 4, base_positions_values);
 
-  float target1_positions_values[12] = {1,-1,0, 0,0,0, -1,-1,0, 0,0,0};
-  VertexArray* target1_positions = new VertexArray (4, 3, 4);
+  VertexArray* target1_positions            = new VertexArray (4, 3, 4);
+  float        target1_positions_values[12] = {1,-1,0, 0,0,0, -1,-1,0, 0,0,0};
   target1_positions->set (0, 4, target1_positions_values);
 
-  float target2_positions_values[12] = {2,-1,0, 2,-0.5,0, -2,-1,0, -2,-0.5,0};
-  VertexArray* target2_positions = new VertexArray (4, 3, 4);
+  VertexArray* target2_positions            = new VertexArray (4, 3, 4);
+  float        target2_positions_values[12] = {2,-1,0, 2,-0.5,0, -2,-1,0, -2,-0.5,0};
   target2_positions->set (0, 4, target2_positions_values);
 
   VertexBuffer* base_vertices = new VertexBuffer;
@@ -120,7 +120,7 @@ int main (int argc, char** argv)
 
 
   Camera* cam = new Camera;
-  cam->translate (0,00,10);
+  cam->translate (0,0,10);
 
   wld = new World;
   wld->addChild (cam);
@@ -128,8 +128,6 @@ int main (int argc, char** argv)
   wld->addChild (mesh);
 
   cout << *wld << "\n";
-
-  //  mesh->animate (0);
 
   objs.push_back (keyframe_sequence);
   objs.push_back (animation_controller);

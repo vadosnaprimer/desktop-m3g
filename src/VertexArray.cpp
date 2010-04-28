@@ -54,7 +54,7 @@ VertexArray* VertexArray:: duplicate () const
   memcpy (varry->char_values, this->char_values, size);
 
   glGenBuffers (1, &varry->vbo);
-  glBindBuffer (GL_ARRAY_BUFFER, vbo);
+  glBindBuffer (GL_ARRAY_BUFFER, varry->vbo);
   glBufferData (GL_ARRAY_BUFFER, size, varry->char_values, GL_STATIC_DRAW);
   return varry;
 }
@@ -235,6 +235,57 @@ unsigned int VertexArray:: getOpenGLVBO () const
   return vbo;
 }
 
+void VertexArray:: setMorphing (const VertexArray* base,
+                   const std::vector<const VertexArray*>& targets,
+                   const std::vector<float>& weights)
+{
+
+
+  int size = vertex_count * component_count * component_size;
+  memcpy (char_values, base->char_values, size);
+
+  //cout << "targets.size() = " << targets.size() << "\n";
+  //for (int t = 0; t < (int)targets.size(); t++) {
+  //  cout << t << " : target = " << targets[t] << ", weights = " << weights[t] << "\n";
+  //}
+
+  for (int t = 0; t < (int)targets.size(); t++) {
+    if (targets[t]) {
+      for (int v = 0; v < vertex_count; v++) {
+	switch (component_size) {
+	case 1:
+	  char_values[v*3  ] += weights[t] * (targets[t]->char_values[v*3  ] - base->char_values[v*3  ]);
+	  char_values[v*3+1] += weights[t] * (targets[t]->char_values[v*3+1] - base->char_values[v*3+1]);
+	  char_values[v*3+2] += weights[t] * (targets[t]->char_values[v*3+2] - base->char_values[v*3+2]);
+	  break;
+	case 2:
+	  short_values[v*3  ] += weights[t] * (targets[t]->short_values[v*3  ] - base->short_values[v*3  ]);
+	  short_values[v*3+1] += weights[t] * (targets[t]->short_values[v*3+1] - base->short_values[v*3+1]);
+	  short_values[v*3+2] += weights[t] * (targets[t]->short_values[v*3+2] - base->short_values[v*3+2]);
+	  break;
+	case 4:
+	  float_values[v*3  ] += weights[t] * (targets[t]->float_values[v*3  ] - base->float_values[v*3  ]);
+	  float_values[v*3+1] += weights[t] * (targets[t]->float_values[v*3+1] - base->float_values[v*3+1]);
+	  float_values[v*3+2] += weights[t] * (targets[t]->float_values[v*3+2] - base->float_values[v*3+2]);
+	  break;
+	}
+      }  // バーテックスループ
+    }
+  }  // ターゲットループ
+
+  glBindBuffer    (GL_ARRAY_BUFFER, vbo);
+  glBufferSubData (GL_ARRAY_BUFFER,
+                   0,
+                   vertex_count * component_count * component_size,
+                   char_values);
+}
+
+
+void VertexArray:: render (RenderState& state) const
+{
+
+
+}
 
 std::ostream& VertexArray:: print (std::ostream& out) const
 {
