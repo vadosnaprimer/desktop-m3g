@@ -22,6 +22,8 @@ public:
           float m30, float m31, float m32, float m33);
   ~Matrix ();
 
+  Matrix getInverse () const;
+
   void set(const float* mat);
   void setIdentity();
   void setRotate (float angle, float ax, float ay, float az);

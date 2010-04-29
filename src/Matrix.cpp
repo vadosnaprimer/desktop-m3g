@@ -36,10 +36,18 @@ Matrix:: ~Matrix ()
 {
 }
 
+Matrix Matrix:: getInverse () const
+{
+  Matrix mat = *this;
+  return mat.invert();
+}
+
+
 void Matrix:: set(const float* mat)
 {
   memcpy (m, mat, sizeof(float)*16);
 }
+
 
 void Matrix:: setIdentity()
 {

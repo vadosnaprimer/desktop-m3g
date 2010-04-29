@@ -64,9 +64,9 @@ int main (int argc, char** argv)
   glutCreateWindow(argv[0]);
   glewInit ();
 
-  Quaternion q0 (-45, 0,0,1);
-  Quaternion q1 ( 45, 0,0,1);
-  Quaternion q2 (-45, 0,0,1);
+  Quaternion q0 ( 45, 0,0,1);
+  Quaternion q1 (-45 , 0,0,1);
+  Quaternion q2 ( 45, 0,0,1);
   KeyframeSequence* keyframe_sequence = new KeyframeSequence (3, 4, KeyframeSequence::SLERP);
   float keyframe_orientation[3][4]= {{q0.x, q0.y, q0.z, q0.w},
                                      {q1.x, q1.y, q1.z, q1.w},
@@ -104,6 +104,7 @@ int main (int argc, char** argv)
   SkinnedMesh* mesh = new SkinnedMesh (vertices, tris, app, bone0);
   //mesh->addTransform (bone0, 1, 0, 21);
   //mesh->addTransform (bone1, 1, 21, 21);
+#if 1
   mesh->addTransform (bone0, 10, 0, 18);
   mesh->addTransform (bone0, 8 , 18, 2 );
   mesh->addTransform (bone0, 6 , 20, 2 );
@@ -114,9 +115,11 @@ int main (int argc, char** argv)
   mesh->addTransform (bone1, 6 , 22, 2 );
   mesh->addTransform (bone1, 8 , 24, 2 );
   mesh->addTransform (bone1, 10, 26, 16);
+#endif
+
+  bone1->postRotate (90, 0,0,1);
 
   //bone1->addAnimationTrack (animation_track);
-  bone1->postRotate (30, 0,0,1);
 
   Camera* cam = new Camera;
   cam->translate (0,10,50);

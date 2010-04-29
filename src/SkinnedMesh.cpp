@@ -96,16 +96,6 @@ int SkinnedMesh:: animate (int world_time)
 
 void SkinnedMesh:: updateSkinnedVertices ()
 {
-
-  // マトリックスパレットの作成
-  int bone_count = bind_poses.size();
-  std::vector<Matrix> matrix_palette (bone_count);
-  for (int b = 0; b < bone_count; b++) {
-    Matrix global_pose = bind_poses[b].bone->getGlobalPose ();
-    matrix_palette[b]  = global_pose * bind_poses[b].inverse;
-  }
-
-  // スキンメッシュの更新
   float        scale_bias[4];
   VertexArray* bind_positions    = vertices->getPositions (scale_bias);
   VertexArray* bind_normals      = vertices->getNormals ();
@@ -113,8 +103,48 @@ void SkinnedMesh:: updateSkinnedVertices ()
   VertexArray* skinned_normals   = skinned_vertices->getNormals ();
   int          vertex_count      = bind_positions->getVertexCount();
 
+  // マトリックスパレットの作成
+  int bone_count = bind_poses.size();
+  std::vector<Matrix> matrix_palette (bone_count);
+  for (int b = 0; b < bone_count; b++) {
+    Matrix global_pose = bind_poses[b].bone->getGlobalPose ();
+    matrix_palette[b]  = global_pose * bind_poses[b].inverse;
+    //cout << "global_pose[" << b << "] = " << global_pose << "\n";
+  }
+  // for (int b = 0; b < bone_count; b++) {
+  //   cout << "bind_pose[" << b << "].inverse = " << bind_poses[b].inverse << "\n";
+  // }
+  // for (int b = 0; b < bone_count; b++) {
+  //   cout << "matrix_palette[" << b << "] = " << matrix_palette[b] << "\n";
+  // }
+
+  // Position用マトリックスパレットの作成
+  // (scale,biasの補正を考慮したもの)
+  std::vector<Matrix> positions_matrix_palette (bone_count);
+  Matrix mat;
+  mat.setScale (scale_bias[0], scale_bias[0], scale_bias[0]);
+  mat.setTranslate (scale_bias[1], scale_bias[2], scale_bias[3]);
+  for (int b = 0; b < bone_count; b++) {
+    positions_matrix_palette[b] = mat.getInverse() * matrix_palette[b] * mat;
+  }
+  
+  // Normal用マトリックスパレットの作成
+  // (3x3成分のみを取りだし逆行列の転置したもの)
+ std::vector<Matrix> normals_matrix_palette (bone_count);
+  for (int b = 0; b < bone_count; b++) {
+    normals_matrix_palette[b] = matrix_palette[b];
+    normals_matrix_palette[b].setTranslate (0,0,0);
+    normals_matrix_palette[b].invert().transpose();
+    normals_matrix_palette[b].setTranslate (0,0,0);
+    normals_matrix_palette[b][15] = 1;
+  }
+
+  
+  // スキンメッシュの更新
+
   // 位置
   if (bind_positions) {
+    //bind_positions->print_raw_data (cout) << "\n";
     int component_type = bind_positions->getComponentType();
     switch (component_type) {
     case 1: {
@@ -130,7 +160,7 @@ void SkinnedMesh:: updateSkinnedVertices ()
 	}
 	for (int b = 0; b < bone_count; b++) {
 	  int i = bone_indices[v][b].index;
-	  v1 += matrix_palette[i] * v0 * (bone_indices[v][b].weight/weight);
+	  v1 += positions_matrix_palette[i] * v0 * (bone_indices[v][b].weight/weight);
 	}
 	if (weight > 0) {
 	  values[v*3  ] = v1.x/v1.w;
@@ -139,7 +169,6 @@ void SkinnedMesh:: updateSkinnedVertices ()
 	}
       }
       skinned_positions->set (0, vertex_count, values);
-      skinned_vertices->setPositions (skinned_positions, scale_bias[0], &scale_bias[1]);
       break;
     }
     case 2: {
@@ -155,7 +184,7 @@ void SkinnedMesh:: updateSkinnedVertices ()
 	}
 	for (int b = 0; b < bone_count; b++) {
 	  int i = bone_indices[v][b].index;
-	  v1 += matrix_palette[i] * v0 * (bone_indices[v][b].weight/weight);
+	  v1 += positions_matrix_palette[i] * v0 * (bone_indices[v][b].weight/weight);
 	}
 	if (weight > 0) {
 	  values[v*3  ] = v1.x/v1.w;
@@ -164,7 +193,6 @@ void SkinnedMesh:: updateSkinnedVertices ()
 	}
       }
       skinned_positions->set (0, vertex_count, values);
-      skinned_vertices->setPositions (skinned_positions, scale_bias[0], &scale_bias[1]);
       break;
     }
     case 4: {
@@ -180,7 +208,7 @@ void SkinnedMesh:: updateSkinnedVertices ()
 	}
 	for (int b = 0; b < bone_count; b++) {
 	  int i = bone_indices[v][b].index;
-	  v1 += matrix_palette[i] * v0 * (bone_indices[v][b].weight/weight);
+	  v1 += positions_matrix_palette[i] * v0 * (bone_indices[v][b].weight/weight);
 	}
 	if (weight > 0) {
 	  values[v*3  ] = v1.x/v1.w;
@@ -189,7 +217,6 @@ void SkinnedMesh:: updateSkinnedVertices ()
 	}
       }
       skinned_positions->set (0, vertex_count, values);
-      skinned_vertices->setPositions (skinned_positions, scale_bias[0], &scale_bias[1]);
       break;
     }
     default: {
@@ -201,14 +228,6 @@ void SkinnedMesh:: updateSkinnedVertices ()
 
   // 法線
   if (bind_normals) {
-    // 注意：法線はマトリックスパレットの3x3成分の逆行列の転置
-    for (int b = 0; b < bone_count; b++) {
-      matrix_palette[b].invert().transpose();
-      matrix_palette[b][3]  = matrix_palette[b][7]  = matrix_palette[b][11] = 0;
-      matrix_palette[b][12] = matrix_palette[b][13] = matrix_palette[b][14] = 0;
-      matrix_palette[b][15] = 1;
-    }
-
     int   component_type = bind_normals->getComponentType();
     switch (component_type) {
     case 1: {
@@ -224,7 +243,7 @@ void SkinnedMesh:: updateSkinnedVertices ()
 	}
 	for (int b = 0; b < bone_count; b++) {
 	  int i = bone_indices[v][b].index;
-	  v1 += matrix_palette[i] * v0 * (bone_indices[v][b].weight/weight);
+	  v1 += normals_matrix_palette[i] * v0 * (bone_indices[v][b].weight/weight);
 	}
 	if (weight > 0) {
 	  v1.normalize();
@@ -233,8 +252,7 @@ void SkinnedMesh:: updateSkinnedVertices ()
 	  values[v*3+2] = v1.z/v1.w;
 	}
       }
-      skinned_normals->set (0, vertex_count, values);
-      skinned_vertices->setNormals (skinned_normals);
+      //skinned_normals->set (0, vertex_count, values);
       break;
     }
     case 2: {
@@ -250,7 +268,7 @@ void SkinnedMesh:: updateSkinnedVertices ()
 	}
 	for (int b = 0; b < bone_count; b++) {
 	  int i = bone_indices[v][b].index;
-	  v1 += matrix_palette[i] * v0 * (bone_indices[v][b].weight/weight);
+	  v1 += normals_matrix_palette[i] * v0 * (bone_indices[v][b].weight/weight);
 	}
 	if (weight > 0) {
 	  v1.normalize();
@@ -259,8 +277,7 @@ void SkinnedMesh:: updateSkinnedVertices ()
 	  values[v*3+2] = v1.z/v1.w;
 	}
       }
-      skinned_normals->set (0, vertex_count, values);
-      skinned_vertices->setNormals (skinned_normals);
+      //skinned_normals->set (0, vertex_count, values);
       break;
     }
     case 4: {
@@ -276,7 +293,7 @@ void SkinnedMesh:: updateSkinnedVertices ()
 	}
 	for (int b = 0; b < bone_count; b++) {
 	  int i = bone_indices[v][b].index;
-	  v1 += matrix_palette[i] * v0 * (bone_indices[v][b].weight/weight);
+	  v1 += normals_matrix_palette[i] * v0 * (bone_indices[v][b].weight/weight);
 	}
 	if (weight > 0) {
 	  v1.normalize();
@@ -285,8 +302,7 @@ void SkinnedMesh:: updateSkinnedVertices ()
 	  values[v*3+2] = v1.z/v1.w;
 	}
       }
-      skinned_normals->set (0, vertex_count, values);
-      skinned_vertices->setNormals (skinned_normals);
+      //skinned_normals->set (0, vertex_count, values);
       break;
     }
     default: {
@@ -413,15 +429,21 @@ void SkinnedMesh:: render (RenderState& state) const
   // 注意：vertices が skinned_vertices に変わった事を除けば Mesh::render()と同一。
   // M3Gの仕様で vertices を書き換える事は禁止されているので元に戻す。
 
+
+
   VertexBuffer* tmp = vertices;
   (const_cast<SkinnedMesh*>(this))->vertices = skinned_vertices;
 
+  glPushMatrix ();
   Mesh::render (state);
+  glPopMatrix ();
 
   (const_cast<SkinnedMesh*>(this))->vertices = tmp;
 
   // 注意：骨には（レンダリングすべき）任意のノードを付加できるのでこれは必要。
   skeleton->render (state);
+
+
 }
 
 

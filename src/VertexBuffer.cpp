@@ -310,7 +310,7 @@ void VertexBuffer:: render (RenderState& state) const
     //cout << "render vertex array\n";
     //cout << "component_type = " << component_type << "\n";
     //cout << "scale = " << positions_scale << "\n";
-    //cout << "translate = " << positions_bias[0] << ", "<< positions_bias[1] << ", " << positions_bias[2] << "\n";
+    //cout << "bias = " << positions_bias[0] << ", "<< positions_bias[1] << ", " << positions_bias[2] << "\n";
     //positions->print_raw_data (cout) << "\n";
 
     int component_count = positions->getComponentCount ();
