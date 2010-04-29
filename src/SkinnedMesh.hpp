@@ -5,13 +5,17 @@
 #include <iosfwd>
 #include <vector>
 
+#include "BoneIndex.hpp"
+
 
 namespace m3g {
 
   class Group;
   class VertexBuffer;
   class IndexBuffer;
-  class Bone;
+  
+  
+
 
   /**
    * @~English  A scene graph node that represents a skeletally animated polygon mesh.
@@ -19,27 +23,8 @@ namespace m3g {
    */
   class SkinnedMesh : public Mesh
   {
-    /**
-     * @~English  Store bone index and weight, for inner use.
-     * @~Japanese ボーンインデックスとウェイトを保持する内部使用の構造体.
-     */
-    struct BoneIndex {
-      BoneIndex (int i, int w) : index(i), weight(w) {};
-      int index;
-      int weight;
-    };
-
-    /**
-     * @~English  Store bind pose (at rest).
-     * @~Japanese バインドポーズを保存する内部使用の構造体.
-     */
-    struct BindPose {
-      BindPose (Node* n, const Matrix& m) : bone(n), inverse(m) {};
-      Node*  bone;
-      Matrix inverse;
-    };
-
   public:
+
     /**
      * @~English  Constructs a new SkinnedMesh witdh the given vertices, submeshes and skeleton.
      * @~Japanese 指定された頂点、サブメッシュ、スケルトンを持つSkinnedMeshを新しく作成する.

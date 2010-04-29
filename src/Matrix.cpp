@@ -84,8 +84,6 @@ void Matrix:: setRotate (float angle, float ax, float ay, float az)
 
 void Matrix:: setScale (float sx, float sy, float sz)
 {
-  setIdentity();
-
   m[0] = sx;
   m[5] = sy;
   m[10] = sz;
@@ -93,8 +91,6 @@ void Matrix:: setScale (float sx, float sy, float sz)
 
 void Matrix:: setTranslate (float tx, float ty, float tz)
 {
-  setIdentity();
-
   m[3] = tx;
   m[7] = ty;
   m[11] = tz;

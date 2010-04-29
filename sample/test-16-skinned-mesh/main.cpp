@@ -7,6 +7,26 @@
 using namespace std;
 using namespace m3g;
 
+/*
+// 注意：通常のマトリックスパレットでは不十分。
+// positionsのみscale,biasを考慮したマトリックスパレットで変換する
+// ↓上半分0.5,下半分0.5で90度左に回転させた例
+main: time = 0
+scale = 0.001
+bias  = 0, 0, 0
+global_pose[0] = [ 1,0,0,0; 0,1,0,0; 0,0,1,0; 0,0,0,1 ]
+global_pose[1] = [ -4.37114e-08,-1,0,0; 1,-4.37114e-08,0,10; 0,0,1,0; 0,0,0,1 ]
+bind_pose[0].inverse = [ 1,0,0,0; 0,1,0,0; 0,0,1,0; 0,0,0,1 ]
+bind_pose[1].inverse = [ 1,0,0,0; 0,1,0,-10; 0,0,1,0; 0,0,0,1 ]
+matrix_palette[0] = [ 1,0,0,0; 0,1,0,0; 0,0,1,0; 0,0,0,1 ]
+matrix_palette[1] = [ -4.37114e-08,-1,0,10; 1,-4.37114e-08,0,10; 0,0,1,0; 0,0,0,1 ]
+mat = [ 0.001,0,0,0; 0,0.001,0,0; 0,0,0.001,0; 0,0,0,1 ]
+mat_inv = [ 1000,0,0,0; 0,1000,0,0; 0,0,1000,0; 0,0,0,1 ]
+positions_matrix_palette[0] = [ 1,0,0,0; 0,1,0,0; 0,0,1,0; 0,0,0,1 ]
+positions_matrix_palette[1] = [ -4.37114e-08,-1,0,10000; 1,-4.37114e-08,0,10000; 0,0,1,0; 0,0,0,1 ]
+*/
+
+
 std::vector<Object3D*> objs;
 World* wld = 0;
 
@@ -119,7 +139,7 @@ int main (int argc, char** argv)
 
   bone1->postRotate (90, 0,0,1);
 
-  //bone1->addAnimationTrack (animation_track);
+  bone1->addAnimationTrack (animation_track);
 
   Camera* cam = new Camera;
   cam->translate (0,10,50);

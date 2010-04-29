@@ -9,6 +9,8 @@
 namespace m3g {
 
   class VertexBuffer;
+  class Matrix;
+  struct BoneIndex;
 
   /**
    * @~English  An array of integer vectors representing vertex positions, normals, colors, or texture coordinates.
@@ -92,10 +94,13 @@ namespace m3g {
      */
     void set (int first_vertex, int num_vertices, const float* values);
 
-    void setMorphing (const VertexArray* base_positions,
-                   const std::vector<const VertexArray*>& morph_target_positions,
-                   const std::vector<float>& morph_wegiths);
+    void setMorphing (const VertexArray*                     base_positions,
+                      const std::vector<const VertexArray*>& morph_target_positions,
+                      const std::vector<float>&              morph_wegiths);
 
+    void setSkinning (const VertexArray*            base_positions,
+                      const std::vector<std::vector<BoneIndex> >& bone_indices,
+                      const std::vector<Matrix>&    matrix_palette);
 
     void convert (int component_size);
 

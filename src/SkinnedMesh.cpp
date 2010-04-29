@@ -101,9 +101,12 @@ void SkinnedMesh:: updateSkinnedVertices ()
   VertexArray* bind_normals      = vertices->getNormals ();
   VertexArray* skinned_positions = skinned_vertices->getPositions(0);
   VertexArray* skinned_normals   = skinned_vertices->getNormals ();
-  int          vertex_count      = bind_positions->getVertexCount();
+  //int          vertex_count      = bind_positions->getVertexCount();
 
-  // マトリックスパレットの作成
+  //cout << "scale = " << scale_bias[0] << "\n";
+  //cout << "bias  = " << scale_bias[1] << ", " << scale_bias[2] << ", " << scale_bias[3] << "\n";
+
+  // 基本マトリックスパレットの作成
   int bone_count = bind_poses.size();
   std::vector<Matrix> matrix_palette (bone_count);
   for (int b = 0; b < bone_count; b++) {
@@ -111,12 +114,13 @@ void SkinnedMesh:: updateSkinnedVertices ()
     matrix_palette[b]  = global_pose * bind_poses[b].inverse;
     //cout << "global_pose[" << b << "] = " << global_pose << "\n";
   }
-  // for (int b = 0; b < bone_count; b++) {
-  //   cout << "bind_pose[" << b << "].inverse = " << bind_poses[b].inverse << "\n";
-  // }
-  // for (int b = 0; b < bone_count; b++) {
-  //   cout << "matrix_palette[" << b << "] = " << matrix_palette[b] << "\n";
-  // }
+   // for (int b = 0; b < bone_count; b++) {
+   //   cout << "bind_pose[" << b << "].inverse = " << bind_poses[b].inverse << "\n";
+   // }
+   // for (int b = 0; b < bone_count; b++) {
+   //   cout << "matrix_palette[" << b << "] = " << matrix_palette[b] << "\n";
+   // }
+
 
   // Position用マトリックスパレットの作成
   // (scale,biasの補正を考慮したもの)
@@ -124,191 +128,36 @@ void SkinnedMesh:: updateSkinnedVertices ()
   Matrix mat;
   mat.setScale (scale_bias[0], scale_bias[0], scale_bias[0]);
   mat.setTranslate (scale_bias[1], scale_bias[2], scale_bias[3]);
+  //cout << "mat = " << mat << "\n";
+  //cout << "mat_inv = " << mat.getInverse() << "\n";
   for (int b = 0; b < bone_count; b++) {
     positions_matrix_palette[b] = mat.getInverse() * matrix_palette[b] * mat;
   }
-  
+  //for (int b = 0; b < bone_count; b++) {
+  //  cout << "positions_matrix_palette[" << b << "] = " << positions_matrix_palette[b] << "\n";
+  //}
+
   // Normal用マトリックスパレットの作成
   // (3x3成分のみを取りだし逆行列の転置したもの)
- std::vector<Matrix> normals_matrix_palette (bone_count);
-  for (int b = 0; b < bone_count; b++) {
-    normals_matrix_palette[b] = matrix_palette[b];
-    normals_matrix_palette[b].setTranslate (0,0,0);
-    normals_matrix_palette[b].invert().transpose();
-    normals_matrix_palette[b].setTranslate (0,0,0);
-    normals_matrix_palette[b][15] = 1;
+  std::vector<Matrix> normals_matrix_palette (bone_count);
+  if (bind_normals) {
+    for (int b = 0; b < bone_count; b++) {
+      normals_matrix_palette[b] = matrix_palette[b];
+      normals_matrix_palette[b].invert().transpose();
+      normals_matrix_palette[b][3] = normals_matrix_palette[b][7] = normals_matrix_palette[b][11] = 0;
+      normals_matrix_palette[b][12] = normals_matrix_palette[b][13] = normals_matrix_palette[b][14] = 0;
+      normals_matrix_palette[b][15] = 1;
+    }
   }
-
   
-  // スキンメッシュの更新
-
   // 位置
   if (bind_positions) {
-    //bind_positions->print_raw_data (cout) << "\n";
-    int component_type = bind_positions->getComponentType();
-    switch (component_type) {
-    case 1: {
-      char* values = new char[vertex_count*3];
-      bind_positions->get (0, vertex_count, values);
-      for (int v = 0; v < vertex_count; v++) {
-	Vector v0 (values[v*3], values[v*3+1], values[v*3+2]);
-	Vector v1 (0,0,0);
-	float  weight     = 0;
-	int    bone_count = bone_indices[v].size();
-	for (int b = 0; b < bone_count; b++) {
-	  weight += bone_indices[v][b].weight;
-	}
-	for (int b = 0; b < bone_count; b++) {
-	  int i = bone_indices[v][b].index;
-	  v1 += positions_matrix_palette[i] * v0 * (bone_indices[v][b].weight/weight);
-	}
-	if (weight > 0) {
-	  values[v*3  ] = v1.x/v1.w;
-	  values[v*3+1] = v1.y/v1.w;
-	  values[v*3+2] = v1.z/v1.w;
-	}
-      }
-      skinned_positions->set (0, vertex_count, values);
-      break;
-    }
-    case 2: {
-      short* values = new short[vertex_count*3];
-      bind_positions->get (0, vertex_count, values);
-      for (int v = 0; v < vertex_count; v++) {
-	Vector v0 (values[v*3], values[v*3+1], values[v*3+2]);
-	Vector v1 (0,0,0);
-	float  weight     = 0;
-	int    bone_count = bone_indices[v].size();
-	for (int b = 0; b < bone_count; b++) {
-	  weight += bone_indices[v][b].weight;
-	}
-	for (int b = 0; b < bone_count; b++) {
-	  int i = bone_indices[v][b].index;
-	  v1 += positions_matrix_palette[i] * v0 * (bone_indices[v][b].weight/weight);
-	}
-	if (weight > 0) {
-	  values[v*3  ] = v1.x/v1.w;
-	  values[v*3+1] = v1.y/v1.w;
-	  values[v*3+2] = v1.z/v1.w;
-	}
-      }
-      skinned_positions->set (0, vertex_count, values);
-      break;
-    }
-    case 4: {
-      float* values = new float[vertex_count*3];
-      bind_positions->get (0, vertex_count, values);
-      for (int v = 0; v < vertex_count; v++) {
-	Vector v0 (values[v*3], values[v*3+1], values[v*3+2]);
-	Vector v1 (0,0,0);
-	float  weight     = 0;
-	int    bone_count = bone_indices[v].size();
-	for (int b = 0; b < bone_count; b++) {
-	  weight += bone_indices[v][b].weight;
-	}
-	for (int b = 0; b < bone_count; b++) {
-	  int i = bone_indices[v][b].index;
-	  v1 += positions_matrix_palette[i] * v0 * (bone_indices[v][b].weight/weight);
-	}
-	if (weight > 0) {
-	  values[v*3  ] = v1.x/v1.w;
-	  values[v*3+1] = v1.y/v1.w;
-	  values[v*3+2] = v1.z/v1.w;
-	}
-      }
-      skinned_positions->set (0, vertex_count, values);
-      break;
-    }
-    default: {
-      throw IllegalArgumentException (__FILE__, __func__, "Component type is invalid. type=%d.", component_type);
-    }
-    }
+    skinned_positions->setSkinning (bind_positions, bone_indices, positions_matrix_palette);
   }
-
 
   // 法線
   if (bind_normals) {
-    int   component_type = bind_normals->getComponentType();
-    switch (component_type) {
-    case 1: {
-      char* values = new char[vertex_count*3];      
-      bind_normals->get (0, vertex_count, values);
-      for (int v = 0; v < vertex_count; v++) {
-	Vector v0 (values[v*3], values[v*3+1], values[v*3+2]);
-	Vector v1 (0,0,0);
-	float  weight     = 0;
-	int    bone_count = bone_indices[v].size();
-	for (int b = 0; b < bone_count; b++) {
-	  weight += bone_indices[v][b].weight;
-	}
-	for (int b = 0; b < bone_count; b++) {
-	  int i = bone_indices[v][b].index;
-	  v1 += normals_matrix_palette[i] * v0 * (bone_indices[v][b].weight/weight);
-	}
-	if (weight > 0) {
-	  v1.normalize();
-	  values[v*3  ] = v1.x/v1.w;
-	  values[v*3+1] = v1.y/v1.w;
-	  values[v*3+2] = v1.z/v1.w;
-	}
-      }
-      //skinned_normals->set (0, vertex_count, values);
-      break;
-    }
-    case 2: {
-      short* values = new short[vertex_count*3];      
-      bind_normals->get (0, vertex_count, values);
-      for (int v = 0; v < vertex_count; v++) {
-	Vector v0 (values[v*3], values[v*3+1], values[v*3+2]);
-	Vector v1 (0,0,0);
-	float  weight     = 0;
-	int    bone_count = bone_indices[v].size();
-	for (int b = 0; b < bone_count; b++) {
-	  weight += bone_indices[v][b].weight;
-	}
-	for (int b = 0; b < bone_count; b++) {
-	  int i = bone_indices[v][b].index;
-	  v1 += normals_matrix_palette[i] * v0 * (bone_indices[v][b].weight/weight);
-	}
-	if (weight > 0) {
-	  v1.normalize();
-	  values[v*3  ] = v1.x/v1.w;
-	  values[v*3+1] = v1.y/v1.w;
-	  values[v*3+2] = v1.z/v1.w;
-	}
-      }
-      //skinned_normals->set (0, vertex_count, values);
-      break;
-    }
-    case 4: {
-      float* values = new float[vertex_count*3];      
-      bind_normals->get (0, vertex_count, values);
-      for (int v = 0; v < vertex_count; v++) {
-	Vector v0 (values[v*3], values[v*3+1], values[v*3+2]);
-	Vector v1 (0,0,0);
-	float  weight     = 0;
-	int    bone_count = bone_indices[v].size();
-	for (int b = 0; b < bone_count; b++) {
-	  weight += bone_indices[v][b].weight;
-	}
-	for (int b = 0; b < bone_count; b++) {
-	  int i = bone_indices[v][b].index;
-	  v1 += normals_matrix_palette[i] * v0 * (bone_indices[v][b].weight/weight);
-	}
-	if (weight > 0) {
-	  v1.normalize();
-	  values[v*3  ] = v1.x/v1.w;
-	  values[v*3+1] = v1.y/v1.w;
-	  values[v*3+2] = v1.z/v1.w;
-	}
-      }
-      //skinned_normals->set (0, vertex_count, values);
-      break;
-    }
-    default: {
-      throw IllegalStateException (__FILE__, __func__, "Component type is invalid, type=%d.", component_type);
-    }
-    }
+    skinned_normals->setSkinning (bind_normals, bone_indices, normals_matrix_palette);
   }
 
 

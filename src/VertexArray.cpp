@@ -1,5 +1,7 @@
 #include "VertexArray.hpp"
 #include "Exception.hpp"
+#include "Vector.hpp"
+#include "BoneIndex.hpp"
 #include <iostream>
 #include <cstring>
 using namespace std;
@@ -271,6 +273,56 @@ void VertexArray:: setMorphing (const VertexArray* base,
                    0,
                    vertex_count * component_count * component_size,
                    char_values);
+}
+
+
+void VertexArray:: setSkinning (const VertexArray* base_positions,
+	                 const std::vector<std::vector<BoneIndex> >& bone_indices,
+		  const std::vector<Matrix>& matrix_palette)
+{
+  for (int v = 0; v < vertex_count; v++) {
+    Vector v0;
+    switch (component_size) {
+    case 1: v0 = Vector(base_positions->char_values [v*3  ],
+                        base_positions->char_values [v*3+1],
+                        base_positions->char_values [v*3+2]); break;
+    case 2: v0 = Vector(base_positions->short_values[v*3  ],
+                        base_positions->short_values[v*3+1],
+                        base_positions->short_values[v*3+2]); break;
+    case 4: v0 = Vector(base_positions->float_values[v*3  ],
+                        base_positions->float_values[v*3+1],
+                        base_positions->float_values[v*3+2]); break;
+    default: throw IllegalStateException (__FILE__, __func__, "Component type is invalid, size=%d.", component_size);
+    }
+    Vector v1         = Vector(0,0,0);
+    float  weight     = 0;
+    int    bone_count = bone_indices[v].size();
+    for (int b = 0; b < bone_count; b++) {
+      weight += bone_indices[v][b].weight;
+    }
+    for (int b = 0; b < bone_count; b++) {
+      int i = bone_indices[v][b].index;
+      v1 += matrix_palette[i] * v0 * (bone_indices[v][b].weight/weight);
+    }
+    if (weight > 0) {
+      float vector_values[3];
+      v1.get (vector_values);
+      for (int i = 0; i < 3; i++) {
+	switch (component_size) {
+	case 1: char_values [v*3+i] = vector_values[i]; break;
+	case 2: short_values[v*3+i] = vector_values[i]; break;
+	case 4: float_values[v*3+i] = vector_values[i]; break;
+	}
+      }
+    }
+  }   // バーテックスループ
+
+  glBindBuffer    (GL_ARRAY_BUFFER, vbo);
+  glBufferSubData (GL_ARRAY_BUFFER,
+                   0,
+                   vertex_count * component_count * component_size,
+                   char_values);
+
 }
 
 void VertexArray:: convert (int to)
