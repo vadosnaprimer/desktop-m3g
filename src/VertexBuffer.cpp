@@ -317,8 +317,9 @@ void VertexBuffer:: render (RenderState& state) const
     unsigned int format = positions->getOpenGLFormat ();
     unsigned int vbo    = positions->getOpenGLVBO();
 
-    glScalef     (positions_scale, positions_scale, positions_scale);
     glTranslatef (positions_bias[0], positions_bias[1], positions_bias[2]);
+    glScalef     (positions_scale, positions_scale, positions_scale);
+
 
     glBindBuffer        (GL_ARRAY_BUFFER, vbo);
     glEnableClientState (GL_VERTEX_ARRAY);
@@ -370,9 +371,9 @@ void VertexBuffer:: render (RenderState& state) const
       glEnable        (GL_TEXTURE_2D);
 
       // テクスチャーマトリックスの設定
-      glLoadIdentity ();
-      glScalef (tex_coords_scale[i], tex_coords_scale[i], tex_coords_scale[i]);
+      glLoadIdentity ();  // <-- この1行要らないか？？？
       glTranslatef (tex_coords_bias[i][0], tex_coords_bias[i][1], tex_coords_bias[i][2]);
+      glScalef (tex_coords_scale[i], tex_coords_scale[i], tex_coords_scale[i]);
 
       //cout << "VertexBuffer: render " << i << "th texture coordinate array\n";
       //cout << " scale = " << tex_coords_scale[i] << "\n";

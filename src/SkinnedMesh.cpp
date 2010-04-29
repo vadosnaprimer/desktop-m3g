@@ -126,8 +126,8 @@ void SkinnedMesh:: updateSkinnedVertices ()
   // (scale,biasの補正を考慮したもの)
   std::vector<Matrix> positions_matrix_palette (bone_count);
   Matrix mat;
-  mat.setScale (scale_bias[0], scale_bias[0], scale_bias[0]);
   mat.setTranslate (scale_bias[1], scale_bias[2], scale_bias[3]);
+  mat.setScale (scale_bias[0], scale_bias[0], scale_bias[0]);
   //cout << "mat = " << mat << "\n";
   //cout << "mat_inv = " << mat.getInverse() << "\n";
   for (int b = 0; b < bone_count; b++) {
@@ -278,8 +278,6 @@ void SkinnedMesh:: render (RenderState& state) const
   // 注意：vertices が skinned_vertices に変わった事を除けば Mesh::render()と同一。
   // M3Gの仕様で vertices を書き換える事は禁止されているので元に戻す。
 
-
-
   VertexBuffer* tmp = vertices;
   (const_cast<SkinnedMesh*>(this))->vertices = skinned_vertices;
 
@@ -287,10 +285,11 @@ void SkinnedMesh:: render (RenderState& state) const
   Mesh::render (state);
   glPopMatrix ();
 
-  (const_cast<SkinnedMesh*>(this))->vertices = tmp;
-
-  // 注意：骨には（レンダリングすべき）任意のノードを付加できるのでこれは必要。
+  // 注意：骨には（レンダリングすべき）任意のノードを付加できるのでこれは必要
+  Transformable::render (state);
   skeleton->render (state);
+
+  (const_cast<SkinnedMesh*>(this))->vertices = tmp;
 
 
 }
