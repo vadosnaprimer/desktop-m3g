@@ -106,6 +106,7 @@ int Object3D:: getObjectType () const
 }
 
 
+
 void Object3D:: render (RenderState& state) const
 {
   // nothing to do

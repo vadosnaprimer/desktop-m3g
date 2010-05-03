@@ -4,6 +4,7 @@
 #include <vector>
 #include <iosfwd>
 #include <strstream>
+#include "Object.hpp"
 
 namespace m3g {
 
@@ -18,7 +19,7 @@ namespace m3g {
    * @~English  Download and deserializes scene graph nodes and node components, as well as entire scene graphs.
    * @~Japanese シーングラフとそのノード要素のダウンロード.
    */
-  class Loader
+  class Loader : public Object
   {
     struct FileInfo {
       FileInfo () : version_major(0), version_minor(0), has_external_refference(false),

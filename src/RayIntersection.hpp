@@ -2,6 +2,7 @@
 #define __RAY_INTERSECTION_HPP__
 
 #include <iosfwd>
+#include "Object.hpp"
 
 namespace m3g {
 
@@ -12,7 +13,7 @@ class Node;
  *           RayIntersection stores a reference to the intersected Mesh or Sprite3D and information about the intersection point. 
  * @~Japanese Groupのpick関数によって生成され、交差点の情報を収納するクラス.
  */
-class RayIntersection
+  class RayIntersection : public Object
 {
 public:
     /**

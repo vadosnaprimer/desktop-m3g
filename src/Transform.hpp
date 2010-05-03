@@ -3,6 +3,7 @@
 
 #include <iosfwd>
 #include "Matrix.hpp"
+#include "Object.hpp"
 
 namespace m3g {
 
@@ -12,7 +13,7 @@ namespace m3g {
    * @~English  A generic 4x4 floating point matrix, representing a transformation.
    * @~Japanese 座標変換を表す汎用の4x4行列.
    */
-  class Transform 
+  class Transform : public Object
   {
   public:
     /**

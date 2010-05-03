@@ -6,7 +6,7 @@
 #include <vector>
 #include "m3gdef.hpp"
 #include "m3ginternal.hpp"
-
+#include "Object.hpp"
 
 namespace m3g {
 
@@ -18,7 +18,7 @@ namespace m3g {
    * @~English  An abstract base class for all objects that can be part of a 3D world.
    * @~Japanese 3Dワールドに存在する全てのオブジェクトの基底となる抽象クラス.
    */
-  class Object3D
+  class Object3D : public Object
   {
   
   public:
@@ -133,6 +133,7 @@ namespace m3g {
     virtual void render (RenderState& state) const;
 
 
+
   protected:
     /**
      * @~English  Sets object type.
@@ -146,7 +147,6 @@ namespace m3g {
     int   obj_type;     ///< M3G非標準のオブジェクトタイプ
     int   user_id;
     std::vector<AnimationTrack*> anim_tracks;
-
   };
 
 } // namespace m3g {

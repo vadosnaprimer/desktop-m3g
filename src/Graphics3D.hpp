@@ -4,7 +4,7 @@
 
 #include <vector>
 #include <iosfwd>
-
+#include "Object.hpp"
 
 namespace m3g {
 
@@ -25,7 +25,7 @@ namespace m3g {
    * @~English  A singleton 3D graphics context that can be bound to a rendering target.
    * @~Japanese レンダリングターゲットをバインドできるシングルトン3Dグラフィックスコンテキスト.
    */
-  class Graphics3D
+  class Graphics3D : public Object
   {
     /**
      * @~English  Struct of viewport setting, for inner use.
