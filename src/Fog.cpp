@@ -9,6 +9,9 @@
 using namespace std;
 using namespace m3g;
 
+const int Fog:: EXPONENTIAL;
+const int Fog:: LINEAR;
+
 Fog:: Fog () : 
   mode(LINEAR), density(1), near(0), far(1), color(0)
 {

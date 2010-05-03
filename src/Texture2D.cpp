@@ -10,6 +10,16 @@
 using namespace std;
 using namespace m3g;
 
+const int Texture2D:: FILTER_BASE_LEVEL;
+const int Texture2D:: FILTER_LINEAR;
+const int Texture2D:: FILTER_NEAREST;
+const int Texture2D:: FUNC_ADD;
+const int Texture2D:: FUNC_BLEND;
+const int Texture2D:: FUNC_DECAL;
+const int Texture2D:: FUNC_MODULATE;
+const int Texture2D:: FUNC_REPLACE;
+const int Texture2D:: WRAP_CLAMP;
+const int Texture2D:: WRAP_REPEAT;
 
 Texture2D:: Texture2D (Image2D* img) :
   image(0), wrapping(WRAP_REPEAT, WRAP_REPEAT),

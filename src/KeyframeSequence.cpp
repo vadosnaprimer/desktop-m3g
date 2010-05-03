@@ -6,6 +6,13 @@
 using namespace std;
 using namespace m3g;
 
+const int KeyframeSequence:: CONSTANT;
+const int KeyframeSequence:: LOOP;
+const int KeyframeSequence:: LINEAR;
+const int KeyframeSequence:: SLERP;
+const int KeyframeSequence:: SPLINE;
+const int KeyframeSequence:: SQUAD;
+const int KeyframeSequence:: STEP;
 
 KeyframeSequence:: KeyframeSequence (int num_keyframes, int num_components, int interpolation) :
   repeat_mode(CONSTANT), interp_type(LINEAR), duration(0), valid_range(0,0),

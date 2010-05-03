@@ -10,6 +10,8 @@
 using namespace std;
 using namespace m3g;
 
+const int Background:: BORDER;
+const int Background:: REPEAT;
 
 Background:: Background () :
   color_clear_enable(true), depth_clear_enable(true), background_color(0x00000000), 

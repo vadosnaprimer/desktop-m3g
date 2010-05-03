@@ -9,6 +9,7 @@ namespace m3g {
 
   class Image2D;
 
+
   /**
    * @~English  Defines whether and how to clear the viewport.
    * @~Japanese ビューポートのクリアとその設定.

@@ -8,6 +8,12 @@
 using namespace std;
 using namespace m3g;
 
+const int Node:: NONE;
+const int Node:: ORIGIN;
+const int Node:: X_AXIS;
+const int Node:: Y_AXIS;
+const int Node:: Z_AXIS;
+
 Node:: Node () : 
   parent(0), rendering_enable(true), picking_enable(true),
   alpha_factor(1), scope(-1),

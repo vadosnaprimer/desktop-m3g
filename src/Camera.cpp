@@ -11,6 +11,9 @@
 using namespace std;
 using namespace m3g;
 
+const int Camera:: GENERIC;
+const int Camera:: PARALLEL;
+const int Camera:: PERSPECTIVE;
 
 Camera:: Camera () :
 type(GENERIC), fovy(0), aspect_ratio(0), near(0), far(0)

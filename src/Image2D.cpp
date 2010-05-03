@@ -6,6 +6,11 @@
 using namespace m3g;
 using namespace std;
 
+const int Image2D:: ALPHA;
+const int Image2D:: LUMINANCE;
+const int Image2D:: LUMINANCE_ALPHA;
+const int Image2D:: RGB;
+const int Image2D:: RGBA;
 
 
 Image2D:: Image2D (int format_, int width_, int height_) : 

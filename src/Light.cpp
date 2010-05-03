@@ -8,6 +8,10 @@
 using namespace std;
 using namespace m3g;
 
+const int Light:: AMBIENT;
+const int Light:: DIRECTIONAL;
+const int Light:: OMNI;
+const int Light:: SPOT;
 
 Light:: Light () :
   mode(DIRECTIONAL), color(0x00ffffff), intensity(1),

@@ -5,6 +5,12 @@
 using namespace m3g;
 using namespace std;
 
+const int CompositingMode:: ALPHA;
+const int CompositingMode:: ALPHA_ADD;
+const int CompositingMode:: MODULATE;
+const int CompositingMode:: MODULATE_X2;
+const int CompositingMode:: REPLACE;
+
 static
 const char* mode_to_string (int mode);
 

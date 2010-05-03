@@ -5,6 +5,13 @@
 using namespace std;
 using namespace m3g;
 
+const int PolygonMode:: CULL_BACK;
+const int PolygonMode:: CULL_FRONT;
+const int PolygonMode:: CULL_NONE;
+const int PolygonMode:: SHADE_FLAT;
+const int PolygonMode:: SHADE_SMOOTH;
+const int PolygonMode:: WINDING_CCW;
+const int PolygonMode:: WINDING_CW;
 
 PolygonMode:: PolygonMode () :
   culling(CULL_BACK), winding(WINDING_CCW) ,shading(SHADE_SMOOTH),

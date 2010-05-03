@@ -6,6 +6,28 @@
 using namespace std;
 using namespace m3g;
 
+const int AnimationTrack:: ALPHA;
+const int AnimationTrack:: AMBIENT_COLOR;
+const int AnimationTrack:: COLOR;
+const int AnimationTrack:: CROP;
+const int AnimationTrack:: DENSITY;
+const int AnimationTrack:: DIFFUSE_COLOR;
+const int AnimationTrack:: EMISSIVE_COLOR;
+const int AnimationTrack:: FAR_DISTANCE;
+const int AnimationTrack:: FIELD_OF_VIEW;
+const int AnimationTrack:: INTENSITY;
+const int AnimationTrack:: MORPH_WEIGHTS;
+const int AnimationTrack:: NEAR_DISTANCE;
+const int AnimationTrack:: ORIENTATION;
+const int AnimationTrack:: PICKABILITY;
+const int AnimationTrack:: SCALE;
+const int AnimationTrack:: SHININESS;
+const int AnimationTrack:: SPECULAR_COLOR;
+const int AnimationTrack:: SPOT_ANGLE;
+const int AnimationTrack:: SPOT_EXPONENT;
+const int AnimationTrack:: TRANSLATION;
+const int AnimationTrack:: VISIBILITY;
+
 static
 bool is_property_has_valid_component (int property, int component_count)
 {
