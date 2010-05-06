@@ -13,8 +13,14 @@
 using namespace m3g;
 using namespace std;
 
+const int Graphics3D:: ANTIALIAS;
+const int Graphics3D:: DITHER;
+const int Graphics3D:: OVERWRITE;
+const int Graphics3D:: TRUE_COLOR;
+
+
 Graphics3D:: Graphics3D () : 
-  viewport(0,0,0,0), depth_buffer_enable(false), hints(0)
+  viewport(0,0,0,0), depth_buffer_enable(false), hints(0), depth_range(0,0)
 {
   // 今だけZテストを常時有効
   glEnable (GL_DEPTH_TEST);

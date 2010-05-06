@@ -21,6 +21,7 @@ namespace m3g {
 
     /**
      * @~English  Constructs a triangle strip array with implicit indices.
+
      * @~Japanese 暗黙的にインデックスで指定したトライアングルストリップ配列の作成
      */
     TriangleStripArray (int first_index, int num_strips, int* strips);

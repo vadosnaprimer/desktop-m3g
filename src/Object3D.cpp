@@ -56,9 +56,9 @@ int Object3D:: getAnimationTrackCount () const
   return anim_tracks.size();
 }
 
-int Object3D:: getReferences (Object3D** references, int size) const
+int Object3D:: getReferences (Object3D** references) const
 {
-  throw NotImplementedException (__FILE__, __func__, "Sorry, Reference is not implemented yet.");
+  throw NotImplementedException (__FILE__, __func__, "Sorry, getReference is not implemented yet.");
 
   return 0;
 }

@@ -90,7 +90,7 @@ namespace m3g {
      * @~English  Sets the CompositingMode to user for this Appearance.
      * @~Japanese このアピアランスで使用するCompositingModeの設定.
      */
-    void setCompositingMode (CompositingMode* compositingMode);
+    void setCompositingMode (CompositingMode* compositing_mode);
 
     /**
      * @~English  Sets the fogging attributes to use for this Appearance.

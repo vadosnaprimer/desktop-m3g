@@ -188,8 +188,6 @@ namespace m3g {
      */
     virtual std::ostream& print (std::ostream& out) const;
 
-  protected:
-
     /**
      * @~English   Sets parent of this node.
      * @~Japanese このノードの親ノードを設定する. 

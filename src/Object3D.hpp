@@ -77,7 +77,7 @@ namespace m3g {
      * @~English  Returns the number of direct Object3D references in this object, and fills in the objects to the given array.
      * @~Japanese このオブジェクトから参照しているObject3Dの数を返し、配列をそのポインターで埋める.
      */
-    virtual int getReferences (Object3D** references, int size) const;
+    virtual int getReferences (Object3D** references) const;
 
     /**
      * @~English  Gets the user ID of this object.
@@ -103,7 +103,7 @@ namespace m3g {
      * @~English  Sets the user ID for this object.
      * @~Japanese このオブジェクトのユーザーIDを設定する.
      */
-    void setUserID (int userID);
+    void setUserID (int user_id);
 
     /**
      * @~English  Associates an arbitrary, application specific Object wth this Object3D.

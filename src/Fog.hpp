@@ -14,8 +14,16 @@ namespace m3g {
   class Fog : public Object3D
   {
     friend class Appearance;  // for findByType
+
+  public:
     
-    public:
+    struct Distance {
+      Distance (float n, float f) : near(n), far(f) {};
+      float near;
+      float far;
+    };
+    
+
     /**
      * @~English  A parameter to setMode, specifying exponential fog.
      * @~Japanese 指数フォグを表す定数.
@@ -136,9 +144,11 @@ namespace m3g {
   private:
     int   mode;
     float density;
-    float near;
-    float far;
+    //float near;
+    //float far;
     int   color;
+
+    Distance distance;
   };
 
 

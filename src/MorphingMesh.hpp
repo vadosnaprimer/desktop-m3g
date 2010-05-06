@@ -23,13 +23,22 @@ namespace m3g {
      * @~English  Construct a new MorphingMesh with the given base mesh and morph targets.
      * @~Japanese 指定されたベースメッシュとモーフターゲットを持つ新しいモーフィングメッシュを作成.
      */
-    MorphingMesh (VertexBuffer* base, int num_target, VertexBuffer** targets, int num_submesh, IndexBuffer** submeshs, Appearance** appearances);
+    MorphingMesh (VertexBuffer*  base,
+                  int            num_target,
+                  VertexBuffer** targets,
+                  int            num_submesh,
+                  IndexBuffer**  submeshes,
+                  Appearance**   appearances);
 
     /**
      * @~English  Constructs a new MorphingMesh with the given base mesh and morph targets.
      * @~Japanese 指定されたベースメッシュとモーフターゲットを持つ新しいモーフィングメッシュを作成.
      */
-    MorphingMesh (VertexBuffer* base, int num_target, VertexBuffer** targets, IndexBuffer* submesh, Appearance* appearance);
+    MorphingMesh (VertexBuffer*  base, 
+                  int            num_target, 
+                  VertexBuffer** targets,
+                  IndexBuffer*   submesh,
+                  Appearance*    appearance);
 
     /**
      * @~English  Destruct this object.

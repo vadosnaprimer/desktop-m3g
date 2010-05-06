@@ -27,6 +27,8 @@ namespace m3g {
    */
   class Graphics3D : public Object
   {
+  public:
+
     /**
      * @~English  Struct of viewport setting, for inner use.
      * @~Japanese ビューポートを定義する内部使用の構造体.
@@ -39,8 +41,15 @@ namespace m3g {
       float height;
     };
 
+    /**
+     *
+     */
+    struct DepthRange {
+      DepthRange (float n, float f) : near(n), far(f) {};
+      float near;
+      float far;
+    };
 
-  public:
     static const int ANTIALIAS   = 1<<1;
     static const int DITHER      = 1<<2;
     static const int OVERWRITE   = 1<<4;
@@ -230,11 +239,12 @@ namespace m3g {
      */
     Graphics3D ();
 
-  private:
+  public:
     Viewport viewport;
     bool     depth_buffer_enable;
     int      hints;
     std::vector<Property*> properties;
+    DepthRange depth_range;
   };
 
 } // namespace m3g {

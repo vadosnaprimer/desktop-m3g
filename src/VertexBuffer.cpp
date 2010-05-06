@@ -131,7 +131,8 @@ VertexArray* VertexBuffer:: getColors () const
 
 int VertexBuffer:: getDefaultColor () const
 {
-    return default_color;
+  // argb
+  return default_color;
 }
 
 VertexArray* VertexBuffer:: getNormals () const

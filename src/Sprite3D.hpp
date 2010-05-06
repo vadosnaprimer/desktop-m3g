@@ -18,6 +18,8 @@ namespace m3g {
   {
     friend class Group;   // for sort_by_layer
 
+  public:
+
     /**
      * @~English  Structure of defining crop region, for inner use.
      * @~Japanese クロップ領域を定義する内部使用の構造体.
@@ -117,7 +119,7 @@ namespace m3g {
      * @~English  Sets a cropping rectangle within the source image.
      * @~Japanese ソース画像のクロッピング矩形の設定.
      */
-    void setCrop (int cropX, int cropY, int width, int height);
+    void setCrop (int crop_x, int crop_y, int width, int height);
 
     /**
      * @~English  Sets the sprite image to display.

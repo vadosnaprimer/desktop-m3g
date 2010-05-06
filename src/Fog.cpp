@@ -13,7 +13,7 @@ const int Fog:: EXPONENTIAL;
 const int Fog:: LINEAR;
 
 Fog:: Fog () : 
-  mode(LINEAR), density(1), near(0), far(1), color(0)
+  mode(LINEAR), density(1), color(0), distance(0,1)
 {
   setObjectType (OBJTYPE_FOG);
 }
@@ -132,10 +132,10 @@ int Fog :: animate (int world_time)
     density = max (0.f, new_density);
   }
   if (is_far_modefied) {
-    far = new_far;
+    distance.far = new_far;
   }
   if (is_near_modefied) {
-    near = new_near;
+    distance.near = new_near;
   }
 
   //this->print (cout);
@@ -155,7 +155,7 @@ float Fog:: getDensity () const
 
 float Fog:: getFarDistance () const
 {
-    return far;
+    return distance.far;
 }
 
 int Fog:: getMode () const
@@ -165,7 +165,7 @@ int Fog:: getMode () const
 
 float Fog:: getNearDistance () const
 {
-    return near;
+    return distance.near;
 }
 
 void Fog:: setColor (int rgb)
@@ -182,15 +182,16 @@ void Fog:: setDensity (float dens)
   density = dens;
 }
 
-void Fog:: setLinear (float near_, float far_)
+void Fog:: setLinear (float near, float far)
 {
-  if (near_ == far_) {
-    // M3Gでは定義されてないが0割を発生するためエラーとする
-    throw IllegalArgumentException (__FILE__, __func__, "Near and far are invalid, n=%f, n=%f.", near_, far_);
+  if (near == far) {
+    // M3Gでは定義されてないが将来的に確実に0割を発生するため
+    // ここでエラーとする
+    throw IllegalArgumentException (__FILE__, __func__, "Near and far are invalid, n=%f, n=%f.", near, far);
   }
 
-  near = near_;
-  far  = far_;
+  distance.near = near;
+  distance.far  = far;
 }
 
 void Fog:: setMode (int mode_)
@@ -229,8 +230,8 @@ void Fog:: render (RenderState& state) const
     break;
   case LINEAR:
     glFogi  (GL_FOG_MODE , GL_LINEAR);
-    glFogf  (GL_FOG_START, near);
-    glFogf  (GL_FOG_END  , far);
+    glFogf  (GL_FOG_START, distance.near);
+    glFogf  (GL_FOG_END  , distance.far);
     glFogfv (GL_FOG_COLOR, rgb);
     break;
   default:
@@ -260,8 +261,8 @@ std::ostream& Fog:: print (std::ostream& out) const
   out << "Fog: ";
   out << "  mode=" << mode_to_string(mode);
   out << ", density=" << density;
-  out << ", near=" << near;
-  out << ", far=" << far;
+  out << ", near=" << distance.near;
+  out << ", far=" << distance.far;
   out << ", color=0x" << hex << color << dec; 
   return out;
 }

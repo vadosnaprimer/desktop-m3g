@@ -9,8 +9,6 @@
 namespace m3g {
 
 
-
-
   /**
    * @~English  An abstract base class for Node and Texture2D, defining common methods for manipulating node and texture.
    * @~Japanese ノードや2Dテクスチャーのための座標変換を扱う抽象クラス.

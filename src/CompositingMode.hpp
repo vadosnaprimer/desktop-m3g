@@ -15,6 +15,8 @@ namespace m3g {
   {
     friend class Appearance;  // for findByType
 
+  public:
+
     /**
      * @~English  Structure of depth offset, for inner use.
      * @~Japanese デプスオフセット情報を持つ内部使用の構造体.
@@ -25,8 +27,6 @@ namespace m3g {
       float units;
     };
 
-
-  public:
     /**
      * @~English  Selects the alpha blend mode.
      * @~Japanese アルファブレンドを表す定数.
@@ -190,7 +190,6 @@ namespace m3g {
     bool        depth_write;
     bool        color_write;
     bool        alpha_write;
-
   };
 
 } // namespace m3g {

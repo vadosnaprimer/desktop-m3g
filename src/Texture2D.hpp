@@ -17,6 +17,8 @@ namespace m3g {
   {
     friend class Appearance;  // for rendere, setTextureUnit
 
+  public:
+
     struct Wrapping {
       Wrapping(int s_, int t_) : s(s_), t(t_) {};
       int s;
@@ -27,6 +29,7 @@ namespace m3g {
       int level;
       int image;
     };
+
   public:
     /**
      * @~English  A level filtering paramteer to setFiltering that selects the base lvevel image.

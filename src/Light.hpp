@@ -15,6 +15,8 @@ namespace m3g {
     friend class Graphics3D;  // for render
     friend class World;       // for resetGLIndex
 
+  public:
+
     /**
      * @~English  Attenuation parameters, for inner use.
      * @~Japanese 放射照度の計算式のパラメーターを保持する内部使用の構造体.
@@ -187,7 +189,7 @@ namespace m3g {
      */
     virtual void render (RenderState& state) const;
 
-  private:
+  public:
     int         mode;
     int         color;
     int         intensity;

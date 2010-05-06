@@ -823,7 +823,7 @@ void Loader:: parseMesh (Mesh* mesh)
   delete [] indices;
   delete [] appears;
 
-  mesh->Mesh:: print (cout) << "\n";
+  //mesh->Mesh:: print (cout) << "\n";
 }
 
 void Loader:: parseMorphingMesh ()

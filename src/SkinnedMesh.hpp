@@ -33,7 +33,7 @@ namespace m3g {
                  int           num_submesh,
                  IndexBuffer** submeshes,
                  Appearance**  apperarances,
-                 Group*        skelton);
+                 Group*        skeleton);
 
     /**
      * @~English  Constructs a new SkinnedMesh witdh the given vertices, submeshes and skeleton.
@@ -42,7 +42,7 @@ namespace m3g {
     SkinnedMesh (VertexBuffer* vertices, 
                  IndexBuffer*  submeshes, 
                  Appearance*   apperarances,
-                 Group*        skelton);
+                 Group*        skeleton);
 
     /**
      * @~English  Destructs this object.
