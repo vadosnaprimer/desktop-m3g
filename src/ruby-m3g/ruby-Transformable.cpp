@@ -101,23 +101,22 @@ VALUE ruby_Transformable_get_translation (VALUE self)
     rb_ary_push (val_trans, rb_float_new(trans[1]));
     rb_ary_push (val_trans, rb_float_new(trans[2]));
 
-    return Qnil;
+    return val_trans;
 }
 
 VALUE ruby_Transformable_post_rotate (VALUE self, VALUE val_angle, VALUE val_ax, VALUE val_ay, VALUE val_az)
 {
-    Transformable* p;
-    float angle, ax, ay, az;
+  Transformable* p;
+  Data_Get_Struct (self, Transformable, p);
+  float angle, ax, ay, az;
+  angle = NUMERIC2FLOAT(val_angle);
+  ax    = NUMERIC2FLOAT(val_ax);
+  ay    = NUMERIC2FLOAT(val_ay);
+  az    = NUMERIC2FLOAT(val_az);
+  
+  p->postRotate (angle, ax, ay, az);
 
-    Data_Get_Struct (self, Transformable, p);
-    angle = RFLOAT_VALUE(val_angle);
-    ax    = RFLOAT_VALUE(val_ax);
-    ay    = RFLOAT_VALUE(val_ay);
-    az    = RFLOAT_VALUE(val_az);
-
-    p->postRotate (angle, ax, ay, az);
-
-    return Qnil;
+  return Qnil;
 }
 
 VALUE ruby_Transformable_pre_rotate (VALUE self, VALUE val_angle, VALUE val_ax, VALUE val_ay, VALUE val_az)
@@ -126,10 +125,10 @@ VALUE ruby_Transformable_pre_rotate (VALUE self, VALUE val_angle, VALUE val_ax, 
     float angle, ax, ay, az;
 
     Data_Get_Struct (self, Transformable, p);
-    angle = RFLOAT_VALUE(val_angle);
-    ax    = RFLOAT_VALUE(val_ax);
-    ay    = RFLOAT_VALUE(val_ay);
-    az    = RFLOAT_VALUE(val_az);
+    angle = NUMERIC2FLOAT(val_angle);
+    ax    = NUMERIC2FLOAT(val_ax);
+    ay    = NUMERIC2FLOAT(val_ay);
+    az    = NUMERIC2FLOAT(val_az);
 
     p->preRotate (angle, ax, ay, az);
 
@@ -142,9 +141,9 @@ VALUE ruby_Transformable_scale (VALUE self, VALUE val_sx, VALUE val_sy, VALUE va
     float sx, sy, sz;
 
     Data_Get_Struct (self, Transformable, p);
-    sx  = RFLOAT_VALUE (val_sx);
-    sy  = RFLOAT_VALUE (val_sy);
-    sz  = RFLOAT_VALUE (val_sz);
+    sx  = NUMERIC2FLOAT (val_sx);
+    sy  = NUMERIC2FLOAT (val_sy);
+    sz  = NUMERIC2FLOAT (val_sz);
 
     p->setScale (sx, sy, sz);
 
@@ -159,10 +158,10 @@ VALUE ruby_Transformable_set_orientation (VALUE self,  VALUE val_args)
   VALUE val_az    = rb_ary_entry(val_args, 3);
   Transformable* p;
   Data_Get_Struct (self, Transformable, p);
-  float angle = RFLOAT_VALUE (val_angle);
-  float ax    = RFLOAT_VALUE (val_ax);
-  float ay    = RFLOAT_VALUE (val_ay);
-  float az    = RFLOAT_VALUE (val_az);
+  float angle = NUMERIC2FLOAT (val_angle);
+  float ax    = NUMERIC2FLOAT (val_ax);
+  float ay    = NUMERIC2FLOAT (val_ay);
+  float az    = NUMERIC2FLOAT (val_az);
 
     p->setOrientation (angle, ax, ay, az);
 
@@ -176,13 +175,13 @@ VALUE ruby_Transformable_set_scale (VALUE self, VALUE val_args)
   VALUE val_sz = rb_ary_entry(val_args, 2);
   Transformable* p;
   Data_Get_Struct (self, Transformable, p);
-  float sx = RFLOAT_VALUE (val_sx);
-  float sy = RFLOAT_VALUE (val_sy);
-  float sz = RFLOAT_VALUE (val_sz);
+  float sx = NUMERIC2FLOAT (val_sx);
+  float sy = NUMERIC2FLOAT (val_sy);
+  float sz = NUMERIC2FLOAT (val_sz);
 
-    p->setScale (sx, sy, sz);
+  p->setScale (sx, sy, sz);
 
-    return Qnil;
+  return Qnil;
 }
 
 VALUE ruby_Transformable_set_transform (VALUE self, VALUE val_tranform)
@@ -198,23 +197,38 @@ VALUE ruby_Transformable_set_transform (VALUE self, VALUE val_tranform)
     return Qnil;
 }
 
-VALUE ruby_Transformable_translate (VALUE self, VALUE val_args)
+VALUE ruby_Transformable_set_translation (VALUE self, VALUE val_txyz)
 {
-  VALUE val_tx = rb_ary_entry(val_args, 0);
-  VALUE val_ty = rb_ary_entry(val_args, 1);
-  VALUE val_tz = rb_ary_entry(val_args, 2);
+  VALUE val_tx = rb_ary_entry(val_txyz, 0);
+  VALUE val_ty = rb_ary_entry(val_txyz, 1);
+  VALUE val_tz = rb_ary_entry(val_txyz, 2);
+    Transformable* p;
+    float tx, ty, tz;
+
+    Data_Get_Struct (self, Transformable, p);
+    tx  = NUMERIC2FLOAT (val_tx);
+    ty  = NUMERIC2FLOAT (val_ty);
+    tz  = NUMERIC2FLOAT (val_tz);
+
+    p->setTranslation (tx, ty, tz);
+
+    return Qnil;
+}
+
+VALUE ruby_Transformable_translate (VALUE self, VALUE val_tx, VALUE val_ty, VALUE val_tz)
+{
   Transformable* p;
   Data_Get_Struct (self, Transformable, p);
-  float tx = RFLOAT_VALUE (val_tx);
-  float ty = RFLOAT_VALUE (val_ty);
-  float tz = RFLOAT_VALUE (val_tz);
+  float tx = NUMERIC2FLOAT (val_tx);
+  float ty = NUMERIC2FLOAT (val_ty);
+  float tz = NUMERIC2FLOAT (val_tz);
 
-  p->setTranslation (tx, ty, tz);
+  p->translate (tx, ty, tz);
 
   return Qnil;
 }
 
-void register_Transformable (VALUE rb_cTransformable)
+void register_Transformable ()
 {
      // Transformable
      rb_define_alloc_func (rb_cTransformable, ruby_Transformable_allocate);
@@ -222,16 +236,17 @@ void register_Transformable (VALUE rb_cTransformable)
 
      rb_define_method (rb_cTransformable, "composite_transform", (VALUE(*)(...))ruby_Transformable_get_composite_transform, 0);
      rb_define_method (rb_cTransformable, "orientation",         (VALUE(*)(...))ruby_Transformable_get_orientation, 0);
-     rb_define_method (rb_cTransformable, "scale",               (VALUE(*)(...))ruby_Transformable_get_scale, 0);
+     rb_define_method (rb_cTransformable, "scaling",               (VALUE(*)(...))ruby_Transformable_get_scale, 0);
      rb_define_method (rb_cTransformable, "transform",           (VALUE(*)(...))ruby_Transformable_get_transform, 0);
+     rb_define_method (rb_cTransformable, "translate",         (VALUE(*)(...))ruby_Transformable_translate, 3);
      rb_define_method (rb_cTransformable, "translation",         (VALUE(*)(...))ruby_Transformable_get_translation, 0);
      rb_define_method (rb_cTransformable, "post_rotate",         (VALUE(*)(...))ruby_Transformable_post_rotate, 4);
      rb_define_method (rb_cTransformable, "pre_rotate",          (VALUE(*)(...))ruby_Transformable_pre_rotate, 4);
      rb_define_method (rb_cTransformable, "scale",               (VALUE(*)(...))ruby_Transformable_scale, 3);
      rb_define_method (rb_cTransformable, "orientation=",        (VALUE(*)(...))ruby_Transformable_set_orientation, 1);
-     rb_define_method (rb_cTransformable, "scale=",              (VALUE(*)(...))ruby_Transformable_set_scale, 1);
+     rb_define_method (rb_cTransformable, "scaling=",              (VALUE(*)(...))ruby_Transformable_set_scale, 1);
      rb_define_method (rb_cTransformable, "transform=",          (VALUE(*)(...))ruby_Transformable_set_transform, 1);
-     rb_define_method (rb_cTransformable, "translate",           (VALUE(*)(...))ruby_Transformable_translate, 1);
+     rb_define_method (rb_cTransformable, "translation=",           (VALUE(*)(...))ruby_Transformable_set_translation, 1);
 
 
 }

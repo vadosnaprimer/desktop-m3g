@@ -136,7 +136,7 @@ VALUE ruby_SkinnedMesh_get_skeleton (VALUE self)
 }
 
 
-void register_SkinnedMesh (VALUE rb_cSkinnedMesh)
+void register_SkinnedMesh ()
 {
      // SkinnedMesh
      rb_define_alloc_func (rb_cSkinnedMesh, ruby_SkinnedMesh_allocate);

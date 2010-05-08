@@ -21,7 +21,7 @@ VALUE ruby_Material_free (Material* ptr)
 VALUE ruby_Material_allocate (VALUE self)
 {
     void* p = ruby_xmalloc (sizeof(Material));
-    return Data_Wrap_Struct (self, NULL, ruby_Material_free, p);
+    return Data_Wrap_Struct (self, 0, ruby_Material_free, p);
 }
 
 VALUE ruby_Material_initialize (VALUE self)
@@ -76,7 +76,7 @@ VALUE ruby_Material_set_shininess (VALUE self, VALUE val_shininess)
   float shininess;
 
   Data_Get_Struct (self, Material, p);
-  shininess = RFLOAT_VALUE (val_shininess);
+  shininess = NUMERIC2FLOAT (val_shininess);
 
   p->setShininess (shininess);
 

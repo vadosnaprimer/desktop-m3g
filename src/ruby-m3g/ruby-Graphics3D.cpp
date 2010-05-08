@@ -240,7 +240,7 @@ VALUE ruby_Graphics3D_render (int argc, VALUE* argv, VALUE self)
   switch (num) {
   case 1: {
     World* wld;
-    Data_Get_Struct (self, World, wld);
+    Data_Get_Struct (val_arg1, World, wld);
     p->render (wld);
     break;
   }
@@ -314,13 +314,18 @@ VALUE ruby_Graphics3D_set_light (VALUE self, VALUE val_index, VALUE val_light, V
 
 VALUE ruby_Graphics3D_set_viewport (VALUE self, VALUE val_viewport)
 {
+  VALUE val_x      = rb_ary_entry(val_viewport, 0);
+  VALUE val_y      = rb_ary_entry(val_viewport, 1);
+  VALUE val_width  = rb_ary_entry(val_viewport, 2);
+  VALUE val_height = rb_ary_entry(val_viewport, 3);
   Graphics3D* p;
-  Graphics3D::Viewport* viewport;
-
   Data_Get_Struct (self, Graphics3D, p);
-  Data_Get_Struct (val_viewport, Graphics3D::Viewport, viewport);
+  float x      = NUMERIC2FLOAT(val_x);
+  float y      = NUMERIC2FLOAT(val_y);
+  float width  = NUMERIC2FLOAT(val_width);
+  float height = NUMERIC2FLOAT(val_height);
 
-  p->setViewport (viewport->x, viewport->y, viewport->width, viewport->height);
+  p->setViewport (x, y, width, height);
 
   return Qnil;
 }

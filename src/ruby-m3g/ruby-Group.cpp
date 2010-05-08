@@ -1,7 +1,9 @@
-#include <new>
+#include <iostream>
 #include "ruby.h"
-#include "Group.hpp"
+#include "m3g.hpp"
+#include "ruby-m3g.hpp"
 using namespace m3g;
+using namespace std;
 
 
 namespace {
@@ -79,12 +81,12 @@ VALUE ruby_Group_pick (VALUE self, VALUE val_scope, VALUE val_ox, VALUE val_oy, 
 
     Data_Get_Struct (self, Group, p);
     scope = FIX2INT (val_scope);
-    ox = RFLOAT_VALUE(val_ox);
-    oy = RFLOAT_VALUE(val_oy);
-    oz = RFLOAT_VALUE(val_oz);
-    dx = RFLOAT_VALUE(val_dx);
-    dy = RFLOAT_VALUE(val_dy);
-    dz = RFLOAT_VALUE(val_dz);
+    ox = NUMERIC2FLOAT(val_ox);
+    oy = NUMERIC2FLOAT(val_oy);
+    oz = NUMERIC2FLOAT(val_oz);
+    dx = NUMERIC2FLOAT(val_dx);
+    dy = NUMERIC2FLOAT(val_dy);
+    dz = NUMERIC2FLOAT(val_dz);
     Data_Get_Struct (val_ri, RayIntersection, ri);
 
     picked = p->pick (scope, ox, oy, oz, dx, dy, dz, ri);
@@ -141,7 +143,7 @@ VALUE ruby_Group_ChildAccessor_get_child (VALUE self, VALUE val_index)
  }
 
 
-void register_Group (VALUE rb_cGroup)
+void register_Group ()
 {
      // Group
      rb_define_alloc_func (rb_cGroup, ruby_Group_allocate);

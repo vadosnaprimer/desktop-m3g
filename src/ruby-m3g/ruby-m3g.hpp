@@ -3,6 +3,21 @@
 #ifndef __RUBY_M3G_HPP__
 #define __RUBY_M3G_HPP__
 
+// 古いrubyだとこのマクロがないので
+#ifndef RFLOAT_VALUE
+#define RFLOAT_VALUE(v) (RFLOAT(v)->value)
+#endif
+
+#define NUMERIC2FLOAT(x)                     \
+  (TYPE(x) == T_FLOAT ) ? RFLOAT_VALUE(x) :	\
+  (TYPE(x) == T_BIGNUM) ? NUM2INT(x)      :	\
+  (TYPE(x) == T_FIXNUM) ? FIX2INT(x)      :	\
+  0;
+
+// 最後0よりはこちらの方が良い
+// rb_funcall(x, rb_intern("to_i"), 0)
+// int id_to_i = rb_intern("to_i")
+
 // M3Gで定義された30クラス
 extern VALUE rb_mM3G;
 extern VALUE rb_cGraphics3D;
@@ -41,6 +56,7 @@ extern VALUE rb_cTransform;
 
 void register_Graphics3D ();
 void register_Loader ();
+void register_Object3D ();
 void register_AnimationController ();
 void register_AnimationTrack ();
 void register_Appearance ();

@@ -56,7 +56,8 @@ VALUE ruby_Image2D_initialize (int argc, VALUE* argv, VALUE self)
     }
     }
 
-    return Qnil;
+    p->setExportedEntity ((void*)self);
+    return self;
 }
 
 VALUE ruby_Image2D_get_format (VALUE self)
@@ -127,7 +128,7 @@ VALUE ruby_Image2D_set (VALUE self, VALUE val_x, VALUE val_y, VALUE val_width, V
   return Qnil;
 }
 
-void register_Image2D (VALUE rb_cImage2D)
+void register_Image2D ()
 {
      // Image2D
      rb_define_const (rb_cImage2D, "ALPHA",           INT2FIX(Image2D::ALPHA));

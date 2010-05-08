@@ -6,8 +6,14 @@ using namespace m3g;
 using namespace std;
 
 namespace {
-  VALUE rb_cLight_Attenuation;
-  VALUE rb_cLight_Spot;
+  struct AttenuationAccessor {
+    Light* light;
+  };
+  struct SpotAccessor {
+    Light* light;
+  };
+  VALUE rb_cLight_AttenuationAccessor;
+  VALUE rb_cLight_SpotAccessor;
 };
 
 VALUE ruby_Light_free (Light* ptr)
@@ -45,17 +51,11 @@ VALUE ruby_Light_get_color (VALUE self)
 VALUE ruby_Light_get_attenuation (VALUE self)
 {
     Light* p;
-    Light::Attenuation* attenuation;
-    VALUE val_attenuation;
-
     Data_Get_Struct (self, Light, p);
-    val_attenuation = Data_Make_Struct (val_attenuation, Light::Attenuation, 0, -1, attenuation);
-
-    attenuation->constant  = p->getConstantAttenuation ();
-    attenuation->linear    = p->getLinearAttenuation ();
-    attenuation->quadratic = p->getQuadraticAttenuation ();
-    
-    return val_attenuation;
+    AttenuationAccessor* accessor;
+    VALUE val_accessor = Data_Make_Struct (rb_cLight_AttenuationAccessor, AttenuationAccessor, 0, -1, accessor);
+    accessor->light = p;
+    return val_accessor;
 }
 
 VALUE ruby_Light_get_intensity (VALUE self)
@@ -87,11 +87,10 @@ VALUE ruby_Light_get_spot (VALUE self)
 {
     Light* p;
     Data_Get_Struct (self, Light, p);
-    Light::Spot* spot;
-    VALUE val_spot = Data_Make_Struct (rb_cLight_Spot, Light::Spot, 0, -1, spot);
-    spot->angle    = p->getSpotAngle ();
-    spot->exponent = p->getSpotExponent ();
-    return val_spot;
+    SpotAccessor* accessor;
+    VALUE val_accessor = Data_Make_Struct (rb_cLight_SpotAccessor, SpotAccessor, 0, -1, accessor);
+    accessor->light = p;
+    return val_accessor;
 }
 
 VALUE ruby_Light_set_attenuation (VALUE self, VALUE val_args)
@@ -152,97 +151,92 @@ VALUE ruby_Light_set_mode (VALUE self, VALUE val_mode)
 
 VALUE ruby_Light_set_spot (VALUE self, VALUE val_spot)
 {
-    Light* p;
-    Light::Spot* spot;
+  VALUE val_angle    = rb_ary_entry(val_spot, 0);
+  VALUE val_exponent = rb_ary_entry(val_exponent, 0);
+  Light* p;
+  Data_Get_Struct (self, Light, p);
+  float angle    = NUMERIC2FLOAT(val_angle);
+  float exponent = NUMERIC2FLOAT(val_exponent);
 
-    Data_Get_Struct (self, Light, p);
-    Data_Get_Struct (val_spot, Light::Spot, spot);
+  p->setSpotAngle (angle);
+  p->setSpotExponent (exponent);
 
-    p->setSpotAngle (spot->angle);
-    p->setSpotExponent (spot->exponent);
-
-    return Qnil;
+  return Qnil;
 }
 
 /**
- * Light::Attenuation
+ * Light::AttenuationAccessor
  */
 
-VALUE ruby_Light_Attenuation_allocate (VALUE self)
+VALUE ruby_Light_AttenuationAccessor_allocate (VALUE self)
 {
-  void* p = ruby_xmalloc (sizeof(Light::Attenuation));
+  void* p = ruby_xmalloc (sizeof(AttenuationAccessor));
   return Data_Wrap_Struct (self, 0, -1, p);
 }
 
-VALUE ruby_Light_Attenuation_initialize (VALUE self, VALUE val_constant, VALUE val_linear, VALUE val_quadratic)
+VALUE ruby_Light_AttenuationAccessor_initialize (VALUE self)
 {
-  Light::Attenuation* p;
-    Data_Get_Struct (self, Light::Attenuation, p);
-    p->constant  = RFLOAT_VALUE (val_constant);
-    p->linear    = RFLOAT_VALUE (val_linear);
-    p->quadratic = RFLOAT_VALUE (val_quadratic);
-
-    return self;
+  AttenuationAccessor* p;
+  Data_Get_Struct (self, AttenuationAccessor, p);
+  return self;
 }
 
-VALUE ruby_Light_Attenuation_get_constant (VALUE self)
+VALUE ruby_Light_AttenuationAccessor_get_constant (VALUE self)
 {
-  Light::Attenuation* p;
-  Data_Get_Struct (self, Light::Attenuation, p);
-
-  return rb_float_new (p->constant);
+  AttenuationAccessor* p;
+  Data_Get_Struct (self, AttenuationAccessor, p);
+  float constant = p->light->getConstantAttenuation();
+  return rb_float_new (constant);
 }
 
-VALUE ruby_Light_Attenuation_get_linear (VALUE self)
+VALUE ruby_Light_AttenuationAccessor_get_linear (VALUE self)
 {
-  Light::Attenuation* p;
-  Data_Get_Struct (self, Light::Attenuation, p);
-
-  return rb_float_new (p->linear);
+  AttenuationAccessor* p;
+  Data_Get_Struct (self, AttenuationAccessor, p);
+  float linear = p->light->getLinearAttenuation();
+  return rb_float_new (linear);
 }
 
-VALUE ruby_Light_Attenuation_get_quadratic (VALUE self)
+VALUE ruby_Light_AttenuationAccessor_get_quadratic (VALUE self)
 {
-  Light::Attenuation* p;
-  Data_Get_Struct (self, Light::Attenuation, p);
-
-  return rb_float_new (p->quadratic);
+  AttenuationAccessor* p;
+  Data_Get_Struct (self, AttenuationAccessor, p);
+  float quadratic = p->light->getQuadraticAttenuation();
+  return rb_float_new (quadratic);
 }
 
 /**
- * Light::Spot
+ * Light_SpotAccessor
  */
-VALUE ruby_Light_Spot_allocate (VALUE self)
+
+VALUE ruby_Light_SpotAccessor_allocate (VALUE self)
 {
-  void* p = ruby_xmalloc (sizeof(Light::Spot));
+  void* p = ruby_xmalloc (sizeof(SpotAccessor));
   return Data_Wrap_Struct (self, 0, -1, p);
 }
 
-VALUE ruby_Light_Spot_initialize (VALUE self, VALUE val_angle, VALUE val_exponent)
+VALUE ruby_Light_SpotAccessor_initialize (VALUE self)
 {
-  Light::Spot* p;
-    Data_Get_Struct (self, Light::Spot, p);
-    p->angle     = RFLOAT_VALUE (val_angle);
-    p->exponent  = RFLOAT_VALUE (val_exponent);
-    return self;
+  SpotAccessor* p;
+  Data_Get_Struct (self, SpotAccessor, p);
+  return self;
 }
 
-VALUE ruby_Light_Spot_get_angle (VALUE self)
+VALUE ruby_Light_SpotAccessor_get_angle (VALUE self)
 {
-  Light::Spot* p;
-  Data_Get_Struct (self, Light::Spot, p);
-
-  return rb_float_new (p->angle);
+  SpotAccessor* p;
+  Data_Get_Struct (self, SpotAccessor, p);
+  float angle = p->light->getSpotAngle();
+  return rb_float_new (angle);
 }
 
-VALUE ruby_Light_Spot_get_exponent (VALUE self)
+VALUE ruby_Light_SpotAccessor_get_exponent (VALUE self)
 {
-  Light::Spot* p;
-  Data_Get_Struct (self, Light::Spot, p);
-
-  return rb_float_new (p->exponent);
+  SpotAccessor* p;
+  Data_Get_Struct (self, SpotAccessor, p);
+  float exponent = p->light->getSpotExponent();
+  return rb_float_new (exponent);
 }
-
 
 
 void register_Light ()
@@ -267,19 +261,22 @@ void register_Light ()
      rb_define_method (rb_cLight, "mode=",                 (VALUE(*)(...))ruby_Light_set_mode, 1);
      rb_define_method (rb_cLight, "spot=",           (VALUE(*)(...))ruby_Light_set_spot, 1);
 
-     // Light::Attenuation
-     rb_define_alloc_func (rb_cLight_Attenuation, ruby_Light_Attenuation_allocate);
-     rb_define_private_method (rb_cLight_Attenuation, "initialize", (VALUE(*)(...))ruby_Light_Attenuation_initialize, 3);
+     // Light_AttenuationAccessor
+     rb_cLight_AttenuationAccessor  = rb_define_class_under (rb_cLight, "AttenuationAccessor", rb_cObject);
 
-     rb_define_method (rb_cLight_Attenuation, "constant",                (VALUE(*)(...))ruby_Light_Attenuation_get_constant, 0);
-     rb_define_method (rb_cLight_Attenuation, "linear",                (VALUE(*)(...))ruby_Light_Attenuation_get_linear, 0);
-     rb_define_method (rb_cLight_Attenuation, "quadratic",                (VALUE(*)(...))ruby_Light_Attenuation_get_quadratic, 0);
+     rb_define_alloc_func (rb_cLight_AttenuationAccessor, ruby_Light_AttenuationAccessor_allocate);
+     rb_define_private_method (rb_cLight_AttenuationAccessor, "initialize", (VALUE(*)(...))ruby_Light_AttenuationAccessor_initialize, 0);
 
-     // Light::Spot
-     rb_define_alloc_func (rb_cLight_Spot, ruby_Light_Spot_allocate);
-     rb_define_private_method (rb_cLight_Spot, "initialize", (VALUE(*)(...))ruby_Light_Spot_initialize, 2);
+     rb_define_method (rb_cLight_AttenuationAccessor, "constant",           (VALUE(*)(...))ruby_Light_AttenuationAccessor_get_constant, 0);
+     rb_define_method (rb_cLight_AttenuationAccessor, "linear",             (VALUE(*)(...))ruby_Light_AttenuationAccessor_get_linear, 0);
+     rb_define_method (rb_cLight_AttenuationAccessor, "quadratic",          (VALUE(*)(...))ruby_Light_AttenuationAccessor_get_quadratic, 0);
 
-     rb_define_method (rb_cLight_Spot, "angle",         (VALUE(*)(...))ruby_Light_Spot_get_angle, 0);
-     rb_define_method (rb_cLight_Spot, "exponent",      (VALUE(*)(...))ruby_Light_Spot_get_exponent, 0);
+     // Light_SpotAccessor
+     rb_cLight_SpotAccessor  = rb_define_class_under (rb_cLight, "SpotAccessor", rb_cObject);
 
+     rb_define_alloc_func (rb_cLight_SpotAccessor, ruby_Light_SpotAccessor_allocate);
+     rb_define_private_method (rb_cLight_SpotAccessor, "initialize", (VALUE(*)(...))ruby_Light_SpotAccessor_initialize, 0);
+
+     rb_define_method (rb_cLight_SpotAccessor, "angle",         (VALUE(*)(...))ruby_Light_SpotAccessor_get_angle, 0);
+     rb_define_method (rb_cLight_SpotAccessor, "exponent",      (VALUE(*)(...))ruby_Light_SpotAccessor_get_exponent, 0);
 }

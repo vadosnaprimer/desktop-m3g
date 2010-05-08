@@ -58,7 +58,7 @@ namespace m3g {
      * @~English  Retrieves an object that has the given uer ID and is reachable from this object.
      * @~Japanese このオブジェクトと到達できるオブジェクトから指定のユーザーIDのオブジェクトを見つける.
      */
-    virtual Object3D* find (int userID) const;
+    virtual Object3D* find (int user_id) const;
 
 
     /** 

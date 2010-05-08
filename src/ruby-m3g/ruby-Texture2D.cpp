@@ -56,16 +56,6 @@ VALUE ruby_Texture2D_get_blending (VALUE self)
     return INT2FIX(mode);
 }
 
-VALUE ruby_Texture2D_get_image (VALUE self)
-{
-    Texture2D* p;
-    Image2D* img;
-    Data_Get_Struct (self, Texture2D, p);
-    img = p->getImage();
-
-    return img ? (VALUE)img->getExportedEntity() : Qnil;
-}
-
 VALUE ruby_Texture2D_get_filter (VALUE self)
 {
     Texture2D* p;
@@ -79,6 +69,15 @@ VALUE ruby_Texture2D_get_filter (VALUE self)
     filter->level = p->getLevelFilter ();
 
     return val_filter;
+}
+
+VALUE ruby_Texture2D_get_image (VALUE self)
+{
+    Texture2D* p;
+    Data_Get_Struct (self, Texture2D, p);
+    Image2D* img = p->getImage ();
+    
+    return img ? (VALUE)img->getExportedEntity() : Qnil;
 }
 
 
@@ -126,7 +125,7 @@ VALUE ruby_Texture2D_set_blending (VALUE self, VALUE val_func)
 VALUE ruby_Texture2D_set_filtering (VALUE self, VALUE val_filter)
 {
   VALUE val_level = rb_ary_entry(val_filter, 0);
-  VALUE val_image = rb_ary_entry(val_image, 0);
+  VALUE val_image = rb_ary_entry(val_filter, 1);
   Texture2D* p;
   Data_Get_Struct (self, Texture2D, p);
   int level = FIX2INT (val_level);
@@ -251,6 +250,7 @@ void register_Texture2D ()
      rb_define_method (rb_cTexture2D, "blend_color",   (VALUE(*)(...))ruby_Texture2D_get_blend_color, 0);
      rb_define_method (rb_cTexture2D, "blending",      (VALUE(*)(...))ruby_Texture2D_get_blending,    0);
      rb_define_method (rb_cTexture2D, "filter",        (VALUE(*)(...))ruby_Texture2D_get_filter, 0);
+     rb_define_method (rb_cTexture2D, "image",         (VALUE(*)(...))ruby_Texture2D_get_image,     0);
      rb_define_method (rb_cTexture2D, "wrapping",      (VALUE(*)(...))ruby_Texture2D_get_wrapping, 0);
      rb_define_method (rb_cTexture2D, "blend_color=",  (VALUE(*)(...))ruby_Texture2D_set_blend_color, 1);
      rb_define_method (rb_cTexture2D, "blending=",     (VALUE(*)(...))ruby_Texture2D_set_blending,  1);

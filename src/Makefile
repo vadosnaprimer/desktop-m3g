@@ -16,9 +16,9 @@ all: $(OBJS)
 	$(CXX) $(CXXFLAGS) $< -c
 
 install: $(TARGET)
-	cp $(TARGET) /usr/local/lib
-#	mkdir /usr/local/include/m3g
-	cp *.hpp /usr/local/include/m3g
+	/usr/bin/install -c -m 0755 $(TARGET) /usr/lib
+	mkdir -p /usr/include/m3g
+	cp *.hpp /usr/include/m3g
 
 depend:
 	makedepend -- $(CXXFLAGS) -- $(SRCS)

@@ -50,7 +50,7 @@ VALUE ruby_Background_get_crop (VALUE self)
   Data_Get_Struct (self, Background, p);
 
   Background::CropRect* crop;
-  VALUE val_crop = Data_Make_Struct (rb_cBackground, Background::CropRect, 0, -1, crop);
+  VALUE val_crop = Data_Make_Struct (rb_cBackground_CropRect, Background::CropRect, 0, -1, crop);
   
     crop->x = p->getCropX();
     crop->y = p->getCropY();
@@ -144,13 +144,18 @@ VALUE ruby_Background_set_color_clear_enable (VALUE self, VALUE val_enable)
 
 VALUE ruby_Background_set_crop (VALUE self, VALUE val_crop)
 {
+  VALUE val_x      = rb_ary_entry(val_crop, 0);
+  VALUE val_y      = rb_ary_entry(val_crop, 1);
+  VALUE val_width  = rb_ary_entry(val_crop, 2);
+  VALUE val_height = rb_ary_entry(val_crop, 3);
   Background* p;
-  Background::CropRect* crop;
-
   Data_Get_Struct (self, Background, p);
-  Data_Get_Struct (val_crop, Background::CropRect, crop);
+  float x      = NUMERIC2FLOAT (val_x);
+  float y      = NUMERIC2FLOAT (val_y);
+  float width  = NUMERIC2FLOAT (val_width);
+  float height = NUMERIC2FLOAT (val_height);
 
-  p->setCrop (crop->x, crop->y, crop->width, crop->height);
+  p->setCrop (x, y, width, height);
 
   return Qnil;
 }
@@ -183,13 +188,14 @@ VALUE ruby_Background_set_image (VALUE self, VALUE val_image)
 
 VALUE ruby_Background_set_image_mode (VALUE self, VALUE val_mode)
 {
+  VALUE val_x = rb_ary_entry(val_mode, 0);
+  VALUE val_y = rb_ary_entry(val_mode, 1);
   Background* p;
-  Background::ImageMode* mode;
-
   Data_Get_Struct (self, Background, p);
-  Data_Get_Struct (val_mode, Background::ImageMode, mode);
+  float x = NUMERIC2FLOAT(val_x);
+  float y = NUMERIC2FLOAT(val_y);
 
-  p->setImageMode (mode->x, mode->y);
+  p->setImageMode (x, y);
 
   return Qnil;
 }

@@ -143,11 +143,8 @@ namespace m3g {
 
   private:
     int   mode;
-    float density;
-    //float near;
-    //float far;
-    int   color;
-
+    float density;  // この2つ順番逆 
+    int   color;    // この2つ順番逆 
     Distance distance;
   };
 

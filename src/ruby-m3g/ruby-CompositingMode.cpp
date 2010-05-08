@@ -137,7 +137,7 @@ VALUE ruby_CompositingMode_set_alpha_threshold (VALUE self, VALUE val_threshold)
   float threshold;
 
   Data_Get_Struct (self, CompositingMode, p);
-  threshold = RFLOAT_VALUE(val_threshold);
+  threshold = NUMERIC2FLOAT(val_threshold);
 
   p->setAlphaThreshold (threshold);
 
@@ -183,15 +183,15 @@ VALUE ruby_CompositingMode_set_color_write_enable (VALUE self, VALUE val_enable)
   return Qnil;
 }
 
-VALUE ruby_CompositingMode_set_depth_offset (VALUE self, VALUE val_factor, VALUE val_units)
+VALUE ruby_CompositingMode_set_depth_offset (VALUE self, VALUE val_args)
 {
-  CompositingMode* p;
-  float factor;
-  float units;
+  VALUE val_factor = rb_ary_entry(val_args, 0);
+  VALUE val_units  = rb_ary_entry(val_args, 1);
 
+  CompositingMode* p;
   Data_Get_Struct (self, CompositingMode, p);
-  factor = RFLOAT_VALUE (val_factor);
-  units = RFLOAT_VALUE (val_units);
+  float factor = NUMERIC2FLOAT(val_factor);
+  float units  = NUMERIC2FLOAT(val_units);
   
   p->setDepthOffset (factor, units);
 
@@ -267,27 +267,29 @@ void register_CompositingMode ()
      rb_define_alloc_func (rb_cCompositingMode, ruby_CompositingMode_allocate);
      rb_define_private_method (rb_cCompositingMode, "initialize", (VALUE(*)(...))ruby_CompositingMode_initialize, 0);
 
-     rb_define_method (rb_cCompositingMode, "alpha_threshold",     (VALUE(*)(...))ruby_CompositingMode_get_alpha_threshold,     0);
-     rb_define_method (rb_cCompositingMode, "blending",            (VALUE(*)(...))ruby_CompositingMode_get_blending,            0);
-     rb_define_method (rb_cCompositingMode, "depth_offset", (VALUE(*)(...))ruby_CompositingMode_get_depth_offset, 0);
+     rb_define_method (rb_cCompositingMode, "alpha_threshold",      (VALUE(*)(...))ruby_CompositingMode_get_alpha_threshold,    0);
+     rb_define_method (rb_cCompositingMode, "blending",             (VALUE(*)(...))ruby_CompositingMode_get_blending,           0);
+     rb_define_method (rb_cCompositingMode, "depth_offset",         (VALUE(*)(...))ruby_CompositingMode_get_depth_offset,       0);
      rb_define_method (rb_cCompositingMode, "alpha_write_enabled?", (VALUE(*)(...))ruby_CompositingMode_is_alpha_write_enabled, 0);
      rb_define_method (rb_cCompositingMode, "color_write_enabled?", (VALUE(*)(...))ruby_CompositingMode_is_color_write_enabled, 0);
      rb_define_method (rb_cCompositingMode, "depth_test_enabled?",  (VALUE(*)(...))ruby_CompositingMode_is_depth_test_enabled,  0);
      rb_define_method (rb_cCompositingMode, "depth_write_enabled?", (VALUE(*)(...))ruby_CompositingMode_is_depth_write_enabled, 0);
-     rb_define_method (rb_cCompositingMode, "alpha_threashold=",    (VALUE(*)(...))ruby_CompositingMode_set_alpha_threshold,    1);
+     rb_define_method (rb_cCompositingMode, "alpha_threshold=",     (VALUE(*)(...))ruby_CompositingMode_set_alpha_threshold,    1);
      rb_define_method (rb_cCompositingMode, "alpha_write_enable=",  (VALUE(*)(...))ruby_CompositingMode_set_alpha_write_enable, 1);
      rb_define_method (rb_cCompositingMode, "blending=",            (VALUE(*)(...))ruby_CompositingMode_set_blending,           1);
      rb_define_method (rb_cCompositingMode, "color_write_enable=",  (VALUE(*)(...))ruby_CompositingMode_set_color_write_enable, 1);
-     rb_define_method (rb_cCompositingMode, "depth_offset=",        (VALUE(*)(...))ruby_CompositingMode_set_depth_offset,       2);
+     rb_define_method (rb_cCompositingMode, "depth_offset=",        (VALUE(*)(...))ruby_CompositingMode_set_depth_offset,       1);
      rb_define_method (rb_cCompositingMode, "depth_test_enable=",   (VALUE(*)(...))ruby_CompositingMode_set_depth_test_enable,  1);
      rb_define_method (rb_cCompositingMode, "depth_write_enable=",  (VALUE(*)(...))ruby_CompositingMode_set_depth_write_enable, 1);
 
 
     // CompositingMode:: DepthOffset
+     rb_cCompositingMode_DepthOffset = rb_define_class_under (rb_cCompositingMode, "DepthOffset", rb_cObject);
+
     rb_define_alloc_func (rb_cCompositingMode_DepthOffset, ruby_CompositingMode_DepthOffset_allocate);
     rb_define_private_method (rb_cCompositingMode_DepthOffset, "initialize", (VALUE(*)(...))ruby_CompositingMode_DepthOffset_initialize, 0);
 
-    rb_define_method (rb_cCompositingMode_DepthOffset, "x",          (VALUE(*)(...))ruby_CompositingMode_DepthOffset_get_factor, 0);
-    rb_define_method (rb_cCompositingMode_DepthOffset, "y",          (VALUE(*)(...))ruby_CompositingMode_DepthOffset_get_units, 0);
+    rb_define_method (rb_cCompositingMode_DepthOffset, "factor",          (VALUE(*)(...))ruby_CompositingMode_DepthOffset_get_factor, 0);
+    rb_define_method (rb_cCompositingMode_DepthOffset, "units",          (VALUE(*)(...))ruby_CompositingMode_DepthOffset_get_units, 0);
 
 }

@@ -73,7 +73,7 @@ VALUE ruby_Sprite3D_get_image (VALUE self)
 
   Data_Get_Struct (self, Sprite3D, p);
   img = p->getImage ();
-
+  cout << "imge = " << img << "\n";
   if (img)
     return (VALUE)img->getExportedEntity();
   else
@@ -105,13 +105,18 @@ VALUE ruby_Sprite3D_set_appearance (VALUE self, VALUE val_appearance)
 
 VALUE ruby_Sprite3D_set_crop (VALUE self, VALUE val_crop)
 {
+  VALUE val_x      = rb_ary_entry(val_crop, 0);
+  VALUE val_y      = rb_ary_entry(val_crop, 1);
+  VALUE val_width  = rb_ary_entry(val_crop, 2);
+  VALUE val_height = rb_ary_entry(val_crop, 3);
   Sprite3D* p;
-  Sprite3D::CropRect* crop;
-
   Data_Get_Struct (self, Sprite3D, p);
-  Data_Get_Struct (val_crop, Sprite3D::CropRect, crop);
+  float x = NUMERIC2FLOAT(val_x);
+  float y = NUMERIC2FLOAT(val_y);
+  float width = NUMERIC2FLOAT(val_width);
+  float height = NUMERIC2FLOAT(val_height);
 
-  p->setCrop (crop->x, crop->y, crop->width, crop->height);
+  p->setCrop (x, y, width, height);
   
   return Qnil;
 }
@@ -119,11 +124,13 @@ VALUE ruby_Sprite3D_set_crop (VALUE self, VALUE val_crop)
 VALUE ruby_Sprite3D_set_image (VALUE self, VALUE val_image)
 {
   Sprite3D* p;
-  Image2D*    img;
   Data_Get_Struct (self, Sprite3D, p);
+  Image2D*    img;
   Data_Get_Struct (val_image, Image2D, img);
+
   p->setImage (img);
-    return Qnil;
+
+  return Qnil;
 }
 
 /**
@@ -176,7 +183,7 @@ VALUE ruby_Sprite3D_CropRect_get_height (VALUE self)
 }
 
 
-void register_Sprite3D (VALUE rb_cSprite3D)
+void register_Sprite3D ()
 {
      // Sprite3D
      rb_define_alloc_func (rb_cSprite3D, ruby_Sprite3D_allocate);

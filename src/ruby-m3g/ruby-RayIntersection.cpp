@@ -5,9 +5,9 @@
 using namespace m3g;
 using namespace std;
 
+
 namespace {
-  struct TextureAccessor
-  {
+  struct TextureAccessor {
     RayIntersection* ray_intersection;
   };
   VALUE rb_cRayIntersection_TextureAccessor;
@@ -145,7 +145,6 @@ VALUE ruby_RayIntersection_TextureAccessor_get_tex_coord (VALUE self, VALUE val_
     int index;
     float s, t;
 
-
     Data_Get_Struct (self, TextureAccessor, p);
     index = FIX2INT (val_index);
 
@@ -159,8 +158,11 @@ VALUE ruby_RayIntersection_TextureAccessor_get_tex_coord (VALUE self, VALUE val_
     return val_ret;
 }
 
-void register_RayIntersection (VALUE rb_cRayIntersection)
+void register_RayIntersection ()
 {
+  // RayIntersectionは全面的に改定する。
+  // 下のコードは全て破棄
+  // コメントの方式で実装する
 
      // RayIntersection
      rb_define_alloc_func (rb_cRayIntersection, ruby_RayIntersection_allocate);
@@ -179,6 +181,13 @@ void register_RayIntersection (VALUE rb_cRayIntersection)
      rb_define_alloc_func     (rb_cRayIntersection_TextureAccessor, ruby_RayIntersection_TextureAccessor_allocate);
      rb_define_private_method (rb_cRayIntersection_TextureAccessor, "initialize", (VALUE(*)(...))ruby_RayIntersection_TextureAccessor_initialize, 0);
 
+     // メソッド[]はTextureSTAccessorを返す
      rb_define_method (rb_cRayIntersection_TextureAccessor, "[]",        (VALUE(*)(...))ruby_RayIntersection_TextureAccessor_get_tex_coord,    1);
 
+     // RayIntersection_TextureSTAccessor
+     // struct TextureSTAccessor
+     //     RayIntersection* ray_intersection
+     //     int              index
+     // }
+     // メソッドとしてs,tのみ持つ
 }

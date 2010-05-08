@@ -60,8 +60,8 @@ int main (int argc, char** argv)
   short        positions_value[] = {1,-1,0, 1,1,0, -1,-1,0, -1,1,0};
   positions->set (0, 4, positions_value);
 
-  float scale   = 0.2;
-  float bias[3] = {1,0,0};
+  float scale   = 1;
+  float bias[3] = {0,0,0};
   VertexBuffer* vertices = new VertexBuffer;
   vertices->setPositions (positions, scale, bias);
   

@@ -7,7 +7,7 @@ using namespace m3g;
 
 RayIntersection:: RayIntersection ()
 {
-  throw NotImplementedException (__FILE__, __func__, "Sorry, not implemented yet.");
+  //throw NotImplementedException (__FILE__, __func__, "Sorry, not implemented yet.");
 }
 
 RayIntersection:: ~RayIntersection ()

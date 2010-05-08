@@ -23,6 +23,9 @@ TriangleStripArray:: TriangleStripArray (int* indices_, int num_strips, int* str
   if (num_strips < 1 || num_strips > 65535) {
     throw IllegalArgumentException (__FILE__, __func__, "Number of strip lengths is invalid, num_strips=%d.", num_strips);
   }
+  if (glGenBuffers == NULL) {
+    throw OpenGLException (__FILE__, __func__, "glGenBuffers is NULL. perhaps you didn't call glewInit().");
+  }
 
   strips.reserve (num_strips);
   for (int i = 0; i < num_strips; i++) {
@@ -51,6 +54,9 @@ TriangleStripArray:: TriangleStripArray (int first_index, int num_strips, int* s
   }
   if (num_strips < 1 || first_index + num_strips > 65536) {
     throw IllegalArgumentException (__FILE__, __func__, "Nummber of strip lengths is invalid, first_index=%d, num_strips=%d.", first_index, num_strips);
+  }
+  if (glGenBuffers == NULL) {
+    throw OpenGLException (__FILE__, __func__, "glGenBuffers is NULL. perhaps you didn't call glewInit().");
   }
 
   strips.reserve (num_strips);

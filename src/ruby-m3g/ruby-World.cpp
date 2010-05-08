@@ -83,14 +83,14 @@ VALUE ruby_World_set_background (VALUE self, VALUE val_background)
     return Qnil;
 }
 
-void register_World (VALUE rb_cWorld)
+void register_World ()
 {
      // World
      rb_define_alloc_func (rb_cWorld, ruby_World_allocate);
      rb_define_private_method (rb_cWorld, "initialize", (VALUE(*)(...))ruby_World_initialize, 0);
 
-     rb_define_method (rb_cWorld, "active_camera", (VALUE(*)(...))ruby_World_get_active_camera,  0);
-     rb_define_method (rb_cWorld, "background",    (VALUE(*)(...))ruby_World_get_background,     0);
+     rb_define_method (rb_cWorld, "active_camera",  (VALUE(*)(...))ruby_World_get_active_camera,  0);
+     rb_define_method (rb_cWorld, "background",     (VALUE(*)(...))ruby_World_get_background,     0);
      rb_define_method (rb_cWorld, "active_camera=", (VALUE(*)(...))ruby_World_set_active_camera, 1);
      rb_define_method (rb_cWorld, "background=",    (VALUE(*)(...))ruby_World_set_background,    1);
 

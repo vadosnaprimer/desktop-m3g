@@ -18,6 +18,7 @@ namespace m3g {
    */
   class AnimationTrack : public Object3D
   {
+
   public:
     /**
      * @~English  Specifies the alpha factor of a Node, or the alpha component 

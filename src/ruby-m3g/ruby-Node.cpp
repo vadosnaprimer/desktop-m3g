@@ -1,7 +1,17 @@
-#include <new>
+#include <iostream>
 #include "ruby.h"
-#include "Node.hpp"
+#include "m3g.hpp"
+#include "ruby-m3g.hpp"
 using namespace m3g;
+using namespace std;
+
+namespace {
+  struct AlignmentAccessor {
+    Node* node;
+  };
+  VALUE rb_cNode_AlignmentAccessor;
+  VALUE rb_cNode_Alignment;
+}
 
 VALUE ruby_Node_free (Node* ptr)
 {
@@ -37,33 +47,16 @@ VALUE ruby_Node_align (VALUE self, VALUE val_reference)
     return Qnil;
 }
 
-VALUE ruby_Node_get_alignment_reference (VALUE self, VALUE val_axis)
+VALUE ruby_Node_get_alignment (VALUE self)
 {
     Node* p;
-    int axis;
-    Node* ref;
-
     Data_Get_Struct (self, Node, p);
-    axis = FIX2INT (val_axis);
-
-    ref = p->getAlignmentReference (axis);
-
-    return (VALUE)ref->getExportedEntity();
+    AlignmentAccessor* accessor;
+    VALUE val_accessor = Data_Make_Struct (rb_cNode_AlignmentAccessor, AlignmentAccessor, 0, -1, accessor);
+    accessor->node = p;
+    return val_accessor;
 }
 
-VALUE ruby_Node_get_alignment_target (VALUE self, VALUE val_axis)
-{
-    Node* p;
-    int axis;
-    int target;
-
-    Data_Get_Struct (self, Node, p);
-    axis = FIX2INT (val_axis);
-
-    target = p->getAlignmentTarget (axis);
-
-    return INT2FIX(target);
-}
 
 VALUE ruby_Node_get_alpha_factor (VALUE self)
 {
@@ -218,7 +211,74 @@ VALUE ruby_Node_set_scope (VALUE self, VALUE val_scope)
     return scope;
 }
 
-void register_Node (VALUE rb_cNode)
+/**
+ * Node_AlignmentAccessor
+ */
+
+VALUE ruby_Node_AlignmentAccessor_allocate (VALUE self)
+{
+  void* p = ruby_xmalloc (sizeof(AlignmentAccessor));
+  return Data_Wrap_Struct (self, 0, -1, p);
+}
+
+VALUE ruby_Node_AlignmentAccessor_initialize (VALUE self)
+{
+  AlignmentAccessor* p;
+  Data_Get_Struct (self, AlignmentAccessor, p);
+  return self;
+}
+
+VALUE ruby_Node_AlignmentAccessor_get_alignment (VALUE self, VALUE val_axis)
+{
+  AlignmentAccessor* p;
+  Data_Get_Struct (self, AlignmentAccessor, p);
+  Node::Alignment* align;
+  VALUE val_align = Data_Make_Struct (rb_cNode_Alignment, Node::Alignment, 0, -1, align);
+  int axis = FIX2INT(val_axis);
+  align->target = p->node->getAlignmentTarget(axis);
+  align->reference = p->node->getAlignmentReference(axis);
+  
+  return val_align;
+}
+
+
+
+
+
+/**
+ * Node::Alignment
+ */
+
+VALUE ruby_Node_Alignment_allocate (VALUE self)
+{
+  void* p = ruby_xmalloc (sizeof(Node::Alignment));
+  return Data_Wrap_Struct (self, 0, -1, p);
+}
+
+VALUE ruby_Node_Alignment_initialize (VALUE self)
+{
+  Node::Alignment* p;
+  Data_Get_Struct (self, Node::Alignment, p);
+  return self;
+}
+
+VALUE ruby_Node_Alignment_get_target (VALUE self)
+{
+  Node::Alignment* p;
+  Data_Get_Struct (self, Node::Alignment, p);
+  return INT2FIX(p->target);
+}
+
+VALUE ruby_Node_Alignment_get_reference (VALUE self)
+{
+  Node::Alignment* p;
+  Data_Get_Struct (self, Node::Alignment, p);
+  return p->reference ? (VALUE)p->reference->getExportedEntity() : Qnil;
+}
+
+
+
+void register_Node ()
 {
      // Node
      rb_define_const (rb_cNode, "NONE",   INT2FIX(Node::NONE));
@@ -231,8 +291,7 @@ void register_Node (VALUE rb_cNode)
      rb_define_private_method (rb_cNode, "initialize", (VALUE(*)(...))ruby_Node_initialize, 0);
 
      rb_define_method (rb_cNode, "align",               (VALUE(*)(...))ruby_Node_align, 1);
-     rb_define_method (rb_cNode, "alignment_reference", (VALUE(*)(...))ruby_Node_get_alignment_reference, 1);
-     rb_define_method (rb_cNode, "alignment_target",    (VALUE(*)(...))ruby_Node_get_alignment_target, 1);
+     rb_define_method (rb_cNode, "alignment", (VALUE(*)(...))ruby_Node_get_alignment, 0);
      rb_define_method (rb_cNode, "alpha_factor",        (VALUE(*)(...))ruby_Node_get_alpha_factor, 0);
      rb_define_method (rb_cNode, "parent",              (VALUE(*)(...))ruby_Node_get_parent, 0);
      rb_define_method (rb_cNode, "scope",               (VALUE(*)(...))ruby_Node_get_scope, 0);
@@ -245,5 +304,20 @@ void register_Node (VALUE rb_cNode)
      rb_define_method (rb_cNode, "rendering_enable=",    (VALUE(*)(...))ruby_Node_set_rendering_enable, 1);
      rb_define_method (rb_cNode, "scope=",               (VALUE(*)(...))ruby_Node_set_scope, 1);
 
+     // Node::AlignmentAccessor
+     rb_cNode_AlignmentAccessor  = rb_define_class_under (rb_cNode, "AlignmentAccessor", rb_cObject);
 
+     rb_define_alloc_func (rb_cNode_AlignmentAccessor, ruby_Node_AlignmentAccessor_allocate);
+     rb_define_private_method (rb_cNode_AlignmentAccessor, "initialize", (VALUE(*)(...))ruby_Node_AlignmentAccessor_initialize, 0);
+
+     rb_define_method (rb_cNode_AlignmentAccessor, "[]",        (VALUE(*)(...))ruby_Node_AlignmentAccessor_get_alignment,    1);
+
+     // Node::Alignment
+     rb_cNode_Alignment  = rb_define_class_under (rb_cNode, "Alignment", rb_cObject);
+
+     rb_define_alloc_func (rb_cNode_Alignment, ruby_Node_Alignment_allocate);
+     rb_define_private_method (rb_cNode_Alignment, "initialize", (VALUE(*)(...))ruby_Node_Alignment_initialize, 0);
+
+     rb_define_method (rb_cNode_Alignment, "target",        (VALUE(*)(...))ruby_Node_Alignment_get_target,    0);
+     rb_define_method (rb_cNode_Alignment, "reference",        (VALUE(*)(...))ruby_Node_Alignment_get_reference,    0);
 }

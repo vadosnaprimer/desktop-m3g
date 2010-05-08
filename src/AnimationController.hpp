@@ -13,6 +13,8 @@ namespace m3g {
    */
   class AnimationController : public Object3D
   {
+  public:
+
     /**
      * @~English  Structure of active interval.
      * @~Japanese アクティブ区間を保持する内部使用の構造体.
@@ -24,7 +26,6 @@ namespace m3g {
       float end;
     };
 
-  public:
     /**
      * @~English  Create a new AnimationController object.
      * @~Japanese アニメーションコントローラークラスのコンストラクタ.
@@ -90,13 +91,13 @@ namespace m3g {
      * @~English  Sets a new playback position, relative to world time.
      * @~Japanese このアニメーションコントローラーにワールド時間で新しい再生位置を設定する.
      */
-    void  setPosition (float sequenceTime, int worldTime);
+    void  setPosition (float sequence_time, int world_time);
 
     /**
      * @~English  Sets a new playback speed for this animation.
      * @~Japanese このアニメーションの再生速度を設定する.
      */
-    void  setSpeed (float speed, int worldTime);
+    void  setSpeed (float speed, int world_time);
 
     /**
      * @~English  Sets the blending weight for this animation controller.
@@ -108,6 +109,7 @@ namespace m3g {
      * @~English  query specified world_time is in active interval, This is not under M3G spesification.
      * @^Japanese 指定されたworld_timeがアクティブ区間内だったらtrueを返すM3G非標準の関数.
      */
+    //  isActive (int world_time) const の方が良かった
     bool isActiveInterval (int world_time) const;
 
     /**

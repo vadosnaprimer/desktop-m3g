@@ -22,15 +22,15 @@ VALUE ruby_IndexBuffer_initialize (VALUE self)
     IndexBuffer* p;
     Data_Get_Struct (self, IndexBuffer, p);
     new (p) IndexBuffer;
+    p->setExportedEntity ((void*)self);
     return self;
 }
 
 VALUE ruby_IndexBuffer_get_index_count (VALUE self)
 {
   IndexBuffer* p;
-  int count;
   Data_Get_Struct (self, IndexBuffer, p);
-  count = p->getIndexCount ();
+  int count = p->getIndexCount ();
   return INT2FIX(count);
 }
 
@@ -47,8 +47,7 @@ VALUE ruby_IndexBuffer_get_indices (VALUE self)
   
   VALUE val_indices = rb_ary_new ();
   for (int i = 0; i < count; i++) {
-    VALUE val_index = INT2FIX(indices[i]);
-    rb_ary_push (val_indices, val_index);
+    rb_ary_push (val_indices, INT2FIX(indices[i]));
   }
 
   return val_indices;
@@ -59,7 +58,7 @@ void register_IndexBuffer ()
 {
      // IndexBuffer
      rb_define_alloc_func (rb_cIndexBuffer, ruby_IndexBuffer_allocate);
-     rb_define_private_method (rb_cIndexBuffer, "initialize", (VALUE(*)(...))ruby_IndexBuffer_initialize, -1);
+     rb_define_private_method (rb_cIndexBuffer, "initialize", (VALUE(*)(...))ruby_IndexBuffer_initialize, 0);
 
      rb_define_method (rb_cIndexBuffer, "index_count", (VALUE(*)(...))ruby_IndexBuffer_get_index_count, 0);
      rb_define_method (rb_cIndexBuffer, "indices",     (VALUE(*)(...))ruby_IndexBuffer_get_indices,    0);

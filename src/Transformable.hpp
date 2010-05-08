@@ -15,6 +15,7 @@ namespace m3g {
    */
   class Transformable : public Object3D
   {
+  public:
     /**
      * @~English  Structure of scaling parameter, for inner use.
      * @~Japanese スケール乗数を保持する内部使用の構造体.
@@ -36,7 +37,6 @@ namespace m3g {
       float z;
     };
 
-  public:
     /**
      * @~English  Construct a new Tranformable object.
      * @~Japanese このクラスは抽象クラスなので直接インスタンス化する事はできない.
@@ -77,7 +77,7 @@ namespace m3g {
 
     /**
      * @~English  Retriees the orientation component of htis Transformable.
-     * @~Japanese このクラスのorientation要素を取得する.
+     * @~Japanese このクラスの回転要素を取得する.
      */
     void getOrientation (float* angle_aixs) const;
 

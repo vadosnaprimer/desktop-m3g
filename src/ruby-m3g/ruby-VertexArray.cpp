@@ -40,28 +40,44 @@ VALUE ruby_VertexArray_get (VALUE self, VALUE val_first_vertex, VALUE val_num_ve
   Data_Get_Struct (self, VertexArray, p);
   int first_vertex = FIX2INT (val_first_vertex);
   int num_vertices = FIX2INT (val_num_vertices);
-
-  float* values = (float*)ruby_xmalloc (sizeof(float)*num_vertices);
   int component_size = p->getComponentType ();
-
-  p->get (first_vertex, num_vertices, values);
+  int component_count = p->getComponentCount ();
+  int num_components = num_vertices * component_count;
 
   VALUE val_values = rb_ary_new ();
-  for (int i = 0; i < num_vertices; i++) {
-    switch (component_size) {
-    case 1:
-    case 2:
-      rb_ary_push (val_values, INT2FIX(values[i]));
+  switch (component_size) {
+  case 1: {
+      char* values = (char*)ruby_xmalloc (sizeof(char)*num_components);
+      p->get (first_vertex, num_vertices, values);
+      for (int i = 0; i < num_components; i++) {
+	rb_ary_push (val_values, INT2FIX(values[i]));
+      }
+      ruby_xfree (values);
       break;
-    case 4:
-      rb_ary_push (val_values, rb_float_new(values[i]));
-      break;
-    default:
-      // エラー
-      ;
-    }
   }
-  ruby_xfree (values);
+  case 2: {
+      short* values = (short*)ruby_xmalloc (sizeof(short)*num_components);
+      p->get (first_vertex, num_vertices, values);
+      for (int i = 0; i < num_components; i++) {
+	rb_ary_push (val_values, INT2FIX(values[i]));
+      }
+      ruby_xfree (values);
+      break;
+  }
+  case 4: {
+      float* values = (float*)ruby_xmalloc (sizeof(float)*num_components);
+      p->get (first_vertex, num_vertices, values);
+      for (int i = 0; i < num_components; i++) {
+	rb_ary_push (val_values, rb_float_new(values[i]));
+      }
+      ruby_xfree (values);
+      break;
+  }
+  default: {
+    ; // エラー
+  }
+  }
+
 
   return val_values;
 }
@@ -102,21 +118,19 @@ VALUE ruby_VertexArray_get_vertex_count (VALUE self)
 VALUE ruby_VertexArray_set (VALUE self, VALUE val_first_vertex, VALUE val_num_vertices, VALUE val_values)
 {
   VertexArray* p;
-  int first_vertex;
-  int num_vertices;
-  float* values;
-  int component_size;
-
   Data_Get_Struct (self, VertexArray, p);
-  first_vertex = INT2FIX (first_vertex);
-  num_vertices = INT2FIX (num_vertices);
-  component_size = p->getComponentType();
+  int first_vertex = FIX2INT(val_first_vertex);
+  int num_vertices = FIX2INT(val_num_vertices);
+  int component_size = p->getComponentType ();
+  int component_count = p->getComponentCount ();
+  int num_components = num_vertices * component_count;
+
+  //cout << first_vertex << ", " << num_vertices << ", " << component_size << "\n";
 
   switch (component_size) {
   case 1: {
-    char* values = (char*)ruby_xmalloc(sizeof(char)*num_vertices);
-    VALUE val_values = rb_ary_new ();
-    for (int i = 0; i < num_vertices; i++) {
+    char* values = (char*)ruby_xmalloc(sizeof(char)*num_components);
+    for (int i = 0; i < num_components; i++) {
       values[i] = FIX2INT(rb_ary_entry(val_values, i));
     }
     p->set (first_vertex, num_vertices, values);
@@ -124,9 +138,8 @@ VALUE ruby_VertexArray_set (VALUE self, VALUE val_first_vertex, VALUE val_num_ve
     break;
   }
   case 2: {
-    short* values = (short*)ruby_xmalloc(sizeof(short)*num_vertices);
-    VALUE val_values = rb_ary_new ();
-    for (int i = 0; i < num_vertices; i++) {
+    short* values = (short*)ruby_xmalloc(sizeof(short)*num_components);
+    for (int i = 0; i < num_components; i++) {
       values[i] = FIX2INT(rb_ary_entry(val_values, i));
     }
     p->set (first_vertex, num_vertices, values);
@@ -134,10 +147,9 @@ VALUE ruby_VertexArray_set (VALUE self, VALUE val_first_vertex, VALUE val_num_ve
     break;
   }
   case 4: {
-    float* values = (float*)ruby_xmalloc(sizeof(float)*num_vertices);
-    VALUE val_values = rb_ary_new ();
-    for (int i = 0; i < num_vertices; i++) {
-      values[i] = FIX2INT(rb_ary_entry(val_values, i));
+    float* values = (float*)ruby_xmalloc(sizeof(float)*num_components);
+    for (int i = 0; i < num_components; i++) {
+      values[i] = NUMERIC2FLOAT(rb_ary_entry(val_values, i));
     }
     p->set (first_vertex, num_vertices, values);
     ruby_xfree (values);
@@ -154,10 +166,8 @@ VALUE ruby_VertexArray_set (VALUE self, VALUE val_first_vertex, VALUE val_num_ve
 VALUE ruby_VertexArray_convert (VALUE self, VALUE val_component_type)
 {
   VertexArray* p;
-  int component_type;
-
   Data_Get_Struct (self, VertexArray, p);
-  component_type = FIX2INT(val_component_type);
+  int component_type = FIX2INT(val_component_type);
 
   p->convert (component_type);
 
@@ -165,7 +175,7 @@ VALUE ruby_VertexArray_convert (VALUE self, VALUE val_component_type)
 }
 
 
-void register_VertexArray (VALUE rb_cVertexArray)
+void register_VertexArray ()
 {
      // VertexArray
      rb_define_alloc_func (rb_cVertexArray, ruby_VertexArray_allocate);
@@ -176,5 +186,5 @@ void register_VertexArray (VALUE rb_cVertexArray)
      rb_define_method (rb_cVertexArray, "component_type",  (VALUE(*)(...))ruby_VertexArray_get_component_type, 0);
      rb_define_method (rb_cVertexArray, "vertex_count",    (VALUE(*)(...))ruby_VertexArray_get_vertex_count, 0);
      rb_define_method (rb_cVertexArray, "set",             (VALUE(*)(...))ruby_VertexArray_set, 3);
-     rb_define_method (rb_cVertexArray, "convert",         (VALUE(*)(...))ruby_VertexArray_set, 1);
+     rb_define_method (rb_cVertexArray, "convert",         (VALUE(*)(...))ruby_VertexArray_convert, 1);
 }

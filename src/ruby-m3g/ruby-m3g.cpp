@@ -80,6 +80,7 @@ void Init_m3g()
     // register all methods in 30 classes
     register_Graphics3D ();
     register_Loader ();
+    register_Object3D ();
     register_AnimationController ();
     register_AnimationTrack ();
     register_Appearance ();
@@ -108,7 +109,5 @@ void Init_m3g()
     register_VertexBuffer ();
     register_RayIntersection ();
     register_Transform ();
-
-
 }
 

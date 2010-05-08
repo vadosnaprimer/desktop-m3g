@@ -77,7 +77,6 @@ int main (int argc, char** argv)
   VertexBuffer* vertices = new VertexBuffer;
   vertices->setPositions (positions, scale, bias);
   vertices->setColors (colors);
-  scale = 0.5;
   vertices->setTexCoords (0, tex_coords, scale, bias);
   vertices->setTexCoords (1, tex_coords, scale, bias);
   

@@ -175,7 +175,7 @@ namespace m3g {
      * @~Japanese デプスバッファーのクリアの有効化または無効化.
      */
     void setDepthClearEnable (bool enable);
-
+    
     /**
      * @~English  Sets the background image, or switches from background image mode to background color mode.
      * @~Japanese 背景画像の設定、または背景画像モードと背景色モードの切り替え.

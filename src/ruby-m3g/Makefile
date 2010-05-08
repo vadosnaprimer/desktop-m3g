@@ -37,7 +37,7 @@ datadir = $(datarootdir)
 localstatedir = $(DESTDIR)/var
 sitelibdir = $(sitedir)/$(ruby_version)
 
-CC = gcc
+CC = cc
 LIBRUBY = $(LIBRUBY_SO)
 LIBRUBY_A = lib$(RUBY_SO_NAME)-static.a
 LIBRUBYARG_SHARED = -l$(RUBY_SO_NAME)
@@ -45,11 +45,11 @@ LIBRUBYARG_STATIC = -l$(RUBY_SO_NAME)-static
 
 RUBY_EXTCONF_H = 
 CFLAGS   =  -fPIC -fno-strict-aliasing -g -g -O2  -fPIC $(cflags) 
-INCFLAGS = -I. -I$(topdir) -I$(hdrdir) -I$(srcdir)
+INCFLAGS = -I. -I. -I/usr/lib/ruby/1.8/x86_64-linux -I.
 DEFS     = 
-CPPFLAGS =   $(DEFS) $(cppflags)  -I.. -Wno-deprecated 
+CPPFLAGS =      -I/usr/include/m3g -Wno-deprecated 
 CXXFLAGS = $(CFLAGS) 
-ldflags  = -L. -Wl,-Bsymbolic-functions -rdynamic -Wl,-export-dynamic -lstdc++ -L.. -lm3g
+ldflags  = -L. -Wl,-Bsymbolic-functions -rdynamic -Wl,-export-dynamic -lstdc++ -L/usr/lib -lm3g -lGLEW -lz 
 dldflags = 
 archflag = 
 DLDFLAGS = $(ldflags) $(dldflags) $(archflag)
@@ -86,9 +86,9 @@ extout =
 extout_prefix = 
 target_prefix = 
 LOCAL_LIBS = 
-LIBS = $(LIBRUBYARG_SHARED)  -lpthread -lrt -ldl -lcrypt -lm   -lc
-SRCS = ruby-Graphics3D.cpp ruby-PolygonMode.cpp ruby-Group.cpp ruby-Node.cpp ruby-VertexBuffer.cpp ruby-World.cpp ruby-RayIntersection.cpp ruby-CompositingMode.cpp ruby-MorphingMesh.cpp ruby-ImageMode.cpp ruby-Image2D.cpp ruby-Loader.cpp ruby-SkinnedMesh.cpp ruby-m3g.cpp ruby-TriangleStripArray.cpp ruby-Camera.cpp ruby-Light.cpp ruby-Material.cpp ruby-Sprite3D.cpp ruby-Appearance.cpp ruby-Texture2D.cpp ruby-Background.cpp ruby-Mesh.cpp ruby-Fog.cpp ruby-AnimationTrack.cpp ruby-VertexArray.cpp ruby-Object3D.cpp ruby-IndexBuffer.cpp ruby-KeyframeSequence.cpp ruby-Transform.cpp ruby-Transformable.cpp
-OBJS = ruby-Graphics3D.o ruby-PolygonMode.o ruby-Group.o ruby-Node.o ruby-VertexBuffer.o ruby-World.o ruby-RayIntersection.o ruby-CompositingMode.o ruby-MorphingMesh.o ruby-ImageMode.o ruby-Image2D.o ruby-Loader.o ruby-SkinnedMesh.o ruby-m3g.o ruby-TriangleStripArray.o ruby-Camera.o ruby-Light.o ruby-Material.o ruby-Sprite3D.o ruby-Appearance.o ruby-Texture2D.o ruby-Background.o ruby-Mesh.o ruby-Fog.o ruby-AnimationTrack.o ruby-VertexArray.o ruby-Object3D.o ruby-IndexBuffer.o ruby-KeyframeSequence.o ruby-Transform.o ruby-Transformable.o
+LIBS = $(LIBRUBYARG_SHARED) -lz -lGLEW -lm3g  -lpthread -ldl -lcrypt -lm   -lc
+SRCS = ruby-RayIntersection.cpp ruby-Texture2D.cpp ruby-Appearance.cpp ruby-Graphics3D.cpp ruby-VertexBuffer.cpp ruby-IndexBuffer.cpp ruby-Group.cpp ruby-Image2D.cpp ruby-TriangleStripArray.cpp ruby-m3g.cpp ruby-Background.cpp ruby-VertexArray.cpp ruby-Transform.cpp ruby-MorphingMesh.cpp ruby-Camera.cpp ruby-Node.cpp ruby-AnimationTrack.cpp ruby-Transformable.cpp ruby-CompositingMode.cpp ruby-Light.cpp ruby-Sprite3D.cpp ruby-SkinnedMesh.cpp ruby-Object3D.cpp ruby-Material.cpp ruby-Fog.cpp ruby-Mesh.cpp ruby-World.cpp ruby-ImageMode.cpp ruby-PolygonMode.cpp ruby-KeyframeSequence.cpp ruby-AnimationController.cpp ruby-Loader.cpp
+OBJS = ruby-RayIntersection.o ruby-Texture2D.o ruby-Appearance.o ruby-Graphics3D.o ruby-VertexBuffer.o ruby-IndexBuffer.o ruby-Group.o ruby-Image2D.o ruby-TriangleStripArray.o ruby-m3g.o ruby-Background.o ruby-VertexArray.o ruby-Transform.o ruby-MorphingMesh.o ruby-Camera.o ruby-Node.o ruby-AnimationTrack.o ruby-Transformable.o ruby-CompositingMode.o ruby-Light.o ruby-Sprite3D.o ruby-SkinnedMesh.o ruby-Object3D.o ruby-Material.o ruby-Fog.o ruby-Mesh.o ruby-World.o ruby-ImageMode.o ruby-PolygonMode.o ruby-KeyframeSequence.o ruby-AnimationController.o ruby-Loader.o
 TARGET = m3g
 DLLIB = $(TARGET).so
 EXTSTATIC = 
@@ -148,7 +148,7 @@ site-install-rb: install-rb
 .c.o:
 	$(CC) $(INCFLAGS) $(CPPFLAGS) $(CFLAGS) -c $<
 
-$(DLLIB): $(OBJS) Makefile
+$(DLLIB): $(OBJS)
 	@-$(RM) $@
 	$(LDSHARED) -o $@ $(OBJS) $(LIBPATH) $(DLDFLAGS) $(LOCAL_LIBS) $(LIBS)
 

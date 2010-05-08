@@ -94,7 +94,7 @@ VALUE ruby_Fog_set_density (VALUE self, VALUE val_density)
   float density;
 
   Data_Get_Struct (self, Fog, p);
-  density = RFLOAT_VALUE (val_density);
+  density = NUMERIC2FLOAT (val_density);
 
   p->setDensity (density);
 
@@ -107,8 +107,8 @@ VALUE ruby_Fog_set_linear (VALUE self, VALUE val_linear)
   VALUE val_far  = rb_ary_entry (val_linear, 1);
   Fog* p;
   Data_Get_Struct (self, Fog, p);
-  float near = RFLOAT_VALUE (val_near);
-  float far  = RFLOAT_VALUE (val_far);
+  float near = NUMERIC2FLOAT (val_near);
+  float far  = NUMERIC2FLOAT (val_far);
 
   p->setLinear (near, far);
 
@@ -143,8 +143,8 @@ VALUE ruby_Fog_Distance_initialize (VALUE self, VALUE val_near, VALUE val_far)
 {
   Fog::Distance* p;
     Data_Get_Struct (self, Fog::Distance, p);
-    p->near = RFLOAT_VALUE (val_near);
-    p->far  = RFLOAT_VALUE (val_far);
+    p->near = NUMERIC2FLOAT (val_near);
+    p->far  = NUMERIC2FLOAT (val_far);
     return self;
 }
 
@@ -164,7 +164,7 @@ VALUE ruby_Fog_Distance_get_far (VALUE self)
 
 
 
-void register_Fog (VALUE rb_cFog)
+void register_Fog ()
 {
      // Fog
      rb_define_const (rb_cFog, "EXPONENTIAL", INT2FIX(Fog::EXPONENTIAL));
