@@ -32,17 +32,22 @@ Inheritance diagram for Fog:</div>
 
 <p><center><img src="classm3g_1_1Fog.png" usemap="#Fog_map" border="0" alt=""></center>
 <map name="Fog_map">
-<area href="classm3g_1_1Object3D.html" alt="Object3D" shape="rect" coords="0,0,65,24">
+<area href="classm3g_1_1Object3D.html" alt="Object3D" shape="rect" coords="0,56,65,80">
 </map>
 </div>
 
 <p>
 <a href="classm3g_1_1Fog-members.html">List of all members.</a><table border="0" cellpadding="0" cellspacing="0">
 <tr><td></td></tr>
+<tr><td colspan="2"><br><h2>Classes</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><b>Distance</b></td></tr>
+
 <tr><td colspan="2"><br><h2>Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Fog.html#232ea9c5f5824d924fa185401fbfb234">Fog</a> ()</td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">virtual&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Fog.html#c13d77e65284ed8f7480c8f83ed9780f">~Fog</a> ()</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">virtual <a class="el" href="classm3g_1_1Fog.html">Fog</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Fog.html#d46dc959a547ee3a804fc871b83c0bbf">duplicate</a> () const </td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Fog.html#415c0b110f95410ded9b85e5d99a496b">addAnimationTrack</a> (<a class="el" href="classm3g_1_1AnimationTrack.html">AnimationTrack</a> *animation_track)</td></tr>
 
@@ -68,13 +73,12 @@ Inheritance diagram for Fog:</div>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">virtual std::ostream &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Fog.html#6fea17fa1532df3794f8cb39cb4f911f">print</a> (std::ostream &amp;out) const </td></tr>
 
+<tr><td class="memItemLeft" nowrap align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Fog.html#8babc8a79b78615da51161e94029eea9">render</a> (<a class="el" href="structm3g_1_1RenderState.html">RenderState</a> &amp;state) const </td></tr>
+
 <tr><td colspan="2"><br><h2>Static Public Attributes</h2></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">static const int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Fog.html#86b391da2e58c0448712a10f6609a62c">EXPONENTIAL</a> = 80</td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">static const int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Fog.html#23ccf193c67257f1be26417041cecb31">LINEAR</a> = 81</td></tr>
-
-<tr><td colspan="2"><br><h2>Protected Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Fog.html#1efcb1973989d9963d5bd6d03065d389">render</a> (int pass, int index=0) const </td></tr>
 
 <tr><td colspan="2"><br><h2>Friends</h2></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="afa5201a494f65c37039281d9b63a2a9"></a><!-- doxytag: member="m3g::Fog::Appearance" ref="afa5201a494f65c37039281d9b63a2a9" args="" -->
@@ -163,6 +167,27 @@ Adds the given <a class="el" href="classm3g_1_1AnimationTrack.html">AnimationTra
 <p>
 Updates all animated properties in this <a class="el" href="classm3g_1_1Object3D.html">Object3D</a> and all Object3Ds that are reachable from this <a class="el" href="classm3g_1_1Object3D.html">Object3D</a>. 
 <p>Reimplemented from <a class="el" href="classm3g_1_1Object3D.html#8aad1ceab4c2a03609c8a42324ce484d">Object3D</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="d46dc959a547ee3a804fc871b83c0bbf"></a><!-- doxytag: member="m3g::Fog::duplicate" ref="d46dc959a547ee3a804fc871b83c0bbf" args="() const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classm3g_1_1Fog.html">Fog</a> * duplicate           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const<code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Creates a duplicate of this <a class="el" href="classm3g_1_1Object3D.html">Object3D</a>. 
+<p>Reimplemented from <a class="el" href="classm3g_1_1Object3D.html#a25110dac934f867b83b73ad4741a0f4">Object3D</a>.</p>
 
 </div>
 </div><p>
@@ -283,26 +308,17 @@ Print out information of this object, for debug only.
 
 </div>
 </div><p>
-<a class="anchor" name="1efcb1973989d9963d5bd6d03065d389"></a><!-- doxytag: member="m3g::Fog::render" ref="1efcb1973989d9963d5bd6d03065d389" args="(int pass, int index=0) const " -->
+<a class="anchor" name="8babc8a79b78615da51161e94029eea9"></a><!-- doxytag: member="m3g::Fog::render" ref="8babc8a79b78615da51161e94029eea9" args="(RenderState &amp;state) const " -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">void render           </td>
           <td>(</td>
-          <td class="paramtype">int&nbsp;</td>
-          <td class="paramname"> <em>pass</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&nbsp;</td>
-          <td class="paramname"> <em>index</em> = <code>0</code></td><td>&nbsp;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td><td> const<code> [protected, virtual]</code></td>
+          <td class="paramtype"><a class="el" href="structm3g_1_1RenderState.html">RenderState</a> &amp;&nbsp;</td>
+          <td class="paramname"> <em>state</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const<code> [virtual]</code></td>
         </tr>
       </table>
 </div>
@@ -311,7 +327,7 @@ Print out information of this object, for debug only.
 <p>
 Render this object, for inner use.<p>
 Note: <a class="el" href="classm3g_1_1Fog.html">Fog</a> should be rendered only at second rendering pass(pass=2). In other cases, do nothing. 
-<p>Reimplemented from <a class="el" href="classm3g_1_1Object3D.html#1efcb1973989d9963d5bd6d03065d389">Object3D</a>.</p>
+<p>Reimplemented from <a class="el" href="classm3g_1_1Object3D.html#8babc8a79b78615da51161e94029eea9">Object3D</a>.</p>
 
 </div>
 </div><p>
@@ -436,9 +452,9 @@ A parameter to setMode, specifying linear fog.
 </div>
 </div><p>
 <hr>The documentation for this class was generated from the following files:<ul>
-<li>/work/desktop-m3g/src/<a class="el" href="Fog_8hpp-source.html">Fog.hpp</a><li>/work/desktop-m3g/src/Fog.cpp</ul>
+<li>/work/workspace.desktop-m3g/src/<a class="el" href="Fog_8hpp-source.html">Fog.hpp</a><li>/work/workspace.desktop-m3g/src/Fog.cpp</ul>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Wed Apr 7 10:24:28 2010 by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Mon May 10 08:47:31 2010 by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.8 </small></address>
 </body>

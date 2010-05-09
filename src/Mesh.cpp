@@ -134,7 +134,7 @@ void Mesh:: render (RenderState& state) const
     return;
   }
 
-  cout << "Mesh: render " << indices.size() << "メッシュ\n";
+  //cout << "Mesh: render " << indices.size() << "メッシュ\n";
 
   // 注意：下の３つは厳密にこの順番でなければならない。変更不可
 

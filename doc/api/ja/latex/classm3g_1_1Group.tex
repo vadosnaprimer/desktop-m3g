@@ -7,7 +7,7 @@
 Groupに対する継承グラフ:\begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[height=5cm]{classm3g_1_1Group}
+\includegraphics[height=6cm]{classm3g_1_1Group}
 \end{center}
 \end{figure}
 \subsection*{Public メソッド}
@@ -16,6 +16,8 @@ Groupに対する継承グラフ:\begin{figure}[H]
 \hyperlink{classm3g_1_1Group_0b29b9393b4b6856ac75b759f4166c13}{Group} ()
 \item 
 virtual \hyperlink{classm3g_1_1Group_a2a755272411c0d861f46f30970f5ca5}{$\sim$Group} ()
+\item 
+virtual \hyperlink{classm3g_1_1Group}{Group} $\ast$ \hyperlink{classm3g_1_1Group_1212dbd493e73180a6204874bd97df6b}{duplicate} () const 
 \item 
 void \hyperlink{classm3g_1_1Group_f7c798f6f7924dc14403df261f82153a}{addChild} (\hyperlink{classm3g_1_1Node}{Node} $\ast$child)
 \item 
@@ -31,12 +33,15 @@ void \hyperlink{classm3g_1_1Group_7415646c6f397f080d198176df44395c}{removeChild}
 \item 
 virtual std::ostream \& \hyperlink{classm3g_1_1Group_6fea17fa1532df3794f8cb39cb4f911f}{print} (std::ostream \&out) const 
 \item 
-virtual void \hyperlink{classm3g_1_1Group_4dadb21b568b0230fac106f15040138c}{findByObjectType} (int obj\_\-type, std::vector$<$ \hyperlink{classm3g_1_1Object3D}{Object3D} $\ast$ $>$ \&objs) const 
+virtual void \hyperlink{classm3g_1_1Group_8babc8a79b78615da51161e94029eea9}{render} (\hyperlink{structm3g_1_1RenderState}{RenderState} \&state) const 
 \end{CompactItemize}
-\subsection*{Protected メソッド}
+\subsection*{フレンド}
 \begin{CompactItemize}
 \item 
-virtual void \hyperlink{classm3g_1_1Group_1efcb1973989d9963d5bd6d03065d389}{render} (int pass, int index=0) const 
+\hypertarget{classm3g_1_1Group_7b4bcdf992c21ae83363f25df05b1d25}{
+class \textbf{World}}
+\label{classm3g_1_1Group_7b4bcdf992c21ae83363f25df05b1d25}
+
 \end{CompactItemize}
 
 
@@ -79,16 +84,18 @@ virtual void \hyperlink{classm3g_1_1Group_1efcb1973989d9963d5bd6d03065d389}{rend
 
 \hyperlink{classm3g_1_1Node_8aad1ceab4c2a03609c8a42324ce484d}{Node}を再定義しています。
 
-\hyperlink{classm3g_1_1World_8aad1ceab4c2a03609c8a42324ce484d}{World}で再定義されています。\hypertarget{classm3g_1_1Group_4dadb21b568b0230fac106f15040138c}{
-\index{m3g::Group@{m3g::Group}!findByObjectType@{findByObjectType}}
-\index{findByObjectType@{findByObjectType}!m3g::Group@{m3g::Group}}
-\subsubsection[{findByObjectType}]{\setlength{\rightskip}{0pt plus 5cm}void findByObjectType (int {\em obj\_\-type}, \/  std::vector$<$ {\bf Object3D} $\ast$ $>$ \& {\em objs}) const\hspace{0.3cm}{\tt  \mbox{[}virtual\mbox{]}}}}
-\label{classm3g_1_1Group_4dadb21b568b0230fac106f15040138c}
+\hyperlink{classm3g_1_1World_8aad1ceab4c2a03609c8a42324ce484d}{World}で再定義されています。\hypertarget{classm3g_1_1Group_1212dbd493e73180a6204874bd97df6b}{
+\index{m3g::Group@{m3g::Group}!duplicate@{duplicate}}
+\index{duplicate@{duplicate}!m3g::Group@{m3g::Group}}
+\subsubsection[{duplicate}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Group} $\ast$ duplicate () const\hspace{0.3cm}{\tt  \mbox{[}virtual\mbox{]}}}}
+\label{classm3g_1_1Group_1212dbd493e73180a6204874bd97df6b}
 
 
-オブジェクトタイプで検索する. 
+このオブジェクトの複製の作成. 
 
-\hyperlink{classm3g_1_1Object3D_4dadb21b568b0230fac106f15040138c}{Object3D}を再定義しています。\hypertarget{classm3g_1_1Group_a3af7d07fde341ef751157d274538698}{
+\hyperlink{classm3g_1_1Node_0b9f7531a4b56d34f47aeb1fff0d37e0}{Node}を再定義しています。
+
+\hyperlink{classm3g_1_1World_efde97aaf753d48fff769d9011f187f2}{World}で再定義されています。\hypertarget{classm3g_1_1Group_a3af7d07fde341ef751157d274538698}{
 \index{m3g::Group@{m3g::Group}!getChild@{getChild}}
 \index{getChild@{getChild}!m3g::Group@{m3g::Group}}
 \subsubsection[{getChild}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Node} $\ast$ getChild (int {\em index}) const}}
@@ -127,22 +134,22 @@ virtual void \hyperlink{classm3g_1_1Group_1efcb1973989d9963d5bd6d03065d389}{rend
 \label{classm3g_1_1Group_7415646c6f397f080d198176df44395c}
 
 
-このグループから指定されたノードを削除する。以前に追加されていた子ノードの順番とインデックスは変更される可能性がある. \hypertarget{classm3g_1_1Group_1efcb1973989d9963d5bd6d03065d389}{
+このグループから指定されたノードを削除する。以前に追加されていた子ノードの順番とインデックスは変更される可能性がある. \hypertarget{classm3g_1_1Group_8babc8a79b78615da51161e94029eea9}{
 \index{m3g::Group@{m3g::Group}!render@{render}}
 \index{render@{render}!m3g::Group@{m3g::Group}}
-\subsubsection[{render}]{\setlength{\rightskip}{0pt plus 5cm}void render (int {\em pass}, \/  int {\em index} = {\tt 0}) const\hspace{0.3cm}{\tt  \mbox{[}protected, virtual\mbox{]}}}}
-\label{classm3g_1_1Group_1efcb1973989d9963d5bd6d03065d389}
+\subsubsection[{render}]{\setlength{\rightskip}{0pt plus 5cm}void render ({\bf RenderState} \& {\em state}) const\hspace{0.3cm}{\tt  \mbox{[}virtual\mbox{]}}}}
+\label{classm3g_1_1Group_8babc8a79b78615da51161e94029eea9}
 
 
 このGroupをレンダリングする内部使用の関数.
 
 Note: \hyperlink{classm3g_1_1Group}{Group} should be rendered via all rendering pass. 
 
-\hyperlink{classm3g_1_1Node_1efcb1973989d9963d5bd6d03065d389}{Node}を再定義しています。
+\hyperlink{classm3g_1_1Node_8babc8a79b78615da51161e94029eea9}{Node}を再定義しています。
 
-\hyperlink{classm3g_1_1World_1efcb1973989d9963d5bd6d03065d389}{World}で再定義されています。
+\hyperlink{classm3g_1_1World_8babc8a79b78615da51161e94029eea9}{World}で再定義されています。
 
 このクラスの説明は次のファイルから生成されました:\begin{CompactItemize}
 \item 
-/work/desktop-m3g/src/Group.hpp\item 
-/work/desktop-m3g/src/Group.cpp\end{CompactItemize}
+/work/workspace.desktop-m3g/src/Group.hpp\item 
+/work/workspace.desktop-m3g/src/Group.cpp\end{CompactItemize}

@@ -1,6 +1,6 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-<title>/work/desktop-m3g/src/Image2D.hpp Source File</title>
+<title>/work/workspace.desktop-m3g/src/Image2D.hpp Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css">
 <link href="doxygen.css" rel="stylesheet" type="text/css">
 </head><body>
@@ -18,7 +18,7 @@
       <li><a href="files.html"><span>File&nbsp;List</span></a></li>
     </ul>
   </div>
-<h1>/work/desktop-m3g/src/Image2D.hpp</h1><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="preprocessor">#ifndef __IMAGE2D_HPP__</span>
+<h1>/work/workspace.desktop-m3g/src/Image2D.hpp</h1><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="preprocessor">#ifndef __IMAGE2D_HPP__</span>
 <a name="l00002"></a>00002 <span class="preprocessor"></span><span class="preprocessor">#define __IMAGE2D_HPP__</span>
 <a name="l00003"></a>00003 <span class="preprocessor"></span>
 <a name="l00004"></a>00004 <span class="preprocessor">#include "Object3D.hpp"</span>
@@ -48,44 +48,47 @@
 <a name="l00065"></a>00065 
 <a name="l00070"></a>00070     <span class="keyword">virtual</span> <a class="code" href="classm3g_1_1Image2D.html#7ac703fe7edbb053dd2246ea1bb43200">~Image2D</a> ();
 <a name="l00071"></a>00071 
-<a name="l00076"></a>00076     <span class="keywordtype">int</span> <a class="code" href="classm3g_1_1Image2D.html#c08e2752176d267cc4429d4d185975b8">getFormat</a> () <span class="keyword">const</span>;
+<a name="l00076"></a>00076     <span class="keyword">virtual</span> <a class="code" href="classm3g_1_1Image2D.html">Image2D</a>* <a class="code" href="classm3g_1_1Image2D.html#47eefc8e0b0b3d4c5b16b3f57285fe6b">duplicate</a> () <span class="keyword">const</span>;
 <a name="l00077"></a>00077 
-<a name="l00082"></a>00082     <span class="keywordtype">int</span> <a class="code" href="classm3g_1_1Image2D.html#317329daf960a1759801c0f16d43d5a3">getHeight</a> () <span class="keyword">const</span>;
+<a name="l00082"></a>00082     <span class="keywordtype">int</span> <a class="code" href="classm3g_1_1Image2D.html#c08e2752176d267cc4429d4d185975b8">getFormat</a> () <span class="keyword">const</span>;
 <a name="l00083"></a>00083 
-<a name="l00088"></a>00088     <span class="keywordtype">int</span> <a class="code" href="classm3g_1_1Image2D.html#f149cb053bc8b5fbc1364b5dbb934488">getWidth</a> () <span class="keyword">const</span>;
+<a name="l00088"></a>00088     <span class="keywordtype">int</span> <a class="code" href="classm3g_1_1Image2D.html#317329daf960a1759801c0f16d43d5a3">getHeight</a> () <span class="keyword">const</span>;
 <a name="l00089"></a>00089 
-<a name="l00094"></a>00094     <span class="keywordtype">bool</span> <a class="code" href="classm3g_1_1Image2D.html#d687aabba553d1c66bfc253ec7e5bd05">isMutable</a> () <span class="keyword">const</span>;
+<a name="l00094"></a>00094     <span class="keywordtype">int</span> <a class="code" href="classm3g_1_1Image2D.html#f149cb053bc8b5fbc1364b5dbb934488">getWidth</a> () <span class="keyword">const</span>;
 <a name="l00095"></a>00095 
-<a name="l00100"></a>00100     <span class="keywordtype">void</span> <span class="keyword">set</span> (<span class="keywordtype">int</span> x, <span class="keywordtype">int</span> y, <span class="keywordtype">int</span> width, <span class="keywordtype">int</span> height, <span class="keywordtype">void</span>* image);
+<a name="l00100"></a>00100     <span class="keywordtype">bool</span> <a class="code" href="classm3g_1_1Image2D.html#d687aabba553d1c66bfc253ec7e5bd05">isMutable</a> () <span class="keyword">const</span>;
 <a name="l00101"></a>00101 
-<a name="l00102"></a>00102 
-<a name="l00108"></a>00108     <span class="keywordtype">void</span> <a class="code" href="classm3g_1_1Image2D.html#32ee5b2bcc9c7bf69b925413eeccb4bf">write_ppm</a> (<span class="keyword">const</span> <span class="keywordtype">char</span>* file_name) <span class="keyword">const</span>;
-<a name="l00109"></a>00109 
-<a name="l00114"></a>00114     <span class="keyword">virtual</span> std::ostream&amp; <a class="code" href="classm3g_1_1Image2D.html#6fea17fa1532df3794f8cb39cb4f911f">print</a> (std::ostream&amp; out) <span class="keyword">const</span>;
+<a name="l00106"></a>00106     <span class="keywordtype">void</span> <span class="keyword">set</span> (<span class="keywordtype">int</span> x, <span class="keywordtype">int</span> y, <span class="keywordtype">int</span> width, <span class="keywordtype">int</span> height, <span class="keywordtype">void</span>* image);
+<a name="l00107"></a>00107 
+<a name="l00108"></a>00108 
+<a name="l00114"></a>00114     <span class="keywordtype">void</span> <a class="code" href="classm3g_1_1Image2D.html#32ee5b2bcc9c7bf69b925413eeccb4bf">write_ppm</a> (<span class="keyword">const</span> <span class="keywordtype">char</span>* file_name) <span class="keyword">const</span>;
 <a name="l00115"></a>00115 
-<a name="l00120"></a>00120     GLenum <a class="code" href="classm3g_1_1Image2D.html#7923da2fe82fee768ec9937a693e843c">getOpenGLFormat</a> () <span class="keyword">const</span>;
+<a name="l00120"></a>00120     <span class="keyword">virtual</span> std::ostream&amp; <a class="code" href="classm3g_1_1Image2D.html#6fea17fa1532df3794f8cb39cb4f911f">print</a> (std::ostream&amp; out) <span class="keyword">const</span>;
 <a name="l00121"></a>00121 
-<a name="l00126"></a>00126     <span class="keywordtype">void</span>* <a class="code" href="classm3g_1_1Image2D.html#b837b1bdda59947a6d818c448965c502">getOpenGLData</a> () <span class="keyword">const</span>;
+<a name="l00126"></a>00126     GLenum <a class="code" href="classm3g_1_1Image2D.html#7923da2fe82fee768ec9937a693e843c">getOpenGLFormat</a> () <span class="keyword">const</span>;
 <a name="l00127"></a>00127 
-<a name="l00128"></a>00128 
-<a name="l00129"></a>00129   <span class="keyword">private</span>:
-<a name="l00130"></a>00130     <span class="keywordtype">int</span>   format;
-<a name="l00131"></a>00131     <span class="keywordtype">int</span>   width;
-<a name="l00132"></a>00132     <span class="keywordtype">int</span>   height;
-<a name="l00133"></a>00133     <span class="keywordtype">char</span>* image;
-<a name="l00134"></a>00134     <span class="keywordtype">bool</span>  immutable;
-<a name="l00135"></a>00135 
-<a name="l00136"></a>00136     GLuint         texobj;
-<a name="l00137"></a>00137   };
-<a name="l00138"></a>00138 
-<a name="l00139"></a>00139 } <span class="comment">// namespace m3g {</span>
-<a name="l00140"></a>00140 
-<a name="l00141"></a>00141 std::ostream&amp; operator&lt;&lt; (std::ostream&amp; out, <span class="keyword">const</span> <a class="code" href="classm3g_1_1Image2D.html">m3g::Image2D</a>&amp; img);
-<a name="l00142"></a>00142 
+<a name="l00132"></a>00132     <span class="keywordtype">void</span>* <a class="code" href="classm3g_1_1Image2D.html#b837b1bdda59947a6d818c448965c502">getOpenGLData</a> () <span class="keyword">const</span>;
+<a name="l00133"></a>00133 
+<a name="l00134"></a>00134 
+<a name="l00135"></a>00135   <span class="keyword">private</span>:
+<a name="l00136"></a>00136     <span class="keywordtype">int</span>   format;
+<a name="l00137"></a>00137     <span class="keywordtype">int</span>   width;
+<a name="l00138"></a>00138     <span class="keywordtype">int</span>   height;
+<a name="l00139"></a>00139     <span class="keywordtype">char</span>* image;
+<a name="l00140"></a>00140     <span class="keywordtype">bool</span>  immutable;
+<a name="l00141"></a>00141 
+<a name="l00142"></a>00142   };
 <a name="l00143"></a>00143 
-<a name="l00144"></a>00144 <span class="preprocessor">#endif</span>
+<a name="l00144"></a>00144   <span class="keywordtype">int</span> format_to_bpp (<span class="keywordtype">int</span> format);
+<a name="l00145"></a>00145 
+<a name="l00146"></a>00146 } <span class="comment">// namespace m3g {</span>
+<a name="l00147"></a>00147 
+<a name="l00148"></a>00148 std::ostream&amp; operator&lt;&lt; (std::ostream&amp; out, <span class="keyword">const</span> <a class="code" href="classm3g_1_1Image2D.html">m3g::Image2D</a>&amp; img);
+<a name="l00149"></a>00149 
+<a name="l00150"></a>00150 
+<a name="l00151"></a>00151 <span class="preprocessor">#endif</span>
 </pre></div></div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Wed Apr 7 10:24:27 2010 by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Mon May 10 08:47:29 2010 by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.8 </small></address>
 </body>

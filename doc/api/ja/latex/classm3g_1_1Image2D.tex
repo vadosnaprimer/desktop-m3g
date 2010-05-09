@@ -7,7 +7,7 @@
 Image2Dに対する継承グラフ:\begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[height=2cm]{classm3g_1_1Image2D}
+\includegraphics[height=3cm]{classm3g_1_1Image2D}
 \end{center}
 \end{figure}
 \subsection*{Public メソッド}
@@ -20,6 +20,8 @@ Image2Dに対する継承グラフ:\begin{figure}[H]
 \hyperlink{classm3g_1_1Image2D_f498914ceac20ff9b1708c55ff1484e6}{Image2D} (int format, int width, int height, void $\ast$image, void $\ast$palette)
 \item 
 virtual \hyperlink{classm3g_1_1Image2D_7ac703fe7edbb053dd2246ea1bb43200}{$\sim$Image2D} ()
+\item 
+virtual \hyperlink{classm3g_1_1Image2D}{Image2D} $\ast$ \hyperlink{classm3g_1_1Image2D_47eefc8e0b0b3d4c5b16b3f57285fe6b}{duplicate} () const 
 \item 
 int \hyperlink{classm3g_1_1Image2D_c08e2752176d267cc4429d4d185975b8}{getFormat} () const 
 \item 
@@ -107,7 +109,16 @@ class \textbf{Sprite3D}}
 このオブジェクトを削除するデストラクタ. 
 
 \subsection{関数}
-\hypertarget{classm3g_1_1Image2D_c08e2752176d267cc4429d4d185975b8}{
+\hypertarget{classm3g_1_1Image2D_47eefc8e0b0b3d4c5b16b3f57285fe6b}{
+\index{m3g::Image2D@{m3g::Image2D}!duplicate@{duplicate}}
+\index{duplicate@{duplicate}!m3g::Image2D@{m3g::Image2D}}
+\subsubsection[{duplicate}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Image2D} $\ast$ duplicate () const\hspace{0.3cm}{\tt  \mbox{[}virtual\mbox{]}}}}
+\label{classm3g_1_1Image2D_47eefc8e0b0b3d4c5b16b3f57285fe6b}
+
+
+このオブジェクトの複製の作成. 
+
+\hyperlink{classm3g_1_1Object3D_a25110dac934f867b83b73ad4741a0f4}{Object3D}を再定義しています。\hypertarget{classm3g_1_1Image2D_c08e2752176d267cc4429d4d185975b8}{
 \index{m3g::Image2D@{m3g::Image2D}!getFormat@{getFormat}}
 \index{getFormat@{getFormat}!m3g::Image2D@{m3g::Image2D}}
 \subsubsection[{getFormat}]{\setlength{\rightskip}{0pt plus 5cm}int getFormat () const}}
@@ -216,5 +227,5 @@ R,G,B,Aを持つ画像を表す定数.
 
 このクラスの説明は次のファイルから生成されました:\begin{CompactItemize}
 \item 
-/work/desktop-m3g/src/Image2D.hpp\item 
-/work/desktop-m3g/src/Image2D.cpp\end{CompactItemize}
+/work/workspace.desktop-m3g/src/Image2D.hpp\item 
+/work/workspace.desktop-m3g/src/Image2D.cpp\end{CompactItemize}

@@ -7,7 +7,7 @@
 Inheritance diagram for TriangleStripArray::\begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[height=3cm]{classm3g_1_1TriangleStripArray}
+\includegraphics[height=4cm]{classm3g_1_1TriangleStripArray}
 \end{center}
 \end{figure}
 \subsection*{Public Member Functions}
@@ -19,24 +19,15 @@ Inheritance diagram for TriangleStripArray::\begin{figure}[H]
 \item 
 virtual \hyperlink{classm3g_1_1TriangleStripArray_1cb3853bf79b7710d57044da818d2cde}{$\sim$TriangleStripArray} ()
 \item 
+virtual \hyperlink{classm3g_1_1TriangleStripArray}{TriangleStripArray} $\ast$ \hyperlink{classm3g_1_1TriangleStripArray_1623fbdfe91eb2e9d4a67bece6a46904}{duplicate} () const 
+\item 
 virtual int \hyperlink{classm3g_1_1TriangleStripArray_fe9ae2993ebcdb93d5ff26d57c81b73e}{getIndexCount} () const 
 \item 
 virtual void \hyperlink{classm3g_1_1TriangleStripArray_650953afac45099025a524ab160b911f}{getIndices} (int $\ast$indices)
 \item 
 virtual std::ostream \& \hyperlink{classm3g_1_1TriangleStripArray_6fea17fa1532df3794f8cb39cb4f911f}{print} (std::ostream \&out) const 
-\end{CompactItemize}
-\subsection*{Protected Member Functions}
-\begin{CompactItemize}
 \item 
-virtual void \hyperlink{classm3g_1_1TriangleStripArray_1efcb1973989d9963d5bd6d03065d389}{render} (int pass, int index=0) const 
-\end{CompactItemize}
-\subsection*{Friends}
-\begin{CompactItemize}
-\item 
-\hypertarget{classm3g_1_1TriangleStripArray_1f61169bea98d63b51332345ccaea9d5}{
-class \textbf{UnitTest::Test}}
-\label{classm3g_1_1TriangleStripArray_1f61169bea98d63b51332345ccaea9d5}
-
+virtual void \hyperlink{classm3g_1_1TriangleStripArray_8babc8a79b78615da51161e94029eea9}{render} (\hyperlink{structm3g_1_1RenderState}{RenderState} \&state) const 
 \end{CompactItemize}
 
 
@@ -68,7 +59,16 @@ Constructs a triangle strip array with implicit indices. \hypertarget{classm3g_1
 Destruct this object. 
 
 \subsection{Member Function Documentation}
-\hypertarget{classm3g_1_1TriangleStripArray_fe9ae2993ebcdb93d5ff26d57c81b73e}{
+\hypertarget{classm3g_1_1TriangleStripArray_1623fbdfe91eb2e9d4a67bece6a46904}{
+\index{m3g::TriangleStripArray@{m3g::TriangleStripArray}!duplicate@{duplicate}}
+\index{duplicate@{duplicate}!m3g::TriangleStripArray@{m3g::TriangleStripArray}}
+\subsubsection[{duplicate}]{\setlength{\rightskip}{0pt plus 5cm}{\bf TriangleStripArray} $\ast$ duplicate () const\hspace{0.3cm}{\tt  \mbox{[}virtual\mbox{]}}}}
+\label{classm3g_1_1TriangleStripArray_1623fbdfe91eb2e9d4a67bece6a46904}
+
+
+Creates a duplicate of this \hyperlink{classm3g_1_1Object3D}{Object3D}. 
+
+Reimplemented from \hyperlink{classm3g_1_1IndexBuffer_fab6fc0a0ec393e527f849c3af10ad76}{IndexBuffer}.\hypertarget{classm3g_1_1TriangleStripArray_fe9ae2993ebcdb93d5ff26d57c81b73e}{
 \index{m3g::TriangleStripArray@{m3g::TriangleStripArray}!getIndexCount@{getIndexCount}}
 \index{getIndexCount@{getIndexCount}!m3g::TriangleStripArray@{m3g::TriangleStripArray}}
 \subsubsection[{getIndexCount}]{\setlength{\rightskip}{0pt plus 5cm}int getIndexCount () const\hspace{0.3cm}{\tt  \mbox{[}virtual\mbox{]}}}}
@@ -77,7 +77,7 @@ Destruct this object.
 
 Returns the number of indices in this buffer. 
 
-Implements \hyperlink{classm3g_1_1IndexBuffer_ac7d2c37f177b21195a81f00061ef94e}{IndexBuffer}.\hypertarget{classm3g_1_1TriangleStripArray_650953afac45099025a524ab160b911f}{
+Reimplemented from \hyperlink{classm3g_1_1IndexBuffer_fe9ae2993ebcdb93d5ff26d57c81b73e}{IndexBuffer}.\hypertarget{classm3g_1_1TriangleStripArray_650953afac45099025a524ab160b911f}{
 \index{m3g::TriangleStripArray@{m3g::TriangleStripArray}!getIndices@{getIndices}}
 \index{getIndices@{getIndices}!m3g::TriangleStripArray@{m3g::TriangleStripArray}}
 \subsubsection[{getIndices}]{\setlength{\rightskip}{0pt plus 5cm}void getIndices (int $\ast$ {\em indices})\hspace{0.3cm}{\tt  \mbox{[}virtual\mbox{]}}}}
@@ -86,7 +86,7 @@ Implements \hyperlink{classm3g_1_1IndexBuffer_ac7d2c37f177b21195a81f00061ef94e}{
 
 Retrieves vertex indices for the rendering primitives stored in this buffer. 
 
-Implements \hyperlink{classm3g_1_1IndexBuffer_59fb1eca8810ea3b028735c5dce53fca}{IndexBuffer}.\hypertarget{classm3g_1_1TriangleStripArray_6fea17fa1532df3794f8cb39cb4f911f}{
+Reimplemented from \hyperlink{classm3g_1_1IndexBuffer_650953afac45099025a524ab160b911f}{IndexBuffer}.\hypertarget{classm3g_1_1TriangleStripArray_6fea17fa1532df3794f8cb39cb4f911f}{
 \index{m3g::TriangleStripArray@{m3g::TriangleStripArray}!print@{print}}
 \index{print@{print}!m3g::TriangleStripArray@{m3g::TriangleStripArray}}
 \subsubsection[{print}]{\setlength{\rightskip}{0pt plus 5cm}std::ostream \& print (std::ostream \& {\em out}) const\hspace{0.3cm}{\tt  \mbox{[}virtual\mbox{]}}}}
@@ -95,20 +95,20 @@ Implements \hyperlink{classm3g_1_1IndexBuffer_59fb1eca8810ea3b028735c5dce53fca}{
 
 Print out information of this object, for debug only. 
 
-Reimplemented from \hyperlink{classm3g_1_1IndexBuffer_6fea17fa1532df3794f8cb39cb4f911f}{IndexBuffer}.\hypertarget{classm3g_1_1TriangleStripArray_1efcb1973989d9963d5bd6d03065d389}{
+Reimplemented from \hyperlink{classm3g_1_1IndexBuffer_6fea17fa1532df3794f8cb39cb4f911f}{IndexBuffer}.\hypertarget{classm3g_1_1TriangleStripArray_8babc8a79b78615da51161e94029eea9}{
 \index{m3g::TriangleStripArray@{m3g::TriangleStripArray}!render@{render}}
 \index{render@{render}!m3g::TriangleStripArray@{m3g::TriangleStripArray}}
-\subsubsection[{render}]{\setlength{\rightskip}{0pt plus 5cm}void render (int {\em pass}, \/  int {\em index} = {\tt 0}) const\hspace{0.3cm}{\tt  \mbox{[}protected, virtual\mbox{]}}}}
-\label{classm3g_1_1TriangleStripArray_1efcb1973989d9963d5bd6d03065d389}
+\subsubsection[{render}]{\setlength{\rightskip}{0pt plus 5cm}void render ({\bf RenderState} \& {\em state}) const\hspace{0.3cm}{\tt  \mbox{[}virtual\mbox{]}}}}
+\label{classm3g_1_1TriangleStripArray_8babc8a79b78615da51161e94029eea9}
 
 
 Render this object, for inner use.
 
 Note: \hyperlink{classm3g_1_1TriangleStripArray}{TriangleStripArray} should be rendered only at second rendering pass(pass=2). In other cases, do nothing. 
 
-Reimplemented from \hyperlink{classm3g_1_1IndexBuffer_1efcb1973989d9963d5bd6d03065d389}{IndexBuffer}.
+Reimplemented from \hyperlink{classm3g_1_1IndexBuffer_8babc8a79b78615da51161e94029eea9}{IndexBuffer}.
 
 The documentation for this class was generated from the following files:\begin{CompactItemize}
 \item 
-/work/desktop-m3g/src/TriangleStripArray.hpp\item 
-/work/desktop-m3g/src/TriangleStripArray.cpp\end{CompactItemize}
+/work/workspace.desktop-m3g/src/TriangleStripArray.hpp\item 
+/work/workspace.desktop-m3g/src/TriangleStripArray.cpp\end{CompactItemize}

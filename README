@@ -1,0 +1,15 @@
+
+
+== Make & Install ==
+
+  = libm3g =
+    1. change directroy to src.
+    2. make
+    3. sudo make install
+
+  = ruby-m3g = 
+    1. change directory to src/ruby-m3g.
+    2. ruby extconf.rb
+    3. make
+    4. sudo make site-install
+

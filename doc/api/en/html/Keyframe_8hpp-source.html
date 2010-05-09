@@ -1,6 +1,6 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-<title>/work/desktop-m3g/src/Keyframe.hpp Source File</title>
+<title>/work/workspace.desktop-m3g/src/Keyframe.hpp Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css">
 <link href="doxygen.css" rel="stylesheet" type="text/css">
 </head><body>
@@ -18,7 +18,7 @@
       <li><a href="files.html"><span>File&nbsp;List</span></a></li>
     </ul>
   </div>
-<h1>/work/desktop-m3g/src/Keyframe.hpp</h1><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="preprocessor">#ifndef __KEYFRAME_HPP__</span>
+<h1>/work/workspace.desktop-m3g/src/Keyframe.hpp</h1><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="preprocessor">#ifndef __KEYFRAME_HPP__</span>
 <a name="l00002"></a>00002 <span class="preprocessor"></span><span class="preprocessor">#define __KEYFRAME_HPP__</span>
 <a name="l00003"></a>00003 <span class="preprocessor"></span>
 <a name="l00004"></a>00004 <span class="preprocessor">#include &lt;iostream&gt;</span>
@@ -27,36 +27,39 @@
 <a name="l00007"></a>00007 
 <a name="l00008"></a>00008 <span class="keyword">namespace </span>m3g {
 <a name="l00009"></a>00009 
-<a name="l00014"></a><a class="code" href="classm3g_1_1Keyframe.html">00014</a> <span class="keyword">class </span><a class="code" href="classm3g_1_1Keyframe.html">Keyframe</a>
+<a name="l00014"></a>00014 <span class="keyword">class </span>Keyframe
 <a name="l00015"></a>00015 {
 <a name="l00016"></a>00016 <span class="keyword">public</span>:
-<a name="l00017"></a>00017   <a class="code" href="classm3g_1_1Keyframe.html">Keyframe</a> ();
-<a name="l00018"></a>00018   <a class="code" href="classm3g_1_1Keyframe.html">Keyframe</a> (<span class="keywordtype">int</span> t, <span class="keywordtype">float</span>* v);
-<a name="l00019"></a>00019   ~<a class="code" href="classm3g_1_1Keyframe.html">Keyframe</a> ();
+<a name="l00017"></a>00017   Keyframe ();
+<a name="l00018"></a>00018   Keyframe (<span class="keywordtype">int</span> t, <span class="keywordtype">float</span>* v);
+<a name="l00019"></a>00019   ~Keyframe ();
 <a name="l00020"></a>00020 
-<a name="l00021"></a>00021   <span class="keywordtype">int</span>    time;
-<a name="l00022"></a>00022   <span class="keywordtype">float</span>* value;
-<a name="l00023"></a>00023 };
-<a name="l00024"></a>00024 
-<a name="l00028"></a>00028   <span class="keywordtype">void</span> step   (<span class="keywordtype">float</span> s, <span class="keyword">const</span> <a class="code" href="classm3g_1_1Keyframe.html">Keyframe</a>&amp; k0, <span class="keyword">const</span> <a class="code" href="classm3g_1_1Keyframe.html">Keyframe</a>&amp; k1, <span class="keywordtype">int</span> component_count, <span class="keywordtype">float</span>* value);
+<a name="l00024"></a>00024   std::ostream&amp; print (std::ostream&amp; out) <span class="keyword">const</span>;
+<a name="l00025"></a>00025 
+<a name="l00026"></a>00026   <span class="keywordtype">int</span>    time;
+<a name="l00027"></a>00027   <span class="keywordtype">float</span>* value;
+<a name="l00028"></a>00028 };
 <a name="l00029"></a>00029 
-<a name="l00033"></a>00033   <span class="keywordtype">void</span> linear (<span class="keywordtype">float</span> s, <span class="keyword">const</span> <a class="code" href="classm3g_1_1Keyframe.html">Keyframe</a>&amp; k0, <span class="keyword">const</span> <a class="code" href="classm3g_1_1Keyframe.html">Keyframe</a>&amp; k1, <span class="keywordtype">int</span> component_count, <span class="keywordtype">float</span>* value);
+<a name="l00033"></a>00033   <span class="keywordtype">void</span> step   (<span class="keywordtype">float</span> s, <span class="keyword">const</span> Keyframe&amp; k0, <span class="keyword">const</span> Keyframe&amp; k1, <span class="keywordtype">int</span> component_count, <span class="keywordtype">float</span>* value);
 <a name="l00034"></a>00034 
-<a name="l00039"></a>00039   <span class="keywordtype">void</span> slerp  (<span class="keywordtype">float</span> s, <span class="keyword">const</span> <a class="code" href="classm3g_1_1Keyframe.html">Keyframe</a>&amp; k0, <span class="keyword">const</span> <a class="code" href="classm3g_1_1Keyframe.html">Keyframe</a>&amp; k1, <span class="keywordtype">int</span> component_count, <span class="keywordtype">float</span>* value);
-<a name="l00043"></a>00043   <span class="keywordtype">void</span> squad  (<span class="keywordtype">float</span> s, <span class="keyword">const</span> <a class="code" href="classm3g_1_1Keyframe.html">Keyframe</a>&amp; k0, <span class="keyword">const</span> <a class="code" href="classm3g_1_1Keyframe.html">Keyframe</a>&amp; k1, <span class="keywordtype">int</span> component_count, <span class="keywordtype">float</span>* value);
-<a name="l00044"></a>00044 
-<a name="l00048"></a>00048   <span class="keywordtype">void</span> spline (<span class="keywordtype">float</span> s, <span class="keyword">const</span> <a class="code" href="classm3g_1_1Keyframe.html">Keyframe</a>&amp; k0, <span class="keyword">const</span> <a class="code" href="classm3g_1_1Keyframe.html">Keyframe</a>&amp; k1, <span class="keyword">const</span> <a class="code" href="classm3g_1_1Keyframe.html">Keyframe</a>&amp; k2, <span class="keyword">const</span> <a class="code" href="classm3g_1_1Keyframe.html">Keyframe</a>&amp; key_3, <span class="keywordtype">int</span> component_count, <span class="keywordtype">float</span>* value);
+<a name="l00038"></a>00038   <span class="keywordtype">void</span> linear (<span class="keywordtype">float</span> s, <span class="keyword">const</span> Keyframe&amp; k0, <span class="keyword">const</span> Keyframe&amp; k1, <span class="keywordtype">int</span> component_count, <span class="keywordtype">float</span>* value);
+<a name="l00039"></a>00039 
+<a name="l00044"></a>00044   <span class="keywordtype">void</span> slerp  (<span class="keywordtype">float</span> s, <span class="keyword">const</span> Keyframe&amp; k0, <span class="keyword">const</span> Keyframe&amp; k1, <span class="keywordtype">int</span> component_count, <span class="keywordtype">float</span>* value);
+<a name="l00048"></a>00048   <span class="keywordtype">void</span> squad  (<span class="keywordtype">float</span> s, <span class="keyword">const</span> Keyframe&amp; k0, <span class="keyword">const</span> Keyframe&amp; k1, <span class="keywordtype">int</span> component_count, <span class="keywordtype">float</span>* value);
 <a name="l00049"></a>00049 
-<a name="l00050"></a>00050 } <span class="comment">// namespace m3g {</span>
-<a name="l00051"></a>00051 
-<a name="l00052"></a>00052 
-<a name="l00053"></a>00053 std::ostream&amp; operator&lt;&lt; (std::ostream&amp; out, <span class="keyword">const</span> <a class="code" href="classm3g_1_1Keyframe.html">m3g::Keyframe</a>&amp; keyframe);
+<a name="l00053"></a>00053   <span class="keywordtype">void</span> spline (<span class="keywordtype">float</span> s, <span class="keyword">const</span> Keyframe&amp; k0, <span class="keyword">const</span> Keyframe&amp; k1, <span class="keyword">const</span> Keyframe&amp; k2, <span class="keyword">const</span> Keyframe&amp; key_3, <span class="keywordtype">int</span> component_count, <span class="keywordtype">float</span>* value);
 <a name="l00054"></a>00054 
 <a name="l00055"></a>00055 
-<a name="l00056"></a>00056 <span class="preprocessor">#endif</span>
-<a name="l00057"></a>00057 <span class="preprocessor"></span>
+<a name="l00056"></a>00056 } <span class="comment">// namespace m3g {</span>
+<a name="l00057"></a>00057 
+<a name="l00058"></a>00058 
+<a name="l00059"></a>00059 std::ostream&amp; operator&lt;&lt; (std::ostream&amp; out, <span class="keyword">const</span> m3g::Keyframe&amp; keyframe);
+<a name="l00060"></a>00060 
+<a name="l00061"></a>00061 
+<a name="l00062"></a>00062 <span class="preprocessor">#endif</span>
+<a name="l00063"></a>00063 <span class="preprocessor"></span>
 </pre></div></div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Wed Apr 7 10:24:27 2010 by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Mon May 10 08:47:29 2010 by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.8 </small></address>
 </body>

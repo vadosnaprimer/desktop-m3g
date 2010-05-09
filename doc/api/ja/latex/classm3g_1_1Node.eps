@@ -5,7 +5,7 @@
 %%For: 
 %Magnification: 1.00
 %%Orientation: Portrait
-%%BoundingBox: 0 0 500 190.476
+%%BoundingBox: 0 0 500 228.571
 %%Pages: 0
 %%BeginSetup
 %%EndSetup
@@ -19,12 +19,12 @@
 /marginwidth 10 def
 /distx 20 def
 /disty 40 def
-/boundaspect 2.625 def  % aspect ratio of the BoundingBox (width/height)
+/boundaspect 2.1875 def  % aspect ratio of the BoundingBox (width/height)
 /boundx 500 def
 /boundy boundx boundaspect div def
 /xspacing 0 def
 /yspacing 0 def
-/rows 5 def
+/rows 6 def
 /cols 5 def
 /scalefactor 0 def
 /boxfont /Times-Roman findfont fontheight scalefont def
@@ -176,6 +176,7 @@ boxfont setfont
 (Node) cw
 (Transformable) cw
 (Object3D) cw
+(Object) cw
 (Camera) cw
 (Group) cw
 (Light) cw
@@ -198,6 +199,7 @@ boundx scalefactor div boundy scalefactor div scale
  (Node) 2 2 box
  (Transformable) 2 3 box
  (Object3D) 2 4 box
+ (Object) 2 5 box
  (Camera) 0 1 box
  (Group) 1 1 box
  (Light) 2 1 box
@@ -217,6 +219,10 @@ solid
 0 2 3 out
 solid
 1 2 4 in
+solid
+0 2 4 out
+solid
+1 2 5 in
 solid
 1 2 1.25 out
 solid

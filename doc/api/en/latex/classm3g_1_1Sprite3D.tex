@@ -7,13 +7,13 @@
 Inheritance diagram for Sprite3D::\begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[height=4cm]{classm3g_1_1Sprite3D}
+\includegraphics[height=5cm]{classm3g_1_1Sprite3D}
 \end{center}
 \end{figure}
 \subsection*{Classes}
 \begin{CompactItemize}
 \item 
-struct \textbf{CropRect}
+struct \hyperlink{structm3g_1_1Sprite3D_1_1CropRect}{CropRect}
 \end{CompactItemize}
 \subsection*{Public Member Functions}
 \begin{CompactItemize}
@@ -21,6 +21,8 @@ struct \textbf{CropRect}
 \hyperlink{classm3g_1_1Sprite3D_9cb33fd453d441ed8e99b95f5e29df0c}{Sprite3D} (bool scaled, \hyperlink{classm3g_1_1Image2D}{Image2D} $\ast$image, \hyperlink{classm3g_1_1Appearance}{Appearance} $\ast$appearance)
 \item 
 virtual \hyperlink{classm3g_1_1Sprite3D_a57bd1e3141ba11c88ddec1e46c188d6}{$\sim$Sprite3D} ()
+\item 
+\hyperlink{classm3g_1_1Sprite3D}{Sprite3D} $\ast$ \hyperlink{classm3g_1_1Sprite3D_0af34e87be803eb476f9e118d2363246}{duplicate} () const 
 \item 
 virtual void \hyperlink{classm3g_1_1Sprite3D_415c0b110f95410ded9b85e5d99a496b}{addAnimationTrack} (\hyperlink{classm3g_1_1AnimationTrack}{AnimationTrack} $\ast$animation\_\-track)
 \item 
@@ -42,7 +44,7 @@ bool \hyperlink{classm3g_1_1Sprite3D_8e3e7fa70e1d3f2342580991105779f5}{isScaled}
 \item 
 void \hyperlink{classm3g_1_1Sprite3D_b9b44bad4241635062ed66437c9bae48}{setAppearance} (\hyperlink{classm3g_1_1Appearance}{Appearance} $\ast$appearance)
 \item 
-void \hyperlink{classm3g_1_1Sprite3D_92660f9625c68b0169ee84bbc4586187}{setCrop} (int cropX, int cropY, int width, int height)
+void \hyperlink{classm3g_1_1Sprite3D_35ca6d3ff64f2232a0f3a11bf4ab483e}{setCrop} (int crop\_\-x, int crop\_\-y, int width, int height)
 \item 
 void \hyperlink{classm3g_1_1Sprite3D_705b89b41cd1b38f664ed912be44baaa}{setImage} (\hyperlink{classm3g_1_1Image2D}{Image2D} $\ast$image)
 \item 
@@ -51,7 +53,7 @@ virtual std::ostream \& \hyperlink{classm3g_1_1Sprite3D_6fea17fa1532df3794f8cb39
 \subsection*{Protected Member Functions}
 \begin{CompactItemize}
 \item 
-virtual void \hyperlink{classm3g_1_1Sprite3D_1efcb1973989d9963d5bd6d03065d389}{render} (int pass, int index=0) const 
+virtual void \hyperlink{classm3g_1_1Sprite3D_8babc8a79b78615da51161e94029eea9}{render} (\hyperlink{structm3g_1_1RenderState}{RenderState} \&state) const 
 \end{CompactItemize}
 \subsection*{Friends}
 \begin{CompactItemize}
@@ -102,7 +104,16 @@ Reimplemented from \hyperlink{classm3g_1_1Node_415c0b110f95410ded9b85e5d99a496b}
 
 Updates all animated properties in this \hyperlink{classm3g_1_1Object3D}{Object3D} and all Object3Ds that are reachable from this \hyperlink{classm3g_1_1Object3D}{Object3D}. 
 
-Reimplemented from \hyperlink{classm3g_1_1Node_8aad1ceab4c2a03609c8a42324ce484d}{Node}.\hypertarget{classm3g_1_1Sprite3D_0219cb20ddea978a5796b5b414d012d2}{
+Reimplemented from \hyperlink{classm3g_1_1Node_8aad1ceab4c2a03609c8a42324ce484d}{Node}.\hypertarget{classm3g_1_1Sprite3D_0af34e87be803eb476f9e118d2363246}{
+\index{m3g::Sprite3D@{m3g::Sprite3D}!duplicate@{duplicate}}
+\index{duplicate@{duplicate}!m3g::Sprite3D@{m3g::Sprite3D}}
+\subsubsection[{duplicate}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Sprite3D} $\ast$ duplicate () const\hspace{0.3cm}{\tt  \mbox{[}virtual\mbox{]}}}}
+\label{classm3g_1_1Sprite3D_0af34e87be803eb476f9e118d2363246}
+
+
+Creates a duplicate of this \hyperlink{classm3g_1_1Object3D}{Object3D}. 
+
+Reimplemented from \hyperlink{classm3g_1_1Node_0b9f7531a4b56d34f47aeb1fff0d37e0}{Node}.\hypertarget{classm3g_1_1Sprite3D_0219cb20ddea978a5796b5b414d012d2}{
 \index{m3g::Sprite3D@{m3g::Sprite3D}!getAppearance@{getAppearance}}
 \index{getAppearance@{getAppearance}!m3g::Sprite3D@{m3g::Sprite3D}}
 \subsubsection[{getAppearance}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Appearance} $\ast$ getAppearance () const}}
@@ -160,29 +171,29 @@ Returns the automatic scaling status of this \hyperlink{classm3g_1_1Sprite3D}{Sp
 
 Rrint out information of this object, for only debug. 
 
-Reimplemented from \hyperlink{classm3g_1_1Node_6fea17fa1532df3794f8cb39cb4f911f}{Node}.\hypertarget{classm3g_1_1Sprite3D_1efcb1973989d9963d5bd6d03065d389}{
+Reimplemented from \hyperlink{classm3g_1_1Node_6fea17fa1532df3794f8cb39cb4f911f}{Node}.\hypertarget{classm3g_1_1Sprite3D_8babc8a79b78615da51161e94029eea9}{
 \index{m3g::Sprite3D@{m3g::Sprite3D}!render@{render}}
 \index{render@{render}!m3g::Sprite3D@{m3g::Sprite3D}}
-\subsubsection[{render}]{\setlength{\rightskip}{0pt plus 5cm}void render (int {\em pass}, \/  int {\em index} = {\tt 0}) const\hspace{0.3cm}{\tt  \mbox{[}protected, virtual\mbox{]}}}}
-\label{classm3g_1_1Sprite3D_1efcb1973989d9963d5bd6d03065d389}
+\subsubsection[{render}]{\setlength{\rightskip}{0pt plus 5cm}void render ({\bf RenderState} \& {\em state}) const\hspace{0.3cm}{\tt  \mbox{[}protected, virtual\mbox{]}}}}
+\label{classm3g_1_1Sprite3D_8babc8a79b78615da51161e94029eea9}
 
 
 Render this object, for inner use.
 
-Note: \hyperlink{classm3g_1_1Sprite3D}{Sprite3D} should be rendered only at second rendering pass(pass=2). In other cases, do nothing. 
+Note: \hyperlink{classm3g_1_1Sprite3D}{Sprite3D} should be rendered only at second rendering pass(pass=2). In other cases, do nothing. メモ： 改良の余地があるな……。あとappearanceがNULLの時は”何もしない”ではなく ”デフォルトでレンダー”にすべき。 
 
-Reimplemented from \hyperlink{classm3g_1_1Node_1efcb1973989d9963d5bd6d03065d389}{Node}.\hypertarget{classm3g_1_1Sprite3D_b9b44bad4241635062ed66437c9bae48}{
+Reimplemented from \hyperlink{classm3g_1_1Node_8babc8a79b78615da51161e94029eea9}{Node}.\hypertarget{classm3g_1_1Sprite3D_b9b44bad4241635062ed66437c9bae48}{
 \index{m3g::Sprite3D@{m3g::Sprite3D}!setAppearance@{setAppearance}}
 \index{setAppearance@{setAppearance}!m3g::Sprite3D@{m3g::Sprite3D}}
 \subsubsection[{setAppearance}]{\setlength{\rightskip}{0pt plus 5cm}void setAppearance ({\bf Appearance} $\ast$ {\em appearance})}}
 \label{classm3g_1_1Sprite3D_b9b44bad4241635062ed66437c9bae48}
 
 
-Sets the Appearancce of this \hyperlink{classm3g_1_1Sprite3D}{Sprite3D}. \hypertarget{classm3g_1_1Sprite3D_92660f9625c68b0169ee84bbc4586187}{
+Sets the Appearancce of this \hyperlink{classm3g_1_1Sprite3D}{Sprite3D}. \hypertarget{classm3g_1_1Sprite3D_35ca6d3ff64f2232a0f3a11bf4ab483e}{
 \index{m3g::Sprite3D@{m3g::Sprite3D}!setCrop@{setCrop}}
 \index{setCrop@{setCrop}!m3g::Sprite3D@{m3g::Sprite3D}}
-\subsubsection[{setCrop}]{\setlength{\rightskip}{0pt plus 5cm}void setCrop (int {\em cropX}, \/  int {\em cropY}, \/  int {\em width}, \/  int {\em height})}}
-\label{classm3g_1_1Sprite3D_92660f9625c68b0169ee84bbc4586187}
+\subsubsection[{setCrop}]{\setlength{\rightskip}{0pt plus 5cm}void setCrop (int {\em crop\_\-x}, \/  int {\em crop\_\-y}, \/  int {\em width}, \/  int {\em height})}}
+\label{classm3g_1_1Sprite3D_35ca6d3ff64f2232a0f3a11bf4ab483e}
 
 
 Sets a cropping rectangle within the source image. \hypertarget{classm3g_1_1Sprite3D_705b89b41cd1b38f664ed912be44baaa}{
@@ -196,5 +207,5 @@ Sets the sprite image to display.
 
 The documentation for this class was generated from the following files:\begin{CompactItemize}
 \item 
-/work/desktop-m3g/src/Sprite3D.hpp\item 
-/work/desktop-m3g/src/Sprite3D.cpp\end{CompactItemize}
+/work/workspace.desktop-m3g/src/Sprite3D.hpp\item 
+/work/workspace.desktop-m3g/src/Sprite3D.cpp\end{CompactItemize}

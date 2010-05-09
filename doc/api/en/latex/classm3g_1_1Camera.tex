@@ -7,7 +7,7 @@
 Inheritance diagram for Camera::\begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[height=4cm]{classm3g_1_1Camera}
+\includegraphics[height=5cm]{classm3g_1_1Camera}
 \end{center}
 \end{figure}
 \subsection*{Public Member Functions}
@@ -16,6 +16,8 @@ Inheritance diagram for Camera::\begin{figure}[H]
 \hyperlink{classm3g_1_1Camera_a3f3efcb2fcc75de885df29041103cd2}{Camera} ()
 \item 
 virtual \hyperlink{classm3g_1_1Camera_b921e886e6f14e117eb8099ccb0a3775}{$\sim$Camera} ()
+\item 
+virtual \hyperlink{classm3g_1_1Camera}{Camera} $\ast$ \hyperlink{classm3g_1_1Camera_6279f7f8ab52af683fadd193d7694f2d}{duplicate} () const 
 \item 
 virtual void \hyperlink{classm3g_1_1Camera_415c0b110f95410ded9b85e5d99a496b}{addAnimationTrack} (\hyperlink{classm3g_1_1AnimationTrack}{AnimationTrack} $\ast$animation\_\-track)
 \item 
@@ -47,7 +49,7 @@ static const int \hyperlink{classm3g_1_1Camera_e62e72bde93e7d7ceb482e7a8c40dcf5}
 \subsection*{Protected Member Functions}
 \begin{CompactItemize}
 \item 
-virtual void \hyperlink{classm3g_1_1Camera_1efcb1973989d9963d5bd6d03065d389}{render} (int pass, int index=0) const 
+virtual void \hyperlink{classm3g_1_1Camera_8babc8a79b78615da51161e94029eea9}{render} (\hyperlink{structm3g_1_1RenderState}{RenderState} \&state) const 
 \end{CompactItemize}
 \subsection*{Friends}
 \begin{CompactItemize}
@@ -103,7 +105,16 @@ Reimplemented from \hyperlink{classm3g_1_1Node_415c0b110f95410ded9b85e5d99a496b}
 
 Update animatable property to specified world time. 
 
-Reimplemented from \hyperlink{classm3g_1_1Node_8aad1ceab4c2a03609c8a42324ce484d}{Node}.\hypertarget{classm3g_1_1Camera_9e0c204df146342990703acb744954b1}{
+Reimplemented from \hyperlink{classm3g_1_1Node_8aad1ceab4c2a03609c8a42324ce484d}{Node}.\hypertarget{classm3g_1_1Camera_6279f7f8ab52af683fadd193d7694f2d}{
+\index{m3g::Camera@{m3g::Camera}!duplicate@{duplicate}}
+\index{duplicate@{duplicate}!m3g::Camera@{m3g::Camera}}
+\subsubsection[{duplicate}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Camera} $\ast$ duplicate () const\hspace{0.3cm}{\tt  \mbox{[}virtual\mbox{]}}}}
+\label{classm3g_1_1Camera_6279f7f8ab52af683fadd193d7694f2d}
+
+
+Creates a duplicate of this \hyperlink{classm3g_1_1Object3D}{Object3D}. 
+
+Reimplemented from \hyperlink{classm3g_1_1Node_0b9f7531a4b56d34f47aeb1fff0d37e0}{Node}.\hypertarget{classm3g_1_1Camera_9e0c204df146342990703acb744954b1}{
 \index{m3g::Camera@{m3g::Camera}!getProjection@{getProjection}}
 \index{getProjection@{getProjection}!m3g::Camera@{m3g::Camera}}
 \subsubsection[{getProjection}]{\setlength{\rightskip}{0pt plus 5cm}int getProjection ({\bf Transform} $\ast$ {\em transform}) const}}
@@ -133,18 +144,18 @@ Same as glut's lookat() function. this is not in M3G. \hypertarget{classm3g_1_1C
 
 print out information of this calss, for debug only. 
 
-Reimplemented from \hyperlink{classm3g_1_1Node_6fea17fa1532df3794f8cb39cb4f911f}{Node}.\hypertarget{classm3g_1_1Camera_1efcb1973989d9963d5bd6d03065d389}{
+Reimplemented from \hyperlink{classm3g_1_1Node_6fea17fa1532df3794f8cb39cb4f911f}{Node}.\hypertarget{classm3g_1_1Camera_8babc8a79b78615da51161e94029eea9}{
 \index{m3g::Camera@{m3g::Camera}!render@{render}}
 \index{render@{render}!m3g::Camera@{m3g::Camera}}
-\subsubsection[{render}]{\setlength{\rightskip}{0pt plus 5cm}void render (int {\em pass}, \/  int {\em index} = {\tt 0}) const\hspace{0.3cm}{\tt  \mbox{[}protected, virtual\mbox{]}}}}
-\label{classm3g_1_1Camera_1efcb1973989d9963d5bd6d03065d389}
+\subsubsection[{render}]{\setlength{\rightskip}{0pt plus 5cm}void render ({\bf RenderState} \& {\em state}) const\hspace{0.3cm}{\tt  \mbox{[}protected, virtual\mbox{]}}}}
+\label{classm3g_1_1Camera_8babc8a79b78615da51161e94029eea9}
 
 
 Render this Camear object, for inner use.
 
 Note: \hyperlink{classm3g_1_1Camera}{Camera} should be rendered only at 0th rendering pass(pass=0). In other cases, do nothing. 
 
-Reimplemented from \hyperlink{classm3g_1_1Node_1efcb1973989d9963d5bd6d03065d389}{Node}.\hypertarget{classm3g_1_1Camera_51c42821097e90d3f59e87676684f60a}{
+Reimplemented from \hyperlink{classm3g_1_1Node_8babc8a79b78615da51161e94029eea9}{Node}.\hypertarget{classm3g_1_1Camera_51c42821097e90d3f59e87676684f60a}{
 \index{m3g::Camera@{m3g::Camera}!setGeneric@{setGeneric}}
 \index{setGeneric@{setGeneric}!m3g::Camera@{m3g::Camera}}
 \subsubsection[{setGeneric}]{\setlength{\rightskip}{0pt plus 5cm}void setGeneric (const {\bf Transform} \& {\em transorm})}}
@@ -193,5 +204,5 @@ specifies a perspective projection matrix.
 
 The documentation for this class was generated from the following files:\begin{CompactItemize}
 \item 
-/work/desktop-m3g/src/Camera.hpp\item 
-/work/desktop-m3g/src/Camera.cpp\end{CompactItemize}
+/work/workspace.desktop-m3g/src/Camera.hpp\item 
+/work/workspace.desktop-m3g/src/Camera.cpp\end{CompactItemize}

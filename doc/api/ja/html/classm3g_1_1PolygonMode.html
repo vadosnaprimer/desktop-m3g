@@ -32,7 +32,7 @@ PolygonModeに対する継承グラフ</div>
 
 <p><center><img src="classm3g_1_1PolygonMode.png" usemap="#PolygonMode_map" border="0" alt=""></center>
 <map name="PolygonMode_map">
-<area href="classm3g_1_1Object3D.html" alt="Object3D" shape="rect" coords="0,0,90,24">
+<area href="classm3g_1_1Object3D.html" alt="Object3D" shape="rect" coords="0,56,90,80">
 </map>
 </div>
 
@@ -43,6 +43,8 @@ PolygonModeに対する継承グラフ</div>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1PolygonMode.html#b089ee808cbc4799bb2e92dd4ca554c3">PolygonMode</a> ()</td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">virtual&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1PolygonMode.html#64ea3958d7ec67fc648707782b2221fe">~PolygonMode</a> ()</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">virtual <a class="el" href="classm3g_1_1PolygonMode.html">PolygonMode</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1PolygonMode.html#a302cb097523e044bc03198ec8448c32">duplicate</a> () const </td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1PolygonMode.html#3b0c0325e93774222d828f2612d59b1b">getCulling</a> () const </td></tr>
 
@@ -70,6 +72,8 @@ PolygonModeに対する継承グラフ</div>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">virtual std::ostream &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1PolygonMode.html#6fea17fa1532df3794f8cb39cb4f911f">print</a> (std::ostream &amp;out) const </td></tr>
 
+<tr><td class="memItemLeft" nowrap align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1PolygonMode.html#8babc8a79b78615da51161e94029eea9">render</a> (<a class="el" href="structm3g_1_1RenderState.html">RenderState</a> &amp;state) const </td></tr>
+
 <tr><td colspan="2"><br><h2>Static Public 変数</h2></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">static const int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1PolygonMode.html#34ae9162b765ddbc1d2476edf3195361">CULL_BACK</a> = 160</td></tr>
 
@@ -84,9 +88,6 @@ PolygonModeに対する継承グラフ</div>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">static const int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1PolygonMode.html#98d881cf813edf483860268535014210">WINDING_CCW</a> = 168</td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">static const int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1PolygonMode.html#86975b3dec0d6cc20f54fd82eb13ef9e">WINDING_CW</a> = 169</td></tr>
-
-<tr><td colspan="2"><br><h2>Protected メソッド</h2></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1PolygonMode.html#1efcb1973989d9963d5bd6d03065d389">render</a> (int pass, int index=0) const </td></tr>
 
 <tr><td colspan="2"><br><h2>フレンド</h2></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="afa5201a494f65c37039281d9b63a2a9"></a><!-- doxytag: member="m3g::PolygonMode::Appearance" ref="afa5201a494f65c37039281d9b63a2a9" args="" -->
@@ -134,6 +135,27 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>Appearance</b></td><
 </div>
 </div><p>
 <hr><h2>関数</h2>
+<a class="anchor" name="a302cb097523e044bc03198ec8448c32"></a><!-- doxytag: member="m3g::PolygonMode::duplicate" ref="a302cb097523e044bc03198ec8448c32" args="() const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classm3g_1_1PolygonMode.html">PolygonMode</a> * duplicate           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const<code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+このオブジェクトの複製の作成. 
+<p><a class="el" href="classm3g_1_1Object3D.html#a25110dac934f867b83b73ad4741a0f4">Object3D</a>を再定義しています。</p>
+
+</div>
+</div><p>
 <a class="anchor" name="3b0c0325e93774222d828f2612d59b1b"></a><!-- doxytag: member="m3g::PolygonMode::getCulling" ref="3b0c0325e93774222d828f2612d59b1b" args="() const " -->
 <div class="memitem">
 <div class="memproto">
@@ -270,34 +292,25 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>Appearance</b></td><
 
 </div>
 </div><p>
-<a class="anchor" name="1efcb1973989d9963d5bd6d03065d389"></a><!-- doxytag: member="m3g::PolygonMode::render" ref="1efcb1973989d9963d5bd6d03065d389" args="(int pass, int index=0) const " -->
+<a class="anchor" name="8babc8a79b78615da51161e94029eea9"></a><!-- doxytag: member="m3g::PolygonMode::render" ref="8babc8a79b78615da51161e94029eea9" args="(RenderState &amp;state) const " -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">void render           </td>
           <td>(</td>
-          <td class="paramtype">int&nbsp;</td>
-          <td class="paramname"> <em>pass</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&nbsp;</td>
-          <td class="paramname"> <em>index</em> = <code>0</code></td><td>&nbsp;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td><td> const<code> [protected, virtual]</code></td>
+          <td class="paramtype"><a class="el" href="structm3g_1_1RenderState.html">RenderState</a> &amp;&nbsp;</td>
+          <td class="paramname"> <em>state</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const<code> [virtual]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
 <p>
-このオブジェクトの描画. 
-<p><a class="el" href="classm3g_1_1Object3D.html#1efcb1973989d9963d5bd6d03065d389">Object3D</a>を再定義しています。</p>
+このオブジェクトをレンダリングする内部使用の関数. 
+<p><a class="el" href="classm3g_1_1Object3D.html#8babc8a79b78615da51161e94029eea9">Object3D</a>を再定義しています。</p>
 
 </div>
 </div><p>
@@ -528,9 +541,9 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>Appearance</b></td><
 </div>
 </div><p>
 <hr>このクラスの説明は次のファイルから生成されました:<ul>
-<li>/work/desktop-m3g/src/<a class="el" href="PolygonMode_8hpp-source.html">PolygonMode.hpp</a><li>/work/desktop-m3g/src/PolygonMode.cpp</ul>
+<li>/work/workspace.desktop-m3g/src/<a class="el" href="PolygonMode_8hpp-source.html">PolygonMode.hpp</a><li>/work/workspace.desktop-m3g/src/PolygonMode.cpp</ul>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Wed Apr 7 10:24:24 2010に生成されました。&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Mon May 10 08:47:27 2010に生成されました。&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.8 </small></address>
 </body>

@@ -7,17 +7,25 @@
 \subsection*{Public メソッド}
 \begin{CompactItemize}
 \item 
-\hypertarget{classm3g_1_1Quaternion_7a06a28b864e525f73a1bb0eb3e9274e}{
-\textbf{Quaternion} (float angle, float ax, float ay, float az)}
-\label{classm3g_1_1Quaternion_7a06a28b864e525f73a1bb0eb3e9274e}
-
+\hyperlink{classm3g_1_1Quaternion_65ed15cc19af958b5933b5c522f10e66}{Quaternion} ()
 \item 
-\hypertarget{classm3g_1_1Quaternion_0712dc357557a30ac0da0a9d4cdd278c}{
-void \textbf{set} (float qx, float qy, float qz, float qw)}
-\label{classm3g_1_1Quaternion_0712dc357557a30ac0da0a9d4cdd278c}
-
+\hyperlink{classm3g_1_1Quaternion_7a06a28b864e525f73a1bb0eb3e9274e}{Quaternion} (float angle, float ax, float ay, float az)
+\item 
+\hyperlink{classm3g_1_1Quaternion_6e9a147677b9ffd583c59e9d06c3d938}{$\sim$Quaternion} ()
+\item 
+void \hyperlink{classm3g_1_1Quaternion_382e6ad7e6721b121e510959e1011be3}{setIdentity} ()
+\item 
+void \hyperlink{classm3g_1_1Quaternion_47affd1a10b589811fc4828c1a2e0c6d}{setZero} ()
+\item 
+\hyperlink{classm3g_1_1Quaternion}{Quaternion} \& \hyperlink{classm3g_1_1Quaternion_c9cc178bcc449e08499113c35feb2a2b}{normalize} ()
+\item 
+void \hyperlink{classm3g_1_1Quaternion_0712dc357557a30ac0da0a9d4cdd278c}{set} (float qx, float qy, float qz, float qw)
 \item 
 void \hyperlink{classm3g_1_1Quaternion_3049675269aef6bb333d8f83fdf6eed7}{getAngleAxis} (float $\ast$angle\_\-axis) const 
+\item 
+float \hyperlink{classm3g_1_1Quaternion_b4393f1928cea2a3baadbf9acdd99de2}{getLength} () const 
+\item 
+std::ostream \& \hyperlink{classm3g_1_1Quaternion_6fea17fa1532df3794f8cb39cb4f911f}{print} (std::ostream \&out) const 
 \end{CompactItemize}
 \subsection*{Public 変数}
 \begin{CompactItemize}
@@ -45,7 +53,31 @@ float \textbf{w}}
 
 
 \subsection{説明}
-長さが必ず１のクォータニオンクラス。内部使用専用. 
+回転を表すクォータニオンクラス。内部使用専用. 
+
+\subsection{コンストラクタとデストラクタ}
+\hypertarget{classm3g_1_1Quaternion_65ed15cc19af958b5933b5c522f10e66}{
+\index{m3g::Quaternion@{m3g::Quaternion}!Quaternion@{Quaternion}}
+\index{Quaternion@{Quaternion}!m3g::Quaternion@{m3g::Quaternion}}
+\subsubsection[{Quaternion}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Quaternion} ()}}
+\label{classm3g_1_1Quaternion_65ed15cc19af958b5933b5c522f10e66}
+
+
+単位クォータニオンを作成するコンストラクタ. \hypertarget{classm3g_1_1Quaternion_7a06a28b864e525f73a1bb0eb3e9274e}{
+\index{m3g::Quaternion@{m3g::Quaternion}!Quaternion@{Quaternion}}
+\index{Quaternion@{Quaternion}!m3g::Quaternion@{m3g::Quaternion}}
+\subsubsection[{Quaternion}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Quaternion} (float {\em angle}, \/  float {\em ax}, \/  float {\em ay}, \/  float {\em az})}}
+\label{classm3g_1_1Quaternion_7a06a28b864e525f73a1bb0eb3e9274e}
+
+
+回転角度、回転軸の形式でクォータニオンを作成するコンストラクタ。 回転軸は正規化されている必要はない. \hypertarget{classm3g_1_1Quaternion_6e9a147677b9ffd583c59e9d06c3d938}{
+\index{m3g::Quaternion@{m3g::Quaternion}!$\sim$Quaternion@{$\sim$Quaternion}}
+\index{$\sim$Quaternion@{$\sim$Quaternion}!m3g::Quaternion@{m3g::Quaternion}}
+\subsubsection[{$\sim$Quaternion}]{\setlength{\rightskip}{0pt plus 5cm}$\sim${\bf Quaternion} ()}}
+\label{classm3g_1_1Quaternion_6e9a147677b9ffd583c59e9d06c3d938}
+
+
+このオブジェクトを削除するデストラクタ. 
 
 \subsection{関数}
 \hypertarget{classm3g_1_1Quaternion_3049675269aef6bb333d8f83fdf6eed7}{
@@ -55,9 +87,53 @@ float \textbf{w}}
 \label{classm3g_1_1Quaternion_3049675269aef6bb333d8f83fdf6eed7}
 
 
-(補足) 回転角度が0の場合はangle=0,axis=(x,y,z)が返る. 
+このクォータニオンを角度-回転軸の形式で取得.
+
+(補足) 回転角度が0の場合はangle=0,axis=(x,y,z)が返る. \hypertarget{classm3g_1_1Quaternion_b4393f1928cea2a3baadbf9acdd99de2}{
+\index{m3g::Quaternion@{m3g::Quaternion}!getLength@{getLength}}
+\index{getLength@{getLength}!m3g::Quaternion@{m3g::Quaternion}}
+\subsubsection[{getLength}]{\setlength{\rightskip}{0pt plus 5cm}float getLength () const}}
+\label{classm3g_1_1Quaternion_b4393f1928cea2a3baadbf9acdd99de2}
+
+
+このクォータニオンを長さを取得. \hypertarget{classm3g_1_1Quaternion_c9cc178bcc449e08499113c35feb2a2b}{
+\index{m3g::Quaternion@{m3g::Quaternion}!normalize@{normalize}}
+\index{normalize@{normalize}!m3g::Quaternion@{m3g::Quaternion}}
+\subsubsection[{normalize}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Quaternion} \& normalize ()}}
+\label{classm3g_1_1Quaternion_c9cc178bcc449e08499113c35feb2a2b}
+
+
+クォータニオンを正規化化する. \hypertarget{classm3g_1_1Quaternion_6fea17fa1532df3794f8cb39cb4f911f}{
+\index{m3g::Quaternion@{m3g::Quaternion}!print@{print}}
+\index{print@{print}!m3g::Quaternion@{m3g::Quaternion}}
+\subsubsection[{print}]{\setlength{\rightskip}{0pt plus 5cm}std::ostream \& print (std::ostream \& {\em out}) const}}
+\label{classm3g_1_1Quaternion_6fea17fa1532df3794f8cb39cb4f911f}
+
+
+このオブジェクトの情報を表示する。デバッグ用. \hypertarget{classm3g_1_1Quaternion_0712dc357557a30ac0da0a9d4cdd278c}{
+\index{m3g::Quaternion@{m3g::Quaternion}!set@{set}}
+\index{set@{set}!m3g::Quaternion@{m3g::Quaternion}}
+\subsubsection[{set}]{\setlength{\rightskip}{0pt plus 5cm}void set (float {\em qx}, \/  float {\em qy}, \/  float {\em qz}, \/  float {\em qw})}}
+\label{classm3g_1_1Quaternion_0712dc357557a30ac0da0a9d4cdd278c}
+
+
+クォータニオンを設定する。関数内部で正規化される. \hypertarget{classm3g_1_1Quaternion_382e6ad7e6721b121e510959e1011be3}{
+\index{m3g::Quaternion@{m3g::Quaternion}!setIdentity@{setIdentity}}
+\index{setIdentity@{setIdentity}!m3g::Quaternion@{m3g::Quaternion}}
+\subsubsection[{setIdentity}]{\setlength{\rightskip}{0pt plus 5cm}void setIdentity ()}}
+\label{classm3g_1_1Quaternion_382e6ad7e6721b121e510959e1011be3}
+
+
+単位クォータニオン化する. \hypertarget{classm3g_1_1Quaternion_47affd1a10b589811fc4828c1a2e0c6d}{
+\index{m3g::Quaternion@{m3g::Quaternion}!setZero@{setZero}}
+\index{setZero@{setZero}!m3g::Quaternion@{m3g::Quaternion}}
+\subsubsection[{setZero}]{\setlength{\rightskip}{0pt plus 5cm}void setZero ()}}
+\label{classm3g_1_1Quaternion_47affd1a10b589811fc4828c1a2e0c6d}
+
+
+クォータニオンをゼロ化する. 
 
 このクラスの説明は次のファイルから生成されました:\begin{CompactItemize}
 \item 
-/work/desktop-m3g/src/Quaternion.hpp\item 
-/work/desktop-m3g/src/Quaternion.cpp\end{CompactItemize}
+/work/workspace.desktop-m3g/src/Quaternion.hpp\item 
+/work/workspace.desktop-m3g/src/Quaternion.cpp\end{CompactItemize}

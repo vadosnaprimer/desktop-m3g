@@ -7,15 +7,15 @@
 Inheritance diagram for Transformable::\begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[height=5cm]{classm3g_1_1Transformable}
+\includegraphics[height=6cm]{classm3g_1_1Transformable}
 \end{center}
 \end{figure}
 \subsection*{Classes}
 \begin{CompactItemize}
 \item 
-struct \textbf{Scale}
+struct \hyperlink{structm3g_1_1Transformable_1_1Scale}{Scale}
 \item 
-struct \textbf{Translation}
+struct \hyperlink{structm3g_1_1Transformable_1_1Translation}{Translation}
 \end{CompactItemize}
 \subsection*{Public Member Functions}
 \begin{CompactItemize}
@@ -23,6 +23,8 @@ struct \textbf{Translation}
 \hyperlink{classm3g_1_1Transformable_ca6563203e3e883391c9d0927028aa04}{Transformable} ()
 \item 
 virtual \hyperlink{classm3g_1_1Transformable_89d9c7912ed11a30a312fd8f72b9ab22}{$\sim$Transformable} ()
+\item 
+virtual \hyperlink{classm3g_1_1Transformable}{Transformable} $\ast$ \hyperlink{classm3g_1_1Transformable_4f64f95a34c56cb1553dc6de660dff6f}{duplicate} () const 
 \item 
 virtual void \hyperlink{classm3g_1_1Transformable_415c0b110f95410ded9b85e5d99a496b}{addAnimationTrack} (\hyperlink{classm3g_1_1AnimationTrack}{AnimationTrack} $\ast$animation\_\-track)
 \item 
@@ -59,7 +61,7 @@ virtual std::ostream \& \hyperlink{classm3g_1_1Transformable_6fea17fa1532df3794f
 \subsection*{Protected Member Functions}
 \begin{CompactItemize}
 \item 
-virtual void \hyperlink{classm3g_1_1Transformable_1efcb1973989d9963d5bd6d03065d389}{render} (int pass, int index=0) const 
+virtual void \hyperlink{classm3g_1_1Transformable_8babc8a79b78615da51161e94029eea9}{render} (\hyperlink{structm3g_1_1RenderState}{RenderState} \&state) const 
 \end{CompactItemize}
 
 
@@ -106,7 +108,18 @@ Updates all animated properties in this \hyperlink{classm3g_1_1Object3D}{Object3
 
 Reimplemented from \hyperlink{classm3g_1_1Object3D_8aad1ceab4c2a03609c8a42324ce484d}{Object3D}.
 
-Reimplemented in \hyperlink{classm3g_1_1Camera_8aad1ceab4c2a03609c8a42324ce484d}{Camera}, \hyperlink{classm3g_1_1Light_8aad1ceab4c2a03609c8a42324ce484d}{Light}, \hyperlink{classm3g_1_1Mesh_82cfeb67ca66b93e2ca7bda9a4f0e2aa}{Mesh}, \hyperlink{classm3g_1_1MorphingMesh_8aad1ceab4c2a03609c8a42324ce484d}{MorphingMesh}, \hyperlink{classm3g_1_1Node_8aad1ceab4c2a03609c8a42324ce484d}{Node}, \hyperlink{classm3g_1_1Sprite3D_8aad1ceab4c2a03609c8a42324ce484d}{Sprite3D}, \hyperlink{classm3g_1_1Texture2D_82cfeb67ca66b93e2ca7bda9a4f0e2aa}{Texture2D}, and \hyperlink{classm3g_1_1World_8aad1ceab4c2a03609c8a42324ce484d}{World}.\hypertarget{classm3g_1_1Transformable_263ef66efed11b7f9678e2e4bbec4c55}{
+Reimplemented in \hyperlink{classm3g_1_1Camera_8aad1ceab4c2a03609c8a42324ce484d}{Camera}, \hyperlink{classm3g_1_1Light_8aad1ceab4c2a03609c8a42324ce484d}{Light}, \hyperlink{classm3g_1_1Mesh_8aad1ceab4c2a03609c8a42324ce484d}{Mesh}, \hyperlink{classm3g_1_1MorphingMesh_8aad1ceab4c2a03609c8a42324ce484d}{MorphingMesh}, \hyperlink{classm3g_1_1Node_8aad1ceab4c2a03609c8a42324ce484d}{Node}, \hyperlink{classm3g_1_1SkinnedMesh_8aad1ceab4c2a03609c8a42324ce484d}{SkinnedMesh}, \hyperlink{classm3g_1_1Sprite3D_8aad1ceab4c2a03609c8a42324ce484d}{Sprite3D}, \hyperlink{classm3g_1_1Texture2D_8aad1ceab4c2a03609c8a42324ce484d}{Texture2D}, and \hyperlink{classm3g_1_1World_8aad1ceab4c2a03609c8a42324ce484d}{World}.\hypertarget{classm3g_1_1Transformable_4f64f95a34c56cb1553dc6de660dff6f}{
+\index{m3g::Transformable@{m3g::Transformable}!duplicate@{duplicate}}
+\index{duplicate@{duplicate}!m3g::Transformable@{m3g::Transformable}}
+\subsubsection[{duplicate}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Transformable} $\ast$ duplicate () const\hspace{0.3cm}{\tt  \mbox{[}virtual\mbox{]}}}}
+\label{classm3g_1_1Transformable_4f64f95a34c56cb1553dc6de660dff6f}
+
+
+Creates a duplicate of this \hyperlink{classm3g_1_1Object3D}{Object3D}. 
+
+Reimplemented from \hyperlink{classm3g_1_1Object3D_a25110dac934f867b83b73ad4741a0f4}{Object3D}.
+
+Reimplemented in \hyperlink{classm3g_1_1Camera_6279f7f8ab52af683fadd193d7694f2d}{Camera}, \hyperlink{classm3g_1_1Light_7a41af040d0c1566358d84f089cd0cd1}{Light}, \hyperlink{classm3g_1_1Mesh_52ce6d0b3eda2bd3a95bfb5b7dbb6f82}{Mesh}, \hyperlink{classm3g_1_1MorphingMesh_7e7b2c3c4c988c6341a5e249bd468f57}{MorphingMesh}, \hyperlink{classm3g_1_1Node_0b9f7531a4b56d34f47aeb1fff0d37e0}{Node}, \hyperlink{classm3g_1_1SkinnedMesh_d3f422cf7656b73687d789094c7eae42}{SkinnedMesh}, \hyperlink{classm3g_1_1Sprite3D_0af34e87be803eb476f9e118d2363246}{Sprite3D}, \hyperlink{classm3g_1_1Texture2D_f4b50abcea8e4a6d6981c779d5009c05}{Texture2D}, and \hyperlink{classm3g_1_1World_efde97aaf753d48fff769d9011f187f2}{World}.\hypertarget{classm3g_1_1Transformable_263ef66efed11b7f9678e2e4bbec4c55}{
 \index{m3g::Transformable@{m3g::Transformable}!getCompositeTransform@{getCompositeTransform}}
 \index{getCompositeTransform@{getCompositeTransform}!m3g::Transformable@{m3g::Transformable}}
 \subsubsection[{getCompositeTransform}]{\setlength{\rightskip}{0pt plus 5cm}void getCompositeTransform ({\bf Transform} $\ast$ {\em transform}) const}}
@@ -166,18 +179,18 @@ Print out information this object, for debug only.
 
 Reimplemented from \hyperlink{classm3g_1_1Object3D_6fea17fa1532df3794f8cb39cb4f911f}{Object3D}.
 
-Reimplemented in \hyperlink{classm3g_1_1Camera_6fea17fa1532df3794f8cb39cb4f911f}{Camera}, \hyperlink{classm3g_1_1Light_6fea17fa1532df3794f8cb39cb4f911f}{Light}, \hyperlink{classm3g_1_1Mesh_6fea17fa1532df3794f8cb39cb4f911f}{Mesh}, \hyperlink{classm3g_1_1MorphingMesh_6fea17fa1532df3794f8cb39cb4f911f}{MorphingMesh}, \hyperlink{classm3g_1_1Node_6fea17fa1532df3794f8cb39cb4f911f}{Node}, \hyperlink{classm3g_1_1SkinnedMesh_6fea17fa1532df3794f8cb39cb4f911f}{SkinnedMesh}, \hyperlink{classm3g_1_1Sprite3D_6fea17fa1532df3794f8cb39cb4f911f}{Sprite3D}, \hyperlink{classm3g_1_1Texture2D_6fea17fa1532df3794f8cb39cb4f911f}{Texture2D}, and \hyperlink{classm3g_1_1World_6fea17fa1532df3794f8cb39cb4f911f}{World}.\hypertarget{classm3g_1_1Transformable_1efcb1973989d9963d5bd6d03065d389}{
+Reimplemented in \hyperlink{classm3g_1_1Camera_6fea17fa1532df3794f8cb39cb4f911f}{Camera}, \hyperlink{classm3g_1_1Light_6fea17fa1532df3794f8cb39cb4f911f}{Light}, \hyperlink{classm3g_1_1Mesh_6fea17fa1532df3794f8cb39cb4f911f}{Mesh}, \hyperlink{classm3g_1_1MorphingMesh_6fea17fa1532df3794f8cb39cb4f911f}{MorphingMesh}, \hyperlink{classm3g_1_1Node_6fea17fa1532df3794f8cb39cb4f911f}{Node}, \hyperlink{classm3g_1_1SkinnedMesh_6fea17fa1532df3794f8cb39cb4f911f}{SkinnedMesh}, \hyperlink{classm3g_1_1Sprite3D_6fea17fa1532df3794f8cb39cb4f911f}{Sprite3D}, \hyperlink{classm3g_1_1Texture2D_6fea17fa1532df3794f8cb39cb4f911f}{Texture2D}, and \hyperlink{classm3g_1_1World_6fea17fa1532df3794f8cb39cb4f911f}{World}.\hypertarget{classm3g_1_1Transformable_8babc8a79b78615da51161e94029eea9}{
 \index{m3g::Transformable@{m3g::Transformable}!render@{render}}
 \index{render@{render}!m3g::Transformable@{m3g::Transformable}}
-\subsubsection[{render}]{\setlength{\rightskip}{0pt plus 5cm}void render (int {\em pass}, \/  int {\em index} = {\tt 0}) const\hspace{0.3cm}{\tt  \mbox{[}protected, virtual\mbox{]}}}}
-\label{classm3g_1_1Transformable_1efcb1973989d9963d5bd6d03065d389}
+\subsubsection[{render}]{\setlength{\rightskip}{0pt plus 5cm}void render ({\bf RenderState} \& {\em state}) const\hspace{0.3cm}{\tt  \mbox{[}protected, virtual\mbox{]}}}}
+\label{classm3g_1_1Transformable_8babc8a79b78615da51161e94029eea9}
 
 
 Render this object, for inner use. 
 
-Reimplemented from \hyperlink{classm3g_1_1Object3D_1efcb1973989d9963d5bd6d03065d389}{Object3D}.
+Reimplemented from \hyperlink{classm3g_1_1Object3D_8babc8a79b78615da51161e94029eea9}{Object3D}.
 
-Reimplemented in \hyperlink{classm3g_1_1Camera_1efcb1973989d9963d5bd6d03065d389}{Camera}, \hyperlink{classm3g_1_1Mesh_1efcb1973989d9963d5bd6d03065d389}{Mesh}, \hyperlink{classm3g_1_1MorphingMesh_1efcb1973989d9963d5bd6d03065d389}{MorphingMesh}, \hyperlink{classm3g_1_1Node_1efcb1973989d9963d5bd6d03065d389}{Node}, \hyperlink{classm3g_1_1SkinnedMesh_1efcb1973989d9963d5bd6d03065d389}{SkinnedMesh}, \hyperlink{classm3g_1_1Sprite3D_1efcb1973989d9963d5bd6d03065d389}{Sprite3D}, and \hyperlink{classm3g_1_1World_1efcb1973989d9963d5bd6d03065d389}{World}.\hypertarget{classm3g_1_1Transformable_d94deaf828db5e2dfd5e40db42b64cd9}{
+Reimplemented in \hyperlink{classm3g_1_1Camera_8babc8a79b78615da51161e94029eea9}{Camera}, \hyperlink{classm3g_1_1Light_8babc8a79b78615da51161e94029eea9}{Light}, \hyperlink{classm3g_1_1Mesh_8babc8a79b78615da51161e94029eea9}{Mesh}, \hyperlink{classm3g_1_1MorphingMesh_8babc8a79b78615da51161e94029eea9}{MorphingMesh}, \hyperlink{classm3g_1_1Node_8babc8a79b78615da51161e94029eea9}{Node}, \hyperlink{classm3g_1_1SkinnedMesh_8babc8a79b78615da51161e94029eea9}{SkinnedMesh}, \hyperlink{classm3g_1_1Sprite3D_8babc8a79b78615da51161e94029eea9}{Sprite3D}, \hyperlink{classm3g_1_1Texture2D_8babc8a79b78615da51161e94029eea9}{Texture2D}, and \hyperlink{classm3g_1_1World_8babc8a79b78615da51161e94029eea9}{World}.\hypertarget{classm3g_1_1Transformable_d94deaf828db5e2dfd5e40db42b64cd9}{
 \index{m3g::Transformable@{m3g::Transformable}!scale@{scale}}
 \index{scale@{scale}!m3g::Transformable@{m3g::Transformable}}
 \subsubsection[{scale}]{\setlength{\rightskip}{0pt plus 5cm}void scale (float {\em sx}, \/  float {\em sy}, \/  float {\em sz})}}
@@ -223,5 +236,5 @@ Adds the given offset to the current translation component.
 
 The documentation for this class was generated from the following files:\begin{CompactItemize}
 \item 
-/work/desktop-m3g/src/Transformable.hpp\item 
-/work/desktop-m3g/src/Transformable.cpp\end{CompactItemize}
+/work/workspace.desktop-m3g/src/Transformable.hpp\item 
+/work/workspace.desktop-m3g/src/Transformable.cpp\end{CompactItemize}

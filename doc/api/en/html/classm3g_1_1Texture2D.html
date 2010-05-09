@@ -32,8 +32,8 @@ Inheritance diagram for Texture2D:</div>
 
 <p><center><img src="classm3g_1_1Texture2D.png" usemap="#Texture2D_map" border="0" alt=""></center>
 <map name="Texture2D_map">
-<area href="classm3g_1_1Transformable.html" alt="Transformable" shape="rect" coords="0,56,93,80">
-<area href="classm3g_1_1Object3D.html" alt="Object3D" shape="rect" coords="0,0,93,24">
+<area href="classm3g_1_1Transformable.html" alt="Transformable" shape="rect" coords="0,112,93,136">
+<area href="classm3g_1_1Object3D.html" alt="Object3D" shape="rect" coords="0,56,93,80">
 </map>
 </div>
 
@@ -50,9 +50,11 @@ Inheritance diagram for Texture2D:</div>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">virtual&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Texture2D.html#060332aea614a81a914cd2e55f1794df">~Texture2D</a> ()</td></tr>
 
-<tr><td class="memItemLeft" nowrap align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Texture2D.html#415c0b110f95410ded9b85e5d99a496b">addAnimationTrack</a> (<a class="el" href="classm3g_1_1AnimationTrack.html">AnimationTrack</a> *animation_track)</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="el" href="classm3g_1_1Texture2D.html">Texture2D</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Texture2D.html#f4b50abcea8e4a6d6981c779d5009c05">duplicate</a> () const </td></tr>
 
-<tr><td class="memItemLeft" nowrap align="right" valign="top">virtual int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Texture2D.html#82cfeb67ca66b93e2ca7bda9a4f0e2aa">animate</a> (int time)</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">virtual int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Texture2D.html#8aad1ceab4c2a03609c8a42324ce484d">animate</a> (int world_time)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Texture2D.html#415c0b110f95410ded9b85e5d99a496b">addAnimationTrack</a> (<a class="el" href="classm3g_1_1AnimationTrack.html">AnimationTrack</a> *animation_track)</td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="b7dc7b7bf2934448281894f2c1ef3638"></a><!-- doxytag: member="m3g::Texture2D::getBlendColor" ref="b7dc7b7bf2934448281894f2c1ef3638" args="() const " -->
 int&nbsp;</td><td class="memItemRight" valign="bottom"><b>getBlendColor</b> () const </td></tr>
@@ -86,6 +88,8 @@ void&nbsp;</td><td class="memItemRight" valign="bottom"><b>setBlending</b> (int 
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">virtual std::ostream &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Texture2D.html#6fea17fa1532df3794f8cb39cb4f911f">print</a> (std::ostream &amp;out) const </td></tr>
 
+<tr><td class="memItemLeft" nowrap align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Texture2D.html#8babc8a79b78615da51161e94029eea9">render</a> (<a class="el" href="structm3g_1_1RenderState.html">RenderState</a> &amp;state) const </td></tr>
+
 <tr><td colspan="2"><br><h2>Static Public Attributes</h2></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">static const int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Texture2D.html#d1924d32385b5353ad11ecd8b1ec0ad5">FILTER_BASE_LEVEL</a> = 208</td></tr>
 
@@ -106,9 +110,6 @@ void&nbsp;</td><td class="memItemRight" valign="bottom"><b>setBlending</b> (int 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">static const int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Texture2D.html#e36d8facf5b60eb6c59888121731c438">WRAP_CLAMP</a> = 240</td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">static const int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Texture2D.html#b37ff061b9fb272284c4c389deec9266">WRAP_REPEAT</a> = 241</td></tr>
-
-<tr><td colspan="2"><br><h2>Protected Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Texture2D.html#4dadb21b568b0230fac106f15040138c">findByObjectType</a> (int obj_type, std::vector&lt; <a class="el" href="classm3g_1_1Object3D.html">Object3D</a> * &gt; &amp;objs) const </td></tr>
 
 <tr><td colspan="2"><br><h2>Friends</h2></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="afa5201a494f65c37039281d9b63a2a9"></a><!-- doxytag: member="m3g::Texture2D::Appearance" ref="afa5201a494f65c37039281d9b63a2a9" args="" -->
@@ -179,7 +180,7 @@ Adds the given <a class="el" href="classm3g_1_1AnimationTrack.html">AnimationTra
 
 </div>
 </div><p>
-<a class="anchor" name="82cfeb67ca66b93e2ca7bda9a4f0e2aa"></a><!-- doxytag: member="m3g::Texture2D::animate" ref="82cfeb67ca66b93e2ca7bda9a4f0e2aa" args="(int time)" -->
+<a class="anchor" name="8aad1ceab4c2a03609c8a42324ce484d"></a><!-- doxytag: member="m3g::Texture2D::animate" ref="8aad1ceab4c2a03609c8a42324ce484d" args="(int world_time)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -201,34 +202,24 @@ Updates all animated properties in this <a class="el" href="classm3g_1_1Object3D
 
 </div>
 </div><p>
-<a class="anchor" name="4dadb21b568b0230fac106f15040138c"></a><!-- doxytag: member="m3g::Texture2D::findByObjectType" ref="4dadb21b568b0230fac106f15040138c" args="(int obj_type, std::vector&lt; Object3D * &gt; &amp;objs) const " -->
+<a class="anchor" name="f4b50abcea8e4a6d6981c779d5009c05"></a><!-- doxytag: member="m3g::Texture2D::duplicate" ref="f4b50abcea8e4a6d6981c779d5009c05" args="() const " -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void findByObjectType           </td>
+          <td class="memname"><a class="el" href="classm3g_1_1Texture2D.html">Texture2D</a> * duplicate           </td>
           <td>(</td>
-          <td class="paramtype">int&nbsp;</td>
-          <td class="paramname"> <em>obj_type</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">std::vector&lt; <a class="el" href="classm3g_1_1Object3D.html">Object3D</a> * &gt; &amp;&nbsp;</td>
-          <td class="paramname"> <em>objs</em></td><td>&nbsp;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td><td> const<code> [protected, virtual]</code></td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const<code> [virtual]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
 <p>
-Find all objects by object type. 
-<p>Reimplemented from <a class="el" href="classm3g_1_1Object3D.html#4dadb21b568b0230fac106f15040138c">Object3D</a>.</p>
+Creates a duplicate of this <a class="el" href="classm3g_1_1Object3D.html">Object3D</a>. 
+<p>Reimplemented from <a class="el" href="classm3g_1_1Transformable.html#4f64f95a34c56cb1553dc6de660dff6f">Transformable</a>.</p>
 
 </div>
 </div><p>
@@ -308,6 +299,29 @@ Returns the current texture level filter.
 <p>
 Print out information of this object, for debug only. 
 <p>Reimplemented from <a class="el" href="classm3g_1_1Transformable.html#6fea17fa1532df3794f8cb39cb4f911f">Transformable</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="8babc8a79b78615da51161e94029eea9"></a><!-- doxytag: member="m3g::Texture2D::render" ref="8babc8a79b78615da51161e94029eea9" args="(RenderState &amp;state) const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void render           </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structm3g_1_1RenderState.html">RenderState</a> &amp;&nbsp;</td>
+          <td class="paramname"> <em>state</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const<code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Render this object, for inner use.<p>
+Note: <a class="el" href="classm3g_1_1Texture2D.html">Texture2D</a> should be rendered only at second rendering pass(pass=2). In other cases, do nothing. 
+<p>Reimplemented from <a class="el" href="classm3g_1_1Transformable.html#8babc8a79b78615da51161e94029eea9">Transformable</a>.</p>
 
 </div>
 </div><p>
@@ -541,9 +555,9 @@ A parameter to setWrappping, specifying that the texture image is tto be repeate
 </div>
 </div><p>
 <hr>The documentation for this class was generated from the following files:<ul>
-<li>/work/desktop-m3g/src/<a class="el" href="Texture2D_8hpp-source.html">Texture2D.hpp</a><li>/work/desktop-m3g/src/Texture2D.cpp</ul>
+<li>/work/workspace.desktop-m3g/src/<a class="el" href="Texture2D_8hpp-source.html">Texture2D.hpp</a><li>/work/workspace.desktop-m3g/src/Texture2D.cpp</ul>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Wed Apr 7 10:24:30 2010 by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Mon May 10 08:47:33 2010 by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.8 </small></address>
 </body>

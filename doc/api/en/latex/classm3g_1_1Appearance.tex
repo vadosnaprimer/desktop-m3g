@@ -7,7 +7,7 @@
 Inheritance diagram for Appearance::\begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[height=2cm]{classm3g_1_1Appearance}
+\includegraphics[height=3cm]{classm3g_1_1Appearance}
 \end{center}
 \end{figure}
 \subsection*{Public Member Functions}
@@ -18,6 +18,8 @@ Inheritance diagram for Appearance::\begin{figure}[H]
 virtual \hyperlink{classm3g_1_1Appearance_c05c93d7a0f286cb9471b6c667ffeee1}{$\sim$Appearance} ()
 \item 
 virtual int \hyperlink{classm3g_1_1Appearance_8aad1ceab4c2a03609c8a42324ce484d}{animate} (int world\_\-time)
+\item 
+virtual \hyperlink{classm3g_1_1Appearance}{Appearance} $\ast$ \hyperlink{classm3g_1_1Appearance_ceaab703eb45cba7cf8705bc3a087127}{duplicate} () const 
 \item 
 \hyperlink{classm3g_1_1CompositingMode}{CompositingMode} $\ast$ \hyperlink{classm3g_1_1Appearance_e4045934febb56891c15e14486b239a8}{getCompositingMode} () const 
 \item 
@@ -37,7 +39,7 @@ PolygonMode $\ast$ \hyperlink{classm3g_1_1Appearance_dd3ddcefcd18339150d281b1556
 \label{classm3g_1_1Appearance_987cc21bd78d0e4e664da717479bdd57}
 
 \item 
-void \hyperlink{classm3g_1_1Appearance_b4dbfc0232132aeb0a7b7c5eaade82e1}{setCompositingMode} (\hyperlink{classm3g_1_1CompositingMode}{CompositingMode} $\ast$compositingMode)
+void \hyperlink{classm3g_1_1Appearance_8f9514f1c01268fff95b7c31f3a194b6}{setCompositingMode} (\hyperlink{classm3g_1_1CompositingMode}{CompositingMode} $\ast$compositing\_\-mode)
 \item 
 void \hyperlink{classm3g_1_1Appearance_bc1a612006d6b4c3d443ff6ab542c788}{setFog} (\hyperlink{classm3g_1_1Fog}{Fog} $\ast$fog)
 \item 
@@ -53,11 +55,6 @@ void \hyperlink{classm3g_1_1Appearance_cc21fac7868e2ad37e689ac642db1aae}{setPoly
 void \hyperlink{classm3g_1_1Appearance_493e54b1c7ab839b9e76b28e0629cf6a}{setTexture} (int index, \hyperlink{classm3g_1_1Texture2D}{Texture2D} $\ast$texture)
 \item 
 virtual std::ostream \& \hyperlink{classm3g_1_1Appearance_6fea17fa1532df3794f8cb39cb4f911f}{print} (std::ostream \&out) const 
-\end{CompactItemize}
-\subsection*{Protected Member Functions}
-\begin{CompactItemize}
-\item 
-virtual void \hyperlink{classm3g_1_1Appearance_4dadb21b568b0230fac106f15040138c}{findByObjectType} (int obj\_\-type, std::vector$<$ \hyperlink{classm3g_1_1Object3D}{Object3D} $\ast$ $>$ \&objs) const 
 \end{CompactItemize}
 \subsection*{Friends}
 \begin{CompactItemize}
@@ -104,16 +101,16 @@ Destruct an \hyperlink{classm3g_1_1Appearance}{Appearance} object.
 
 Updates all animated properties in this \hyperlink{classm3g_1_1Object3D}{Object3D} and all Object3Ds that are reachable from this \hyperlink{classm3g_1_1Object3D}{Object3D}. 
 
-Reimplemented from \hyperlink{classm3g_1_1Object3D_8aad1ceab4c2a03609c8a42324ce484d}{Object3D}.\hypertarget{classm3g_1_1Appearance_4dadb21b568b0230fac106f15040138c}{
-\index{m3g::Appearance@{m3g::Appearance}!findByObjectType@{findByObjectType}}
-\index{findByObjectType@{findByObjectType}!m3g::Appearance@{m3g::Appearance}}
-\subsubsection[{findByObjectType}]{\setlength{\rightskip}{0pt plus 5cm}void findByObjectType (int {\em obj\_\-type}, \/  std::vector$<$ {\bf Object3D} $\ast$ $>$ \& {\em objs}) const\hspace{0.3cm}{\tt  \mbox{[}protected, virtual\mbox{]}}}}
-\label{classm3g_1_1Appearance_4dadb21b568b0230fac106f15040138c}
+Reimplemented from \hyperlink{classm3g_1_1Object3D_8aad1ceab4c2a03609c8a42324ce484d}{Object3D}.\hypertarget{classm3g_1_1Appearance_ceaab703eb45cba7cf8705bc3a087127}{
+\index{m3g::Appearance@{m3g::Appearance}!duplicate@{duplicate}}
+\index{duplicate@{duplicate}!m3g::Appearance@{m3g::Appearance}}
+\subsubsection[{duplicate}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Appearance} $\ast$ duplicate () const\hspace{0.3cm}{\tt  \mbox{[}virtual\mbox{]}}}}
+\label{classm3g_1_1Appearance_ceaab703eb45cba7cf8705bc3a087127}
 
 
-Find by object type, inner use only. 
+Creates a duplicate of this \hyperlink{classm3g_1_1Object3D}{Object3D}. 
 
-Reimplemented from \hyperlink{classm3g_1_1Object3D_4dadb21b568b0230fac106f15040138c}{Object3D}.\hypertarget{classm3g_1_1Appearance_e4045934febb56891c15e14486b239a8}{
+Reimplemented from \hyperlink{classm3g_1_1Object3D_a25110dac934f867b83b73ad4741a0f4}{Object3D}.\hypertarget{classm3g_1_1Appearance_e4045934febb56891c15e14486b239a8}{
 \index{m3g::Appearance@{m3g::Appearance}!getCompositingMode@{getCompositingMode}}
 \index{getCompositingMode@{getCompositingMode}!m3g::Appearance@{m3g::Appearance}}
 \subsubsection[{getCompositingMode}]{\setlength{\rightskip}{0pt plus 5cm}{\bf CompositingMode} $\ast$ getCompositingMode () const}}
@@ -150,11 +147,11 @@ Returns the current PolygonMode for this \hyperlink{classm3g_1_1Appearance}{Appe
 
 Print out information of this class, for debug only. 
 
-Reimplemented from \hyperlink{classm3g_1_1Object3D_6fea17fa1532df3794f8cb39cb4f911f}{Object3D}.\hypertarget{classm3g_1_1Appearance_b4dbfc0232132aeb0a7b7c5eaade82e1}{
+Reimplemented from \hyperlink{classm3g_1_1Object3D_6fea17fa1532df3794f8cb39cb4f911f}{Object3D}.\hypertarget{classm3g_1_1Appearance_8f9514f1c01268fff95b7c31f3a194b6}{
 \index{m3g::Appearance@{m3g::Appearance}!setCompositingMode@{setCompositingMode}}
 \index{setCompositingMode@{setCompositingMode}!m3g::Appearance@{m3g::Appearance}}
-\subsubsection[{setCompositingMode}]{\setlength{\rightskip}{0pt plus 5cm}void setCompositingMode ({\bf CompositingMode} $\ast$ {\em compositingMode})}}
-\label{classm3g_1_1Appearance_b4dbfc0232132aeb0a7b7c5eaade82e1}
+\subsubsection[{setCompositingMode}]{\setlength{\rightskip}{0pt plus 5cm}void setCompositingMode ({\bf CompositingMode} $\ast$ {\em compositing\_\-mode})}}
+\label{classm3g_1_1Appearance_8f9514f1c01268fff95b7c31f3a194b6}
 
 
 Sets the \hyperlink{classm3g_1_1CompositingMode}{CompositingMode} to user for this \hyperlink{classm3g_1_1Appearance}{Appearance}. \hypertarget{classm3g_1_1Appearance_bc1a612006d6b4c3d443ff6ab542c788}{
@@ -189,5 +186,5 @@ Sets the texture image and its attributes for the given textureing unit.
 
 The documentation for this class was generated from the following files:\begin{CompactItemize}
 \item 
-/work/desktop-m3g/src/Appearance.hpp\item 
-/work/desktop-m3g/src/Appearance.cpp\end{CompactItemize}
+/work/workspace.desktop-m3g/src/Appearance.hpp\item 
+/work/workspace.desktop-m3g/src/Appearance.cpp\end{CompactItemize}

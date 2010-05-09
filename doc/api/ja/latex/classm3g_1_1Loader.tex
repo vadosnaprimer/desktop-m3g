@@ -4,43 +4,33 @@
 }
 {\tt \#include $<$Loader.hpp$>$}
 
-\subsection*{Public メソッド}
+Loaderに対する継承グラフ:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2cm]{classm3g_1_1Loader}
+\end{center}
+\end{figure}
+\subsection*{構成}
 \begin{CompactItemize}
 \item 
-\hyperlink{classm3g_1_1Loader_c082256071478316a982894d4191a11a}{Loader} ()
-\item 
-\hyperlink{classm3g_1_1Loader_8bd25dd3f34914f06852c2de2f9db737}{$\sim$Loader} ()
+struct \textbf{FileInfo}
 \end{CompactItemize}
 \subsection*{Static Public メソッド}
 \begin{CompactItemize}
 \item 
-static std::vector$<$ \hyperlink{classm3g_1_1Object3D}{Object3D} $\ast$ $>$ \hyperlink{classm3g_1_1Loader_7abddd36a9ee70e67de0e2183bba1aed}{load} (void $\ast$data, int offset)
+static std::vector$<$ \hyperlink{classm3g_1_1Object3D}{Object3D} $\ast$ $>$ \hyperlink{classm3g_1_1Loader_226696271b917ad797016959bb7adbe1}{load} (int length, const char $\ast$data, int offset)
 \item 
 static std::vector$<$ \hyperlink{classm3g_1_1Object3D}{Object3D} $\ast$ $>$ \hyperlink{classm3g_1_1Loader_27bd86888cdadd349223dcb303e45879}{load} (const char $\ast$name)
+\end{CompactItemize}
+\subsection*{Static Public 変数}
+\begin{CompactItemize}
+\item 
+static FileInfo \hyperlink{classm3g_1_1Loader_b5b2e875f7353dca9dad61c686bccf92}{file\_\-info}
 \end{CompactItemize}
 
 
 \subsection{説明}
-m3gファイルのローダー。インスタンス化不可. 
-
-\subsection{コンストラクタとデストラクタ}
-\hypertarget{classm3g_1_1Loader_c082256071478316a982894d4191a11a}{
-\index{m3g::Loader@{m3g::Loader}!Loader@{Loader}}
-\index{Loader@{Loader}!m3g::Loader@{m3g::Loader}}
-\subsubsection[{Loader}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Loader} ()}}
-\label{classm3g_1_1Loader_c082256071478316a982894d4191a11a}
-
-
-コンストラクタ. \hypertarget{classm3g_1_1Loader_8bd25dd3f34914f06852c2de2f9db737}{
-\index{m3g::Loader@{m3g::Loader}!$\sim$Loader@{$\sim$Loader}}
-\index{$\sim$Loader@{$\sim$Loader}!m3g::Loader@{m3g::Loader}}
-\subsubsection[{$\sim$Loader}]{\setlength{\rightskip}{0pt plus 5cm}$\sim${\bf Loader} ()}}
-\label{classm3g_1_1Loader_8bd25dd3f34914f06852c2de2f9db737}
-
-
-コンストラクタ.
-
-デストラクタ. 
+シーングラフとそのノード要素のダウンロード. 
 
 \subsection{関数}
 \hypertarget{classm3g_1_1Loader_27bd86888cdadd349223dcb303e45879}{
@@ -50,16 +40,26 @@ m3gファイルのローダー。インスタンス化不可.
 \label{classm3g_1_1Loader_27bd86888cdadd349223dcb303e45879}
 
 
-与えられた名前のリソースからObject3Dのインスタンスを生成する. \hypertarget{classm3g_1_1Loader_7abddd36a9ee70e67de0e2183bba1aed}{
+与えられた名前のリソースからObject3Dのインスタンスを生成する. \hypertarget{classm3g_1_1Loader_226696271b917ad797016959bb7adbe1}{
 \index{m3g::Loader@{m3g::Loader}!load@{load}}
 \index{load@{load}!m3g::Loader@{m3g::Loader}}
-\subsubsection[{load}]{\setlength{\rightskip}{0pt plus 5cm}std::vector$<$ {\bf Object3D} $\ast$ $>$ load (void $\ast$ {\em data}, \/  int {\em offset})\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
-\label{classm3g_1_1Loader_7abddd36a9ee70e67de0e2183bba1aed}
+\subsubsection[{load}]{\setlength{\rightskip}{0pt plus 5cm}std::vector$<$ {\bf Object3D} $\ast$ $>$ load (int {\em length}, \/  const char $\ast$ {\em data}, \/  int {\em offset})\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{classm3g_1_1Loader_226696271b917ad797016959bb7adbe1}
 
 
 与えられたバイトストリームのオフセット位置からObject3Dのインスタンスを生成する. 
 
+\subsection{変数}
+\hypertarget{classm3g_1_1Loader_b5b2e875f7353dca9dad61c686bccf92}{
+\index{m3g::Loader@{m3g::Loader}!file\_\-info@{file\_\-info}}
+\index{file\_\-info@{file\_\-info}!m3g::Loader@{m3g::Loader}}
+\subsubsection[{file\_\-info}]{\setlength{\rightskip}{0pt plus 5cm}Loader::FileInfo {\bf file\_\-info}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{classm3g_1_1Loader_b5b2e875f7353dca9dad61c686bccf92}
+
+
+直前にロードしたファイルの情報。取り扱い未定. 
+
 このクラスの説明は次のファイルから生成されました:\begin{CompactItemize}
 \item 
-/work/desktop-m3g/src/Loader.hpp\item 
-/work/desktop-m3g/src/Loader.cpp\end{CompactItemize}
+/work/workspace.desktop-m3g/src/Loader.hpp\item 
+/work/workspace.desktop-m3g/src/Loader.cpp\end{CompactItemize}

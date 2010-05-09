@@ -32,10 +32,10 @@ Groupに対する継承グラフ</div>
 
 <p><center><img src="classm3g_1_1Group.png" usemap="#Group_map" border="0" alt=""></center>
 <map name="Group_map">
-<area href="classm3g_1_1Node.html" alt="Node" shape="rect" coords="0,112,93,136">
-<area href="classm3g_1_1Transformable.html" alt="Transformable" shape="rect" coords="0,56,93,80">
-<area href="classm3g_1_1Object3D.html" alt="Object3D" shape="rect" coords="0,0,93,24">
-<area href="classm3g_1_1World.html" alt="World" shape="rect" coords="0,224,93,248">
+<area href="classm3g_1_1Node.html" alt="Node" shape="rect" coords="0,168,93,192">
+<area href="classm3g_1_1Transformable.html" alt="Transformable" shape="rect" coords="0,112,93,136">
+<area href="classm3g_1_1Object3D.html" alt="Object3D" shape="rect" coords="0,56,93,80">
+<area href="classm3g_1_1World.html" alt="World" shape="rect" coords="0,280,93,304">
 </map>
 </div>
 
@@ -46,6 +46,8 @@ Groupに対する継承グラフ</div>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Group.html#0b29b9393b4b6856ac75b759f4166c13">Group</a> ()</td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">virtual&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Group.html#a2a755272411c0d861f46f30970f5ca5">~Group</a> ()</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">virtual <a class="el" href="classm3g_1_1Group.html">Group</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Group.html#1212dbd493e73180a6204874bd97df6b">duplicate</a> () const </td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Group.html#f7c798f6f7924dc14403df261f82153a">addChild</a> (<a class="el" href="classm3g_1_1Node.html">Node</a> *child)</td></tr>
 
@@ -61,10 +63,11 @@ Groupに対する継承グラフ</div>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">virtual std::ostream &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Group.html#6fea17fa1532df3794f8cb39cb4f911f">print</a> (std::ostream &amp;out) const </td></tr>
 
-<tr><td class="memItemLeft" nowrap align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Group.html#4dadb21b568b0230fac106f15040138c">findByObjectType</a> (int obj_type, std::vector&lt; <a class="el" href="classm3g_1_1Object3D.html">Object3D</a> * &gt; &amp;objs) const </td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Group.html#8babc8a79b78615da51161e94029eea9">render</a> (<a class="el" href="structm3g_1_1RenderState.html">RenderState</a> &amp;state) const </td></tr>
 
-<tr><td colspan="2"><br><h2>Protected メソッド</h2></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Group.html#1efcb1973989d9963d5bd6d03065d389">render</a> (int pass, int index=0) const </td></tr>
+<tr><td colspan="2"><br><h2>フレンド</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="7b4bcdf992c21ae83363f25df05b1d25"></a><!-- doxytag: member="m3g::Group::World" ref="7b4bcdf992c21ae83363f25df05b1d25" args="" -->
+class&nbsp;</td><td class="memItemRight" valign="bottom"><b>World</b></td></tr>
 
 </table>
 <hr><a name="_details"></a><h2>説明</h2>
@@ -152,34 +155,26 @@ Groupに対する継承グラフ</div>
 
 </div>
 </div><p>
-<a class="anchor" name="4dadb21b568b0230fac106f15040138c"></a><!-- doxytag: member="m3g::Group::findByObjectType" ref="4dadb21b568b0230fac106f15040138c" args="(int obj_type, std::vector&lt; Object3D * &gt; &amp;objs) const " -->
+<a class="anchor" name="1212dbd493e73180a6204874bd97df6b"></a><!-- doxytag: member="m3g::Group::duplicate" ref="1212dbd493e73180a6204874bd97df6b" args="() const " -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void findByObjectType           </td>
+          <td class="memname"><a class="el" href="classm3g_1_1Group.html">Group</a> * duplicate           </td>
           <td>(</td>
-          <td class="paramtype">int&nbsp;</td>
-          <td class="paramname"> <em>obj_type</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">std::vector&lt; <a class="el" href="classm3g_1_1Object3D.html">Object3D</a> * &gt; &amp;&nbsp;</td>
-          <td class="paramname"> <em>objs</em></td><td>&nbsp;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td><td> const<code> [virtual]</code></td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const<code> [virtual]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
 <p>
-オブジェクトタイプで検索する. 
-<p><a class="el" href="classm3g_1_1Object3D.html#4dadb21b568b0230fac106f15040138c">Object3D</a>を再定義しています。</p>
+このオブジェクトの複製の作成. 
+<p><a class="el" href="classm3g_1_1Node.html#0b9f7531a4b56d34f47aeb1fff0d37e0">Node</a>を再定義しています。</p>
+
+<p><a class="el" href="classm3g_1_1World.html#efde97aaf753d48fff769d9011f187f2">World</a>で再定義されています。</p>
 
 </div>
 </div><p>
@@ -331,26 +326,17 @@ Groupに対する継承グラフ</div>
 このグループから指定されたノードを削除する。以前に追加されていた子ノードの順番とインデックスは変更される可能性がある. 
 </div>
 </div><p>
-<a class="anchor" name="1efcb1973989d9963d5bd6d03065d389"></a><!-- doxytag: member="m3g::Group::render" ref="1efcb1973989d9963d5bd6d03065d389" args="(int pass, int index=0) const " -->
+<a class="anchor" name="8babc8a79b78615da51161e94029eea9"></a><!-- doxytag: member="m3g::Group::render" ref="8babc8a79b78615da51161e94029eea9" args="(RenderState &amp;state) const " -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">void render           </td>
           <td>(</td>
-          <td class="paramtype">int&nbsp;</td>
-          <td class="paramname"> <em>pass</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&nbsp;</td>
-          <td class="paramname"> <em>index</em> = <code>0</code></td><td>&nbsp;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td><td> const<code> [protected, virtual]</code></td>
+          <td class="paramtype"><a class="el" href="structm3g_1_1RenderState.html">RenderState</a> &amp;&nbsp;</td>
+          <td class="paramname"> <em>state</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const<code> [virtual]</code></td>
         </tr>
       </table>
 </div>
@@ -359,16 +345,16 @@ Groupに対する継承グラフ</div>
 <p>
 このGroupをレンダリングする内部使用の関数.<p>
 Note: <a class="el" href="classm3g_1_1Group.html">Group</a> should be rendered via all rendering pass. 
-<p><a class="el" href="classm3g_1_1Node.html#1efcb1973989d9963d5bd6d03065d389">Node</a>を再定義しています。</p>
+<p><a class="el" href="classm3g_1_1Node.html#8babc8a79b78615da51161e94029eea9">Node</a>を再定義しています。</p>
 
-<p><a class="el" href="classm3g_1_1World.html#1efcb1973989d9963d5bd6d03065d389">World</a>で再定義されています。</p>
+<p><a class="el" href="classm3g_1_1World.html#8babc8a79b78615da51161e94029eea9">World</a>で再定義されています。</p>
 
 </div>
 </div><p>
 <hr>このクラスの説明は次のファイルから生成されました:<ul>
-<li>/work/desktop-m3g/src/<a class="el" href="Group_8hpp-source.html">Group.hpp</a><li>/work/desktop-m3g/src/Group.cpp</ul>
+<li>/work/workspace.desktop-m3g/src/<a class="el" href="Group_8hpp-source.html">Group.hpp</a><li>/work/workspace.desktop-m3g/src/Group.cpp</ul>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Wed Apr 7 10:24:22 2010に生成されました。&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Mon May 10 08:47:25 2010に生成されました。&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.8 </small></address>
 </body>

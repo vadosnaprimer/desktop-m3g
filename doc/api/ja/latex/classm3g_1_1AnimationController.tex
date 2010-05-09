@@ -7,13 +7,13 @@
 AnimationControllerに対する継承グラフ:\begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[height=2cm]{classm3g_1_1AnimationController}
+\includegraphics[height=3cm]{classm3g_1_1AnimationController}
 \end{center}
 \end{figure}
 \subsection*{構成}
 \begin{CompactItemize}
 \item 
-struct \textbf{ActiveInterval}
+struct \hyperlink{structm3g_1_1AnimationController_1_1ActiveInterval}{ActiveInterval}
 \end{CompactItemize}
 \subsection*{Public メソッド}
 \begin{CompactItemize}
@@ -21,6 +21,8 @@ struct \textbf{ActiveInterval}
 \hyperlink{classm3g_1_1AnimationController_f2e8cb2c6c916983d0f87140c7b0c98e}{AnimationController} ()
 \item 
 virtual \hyperlink{classm3g_1_1AnimationController_346849d0f82278f30dda9f35f80e9dbe}{$\sim$AnimationController} ()
+\item 
+virtual \hyperlink{classm3g_1_1AnimationController}{AnimationController} $\ast$ \hyperlink{classm3g_1_1AnimationController_aab6521891038ced0961ecb78611646e}{duplicate} () const 
 \item 
 int \hyperlink{classm3g_1_1AnimationController_7caa95c7ed5a03844abe328feaae4911}{getActiveIntervalEnd} () const 
 \item 
@@ -36,9 +38,9 @@ float \hyperlink{classm3g_1_1AnimationController_a17d38dafd3d75c59f0609f037fbe5a
 \item 
 void \hyperlink{classm3g_1_1AnimationController_a4cba877288d7a188477e0a756fd2f58}{setActiveInterval} (int start, int end)
 \item 
-void \hyperlink{classm3g_1_1AnimationController_a20a5553bd449b21bad74666055626f0}{setPosition} (float sequenceTime, int worldTime)
+void \hyperlink{classm3g_1_1AnimationController_da0d7a404b2a75ee182ca6351cf673d5}{setPosition} (float sequence\_\-time, int world\_\-time)
 \item 
-void \hyperlink{classm3g_1_1AnimationController_403dae9658751ff86becd82d8a6477f2}{setSpeed} (float speed, int worldTime)
+void \hyperlink{classm3g_1_1AnimationController_b32791d1a51df9ac8028792a841d06a6}{setSpeed} (float speed, int world\_\-time)
 \item 
 void \hyperlink{classm3g_1_1AnimationController_8859df4d5a61714012bf9e1240189aed}{setWeight} (float weight)
 \item 
@@ -72,7 +74,16 @@ virtual std::ostream \& \hyperlink{classm3g_1_1AnimationController_6fea17fa1532d
 アニメーションコントローラークラスのデストラクタ. 
 
 \subsection{関数}
-\hypertarget{classm3g_1_1AnimationController_7caa95c7ed5a03844abe328feaae4911}{
+\hypertarget{classm3g_1_1AnimationController_aab6521891038ced0961ecb78611646e}{
+\index{m3g::AnimationController@{m3g::AnimationController}!duplicate@{duplicate}}
+\index{duplicate@{duplicate}!m3g::AnimationController@{m3g::AnimationController}}
+\subsubsection[{duplicate}]{\setlength{\rightskip}{0pt plus 5cm}{\bf AnimationController} $\ast$ duplicate () const\hspace{0.3cm}{\tt  \mbox{[}virtual\mbox{]}}}}
+\label{classm3g_1_1AnimationController_aab6521891038ced0961ecb78611646e}
+
+
+このオブジェクトの複製の作成. 
+
+\hyperlink{classm3g_1_1Object3D_a25110dac934f867b83b73ad4741a0f4}{Object3D}を再定義しています。\hypertarget{classm3g_1_1AnimationController_7caa95c7ed5a03844abe328feaae4911}{
 \index{m3g::AnimationController@{m3g::AnimationController}!getActiveIntervalEnd@{getActiveIntervalEnd}}
 \index{getActiveIntervalEnd@{getActiveIntervalEnd}!m3g::AnimationController@{m3g::AnimationController}}
 \subsubsection[{getActiveIntervalEnd}]{\setlength{\rightskip}{0pt plus 5cm}int getActiveIntervalEnd () const}}
@@ -130,18 +141,18 @@ virtual std::ostream \& \hyperlink{classm3g_1_1AnimationController_6fea17fa1532d
 \label{classm3g_1_1AnimationController_a4cba877288d7a188477e0a756fd2f58}
 
 
-このアニメーションコントローラーがアクティブなワールド時間の期間を設定する。 \hypertarget{classm3g_1_1AnimationController_a20a5553bd449b21bad74666055626f0}{
+このアニメーションコントローラーがアクティブなワールド時間の期間を設定する。 \hypertarget{classm3g_1_1AnimationController_da0d7a404b2a75ee182ca6351cf673d5}{
 \index{m3g::AnimationController@{m3g::AnimationController}!setPosition@{setPosition}}
 \index{setPosition@{setPosition}!m3g::AnimationController@{m3g::AnimationController}}
-\subsubsection[{setPosition}]{\setlength{\rightskip}{0pt plus 5cm}void setPosition (float {\em sequenceTime}, \/  int {\em worldTime})}}
-\label{classm3g_1_1AnimationController_a20a5553bd449b21bad74666055626f0}
+\subsubsection[{setPosition}]{\setlength{\rightskip}{0pt plus 5cm}void setPosition (float {\em sequence\_\-time}, \/  int {\em world\_\-time})}}
+\label{classm3g_1_1AnimationController_da0d7a404b2a75ee182ca6351cf673d5}
 
 
-このアニメーションコントローラーにワールド時間で新しい再生位置を設定する. \hypertarget{classm3g_1_1AnimationController_403dae9658751ff86becd82d8a6477f2}{
+このアニメーションコントローラーにワールド時間で新しい再生位置を設定する. \hypertarget{classm3g_1_1AnimationController_b32791d1a51df9ac8028792a841d06a6}{
 \index{m3g::AnimationController@{m3g::AnimationController}!setSpeed@{setSpeed}}
 \index{setSpeed@{setSpeed}!m3g::AnimationController@{m3g::AnimationController}}
-\subsubsection[{setSpeed}]{\setlength{\rightskip}{0pt plus 5cm}void setSpeed (float {\em speed}, \/  int {\em worldTime})}}
-\label{classm3g_1_1AnimationController_403dae9658751ff86becd82d8a6477f2}
+\subsubsection[{setSpeed}]{\setlength{\rightskip}{0pt plus 5cm}void setSpeed (float {\em speed}, \/  int {\em world\_\-time})}}
+\label{classm3g_1_1AnimationController_b32791d1a51df9ac8028792a841d06a6}
 
 
 このアニメーションの再生速度を設定する. \hypertarget{classm3g_1_1AnimationController_8859df4d5a61714012bf9e1240189aed}{
@@ -155,5 +166,5 @@ virtual std::ostream \& \hyperlink{classm3g_1_1AnimationController_6fea17fa1532d
 
 このクラスの説明は次のファイルから生成されました:\begin{CompactItemize}
 \item 
-/work/desktop-m3g/src/AnimationController.hpp\item 
-/work/desktop-m3g/src/AnimationController.cpp\end{CompactItemize}
+/work/workspace.desktop-m3g/src/AnimationController.hpp\item 
+/work/workspace.desktop-m3g/src/AnimationController.cpp\end{CompactItemize}

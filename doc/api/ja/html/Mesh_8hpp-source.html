@@ -1,6 +1,6 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-<title>/work/desktop-m3g/src/Mesh.hpp ソースファイル</title>
+<title>/work/workspace.desktop-m3g/src/Mesh.hpp ソースファイル</title>
 <link href="tabs.css" rel="stylesheet" type="text/css">
 <link href="doxygen.css" rel="stylesheet" type="text/css">
 </head><body>
@@ -18,7 +18,7 @@
       <li><a href="files.html"><span>ファイル一覧</span></a></li>
     </ul>
   </div>
-<h1>/work/desktop-m3g/src/Mesh.hpp</h1><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="preprocessor">#ifndef __MESH_HPP__</span>
+<h1>/work/workspace.desktop-m3g/src/Mesh.hpp</h1><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="preprocessor">#ifndef __MESH_HPP__</span>
 <a name="l00002"></a>00002 <span class="preprocessor"></span><span class="preprocessor">#define __MESH_HPP__</span>
 <a name="l00003"></a>00003 <span class="preprocessor"></span>
 <a name="l00004"></a>00004 <span class="preprocessor">#include "Node.hpp"</span>
@@ -35,49 +35,51 @@
 <a name="l00019"></a><a class="code" href="classm3g_1_1Mesh.html">00019</a>   <span class="keyword">class </span><a class="code" href="classm3g_1_1Mesh.html">Mesh</a> : <span class="keyword">public</span> <a class="code" href="classm3g_1_1Node.html">Node</a>
 <a name="l00020"></a>00020   {
 <a name="l00021"></a>00021   <span class="keyword">public</span>:
-<a name="l00026"></a>00026     <a class="code" href="classm3g_1_1Mesh.html#2545f0abeee27d408d3129f3a5df40bb">Mesh</a> (<a class="code" href="classm3g_1_1VertexBuffer.html">VertexBuffer</a>* vertices,
-<a name="l00027"></a>00027       <span class="keywordtype">int</span> num_submesh, <a class="code" href="classm3g_1_1IndexBuffer.html">IndexBuffer</a>** submeshes,
-<a name="l00028"></a>00028       <span class="keywordtype">int</span> num_appearance, <a class="code" href="classm3g_1_1Appearance.html">Appearance</a>** appearances);
-<a name="l00029"></a>00029 
-<a name="l00034"></a>00034     <a class="code" href="classm3g_1_1Mesh.html#2545f0abeee27d408d3129f3a5df40bb">Mesh</a> (<a class="code" href="classm3g_1_1VertexBuffer.html">VertexBuffer</a>* vertices, 
-<a name="l00035"></a>00035       <a class="code" href="classm3g_1_1IndexBuffer.html">IndexBuffer</a>* submesh,
-<a name="l00036"></a>00036       <a class="code" href="classm3g_1_1Appearance.html">Appearance</a>* appearance);
-<a name="l00037"></a>00037 
-<a name="l00042"></a>00042     <span class="keyword">virtual</span> <a class="code" href="classm3g_1_1Mesh.html#6e26384cfb03023e7dc2e5419baf813f">~Mesh</a> ();
-<a name="l00043"></a>00043 
-<a name="l00048"></a>00048     <span class="keyword">virtual</span> <span class="keywordtype">int</span> <a class="code" href="classm3g_1_1Mesh.html#82cfeb67ca66b93e2ca7bda9a4f0e2aa">animate</a> (<span class="keywordtype">int</span> time);
-<a name="l00049"></a>00049 
-<a name="l00054"></a>00054     <a class="code" href="classm3g_1_1Appearance.html">Appearance</a>* <a class="code" href="classm3g_1_1Mesh.html#4950a19e02c022dcf41a086117eb8219">getAppearance</a> (<span class="keywordtype">int</span> index) <span class="keyword">const</span>;
-<a name="l00055"></a>00055 
-<a name="l00060"></a>00060     <a class="code" href="classm3g_1_1IndexBuffer.html">IndexBuffer</a>* <a class="code" href="classm3g_1_1Mesh.html#ca34a663f46ce20e2b894c046714ea1d">getIndexBuffer</a> (<span class="keywordtype">int</span> index) <span class="keyword">const</span>;
-<a name="l00061"></a>00061 
-<a name="l00066"></a>00066     <span class="keywordtype">int</span> <a class="code" href="classm3g_1_1Mesh.html#5dc5a57ad549eb97504c2a1280a882dd">getSubmeshCount</a> () <span class="keyword">const</span>;
-<a name="l00067"></a>00067 
-<a name="l00072"></a>00072     <a class="code" href="classm3g_1_1VertexBuffer.html">VertexBuffer</a>* <a class="code" href="classm3g_1_1Mesh.html#7602e9bf450fa8b3ec3c60e2e88cba25">getVertexBuffer</a> () <span class="keyword">const</span>;
-<a name="l00073"></a>00073 
-<a name="l00078"></a>00078     <span class="keywordtype">void</span> <a class="code" href="classm3g_1_1Mesh.html#bb03b872c453c4f8f3fe31e8b54d1b52">setAppearance</a> (<span class="keywordtype">int</span> index, <a class="code" href="classm3g_1_1Appearance.html">Appearance</a>* appearance);
-<a name="l00079"></a>00079 
-<a name="l00084"></a>00084     <span class="keyword">virtual</span> std::ostream&amp; <a class="code" href="classm3g_1_1Mesh.html#6fea17fa1532df3794f8cb39cb4f911f">print</a> (std::ostream&amp; out) <span class="keyword">const</span>;
-<a name="l00085"></a>00085 
-<a name="l00086"></a>00086   <span class="keyword">protected</span>:
+<a name="l00026"></a>00026     <a class="code" href="classm3g_1_1Mesh.html#f2c80c243fdcd32b07c77d2ab3d565ab">Mesh</a> (<a class="code" href="classm3g_1_1VertexBuffer.html">VertexBuffer</a>* vertices,
+<a name="l00027"></a>00027           <span class="keywordtype">int</span>           num_submesh,
+<a name="l00028"></a>00028           <a class="code" href="classm3g_1_1IndexBuffer.html">IndexBuffer</a>** submeshes,
+<a name="l00029"></a>00029           <a class="code" href="classm3g_1_1Appearance.html">Appearance</a>**  appearances);
+<a name="l00030"></a>00030 
+<a name="l00035"></a>00035     <a class="code" href="classm3g_1_1Mesh.html#f2c80c243fdcd32b07c77d2ab3d565ab">Mesh</a> (<a class="code" href="classm3g_1_1VertexBuffer.html">VertexBuffer</a>* vertices, 
+<a name="l00036"></a>00036           <a class="code" href="classm3g_1_1IndexBuffer.html">IndexBuffer</a>*  submesh,
+<a name="l00037"></a>00037           <a class="code" href="classm3g_1_1Appearance.html">Appearance</a>*   appearance);
+<a name="l00038"></a>00038 
+<a name="l00043"></a>00043     <span class="keyword">virtual</span> <a class="code" href="classm3g_1_1Mesh.html#6e26384cfb03023e7dc2e5419baf813f">~Mesh</a> ();
+<a name="l00044"></a>00044 
+<a name="l00045"></a>00045 
+<a name="l00050"></a>00050     <a class="code" href="classm3g_1_1Mesh.html">Mesh</a>* <a class="code" href="classm3g_1_1Mesh.html#52ce6d0b3eda2bd3a95bfb5b7dbb6f82">duplicate</a> () <span class="keyword">const</span>;
+<a name="l00051"></a>00051 
+<a name="l00056"></a>00056     <span class="keyword">virtual</span> <span class="keywordtype">int</span> <a class="code" href="classm3g_1_1Mesh.html#8aad1ceab4c2a03609c8a42324ce484d">animate</a> (<span class="keywordtype">int</span> world_time);
+<a name="l00057"></a>00057 
+<a name="l00062"></a>00062     <a class="code" href="classm3g_1_1Appearance.html">Appearance</a>* <a class="code" href="classm3g_1_1Mesh.html#4950a19e02c022dcf41a086117eb8219">getAppearance</a> (<span class="keywordtype">int</span> index) <span class="keyword">const</span>;
+<a name="l00063"></a>00063 
+<a name="l00068"></a>00068     <a class="code" href="classm3g_1_1IndexBuffer.html">IndexBuffer</a>* <a class="code" href="classm3g_1_1Mesh.html#ca34a663f46ce20e2b894c046714ea1d">getIndexBuffer</a> (<span class="keywordtype">int</span> index) <span class="keyword">const</span>;
+<a name="l00069"></a>00069 
+<a name="l00074"></a>00074     <span class="keywordtype">int</span> <a class="code" href="classm3g_1_1Mesh.html#5dc5a57ad549eb97504c2a1280a882dd">getSubmeshCount</a> () <span class="keyword">const</span>;
+<a name="l00075"></a>00075 
+<a name="l00080"></a>00080     <a class="code" href="classm3g_1_1VertexBuffer.html">VertexBuffer</a>* <a class="code" href="classm3g_1_1Mesh.html#7602e9bf450fa8b3ec3c60e2e88cba25">getVertexBuffer</a> () <span class="keyword">const</span>;
+<a name="l00081"></a>00081 
+<a name="l00086"></a>00086     <span class="keywordtype">void</span> <a class="code" href="classm3g_1_1Mesh.html#bb03b872c453c4f8f3fe31e8b54d1b52">setAppearance</a> (<span class="keywordtype">int</span> index, <a class="code" href="classm3g_1_1Appearance.html">Appearance</a>* appearance);
 <a name="l00087"></a>00087 
-<a name="l00092"></a>00092     <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classm3g_1_1Mesh.html#1efcb1973989d9963d5bd6d03065d389">render</a> (<span class="keywordtype">int</span> pass, <span class="keywordtype">int</span> index=0) <span class="keyword">const</span>;
+<a name="l00092"></a>00092     <span class="keyword">virtual</span> std::ostream&amp; <a class="code" href="classm3g_1_1Mesh.html#6fea17fa1532df3794f8cb39cb4f911f">print</a> (std::ostream&amp; out) <span class="keyword">const</span>;
 <a name="l00093"></a>00093 
-<a name="l00094"></a>00094   <span class="keyword">protected</span>:
-<a name="l00095"></a>00095     <a class="code" href="classm3g_1_1VertexBuffer.html">VertexBuffer</a>*             vertices;
-<a name="l00096"></a>00096     std::vector&lt;IndexBuffer*&gt; indices;
-<a name="l00097"></a>00097     std::vector&lt;Appearance*&gt;  appearances;
-<a name="l00098"></a>00098 
-<a name="l00099"></a>00099   };
-<a name="l00100"></a>00100 
-<a name="l00101"></a>00101 } <span class="comment">// namespace m3g {</span>
-<a name="l00102"></a>00102 
-<a name="l00103"></a>00103 std::ostream&amp; operator&lt;&lt; (std::ostream&amp; out, <span class="keyword">const</span> <a class="code" href="classm3g_1_1Mesh.html">m3g::Mesh</a>&amp; mesh);
+<a name="l00098"></a>00098     <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classm3g_1_1Mesh.html#8babc8a79b78615da51161e94029eea9">render</a> (<a class="code" href="structm3g_1_1RenderState.html">RenderState</a>&amp; state) <span class="keyword">const</span>;
+<a name="l00099"></a>00099 
+<a name="l00100"></a>00100   <span class="keyword">protected</span>:
+<a name="l00101"></a>00101     <a class="code" href="classm3g_1_1VertexBuffer.html">VertexBuffer</a>*             vertices;
+<a name="l00102"></a>00102     std::vector&lt;IndexBuffer*&gt; indices;
+<a name="l00103"></a>00103     std::vector&lt;Appearance*&gt;  appearances;
 <a name="l00104"></a>00104 
-<a name="l00105"></a>00105 
-<a name="l00106"></a>00106 <span class="preprocessor">#endif</span>
+<a name="l00105"></a>00105   };
+<a name="l00106"></a>00106 
+<a name="l00107"></a>00107 } <span class="comment">// namespace m3g {</span>
+<a name="l00108"></a>00108 
+<a name="l00109"></a>00109 std::ostream&amp; operator&lt;&lt; (std::ostream&amp; out, <span class="keyword">const</span> <a class="code" href="classm3g_1_1Mesh.html">m3g::Mesh</a>&amp; mesh);
+<a name="l00110"></a>00110 
+<a name="l00111"></a>00111 
+<a name="l00112"></a>00112 <span class="preprocessor">#endif</span>
 </pre></div></div>
-<hr size="1"><address style="text-align: right;"><small>Wed Apr 7 10:24:20 2010に生成されました。&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Mon May 10 08:47:23 2010に生成されました。&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.8 </small></address>
 </body>

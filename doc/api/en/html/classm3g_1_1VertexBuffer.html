@@ -32,7 +32,7 @@ Inheritance diagram for VertexBuffer:</div>
 
 <p><center><img src="classm3g_1_1VertexBuffer.png" usemap="#VertexBuffer_map" border="0" alt=""></center>
 <map name="VertexBuffer_map">
-<area href="classm3g_1_1Object3D.html" alt="Object3D" shape="rect" coords="0,0,84,24">
+<area href="classm3g_1_1Object3D.html" alt="Object3D" shape="rect" coords="0,56,84,80">
 </map>
 </div>
 
@@ -44,9 +44,11 @@ Inheritance diagram for VertexBuffer:</div>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">virtual&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1VertexBuffer.html#0e5e1dbdc4295ff9aa1e15e0ce3624af">~VertexBuffer</a> ()</td></tr>
 
-<tr><td class="memItemLeft" nowrap align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1VertexBuffer.html#415c0b110f95410ded9b85e5d99a496b">addAnimationTrack</a> (<a class="el" href="classm3g_1_1AnimationTrack.html">AnimationTrack</a> *animation_track)</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="el" href="classm3g_1_1VertexBuffer.html">VertexBuffer</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1VertexBuffer.html#d069984e7455bfe074cab9497b47cadf">duplicate</a> () const </td></tr>
 
-<tr><td class="memItemLeft" nowrap align="right" valign="top">virtual int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1VertexBuffer.html#82cfeb67ca66b93e2ca7bda9a4f0e2aa">animate</a> (int time)</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">virtual int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1VertexBuffer.html#8aad1ceab4c2a03609c8a42324ce484d">animate</a> (int world_time)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1VertexBuffer.html#415c0b110f95410ded9b85e5d99a496b">addAnimationTrack</a> (<a class="el" href="classm3g_1_1AnimationTrack.html">AnimationTrack</a> *animation_track)</td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="el" href="classm3g_1_1VertexArray.html">VertexArray</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1VertexBuffer.html#e3bdc8503242a6d278230352d03e5893">getColors</a> () const </td></tr>
 
@@ -60,7 +62,7 @@ Inheritance diagram for VertexBuffer:</div>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1VertexBuffer.html#e5a5933252e3ec3afa0a83698b5b3521">setColors</a> (<a class="el" href="classm3g_1_1VertexArray.html">VertexArray</a> *colors)</td></tr>
 
-<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1VertexBuffer.html#ba88996ea63221b09b9f841aef0270ee">setDefaultColor</a> (int rgb)</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1VertexBuffer.html#57fc3a141397f1287061a204c128c1b3">setDefaultColor</a> (int argb)</td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1VertexBuffer.html#4aabe6277538d5aa8285759dab85002a">setNormals</a> (<a class="el" href="classm3g_1_1VertexArray.html">VertexArray</a> *normals)</td></tr>
 
@@ -70,8 +72,7 @@ Inheritance diagram for VertexBuffer:</div>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">virtual std::ostream &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1VertexBuffer.html#6fea17fa1532df3794f8cb39cb4f911f">print</a> (std::ostream &amp;out) const </td></tr>
 
-<tr><td colspan="2"><br><h2>Protected Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1VertexBuffer.html#4dadb21b568b0230fac106f15040138c">findByObjectType</a> (int obj_type, std::vector&lt; <a class="el" href="classm3g_1_1Object3D.html">Object3D</a> * &gt; &amp;objs) const </td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1VertexBuffer.html#8babc8a79b78615da51161e94029eea9">render</a> (<a class="el" href="structm3g_1_1RenderState.html">RenderState</a> &amp;state) const </td></tr>
 
 <tr><td colspan="2"><br><h2>Friends</h2></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="a41a130f156b145bffb3f4b5172c4c93"></a><!-- doxytag: member="m3g::VertexBuffer::Mesh" ref="a41a130f156b145bffb3f4b5172c4c93" args="" -->
@@ -141,7 +142,7 @@ Adds the given <a class="el" href="classm3g_1_1AnimationTrack.html">AnimationTra
 
 </div>
 </div><p>
-<a class="anchor" name="82cfeb67ca66b93e2ca7bda9a4f0e2aa"></a><!-- doxytag: member="m3g::VertexBuffer::animate" ref="82cfeb67ca66b93e2ca7bda9a4f0e2aa" args="(int time)" -->
+<a class="anchor" name="8aad1ceab4c2a03609c8a42324ce484d"></a><!-- doxytag: member="m3g::VertexBuffer::animate" ref="8aad1ceab4c2a03609c8a42324ce484d" args="(int world_time)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -163,34 +164,24 @@ Updates all animated properties in this <a class="el" href="classm3g_1_1Object3D
 
 </div>
 </div><p>
-<a class="anchor" name="4dadb21b568b0230fac106f15040138c"></a><!-- doxytag: member="m3g::VertexBuffer::findByObjectType" ref="4dadb21b568b0230fac106f15040138c" args="(int obj_type, std::vector&lt; Object3D * &gt; &amp;objs) const " -->
+<a class="anchor" name="d069984e7455bfe074cab9497b47cadf"></a><!-- doxytag: member="m3g::VertexBuffer::duplicate" ref="d069984e7455bfe074cab9497b47cadf" args="() const " -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void findByObjectType           </td>
+          <td class="memname"><a class="el" href="classm3g_1_1VertexBuffer.html">VertexBuffer</a> * duplicate           </td>
           <td>(</td>
-          <td class="paramtype">int&nbsp;</td>
-          <td class="paramname"> <em>obj_type</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">std::vector&lt; <a class="el" href="classm3g_1_1Object3D.html">Object3D</a> * &gt; &amp;&nbsp;</td>
-          <td class="paramname"> <em>objs</em></td><td>&nbsp;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td><td> const<code> [protected, virtual]</code></td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const<code> [virtual]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
 <p>
-Find all objects by object type. 
-<p>Reimplemented from <a class="el" href="classm3g_1_1Object3D.html#4dadb21b568b0230fac106f15040138c">Object3D</a>.</p>
+Creates a duplicate of this <a class="el" href="classm3g_1_1Object3D.html">Object3D</a>. 
+<p>Reimplemented from <a class="el" href="classm3g_1_1Object3D.html#a25110dac934f867b83b73ad4741a0f4">Object3D</a>.</p>
 
 </div>
 </div><p>
@@ -322,6 +313,29 @@ Print out information of this object, for debug only.
 
 </div>
 </div><p>
+<a class="anchor" name="8babc8a79b78615da51161e94029eea9"></a><!-- doxytag: member="m3g::VertexBuffer::render" ref="8babc8a79b78615da51161e94029eea9" args="(RenderState &amp;state) const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void render           </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structm3g_1_1RenderState.html">RenderState</a> &amp;&nbsp;</td>
+          <td class="paramname"> <em>state</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const<code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Render this object, for inner use.<p>
+Note: <a class="el" href="classm3g_1_1VertexBuffer.html">VertexBuffer</a> should be rendered only at second rendering pass(pass=2). In other cases, do nothing. 
+<p>Reimplemented from <a class="el" href="classm3g_1_1Object3D.html#8babc8a79b78615da51161e94029eea9">Object3D</a>.</p>
+
+</div>
+</div><p>
 <a class="anchor" name="e5a5933252e3ec3afa0a83698b5b3521"></a><!-- doxytag: member="m3g::VertexBuffer::setColors" ref="e5a5933252e3ec3afa0a83698b5b3521" args="(VertexArray *colors)" -->
 <div class="memitem">
 <div class="memproto">
@@ -330,7 +344,7 @@ Print out information of this object, for debug only.
           <td class="memname">void setColors           </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="classm3g_1_1VertexArray.html">VertexArray</a> *&nbsp;</td>
-          <td class="paramname"> <em>colors</em>          </td>
+          <td class="paramname"> <em>colors_</em>          </td>
           <td>&nbsp;)&nbsp;</td>
           <td></td>
         </tr>
@@ -340,10 +354,10 @@ Print out information of this object, for debug only.
 
 <p>
 Sets the per-vertex color for this <a class="el" href="classm3g_1_1VertexBuffer.html">VertexBuffer</a>.<p>
-x:[-128,127] --&gt; y:[0,1] y = (x+128)/255 
+x:[0,255] --&gt; y:[0,1] 
 </div>
 </div><p>
-<a class="anchor" name="ba88996ea63221b09b9f841aef0270ee"></a><!-- doxytag: member="m3g::VertexBuffer::setDefaultColor" ref="ba88996ea63221b09b9f841aef0270ee" args="(int rgb)" -->
+<a class="anchor" name="57fc3a141397f1287061a204c128c1b3"></a><!-- doxytag: member="m3g::VertexBuffer::setDefaultColor" ref="57fc3a141397f1287061a204c128c1b3" args="(int argb)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -351,7 +365,7 @@ x:[-128,127] --&gt; y:[0,1] y = (x+128)/255
           <td class="memname">void setDefaultColor           </td>
           <td>(</td>
           <td class="paramtype">int&nbsp;</td>
-          <td class="paramname"> <em>rgb</em>          </td>
+          <td class="paramname"> <em>argb</em>          </td>
           <td>&nbsp;)&nbsp;</td>
           <td></td>
         </tr>
@@ -371,7 +385,7 @@ Sets the color to use in absence of per-vetex colors.
           <td class="memname">void setNormals           </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="classm3g_1_1VertexArray.html">VertexArray</a> *&nbsp;</td>
-          <td class="paramname"> <em>normals</em>          </td>
+          <td class="paramname"> <em>normals_</em>          </td>
           <td>&nbsp;)&nbsp;</td>
           <td></td>
         </tr>
@@ -461,9 +475,9 @@ Sets the texture coordinates for the specified textureing unit.
 </div>
 </div><p>
 <hr>The documentation for this class was generated from the following files:<ul>
-<li>/work/desktop-m3g/src/<a class="el" href="VertexBuffer_8hpp-source.html">VertexBuffer.hpp</a><li>/work/desktop-m3g/src/VertexBuffer.cpp</ul>
+<li>/work/workspace.desktop-m3g/src/<a class="el" href="VertexBuffer_8hpp-source.html">VertexBuffer.hpp</a><li>/work/workspace.desktop-m3g/src/VertexBuffer.cpp</ul>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Wed Apr 7 10:24:31 2010 by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Mon May 10 08:47:34 2010 by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.8 </small></address>
 </body>

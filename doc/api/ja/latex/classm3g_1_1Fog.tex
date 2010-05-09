@@ -7,15 +7,22 @@
 Fogに対する継承グラフ:\begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[height=2cm]{classm3g_1_1Fog}
+\includegraphics[height=3cm]{classm3g_1_1Fog}
 \end{center}
 \end{figure}
+\subsection*{構成}
+\begin{CompactItemize}
+\item 
+struct \textbf{Distance}
+\end{CompactItemize}
 \subsection*{Public メソッド}
 \begin{CompactItemize}
 \item 
 \hyperlink{classm3g_1_1Fog_232ea9c5f5824d924fa185401fbfb234}{Fog} ()
 \item 
 virtual \hyperlink{classm3g_1_1Fog_c13d77e65284ed8f7480c8f83ed9780f}{$\sim$Fog} ()
+\item 
+virtual \hyperlink{classm3g_1_1Fog}{Fog} $\ast$ \hyperlink{classm3g_1_1Fog_d46dc959a547ee3a804fc871b83c0bbf}{duplicate} () const 
 \item 
 virtual void \hyperlink{classm3g_1_1Fog_415c0b110f95410ded9b85e5d99a496b}{addAnimationTrack} (\hyperlink{classm3g_1_1AnimationTrack}{AnimationTrack} $\ast$animation\_\-track)
 \item 
@@ -40,6 +47,8 @@ void \hyperlink{classm3g_1_1Fog_a46fd556865ae7f1c683c3741b68c168}{setLinear} (fl
 void \hyperlink{classm3g_1_1Fog_9f407b18ba6235cb96fa95611c1ea3a4}{setMode} (int mode)
 \item 
 virtual std::ostream \& \hyperlink{classm3g_1_1Fog_6fea17fa1532df3794f8cb39cb4f911f}{print} (std::ostream \&out) const 
+\item 
+virtual void \hyperlink{classm3g_1_1Fog_8babc8a79b78615da51161e94029eea9}{render} (\hyperlink{structm3g_1_1RenderState}{RenderState} \&state) const 
 \end{CompactItemize}
 \subsection*{Static Public 変数}
 \begin{CompactItemize}
@@ -47,11 +56,6 @@ virtual std::ostream \& \hyperlink{classm3g_1_1Fog_6fea17fa1532df3794f8cb39cb4f9
 static const int \hyperlink{classm3g_1_1Fog_86b391da2e58c0448712a10f6609a62c}{EXPONENTIAL} = 80
 \item 
 static const int \hyperlink{classm3g_1_1Fog_23ccf193c67257f1be26417041cecb31}{LINEAR} = 81
-\end{CompactItemize}
-\subsection*{Protected メソッド}
-\begin{CompactItemize}
-\item 
-virtual void \hyperlink{classm3g_1_1Fog_1efcb1973989d9963d5bd6d03065d389}{render} (int pass, int index=0) const 
 \end{CompactItemize}
 \subsection*{フレンド}
 \begin{CompactItemize}
@@ -102,7 +106,16 @@ class \textbf{Appearance}}
 
 アニメーションの更新. 
 
-\hyperlink{classm3g_1_1Object3D_8aad1ceab4c2a03609c8a42324ce484d}{Object3D}を再定義しています。\hypertarget{classm3g_1_1Fog_4cfa1931c265ec3412fe3f6408a1b4f5}{
+\hyperlink{classm3g_1_1Object3D_8aad1ceab4c2a03609c8a42324ce484d}{Object3D}を再定義しています。\hypertarget{classm3g_1_1Fog_d46dc959a547ee3a804fc871b83c0bbf}{
+\index{m3g::Fog@{m3g::Fog}!duplicate@{duplicate}}
+\index{duplicate@{duplicate}!m3g::Fog@{m3g::Fog}}
+\subsubsection[{duplicate}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Fog} $\ast$ duplicate () const\hspace{0.3cm}{\tt  \mbox{[}virtual\mbox{]}}}}
+\label{classm3g_1_1Fog_d46dc959a547ee3a804fc871b83c0bbf}
+
+
+このオブジェクトの複製の作成. 
+
+\hyperlink{classm3g_1_1Object3D_a25110dac934f867b83b73ad4741a0f4}{Object3D}を再定義しています。\hypertarget{classm3g_1_1Fog_4cfa1931c265ec3412fe3f6408a1b4f5}{
 \index{m3g::Fog@{m3g::Fog}!getColor@{getColor}}
 \index{getColor@{getColor}!m3g::Fog@{m3g::Fog}}
 \subsubsection[{getColor}]{\setlength{\rightskip}{0pt plus 5cm}int getColor () const}}
@@ -146,18 +159,18 @@ class \textbf{Appearance}}
 
 このFogクラスの情報を表示する。デバッグ用. 
 
-\hyperlink{classm3g_1_1Object3D_6fea17fa1532df3794f8cb39cb4f911f}{Object3D}を再定義しています。\hypertarget{classm3g_1_1Fog_1efcb1973989d9963d5bd6d03065d389}{
+\hyperlink{classm3g_1_1Object3D_6fea17fa1532df3794f8cb39cb4f911f}{Object3D}を再定義しています。\hypertarget{classm3g_1_1Fog_8babc8a79b78615da51161e94029eea9}{
 \index{m3g::Fog@{m3g::Fog}!render@{render}}
 \index{render@{render}!m3g::Fog@{m3g::Fog}}
-\subsubsection[{render}]{\setlength{\rightskip}{0pt plus 5cm}void render (int {\em pass}, \/  int {\em index} = {\tt 0}) const\hspace{0.3cm}{\tt  \mbox{[}protected, virtual\mbox{]}}}}
-\label{classm3g_1_1Fog_1efcb1973989d9963d5bd6d03065d389}
+\subsubsection[{render}]{\setlength{\rightskip}{0pt plus 5cm}void render ({\bf RenderState} \& {\em state}) const\hspace{0.3cm}{\tt  \mbox{[}virtual\mbox{]}}}}
+\label{classm3g_1_1Fog_8babc8a79b78615da51161e94029eea9}
 
 
 このFogノードをレンダリングする内部使用の関数.
 
 Note: \hyperlink{classm3g_1_1Fog}{Fog} should be rendered only at second rendering pass(pass=2). In other cases, do nothing. 
 
-\hyperlink{classm3g_1_1Object3D_1efcb1973989d9963d5bd6d03065d389}{Object3D}を再定義しています。\hypertarget{classm3g_1_1Fog_b1f5cc0f5cc6bbbd716a526c61f1081d}{
+\hyperlink{classm3g_1_1Object3D_8babc8a79b78615da51161e94029eea9}{Object3D}を再定義しています。\hypertarget{classm3g_1_1Fog_b1f5cc0f5cc6bbbd716a526c61f1081d}{
 \index{m3g::Fog@{m3g::Fog}!setColor@{setColor}}
 \index{setColor@{setColor}!m3g::Fog@{m3g::Fog}}
 \subsubsection[{setColor}]{\setlength{\rightskip}{0pt plus 5cm}void setColor (int {\em rgb})}}
@@ -206,5 +219,5 @@ Note: \hyperlink{classm3g_1_1Fog}{Fog} should be rendered only at second renderi
 
 このクラスの説明は次のファイルから生成されました:\begin{CompactItemize}
 \item 
-/work/desktop-m3g/src/Fog.hpp\item 
-/work/desktop-m3g/src/Fog.cpp\end{CompactItemize}
+/work/workspace.desktop-m3g/src/Fog.hpp\item 
+/work/workspace.desktop-m3g/src/Fog.cpp\end{CompactItemize}

@@ -1,6 +1,6 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-<title>/work/desktop-m3g/src/Loader.hpp Source File</title>
+<title>/work/workspace.desktop-m3g/src/Loader.hpp Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css">
 <link href="doxygen.css" rel="stylesheet" type="text/css">
 </head><body>
@@ -18,40 +18,124 @@
       <li><a href="files.html"><span>File&nbsp;List</span></a></li>
     </ul>
   </div>
-<h1>/work/desktop-m3g/src/Loader.hpp</h1><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="preprocessor">#ifndef __LOADER_HPP__</span>
+<h1>/work/workspace.desktop-m3g/src/Loader.hpp</h1><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="preprocessor">#ifndef __LOADER_HPP__</span>
 <a name="l00002"></a>00002 <span class="preprocessor"></span><span class="preprocessor">#define __LOADER_HPP__</span>
 <a name="l00003"></a>00003 <span class="preprocessor"></span>
 <a name="l00004"></a>00004 <span class="preprocessor">#include &lt;vector&gt;</span>
-<a name="l00005"></a>00005 <span class="preprocessor">#include &lt;iostream&gt;</span>
-<a name="l00006"></a>00006 
-<a name="l00007"></a>00007 <span class="keyword">namespace </span>m3g {
+<a name="l00005"></a>00005 <span class="preprocessor">#include &lt;iosfwd&gt;</span>
+<a name="l00006"></a>00006 <span class="preprocessor">#include &lt;strstream&gt;</span>
+<a name="l00007"></a>00007 <span class="preprocessor">#include "Object.hpp"</span>
 <a name="l00008"></a>00008 
-<a name="l00009"></a>00009 <span class="keyword">class </span>Object3D;
+<a name="l00009"></a>00009 <span class="keyword">namespace </span>m3g {
 <a name="l00010"></a>00010 
-<a name="l00014"></a><a class="code" href="classm3g_1_1Loader.html">00014</a> <span class="keyword">class </span><a class="code" href="classm3g_1_1Loader.html">Loader</a>
-<a name="l00015"></a>00015 {
-<a name="l00016"></a>00016 
-<a name="l00017"></a>00017 <span class="keyword">public</span>:
-<a name="l00021"></a>00021     <a class="code" href="classm3g_1_1Loader.html#c082256071478316a982894d4191a11a">Loader</a> ();
-<a name="l00025"></a>00025     <a class="code" href="classm3g_1_1Loader.html#8bd25dd3f34914f06852c2de2f9db737">~Loader</a> ();
-<a name="l00026"></a>00026 
-<a name="l00030"></a>00030     <span class="keyword">static</span> std::vector&lt;Object3D*&gt; <a class="code" href="classm3g_1_1Loader.html#7abddd36a9ee70e67de0e2183bba1aed">load</a> (<span class="keywordtype">void</span>* data, <span class="keywordtype">int</span> offset);
-<a name="l00031"></a>00031 
-<a name="l00035"></a>00035     <span class="keyword">static</span> std::vector&lt;Object3D*&gt; <a class="code" href="classm3g_1_1Loader.html#7abddd36a9ee70e67de0e2183bba1aed">load</a> (<span class="keyword">const</span> <span class="keywordtype">char</span>* name);
-<a name="l00036"></a>00036 };
+<a name="l00011"></a>00011   <span class="keyword">class </span>Object3D;
+<a name="l00012"></a>00012   <span class="keyword">class </span>IndexBuffer;
+<a name="l00013"></a>00013   <span class="keyword">class </span>Node;
+<a name="l00014"></a>00014   <span class="keyword">class </span>Transformable;
+<a name="l00015"></a>00015   <span class="keyword">class </span>Group;
+<a name="l00016"></a>00016   <span class="keyword">class </span>Mesh;
+<a name="l00017"></a>00017 
+<a name="l00022"></a><a class="code" href="classm3g_1_1Loader.html">00022</a>   <span class="keyword">class </span><a class="code" href="classm3g_1_1Loader.html">Loader</a> : <span class="keyword">public</span> Object
+<a name="l00023"></a>00023   {
+<a name="l00024"></a>00024     <span class="keyword">struct </span>FileInfo {
+<a name="l00025"></a>00025       FileInfo () : version_major(0), version_minor(0), has_external_refference(<span class="keyword">false</span>),
+<a name="l00026"></a>00026                     external_refference_uri(0), total_file_size(0), 
+<a name="l00027"></a>00027                     approximate_content_size(0), authoring_field(0) {};
+<a name="l00028"></a>00028       <span class="keywordtype">int</span>          version_major;
+<a name="l00029"></a>00029       <span class="keywordtype">int</span>          version_minor;
+<a name="l00030"></a>00030       <span class="keywordtype">bool</span>         has_external_refference;
+<a name="l00031"></a>00031       <span class="keyword">const</span> <span class="keywordtype">char</span>*  external_refference_uri;
+<a name="l00032"></a>00032       <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> total_file_size;
+<a name="l00033"></a>00033       <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> approximate_content_size;
+<a name="l00034"></a>00034       <span class="keyword">const</span> <span class="keywordtype">char</span>*  authoring_field;
+<a name="l00035"></a>00035     };
+<a name="l00036"></a>00036 
 <a name="l00037"></a>00037 
-<a name="l00038"></a>00038 
-<a name="l00039"></a>00039 } <span class="comment">// namespace m3g {</span>
-<a name="l00040"></a>00040 
-<a name="l00041"></a>00041 <span class="preprocessor">#endif</span>
-<a name="l00042"></a>00042 <span class="preprocessor"></span>
-<a name="l00043"></a>00043 
-<a name="l00044"></a>00044 
+<a name="l00038"></a>00038   <span class="keyword">public</span>:
+<a name="l00039"></a>00039 
+<a name="l00044"></a>00044     <span class="keyword">static</span> std::vector&lt;Object3D*&gt; <a class="code" href="classm3g_1_1Loader.html#226696271b917ad797016959bb7adbe1">load</a> (<span class="keywordtype">int</span> length, <span class="keyword">const</span> <span class="keywordtype">char</span>* data, <span class="keywordtype">int</span> offset);
 <a name="l00045"></a>00045 
-<a name="l00046"></a>00046 
-<a name="l00047"></a>00047 
+<a name="l00050"></a>00050     <span class="keyword">static</span> std::vector&lt;Object3D*&gt; <a class="code" href="classm3g_1_1Loader.html#226696271b917ad797016959bb7adbe1">load</a> (<span class="keyword">const</span> <span class="keywordtype">char</span>* name);
+<a name="l00051"></a>00051 
+<a name="l00055"></a><a class="code" href="classm3g_1_1Loader.html#b5b2e875f7353dca9dad61c686bccf92">00055</a>     <span class="keyword">static</span> FileInfo <a class="code" href="classm3g_1_1Loader.html#b5b2e875f7353dca9dad61c686bccf92">file_info</a>;
+<a name="l00056"></a>00056 
+<a name="l00057"></a>00057 
+<a name="l00058"></a>00058   <span class="keyword">private</span>:
+<a name="l00063"></a>00063     <a class="code" href="classm3g_1_1Loader.html">Loader</a> ();
+<a name="l00068"></a>00068     ~<a class="code" href="classm3g_1_1Loader.html">Loader</a> ();
+<a name="l00069"></a>00069 
+<a name="l00070"></a>00070     <span class="keyword">static</span> <span class="keywordtype">bool</span>            getBoolean ();
+<a name="l00071"></a>00071     <span class="keyword">static</span> <span class="keywordtype">char</span>            getByte ();
+<a name="l00072"></a>00072     <span class="keyword">static</span> <span class="keywordtype">short</span>           getInt16 ();
+<a name="l00073"></a>00073     <span class="keyword">static</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span>  getUInt16 ();
+<a name="l00074"></a>00074     <span class="keyword">static</span> <span class="keywordtype">int</span>             getInt32 ();
+<a name="l00075"></a>00075     <span class="keyword">static</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>    getUInt32 ();
+<a name="l00076"></a>00076     <span class="keyword">static</span> <span class="keywordtype">float</span>           getFloat32 ();
+<a name="l00077"></a>00077     <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span>*     getString ();
+<a name="l00078"></a>00078     <span class="keyword">static</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>    getObjectIndex ();
+<a name="l00079"></a>00079     <span class="keyword">static</span> <span class="keywordtype">int</span>             getColorRGBA ();
+<a name="l00080"></a>00080     <span class="keyword">static</span> <span class="keywordtype">int</span>             getColorRGB ();
+<a name="l00081"></a>00081     <span class="keyword">static</span> <span class="keywordtype">bool</span>            getM3GIdent ();
+<a name="l00082"></a>00082     <span class="keyword">static</span> <span class="keywordtype">char</span>*           getByteArray (<span class="keywordtype">int</span> n);
+<a name="l00083"></a>00083     <span class="keyword">static</span> <span class="keywordtype">short</span>*          getInt16Array (<span class="keywordtype">int</span> n);
+<a name="l00084"></a>00084     <span class="keyword">static</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span>* getUInt16Array (<span class="keywordtype">int</span> n);
+<a name="l00085"></a>00085     <span class="keyword">static</span> <span class="keywordtype">int</span>*            getInt32Array (<span class="keywordtype">int</span> n);
+<a name="l00086"></a>00086     <span class="keyword">static</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>*   getUInt32Array (<span class="keywordtype">int</span> n);
+<a name="l00087"></a>00087     <span class="keyword">static</span> <span class="keywordtype">float</span>*          getFloat32Array (<span class="keywordtype">int</span> n);
+<a name="l00088"></a>00088 
+<a name="l00089"></a>00089     <span class="keyword">static</span> <span class="keywordtype">void</span>            read_raw (<span class="keywordtype">char</span>* buf, <span class="keywordtype">int</span> length);
+<a name="l00090"></a>00090     <span class="keyword">static</span> <span class="keywordtype">void</span>            read_zlib (<span class="keywordtype">char</span>* decoded_buf, <span class="keywordtype">int</span> decoded_buf_length, <span class="keywordtype">int</span> compressed_length);
+<a name="l00091"></a>00091 
+<a name="l00092"></a>00092     <span class="keyword">static</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> adler32 (<span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span>* data, <span class="keywordtype">int</span> len);
+<a name="l00093"></a>00093 
+<a name="l00094"></a>00094     <span class="keyword">static</span> <span class="keywordtype">void</span> parseHeader();
+<a name="l00095"></a>00095     <span class="keyword">static</span> <span class="keywordtype">void</span> parseExref();
+<a name="l00096"></a>00096     <span class="keyword">static</span> <span class="keywordtype">void</span> parseAnimationController ();
+<a name="l00097"></a>00097     <span class="keyword">static</span> <span class="keywordtype">void</span> parseAnimationTrack ();
+<a name="l00098"></a>00098     <span class="keyword">static</span> <span class="keywordtype">void</span> parseAppearance ();
+<a name="l00099"></a>00099     <span class="keyword">static</span> <span class="keywordtype">void</span> parseBackground ();
+<a name="l00100"></a>00100     <span class="keyword">static</span> <span class="keywordtype">void</span> parseCamera ();
+<a name="l00101"></a>00101     <span class="keyword">static</span> <span class="keywordtype">void</span> parseCompositingMode ();
+<a name="l00102"></a>00102     <span class="keyword">static</span> <span class="keywordtype">void</span> parseFog ();
+<a name="l00103"></a>00103     <span class="keyword">static</span> <span class="keywordtype">void</span> parseGroup ();
+<a name="l00104"></a>00104     <span class="keyword">static</span> <span class="keywordtype">void</span> parseGroup (Group* grp);
+<a name="l00105"></a>00105     <span class="keyword">static</span> <span class="keywordtype">void</span> parseImage2D ();
+<a name="l00106"></a>00106     <span class="keyword">static</span> <span class="keywordtype">void</span> parseIndexBuffer (<a class="code" href="classm3g_1_1IndexBuffer.html">IndexBuffer</a>* ibuf);
+<a name="l00107"></a>00107     <span class="keyword">static</span> <span class="keywordtype">void</span> parseKeyframeSequence ();
+<a name="l00108"></a>00108     <span class="keyword">static</span> <span class="keywordtype">void</span> parseLight ();
+<a name="l00109"></a>00109     <span class="keyword">static</span> <span class="keywordtype">void</span> parseMaterial ();
+<a name="l00110"></a>00110     <span class="keyword">static</span> <span class="keywordtype">void</span> parseMesh ();
+<a name="l00111"></a>00111     <span class="keyword">static</span> <span class="keywordtype">void</span> parseMesh (<a class="code" href="classm3g_1_1Mesh.html">Mesh</a>* mesh);
+<a name="l00112"></a>00112     <span class="keyword">static</span> <span class="keywordtype">void</span> parseMorphingMesh ();
+<a name="l00113"></a>00113     <span class="keyword">static</span> <span class="keywordtype">void</span> parseNode (<a class="code" href="classm3g_1_1Node.html">Node</a>* node);
+<a name="l00114"></a>00114     <span class="keyword">static</span> <span class="keywordtype">void</span> parseObject3D (<a class="code" href="classm3g_1_1Object3D.html">Object3D</a>* obj);
+<a name="l00115"></a>00115     <span class="keyword">static</span> <span class="keywordtype">void</span> parsePolygonMode ();
+<a name="l00116"></a>00116     <span class="keyword">static</span> <span class="keywordtype">void</span> parseSkinnedMesh ();
+<a name="l00117"></a>00117     <span class="keyword">static</span> <span class="keywordtype">void</span> parseSprite3D ();
+<a name="l00118"></a>00118     <span class="keyword">static</span> <span class="keywordtype">void</span> parseTexture2D ();
+<a name="l00119"></a>00119     <span class="keyword">static</span> <span class="keywordtype">void</span> parseTransformable (<a class="code" href="classm3g_1_1Transformable.html">Transformable</a>* trns);
+<a name="l00120"></a>00120     <span class="keyword">static</span> <span class="keywordtype">void</span> parseTriangleStripArray ();
+<a name="l00121"></a>00121     <span class="keyword">static</span> <span class="keywordtype">void</span> parseVertexArray ();
+<a name="l00122"></a>00122     <span class="keyword">static</span> <span class="keywordtype">void</span> parseVertexBuffer ();
+<a name="l00123"></a>00123     <span class="keyword">static</span> <span class="keywordtype">void</span> parseWorld ();
+<a name="l00124"></a>00124 
+<a name="l00125"></a>00125     <span class="comment">//static std::ifstream ifs;</span>
+<a name="l00126"></a>00126     <span class="keyword">static</span> std::istrstream* iss;
+<a name="l00127"></a>00127     <span class="keyword">static</span> std::vector&lt;Object3D*&gt; objs;
+<a name="l00128"></a>00128   };
+<a name="l00129"></a>00129 
+<a name="l00130"></a>00130 
+<a name="l00131"></a>00131 } <span class="comment">// namespace m3g {</span>
+<a name="l00132"></a>00132 
+<a name="l00133"></a>00133 <span class="preprocessor">#endif</span>
+<a name="l00134"></a>00134 <span class="preprocessor"></span>
+<a name="l00135"></a>00135 
+<a name="l00136"></a>00136 
+<a name="l00137"></a>00137 
+<a name="l00138"></a>00138 
+<a name="l00139"></a>00139 
 </pre></div></div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Wed Apr 7 10:24:27 2010 by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Mon May 10 08:47:29 2010 by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.8 </small></address>
 </body>

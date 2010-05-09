@@ -7,13 +7,13 @@
 Nodeに対する継承グラフ:\begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[height=5cm]{classm3g_1_1Node}
+\includegraphics[height=6cm]{classm3g_1_1Node}
 \end{center}
 \end{figure}
 \subsection*{構成}
 \begin{CompactItemize}
 \item 
-struct \textbf{Alignment}
+struct \hyperlink{structm3g_1_1Node_1_1Alignment}{Alignment}
 \end{CompactItemize}
 \subsection*{Public メソッド}
 \begin{CompactItemize}
@@ -21,6 +21,8 @@ struct \textbf{Alignment}
 \hyperlink{classm3g_1_1Node_0d313fac56abd7ebe58a17f1530b879e}{Node} ()
 \item 
 virtual \hyperlink{classm3g_1_1Node_6fa6bf60f34f1e3efb0e59333428c9c8}{$\sim$Node} ()
+\item 
+virtual \hyperlink{classm3g_1_1Node}{Node} $\ast$ \hyperlink{classm3g_1_1Node_0b9f7531a4b56d34f47aeb1fff0d37e0}{duplicate} () const 
 \item 
 void \hyperlink{classm3g_1_1Node_3db1b4be060fe3d4f3dbf9720ef85234}{align} (\hyperlink{classm3g_1_1Node}{Node} $\ast$reference)
 \item 
@@ -33,6 +35,8 @@ virtual int \hyperlink{classm3g_1_1Node_8aad1ceab4c2a03609c8a42324ce484d}{animat
 int \hyperlink{classm3g_1_1Node_e5bbf42b3d88193fda0b476e1b1da009}{getAlignmentTarget} (int axis) const 
 \item 
 float \hyperlink{classm3g_1_1Node_bf7e8f9d9f530274aaf27e69910f8689}{getAlphaFactor} () const 
+\item 
+\hyperlink{classm3g_1_1Matrix}{Matrix} \hyperlink{classm3g_1_1Node_b50dd3f0331a71cf820bbd1edc894ef0}{getGlobalPose} () const 
 \item 
 \hyperlink{classm3g_1_1Node}{Node} $\ast$ \hyperlink{classm3g_1_1Node_ce26c2757f265bc6038e6818d2eb6ad9}{getParent} () const 
 \item 
@@ -55,6 +59,10 @@ void \hyperlink{classm3g_1_1Node_58981ef7aea1bf0e630bcc065b2987e9}{setRenderingE
 void \hyperlink{classm3g_1_1Node_55f324f307a01705b9094a73af4ecd68}{setScope} (int scope)
 \item 
 virtual std::ostream \& \hyperlink{classm3g_1_1Node_6fea17fa1532df3794f8cb39cb4f911f}{print} (std::ostream \&out) const 
+\item 
+void \hyperlink{classm3g_1_1Node_880ecc7c1c091f7607eeae12ed100a9a}{setParent} (\hyperlink{classm3g_1_1Node}{Node} $\ast$node)
+\item 
+virtual void \hyperlink{classm3g_1_1Node_8babc8a79b78615da51161e94029eea9}{render} (\hyperlink{structm3g_1_1RenderState}{RenderState} \&state) const 
 \end{CompactItemize}
 \subsection*{Static Public 変数}
 \begin{CompactItemize}
@@ -68,13 +76,6 @@ static const int \hyperlink{classm3g_1_1Node_dd4bccb7b9c652e726d58b06bd28dab2}{X
 static const int \hyperlink{classm3g_1_1Node_3248ff73b5411ab0a66a38c451c8b6fe}{Y\_\-AXIS} = 147
 \item 
 static const int \hyperlink{classm3g_1_1Node_a928e648c9ae9b4706937831f77f0c67}{Z\_\-AXIS} = 148
-\end{CompactItemize}
-\subsection*{Protected メソッド}
-\begin{CompactItemize}
-\item 
-void \hyperlink{classm3g_1_1Node_880ecc7c1c091f7607eeae12ed100a9a}{setParent} (\hyperlink{classm3g_1_1Node}{Node} $\ast$node)
-\item 
-virtual void \hyperlink{classm3g_1_1Node_1efcb1973989d9963d5bd6d03065d389}{render} (int pass, int index=0) const 
 \end{CompactItemize}
 \subsection*{フレンド}
 \begin{CompactItemize}
@@ -151,7 +152,18 @@ Nodeオブジェクトを作成するコンストラクタ. \hypertarget{classm3
 
 \hyperlink{classm3g_1_1Transformable_8aad1ceab4c2a03609c8a42324ce484d}{Transformable}を再定義しています。
 
-\hyperlink{classm3g_1_1Camera_8aad1ceab4c2a03609c8a42324ce484d}{Camera}, \hyperlink{classm3g_1_1Group_8aad1ceab4c2a03609c8a42324ce484d}{Group}, \hyperlink{classm3g_1_1Light_8aad1ceab4c2a03609c8a42324ce484d}{Light}, \hyperlink{classm3g_1_1Mesh_82cfeb67ca66b93e2ca7bda9a4f0e2aa}{Mesh}, \hyperlink{classm3g_1_1MorphingMesh_8aad1ceab4c2a03609c8a42324ce484d}{MorphingMesh}, \hyperlink{classm3g_1_1Sprite3D_8aad1ceab4c2a03609c8a42324ce484d}{Sprite3D}, と \hyperlink{classm3g_1_1World_8aad1ceab4c2a03609c8a42324ce484d}{World}で再定義されています。\hypertarget{classm3g_1_1Node_ca338390bd2dee287fe6f5cbc4e094e1}{
+\hyperlink{classm3g_1_1Camera_8aad1ceab4c2a03609c8a42324ce484d}{Camera}, \hyperlink{classm3g_1_1Group_8aad1ceab4c2a03609c8a42324ce484d}{Group}, \hyperlink{classm3g_1_1Light_8aad1ceab4c2a03609c8a42324ce484d}{Light}, \hyperlink{classm3g_1_1Mesh_8aad1ceab4c2a03609c8a42324ce484d}{Mesh}, \hyperlink{classm3g_1_1MorphingMesh_8aad1ceab4c2a03609c8a42324ce484d}{MorphingMesh}, \hyperlink{classm3g_1_1SkinnedMesh_8aad1ceab4c2a03609c8a42324ce484d}{SkinnedMesh}, \hyperlink{classm3g_1_1Sprite3D_8aad1ceab4c2a03609c8a42324ce484d}{Sprite3D}, と \hyperlink{classm3g_1_1World_8aad1ceab4c2a03609c8a42324ce484d}{World}で再定義されています。\hypertarget{classm3g_1_1Node_0b9f7531a4b56d34f47aeb1fff0d37e0}{
+\index{m3g::Node@{m3g::Node}!duplicate@{duplicate}}
+\index{duplicate@{duplicate}!m3g::Node@{m3g::Node}}
+\subsubsection[{duplicate}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Node} $\ast$ duplicate () const\hspace{0.3cm}{\tt  \mbox{[}virtual\mbox{]}}}}
+\label{classm3g_1_1Node_0b9f7531a4b56d34f47aeb1fff0d37e0}
+
+
+このオブジェクトの複製の作成. 
+
+\hyperlink{classm3g_1_1Transformable_4f64f95a34c56cb1553dc6de660dff6f}{Transformable}を再定義しています。
+
+\hyperlink{classm3g_1_1Camera_6279f7f8ab52af683fadd193d7694f2d}{Camera}, \hyperlink{classm3g_1_1Group_1212dbd493e73180a6204874bd97df6b}{Group}, \hyperlink{classm3g_1_1Light_7a41af040d0c1566358d84f089cd0cd1}{Light}, \hyperlink{classm3g_1_1Mesh_52ce6d0b3eda2bd3a95bfb5b7dbb6f82}{Mesh}, \hyperlink{classm3g_1_1MorphingMesh_7e7b2c3c4c988c6341a5e249bd468f57}{MorphingMesh}, \hyperlink{classm3g_1_1SkinnedMesh_d3f422cf7656b73687d789094c7eae42}{SkinnedMesh}, \hyperlink{classm3g_1_1Sprite3D_0af34e87be803eb476f9e118d2363246}{Sprite3D}, と \hyperlink{classm3g_1_1World_efde97aaf753d48fff769d9011f187f2}{World}で再定義されています。\hypertarget{classm3g_1_1Node_ca338390bd2dee287fe6f5cbc4e094e1}{
 \index{m3g::Node@{m3g::Node}!getAlignmentReference@{getAlignmentReference}}
 \index{getAlignmentReference@{getAlignmentReference}!m3g::Node@{m3g::Node}}
 \subsubsection[{getAlignmentReference}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Node} $\ast$ getAlignmentReference (int {\em axis}) const}}
@@ -172,7 +184,14 @@ Nodeオブジェクトを作成するコンストラクタ. \hypertarget{classm3
 \label{classm3g_1_1Node_bf7e8f9d9f530274aaf27e69910f8689}
 
 
-このノードのα値の取得. \hypertarget{classm3g_1_1Node_ce26c2757f265bc6038e6818d2eb6ad9}{
+このノードのα値の取得. \hypertarget{classm3g_1_1Node_b50dd3f0331a71cf820bbd1edc894ef0}{
+\index{m3g::Node@{m3g::Node}!getGlobalPose@{getGlobalPose}}
+\index{getGlobalPose@{getGlobalPose}!m3g::Node@{m3g::Node}}
+\subsubsection[{getGlobalPose}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Matrix} getGlobalPose () const}}
+\label{classm3g_1_1Node_b50dd3f0331a71cf820bbd1edc894ef0}
+
+
+グローバルポーズ（ボーン座標からローカル座標）を計算するM3G非標準の関数. \hypertarget{classm3g_1_1Node_ce26c2757f265bc6038e6818d2eb6ad9}{
 \index{m3g::Node@{m3g::Node}!getParent@{getParent}}
 \index{getParent@{getParent}!m3g::Node@{m3g::Node}}
 \subsubsection[{getParent}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Node} $\ast$ getParent () const}}
@@ -218,20 +237,20 @@ Nodeオブジェクトを作成するコンストラクタ. \hypertarget{classm3
 
 \hyperlink{classm3g_1_1Transformable_6fea17fa1532df3794f8cb39cb4f911f}{Transformable}を再定義しています。
 
-\hyperlink{classm3g_1_1Camera_6fea17fa1532df3794f8cb39cb4f911f}{Camera}, \hyperlink{classm3g_1_1Group_6fea17fa1532df3794f8cb39cb4f911f}{Group}, \hyperlink{classm3g_1_1Light_6fea17fa1532df3794f8cb39cb4f911f}{Light}, \hyperlink{classm3g_1_1Mesh_6fea17fa1532df3794f8cb39cb4f911f}{Mesh}, \hyperlink{classm3g_1_1MorphingMesh_6fea17fa1532df3794f8cb39cb4f911f}{MorphingMesh}, \hyperlink{classm3g_1_1SkinnedMesh_6fea17fa1532df3794f8cb39cb4f911f}{SkinnedMesh}, \hyperlink{classm3g_1_1Sprite3D_6fea17fa1532df3794f8cb39cb4f911f}{Sprite3D}, と \hyperlink{classm3g_1_1World_6fea17fa1532df3794f8cb39cb4f911f}{World}で再定義されています。\hypertarget{classm3g_1_1Node_1efcb1973989d9963d5bd6d03065d389}{
+\hyperlink{classm3g_1_1Camera_6fea17fa1532df3794f8cb39cb4f911f}{Camera}, \hyperlink{classm3g_1_1Group_6fea17fa1532df3794f8cb39cb4f911f}{Group}, \hyperlink{classm3g_1_1Light_6fea17fa1532df3794f8cb39cb4f911f}{Light}, \hyperlink{classm3g_1_1Mesh_6fea17fa1532df3794f8cb39cb4f911f}{Mesh}, \hyperlink{classm3g_1_1MorphingMesh_6fea17fa1532df3794f8cb39cb4f911f}{MorphingMesh}, \hyperlink{classm3g_1_1SkinnedMesh_6fea17fa1532df3794f8cb39cb4f911f}{SkinnedMesh}, \hyperlink{classm3g_1_1Sprite3D_6fea17fa1532df3794f8cb39cb4f911f}{Sprite3D}, と \hyperlink{classm3g_1_1World_6fea17fa1532df3794f8cb39cb4f911f}{World}で再定義されています。\hypertarget{classm3g_1_1Node_8babc8a79b78615da51161e94029eea9}{
 \index{m3g::Node@{m3g::Node}!render@{render}}
 \index{render@{render}!m3g::Node@{m3g::Node}}
-\subsubsection[{render}]{\setlength{\rightskip}{0pt plus 5cm}void render (int {\em pass}, \/  int {\em index} = {\tt 0}) const\hspace{0.3cm}{\tt  \mbox{[}protected, virtual\mbox{]}}}}
-\label{classm3g_1_1Node_1efcb1973989d9963d5bd6d03065d389}
+\subsubsection[{render}]{\setlength{\rightskip}{0pt plus 5cm}void render ({\bf RenderState} \& {\em state}) const\hspace{0.3cm}{\tt  \mbox{[}virtual\mbox{]}}}}
+\label{classm3g_1_1Node_8babc8a79b78615da51161e94029eea9}
 
 
 このNodeをレンダリングする内部使用の関数.
 
 Note: \hyperlink{classm3g_1_1Node}{Node} should be rendered via all rendering pass. 
 
-\hyperlink{classm3g_1_1Transformable_1efcb1973989d9963d5bd6d03065d389}{Transformable}を再定義しています。
+\hyperlink{classm3g_1_1Transformable_8babc8a79b78615da51161e94029eea9}{Transformable}を再定義しています。
 
-\hyperlink{classm3g_1_1Camera_1efcb1973989d9963d5bd6d03065d389}{Camera}, \hyperlink{classm3g_1_1Group_1efcb1973989d9963d5bd6d03065d389}{Group}, \hyperlink{classm3g_1_1Mesh_1efcb1973989d9963d5bd6d03065d389}{Mesh}, \hyperlink{classm3g_1_1MorphingMesh_1efcb1973989d9963d5bd6d03065d389}{MorphingMesh}, \hyperlink{classm3g_1_1SkinnedMesh_1efcb1973989d9963d5bd6d03065d389}{SkinnedMesh}, \hyperlink{classm3g_1_1Sprite3D_1efcb1973989d9963d5bd6d03065d389}{Sprite3D}, と \hyperlink{classm3g_1_1World_1efcb1973989d9963d5bd6d03065d389}{World}で再定義されています。\hypertarget{classm3g_1_1Node_dd1627aba90e63c166ecd3d7463d735a}{
+\hyperlink{classm3g_1_1Camera_8babc8a79b78615da51161e94029eea9}{Camera}, \hyperlink{classm3g_1_1Group_8babc8a79b78615da51161e94029eea9}{Group}, \hyperlink{classm3g_1_1Light_8babc8a79b78615da51161e94029eea9}{Light}, \hyperlink{classm3g_1_1Mesh_8babc8a79b78615da51161e94029eea9}{Mesh}, \hyperlink{classm3g_1_1MorphingMesh_8babc8a79b78615da51161e94029eea9}{MorphingMesh}, \hyperlink{classm3g_1_1SkinnedMesh_8babc8a79b78615da51161e94029eea9}{SkinnedMesh}, \hyperlink{classm3g_1_1Sprite3D_8babc8a79b78615da51161e94029eea9}{Sprite3D}, と \hyperlink{classm3g_1_1World_8babc8a79b78615da51161e94029eea9}{World}で再定義されています。\hypertarget{classm3g_1_1Node_dd1627aba90e63c166ecd3d7463d735a}{
 \index{m3g::Node@{m3g::Node}!setAlignment@{setAlignment}}
 \index{setAlignment@{setAlignment}!m3g::Node@{m3g::Node}}
 \subsubsection[{setAlignment}]{\setlength{\rightskip}{0pt plus 5cm}void setAlignment ({\bf Node} $\ast$ {\em z\_\-ref}, \/  int {\em z\_\-target}, \/  {\bf Node} $\ast$ {\em y\_\-ref}, \/  int {\em y\_\-target})}}
@@ -248,7 +267,7 @@ Note: \hyperlink{classm3g_1_1Node}{Node} should be rendered via all rendering pa
 このノードのα値を設定. \hypertarget{classm3g_1_1Node_880ecc7c1c091f7607eeae12ed100a9a}{
 \index{m3g::Node@{m3g::Node}!setParent@{setParent}}
 \index{setParent@{setParent}!m3g::Node@{m3g::Node}}
-\subsubsection[{setParent}]{\setlength{\rightskip}{0pt plus 5cm}void setParent ({\bf Node} $\ast$ {\em node})\hspace{0.3cm}{\tt  \mbox{[}protected\mbox{]}}}}
+\subsubsection[{setParent}]{\setlength{\rightskip}{0pt plus 5cm}void setParent ({\bf Node} $\ast$ {\em node})}}
 \label{classm3g_1_1Node_880ecc7c1c091f7607eeae12ed100a9a}
 
 
@@ -315,5 +334,5 @@ Note: \hyperlink{classm3g_1_1Node}{Node} should be rendered via all rendering pa
 
 このクラスの説明は次のファイルから生成されました:\begin{CompactItemize}
 \item 
-/work/desktop-m3g/src/Node.hpp\item 
-/work/desktop-m3g/src/Node.cpp\end{CompactItemize}
+/work/workspace.desktop-m3g/src/Node.hpp\item 
+/work/workspace.desktop-m3g/src/Node.cpp\end{CompactItemize}

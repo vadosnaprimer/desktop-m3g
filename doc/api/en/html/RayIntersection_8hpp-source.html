@@ -1,6 +1,6 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-<title>/work/desktop-m3g/src/RayIntersection.hpp Source File</title>
+<title>/work/workspace.desktop-m3g/src/RayIntersection.hpp Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css">
 <link href="doxygen.css" rel="stylesheet" type="text/css">
 </head><body>
@@ -18,51 +18,52 @@
       <li><a href="files.html"><span>File&nbsp;List</span></a></li>
     </ul>
   </div>
-<h1>/work/desktop-m3g/src/RayIntersection.hpp</h1><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="preprocessor">#ifndef __RAY_INTERSECTION_HPP__</span>
+<h1>/work/workspace.desktop-m3g/src/RayIntersection.hpp</h1><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="preprocessor">#ifndef __RAY_INTERSECTION_HPP__</span>
 <a name="l00002"></a>00002 <span class="preprocessor"></span><span class="preprocessor">#define __RAY_INTERSECTION_HPP__</span>
 <a name="l00003"></a>00003 <span class="preprocessor"></span>
 <a name="l00004"></a>00004 <span class="preprocessor">#include &lt;iosfwd&gt;</span>
-<a name="l00005"></a>00005 
-<a name="l00006"></a>00006 <span class="keyword">namespace </span>m3g {
-<a name="l00007"></a>00007 
-<a name="l00008"></a>00008 <span class="keyword">class </span>Node;
-<a name="l00009"></a>00009 
-<a name="l00015"></a><a class="code" href="classm3g_1_1RayIntersection.html">00015</a> <span class="keyword">class </span><a class="code" href="classm3g_1_1RayIntersection.html">RayIntersection</a>
-<a name="l00016"></a>00016 {
-<a name="l00017"></a>00017 <span class="keyword">public</span>:
-<a name="l00022"></a>00022     <a class="code" href="classm3g_1_1RayIntersection.html#242b33a79f98ed90ad5a36912d2a46d5">RayIntersection</a> ();
-<a name="l00023"></a>00023 
-<a name="l00028"></a>00028     <a class="code" href="classm3g_1_1RayIntersection.html#bf9eb45cc9ff31acd542bb0da1b46fe1">~RayIntersection</a> ();
-<a name="l00029"></a>00029 
-<a name="l00034"></a>00034     <span class="keywordtype">float</span> <a class="code" href="classm3g_1_1RayIntersection.html#f024301f51d2ef67cac50e3255a49612">getDistance</a> () <span class="keyword">const</span>;
-<a name="l00035"></a>00035 
-<a name="l00040"></a>00040     <a class="code" href="classm3g_1_1Node.html">Node</a>* <a class="code" href="classm3g_1_1RayIntersection.html#cbf90cea6001c33cc03b5a737b312f62">getIntersected</a> () <span class="keyword">const</span>;
-<a name="l00041"></a>00041 
-<a name="l00046"></a>00046     <span class="keywordtype">float</span> <a class="code" href="classm3g_1_1RayIntersection.html#0ee7a8fab5e001b131bd3109da8af7fa">getNormalX</a> () <span class="keyword">const</span>;
-<a name="l00047"></a>00047 
-<a name="l00052"></a>00052     <span class="keywordtype">float</span> <a class="code" href="classm3g_1_1RayIntersection.html#1e05e3b3e8d6b46462812e4713a63d18">getNormalY</a> () <span class="keyword">const</span>;
-<a name="l00053"></a>00053 
-<a name="l00058"></a>00058     <span class="keywordtype">float</span> <a class="code" href="classm3g_1_1RayIntersection.html#5d0569741397401f53b776f16d08f5c3">getNormalZ</a> () <span class="keyword">const</span>;
-<a name="l00059"></a>00059 
-<a name="l00064"></a>00064     <span class="keywordtype">void</span> <a class="code" href="classm3g_1_1RayIntersection.html#3f4d1f2f24c0dadab914014836e1b138">getRay</a> (<span class="keywordtype">float</span>* ray) <span class="keyword">const</span>;
-<a name="l00065"></a>00065 
-<a name="l00070"></a>00070     <span class="keywordtype">int</span> <a class="code" href="classm3g_1_1RayIntersection.html#6a11c61d1a1fecc01f2f83463404a6b8">getSubmeshIndex</a> () <span class="keyword">const</span>;
-<a name="l00071"></a>00071 
-<a name="l00076"></a>00076     <span class="keywordtype">float</span> <a class="code" href="classm3g_1_1RayIntersection.html#bc14e1d5a83d5fca608b1fbf772614d4">getTextureS</a> (<span class="keywordtype">int</span> index) <span class="keyword">const</span>;
-<a name="l00077"></a>00077 
-<a name="l00082"></a>00082     <span class="keywordtype">float</span> <a class="code" href="classm3g_1_1RayIntersection.html#843d5b907bb54a6f28571f0a0f14c932">getTextureT</a> (<span class="keywordtype">int</span> index) <span class="keyword">const</span>;
-<a name="l00083"></a>00083 
-<a name="l00088"></a>00088   std::ostream&amp; <a class="code" href="classm3g_1_1RayIntersection.html#d6bd96bbcbdd53ede8e72f8f13c0da48">print</a> (std::ostream&amp; out) <span class="keyword">const</span>;
-<a name="l00089"></a>00089 
-<a name="l00090"></a>00090 };
-<a name="l00091"></a>00091 
-<a name="l00092"></a>00092 } <span class="comment">// namespace m3g {</span>
-<a name="l00093"></a>00093 
-<a name="l00094"></a>00094 std::ostream&amp; operator&lt;&lt; (std::ostream&amp; out, <span class="keyword">const</span> <a class="code" href="classm3g_1_1RayIntersection.html">m3g::RayIntersection</a>&amp; ri);
-<a name="l00095"></a>00095 
-<a name="l00096"></a>00096 <span class="preprocessor">#endif</span>
+<a name="l00005"></a>00005 <span class="preprocessor">#include "Object.hpp"</span>
+<a name="l00006"></a>00006 
+<a name="l00007"></a>00007 <span class="keyword">namespace </span>m3g {
+<a name="l00008"></a>00008 
+<a name="l00009"></a>00009   <span class="keyword">class </span>Node;
+<a name="l00010"></a>00010 
+<a name="l00016"></a><a class="code" href="classm3g_1_1RayIntersection.html">00016</a>   <span class="keyword">class </span><a class="code" href="classm3g_1_1RayIntersection.html">RayIntersection</a> : <span class="keyword">public</span> Object
+<a name="l00017"></a>00017   {
+<a name="l00018"></a>00018   <span class="keyword">public</span>:
+<a name="l00023"></a>00023     <a class="code" href="classm3g_1_1RayIntersection.html#242b33a79f98ed90ad5a36912d2a46d5">RayIntersection</a> ();
+<a name="l00024"></a>00024 
+<a name="l00029"></a>00029     <a class="code" href="classm3g_1_1RayIntersection.html#bf9eb45cc9ff31acd542bb0da1b46fe1">~RayIntersection</a> ();
+<a name="l00030"></a>00030 
+<a name="l00035"></a>00035     <span class="keywordtype">float</span> <a class="code" href="classm3g_1_1RayIntersection.html#f024301f51d2ef67cac50e3255a49612">getDistance</a> () <span class="keyword">const</span>;
+<a name="l00036"></a>00036 
+<a name="l00041"></a>00041     <a class="code" href="classm3g_1_1Node.html">Node</a>* <a class="code" href="classm3g_1_1RayIntersection.html#cbf90cea6001c33cc03b5a737b312f62">getIntersected</a> () <span class="keyword">const</span>;
+<a name="l00042"></a>00042 
+<a name="l00047"></a>00047     <span class="keywordtype">float</span> <a class="code" href="classm3g_1_1RayIntersection.html#0ee7a8fab5e001b131bd3109da8af7fa">getNormalX</a> () <span class="keyword">const</span>;
+<a name="l00048"></a>00048 
+<a name="l00053"></a>00053     <span class="keywordtype">float</span> <a class="code" href="classm3g_1_1RayIntersection.html#1e05e3b3e8d6b46462812e4713a63d18">getNormalY</a> () <span class="keyword">const</span>;
+<a name="l00054"></a>00054 
+<a name="l00059"></a>00059     <span class="keywordtype">float</span> <a class="code" href="classm3g_1_1RayIntersection.html#5d0569741397401f53b776f16d08f5c3">getNormalZ</a> () <span class="keyword">const</span>;
+<a name="l00060"></a>00060 
+<a name="l00065"></a>00065     <span class="keywordtype">void</span> <a class="code" href="classm3g_1_1RayIntersection.html#3f4d1f2f24c0dadab914014836e1b138">getRay</a> (<span class="keywordtype">float</span>* ray) <span class="keyword">const</span>;
+<a name="l00066"></a>00066 
+<a name="l00071"></a>00071     <span class="keywordtype">int</span> <a class="code" href="classm3g_1_1RayIntersection.html#6a11c61d1a1fecc01f2f83463404a6b8">getSubmeshIndex</a> () <span class="keyword">const</span>;
+<a name="l00072"></a>00072 
+<a name="l00077"></a>00077     <span class="keywordtype">float</span> <a class="code" href="classm3g_1_1RayIntersection.html#bc14e1d5a83d5fca608b1fbf772614d4">getTextureS</a> (<span class="keywordtype">int</span> index) <span class="keyword">const</span>;
+<a name="l00078"></a>00078 
+<a name="l00083"></a>00083     <span class="keywordtype">float</span> <a class="code" href="classm3g_1_1RayIntersection.html#843d5b907bb54a6f28571f0a0f14c932">getTextureT</a> (<span class="keywordtype">int</span> index) <span class="keyword">const</span>;
+<a name="l00084"></a>00084 
+<a name="l00089"></a>00089     std::ostream&amp; <a class="code" href="classm3g_1_1RayIntersection.html#6fea17fa1532df3794f8cb39cb4f911f">print</a> (std::ostream&amp; out) <span class="keyword">const</span>;
+<a name="l00090"></a>00090 
+<a name="l00091"></a>00091   };
+<a name="l00092"></a>00092 
+<a name="l00093"></a>00093 } <span class="comment">// namespace m3g {</span>
+<a name="l00094"></a>00094 
+<a name="l00095"></a>00095 std::ostream&amp; operator&lt;&lt; (std::ostream&amp; out, <span class="keyword">const</span> <a class="code" href="classm3g_1_1RayIntersection.html">m3g::RayIntersection</a>&amp; ri);
+<a name="l00096"></a>00096 
+<a name="l00097"></a>00097 <span class="preprocessor">#endif</span>
 </pre></div></div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Wed Apr 7 10:24:27 2010 by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Mon May 10 08:47:29 2010 by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.8 </small></address>
 </body>

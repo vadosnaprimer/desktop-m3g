@@ -32,7 +32,7 @@ AnimationControllerに対する継承グラフ</div>
 
 <p><center><img src="classm3g_1_1AnimationController.png" usemap="#AnimationController_map" border="0" alt=""></center>
 <map name="AnimationController_map">
-<area href="classm3g_1_1Object3D.html" alt="Object3D" shape="rect" coords="0,0,123,24">
+<area href="classm3g_1_1Object3D.html" alt="Object3D" shape="rect" coords="0,56,123,80">
 </map>
 </div>
 
@@ -40,12 +40,14 @@ AnimationControllerに対する継承グラフ</div>
 <a href="classm3g_1_1AnimationController-members.html">すべてのメンバ一覧</a><table border="0" cellpadding="0" cellspacing="0">
 <tr><td></td></tr>
 <tr><td colspan="2"><br><h2>構成</h2></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><b>ActiveInterval</b></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="structm3g_1_1AnimationController_1_1ActiveInterval.html">ActiveInterval</a></td></tr>
 
 <tr><td colspan="2"><br><h2>Public メソッド</h2></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1AnimationController.html#f2e8cb2c6c916983d0f87140c7b0c98e">AnimationController</a> ()</td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">virtual&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1AnimationController.html#346849d0f82278f30dda9f35f80e9dbe">~AnimationController</a> ()</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">virtual <a class="el" href="classm3g_1_1AnimationController.html">AnimationController</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1AnimationController.html#aab6521891038ced0961ecb78611646e">duplicate</a> () const </td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1AnimationController.html#7caa95c7ed5a03844abe328feaae4911">getActiveIntervalEnd</a> () const </td></tr>
 
@@ -61,9 +63,9 @@ AnimationControllerに対する継承グラフ</div>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1AnimationController.html#a4cba877288d7a188477e0a756fd2f58">setActiveInterval</a> (int start, int end)</td></tr>
 
-<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1AnimationController.html#a20a5553bd449b21bad74666055626f0">setPosition</a> (float sequenceTime, int worldTime)</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1AnimationController.html#da0d7a404b2a75ee182ca6351cf673d5">setPosition</a> (float sequence_time, int world_time)</td></tr>
 
-<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1AnimationController.html#403dae9658751ff86becd82d8a6477f2">setSpeed</a> (float speed, int worldTime)</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1AnimationController.html#b32791d1a51df9ac8028792a841d06a6">setSpeed</a> (float speed, int world_time)</td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1AnimationController.html#8859df4d5a61714012bf9e1240189aed">setWeight</a> (float weight)</td></tr>
 
@@ -114,6 +116,27 @@ bool&nbsp;</td><td class="memItemRight" valign="bottom"><b>isActiveInterval</b> 
 </div>
 </div><p>
 <hr><h2>関数</h2>
+<a class="anchor" name="aab6521891038ced0961ecb78611646e"></a><!-- doxytag: member="m3g::AnimationController::duplicate" ref="aab6521891038ced0961ecb78611646e" args="() const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classm3g_1_1AnimationController.html">AnimationController</a> * duplicate           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const<code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+このオブジェクトの複製の作成. 
+<p><a class="el" href="classm3g_1_1Object3D.html#a25110dac934f867b83b73ad4741a0f4">Object3D</a>を再定義しています。</p>
+
+</div>
+</div><p>
 <a class="anchor" name="7caa95c7ed5a03844abe328feaae4911"></a><!-- doxytag: member="m3g::AnimationController::getActiveIntervalEnd" ref="7caa95c7ed5a03844abe328feaae4911" args="() const " -->
 <div class="memitem">
 <div class="memproto">
@@ -280,7 +303,7 @@ bool&nbsp;</td><td class="memItemRight" valign="bottom"><b>isActiveInterval</b> 
 このアニメーションコントローラーがアクティブなワールド時間の期間を設定する。 
 </div>
 </div><p>
-<a class="anchor" name="a20a5553bd449b21bad74666055626f0"></a><!-- doxytag: member="m3g::AnimationController::setPosition" ref="a20a5553bd449b21bad74666055626f0" args="(float sequenceTime, int worldTime)" -->
+<a class="anchor" name="da0d7a404b2a75ee182ca6351cf673d5"></a><!-- doxytag: member="m3g::AnimationController::setPosition" ref="da0d7a404b2a75ee182ca6351cf673d5" args="(float sequence_time, int world_time)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -288,13 +311,13 @@ bool&nbsp;</td><td class="memItemRight" valign="bottom"><b>isActiveInterval</b> 
           <td class="memname">void setPosition           </td>
           <td>(</td>
           <td class="paramtype">float&nbsp;</td>
-          <td class="paramname"> <em>sequenceTime</em>, </td>
+          <td class="paramname"> <em>sequence_time</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">int&nbsp;</td>
-          <td class="paramname"> <em>worldTime</em></td><td>&nbsp;</td>
+          <td class="paramname"> <em>world_time</em></td><td>&nbsp;</td>
         </tr>
         <tr>
           <td></td>
@@ -309,7 +332,7 @@ bool&nbsp;</td><td class="memItemRight" valign="bottom"><b>isActiveInterval</b> 
 このアニメーションコントローラーにワールド時間で新しい再生位置を設定する. 
 </div>
 </div><p>
-<a class="anchor" name="403dae9658751ff86becd82d8a6477f2"></a><!-- doxytag: member="m3g::AnimationController::setSpeed" ref="403dae9658751ff86becd82d8a6477f2" args="(float speed, int worldTime)" -->
+<a class="anchor" name="b32791d1a51df9ac8028792a841d06a6"></a><!-- doxytag: member="m3g::AnimationController::setSpeed" ref="b32791d1a51df9ac8028792a841d06a6" args="(float speed, int world_time)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -323,7 +346,7 @@ bool&nbsp;</td><td class="memItemRight" valign="bottom"><b>isActiveInterval</b> 
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">int&nbsp;</td>
-          <td class="paramname"> <em>worldTime</em></td><td>&nbsp;</td>
+          <td class="paramname"> <em>world_time</em></td><td>&nbsp;</td>
         </tr>
         <tr>
           <td></td>
@@ -359,9 +382,9 @@ bool&nbsp;</td><td class="memItemRight" valign="bottom"><b>isActiveInterval</b> 
 </div>
 </div><p>
 <hr>このクラスの説明は次のファイルから生成されました:<ul>
-<li>/work/desktop-m3g/src/<a class="el" href="AnimationController_8hpp-source.html">AnimationController.hpp</a><li>/work/desktop-m3g/src/AnimationController.cpp</ul>
+<li>/work/workspace.desktop-m3g/src/<a class="el" href="AnimationController_8hpp-source.html">AnimationController.hpp</a><li>/work/workspace.desktop-m3g/src/AnimationController.cpp</ul>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Wed Apr 7 10:24:21 2010に生成されました。&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Mon May 10 08:47:24 2010に生成されました。&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.8 </small></address>
 </body>

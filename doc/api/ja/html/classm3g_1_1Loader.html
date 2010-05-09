@@ -24,65 +24,34 @@
   </div>
 </div>
 <div class="contents">
-<h1>クラス Loader</h1><!-- doxytag: class="m3g::Loader" --><code>#include &lt;<a class="el" href="Loader_8hpp-source.html">Loader.hpp</a>&gt;</code>
+<h1>クラス Loader</h1><!-- doxytag: class="m3g::Loader" --><!-- doxytag: inherits="m3g::Object" --><code>#include &lt;<a class="el" href="Loader_8hpp-source.html">Loader.hpp</a>&gt;</code>
 <p>
+<div class="dynheader">
+Loaderに対する継承グラフ</div>
+<div class="dynsection">
+
+<p><center><img src="classm3g_1_1Loader.png" usemap="#Loader_map" border="0" alt=""></center>
+<map name="Loader_map">
+</map>
+</div>
 
 <p>
 <a href="classm3g_1_1Loader-members.html">すべてのメンバ一覧</a><table border="0" cellpadding="0" cellspacing="0">
 <tr><td></td></tr>
-<tr><td colspan="2"><br><h2>Public メソッド</h2></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Loader.html#c082256071478316a982894d4191a11a">Loader</a> ()</td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Loader.html#8bd25dd3f34914f06852c2de2f9db737">~Loader</a> ()</td></tr>
+<tr><td colspan="2"><br><h2>構成</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><b>FileInfo</b></td></tr>
 
 <tr><td colspan="2"><br><h2>Static Public メソッド</h2></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">static std::vector&lt; <a class="el" href="classm3g_1_1Object3D.html">Object3D</a> * &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Loader.html#7abddd36a9ee70e67de0e2183bba1aed">load</a> (void *data, int offset)</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">static std::vector&lt; <a class="el" href="classm3g_1_1Object3D.html">Object3D</a> * &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Loader.html#226696271b917ad797016959bb7adbe1">load</a> (int length, const char *data, int offset)</td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">static std::vector&lt; <a class="el" href="classm3g_1_1Object3D.html">Object3D</a> * &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Loader.html#27bd86888cdadd349223dcb303e45879">load</a> (const char *name)</td></tr>
 
+<tr><td colspan="2"><br><h2>Static Public 変数</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">static FileInfo&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Loader.html#b5b2e875f7353dca9dad61c686bccf92">file_info</a></td></tr>
+
 </table>
 <hr><a name="_details"></a><h2>説明</h2>
-m3gファイルのローダー。インスタンス化不可. <hr><h2>コンストラクタとデストラクタ</h2>
-<a class="anchor" name="c082256071478316a982894d4191a11a"></a><!-- doxytag: member="m3g::Loader::Loader" ref="c082256071478316a982894d4191a11a" args="()" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classm3g_1_1Loader.html">Loader</a>           </td>
-          <td>(</td>
-          <td class="paramname">          </td>
-          <td>&nbsp;)&nbsp;</td>
-          <td></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-コンストラクタ. 
-</div>
-</div><p>
-<a class="anchor" name="8bd25dd3f34914f06852c2de2f9db737"></a><!-- doxytag: member="m3g::Loader::~Loader" ref="8bd25dd3f34914f06852c2de2f9db737" args="()" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">~<a class="el" href="classm3g_1_1Loader.html">Loader</a>           </td>
-          <td>(</td>
-          <td class="paramname">          </td>
-          <td>&nbsp;)&nbsp;</td>
-          <td></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-コンストラクタ.<p>
-デストラクタ. 
-</div>
-</div><p>
-<hr><h2>関数</h2>
+シーングラフとそのノード要素のダウンロード. <hr><h2>関数</h2>
 <a class="anchor" name="27bd86888cdadd349223dcb303e45879"></a><!-- doxytag: member="m3g::Loader::load" ref="27bd86888cdadd349223dcb303e45879" args="(const char *name)" -->
 <div class="memitem">
 <div class="memproto">
@@ -103,14 +72,20 @@ m3gファイルのローダー。インスタンス化不可. <hr><h2>コンス�
 与えられた名前のリソースからObject3Dのインスタンスを生成する. 
 </div>
 </div><p>
-<a class="anchor" name="7abddd36a9ee70e67de0e2183bba1aed"></a><!-- doxytag: member="m3g::Loader::load" ref="7abddd36a9ee70e67de0e2183bba1aed" args="(void *data, int offset)" -->
+<a class="anchor" name="226696271b917ad797016959bb7adbe1"></a><!-- doxytag: member="m3g::Loader::load" ref="226696271b917ad797016959bb7adbe1" args="(int length, const char *data, int offset)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">std::vector&lt; <a class="el" href="classm3g_1_1Object3D.html">Object3D</a> * &gt; load           </td>
           <td>(</td>
-          <td class="paramtype">void *&nbsp;</td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>length</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&nbsp;</td>
           <td class="paramname"> <em>data</em>, </td>
         </tr>
         <tr>
@@ -132,10 +107,26 @@ m3gファイルのローダー。インスタンス化不可. <hr><h2>コンス�
 与えられたバイトストリームのオフセット位置からObject3Dのインスタンスを生成する. 
 </div>
 </div><p>
-<hr>このクラスの説明は次のファイルから生成されました:<ul>
-<li>/work/desktop-m3g/src/<a class="el" href="Loader_8hpp-source.html">Loader.hpp</a><li>/work/desktop-m3g/src/Loader.cpp</ul>
+<hr><h2>変数</h2>
+<a class="anchor" name="b5b2e875f7353dca9dad61c686bccf92"></a><!-- doxytag: member="m3g::Loader::file_info" ref="b5b2e875f7353dca9dad61c686bccf92" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Loader::FileInfo <a class="el" href="classm3g_1_1Loader.html#b5b2e875f7353dca9dad61c686bccf92">file_info</a><code> [static]</code>          </td>
+        </tr>
+      </table>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Wed Apr 7 10:24:23 2010に生成されました。&nbsp;
+<div class="memdoc">
+
+<p>
+直前にロードしたファイルの情報。取り扱い未定. 
+</div>
+</div><p>
+<hr>このクラスの説明は次のファイルから生成されました:<ul>
+<li>/work/workspace.desktop-m3g/src/<a class="el" href="Loader_8hpp-source.html">Loader.hpp</a><li>/work/workspace.desktop-m3g/src/Loader.cpp</ul>
+</div>
+<hr size="1"><address style="text-align: right;"><small>Mon May 10 08:47:26 2010に生成されました。&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.8 </small></address>
 </body>

@@ -7,7 +7,7 @@
 Inheritance diagram for Texture2D::\begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[height=3cm]{classm3g_1_1Texture2D}
+\includegraphics[height=4cm]{classm3g_1_1Texture2D}
 \end{center}
 \end{figure}
 \subsection*{Classes}
@@ -24,9 +24,11 @@ struct \textbf{Wrapping}
 \item 
 virtual \hyperlink{classm3g_1_1Texture2D_060332aea614a81a914cd2e55f1794df}{$\sim$Texture2D} ()
 \item 
-virtual void \hyperlink{classm3g_1_1Texture2D_415c0b110f95410ded9b85e5d99a496b}{addAnimationTrack} (\hyperlink{classm3g_1_1AnimationTrack}{AnimationTrack} $\ast$animation\_\-track)
+\hyperlink{classm3g_1_1Texture2D}{Texture2D} $\ast$ \hyperlink{classm3g_1_1Texture2D_f4b50abcea8e4a6d6981c779d5009c05}{duplicate} () const 
 \item 
-virtual int \hyperlink{classm3g_1_1Texture2D_82cfeb67ca66b93e2ca7bda9a4f0e2aa}{animate} (int time)
+virtual int \hyperlink{classm3g_1_1Texture2D_8aad1ceab4c2a03609c8a42324ce484d}{animate} (int world\_\-time)
+\item 
+virtual void \hyperlink{classm3g_1_1Texture2D_415c0b110f95410ded9b85e5d99a496b}{addAnimationTrack} (\hyperlink{classm3g_1_1AnimationTrack}{AnimationTrack} $\ast$animation\_\-track)
 \item 
 \hypertarget{classm3g_1_1Texture2D_b7dc7b7bf2934448281894f2c1ef3638}{
 int \textbf{getBlendColor} () const }
@@ -71,6 +73,8 @@ void \hyperlink{classm3g_1_1Texture2D_705b89b41cd1b38f664ed912be44baaa}{setImage
 void \hyperlink{classm3g_1_1Texture2D_e676f34bd2f5ee1508ad1cb771702d8f}{setWrapping} (int wrap\_\-s, int wrap\_\-t)
 \item 
 virtual std::ostream \& \hyperlink{classm3g_1_1Texture2D_6fea17fa1532df3794f8cb39cb4f911f}{print} (std::ostream \&out) const 
+\item 
+virtual void \hyperlink{classm3g_1_1Texture2D_8babc8a79b78615da51161e94029eea9}{render} (\hyperlink{structm3g_1_1RenderState}{RenderState} \&state) const 
 \end{CompactItemize}
 \subsection*{Static Public Attributes}
 \begin{CompactItemize}
@@ -94,11 +98,6 @@ static const int \hyperlink{classm3g_1_1Texture2D_14f24332e168c5e210ddad47fb5cdd
 static const int \hyperlink{classm3g_1_1Texture2D_e36d8facf5b60eb6c59888121731c438}{WRAP\_\-CLAMP} = 240
 \item 
 static const int \hyperlink{classm3g_1_1Texture2D_b37ff061b9fb272284c4c389deec9266}{WRAP\_\-REPEAT} = 241
-\end{CompactItemize}
-\subsection*{Protected Member Functions}
-\begin{CompactItemize}
-\item 
-virtual void \hyperlink{classm3g_1_1Texture2D_4dadb21b568b0230fac106f15040138c}{findByObjectType} (int obj\_\-type, std::vector$<$ \hyperlink{classm3g_1_1Object3D}{Object3D} $\ast$ $>$ \&objs) const 
 \end{CompactItemize}
 \subsection*{Friends}
 \begin{CompactItemize}
@@ -140,25 +139,25 @@ Destructs this object.
 
 Adds the given \hyperlink{classm3g_1_1AnimationTrack}{AnimationTrack} to this \hyperlink{classm3g_1_1Object3D}{Object3D}, potentially changing the order and indices of the previously added tracks. 
 
-Reimplemented from \hyperlink{classm3g_1_1Transformable_415c0b110f95410ded9b85e5d99a496b}{Transformable}.\hypertarget{classm3g_1_1Texture2D_82cfeb67ca66b93e2ca7bda9a4f0e2aa}{
+Reimplemented from \hyperlink{classm3g_1_1Transformable_415c0b110f95410ded9b85e5d99a496b}{Transformable}.\hypertarget{classm3g_1_1Texture2D_8aad1ceab4c2a03609c8a42324ce484d}{
 \index{m3g::Texture2D@{m3g::Texture2D}!animate@{animate}}
 \index{animate@{animate}!m3g::Texture2D@{m3g::Texture2D}}
 \subsubsection[{animate}]{\setlength{\rightskip}{0pt plus 5cm}int animate (int {\em world\_\-time})\hspace{0.3cm}{\tt  \mbox{[}virtual\mbox{]}}}}
-\label{classm3g_1_1Texture2D_82cfeb67ca66b93e2ca7bda9a4f0e2aa}
+\label{classm3g_1_1Texture2D_8aad1ceab4c2a03609c8a42324ce484d}
 
 
 Updates all animated properties in this \hyperlink{classm3g_1_1Object3D}{Object3D} and all Object3Ds that are reachable from this \hyperlink{classm3g_1_1Object3D}{Object3D}. 
 
-Reimplemented from \hyperlink{classm3g_1_1Transformable_8aad1ceab4c2a03609c8a42324ce484d}{Transformable}.\hypertarget{classm3g_1_1Texture2D_4dadb21b568b0230fac106f15040138c}{
-\index{m3g::Texture2D@{m3g::Texture2D}!findByObjectType@{findByObjectType}}
-\index{findByObjectType@{findByObjectType}!m3g::Texture2D@{m3g::Texture2D}}
-\subsubsection[{findByObjectType}]{\setlength{\rightskip}{0pt plus 5cm}void findByObjectType (int {\em obj\_\-type}, \/  std::vector$<$ {\bf Object3D} $\ast$ $>$ \& {\em objs}) const\hspace{0.3cm}{\tt  \mbox{[}protected, virtual\mbox{]}}}}
-\label{classm3g_1_1Texture2D_4dadb21b568b0230fac106f15040138c}
+Reimplemented from \hyperlink{classm3g_1_1Transformable_8aad1ceab4c2a03609c8a42324ce484d}{Transformable}.\hypertarget{classm3g_1_1Texture2D_f4b50abcea8e4a6d6981c779d5009c05}{
+\index{m3g::Texture2D@{m3g::Texture2D}!duplicate@{duplicate}}
+\index{duplicate@{duplicate}!m3g::Texture2D@{m3g::Texture2D}}
+\subsubsection[{duplicate}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Texture2D} $\ast$ duplicate () const\hspace{0.3cm}{\tt  \mbox{[}virtual\mbox{]}}}}
+\label{classm3g_1_1Texture2D_f4b50abcea8e4a6d6981c779d5009c05}
 
 
-Find all objects by object type. 
+Creates a duplicate of this \hyperlink{classm3g_1_1Object3D}{Object3D}. 
 
-Reimplemented from \hyperlink{classm3g_1_1Object3D_4dadb21b568b0230fac106f15040138c}{Object3D}.\hypertarget{classm3g_1_1Texture2D_a8c0193b0e7d47d4b5c9f60df24c44f5}{
+Reimplemented from \hyperlink{classm3g_1_1Transformable_4f64f95a34c56cb1553dc6de660dff6f}{Transformable}.\hypertarget{classm3g_1_1Texture2D_a8c0193b0e7d47d4b5c9f60df24c44f5}{
 \index{m3g::Texture2D@{m3g::Texture2D}!getImage@{getImage}}
 \index{getImage@{getImage}!m3g::Texture2D@{m3g::Texture2D}}
 \subsubsection[{getImage}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Image2D} $\ast$ getImage () const}}
@@ -188,7 +187,18 @@ Returns the current texture level filter. \hypertarget{classm3g_1_1Texture2D_6fe
 
 Print out information of this object, for debug only. 
 
-Reimplemented from \hyperlink{classm3g_1_1Transformable_6fea17fa1532df3794f8cb39cb4f911f}{Transformable}.\hypertarget{classm3g_1_1Texture2D_857574b5c0f3e0ca9239bafb4008cae1}{
+Reimplemented from \hyperlink{classm3g_1_1Transformable_6fea17fa1532df3794f8cb39cb4f911f}{Transformable}.\hypertarget{classm3g_1_1Texture2D_8babc8a79b78615da51161e94029eea9}{
+\index{m3g::Texture2D@{m3g::Texture2D}!render@{render}}
+\index{render@{render}!m3g::Texture2D@{m3g::Texture2D}}
+\subsubsection[{render}]{\setlength{\rightskip}{0pt plus 5cm}void render ({\bf RenderState} \& {\em state}) const\hspace{0.3cm}{\tt  \mbox{[}virtual\mbox{]}}}}
+\label{classm3g_1_1Texture2D_8babc8a79b78615da51161e94029eea9}
+
+
+Render this object, for inner use.
+
+Note: \hyperlink{classm3g_1_1Texture2D}{Texture2D} should be rendered only at second rendering pass(pass=2). In other cases, do nothing. 
+
+Reimplemented from \hyperlink{classm3g_1_1Transformable_8babc8a79b78615da51161e94029eea9}{Transformable}.\hypertarget{classm3g_1_1Texture2D_857574b5c0f3e0ca9239bafb4008cae1}{
 \index{m3g::Texture2D@{m3g::Texture2D}!setFiltering@{setFiltering}}
 \index{setFiltering@{setFiltering}!m3g::Texture2D@{m3g::Texture2D}}
 \subsubsection[{setFiltering}]{\setlength{\rightskip}{0pt plus 5cm}void setFiltering (int {\em level\_\-filter}, \/  int {\em image\_\-filter})}}
@@ -286,5 +296,5 @@ A parameter to setWrappping, specifying that the texture image is tto be repeate
 
 The documentation for this class was generated from the following files:\begin{CompactItemize}
 \item 
-/work/desktop-m3g/src/Texture2D.hpp\item 
-/work/desktop-m3g/src/Texture2D.cpp\end{CompactItemize}
+/work/workspace.desktop-m3g/src/Texture2D.hpp\item 
+/work/workspace.desktop-m3g/src/Texture2D.cpp\end{CompactItemize}

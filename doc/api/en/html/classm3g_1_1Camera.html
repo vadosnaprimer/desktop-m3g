@@ -32,9 +32,9 @@ Inheritance diagram for Camera:</div>
 
 <p><center><img src="classm3g_1_1Camera.png" usemap="#Camera_map" border="0" alt=""></center>
 <map name="Camera_map">
-<area href="classm3g_1_1Node.html" alt="Node" shape="rect" coords="0,112,93,136">
-<area href="classm3g_1_1Transformable.html" alt="Transformable" shape="rect" coords="0,56,93,80">
-<area href="classm3g_1_1Object3D.html" alt="Object3D" shape="rect" coords="0,0,93,24">
+<area href="classm3g_1_1Node.html" alt="Node" shape="rect" coords="0,168,93,192">
+<area href="classm3g_1_1Transformable.html" alt="Transformable" shape="rect" coords="0,112,93,136">
+<area href="classm3g_1_1Object3D.html" alt="Object3D" shape="rect" coords="0,56,93,80">
 </map>
 </div>
 
@@ -45,6 +45,8 @@ Inheritance diagram for Camera:</div>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Camera.html#a3f3efcb2fcc75de885df29041103cd2">Camera</a> ()</td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">virtual&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Camera.html#b921e886e6f14e117eb8099ccb0a3775">~Camera</a> ()</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">virtual <a class="el" href="classm3g_1_1Camera.html">Camera</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Camera.html#6279f7f8ab52af683fadd193d7694f2d">duplicate</a> () const </td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Camera.html#415c0b110f95410ded9b85e5d99a496b">addAnimationTrack</a> (<a class="el" href="classm3g_1_1AnimationTrack.html">AnimationTrack</a> *animation_track)</td></tr>
 
@@ -72,7 +74,7 @@ Inheritance diagram for Camera:</div>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">static const int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Camera.html#e62e72bde93e7d7ceb482e7a8c40dcf5">PERSPECTIVE</a> = 50</td></tr>
 
 <tr><td colspan="2"><br><h2>Protected Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Camera.html#1efcb1973989d9963d5bd6d03065d389">render</a> (int pass, int index=0) const </td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Camera.html#8babc8a79b78615da51161e94029eea9">render</a> (<a class="el" href="structm3g_1_1RenderState.html">RenderState</a> &amp;state) const </td></tr>
 
 <tr><td colspan="2"><br><h2>Friends</h2></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="8174d4c629550c1ee279571250236ef4"></a><!-- doxytag: member="m3g::Camera::Graphics3D" ref="8174d4c629550c1ee279571250236ef4" args="" -->
@@ -164,6 +166,27 @@ Adds the given <a class="el" href="classm3g_1_1AnimationTrack.html">AnimationTra
 <p>
 Update animatable property to specified world time. 
 <p>Reimplemented from <a class="el" href="classm3g_1_1Node.html#8aad1ceab4c2a03609c8a42324ce484d">Node</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="6279f7f8ab52af683fadd193d7694f2d"></a><!-- doxytag: member="m3g::Camera::duplicate" ref="6279f7f8ab52af683fadd193d7694f2d" args="() const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classm3g_1_1Camera.html">Camera</a> * duplicate           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const<code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Creates a duplicate of this <a class="el" href="classm3g_1_1Object3D.html">Object3D</a>. 
+<p>Reimplemented from <a class="el" href="classm3g_1_1Node.html#0b9f7531a4b56d34f47aeb1fff0d37e0">Node</a>.</p>
 
 </div>
 </div><p>
@@ -300,26 +323,17 @@ print out information of this calss, for debug only.
 
 </div>
 </div><p>
-<a class="anchor" name="1efcb1973989d9963d5bd6d03065d389"></a><!-- doxytag: member="m3g::Camera::render" ref="1efcb1973989d9963d5bd6d03065d389" args="(int pass, int index=0) const " -->
+<a class="anchor" name="8babc8a79b78615da51161e94029eea9"></a><!-- doxytag: member="m3g::Camera::render" ref="8babc8a79b78615da51161e94029eea9" args="(RenderState &amp;state) const " -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">void render           </td>
           <td>(</td>
-          <td class="paramtype">int&nbsp;</td>
-          <td class="paramname"> <em>pass</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&nbsp;</td>
-          <td class="paramname"> <em>index</em> = <code>0</code></td><td>&nbsp;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td><td> const<code> [protected, virtual]</code></td>
+          <td class="paramtype"><a class="el" href="structm3g_1_1RenderState.html">RenderState</a> &amp;&nbsp;</td>
+          <td class="paramname"> <em>state</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const<code> [protected, virtual]</code></td>
         </tr>
       </table>
 </div>
@@ -328,7 +342,7 @@ print out information of this calss, for debug only.
 <p>
 Render this Camear object, for inner use.<p>
 Note: <a class="el" href="classm3g_1_1Camera.html">Camera</a> should be rendered only at 0th rendering pass(pass=0). In other cases, do nothing. 
-<p>Reimplemented from <a class="el" href="classm3g_1_1Node.html#1efcb1973989d9963d5bd6d03065d389">Node</a>.</p>
+<p>Reimplemented from <a class="el" href="classm3g_1_1Node.html#8babc8a79b78615da51161e94029eea9">Node</a>.</p>
 
 </div>
 </div><p>
@@ -481,9 +495,9 @@ specifies a perspective projection matrix.
 </div>
 </div><p>
 <hr>The documentation for this class was generated from the following files:<ul>
-<li>/work/desktop-m3g/src/<a class="el" href="Camera_8hpp-source.html">Camera.hpp</a><li>/work/desktop-m3g/src/Camera.cpp</ul>
+<li>/work/workspace.desktop-m3g/src/<a class="el" href="Camera_8hpp-source.html">Camera.hpp</a><li>/work/workspace.desktop-m3g/src/Camera.cpp</ul>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Wed Apr 7 10:24:28 2010 by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Mon May 10 08:47:30 2010 by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.8 </small></address>
 </body>

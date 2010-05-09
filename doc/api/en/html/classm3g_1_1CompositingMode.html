@@ -32,7 +32,7 @@ Inheritance diagram for CompositingMode:</div>
 
 <p><center><img src="classm3g_1_1CompositingMode.png" usemap="#CompositingMode_map" border="0" alt=""></center>
 <map name="CompositingMode_map">
-<area href="classm3g_1_1Object3D.html" alt="Object3D" shape="rect" coords="0,0,112,24">
+<area href="classm3g_1_1Object3D.html" alt="Object3D" shape="rect" coords="0,56,112,80">
 </map>
 </div>
 
@@ -46,6 +46,8 @@ Inheritance diagram for CompositingMode:</div>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1CompositingMode.html#5abfd1a798f1327aac4b92f55d4ecc0c">CompositingMode</a> ()</td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">virtual&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1CompositingMode.html#0bba5b15be7249e946c9aaf94631ce3b">~CompositingMode</a> ()</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">virtual <a class="el" href="classm3g_1_1CompositingMode.html">CompositingMode</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1CompositingMode.html#ab6fcd945b68728bbe2c65a8f45dc8dd">duplicate</a> () const </td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">float&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1CompositingMode.html#19ab71363ea77fa86aa6fafce87f06cb">getAlphaThreshold</a> () const </td></tr>
 
@@ -79,6 +81,8 @@ Inheritance diagram for CompositingMode:</div>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">virtual std::ostream &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1CompositingMode.html#6fea17fa1532df3794f8cb39cb4f911f">print</a> (std::ostream &amp;out) const </td></tr>
 
+<tr><td class="memItemLeft" nowrap align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1CompositingMode.html#8babc8a79b78615da51161e94029eea9">render</a> (<a class="el" href="structm3g_1_1RenderState.html">RenderState</a> &amp;state) const </td></tr>
+
 <tr><td colspan="2"><br><h2>Static Public Attributes</h2></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">static const int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1CompositingMode.html#417581fcde4067111f47320edb2aa378">ALPHA</a> = 64</td></tr>
 
@@ -89,9 +93,6 @@ Inheritance diagram for CompositingMode:</div>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">static const int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1CompositingMode.html#cb426684e42a5ae425989c65fbb7dbc4">MODULATE_X2</a> = 67</td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">static const int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1CompositingMode.html#47a00ac5a59817a48db06fb2a538883c">REPLACE</a> = 68</td></tr>
-
-<tr><td colspan="2"><br><h2>Protected Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1CompositingMode.html#1efcb1973989d9963d5bd6d03065d389">render</a> (int pass, int index=0) const </td></tr>
 
 <tr><td colspan="2"><br><h2>Friends</h2></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="afa5201a494f65c37039281d9b63a2a9"></a><!-- doxytag: member="m3g::CompositingMode::Appearance" ref="afa5201a494f65c37039281d9b63a2a9" args="" -->
@@ -139,6 +140,27 @@ Destuct a <a class="el" href="classm3g_1_1CompositingMode.html">CompositingMode<
 </div>
 </div><p>
 <hr><h2>Member Function Documentation</h2>
+<a class="anchor" name="ab6fcd945b68728bbe2c65a8f45dc8dd"></a><!-- doxytag: member="m3g::CompositingMode::duplicate" ref="ab6fcd945b68728bbe2c65a8f45dc8dd" args="() const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classm3g_1_1CompositingMode.html">CompositingMode</a> * duplicate           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const<code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Creates a duplicate of this <a class="el" href="classm3g_1_1Object3D.html">Object3D</a>. 
+<p>Reimplemented from <a class="el" href="classm3g_1_1Object3D.html#a25110dac934f867b83b73ad4741a0f4">Object3D</a>.</p>
+
+</div>
+</div><p>
 <a class="anchor" name="19ab71363ea77fa86aa6fafce87f06cb"></a><!-- doxytag: member="m3g::CompositingMode::getAlphaThreshold" ref="19ab71363ea77fa86aa6fafce87f06cb" args="() const " -->
 <div class="memitem">
 <div class="memproto">
@@ -313,26 +335,17 @@ Print out information of this object, for debug only.
 
 </div>
 </div><p>
-<a class="anchor" name="1efcb1973989d9963d5bd6d03065d389"></a><!-- doxytag: member="m3g::CompositingMode::render" ref="1efcb1973989d9963d5bd6d03065d389" args="(int pass, int index=0) const " -->
+<a class="anchor" name="8babc8a79b78615da51161e94029eea9"></a><!-- doxytag: member="m3g::CompositingMode::render" ref="8babc8a79b78615da51161e94029eea9" args="(RenderState &amp;state) const " -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">void render           </td>
           <td>(</td>
-          <td class="paramtype">int&nbsp;</td>
-          <td class="paramname"> <em>pass</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&nbsp;</td>
-          <td class="paramname"> <em>index</em> = <code>0</code></td><td>&nbsp;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td><td> const<code> [protected, virtual]</code></td>
+          <td class="paramtype"><a class="el" href="structm3g_1_1RenderState.html">RenderState</a> &amp;&nbsp;</td>
+          <td class="paramname"> <em>state</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const<code> [virtual]</code></td>
         </tr>
       </table>
 </div>
@@ -341,7 +354,7 @@ Print out information of this object, for debug only.
 <p>
 Render this object, for inner use.<p>
 Note: <a class="el" href="classm3g_1_1CompositingMode.html">CompositingMode</a> should be rendered only at second rendering pass(pass=2). In other cases, do nothing. 
-<p>Reimplemented from <a class="el" href="classm3g_1_1Object3D.html#1efcb1973989d9963d5bd6d03065d389">Object3D</a>.</p>
+<p>Reimplemented from <a class="el" href="classm3g_1_1Object3D.html#8babc8a79b78615da51161e94029eea9">Object3D</a>.</p>
 
 </div>
 </div><p>
@@ -571,9 +584,9 @@ Selects the replace mode.
 </div>
 </div><p>
 <hr>The documentation for this class was generated from the following files:<ul>
-<li>/work/desktop-m3g/src/<a class="el" href="CompositingMode_8hpp-source.html">CompositingMode.hpp</a><li>/work/desktop-m3g/src/CompositingMode.cpp</ul>
+<li>/work/workspace.desktop-m3g/src/<a class="el" href="CompositingMode_8hpp-source.html">CompositingMode.hpp</a><li>/work/workspace.desktop-m3g/src/CompositingMode.cpp</ul>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Wed Apr 7 10:24:28 2010 by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Mon May 10 08:47:30 2010 by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.8 </small></address>
 </body>

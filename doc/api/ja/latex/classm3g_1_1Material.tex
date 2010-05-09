@@ -7,7 +7,7 @@
 Materialに対する継承グラフ:\begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[height=2cm]{classm3g_1_1Material}
+\includegraphics[height=3cm]{classm3g_1_1Material}
 \end{center}
 \end{figure}
 \subsection*{Public メソッド}
@@ -16,6 +16,8 @@ Materialに対する継承グラフ:\begin{figure}[H]
 \hyperlink{classm3g_1_1Material_ade2019060d01e7983e9bc40ea6aa404}{Material} ()
 \item 
 virtual \hyperlink{classm3g_1_1Material_b15b7efa255e5cca9b02a031a783cfe8}{$\sim$Material} ()
+\item 
+virtual \hyperlink{classm3g_1_1Material}{Material} $\ast$ \hyperlink{classm3g_1_1Material_1bdbc2f934efac291bf7d8f49ba10dda}{duplicate} () const 
 \item 
 virtual void \hyperlink{classm3g_1_1Material_415c0b110f95410ded9b85e5d99a496b}{addAnimationTrack} (\hyperlink{classm3g_1_1AnimationTrack}{AnimationTrack} $\ast$animation\_\-track)
 \item 
@@ -34,6 +36,13 @@ void \hyperlink{classm3g_1_1Material_fb630e98bef48acb3b3c0541ed3615be}{setShinin
 void \hyperlink{classm3g_1_1Material_55778ceeb6408e5db698c793dea1edd6}{setVertexColorTrackingEnable} (bool enable)
 \item 
 virtual std::ostream \& \hyperlink{classm3g_1_1Material_6fea17fa1532df3794f8cb39cb4f911f}{print} (std::ostream \&out) const 
+\item 
+virtual void \hyperlink{classm3g_1_1Material_8babc8a79b78615da51161e94029eea9}{render} (\hyperlink{structm3g_1_1RenderState}{RenderState} \&state) const 
+\end{CompactItemize}
+\subsection*{Static Public メソッド}
+\begin{CompactItemize}
+\item 
+static void \hyperlink{classm3g_1_1Material_443a7a301f77f625335ecc06d13bad06}{renderX} ()
 \end{CompactItemize}
 \subsection*{Static Public 変数}
 \begin{CompactItemize}
@@ -95,7 +104,16 @@ class \textbf{Appearance}}
 
 このMaterialをアニメーションする. 
 
-\hyperlink{classm3g_1_1Object3D_8aad1ceab4c2a03609c8a42324ce484d}{Object3D}を再定義しています。\hypertarget{classm3g_1_1Material_d5740043584c6bf87bf014402c5985be}{
+\hyperlink{classm3g_1_1Object3D_8aad1ceab4c2a03609c8a42324ce484d}{Object3D}を再定義しています。\hypertarget{classm3g_1_1Material_1bdbc2f934efac291bf7d8f49ba10dda}{
+\index{m3g::Material@{m3g::Material}!duplicate@{duplicate}}
+\index{duplicate@{duplicate}!m3g::Material@{m3g::Material}}
+\subsubsection[{duplicate}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Material} $\ast$ duplicate () const\hspace{0.3cm}{\tt  \mbox{[}virtual\mbox{]}}}}
+\label{classm3g_1_1Material_1bdbc2f934efac291bf7d8f49ba10dda}
+
+
+このオブジェクトの複製の作成. 
+
+\hyperlink{classm3g_1_1Object3D_a25110dac934f867b83b73ad4741a0f4}{Object3D}を再定義しています。\hypertarget{classm3g_1_1Material_d5740043584c6bf87bf014402c5985be}{
 \index{m3g::Material@{m3g::Material}!getColor@{getColor}}
 \index{getColor@{getColor}!m3g::Material@{m3g::Material}}
 \subsubsection[{getColor}]{\setlength{\rightskip}{0pt plus 5cm}int getColor (int {\em target}) const}}
@@ -123,9 +141,27 @@ class \textbf{Appearance}}
 \label{classm3g_1_1Material_6fea17fa1532df3794f8cb39cb4f911f}
 
 
-このObject3Dの情報を表示する。デバッグ用. 
+このオブジェクトの情報を表示する。デバッグ用. 
 
-\hyperlink{classm3g_1_1Object3D_6fea17fa1532df3794f8cb39cb4f911f}{Object3D}を再定義しています。\hypertarget{classm3g_1_1Material_5947a525a18bca77aa890971df2ae48a}{
+\hyperlink{classm3g_1_1Object3D_6fea17fa1532df3794f8cb39cb4f911f}{Object3D}を再定義しています。\hypertarget{classm3g_1_1Material_8babc8a79b78615da51161e94029eea9}{
+\index{m3g::Material@{m3g::Material}!render@{render}}
+\index{render@{render}!m3g::Material@{m3g::Material}}
+\subsubsection[{render}]{\setlength{\rightskip}{0pt plus 5cm}void render ({\bf RenderState} \& {\em state}) const\hspace{0.3cm}{\tt  \mbox{[}virtual\mbox{]}}}}
+\label{classm3g_1_1Material_8babc8a79b78615da51161e94029eea9}
+
+
+このオブジェクトをレンダリングする内部使用の関数.
+
+Note: \hyperlink{classm3g_1_1Material}{Material} should be rendered only at second rendering pass(pass=2). In other cases, do nothing. 
+
+\hyperlink{classm3g_1_1Object3D_8babc8a79b78615da51161e94029eea9}{Object3D}を再定義しています。\hypertarget{classm3g_1_1Material_443a7a301f77f625335ecc06d13bad06}{
+\index{m3g::Material@{m3g::Material}!renderX@{renderX}}
+\index{renderX@{renderX}!m3g::Material@{m3g::Material}}
+\subsubsection[{renderX}]{\setlength{\rightskip}{0pt plus 5cm}void renderX ()\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{classm3g_1_1Material_443a7a301f77f625335ecc06d13bad06}
+
+
+このオブジェクトをレンダリングする内部使用の関数. \hypertarget{classm3g_1_1Material_5947a525a18bca77aa890971df2ae48a}{
 \index{m3g::Material@{m3g::Material}!setColor@{setColor}}
 \index{setColor@{setColor}!m3g::Material@{m3g::Material}}
 \subsubsection[{setColor}]{\setlength{\rightskip}{0pt plus 5cm}void setColor (int {\em target}, \/  int {\em argb})}}
@@ -181,5 +217,5 @@ class \textbf{Appearance}}
 
 このクラスの説明は次のファイルから生成されました:\begin{CompactItemize}
 \item 
-/work/desktop-m3g/src/Material.hpp\item 
-/work/desktop-m3g/src/Material.cpp\end{CompactItemize}
+/work/workspace.desktop-m3g/src/Material.hpp\item 
+/work/workspace.desktop-m3g/src/Material.cpp\end{CompactItemize}

@@ -2,10 +2,10 @@
 
 
 
-2010/xx/xx  ver 0.1.1
-   - implemented SkinndMesh, MorphingMesh.
-   - implemented duplicate() method.
-   - rewrote Loader class.
+2010/05/10  ver 0.2.0
+   - implemente SkinndMesh, MorphingMesh.
+   - implemente duplicate() method.
+   - rewrite Loader class.
        - Now, compressed file is ok.
    - fix color component from (-128,127) to (0,255).
    - fix scale,biased coordinate.

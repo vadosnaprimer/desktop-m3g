@@ -32,9 +32,9 @@ Inheritance diagram for World:</div>
 
 <p><center><img src="classm3g_1_1World.png" usemap="#World_map" border="0" alt=""></center>
 <map name="World_map">
-<area href="classm3g_1_1Node.html" alt="Node" shape="rect" coords="0,112,93,136">
-<area href="classm3g_1_1Transformable.html" alt="Transformable" shape="rect" coords="0,56,93,80">
-<area href="classm3g_1_1Object3D.html" alt="Object3D" shape="rect" coords="0,0,93,24">
+<area href="classm3g_1_1Node.html" alt="Node" shape="rect" coords="0,168,93,192">
+<area href="classm3g_1_1Transformable.html" alt="Transformable" shape="rect" coords="0,112,93,136">
+<area href="classm3g_1_1Object3D.html" alt="Object3D" shape="rect" coords="0,56,93,80">
 </map>
 </div>
 
@@ -45,6 +45,8 @@ Inheritance diagram for World:</div>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1World.html#75e827b8787e735882f60c266d58e02e">World</a> ()</td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">virtual&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1World.html#bd170ded455f0b2273c1fe06da6ea0cb">~World</a> ()</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="el" href="classm3g_1_1World.html">World</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1World.html#efde97aaf753d48fff769d9011f187f2">duplicate</a> () const </td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">virtual int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1World.html#8aad1ceab4c2a03609c8a42324ce484d">animate</a> (int world_time)</td></tr>
 
@@ -58,8 +60,7 @@ Inheritance diagram for World:</div>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">virtual std::ostream &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1World.html#6fea17fa1532df3794f8cb39cb4f911f">print</a> (std::ostream &amp;out) const </td></tr>
 
-<tr><td colspan="2"><br><h2>Protected Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1World.html#1efcb1973989d9963d5bd6d03065d389">render</a> (int pass, int index=0) const </td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1World.html#8babc8a79b78615da51161e94029eea9">render</a> (<a class="el" href="structm3g_1_1RenderState.html">RenderState</a> &amp;state) const </td></tr>
 
 <tr><td colspan="2"><br><h2>Friends</h2></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="8174d4c629550c1ee279571250236ef4"></a><!-- doxytag: member="m3g::World::Graphics3D" ref="8174d4c629550c1ee279571250236ef4" args="" -->
@@ -129,6 +130,27 @@ Updates all animated properties in this <a class="el" href="classm3g_1_1Object3D
 
 </div>
 </div><p>
+<a class="anchor" name="efde97aaf753d48fff769d9011f187f2"></a><!-- doxytag: member="m3g::World::duplicate" ref="efde97aaf753d48fff769d9011f187f2" args="() const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classm3g_1_1World.html">World</a> * duplicate           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const<code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Creates a duplicate of this <a class="el" href="classm3g_1_1Object3D.html">Object3D</a>. 
+<p>Reimplemented from <a class="el" href="classm3g_1_1Node.html#0b9f7531a4b56d34f47aeb1fff0d37e0">Node</a>.</p>
+
+</div>
+</div><p>
 <a class="anchor" name="812e01ec4fd0fd872b0ca5ea6a30b2f6"></a><!-- doxytag: member="m3g::World::getActiveCamera" ref="812e01ec4fd0fd872b0ca5ea6a30b2f6" args="() const " -->
 <div class="memitem">
 <div class="memproto">
@@ -189,26 +211,17 @@ Print out information of this object, for debug only.
 
 </div>
 </div><p>
-<a class="anchor" name="1efcb1973989d9963d5bd6d03065d389"></a><!-- doxytag: member="m3g::World::render" ref="1efcb1973989d9963d5bd6d03065d389" args="(int pass, int index=0) const " -->
+<a class="anchor" name="8babc8a79b78615da51161e94029eea9"></a><!-- doxytag: member="m3g::World::render" ref="8babc8a79b78615da51161e94029eea9" args="(RenderState &amp;state) const " -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">void render           </td>
           <td>(</td>
-          <td class="paramtype">int&nbsp;</td>
-          <td class="paramname"> <em>pass</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&nbsp;</td>
-          <td class="paramname"> <em>index</em> = <code>0</code></td><td>&nbsp;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td><td> const<code> [protected, virtual]</code></td>
+          <td class="paramtype"><a class="el" href="structm3g_1_1RenderState.html">RenderState</a> &amp;&nbsp;</td>
+          <td class="paramname"> <em>state</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const<code> [virtual]</code></td>
         </tr>
       </table>
 </div>
@@ -216,8 +229,8 @@ Print out information of this object, for debug only.
 
 <p>
 Render this object.<p>
-Note: <a class="el" href="classm3g_1_1World.html">World</a> should be rendered via all rendering pass. pass=0: render background and camera. pass=1: render lights. pass=2: render objets. 
-<p>Reimplemented from <a class="el" href="classm3g_1_1Node.html#1efcb1973989d9963d5bd6d03065d389">Node</a>.</p>
+Note: <a class="el" href="classm3g_1_1World.html">World</a> should be rendered via all rendering pass. pass=-1: setup valid layers. pass=0: render background and camera. pass=1: render lights. pass=2: render objets. 
+<p>Reimplemented from <a class="el" href="classm3g_1_1Node.html#8babc8a79b78615da51161e94029eea9">Node</a>.</p>
 
 </div>
 </div><p>
@@ -262,9 +275,9 @@ Sets the <a class="el" href="classm3g_1_1Background.html">Background</a> object 
 </div>
 </div><p>
 <hr>The documentation for this class was generated from the following files:<ul>
-<li>/work/desktop-m3g/src/<a class="el" href="World_8hpp-source.html">World.hpp</a><li>/work/desktop-m3g/src/World.cpp</ul>
+<li>/work/workspace.desktop-m3g/src/<a class="el" href="World_8hpp-source.html">World.hpp</a><li>/work/workspace.desktop-m3g/src/World.cpp</ul>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Wed Apr 7 10:24:31 2010 by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Mon May 10 08:47:34 2010 by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.8 </small></address>
 </body>

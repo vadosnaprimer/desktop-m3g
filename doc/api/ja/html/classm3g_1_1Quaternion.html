@@ -31,13 +31,25 @@
 <a href="classm3g_1_1Quaternion-members.html">すべてのメンバ一覧</a><table border="0" cellpadding="0" cellspacing="0">
 <tr><td></td></tr>
 <tr><td colspan="2"><br><h2>Public メソッド</h2></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="7a06a28b864e525f73a1bb0eb3e9274e"></a><!-- doxytag: member="m3g::Quaternion::Quaternion" ref="7a06a28b864e525f73a1bb0eb3e9274e" args="(float angle, float ax, float ay, float az)" -->
-&nbsp;</td><td class="memItemRight" valign="bottom"><b>Quaternion</b> (float angle, float ax, float ay, float az)</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Quaternion.html#65ed15cc19af958b5933b5c522f10e66">Quaternion</a> ()</td></tr>
 
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="0712dc357557a30ac0da0a9d4cdd278c"></a><!-- doxytag: member="m3g::Quaternion::set" ref="0712dc357557a30ac0da0a9d4cdd278c" args="(float qx, float qy, float qz, float qw)" -->
-void&nbsp;</td><td class="memItemRight" valign="bottom"><b>set</b> (float qx, float qy, float qz, float qw)</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Quaternion.html#7a06a28b864e525f73a1bb0eb3e9274e">Quaternion</a> (float angle, float ax, float ay, float az)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Quaternion.html#6e9a147677b9ffd583c59e9d06c3d938">~Quaternion</a> ()</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Quaternion.html#382e6ad7e6721b121e510959e1011be3">setIdentity</a> ()</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Quaternion.html#47affd1a10b589811fc4828c1a2e0c6d">setZero</a> ()</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="el" href="classm3g_1_1Quaternion.html">Quaternion</a> &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Quaternion.html#c9cc178bcc449e08499113c35feb2a2b">normalize</a> ()</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Quaternion.html#0712dc357557a30ac0da0a9d4cdd278c">set</a> (float qx, float qy, float qz, float qw)</td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Quaternion.html#3049675269aef6bb333d8f83fdf6eed7">getAngleAxis</a> (float *angle_axis) const </td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">float&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Quaternion.html#b4393f1928cea2a3baadbf9acdd99de2">getLength</a> () const </td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">std::ostream &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Quaternion.html#6fea17fa1532df3794f8cb39cb4f911f">print</a> (std::ostream &amp;out) const </td></tr>
 
 <tr><td colspan="2"><br><h2>Public 変数</h2></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="d0da36b2558901e21e7a30f6c227a45e"></a><!-- doxytag: member="m3g::Quaternion::x" ref="d0da36b2558901e21e7a30f6c227a45e" args="" -->
@@ -54,7 +66,87 @@ float&nbsp;</td><td class="memItemRight" valign="bottom"><b>w</b></td></tr>
 
 </table>
 <hr><a name="_details"></a><h2>説明</h2>
-長さが必ず１のクォータニオンクラス。内部使用専用. <hr><h2>関数</h2>
+回転を表すクォータニオンクラス。内部使用専用. <hr><h2>コンストラクタとデストラクタ</h2>
+<a class="anchor" name="65ed15cc19af958b5933b5c522f10e66"></a><!-- doxytag: member="m3g::Quaternion::Quaternion" ref="65ed15cc19af958b5933b5c522f10e66" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classm3g_1_1Quaternion.html">Quaternion</a>           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+単位クォータニオンを作成するコンストラクタ. 
+</div>
+</div><p>
+<a class="anchor" name="7a06a28b864e525f73a1bb0eb3e9274e"></a><!-- doxytag: member="m3g::Quaternion::Quaternion" ref="7a06a28b864e525f73a1bb0eb3e9274e" args="(float angle, float ax, float ay, float az)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classm3g_1_1Quaternion.html">Quaternion</a>           </td>
+          <td>(</td>
+          <td class="paramtype">float&nbsp;</td>
+          <td class="paramname"> <em>angle</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&nbsp;</td>
+          <td class="paramname"> <em>ax</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&nbsp;</td>
+          <td class="paramname"> <em>ay</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&nbsp;</td>
+          <td class="paramname"> <em>az</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+回転角度、回転軸の形式でクォータニオンを作成するコンストラクタ。 回転軸は正規化されている必要はない. 
+</div>
+</div><p>
+<a class="anchor" name="6e9a147677b9ffd583c59e9d06c3d938"></a><!-- doxytag: member="m3g::Quaternion::~Quaternion" ref="6e9a147677b9ffd583c59e9d06c3d938" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">~<a class="el" href="classm3g_1_1Quaternion.html">Quaternion</a>           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+このオブジェクトを削除するデストラクタ. 
+</div>
+</div><p>
+<hr><h2>関数</h2>
 <a class="anchor" name="3049675269aef6bb333d8f83fdf6eed7"></a><!-- doxytag: member="m3g::Quaternion::getAngleAxis" ref="3049675269aef6bb333d8f83fdf6eed7" args="(float *angle_axis) const " -->
 <div class="memitem">
 <div class="memproto">
@@ -72,13 +164,151 @@ float&nbsp;</td><td class="memItemRight" valign="bottom"><b>w</b></td></tr>
 <div class="memdoc">
 
 <p>
+このクォータニオンを角度-回転軸の形式で取得.<p>
 (補足) 回転角度が0の場合はangle=0,axis=(x,y,z)が返る. 
 </div>
 </div><p>
-<hr>このクラスの説明は次のファイルから生成されました:<ul>
-<li>/work/desktop-m3g/src/<a class="el" href="Quaternion_8hpp-source.html">Quaternion.hpp</a><li>/work/desktop-m3g/src/Quaternion.cpp</ul>
+<a class="anchor" name="b4393f1928cea2a3baadbf9acdd99de2"></a><!-- doxytag: member="m3g::Quaternion::getLength" ref="b4393f1928cea2a3baadbf9acdd99de2" args="() const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float getLength           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const</td>
+        </tr>
+      </table>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Wed Apr 7 10:24:24 2010に生成されました。&nbsp;
+<div class="memdoc">
+
+<p>
+このクォータニオンを長さを取得. 
+</div>
+</div><p>
+<a class="anchor" name="c9cc178bcc449e08499113c35feb2a2b"></a><!-- doxytag: member="m3g::Quaternion::normalize" ref="c9cc178bcc449e08499113c35feb2a2b" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classm3g_1_1Quaternion.html">Quaternion</a> &amp; normalize           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+クォータニオンを正規化化する. 
+</div>
+</div><p>
+<a class="anchor" name="6fea17fa1532df3794f8cb39cb4f911f"></a><!-- doxytag: member="m3g::Quaternion::print" ref="6fea17fa1532df3794f8cb39cb4f911f" args="(std::ostream &amp;out) const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::ostream &amp; print           </td>
+          <td>(</td>
+          <td class="paramtype">std::ostream &amp;&nbsp;</td>
+          <td class="paramname"> <em>out</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+このオブジェクトの情報を表示する。デバッグ用. 
+</div>
+</div><p>
+<a class="anchor" name="0712dc357557a30ac0da0a9d4cdd278c"></a><!-- doxytag: member="m3g::Quaternion::set" ref="0712dc357557a30ac0da0a9d4cdd278c" args="(float qx, float qy, float qz, float qw)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void set           </td>
+          <td>(</td>
+          <td class="paramtype">float&nbsp;</td>
+          <td class="paramname"> <em>qx</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&nbsp;</td>
+          <td class="paramname"> <em>qy</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&nbsp;</td>
+          <td class="paramname"> <em>qz</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&nbsp;</td>
+          <td class="paramname"> <em>qw</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+クォータニオンを設定する。関数内部で正規化される. 
+</div>
+</div><p>
+<a class="anchor" name="382e6ad7e6721b121e510959e1011be3"></a><!-- doxytag: member="m3g::Quaternion::setIdentity" ref="382e6ad7e6721b121e510959e1011be3" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void setIdentity           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+単位クォータニオン化する. 
+</div>
+</div><p>
+<a class="anchor" name="47affd1a10b589811fc4828c1a2e0c6d"></a><!-- doxytag: member="m3g::Quaternion::setZero" ref="47affd1a10b589811fc4828c1a2e0c6d" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void setZero           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+クォータニオンをゼロ化する. 
+</div>
+</div><p>
+<hr>このクラスの説明は次のファイルから生成されました:<ul>
+<li>/work/workspace.desktop-m3g/src/<a class="el" href="Quaternion_8hpp-source.html">Quaternion.hpp</a><li>/work/workspace.desktop-m3g/src/Quaternion.cpp</ul>
+</div>
+<hr size="1"><address style="text-align: right;"><small>Mon May 10 08:47:27 2010に生成されました。&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.8 </small></address>
 </body>

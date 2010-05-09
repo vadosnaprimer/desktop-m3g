@@ -32,7 +32,7 @@ Inheritance diagram for Material:</div>
 
 <p><center><img src="classm3g_1_1Material.png" usemap="#Material_map" border="0" alt=""></center>
 <map name="Material_map">
-<area href="classm3g_1_1Object3D.html" alt="Object3D" shape="rect" coords="0,0,65,24">
+<area href="classm3g_1_1Object3D.html" alt="Object3D" shape="rect" coords="0,56,65,80">
 </map>
 </div>
 
@@ -43,6 +43,8 @@ Inheritance diagram for Material:</div>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Material.html#ade2019060d01e7983e9bc40ea6aa404">Material</a> ()</td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">virtual&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Material.html#b15b7efa255e5cca9b02a031a783cfe8">~Material</a> ()</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">virtual <a class="el" href="classm3g_1_1Material.html">Material</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Material.html#1bdbc2f934efac291bf7d8f49ba10dda">duplicate</a> () const </td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Material.html#415c0b110f95410ded9b85e5d99a496b">addAnimationTrack</a> (<a class="el" href="classm3g_1_1AnimationTrack.html">AnimationTrack</a> *animation_track)</td></tr>
 
@@ -63,6 +65,11 @@ void&nbsp;</td><td class="memItemRight" valign="bottom"><b>setShininess</b> (flo
 <tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Material.html#55778ceeb6408e5db698c793dea1edd6">setVertexColorTrackingEnable</a> (bool enable)</td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">virtual std::ostream &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Material.html#6fea17fa1532df3794f8cb39cb4f911f">print</a> (std::ostream &amp;out) const </td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Material.html#8babc8a79b78615da51161e94029eea9">render</a> (<a class="el" href="structm3g_1_1RenderState.html">RenderState</a> &amp;state) const </td></tr>
+
+<tr><td colspan="2"><br><h2>Static Public Member Functions</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">static void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Material.html#443a7a301f77f625335ecc06d13bad06">renderX</a> ()</td></tr>
 
 <tr><td colspan="2"><br><h2>Static Public Attributes</h2></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">static const int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Material.html#4cf648a82d9de62a1fb15f4277049594">AMBIENT</a> = 1&lt;&lt;10</td></tr>
@@ -163,6 +170,27 @@ Update animatable property.
 
 </div>
 </div><p>
+<a class="anchor" name="1bdbc2f934efac291bf7d8f49ba10dda"></a><!-- doxytag: member="m3g::Material::duplicate" ref="1bdbc2f934efac291bf7d8f49ba10dda" args="() const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classm3g_1_1Material.html">Material</a> * duplicate           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const<code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Creates a duplicate of this <a class="el" href="classm3g_1_1Object3D.html">Object3D</a>. 
+<p>Reimplemented from <a class="el" href="classm3g_1_1Object3D.html#a25110dac934f867b83b73ad4741a0f4">Object3D</a>.</p>
+
+</div>
+</div><p>
 <a class="anchor" name="d5740043584c6bf87bf014402c5985be"></a><!-- doxytag: member="m3g::Material::getColor" ref="d5740043584c6bf87bf014402c5985be" args="(int target) const " -->
 <div class="memitem">
 <div class="memproto">
@@ -222,6 +250,48 @@ Sets the shininess of this <a class="el" href="classm3g_1_1Material.html">Materi
 Print out information of this object, for debug only. 
 <p>Reimplemented from <a class="el" href="classm3g_1_1Object3D.html#6fea17fa1532df3794f8cb39cb4f911f">Object3D</a>.</p>
 
+</div>
+</div><p>
+<a class="anchor" name="8babc8a79b78615da51161e94029eea9"></a><!-- doxytag: member="m3g::Material::render" ref="8babc8a79b78615da51161e94029eea9" args="(RenderState &amp;state) const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void render           </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structm3g_1_1RenderState.html">RenderState</a> &amp;&nbsp;</td>
+          <td class="paramname"> <em>state</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const<code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Render this object, for inner use.<p>
+Note: <a class="el" href="classm3g_1_1Material.html">Material</a> should be rendered only at second rendering pass(pass=2). In other cases, do nothing. 
+<p>Reimplemented from <a class="el" href="classm3g_1_1Object3D.html#8babc8a79b78615da51161e94029eea9">Object3D</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="443a7a301f77f625335ecc06d13bad06"></a><!-- doxytag: member="m3g::Material::renderX" ref="443a7a301f77f625335ecc06d13bad06" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void renderX           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [static]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Render this object, for inner use. 
 </div>
 </div><p>
 <a class="anchor" name="5947a525a18bca77aa890971df2ae48a"></a><!-- doxytag: member="m3g::Material::setColor" ref="5947a525a18bca77aa890971df2ae48a" args="(int target, int argb)" -->
@@ -335,9 +405,9 @@ A parameter to setColor and getColor, specifying that the specular color compone
 </div>
 </div><p>
 <hr>The documentation for this class was generated from the following files:<ul>
-<li>/work/desktop-m3g/src/<a class="el" href="Material_8hpp-source.html">Material.hpp</a><li>/work/desktop-m3g/src/Material.cpp</ul>
+<li>/work/workspace.desktop-m3g/src/<a class="el" href="Material_8hpp-source.html">Material.hpp</a><li>/work/workspace.desktop-m3g/src/Material.cpp</ul>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Wed Apr 7 10:24:29 2010 by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Mon May 10 08:47:32 2010 by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.8 </small></address>
 </body>

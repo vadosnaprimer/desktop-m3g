@@ -4,10 +4,18 @@
 }
 {\tt \#include $<$Graphics3D.hpp$>$}
 
+Graphics3Dに対する継承グラフ:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2cm]{classm3g_1_1Graphics3D}
+\end{center}
+\end{figure}
 \subsection*{構成}
 \begin{CompactItemize}
 \item 
-struct \textbf{Viewport}
+struct \textbf{DepthRange}
+\item 
+struct \hyperlink{structm3g_1_1Graphics3D_1_1Viewport}{Viewport}
 \end{CompactItemize}
 \subsection*{Public メソッド}
 \begin{CompactItemize}
@@ -65,11 +73,41 @@ void \hyperlink{classm3g_1_1Graphics3D_6fc3837286f3516aa3320aeec9729495}{setDept
 void \hyperlink{classm3g_1_1Graphics3D_2bf83cb69f50117dd9d5548fe96d0ab0}{setLight} (int index, \hyperlink{classm3g_1_1Light}{Light} $\ast$light, const \hyperlink{classm3g_1_1Transform}{Transform} \&transform)
 \item 
 void \hyperlink{classm3g_1_1Graphics3D_0b4ec48e9c19060e9be5648c118c23b1}{setViewport} (int x, int y, int width, int height)
+\item 
+std::ostream \& \hyperlink{classm3g_1_1Graphics3D_6fea17fa1532df3794f8cb39cb4f911f}{print} (std::ostream \&out) const 
 \end{CompactItemize}
 \subsection*{Static Public メソッド}
 \begin{CompactItemize}
 \item 
 static \hyperlink{classm3g_1_1Graphics3D}{Graphics3D} $\ast$ \hyperlink{classm3g_1_1Graphics3D_da6d71754bfe755dd8204a9332e9ed47}{getInstance} ()
+\end{CompactItemize}
+\subsection*{Public 変数}
+\begin{CompactItemize}
+\item 
+\hypertarget{classm3g_1_1Graphics3D_6a0b80dfc7341ce8102a7cb1688aff0a}{
+\hyperlink{structm3g_1_1Graphics3D_1_1Viewport}{Viewport} \textbf{viewport}}
+\label{classm3g_1_1Graphics3D_6a0b80dfc7341ce8102a7cb1688aff0a}
+
+\item 
+\hypertarget{classm3g_1_1Graphics3D_12e48d234a9d97ae438019a4c44b989c}{
+bool \textbf{depth\_\-buffer\_\-enable}}
+\label{classm3g_1_1Graphics3D_12e48d234a9d97ae438019a4c44b989c}
+
+\item 
+\hypertarget{classm3g_1_1Graphics3D_b557fee5e49a2c2bcdf8803d25b464fb}{
+int \textbf{hints}}
+\label{classm3g_1_1Graphics3D_b557fee5e49a2c2bcdf8803d25b464fb}
+
+\item 
+\hypertarget{classm3g_1_1Graphics3D_c4e9c4de7572c6bdf18ecbba4ff8f97c}{
+std::vector$<$ Property $\ast$ $>$ \textbf{properties}}
+\label{classm3g_1_1Graphics3D_c4e9c4de7572c6bdf18ecbba4ff8f97c}
+
+\item 
+\hypertarget{classm3g_1_1Graphics3D_ac5360336501ffd544f72821c2f3fd3e}{
+DepthRange \textbf{depth\_\-range}}
+\label{classm3g_1_1Graphics3D_ac5360336501ffd544f72821c2f3fd3e}
+
 \end{CompactItemize}
 \subsection*{Static Public 変数}
 \begin{CompactItemize}
@@ -229,7 +267,14 @@ static const int \textbf{TRUE\_\-COLOR} = 1$<$$<$3}
 \label{classm3g_1_1Graphics3D_7f17c6781152840d42e756c27b0fb8c8}
 
 
-カレントのレンダリングターゲットの深度バッファーが有効かどうかの問い合わせ. \hypertarget{classm3g_1_1Graphics3D_3ffaaf0d0f1e97a07c7f30c9b5a5dd32}{
+カレントのレンダリングターゲットの深度バッファーが有効かどうかの問い合わせ. \hypertarget{classm3g_1_1Graphics3D_6fea17fa1532df3794f8cb39cb4f911f}{
+\index{m3g::Graphics3D@{m3g::Graphics3D}!print@{print}}
+\index{print@{print}!m3g::Graphics3D@{m3g::Graphics3D}}
+\subsubsection[{print}]{\setlength{\rightskip}{0pt plus 5cm}std::ostream \& print (std::ostream \& {\em out}) const}}
+\label{classm3g_1_1Graphics3D_6fea17fa1532df3794f8cb39cb4f911f}
+
+
+このオブジェクトの情報を表示する。デバッグ用. \hypertarget{classm3g_1_1Graphics3D_3ffaaf0d0f1e97a07c7f30c9b5a5dd32}{
 \index{m3g::Graphics3D@{m3g::Graphics3D}!releaseTarget@{releaseTarget}}
 \index{releaseTarget@{releaseTarget}!m3g::Graphics3D@{m3g::Graphics3D}}
 \subsubsection[{releaseTarget}]{\setlength{\rightskip}{0pt plus 5cm}void releaseTarget () const}}
@@ -303,5 +348,5 @@ NDC座標系からウィンドウ座標系に変換するさいの深度値の�
 
 このクラスの説明は次のファイルから生成されました:\begin{CompactItemize}
 \item 
-/work/desktop-m3g/src/Graphics3D.hpp\item 
-/work/desktop-m3g/src/Graphics3D.cpp\end{CompactItemize}
+/work/workspace.desktop-m3g/src/Graphics3D.hpp\item 
+/work/workspace.desktop-m3g/src/Graphics3D.cpp\end{CompactItemize}

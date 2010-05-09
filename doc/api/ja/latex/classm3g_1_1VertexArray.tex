@@ -7,7 +7,7 @@
 VertexArrayに対する継承グラフ:\begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[height=2cm]{classm3g_1_1VertexArray}
+\includegraphics[height=3cm]{classm3g_1_1VertexArray}
 \end{center}
 \end{figure}
 \subsection*{Public メソッド}
@@ -17,9 +17,13 @@ VertexArrayに対する継承グラフ:\begin{figure}[H]
 \item 
 virtual \hyperlink{classm3g_1_1VertexArray_267fa63cb2f4216729437dc826415911}{$\sim$VertexArray} ()
 \item 
+\hyperlink{classm3g_1_1VertexArray}{VertexArray} $\ast$ \hyperlink{classm3g_1_1VertexArray_f0dc6a5510bf837ef48129f344d666a8}{duplicate} () const 
+\item 
 void \hyperlink{classm3g_1_1VertexArray_9d1b801a7c196a07553a5ef4a5473573}{get} (int first\_\-vertex, int num\_\-vertices, char $\ast$values) const 
 \item 
 void \hyperlink{classm3g_1_1VertexArray_575822f60d7b5e74ed51e94851123038}{get} (int first\_\-vertex, int num\_\-vertices, short $\ast$values) const 
+\item 
+void \hyperlink{classm3g_1_1VertexArray_79b1ffd7586fe23fb5e31661e4d296e3}{get} (int first\_\-vertex, int num\_\-vertices, float $\ast$values) const 
 \item 
 int \hyperlink{classm3g_1_1VertexArray_7016f51d2788e78fdd736efd040f5e5e}{getComponentCount} () const 
 \item 
@@ -27,13 +31,34 @@ int \hyperlink{classm3g_1_1VertexArray_9b7b78fbff0603779ec6bdd2a323c939}{getComp
 \item 
 int \hyperlink{classm3g_1_1VertexArray_c1c9b7f5b0dcd9c0310d7e77e10081ba}{getVertexCount} () const 
 \item 
-void \hyperlink{classm3g_1_1VertexArray_501a9e6d9b5190b0a9dbfe58a6fd9d2e}{set} (int first\_\-vertex, int num\_\-vertices, char $\ast$values)
+void \hyperlink{classm3g_1_1VertexArray_c92a86c7439c8e38c7e5b69e3eca3ee1}{set} (int first\_\-vertex, int num\_\-vertices, const char $\ast$values)
 \item 
-void \hyperlink{classm3g_1_1VertexArray_ac10afe01263d9ac5e7f972a7263de4a}{set} (int first\_\-vertex, int num\_\-vertices, short $\ast$values)
+void \hyperlink{classm3g_1_1VertexArray_f417744f1798d293c85c5e7fb6e1e846}{set} (int first\_\-vertex, int num\_\-vertices, const short $\ast$values)
+\item 
+void \hyperlink{classm3g_1_1VertexArray_24b9d666468f856b2bf09e450b20fdfb}{set} (int first\_\-vertex, int num\_\-vertices, const float $\ast$values)
+\item 
+\hypertarget{classm3g_1_1VertexArray_b5b62e478fb0964ca1c168714a66e562}{
+void \textbf{setMorphing} (const \hyperlink{classm3g_1_1VertexArray}{VertexArray} $\ast$base\_\-positions, const std::vector$<$ const \hyperlink{classm3g_1_1VertexArray}{VertexArray} $\ast$ $>$ \&morph\_\-target\_\-positions, const std::vector$<$ float $>$ \&morph\_\-wegiths)}
+\label{classm3g_1_1VertexArray_b5b62e478fb0964ca1c168714a66e562}
+
+\item 
+\hypertarget{classm3g_1_1VertexArray_fcfcc1258ce0be7d0322d2e00809e1ea}{
+void \textbf{setSkinning} (const \hyperlink{classm3g_1_1VertexArray}{VertexArray} $\ast$base\_\-positions, const std::vector$<$ std::vector$<$ \hyperlink{structm3g_1_1BoneIndex}{BoneIndex} $>$ $>$ \&bone\_\-indices, const std::vector$<$ \hyperlink{classm3g_1_1Matrix}{Matrix} $>$ \&matrix\_\-palette)}
+\label{classm3g_1_1VertexArray_fcfcc1258ce0be7d0322d2e00809e1ea}
+
+\item 
+\hypertarget{classm3g_1_1VertexArray_5c2359d08265a9f8605316789c40ece4}{
+void \textbf{convert} (int component\_\-size)}
+\label{classm3g_1_1VertexArray_5c2359d08265a9f8605316789c40ece4}
+
+\item 
+unsigned int \hyperlink{classm3g_1_1VertexArray_720ecee697dbf11d5f90dc998817b39d}{getOpenGLVBO} () const 
+\item 
+unsigned int \hyperlink{classm3g_1_1VertexArray_3e28ae5596cde78a980de02005a136f2}{getOpenGLFormat} () const 
 \item 
 virtual std::ostream \& \hyperlink{classm3g_1_1VertexArray_6fea17fa1532df3794f8cb39cb4f911f}{print} (std::ostream \&out) const 
 \item 
-void \hyperlink{classm3g_1_1VertexArray_1adedf59e0c6a047242a3914ca52b929}{get} (int first\_\-vertex, int num\_\-vertices, float scale, float $\ast$bias, float $\ast$values) const 
+std::ostream \& \hyperlink{classm3g_1_1VertexArray_85d61f1cdd10b3b5126cdb20291ae276}{print\_\-raw\_\-data} (std::ostream \&out) const 
 \end{CompactItemize}
 \subsection*{フレンド}
 \begin{CompactItemize}
@@ -66,28 +91,37 @@ class \textbf{VertexBuffer}}
 このオブジェクトを削除するデストラクタ. 
 
 \subsection{関数}
-\hypertarget{classm3g_1_1VertexArray_1adedf59e0c6a047242a3914ca52b929}{
+\hypertarget{classm3g_1_1VertexArray_f0dc6a5510bf837ef48129f344d666a8}{
+\index{m3g::VertexArray@{m3g::VertexArray}!duplicate@{duplicate}}
+\index{duplicate@{duplicate}!m3g::VertexArray@{m3g::VertexArray}}
+\subsubsection[{duplicate}]{\setlength{\rightskip}{0pt plus 5cm}{\bf VertexArray} $\ast$ duplicate () const\hspace{0.3cm}{\tt  \mbox{[}virtual\mbox{]}}}}
+\label{classm3g_1_1VertexArray_f0dc6a5510bf837ef48129f344d666a8}
+
+
+このオブジェクトの複製の作成. 
+
+\hyperlink{classm3g_1_1Object3D_a25110dac934f867b83b73ad4741a0f4}{Object3D}を再定義しています。\hypertarget{classm3g_1_1VertexArray_79b1ffd7586fe23fb5e31661e4d296e3}{
 \index{m3g::VertexArray@{m3g::VertexArray}!get@{get}}
 \index{get@{get}!m3g::VertexArray@{m3g::VertexArray}}
-\subsubsection[{get}]{\setlength{\rightskip}{0pt plus 5cm}void get (int {\em first\_\-vertex}, \/  int {\em num\_\-vertices}, \/  float {\em scale}, \/  float $\ast$ {\em bias}, \/  float $\ast$ {\em values}) const}}
-\label{classm3g_1_1VertexArray_1adedf59e0c6a047242a3914ca52b929}
+\subsubsection[{get}]{\setlength{\rightskip}{0pt plus 5cm}void get (int {\em first\_\-vertex}, \/  int {\em num\_\-vertices}, \/  float $\ast$ {\em values}) const}}
+\label{classm3g_1_1VertexArray_79b1ffd7586fe23fb5e31661e4d296e3}
 
 
-値にscale,biasをかけてfloatで取り出すM3G非標準の関数. \hypertarget{classm3g_1_1VertexArray_575822f60d7b5e74ed51e94851123038}{
+32bit浮動小数点レンジの頂点データの取得. \hypertarget{classm3g_1_1VertexArray_575822f60d7b5e74ed51e94851123038}{
 \index{m3g::VertexArray@{m3g::VertexArray}!get@{get}}
 \index{get@{get}!m3g::VertexArray@{m3g::VertexArray}}
 \subsubsection[{get}]{\setlength{\rightskip}{0pt plus 5cm}void get (int {\em first\_\-vertex}, \/  int {\em num\_\-vertices}, \/  short $\ast$ {\em values}) const}}
 \label{classm3g_1_1VertexArray_575822f60d7b5e74ed51e94851123038}
 
 
-16bit頂点属性値のレンジの取得. \hypertarget{classm3g_1_1VertexArray_9d1b801a7c196a07553a5ef4a5473573}{
+16bitレンジの頂点データの取得. \hypertarget{classm3g_1_1VertexArray_9d1b801a7c196a07553a5ef4a5473573}{
 \index{m3g::VertexArray@{m3g::VertexArray}!get@{get}}
 \index{get@{get}!m3g::VertexArray@{m3g::VertexArray}}
 \subsubsection[{get}]{\setlength{\rightskip}{0pt plus 5cm}void get (int {\em first\_\-vertex}, \/  int {\em num\_\-vertices}, \/  char $\ast$ {\em values}) const}}
 \label{classm3g_1_1VertexArray_9d1b801a7c196a07553a5ef4a5473573}
 
 
-8bit頂点属性値のレンジの取得. \hypertarget{classm3g_1_1VertexArray_7016f51d2788e78fdd736efd040f5e5e}{
+8bitレンジの頂点データの取得. \hypertarget{classm3g_1_1VertexArray_7016f51d2788e78fdd736efd040f5e5e}{
 \index{m3g::VertexArray@{m3g::VertexArray}!getComponentCount@{getComponentCount}}
 \index{getComponentCount@{getComponentCount}!m3g::VertexArray@{m3g::VertexArray}}
 \subsubsection[{getComponentCount}]{\setlength{\rightskip}{0pt plus 5cm}int getComponentCount () const}}
@@ -101,7 +135,21 @@ class \textbf{VertexBuffer}}
 \label{classm3g_1_1VertexArray_9b7b78fbff0603779ec6bdd2a323c939}
 
 
-頂点要素のデータタイプ（サイズ）の取得. \hypertarget{classm3g_1_1VertexArray_c1c9b7f5b0dcd9c0310d7e77e10081ba}{
+頂点要素のデータタイプ（サイズ）の取得. \hypertarget{classm3g_1_1VertexArray_3e28ae5596cde78a980de02005a136f2}{
+\index{m3g::VertexArray@{m3g::VertexArray}!getOpenGLFormat@{getOpenGLFormat}}
+\index{getOpenGLFormat@{getOpenGLFormat}!m3g::VertexArray@{m3g::VertexArray}}
+\subsubsection[{getOpenGLFormat}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int getOpenGLFormat () const}}
+\label{classm3g_1_1VertexArray_3e28ae5596cde78a980de02005a136f2}
+
+
+OpenGLの型名を取得する. \hypertarget{classm3g_1_1VertexArray_720ecee697dbf11d5f90dc998817b39d}{
+\index{m3g::VertexArray@{m3g::VertexArray}!getOpenGLVBO@{getOpenGLVBO}}
+\index{getOpenGLVBO@{getOpenGLVBO}!m3g::VertexArray@{m3g::VertexArray}}
+\subsubsection[{getOpenGLVBO}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int getOpenGLVBO () const}}
+\label{classm3g_1_1VertexArray_720ecee697dbf11d5f90dc998817b39d}
+
+
+OpenGLのvbo名を取得する. \hypertarget{classm3g_1_1VertexArray_c1c9b7f5b0dcd9c0310d7e77e10081ba}{
 \index{m3g::VertexArray@{m3g::VertexArray}!getVertexCount@{getVertexCount}}
 \index{getVertexCount@{getVertexCount}!m3g::VertexArray@{m3g::VertexArray}}
 \subsubsection[{getVertexCount}]{\setlength{\rightskip}{0pt plus 5cm}int getVertexCount () const}}
@@ -117,23 +165,37 @@ class \textbf{VertexBuffer}}
 
 このVertexArrayクラスの情報を表示する。デバッグ用. 
 
-\hyperlink{classm3g_1_1Object3D_6fea17fa1532df3794f8cb39cb4f911f}{Object3D}を再定義しています。\hypertarget{classm3g_1_1VertexArray_ac10afe01263d9ac5e7f972a7263de4a}{
+\hyperlink{classm3g_1_1Object3D_6fea17fa1532df3794f8cb39cb4f911f}{Object3D}を再定義しています。\hypertarget{classm3g_1_1VertexArray_85d61f1cdd10b3b5126cdb20291ae276}{
+\index{m3g::VertexArray@{m3g::VertexArray}!print\_\-raw\_\-data@{print\_\-raw\_\-data}}
+\index{print\_\-raw\_\-data@{print\_\-raw\_\-data}!m3g::VertexArray@{m3g::VertexArray}}
+\subsubsection[{print\_\-raw\_\-data}]{\setlength{\rightskip}{0pt plus 5cm}std::ostream \& print\_\-raw\_\-data (std::ostream \& {\em out}) const}}
+\label{classm3g_1_1VertexArray_85d61f1cdd10b3b5126cdb20291ae276}
+
+
+このVertexArrayクラスの保持しているデータを表示する。デバッグ用. \hypertarget{classm3g_1_1VertexArray_24b9d666468f856b2bf09e450b20fdfb}{
 \index{m3g::VertexArray@{m3g::VertexArray}!set@{set}}
 \index{set@{set}!m3g::VertexArray@{m3g::VertexArray}}
-\subsubsection[{set}]{\setlength{\rightskip}{0pt plus 5cm}void set (int {\em first\_\-vertex}, \/  int {\em num\_\-vertices}, \/  short $\ast$ {\em values})}}
-\label{classm3g_1_1VertexArray_ac10afe01263d9ac5e7f972a7263de4a}
+\subsubsection[{set}]{\setlength{\rightskip}{0pt plus 5cm}void set (int {\em first\_\-vertex}, \/  int {\em num\_\-vertices}, \/  const float $\ast$ {\em values})}}
+\label{classm3g_1_1VertexArray_24b9d666468f856b2bf09e450b20fdfb}
 
 
-16bit頂点属性値のコピー. \hypertarget{classm3g_1_1VertexArray_501a9e6d9b5190b0a9dbfe58a6fd9d2e}{
+32bit浮動小数点頂点データの設定. \hypertarget{classm3g_1_1VertexArray_f417744f1798d293c85c5e7fb6e1e846}{
 \index{m3g::VertexArray@{m3g::VertexArray}!set@{set}}
 \index{set@{set}!m3g::VertexArray@{m3g::VertexArray}}
-\subsubsection[{set}]{\setlength{\rightskip}{0pt plus 5cm}void set (int {\em first\_\-vertex}, \/  int {\em num\_\-vertices}, \/  char $\ast$ {\em values})}}
-\label{classm3g_1_1VertexArray_501a9e6d9b5190b0a9dbfe58a6fd9d2e}
+\subsubsection[{set}]{\setlength{\rightskip}{0pt plus 5cm}void set (int {\em first\_\-vertex}, \/  int {\em num\_\-vertices}, \/  const short $\ast$ {\em values})}}
+\label{classm3g_1_1VertexArray_f417744f1798d293c85c5e7fb6e1e846}
 
 
-8bit頂点属性値のコピー. 
+16bit頂点データの設定. \hypertarget{classm3g_1_1VertexArray_c92a86c7439c8e38c7e5b69e3eca3ee1}{
+\index{m3g::VertexArray@{m3g::VertexArray}!set@{set}}
+\index{set@{set}!m3g::VertexArray@{m3g::VertexArray}}
+\subsubsection[{set}]{\setlength{\rightskip}{0pt plus 5cm}void set (int {\em first\_\-vertex}, \/  int {\em num\_\-vertices}, \/  const char $\ast$ {\em values})}}
+\label{classm3g_1_1VertexArray_c92a86c7439c8e38c7e5b69e3eca3ee1}
+
+
+8bit頂点データの設定. 
 
 このクラスの説明は次のファイルから生成されました:\begin{CompactItemize}
 \item 
-/work/desktop-m3g/src/VertexArray.hpp\item 
-/work/desktop-m3g/src/VertexArray.cpp\end{CompactItemize}
+/work/workspace.desktop-m3g/src/VertexArray.hpp\item 
+/work/workspace.desktop-m3g/src/VertexArray.cpp\end{CompactItemize}

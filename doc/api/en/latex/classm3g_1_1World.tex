@@ -7,7 +7,7 @@
 Inheritance diagram for World::\begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[height=5cm]{classm3g_1_1World}
+\includegraphics[height=6cm]{classm3g_1_1World}
 \end{center}
 \end{figure}
 \subsection*{Public Member Functions}
@@ -16,6 +16,8 @@ Inheritance diagram for World::\begin{figure}[H]
 \hyperlink{classm3g_1_1World_75e827b8787e735882f60c266d58e02e}{World} ()
 \item 
 virtual \hyperlink{classm3g_1_1World_bd170ded455f0b2273c1fe06da6ea0cb}{$\sim$World} ()
+\item 
+\hyperlink{classm3g_1_1World}{World} $\ast$ \hyperlink{classm3g_1_1World_efde97aaf753d48fff769d9011f187f2}{duplicate} () const 
 \item 
 virtual int \hyperlink{classm3g_1_1World_8aad1ceab4c2a03609c8a42324ce484d}{animate} (int world\_\-time)
 \item 
@@ -28,11 +30,8 @@ void \hyperlink{classm3g_1_1World_dd9a82b335e8521592ad410c662a5cfd}{setActiveCam
 void \hyperlink{classm3g_1_1World_6193765c76d6dc0450f264918ebe7e1c}{setBackground} (\hyperlink{classm3g_1_1Background}{Background} $\ast$background)
 \item 
 virtual std::ostream \& \hyperlink{classm3g_1_1World_6fea17fa1532df3794f8cb39cb4f911f}{print} (std::ostream \&out) const 
-\end{CompactItemize}
-\subsection*{Protected Member Functions}
-\begin{CompactItemize}
 \item 
-virtual void \hyperlink{classm3g_1_1World_1efcb1973989d9963d5bd6d03065d389}{render} (int pass, int index=0) const 
+virtual void \hyperlink{classm3g_1_1World_8babc8a79b78615da51161e94029eea9}{render} (\hyperlink{structm3g_1_1RenderState}{RenderState} \&state) const 
 \end{CompactItemize}
 \subsection*{Friends}
 \begin{CompactItemize}
@@ -74,7 +73,16 @@ Destructs this objects.
 
 Updates all animated properties in this \hyperlink{classm3g_1_1Object3D}{Object3D} and all Object3Ds that are reachable from this \hyperlink{classm3g_1_1Object3D}{Object3D}. 
 
-Reimplemented from \hyperlink{classm3g_1_1Node_8aad1ceab4c2a03609c8a42324ce484d}{Node}.\hypertarget{classm3g_1_1World_812e01ec4fd0fd872b0ca5ea6a30b2f6}{
+Reimplemented from \hyperlink{classm3g_1_1Node_8aad1ceab4c2a03609c8a42324ce484d}{Node}.\hypertarget{classm3g_1_1World_efde97aaf753d48fff769d9011f187f2}{
+\index{m3g::World@{m3g::World}!duplicate@{duplicate}}
+\index{duplicate@{duplicate}!m3g::World@{m3g::World}}
+\subsubsection[{duplicate}]{\setlength{\rightskip}{0pt plus 5cm}{\bf World} $\ast$ duplicate () const\hspace{0.3cm}{\tt  \mbox{[}virtual\mbox{]}}}}
+\label{classm3g_1_1World_efde97aaf753d48fff769d9011f187f2}
+
+
+Creates a duplicate of this \hyperlink{classm3g_1_1Object3D}{Object3D}. 
+
+Reimplemented from \hyperlink{classm3g_1_1Node_0b9f7531a4b56d34f47aeb1fff0d37e0}{Node}.\hypertarget{classm3g_1_1World_812e01ec4fd0fd872b0ca5ea6a30b2f6}{
 \index{m3g::World@{m3g::World}!getActiveCamera@{getActiveCamera}}
 \index{getActiveCamera@{getActiveCamera}!m3g::World@{m3g::World}}
 \subsubsection[{getActiveCamera}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Camera} $\ast$ getActiveCamera () const}}
@@ -97,18 +105,18 @@ Retrieves the background settings of this \hyperlink{classm3g_1_1World}{World}. 
 
 Print out information of this object, for debug only. 
 
-Reimplemented from \hyperlink{classm3g_1_1Node_6fea17fa1532df3794f8cb39cb4f911f}{Node}.\hypertarget{classm3g_1_1World_1efcb1973989d9963d5bd6d03065d389}{
+Reimplemented from \hyperlink{classm3g_1_1Node_6fea17fa1532df3794f8cb39cb4f911f}{Node}.\hypertarget{classm3g_1_1World_8babc8a79b78615da51161e94029eea9}{
 \index{m3g::World@{m3g::World}!render@{render}}
 \index{render@{render}!m3g::World@{m3g::World}}
-\subsubsection[{render}]{\setlength{\rightskip}{0pt plus 5cm}void render (int {\em pass}, \/  int {\em index} = {\tt 0}) const\hspace{0.3cm}{\tt  \mbox{[}protected, virtual\mbox{]}}}}
-\label{classm3g_1_1World_1efcb1973989d9963d5bd6d03065d389}
+\subsubsection[{render}]{\setlength{\rightskip}{0pt plus 5cm}void render ({\bf RenderState} \& {\em state}) const\hspace{0.3cm}{\tt  \mbox{[}virtual\mbox{]}}}}
+\label{classm3g_1_1World_8babc8a79b78615da51161e94029eea9}
 
 
 Render this object.
 
-Note: \hyperlink{classm3g_1_1World}{World} should be rendered via all rendering pass. pass=0: render background and camera. pass=1: render lights. pass=2: render objets. 
+Note: \hyperlink{classm3g_1_1World}{World} should be rendered via all rendering pass. pass=-1: setup valid layers. pass=0: render background and camera. pass=1: render lights. pass=2: render objets. 
 
-Reimplemented from \hyperlink{classm3g_1_1Node_1efcb1973989d9963d5bd6d03065d389}{Node}.\hypertarget{classm3g_1_1World_dd9a82b335e8521592ad410c662a5cfd}{
+Reimplemented from \hyperlink{classm3g_1_1Node_8babc8a79b78615da51161e94029eea9}{Node}.\hypertarget{classm3g_1_1World_dd9a82b335e8521592ad410c662a5cfd}{
 \index{m3g::World@{m3g::World}!setActiveCamera@{setActiveCamera}}
 \index{setActiveCamera@{setActiveCamera}!m3g::World@{m3g::World}}
 \subsubsection[{setActiveCamera}]{\setlength{\rightskip}{0pt plus 5cm}void setActiveCamera ({\bf Camera} $\ast$ {\em camera})}}
@@ -126,5 +134,5 @@ Sets the \hyperlink{classm3g_1_1Background}{Background} object for this \hyperli
 
 The documentation for this class was generated from the following files:\begin{CompactItemize}
 \item 
-/work/desktop-m3g/src/World.hpp\item 
-/work/desktop-m3g/src/World.cpp\end{CompactItemize}
+/work/workspace.desktop-m3g/src/World.hpp\item 
+/work/workspace.desktop-m3g/src/World.cpp\end{CompactItemize}

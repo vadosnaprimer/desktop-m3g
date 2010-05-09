@@ -7,15 +7,15 @@
 Inheritance diagram for Light::\begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[height=4cm]{classm3g_1_1Light}
+\includegraphics[height=5cm]{classm3g_1_1Light}
 \end{center}
 \end{figure}
 \subsection*{Classes}
 \begin{CompactItemize}
 \item 
-struct \textbf{Attenuation}
+struct \hyperlink{structm3g_1_1Light_1_1Attenuation}{Attenuation}
 \item 
-struct \textbf{Spot}
+struct \hyperlink{structm3g_1_1Light_1_1Spot}{Spot}
 \end{CompactItemize}
 \subsection*{Public Member Functions}
 \begin{CompactItemize}
@@ -23,6 +23,8 @@ struct \textbf{Spot}
 \hyperlink{classm3g_1_1Light_7f8a7be05225f470c200f7e4ff914a3c}{Light} ()
 \item 
 virtual \hyperlink{classm3g_1_1Light_f50d3d8cdb323e1a9fbd7bfac3aeba06}{$\sim$Light} ()
+\item 
+\hyperlink{classm3g_1_1Light}{Light} $\ast$ \hyperlink{classm3g_1_1Light_7a41af040d0c1566358d84f089cd0cd1}{duplicate} () const 
 \item 
 virtual void \hyperlink{classm3g_1_1Light_415c0b110f95410ded9b85e5d99a496b}{addAnimationTrack} (\hyperlink{classm3g_1_1AnimationTrack}{AnimationTrack} $\ast$animation\_\-track)
 \item 
@@ -57,6 +59,36 @@ void \hyperlink{classm3g_1_1Light_30ce206b37f6ed5e918fbc75b3f91072}{setSpotAngle
 void \hyperlink{classm3g_1_1Light_787eb66801e17d0412559598326ce19d}{setSpotExponent} (float exponent)
 \item 
 virtual std::ostream \& \hyperlink{classm3g_1_1Light_6fea17fa1532df3794f8cb39cb4f911f}{print} (std::ostream \&out) const 
+\item 
+virtual void \hyperlink{classm3g_1_1Light_8babc8a79b78615da51161e94029eea9}{render} (\hyperlink{structm3g_1_1RenderState}{RenderState} \&state) const 
+\end{CompactItemize}
+\subsection*{Public Attributes}
+\begin{CompactItemize}
+\item 
+\hypertarget{classm3g_1_1Light_1ea5d0cb93f22f7d0fdf804bd68c3326}{
+int \textbf{mode}}
+\label{classm3g_1_1Light_1ea5d0cb93f22f7d0fdf804bd68c3326}
+
+\item 
+\hypertarget{classm3g_1_1Light_0fd02fb9277ffcb35a75066ffe95e8c7}{
+int \textbf{color}}
+\label{classm3g_1_1Light_0fd02fb9277ffcb35a75066ffe95e8c7}
+
+\item 
+\hypertarget{classm3g_1_1Light_299ec0c42ccc5a2d79d1739428ac3210}{
+int \textbf{intensity}}
+\label{classm3g_1_1Light_299ec0c42ccc5a2d79d1739428ac3210}
+
+\item 
+\hypertarget{classm3g_1_1Light_1569207c73e72f9b3ceeaba71b985378}{
+\hyperlink{structm3g_1_1Light_1_1Attenuation}{Attenuation} \textbf{attenuation}}
+\label{classm3g_1_1Light_1569207c73e72f9b3ceeaba71b985378}
+
+\item 
+\hypertarget{classm3g_1_1Light_8c48692471265603559309c9b2fd65a1}{
+\hyperlink{structm3g_1_1Light_1_1Spot}{Spot} \textbf{spot}}
+\label{classm3g_1_1Light_8c48692471265603559309c9b2fd65a1}
+
 \end{CompactItemize}
 \subsection*{Static Public Attributes}
 \begin{CompactItemize}
@@ -123,7 +155,16 @@ Reimplemented from \hyperlink{classm3g_1_1Node_415c0b110f95410ded9b85e5d99a496b}
 
 Updates all animated properties in this \hyperlink{classm3g_1_1Object3D}{Object3D} and all Object3Ds that are reachable from this \hyperlink{classm3g_1_1Object3D}{Object3D}. 
 
-Reimplemented from \hyperlink{classm3g_1_1Node_8aad1ceab4c2a03609c8a42324ce484d}{Node}.\hypertarget{classm3g_1_1Light_4cfa1931c265ec3412fe3f6408a1b4f5}{
+Reimplemented from \hyperlink{classm3g_1_1Node_8aad1ceab4c2a03609c8a42324ce484d}{Node}.\hypertarget{classm3g_1_1Light_7a41af040d0c1566358d84f089cd0cd1}{
+\index{m3g::Light@{m3g::Light}!duplicate@{duplicate}}
+\index{duplicate@{duplicate}!m3g::Light@{m3g::Light}}
+\subsubsection[{duplicate}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Light} $\ast$ duplicate () const\hspace{0.3cm}{\tt  \mbox{[}virtual\mbox{]}}}}
+\label{classm3g_1_1Light_7a41af040d0c1566358d84f089cd0cd1}
+
+
+Creates a duplicate of this \hyperlink{classm3g_1_1Object3D}{Object3D}. 
+
+Reimplemented from \hyperlink{classm3g_1_1Node_0b9f7531a4b56d34f47aeb1fff0d37e0}{Node}.\hypertarget{classm3g_1_1Light_4cfa1931c265ec3412fe3f6408a1b4f5}{
 \index{m3g::Light@{m3g::Light}!getColor@{getColor}}
 \index{getColor@{getColor}!m3g::Light@{m3g::Light}}
 \subsubsection[{getColor}]{\setlength{\rightskip}{0pt plus 5cm}int getColor () const}}
@@ -188,7 +229,18 @@ Sets the spot exponent for this \hyperlink{classm3g_1_1Light}{Light}. \hypertarg
 
 Print out information of this object, for debug only. 
 
-Reimplemented from \hyperlink{classm3g_1_1Node_6fea17fa1532df3794f8cb39cb4f911f}{Node}.\hypertarget{classm3g_1_1Light_391c5cff137fc2e810f5129a5381196f}{
+Reimplemented from \hyperlink{classm3g_1_1Node_6fea17fa1532df3794f8cb39cb4f911f}{Node}.\hypertarget{classm3g_1_1Light_8babc8a79b78615da51161e94029eea9}{
+\index{m3g::Light@{m3g::Light}!render@{render}}
+\index{render@{render}!m3g::Light@{m3g::Light}}
+\subsubsection[{render}]{\setlength{\rightskip}{0pt plus 5cm}void render ({\bf RenderState} \& {\em state}) const\hspace{0.3cm}{\tt  \mbox{[}virtual\mbox{]}}}}
+\label{classm3g_1_1Light_8babc8a79b78615da51161e94029eea9}
+
+
+Render this object, for inner use.
+
+Note: \hyperlink{classm3g_1_1Light}{Light} should be rendered only at first rendering pass(pass=1). In other cases, do nothing. 
+
+Reimplemented from \hyperlink{classm3g_1_1Node_8babc8a79b78615da51161e94029eea9}{Node}.\hypertarget{classm3g_1_1Light_391c5cff137fc2e810f5129a5381196f}{
 \index{m3g::Light@{m3g::Light}!setAttenuation@{setAttenuation}}
 \index{setAttenuation@{setAttenuation}!m3g::Light@{m3g::Light}}
 \subsubsection[{setAttenuation}]{\setlength{\rightskip}{0pt plus 5cm}void setAttenuation (float {\em constant}, \/  float {\em linear}, \/  float {\em quadratic})}}
@@ -265,5 +317,5 @@ A paramter to setMode, specifying an spot light source.
 
 The documentation for this class was generated from the following files:\begin{CompactItemize}
 \item 
-/work/desktop-m3g/src/Light.hpp\item 
-/work/desktop-m3g/src/Light.cpp\end{CompactItemize}
+/work/workspace.desktop-m3g/src/Light.hpp\item 
+/work/workspace.desktop-m3g/src/Light.cpp\end{CompactItemize}

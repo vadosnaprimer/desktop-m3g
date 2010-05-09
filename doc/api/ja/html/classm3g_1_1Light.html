@@ -32,9 +32,9 @@ Lightに対する継承グラフ</div>
 
 <p><center><img src="classm3g_1_1Light.png" usemap="#Light_map" border="0" alt=""></center>
 <map name="Light_map">
-<area href="classm3g_1_1Node.html" alt="Node" shape="rect" coords="0,112,93,136">
-<area href="classm3g_1_1Transformable.html" alt="Transformable" shape="rect" coords="0,56,93,80">
-<area href="classm3g_1_1Object3D.html" alt="Object3D" shape="rect" coords="0,0,93,24">
+<area href="classm3g_1_1Node.html" alt="Node" shape="rect" coords="0,168,93,192">
+<area href="classm3g_1_1Transformable.html" alt="Transformable" shape="rect" coords="0,112,93,136">
+<area href="classm3g_1_1Object3D.html" alt="Object3D" shape="rect" coords="0,56,93,80">
 </map>
 </div>
 
@@ -42,14 +42,16 @@ Lightに対する継承グラフ</div>
 <a href="classm3g_1_1Light-members.html">すべてのメンバ一覧</a><table border="0" cellpadding="0" cellspacing="0">
 <tr><td></td></tr>
 <tr><td colspan="2"><br><h2>構成</h2></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><b>Attenuation</b></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="structm3g_1_1Light_1_1Attenuation.html">Attenuation</a></td></tr>
 
-<tr><td class="memItemLeft" nowrap align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><b>Spot</b></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="structm3g_1_1Light_1_1Spot.html">Spot</a></td></tr>
 
 <tr><td colspan="2"><br><h2>Public メソッド</h2></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Light.html#7f8a7be05225f470c200f7e4ff914a3c">Light</a> ()</td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">virtual&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Light.html#f50d3d8cdb323e1a9fbd7bfac3aeba06">~Light</a> ()</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="el" href="classm3g_1_1Light.html">Light</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Light.html#7a41af040d0c1566358d84f089cd0cd1">duplicate</a> () const </td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Light.html#415c0b110f95410ded9b85e5d99a496b">addAnimationTrack</a> (<a class="el" href="classm3g_1_1AnimationTrack.html">AnimationTrack</a> *animation_track)</td></tr>
 
@@ -84,6 +86,24 @@ Lightに対する継承グラフ</div>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Light.html#787eb66801e17d0412559598326ce19d">setSpotExponent</a> (float exponent)</td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">virtual std::ostream &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Light.html#6fea17fa1532df3794f8cb39cb4f911f">print</a> (std::ostream &amp;out) const </td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Light.html#8babc8a79b78615da51161e94029eea9">render</a> (<a class="el" href="structm3g_1_1RenderState.html">RenderState</a> &amp;state) const </td></tr>
+
+<tr><td colspan="2"><br><h2>Public 変数</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="1ea5d0cb93f22f7d0fdf804bd68c3326"></a><!-- doxytag: member="m3g::Light::mode" ref="1ea5d0cb93f22f7d0fdf804bd68c3326" args="" -->
+int&nbsp;</td><td class="memItemRight" valign="bottom"><b>mode</b></td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="0fd02fb9277ffcb35a75066ffe95e8c7"></a><!-- doxytag: member="m3g::Light::color" ref="0fd02fb9277ffcb35a75066ffe95e8c7" args="" -->
+int&nbsp;</td><td class="memItemRight" valign="bottom"><b>color</b></td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="299ec0c42ccc5a2d79d1739428ac3210"></a><!-- doxytag: member="m3g::Light::intensity" ref="299ec0c42ccc5a2d79d1739428ac3210" args="" -->
+int&nbsp;</td><td class="memItemRight" valign="bottom"><b>intensity</b></td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="1569207c73e72f9b3ceeaba71b985378"></a><!-- doxytag: member="m3g::Light::attenuation" ref="1569207c73e72f9b3ceeaba71b985378" args="" -->
+<a class="el" href="structm3g_1_1Light_1_1Attenuation.html">Attenuation</a>&nbsp;</td><td class="memItemRight" valign="bottom"><b>attenuation</b></td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="8c48692471265603559309c9b2fd65a1"></a><!-- doxytag: member="m3g::Light::spot" ref="8c48692471265603559309c9b2fd65a1" args="" -->
+<a class="el" href="structm3g_1_1Light_1_1Spot.html">Spot</a>&nbsp;</td><td class="memItemRight" valign="bottom"><b>spot</b></td></tr>
 
 <tr><td colspan="2"><br><h2>Static Public 変数</h2></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">static const int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Light.html#4cf648a82d9de62a1fb15f4277049594">AMBIENT</a> = 128</td></tr>
@@ -184,6 +204,27 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>World</b></td></tr>
 <p>
 アニメーションの更新. 
 <p><a class="el" href="classm3g_1_1Node.html#8aad1ceab4c2a03609c8a42324ce484d">Node</a>を再定義しています。</p>
+
+</div>
+</div><p>
+<a class="anchor" name="7a41af040d0c1566358d84f089cd0cd1"></a><!-- doxytag: member="m3g::Light::duplicate" ref="7a41af040d0c1566358d84f089cd0cd1" args="() const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classm3g_1_1Light.html">Light</a> * duplicate           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const<code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+このオブジェクトの複製の作成. 
+<p><a class="el" href="classm3g_1_1Node.html#0b9f7531a4b56d34f47aeb1fff0d37e0">Node</a>を再定義しています。</p>
 
 </div>
 </div><p>
@@ -358,6 +399,29 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>World</b></td></tr>
 <p>
 このLightクラスの情報を表示する。デバッグ用. 
 <p><a class="el" href="classm3g_1_1Node.html#6fea17fa1532df3794f8cb39cb4f911f">Node</a>を再定義しています。</p>
+
+</div>
+</div><p>
+<a class="anchor" name="8babc8a79b78615da51161e94029eea9"></a><!-- doxytag: member="m3g::Light::render" ref="8babc8a79b78615da51161e94029eea9" args="(RenderState &amp;state) const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void render           </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structm3g_1_1RenderState.html">RenderState</a> &amp;&nbsp;</td>
+          <td class="paramname"> <em>state</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const<code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+このLightをレンダリングする内部使用の関数.<p>
+Note: <a class="el" href="classm3g_1_1Light.html">Light</a> should be rendered only at first rendering pass(pass=1). In other cases, do nothing. 
+<p><a class="el" href="classm3g_1_1Node.html#8babc8a79b78615da51161e94029eea9">Node</a>を再定義しています。</p>
 
 </div>
 </div><p>
@@ -558,9 +622,9 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>World</b></td></tr>
 </div>
 </div><p>
 <hr>このクラスの説明は次のファイルから生成されました:<ul>
-<li>/work/desktop-m3g/src/<a class="el" href="Light_8hpp-source.html">Light.hpp</a><li>/work/desktop-m3g/src/Light.cpp</ul>
+<li>/work/workspace.desktop-m3g/src/<a class="el" href="Light_8hpp-source.html">Light.hpp</a><li>/work/workspace.desktop-m3g/src/Light.cpp</ul>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Wed Apr 7 10:24:23 2010に生成されました。&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Mon May 10 08:47:26 2010に生成されました。&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.8 </small></address>
 </body>

@@ -24,14 +24,24 @@
   </div>
 </div>
 <div class="contents">
-<h1>クラス Graphics3D</h1><!-- doxytag: class="m3g::Graphics3D" --><code>#include &lt;<a class="el" href="Graphics3D_8hpp-source.html">Graphics3D.hpp</a>&gt;</code>
+<h1>クラス Graphics3D</h1><!-- doxytag: class="m3g::Graphics3D" --><!-- doxytag: inherits="m3g::Object" --><code>#include &lt;<a class="el" href="Graphics3D_8hpp-source.html">Graphics3D.hpp</a>&gt;</code>
 <p>
+<div class="dynheader">
+Graphics3Dに対する継承グラフ</div>
+<div class="dynsection">
+
+<p><center><img src="classm3g_1_1Graphics3D.png" usemap="#Graphics3D_map" border="0" alt=""></center>
+<map name="Graphics3D_map">
+</map>
+</div>
 
 <p>
 <a href="classm3g_1_1Graphics3D-members.html">すべてのメンバ一覧</a><table border="0" cellpadding="0" cellspacing="0">
 <tr><td></td></tr>
 <tr><td colspan="2"><br><h2>構成</h2></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><b>Viewport</b></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><b>DepthRange</b></td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="structm3g_1_1Graphics3D_1_1Viewport.html">Viewport</a></td></tr>
 
 <tr><td colspan="2"><br><h2>Public メソッド</h2></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Graphics3D.html#9b9347476fc10e57b31694ac8a628511">~Graphics3D</a> ()</td></tr>
@@ -88,8 +98,26 @@
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Graphics3D.html#0b4ec48e9c19060e9be5648c118c23b1">setViewport</a> (int x, int y, int width, int height)</td></tr>
 
+<tr><td class="memItemLeft" nowrap align="right" valign="top">std::ostream &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Graphics3D.html#6fea17fa1532df3794f8cb39cb4f911f">print</a> (std::ostream &amp;out) const </td></tr>
+
 <tr><td colspan="2"><br><h2>Static Public メソッド</h2></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">static <a class="el" href="classm3g_1_1Graphics3D.html">Graphics3D</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Graphics3D.html#da6d71754bfe755dd8204a9332e9ed47">getInstance</a> ()</td></tr>
+
+<tr><td colspan="2"><br><h2>Public 変数</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="6a0b80dfc7341ce8102a7cb1688aff0a"></a><!-- doxytag: member="m3g::Graphics3D::viewport" ref="6a0b80dfc7341ce8102a7cb1688aff0a" args="" -->
+<a class="el" href="structm3g_1_1Graphics3D_1_1Viewport.html">Viewport</a>&nbsp;</td><td class="memItemRight" valign="bottom"><b>viewport</b></td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="12e48d234a9d97ae438019a4c44b989c"></a><!-- doxytag: member="m3g::Graphics3D::depth_buffer_enable" ref="12e48d234a9d97ae438019a4c44b989c" args="" -->
+bool&nbsp;</td><td class="memItemRight" valign="bottom"><b>depth_buffer_enable</b></td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="b557fee5e49a2c2bcdf8803d25b464fb"></a><!-- doxytag: member="m3g::Graphics3D::hints" ref="b557fee5e49a2c2bcdf8803d25b464fb" args="" -->
+int&nbsp;</td><td class="memItemRight" valign="bottom"><b>hints</b></td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="c4e9c4de7572c6bdf18ecbba4ff8f97c"></a><!-- doxytag: member="m3g::Graphics3D::properties" ref="c4e9c4de7572c6bdf18ecbba4ff8f97c" args="" -->
+std::vector&lt; Property * &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><b>properties</b></td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="ac5360336501ffd544f72821c2f3fd3e"></a><!-- doxytag: member="m3g::Graphics3D::depth_range" ref="ac5360336501ffd544f72821c2f3fd3e" args="" -->
+DepthRange&nbsp;</td><td class="memItemRight" valign="bottom"><b>depth_range</b></td></tr>
 
 <tr><td colspan="2"><br><h2>Static Public 変数</h2></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="9df12c5332904e66a962e1bf2809a812"></a><!-- doxytag: member="m3g::Graphics3D::ANTIALIAS" ref="9df12c5332904e66a962e1bf2809a812" args="" -->
@@ -488,6 +516,26 @@ static const int&nbsp;</td><td class="memItemRight" valign="bottom"><b>TRUE_COLO
 カレントのレンダリングターゲットの深度バッファーが有効かどうかの問い合わせ. 
 </div>
 </div><p>
+<a class="anchor" name="6fea17fa1532df3794f8cb39cb4f911f"></a><!-- doxytag: member="m3g::Graphics3D::print" ref="6fea17fa1532df3794f8cb39cb4f911f" args="(std::ostream &amp;out) const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::ostream &amp; print           </td>
+          <td>(</td>
+          <td class="paramtype">std::ostream &amp;&nbsp;</td>
+          <td class="paramname"> <em>out</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+このオブジェクトの情報を表示する。デバッグ用. 
+</div>
+</div><p>
 <a class="anchor" name="3ffaaf0d0f1e97a07c7f30c9b5a5dd32"></a><!-- doxytag: member="m3g::Graphics3D::releaseTarget" ref="3ffaaf0d0f1e97a07c7f30c9b5a5dd32" args="() const " -->
 <div class="memitem">
 <div class="memproto">
@@ -798,9 +846,9 @@ NDC座標系からウィンドウ座標系に変換するさいの深度値の�
 </div>
 </div><p>
 <hr>このクラスの説明は次のファイルから生成されました:<ul>
-<li>/work/desktop-m3g/src/<a class="el" href="Graphics3D_8hpp-source.html">Graphics3D.hpp</a><li>/work/desktop-m3g/src/Graphics3D.cpp</ul>
+<li>/work/workspace.desktop-m3g/src/<a class="el" href="Graphics3D_8hpp-source.html">Graphics3D.hpp</a><li>/work/workspace.desktop-m3g/src/Graphics3D.cpp</ul>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Wed Apr 7 10:24:22 2010に生成されました。&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Mon May 10 08:47:25 2010に生成されました。&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.8 </small></address>
 </body>

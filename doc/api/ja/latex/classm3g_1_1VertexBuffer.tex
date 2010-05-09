@@ -7,7 +7,7 @@
 VertexBufferに対する継承グラフ:\begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[height=2cm]{classm3g_1_1VertexBuffer}
+\includegraphics[height=3cm]{classm3g_1_1VertexBuffer}
 \end{center}
 \end{figure}
 \subsection*{Public メソッド}
@@ -17,9 +17,11 @@ VertexBufferに対する継承グラフ:\begin{figure}[H]
 \item 
 virtual \hyperlink{classm3g_1_1VertexBuffer_0e5e1dbdc4295ff9aa1e15e0ce3624af}{$\sim$VertexBuffer} ()
 \item 
-virtual void \hyperlink{classm3g_1_1VertexBuffer_415c0b110f95410ded9b85e5d99a496b}{addAnimationTrack} (\hyperlink{classm3g_1_1AnimationTrack}{AnimationTrack} $\ast$animation\_\-track)
+\hyperlink{classm3g_1_1VertexBuffer}{VertexBuffer} $\ast$ \hyperlink{classm3g_1_1VertexBuffer_d069984e7455bfe074cab9497b47cadf}{duplicate} () const 
 \item 
-virtual int \hyperlink{classm3g_1_1VertexBuffer_82cfeb67ca66b93e2ca7bda9a4f0e2aa}{animate} (int time)
+virtual int \hyperlink{classm3g_1_1VertexBuffer_8aad1ceab4c2a03609c8a42324ce484d}{animate} (int world\_\-time)
+\item 
+virtual void \hyperlink{classm3g_1_1VertexBuffer_415c0b110f95410ded9b85e5d99a496b}{addAnimationTrack} (\hyperlink{classm3g_1_1AnimationTrack}{AnimationTrack} $\ast$animation\_\-track)
 \item 
 \hyperlink{classm3g_1_1VertexArray}{VertexArray} $\ast$ \hyperlink{classm3g_1_1VertexBuffer_e3bdc8503242a6d278230352d03e5893}{getColors} () const 
 \item 
@@ -33,7 +35,7 @@ int \hyperlink{classm3g_1_1VertexBuffer_4e33b93a98ce0632d51e7ae775ae5b1e}{getDef
 \item 
 void \hyperlink{classm3g_1_1VertexBuffer_e5a5933252e3ec3afa0a83698b5b3521}{setColors} (\hyperlink{classm3g_1_1VertexArray}{VertexArray} $\ast$colors)
 \item 
-void \hyperlink{classm3g_1_1VertexBuffer_ba88996ea63221b09b9f841aef0270ee}{setDefaultColor} (int rgb)
+void \hyperlink{classm3g_1_1VertexBuffer_57fc3a141397f1287061a204c128c1b3}{setDefaultColor} (int argb)
 \item 
 void \hyperlink{classm3g_1_1VertexBuffer_4aabe6277538d5aa8285759dab85002a}{setNormals} (\hyperlink{classm3g_1_1VertexArray}{VertexArray} $\ast$normals)
 \item 
@@ -42,11 +44,8 @@ void \hyperlink{classm3g_1_1VertexBuffer_527460407f488d5128bae7d0adb6da43}{setPo
 void \hyperlink{classm3g_1_1VertexBuffer_9fd3dd3f78138d654d18863e4f1329f4}{setTexCoords} (int index, \hyperlink{classm3g_1_1VertexArray}{VertexArray} $\ast$tex\_\-coords, float scale, float $\ast$bias)
 \item 
 virtual std::ostream \& \hyperlink{classm3g_1_1VertexBuffer_6fea17fa1532df3794f8cb39cb4f911f}{print} (std::ostream \&out) const 
-\end{CompactItemize}
-\subsection*{Protected メソッド}
-\begin{CompactItemize}
 \item 
-virtual void \hyperlink{classm3g_1_1VertexBuffer_4dadb21b568b0230fac106f15040138c}{findByObjectType} (int obj\_\-type, std::vector$<$ \hyperlink{classm3g_1_1Object3D}{Object3D} $\ast$ $>$ \&objs) const 
+virtual void \hyperlink{classm3g_1_1VertexBuffer_8babc8a79b78615da51161e94029eea9}{render} (\hyperlink{structm3g_1_1RenderState}{RenderState} \&state) const 
 \end{CompactItemize}
 \subsection*{フレンド}
 \begin{CompactItemize}
@@ -88,25 +87,25 @@ VertexBufferは頂点位置、法線、色、テクスチャー座標を保持�
 
 このObject3Dに指定されたアニメーショントラックを追加する。 既存のトラックの順番とインデックスは変更されるかもしれない. 
 
-\hyperlink{classm3g_1_1Object3D_415c0b110f95410ded9b85e5d99a496b}{Object3D}を再定義しています。\hypertarget{classm3g_1_1VertexBuffer_82cfeb67ca66b93e2ca7bda9a4f0e2aa}{
+\hyperlink{classm3g_1_1Object3D_415c0b110f95410ded9b85e5d99a496b}{Object3D}を再定義しています。\hypertarget{classm3g_1_1VertexBuffer_8aad1ceab4c2a03609c8a42324ce484d}{
 \index{m3g::VertexBuffer@{m3g::VertexBuffer}!animate@{animate}}
 \index{animate@{animate}!m3g::VertexBuffer@{m3g::VertexBuffer}}
 \subsubsection[{animate}]{\setlength{\rightskip}{0pt plus 5cm}int animate (int {\em world\_\-time})\hspace{0.3cm}{\tt  \mbox{[}virtual\mbox{]}}}}
-\label{classm3g_1_1VertexBuffer_82cfeb67ca66b93e2ca7bda9a4f0e2aa}
+\label{classm3g_1_1VertexBuffer_8aad1ceab4c2a03609c8a42324ce484d}
 
 
 このObject3D自身とここから到達できるObject3Dのアニメーテッドプロパティを更新する. 
 
-\hyperlink{classm3g_1_1Object3D_8aad1ceab4c2a03609c8a42324ce484d}{Object3D}を再定義しています。\hypertarget{classm3g_1_1VertexBuffer_4dadb21b568b0230fac106f15040138c}{
-\index{m3g::VertexBuffer@{m3g::VertexBuffer}!findByObjectType@{findByObjectType}}
-\index{findByObjectType@{findByObjectType}!m3g::VertexBuffer@{m3g::VertexBuffer}}
-\subsubsection[{findByObjectType}]{\setlength{\rightskip}{0pt plus 5cm}void findByObjectType (int {\em obj\_\-type}, \/  std::vector$<$ {\bf Object3D} $\ast$ $>$ \& {\em objs}) const\hspace{0.3cm}{\tt  \mbox{[}protected, virtual\mbox{]}}}}
-\label{classm3g_1_1VertexBuffer_4dadb21b568b0230fac106f15040138c}
+\hyperlink{classm3g_1_1Object3D_8aad1ceab4c2a03609c8a42324ce484d}{Object3D}を再定義しています。\hypertarget{classm3g_1_1VertexBuffer_d069984e7455bfe074cab9497b47cadf}{
+\index{m3g::VertexBuffer@{m3g::VertexBuffer}!duplicate@{duplicate}}
+\index{duplicate@{duplicate}!m3g::VertexBuffer@{m3g::VertexBuffer}}
+\subsubsection[{duplicate}]{\setlength{\rightskip}{0pt plus 5cm}{\bf VertexBuffer} $\ast$ duplicate () const\hspace{0.3cm}{\tt  \mbox{[}virtual\mbox{]}}}}
+\label{classm3g_1_1VertexBuffer_d069984e7455bfe074cab9497b47cadf}
 
 
-オブジェクトタイプを指定して検索するM3G非標準の関数. 
+このオブジェクトの複製の作成. 
 
-\hyperlink{classm3g_1_1Object3D_4dadb21b568b0230fac106f15040138c}{Object3D}を再定義しています。\hypertarget{classm3g_1_1VertexBuffer_e3bdc8503242a6d278230352d03e5893}{
+\hyperlink{classm3g_1_1Object3D_a25110dac934f867b83b73ad4741a0f4}{Object3D}を再定義しています。\hypertarget{classm3g_1_1VertexBuffer_e3bdc8503242a6d278230352d03e5893}{
 \index{m3g::VertexBuffer@{m3g::VertexBuffer}!getColors@{getColors}}
 \index{getColors@{getColors}!m3g::VertexBuffer@{m3g::VertexBuffer}}
 \subsubsection[{getColors}]{\setlength{\rightskip}{0pt plus 5cm}{\bf VertexArray} $\ast$ getColors () const}}
@@ -150,26 +149,37 @@ VertexBufferは頂点位置、法線、色、テクスチャー座標を保持�
 
 このVertexBufferクラスの情報を表示する。デバッグ用. 
 
-\hyperlink{classm3g_1_1Object3D_6fea17fa1532df3794f8cb39cb4f911f}{Object3D}を再定義しています。\hypertarget{classm3g_1_1VertexBuffer_e5a5933252e3ec3afa0a83698b5b3521}{
+\hyperlink{classm3g_1_1Object3D_6fea17fa1532df3794f8cb39cb4f911f}{Object3D}を再定義しています。\hypertarget{classm3g_1_1VertexBuffer_8babc8a79b78615da51161e94029eea9}{
+\index{m3g::VertexBuffer@{m3g::VertexBuffer}!render@{render}}
+\index{render@{render}!m3g::VertexBuffer@{m3g::VertexBuffer}}
+\subsubsection[{render}]{\setlength{\rightskip}{0pt plus 5cm}void render ({\bf RenderState} \& {\em state}) const\hspace{0.3cm}{\tt  \mbox{[}virtual\mbox{]}}}}
+\label{classm3g_1_1VertexBuffer_8babc8a79b78615da51161e94029eea9}
+
+
+このオブジェクトをレンダリングする内部使用の関数.
+
+Note: \hyperlink{classm3g_1_1VertexBuffer}{VertexBuffer} should be rendered only at second rendering pass(pass=2). In other cases, do nothing. 
+
+\hyperlink{classm3g_1_1Object3D_8babc8a79b78615da51161e94029eea9}{Object3D}を再定義しています。\hypertarget{classm3g_1_1VertexBuffer_e5a5933252e3ec3afa0a83698b5b3521}{
 \index{m3g::VertexBuffer@{m3g::VertexBuffer}!setColors@{setColors}}
 \index{setColors@{setColors}!m3g::VertexBuffer@{m3g::VertexBuffer}}
-\subsubsection[{setColors}]{\setlength{\rightskip}{0pt plus 5cm}void setColors ({\bf VertexArray} $\ast$ {\em colors})}}
+\subsubsection[{setColors}]{\setlength{\rightskip}{0pt plus 5cm}void setColors ({\bf VertexArray} $\ast$ {\em colors\_\-})}}
 \label{classm3g_1_1VertexBuffer_e5a5933252e3ec3afa0a83698b5b3521}
 
 
 このVertexBufferに頂点カラーを設定する.
 
-x:\mbox{[}-128,127\mbox{]} --$>$ y:\mbox{[}0,1\mbox{]} y = (x+128)/255 \hypertarget{classm3g_1_1VertexBuffer_ba88996ea63221b09b9f841aef0270ee}{
+x:\mbox{[}0,255\mbox{]} --$>$ y:\mbox{[}0,1\mbox{]} \hypertarget{classm3g_1_1VertexBuffer_57fc3a141397f1287061a204c128c1b3}{
 \index{m3g::VertexBuffer@{m3g::VertexBuffer}!setDefaultColor@{setDefaultColor}}
 \index{setDefaultColor@{setDefaultColor}!m3g::VertexBuffer@{m3g::VertexBuffer}}
-\subsubsection[{setDefaultColor}]{\setlength{\rightskip}{0pt plus 5cm}void setDefaultColor (int {\em rgb})}}
-\label{classm3g_1_1VertexBuffer_ba88996ea63221b09b9f841aef0270ee}
+\subsubsection[{setDefaultColor}]{\setlength{\rightskip}{0pt plus 5cm}void setDefaultColor (int {\em argb})}}
+\label{classm3g_1_1VertexBuffer_57fc3a141397f1287061a204c128c1b3}
 
 
 頂点カラーが設定されていないときのカラーを設定する. \hypertarget{classm3g_1_1VertexBuffer_4aabe6277538d5aa8285759dab85002a}{
 \index{m3g::VertexBuffer@{m3g::VertexBuffer}!setNormals@{setNormals}}
 \index{setNormals@{setNormals}!m3g::VertexBuffer@{m3g::VertexBuffer}}
-\subsubsection[{setNormals}]{\setlength{\rightskip}{0pt plus 5cm}void setNormals ({\bf VertexArray} $\ast$ {\em normals})}}
+\subsubsection[{setNormals}]{\setlength{\rightskip}{0pt plus 5cm}void setNormals ({\bf VertexArray} $\ast$ {\em normals\_\-})}}
 \label{classm3g_1_1VertexBuffer_4aabe6277538d5aa8285759dab85002a}
 
 
@@ -193,5 +203,5 @@ x:\mbox{[}-128,127\mbox{]} --$>$ y:\mbox{[}-1,1\mbox{]}, or x:\mbox{[}-32768,327
 
 このクラスの説明は次のファイルから生成されました:\begin{CompactItemize}
 \item 
-/work/desktop-m3g/src/VertexBuffer.hpp\item 
-/work/desktop-m3g/src/VertexBuffer.cpp\end{CompactItemize}
+/work/workspace.desktop-m3g/src/VertexBuffer.hpp\item 
+/work/workspace.desktop-m3g/src/VertexBuffer.cpp\end{CompactItemize}

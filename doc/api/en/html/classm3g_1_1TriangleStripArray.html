@@ -32,8 +32,8 @@ Inheritance diagram for TriangleStripArray:</div>
 
 <p><center><img src="classm3g_1_1TriangleStripArray.png" usemap="#TriangleStripArray_map" border="0" alt=""></center>
 <map name="TriangleStripArray_map">
-<area href="classm3g_1_1IndexBuffer.html" alt="IndexBuffer" shape="rect" coords="0,56,117,80">
-<area href="classm3g_1_1Object3D.html" alt="Object3D" shape="rect" coords="0,0,117,24">
+<area href="classm3g_1_1IndexBuffer.html" alt="IndexBuffer" shape="rect" coords="0,112,117,136">
+<area href="classm3g_1_1Object3D.html" alt="Object3D" shape="rect" coords="0,56,117,80">
 </map>
 </div>
 
@@ -47,18 +47,15 @@ Inheritance diagram for TriangleStripArray:</div>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">virtual&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1TriangleStripArray.html#1cb3853bf79b7710d57044da818d2cde">~TriangleStripArray</a> ()</td></tr>
 
+<tr><td class="memItemLeft" nowrap align="right" valign="top">virtual <a class="el" href="classm3g_1_1TriangleStripArray.html">TriangleStripArray</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1TriangleStripArray.html#1623fbdfe91eb2e9d4a67bece6a46904">duplicate</a> () const </td></tr>
+
 <tr><td class="memItemLeft" nowrap align="right" valign="top">virtual int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1TriangleStripArray.html#fe9ae2993ebcdb93d5ff26d57c81b73e">getIndexCount</a> () const </td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1TriangleStripArray.html#650953afac45099025a524ab160b911f">getIndices</a> (int *indices)</td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">virtual std::ostream &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1TriangleStripArray.html#6fea17fa1532df3794f8cb39cb4f911f">print</a> (std::ostream &amp;out) const </td></tr>
 
-<tr><td colspan="2"><br><h2>Protected Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1TriangleStripArray.html#1efcb1973989d9963d5bd6d03065d389">render</a> (int pass, int index=0) const </td></tr>
-
-<tr><td colspan="2"><br><h2>Friends</h2></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="1f61169bea98d63b51332345ccaea9d5"></a><!-- doxytag: member="m3g::TriangleStripArray::UnitTest::Test" ref="1f61169bea98d63b51332345ccaea9d5" args="" -->
-class&nbsp;</td><td class="memItemRight" valign="bottom"><b>UnitTest::Test</b></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1TriangleStripArray.html#8babc8a79b78615da51161e94029eea9">render</a> (<a class="el" href="structm3g_1_1RenderState.html">RenderState</a> &amp;state) const </td></tr>
 
 </table>
 <hr><a name="_details"></a><h2>Detailed Description</h2>
@@ -153,6 +150,27 @@ Destruct this object.
 </div>
 </div><p>
 <hr><h2>Member Function Documentation</h2>
+<a class="anchor" name="1623fbdfe91eb2e9d4a67bece6a46904"></a><!-- doxytag: member="m3g::TriangleStripArray::duplicate" ref="1623fbdfe91eb2e9d4a67bece6a46904" args="() const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classm3g_1_1TriangleStripArray.html">TriangleStripArray</a> * duplicate           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const<code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Creates a duplicate of this <a class="el" href="classm3g_1_1Object3D.html">Object3D</a>. 
+<p>Reimplemented from <a class="el" href="classm3g_1_1IndexBuffer.html#fab6fc0a0ec393e527f849c3af10ad76">IndexBuffer</a>.</p>
+
+</div>
+</div><p>
 <a class="anchor" name="fe9ae2993ebcdb93d5ff26d57c81b73e"></a><!-- doxytag: member="m3g::TriangleStripArray::getIndexCount" ref="fe9ae2993ebcdb93d5ff26d57c81b73e" args="() const " -->
 <div class="memitem">
 <div class="memproto">
@@ -170,7 +188,7 @@ Destruct this object.
 
 <p>
 Returns the number of indices in this buffer. 
-<p>Implements <a class="el" href="classm3g_1_1IndexBuffer.html#ac7d2c37f177b21195a81f00061ef94e">IndexBuffer</a>.</p>
+<p>Reimplemented from <a class="el" href="classm3g_1_1IndexBuffer.html#fe9ae2993ebcdb93d5ff26d57c81b73e">IndexBuffer</a>.</p>
 
 </div>
 </div><p>
@@ -192,7 +210,7 @@ Returns the number of indices in this buffer.
 
 <p>
 Retrieves vertex indices for the rendering primitives stored in this buffer. 
-<p>Implements <a class="el" href="classm3g_1_1IndexBuffer.html#59fb1eca8810ea3b028735c5dce53fca">IndexBuffer</a>.</p>
+<p>Reimplemented from <a class="el" href="classm3g_1_1IndexBuffer.html#650953afac45099025a524ab160b911f">IndexBuffer</a>.</p>
 
 </div>
 </div><p>
@@ -218,26 +236,17 @@ Print out information of this object, for debug only.
 
 </div>
 </div><p>
-<a class="anchor" name="1efcb1973989d9963d5bd6d03065d389"></a><!-- doxytag: member="m3g::TriangleStripArray::render" ref="1efcb1973989d9963d5bd6d03065d389" args="(int pass, int index=0) const " -->
+<a class="anchor" name="8babc8a79b78615da51161e94029eea9"></a><!-- doxytag: member="m3g::TriangleStripArray::render" ref="8babc8a79b78615da51161e94029eea9" args="(RenderState &amp;state) const " -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">void render           </td>
           <td>(</td>
-          <td class="paramtype">int&nbsp;</td>
-          <td class="paramname"> <em>pass</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&nbsp;</td>
-          <td class="paramname"> <em>index</em> = <code>0</code></td><td>&nbsp;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td><td> const<code> [protected, virtual]</code></td>
+          <td class="paramtype"><a class="el" href="structm3g_1_1RenderState.html">RenderState</a> &amp;&nbsp;</td>
+          <td class="paramname"> <em>state</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const<code> [virtual]</code></td>
         </tr>
       </table>
 </div>
@@ -246,14 +255,14 @@ Print out information of this object, for debug only.
 <p>
 Render this object, for inner use.<p>
 Note: <a class="el" href="classm3g_1_1TriangleStripArray.html">TriangleStripArray</a> should be rendered only at second rendering pass(pass=2). In other cases, do nothing. 
-<p>Reimplemented from <a class="el" href="classm3g_1_1IndexBuffer.html#1efcb1973989d9963d5bd6d03065d389">IndexBuffer</a>.</p>
+<p>Reimplemented from <a class="el" href="classm3g_1_1IndexBuffer.html#8babc8a79b78615da51161e94029eea9">IndexBuffer</a>.</p>
 
 </div>
 </div><p>
 <hr>The documentation for this class was generated from the following files:<ul>
-<li>/work/desktop-m3g/src/<a class="el" href="TriangleStripArray_8hpp-source.html">TriangleStripArray.hpp</a><li>/work/desktop-m3g/src/TriangleStripArray.cpp</ul>
+<li>/work/workspace.desktop-m3g/src/<a class="el" href="TriangleStripArray_8hpp-source.html">TriangleStripArray.hpp</a><li>/work/workspace.desktop-m3g/src/TriangleStripArray.cpp</ul>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Wed Apr 7 10:24:31 2010 by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Mon May 10 08:47:34 2010 by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.8 </small></address>
 </body>

@@ -32,7 +32,7 @@ Inheritance diagram for KeyframeSequence:</div>
 
 <p><center><img src="classm3g_1_1KeyframeSequence.png" usemap="#KeyframeSequence_map" border="0" alt=""></center>
 <map name="KeyframeSequence_map">
-<area href="classm3g_1_1Object3D.html" alt="Object3D" shape="rect" coords="0,0,122,24">
+<area href="classm3g_1_1Object3D.html" alt="Object3D" shape="rect" coords="0,56,122,80">
 </map>
 </div>
 
@@ -43,9 +43,11 @@ Inheritance diagram for KeyframeSequence:</div>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="structm3g_1_1KeyframeSequence_1_1ValidRange.html">ValidRange</a></td></tr>
 
 <tr><td colspan="2"><br><h2>Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1KeyframeSequence.html#0c07c479375c11ff94cff02c1267f0d0">KeyframeSequence</a> (int numKeyframes, int numComponents, int interpolation)</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1KeyframeSequence.html#f48cc8113ad7300d72840b18529aaf0e">KeyframeSequence</a> (int num_keyframes, int num_components, int interpolation)</td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">virtual&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1KeyframeSequence.html#464f5929e3302c788ca626c11ca8d656">~KeyframeSequence</a> ()</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">virtual <a class="el" href="classm3g_1_1KeyframeSequence.html">KeyframeSequence</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1KeyframeSequence.html#f925b7c3107b6cdba08dbb045b203b4f">duplicate</a> () const </td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1KeyframeSequence.html#7016f51d2788e78fdd736efd040f5e5e">getComponentCount</a> () const </td></tr>
 
@@ -94,7 +96,7 @@ void&nbsp;</td><td class="memItemRight" valign="bottom"><b>setKeyframe</b> (int 
 </table>
 <hr><a name="_details"></a><h2>Detailed Description</h2>
 Encapsulates animatin data as a sequence of time-stamped, vector-valued keyframes. <hr><h2>Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" name="0c07c479375c11ff94cff02c1267f0d0"></a><!-- doxytag: member="m3g::KeyframeSequence::KeyframeSequence" ref="0c07c479375c11ff94cff02c1267f0d0" args="(int numKeyframes, int numComponents, int interpolation)" -->
+<a class="anchor" name="f48cc8113ad7300d72840b18529aaf0e"></a><!-- doxytag: member="m3g::KeyframeSequence::KeyframeSequence" ref="f48cc8113ad7300d72840b18529aaf0e" args="(int num_keyframes, int num_components, int interpolation)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -102,13 +104,13 @@ Encapsulates animatin data as a sequence of time-stamped, vector-valued keyframe
           <td class="memname"><a class="el" href="classm3g_1_1KeyframeSequence.html">KeyframeSequence</a>           </td>
           <td>(</td>
           <td class="paramtype">int&nbsp;</td>
-          <td class="paramname"> <em>numKeyframes</em>, </td>
+          <td class="paramname"> <em>num_keyframes</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">int&nbsp;</td>
-          <td class="paramname"> <em>numComponents</em>, </td>
+          <td class="paramname"> <em>num_components</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -149,6 +151,27 @@ Destruct this object.
 </div>
 </div><p>
 <hr><h2>Member Function Documentation</h2>
+<a class="anchor" name="f925b7c3107b6cdba08dbb045b203b4f"></a><!-- doxytag: member="m3g::KeyframeSequence::duplicate" ref="f925b7c3107b6cdba08dbb045b203b4f" args="() const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classm3g_1_1KeyframeSequence.html">KeyframeSequence</a> * duplicate           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const<code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Creates a duplicate of this <a class="el" href="classm3g_1_1Object3D.html">Object3D</a>. 
+<p>Reimplemented from <a class="el" href="classm3g_1_1Object3D.html#a25110dac934f867b83b73ad4741a0f4">Object3D</a>.</p>
+
+</div>
+</div><p>
 <a class="anchor" name="7016f51d2788e78fdd736efd040f5e5e"></a><!-- doxytag: member="m3g::KeyframeSequence::getComponentCount" ref="7016f51d2788e78fdd736efd040f5e5e" args="() const " -->
 <div class="memitem">
 <div class="memproto">
@@ -299,7 +322,7 @@ Returns the total number of keyframes in this sequence.
 <div class="memdoc">
 
 <p>
-Retrieves the current repeat mode of this <a class="el" href="classm3g_1_1Keyframe.html">Keyframe</a> Sequence. 
+Retrieves the current repeat mode of this Keyframe Sequence. 
 </div>
 </div><p>
 <a class="anchor" name="b7e54386674cefdb8f5fa65ce5435b50"></a><!-- doxytag: member="m3g::KeyframeSequence::getValidRangeFirst" ref="b7e54386674cefdb8f5fa65ce5435b50" args="() const " -->
@@ -538,9 +561,9 @@ A constructor parameter that specifies stepping from one keyframe value to the n
 </div>
 </div><p>
 <hr>The documentation for this class was generated from the following files:<ul>
-<li>/work/desktop-m3g/src/<a class="el" href="KeyframeSequence_8hpp-source.html">KeyframeSequence.hpp</a><li>/work/desktop-m3g/src/KeyframeSequence.cpp</ul>
+<li>/work/workspace.desktop-m3g/src/<a class="el" href="KeyframeSequence_8hpp-source.html">KeyframeSequence.hpp</a><li>/work/workspace.desktop-m3g/src/KeyframeSequence.cpp</ul>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Wed Apr 7 10:24:29 2010 by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Mon May 10 08:47:31 2010 by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.8 </small></address>
 </body>

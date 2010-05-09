@@ -7,7 +7,7 @@
 Inheritance diagram for KeyframeSequence::\begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[height=2cm]{classm3g_1_1KeyframeSequence}
+\includegraphics[height=3cm]{classm3g_1_1KeyframeSequence}
 \end{center}
 \end{figure}
 \subsection*{Classes}
@@ -18,9 +18,11 @@ struct \hyperlink{structm3g_1_1KeyframeSequence_1_1ValidRange}{ValidRange}
 \subsection*{Public Member Functions}
 \begin{CompactItemize}
 \item 
-\hyperlink{classm3g_1_1KeyframeSequence_0c07c479375c11ff94cff02c1267f0d0}{KeyframeSequence} (int numKeyframes, int numComponents, int interpolation)
+\hyperlink{classm3g_1_1KeyframeSequence_f48cc8113ad7300d72840b18529aaf0e}{KeyframeSequence} (int num\_\-keyframes, int num\_\-components, int interpolation)
 \item 
 virtual \hyperlink{classm3g_1_1KeyframeSequence_464f5929e3302c788ca626c11ca8d656}{$\sim$KeyframeSequence} ()
+\item 
+virtual \hyperlink{classm3g_1_1KeyframeSequence}{KeyframeSequence} $\ast$ \hyperlink{classm3g_1_1KeyframeSequence_f925b7c3107b6cdba08dbb045b203b4f}{duplicate} () const 
 \item 
 int \hyperlink{classm3g_1_1KeyframeSequence_7016f51d2788e78fdd736efd040f5e5e}{getComponentCount} () const 
 \item 
@@ -76,11 +78,11 @@ static const int \hyperlink{classm3g_1_1KeyframeSequence_07dc1c0bf7f480095150d1b
 Encapsulates animatin data as a sequence of time-stamped, vector-valued keyframes. 
 
 \subsection{Constructor \& Destructor Documentation}
-\hypertarget{classm3g_1_1KeyframeSequence_0c07c479375c11ff94cff02c1267f0d0}{
+\hypertarget{classm3g_1_1KeyframeSequence_f48cc8113ad7300d72840b18529aaf0e}{
 \index{m3g::KeyframeSequence@{m3g::KeyframeSequence}!KeyframeSequence@{KeyframeSequence}}
 \index{KeyframeSequence@{KeyframeSequence}!m3g::KeyframeSequence@{m3g::KeyframeSequence}}
-\subsubsection[{KeyframeSequence}]{\setlength{\rightskip}{0pt plus 5cm}{\bf KeyframeSequence} (int {\em numKeyframes}, \/  int {\em numComponents}, \/  int {\em interpolation})}}
-\label{classm3g_1_1KeyframeSequence_0c07c479375c11ff94cff02c1267f0d0}
+\subsubsection[{KeyframeSequence}]{\setlength{\rightskip}{0pt plus 5cm}{\bf KeyframeSequence} (int {\em num\_\-keyframes}, \/  int {\em num\_\-components}, \/  int {\em interpolation})}}
+\label{classm3g_1_1KeyframeSequence_f48cc8113ad7300d72840b18529aaf0e}
 
 
 Constructs a new2 keyframe sequence with specified interpolation method, number of components per keyframe, and number of keyframes. \hypertarget{classm3g_1_1KeyframeSequence_464f5929e3302c788ca626c11ca8d656}{
@@ -93,7 +95,16 @@ Constructs a new2 keyframe sequence with specified interpolation method, number 
 Destruct this object. 
 
 \subsection{Member Function Documentation}
-\hypertarget{classm3g_1_1KeyframeSequence_7016f51d2788e78fdd736efd040f5e5e}{
+\hypertarget{classm3g_1_1KeyframeSequence_f925b7c3107b6cdba08dbb045b203b4f}{
+\index{m3g::KeyframeSequence@{m3g::KeyframeSequence}!duplicate@{duplicate}}
+\index{duplicate@{duplicate}!m3g::KeyframeSequence@{m3g::KeyframeSequence}}
+\subsubsection[{duplicate}]{\setlength{\rightskip}{0pt plus 5cm}{\bf KeyframeSequence} $\ast$ duplicate () const\hspace{0.3cm}{\tt  \mbox{[}virtual\mbox{]}}}}
+\label{classm3g_1_1KeyframeSequence_f925b7c3107b6cdba08dbb045b203b4f}
+
+
+Creates a duplicate of this \hyperlink{classm3g_1_1Object3D}{Object3D}. 
+
+Reimplemented from \hyperlink{classm3g_1_1Object3D_a25110dac934f867b83b73ad4741a0f4}{Object3D}.\hypertarget{classm3g_1_1KeyframeSequence_7016f51d2788e78fdd736efd040f5e5e}{
 \index{m3g::KeyframeSequence@{m3g::KeyframeSequence}!getComponentCount@{getComponentCount}}
 \index{getComponentCount@{getComponentCount}!m3g::KeyframeSequence@{m3g::KeyframeSequence}}
 \subsubsection[{getComponentCount}]{\setlength{\rightskip}{0pt plus 5cm}int getComponentCount () const}}
@@ -142,7 +153,7 @@ Returns the total number of keyframes in this sequence. \hypertarget{classm3g_1_
 \label{classm3g_1_1KeyframeSequence_a356af60b9759d5d3da833773e3c7b73}
 
 
-Retrieves the current repeat mode of this \hyperlink{classm3g_1_1Keyframe}{Keyframe} Sequence. \hypertarget{classm3g_1_1KeyframeSequence_b7e54386674cefdb8f5fa65ce5435b50}{
+Retrieves the current repeat mode of this Keyframe Sequence. \hypertarget{classm3g_1_1KeyframeSequence_b7e54386674cefdb8f5fa65ce5435b50}{
 \index{m3g::KeyframeSequence@{m3g::KeyframeSequence}!getValidRangeFirst@{getValidRangeFirst}}
 \index{getValidRangeFirst@{getValidRangeFirst}!m3g::KeyframeSequence@{m3g::KeyframeSequence}}
 \subsubsection[{getValidRangeFirst}]{\setlength{\rightskip}{0pt plus 5cm}int getValidRangeFirst () const}}
@@ -242,5 +253,5 @@ A constructor parameter that specifies stepping from one keyframe value to the n
 
 The documentation for this class was generated from the following files:\begin{CompactItemize}
 \item 
-/work/desktop-m3g/src/KeyframeSequence.hpp\item 
-/work/desktop-m3g/src/KeyframeSequence.cpp\end{CompactItemize}
+/work/workspace.desktop-m3g/src/KeyframeSequence.hpp\item 
+/work/workspace.desktop-m3g/src/KeyframeSequence.cpp\end{CompactItemize}
