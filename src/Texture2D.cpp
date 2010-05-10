@@ -27,8 +27,6 @@ Texture2D:: Texture2D (Image2D* img) :
   blending_mode(FUNC_MODULATE), blend_color(0x00000000),
   texobj(0)
 {
-  setObjectType (OBJTYPE_TEXTURE2D);
-
   if (img == NULL) {
     throw NullPointException (__FILE__, __func__, "Image is NULL.");
   }

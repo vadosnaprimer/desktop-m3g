@@ -9,7 +9,6 @@ TEST (Light_default_variables)
 {
   Light* lig = new Light;
 
-  CHECK_EQUAL (OBJTYPE_LIGHT, lig->getObjectType());
   CHECK_EQUAL (Light::DIRECTIONAL, lig->getMode());
   CHECK_EQUAL (0x00ffffff, lig->getColor());
   CHECK_EQUAL (1.f, lig->getConstantAttenuation());

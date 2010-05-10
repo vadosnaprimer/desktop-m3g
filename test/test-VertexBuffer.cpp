@@ -11,7 +11,6 @@ TEST (VertexBuffer_default_variables)
 {
   VertexBuffer* vbuf = new VertexBuffer;
 
-  CHECK_EQUAL (OBJTYPE_VERTEX_BUFFER, vbuf->getObjectType());
   CHECK_EQUAL (0xffffffff,      vbuf->getDefaultColor());
   CHECK_EQUAL ((VertexArray*)0, vbuf->getColors());
   CHECK_EQUAL ((VertexArray*)0, vbuf->getNormals());

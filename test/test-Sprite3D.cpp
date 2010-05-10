@@ -12,7 +12,6 @@ TEST (Sprite3D_default_variables)
   Appearance* app = new Appearance;
   Sprite3D*   spr = new Sprite3D (true, img, app);
 
-  CHECK_EQUAL (OBJTYPE_SPRITE3D, spr->getObjectType());
   CHECK_EQUAL (0, spr->getCropX());
   CHECK_EQUAL (0, spr->getCropY());
   CHECK_EQUAL (64, spr->getCropWidth());

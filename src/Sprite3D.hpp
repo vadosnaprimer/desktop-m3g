@@ -149,11 +149,6 @@ namespace m3g {
      */
     int getLayer () const;
 
-    /**
-     * @~English  Sort by layer number, for inner use.
-     * @~Japanese レイヤー番号の取得する内部使用の関数.
-     */
-    static bool sort_by_layer (const Sprite3D* lhs, const Sprite3D* rhs);
 
   private:
     bool        scaled;

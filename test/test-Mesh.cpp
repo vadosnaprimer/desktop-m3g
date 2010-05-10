@@ -18,7 +18,6 @@ TEST (Mesh_default_variables_1)
   Appearance*  app[2]  = {new Appearance, new Appearance};
   Mesh* mesh = new Mesh (vbuf, 2, (IndexBuffer**)tris, app);
 
-  CHECK_EQUAL (OBJTYPE_MESH, mesh->getObjectType());
   CHECK_EQUAL (vbuf,    mesh->getVertexBuffer());
   CHECK_EQUAL (2,       mesh->getSubmeshCount());
   CHECK_EQUAL (tris[0], mesh->getIndexBuffer(0));

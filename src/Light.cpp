@@ -17,7 +17,6 @@ Light:: Light () :
   mode(DIRECTIONAL), color(0x00ffffff), intensity(1),
   attenuation(1,0,0), spot(45,0)
 {
-  setObjectType (OBJTYPE_LIGHT);
 }
 
 Light:: ~Light ()

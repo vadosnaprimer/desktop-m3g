@@ -9,7 +9,6 @@ TEST (PolygonMode_default_variables)
 {
   PolygonMode* pmode = new PolygonMode;
 
-  CHECK_EQUAL (OBJTYPE_POLYGON_MODE, pmode->getObjectType());
   CHECK_EQUAL (PolygonMode::CULL_BACK, pmode->getCulling());
   CHECK_EQUAL (PolygonMode::WINDING_CCW, pmode->getWinding());
   CHECK_EQUAL (PolygonMode::SHADE_SMOOTH, pmode->getShading());
@@ -32,7 +31,6 @@ TEST (PolygonMode_set_variables)
   pmode->setLocalCameraLightingEnable (false);
   pmode->setPerspectiveCorrectionEnable (false);
 
-  CHECK_EQUAL (OBJTYPE_POLYGON_MODE, pmode->getObjectType());
   CHECK_EQUAL (PolygonMode::CULL_NONE, pmode->getCulling());
   CHECK_EQUAL (PolygonMode::WINDING_CW, pmode->getWinding());
   CHECK_EQUAL (PolygonMode::SHADE_FLAT, pmode->getShading());
@@ -56,7 +54,6 @@ TEST (PolygonMode_duplicate)
 
   PolygonMode* pmode1 = pmode0->duplicate();
 
-  CHECK_EQUAL (pmode0->getObjectType()                 , pmode1->getObjectType());
   CHECK_EQUAL (pmode0->getCulling()                    , pmode1->getCulling());
   CHECK_EQUAL (pmode0->getWinding()                    , pmode1->getWinding() );
   CHECK_EQUAL (pmode0->getShading()                    , pmode1->getShading());

@@ -15,8 +15,6 @@ VertexArray:: VertexArray (int num_vertices, int num_components, int component_s
   vertex_count(num_vertices),
   char_values(0), vbo(0)
 {
-  setObjectType (OBJTYPE_VERTEX_ARRAY);
-
   if (vertex_count < 1 || vertex_count > 65535) {
     throw IllegalArgumentException (__FILE__, __func__, "Vertex count is invalid, vertex_count=%d.", vertex_count);
   }

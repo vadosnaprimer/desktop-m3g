@@ -15,7 +15,6 @@ TEST (Appearance_default_variables)
 {
   Appearance* app = new Appearance;
 
-  CHECK_EQUAL (OBJTYPE_APPEARANCE, app->getObjectType());
   CHECK_EQUAL (0, app->getLayer());
   CHECK_EQUAL ((PolygonMode*)0, app->getPolygonMode());
   CHECK_EQUAL ((CompositingMode*)0, app->getCompositingMode());

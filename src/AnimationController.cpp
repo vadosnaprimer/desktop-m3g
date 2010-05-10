@@ -8,7 +8,6 @@ AnimationController:: AnimationController () :
   active_interval(0,0), blending_weight(1), speed(1),
   refference_world_time(0), refference_sequence_time(0)
 {
-  setObjectType(OBJTYPE_ANIMATION_CONTROLLER);
 }
 
 AnimationController:: ~AnimationController ()

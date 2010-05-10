@@ -18,8 +18,6 @@ Sprite3D:: Sprite3D (bool scaled_, Image2D* image_, Appearance* appearance_) :
   scaled(false), image(0), appearance(0), crop(0,0,0,0),
   texobj(0)
 {
-  setObjectType (OBJTYPE_SPRITE3D);
-
   if (image_ == NULL) {
     throw NullPointException (__FILE__, __func__, "Image is NULL.");
   }
@@ -364,11 +362,6 @@ int Sprite3D:: getLayer () const
   }
 }
 
-
-bool Sprite3D:: sort_by_layer (const Sprite3D* lhs, const Sprite3D* rhs)
-{
-  return lhs->getLayer() < rhs->getLayer();
-}
 
 
 std::ostream& Sprite3D:: print (std::ostream& out) const

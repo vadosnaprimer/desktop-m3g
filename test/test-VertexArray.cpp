@@ -8,7 +8,6 @@ using namespace m3g;
 TEST (VertexArray_set_variables_1byte)
 {
   VertexArray* varry = new VertexArray(16, 3, 1);
-  CHECK_EQUAL (OBJTYPE_VERTEX_ARRAY, varry->getObjectType());
   CHECK_EQUAL (16, varry->getVertexCount());
   CHECK_EQUAL (3, varry->getComponentCount());
   CHECK_EQUAL (1, varry->getComponentType());
@@ -49,7 +48,6 @@ TEST (VertexArray_set_variables_1byte)
 TEST (VertexArray_set_variables_2byte)
 {
   VertexArray* varry = new VertexArray(16, 3, 2);
-  CHECK_EQUAL (OBJTYPE_VERTEX_ARRAY, varry->getObjectType());
   CHECK_EQUAL (16, varry->getVertexCount());
   CHECK_EQUAL (3, varry->getComponentCount());
   CHECK_EQUAL (2, varry->getComponentType());
@@ -91,7 +89,6 @@ TEST (VertexArray_set_variables_2byte)
 TEST (VertexArray_set_variables_4byte)
 {
   VertexArray* varry = new VertexArray(16, 3, 4);
-  CHECK_EQUAL (OBJTYPE_VERTEX_ARRAY, varry->getObjectType());
   CHECK_EQUAL (16, varry->getVertexCount());
   CHECK_EQUAL (3, varry->getComponentCount());
   CHECK_EQUAL (4, varry->getComponentType());

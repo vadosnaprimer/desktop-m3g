@@ -10,7 +10,6 @@ TEST (Group_default_variables)
 {
   Group* grp = new Group;
 
-  CHECK_EQUAL (OBJTYPE_GROUP, grp->getObjectType());
   CHECK_EQUAL (0, grp->getChildCount());
 }
 

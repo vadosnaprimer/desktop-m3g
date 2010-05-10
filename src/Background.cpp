@@ -18,7 +18,6 @@ Background:: Background () :
   background_image(0), image_mode(BORDER,BORDER), crop_rectangle(0,0,0,0),
   texobj(0)
 {
-  setObjectType (OBJTYPE_BACKGROUND);
 }
 
 Background:: ~Background ()

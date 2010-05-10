@@ -10,7 +10,6 @@ TEST (Image2D_default_variables_0)
 {
   Image2D* img = new Image2D (Image2D::RGB, 64, 48);
 
-  CHECK_EQUAL (OBJTYPE_IMAGE2D, img->getObjectType());
   CHECK_EQUAL (true, img->isMutable());
   CHECK_EQUAL (64, img->getWidth());
   CHECK_EQUAL (48, img->getHeight());
@@ -32,7 +31,6 @@ TEST (Image2D_default_variables_1)
 
   Image2D* img = new Image2D (Image2D::RGB, 64, 48, buf);
 
-  CHECK_EQUAL (OBJTYPE_IMAGE2D, img->getObjectType());
   CHECK_EQUAL (false, img->isMutable());
   CHECK_EQUAL (64, img->getWidth());
   CHECK_EQUAL (48, img->getHeight());

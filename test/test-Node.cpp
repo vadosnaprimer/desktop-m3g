@@ -10,7 +10,6 @@ TEST (Node_default_variables)
 {
   Node* node = new Node;
 
-  CHECK_EQUAL (OBJTYPE_NODE, node->getObjectType());
   CHECK_EQUAL ((Node*)0, node->getParent());
   CHECK_EQUAL (true, node->isRenderingEnabled());
   CHECK_EQUAL (true, node->isPickingEnabled());

@@ -9,7 +9,6 @@ TEST (Fog_default_variables)
 {
   Fog* fog = new Fog;
 
-  CHECK_EQUAL (OBJTYPE_FOG, fog->getObjectType());
   CHECK_EQUAL (Fog::LINEAR, fog->getMode());
   CHECK_EQUAL (1, fog->getDensity());
   CHECK_EQUAL (0, fog->getNearDistance());

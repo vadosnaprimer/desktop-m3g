@@ -14,7 +14,6 @@ TEST (Camera_default_values)
   int type;
   float m[16];
 
-  CHECK_EQUAL (OBJTYPE_CAMERA, cam->getObjectType());
 
   type = cam->getProjection (&trans);
   CHECK_EQUAL (Camera::GENERIC, type);

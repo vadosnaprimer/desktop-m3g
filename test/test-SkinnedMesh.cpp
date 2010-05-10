@@ -25,7 +25,6 @@ TEST (SkinnedMesh_default_variables)
 
   SkinnedMesh*  mesh        = new SkinnedMesh (vbuf, 1, (IndexBuffer**)&tris, &app, skeleton);
 
-  CHECK_EQUAL (OBJTYPE_SKINNED_MESH, mesh->getObjectType());
   CHECK_EQUAL (skeleton, mesh->getSkeleton());
 
   delete vbuf;

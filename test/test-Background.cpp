@@ -10,7 +10,6 @@ TEST (Background_default_variables)
 {
   Background* bg = new Background;
 
-  CHECK_EQUAL (OBJTYPE_BACKGROUND, bg->getObjectType());
   CHECK_EQUAL (true, bg->isDepthClearEnabled());
   CHECK_EQUAL (true, bg->isColorClearEnabled());
   CHECK_EQUAL (0x00000000, bg->getColor());

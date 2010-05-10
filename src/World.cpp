@@ -15,7 +15,6 @@ using namespace std;
 World:: World () :
   background(0), camera(0)
 {
-  setObjectType (OBJTYPE_WORLD);
 }
 
 World:: ~World ()

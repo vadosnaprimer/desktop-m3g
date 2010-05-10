@@ -12,8 +12,6 @@ using namespace m3g;
 Mesh:: Mesh (VertexBuffer* vertices_, int num_submesh,
              IndexBuffer** submeshes, Appearance** appearances_) : vertices(0)
 {
-  setObjectType (OBJTYPE_MESH);
-
   if (vertices_ == 0) {
     throw NullPointException (__FILE__, __func__, "VertexBuffer is NULL.");
   }

@@ -13,7 +13,6 @@ TEST (World_default_variables)
 {
   World* wld = new World;
 
-  CHECK_EQUAL (OBJTYPE_WORLD , wld->getObjectType());
   CHECK_EQUAL ((Camera*)0    , wld->getActiveCamera());
   CHECK_EQUAL ((Background*)0, wld->getBackground());
 

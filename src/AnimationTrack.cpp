@@ -61,7 +61,6 @@ bool is_property_has_valid_component (int property, int component_count)
 AnimationTrack:: AnimationTrack (KeyframeSequence* sequence_, int property_) :
   property(0), keyframe_sequence(0), animation_controller(0)
 {
-  setObjectType (OBJTYPE_ANIMATION_TRACK);
   if (sequence_ == NULL) {
     throw NullPointException (__FILE__, __func__, "KeyframeSequence is NULL.");
   }

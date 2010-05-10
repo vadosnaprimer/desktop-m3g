@@ -13,7 +13,6 @@ TEST (Object3D_defautlt_variables)
 {
   Object3D* obj = new Object3D;
 
-  CHECK_EQUAL (OBJTYPE_OBJECT3D, obj->getObjectType());
   CHECK_EQUAL (0, obj->getAnimationTrackCount());
   //CHECK_EQUAL (0, obj->getReferences(0,0));
   CHECK_EQUAL (0, obj->getUserID());
@@ -66,7 +65,6 @@ TEST (Object3D_duplicate)
   Object3D* obj0 = new Object3D;
   Object3D* obj1 = obj0->duplicate();
   
-  CHECK_EQUAL (obj0->getObjectType(), obj1->getObjectType());
   CHECK_EQUAL (obj0->getUserID(), obj1->getUserID());
   // 後でgetUserObject()のテストも追加
 }

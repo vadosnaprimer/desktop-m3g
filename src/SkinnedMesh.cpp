@@ -5,6 +5,7 @@
 #include "Matrix.hpp"
 #include "Vector.hpp"
 #include "Exception.hpp"
+#include "World.hpp"
 #include <iostream>
 #include <vector>
 #include "Group.hpp"
@@ -18,7 +19,6 @@ SkinnedMesh:: SkinnedMesh (VertexBuffer* vertices, int num_submesh,
   Mesh (vertices, num_submesh, submeshes, appearances_),
   skeleton(0), skinned_vertices(0)
 {
-  setObjectType (OBJTYPE_SKINNED_MESH);
   if (vertices->getPositions(0) == NULL) {
     throw NullPointException (__FILE__, __func__, "Vertices has no positions.");
   }
@@ -170,7 +170,7 @@ void SkinnedMesh:: addTransform (Node* node, int weight, int first_vertex, int n
   if (node == NULL) {
     throw NullPointException (__FILE__, __func__, "Bone node is NULL.");
   }
-  if (node->getObjectType() != OBJTYPE_GROUP && node->getObjectType() != OBJTYPE_WORLD) {
+  if (dynamic_cast<Group*>(node) == 0 && dynamic_cast<World*>(node) == 0) {
     throw IllegalArgumentException (__FILE__, __func__, "Bone node must be Group or its descendant.");
   }
   if (weight <= 0) {

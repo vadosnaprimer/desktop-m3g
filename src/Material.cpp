@@ -15,7 +15,6 @@ Material:: Material () :
   emissive_color(0), specular_color(0), 
   shininess(0)
 {
-  setObjectType (OBJTYPE_MATERIAL);
 }
 
 Material:: ~Material ()

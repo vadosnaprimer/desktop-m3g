@@ -26,7 +26,6 @@ TEST (MorphingMesh_default_value)
                                       base_vertices->duplicate ()};
   MorphingMesh*  mesh        = new MorphingMesh (base_vertices, 2, target_vertices, tris, app);
 
-  CHECK_EQUAL (OBJTYPE_MORPHING_MESH, mesh->getObjectType());
   CHECK_EQUAL (2, mesh->getMorphTargetCount());
 
   delete base_vertices;

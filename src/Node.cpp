@@ -19,7 +19,6 @@ Node:: Node () :
   alpha_factor(1), scope(-1),
   z_alignment(NONE, 0), y_alignment(NONE, 0)
 {
-  setObjectType (OBJTYPE_NODE);
 }
 
 Node:: ~Node ()

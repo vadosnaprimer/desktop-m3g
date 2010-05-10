@@ -18,7 +18,6 @@ CompositingMode:: CompositingMode () :
   blending_mode(REPLACE), alpha_threshold(0), depth_offset(0,0),
   depth_test(true), depth_write(true), color_write(true), alpha_write(true)
 {
-  setObjectType (OBJTYPE_COMPOSITING_MODE);
 }
 
 CompositingMode:: ~CompositingMode ()

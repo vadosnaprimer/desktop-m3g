@@ -10,8 +10,6 @@ TEST (Transformable_set_variables)
 {
   Transformable* trans = new Transformable;
 
-  CHECK_EQUAL (OBJTYPE_TRANSFORMABLE, trans->getObjectType());
-
   trans->setOrientation (90, 1,0,0);
   trans->setScale (1,2,3);
   trans->setTranslation (-1,0,1);

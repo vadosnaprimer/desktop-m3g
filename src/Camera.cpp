@@ -18,7 +18,6 @@ const int Camera:: PERSPECTIVE;
 Camera:: Camera () :
 type(GENERIC), fovy(0), aspect_ratio(0), near(0), far(0)
 {
-  setObjectType (OBJTYPE_CAMERA);
 }
 
 Camera:: ~Camera ()

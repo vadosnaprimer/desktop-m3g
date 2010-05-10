@@ -109,15 +109,9 @@ namespace m3g {
      * @~English  Associates an arbitrary, application specific Object wth this Object3D.
      * @~Japanese このObject3Dに任意のアプリケーション固有のオブジェクトを関連づける。
      *            ユーザーオブジェクトはコピーされない.
-     *            注意：本当はkey,valueのペアでなければならない。あとで修正する。
      */
-    void setUserObject (int id, char* value);
+    void setUserObject (void* user_object);
 
-    /**
-     * @~English  Retrievs object type, for inner use.
-     * @~Japanese オブジェクトタイプを取得するM3G非標準の関数.
-     */
-    int  getObjectType () const;
 
     /**
      * @~English  Print out information of this object, for debug only.
@@ -134,18 +128,11 @@ namespace m3g {
 
 
 
-  protected:
-    /**
-     * @~English  Sets object type.
-     * @~Japanese オブジェクトタイプの設定.
-     */
-    void setObjectType (int type);
-
-  
 
   private:
     int   obj_type;     ///< M3G非標準のオブジェクトタイプ
     int   user_id;
+    void* user_object;
     std::vector<AnimationTrack*> anim_tracks;
   };
 

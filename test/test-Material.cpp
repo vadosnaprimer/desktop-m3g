@@ -8,7 +8,6 @@ TEST (Material_default_variables)
 {
   Material* mat = new Material;
 
-  CHECK_EQUAL (OBJTYPE_MATERIAL, mat->getObjectType());
   CHECK_EQUAL (false, mat->isVertexColorTrackingEnabled());
   CHECK_EQUAL (0x00333333, mat->getColor(Material::AMBIENT));
   CHECK_EQUAL (0xffcccccc, mat->getColor(Material::DIFFUSE));

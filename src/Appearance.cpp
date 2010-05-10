@@ -16,10 +16,9 @@ Appearance:: Appearance () :
   rendering_layer(0), polygon_mode(0), compositing_mode(0),
   material(0), fog(0)
 {
-  setObjectType (OBJTYPE_APPEARANCE);
-
-  for (int i = 0; i < MAX_TEXTURE_UNITS; i++)
+  for (int i = 0; i < MAX_TEXTURE_UNITS; i++) {
     textures.push_back (0);
+  }
 }
 
 Appearance:: ~Appearance ()

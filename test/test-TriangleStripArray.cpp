@@ -14,7 +14,6 @@ TEST (TriangleStripArray_set_variables_explicit)
   int strip_lengths[3] = {4,3,3};
   TriangleStripArray* tris = new TriangleStripArray (indices, 3, strip_lengths);
 
-  CHECK_EQUAL (OBJTYPE_TRIANGLE_STRIP_ARRAY, tris->getObjectType());
   CHECK_EQUAL (10, tris->getIndexCount());
 
   int index_buf[10];

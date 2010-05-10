@@ -15,7 +15,6 @@ const int Fog:: LINEAR;
 Fog:: Fog () : 
   mode(LINEAR), density(1), color(0), distance(0,1)
 {
-  setObjectType (OBJTYPE_FOG);
 }
 
 Fog:: ~Fog ()

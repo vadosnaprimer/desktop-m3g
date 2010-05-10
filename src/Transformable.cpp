@@ -11,7 +11,6 @@ using namespace m3g;
 Transformable:: Transformable () :
   scaling(1,1,1), translation(0,0,0), orientation(0,0,0,1)
 {
-  setObjectType(OBJTYPE_TRANSFORMABLE);
 }
 
 Transformable:: ~Transformable ()

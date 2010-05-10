@@ -11,7 +11,6 @@ TEST (Texture2D_default_variables)
   Image2D*   img = new Image2D (Image2D::RGBA, 64, 48);
   Texture2D* tex = new Texture2D (img);
 
-  CHECK_EQUAL (OBJTYPE_TEXTURE2D, tex->getObjectType());
   CHECK_EQUAL (img, tex->getImage());
   CHECK_EQUAL (Texture2D::WRAP_REPEAT, tex->getWrappingS());
   CHECK_EQUAL (Texture2D::WRAP_REPEAT, tex->getWrappingT());

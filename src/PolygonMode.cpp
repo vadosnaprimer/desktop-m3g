@@ -17,7 +17,6 @@ PolygonMode:: PolygonMode () :
   culling(CULL_BACK), winding(WINDING_CCW) ,shading(SHADE_SMOOTH),
   two_sided_lighting(false), local_camera_lighting(true), perspective_correction(true)
 {
-  setObjectType (OBJTYPE_POLYGON_MODE);
 }
 
 PolygonMode:: ~PolygonMode ()

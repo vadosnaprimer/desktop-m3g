@@ -8,8 +8,6 @@ using namespace std;
 
 IndexBuffer:: IndexBuffer ()
 {
-  setObjectType (OBJTYPE_INDEX_BUFFER);
-
 }
 
 IndexBuffer:: ~IndexBuffer ()

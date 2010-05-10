@@ -14,8 +14,6 @@ VertexBuffer:: VertexBuffer () :
   positions(0), normals(0), colors(0), positions_scale(1),
   default_color(0xffffffff)
 {
-  setObjectType (OBJTYPE_VERTEX_BUFFER);
-
   for (int i = 0; i < 3; i++) {
     positions_bias[i] = 0;
   }

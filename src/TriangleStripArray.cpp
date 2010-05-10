@@ -12,8 +12,6 @@ using namespace m3g;
 TriangleStripArray:: TriangleStripArray (int* indices_, int num_strips, int* strip_array) :
   indices(0), ibuf(0)
 {
-  setObjectType (OBJTYPE_TRIANGLE_STRIP_ARRAY);
-
   if (indices_ == NULL) {
     throw NullPointException (__FILE__, __func__, "Indices is NULL.");
   }

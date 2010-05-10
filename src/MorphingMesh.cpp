@@ -16,7 +16,6 @@ MorphingMesh:: MorphingMesh (VertexBuffer* base, int num_target, VertexBuffer** 
                              int num_submesh, IndexBuffer** submeshes, Appearance** appearances) :
   Mesh (base, num_submesh, submeshes, appearances), morphed_vertices(0)
 {
-  setObjectType (OBJTYPE_MORPHING_MESH);
   if (num_target < 0) {
     throw IllegalArgumentException (__FILE__, __func__, "Number of target is invalid, num=%d.", num_target);
   }

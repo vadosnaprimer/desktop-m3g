@@ -2,15 +2,15 @@
 #include <iostream>
 #include <algorithm>
 #include "RayIntersection.hpp"
-#include "Sprite3D.hpp"
+//#include "Sprite3D.hpp"
 #include "Exception.hpp"
+#include "World.hpp"
 using namespace m3g;
 using namespace std;
 
 
 Group:: Group ()
 {
-  setObjectType (OBJTYPE_GROUP);
 }
 
 Group:: ~Group ()
@@ -37,8 +37,11 @@ void Group:: addChild (Node* child)
   if (child == NULL) {
     throw NullPointException (__FILE__, __func__, "Child is NULL.");
   }
-  if (child == this || child->getObjectType() == OBJTYPE_WORLD) {
-    throw IllegalArgumentException (__FILE__, __func__, "Object type of node is invalid, type=%d.", child->getObjectType());
+  if (child == this) {
+    throw IllegalArgumentException (__FILE__, __func__, "Can't add myself.");
+  }
+  if (dynamic_cast<World*>(child)) {
+    throw IllegalArgumentException (__FILE__, __func__, "Child is invalid, World.");
   }
   if (child->getParent() != NULL && child->getParent() != this) {
     throw IllegalArgumentException (__FILE__, __func__, "Added child is already a member of other group.");

@@ -18,8 +18,6 @@ KeyframeSequence:: KeyframeSequence (int num_keyframes, int num_components, int 
   repeat_mode(CONSTANT), interp_type(LINEAR), duration(0), valid_range(0,0),
   component_count(0), keyframe_count(0)
 {
-  setObjectType (OBJTYPE_KEYFRAME_SEQUENCE);
-  
   if (num_keyframes < 1) {
     throw IllegalArgumentException (__FILE__, __func__, "Number of keyframes is invalid, num=%d.", num_keyframes);
   }

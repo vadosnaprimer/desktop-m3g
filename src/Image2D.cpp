@@ -17,8 +17,6 @@ Image2D:: Image2D (int format_, int width_, int height_) :
   format(format_), width(width_), height(height_),
   image(0), immutable(false)
 {
-  setObjectType (OBJTYPE_IMAGE2D);
-
   if (width <= 0 || height <= 0) {
     throw IllegalArgumentException (__FILE__, __func__, "Width or height is invalid, width=%f, height=%f.", width, height);
   }
@@ -32,8 +30,6 @@ Image2D:: Image2D (int format_, int width_, int height_, void* image_) :
   format(format_), width(width_), height(height_), 
   image(0), immutable(true)
 {
-  setObjectType (OBJTYPE_IMAGE2D);
-
   if (width <= 0 || height <= 0) {
     throw IllegalArgumentException (__FILE__, __func__, "Width or height is invalid, width=%f, height=%f.", width, height);
   }

@@ -31,27 +31,24 @@ Graphics3D:: Graphics3D () :
   glEnable (GL_NORMALIZE);
 
   // プロパティは決めうち
-  properties.push_back (new Property("supportAntialiasing"         , 1));
-  properties.push_back (new Property("supportTrueColor"            , 1));
-  properties.push_back (new Property("supportDithering"            , 1));
-  properties.push_back (new Property("supportMipmapping"           , 1));
-  properties.push_back (new Property("supportPerspectiveCorrection", 1));
-  properties.push_back (new Property("supportLocalCameraLighting"  , 1));
-  properties.push_back (new Property("maxLights"                   , 8));
-  properties.push_back (new Property("maxViewportWith"             , 2048));
-  properties.push_back (new Property("maxViewportHeight"           , 2048));
-  properties.push_back (new Property("maxViewportDimension"        , 2048));
-  properties.push_back (new Property("maxTextureDimension"         , 2048));
-  properties.push_back (new Property("maxSpriteCropDimension"      , 2048));
-  properties.push_back (new Property("maxTransformsPerVertex"      , 65535)); // unlimited.
-  properties.push_back (new Property("numTextureUnits"             , 4));
+  properties.insert (map<const char*, int>::value_type("supportAntialiasing"         , 1));
+  properties.insert (map<const char*, int>::value_type("supportTrueColor"            , 1));
+  properties.insert (map<const char*, int>::value_type("supportDithering"            , 1));
+  properties.insert (map<const char*, int>::value_type("supportMipmapping"           , 1));
+  properties.insert (map<const char*, int>::value_type("supportPerspectiveCorrection", 1));
+  properties.insert (map<const char*, int>::value_type("supportLocalCameraLighting"  , 1));
+  properties.insert (map<const char*, int>::value_type("maxLights"                   , 8));
+  properties.insert (map<const char*, int>::value_type("maxViewportWith"             , 2048));
+  properties.insert (map<const char*, int>::value_type("maxViewportHeight"           , 2048));
+  properties.insert (map<const char*, int>::value_type("maxViewportDimension"        , 2048));
+  properties.insert (map<const char*, int>::value_type("maxTextureDimension"         , 2048));
+  properties.insert (map<const char*, int>::value_type("maxSpriteCropDimension"      , 2048));
+  properties.insert (map<const char*, int>::value_type("maxTransformsPerVertex"      , 65535)); // unlimited.
+  properties.insert (map<const char*, int>::value_type("numTextureUnits"             , 4));
 }
 
 Graphics3D:: ~Graphics3D ()
 {
-  for (int i = 0; i < (int)properties.size(); i++) {
-    delete properties[i];
-  }
   if (Loader::file_info.authoring_field) {
     delete [] Loader::file_info.authoring_field;
   }
@@ -121,7 +118,7 @@ int Graphics3D:: getLightCount () const
   return 0;
 }
 
-std::vector<Property*> Graphics3D:: getProperties () const
+std::map<const char*, int> Graphics3D:: getProperties () const
 {
   return properties;
 }

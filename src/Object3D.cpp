@@ -5,7 +5,7 @@
 using namespace std;
 using namespace m3g;
 
-Object3D:: Object3D () : obj_type(OBJTYPE_OBJECT3D), user_id(0)
+Object3D:: Object3D () : obj_type(OBJTYPE_OBJECT3D), user_id(0), user_object(0)
 {
 }
 
@@ -13,9 +13,6 @@ Object3D:: ~Object3D ()
 {
 }
 
-/**
- * 
- */
 void Object3D:: addAnimationTrack (AnimationTrack* animation_track)
 {
   if (animation_track == NULL) {
@@ -70,8 +67,7 @@ int Object3D:: getUserID () const
 
 void* Object3D:: getUserObject () const
 {
-  throw NotImplementedException (__FILE__, __func__, "User Object is not implemnted, yet.");
-  return 0;
+  return user_object;
 }
 
 void Object3D:: removeAnimationTrack (AnimationTrack* animation_track)
@@ -91,18 +87,9 @@ void Object3D:: setUserID (int new_user_id)
   user_id = new_user_id;
 }
 
-void Object3D:: setUserObject (int id, char* value)
+void Object3D:: setUserObject (void* new_user_object)
 {
-  throw NotImplementedException (__FILE__, __func__, "User Object is not implemented, yte");
-}
-
-void Object3D:: setObjectType (int type)
-{
-  obj_type = type;
-}
-int Object3D:: getObjectType () const
-{
-  return obj_type;
+  user_object = new_user_object;
 }
 
 
@@ -116,6 +103,7 @@ std::ostream& Object3D:: print (std::ostream& out) const
 {
   out << "Object3D: ";
   out << "  user_id=" << user_id;
+  out << "  user_object=0x" << user_object;
   out << ", animation_tracks=" << anim_tracks.size();
   return out;
 }

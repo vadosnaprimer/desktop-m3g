@@ -3,6 +3,7 @@
 #include <strstream>
 #include <zlib.h>
 #include <cstring>
+#include <map>
 #include "m3g.hpp"
 #include "Loader.hpp"
 #include "Exception.hpp"
@@ -927,11 +928,15 @@ void Loader:: parseObject3D (Object3D* obj)
     }
   }
   unsigned int user_parameter_count = getUInt32();
-  for (int i = 0; i < (int)user_parameter_count; i++) {
-    unsigned int parameter_id          = getUInt32();
-    unsigned int parameter_value_count = getUInt32();
-    char*        parameter_value       = getByteArray (parameter_value_count);
-    obj->setUserObject (parameter_id, parameter_value);
+  if ((int)user_parameter_count > 0) {
+    map<unsigned int, char*>* user_object = new map<unsigned int, char*>();
+    for (int i = 0; i < (int)user_parameter_count; i++) {
+      unsigned int parameter_id          = getUInt32();
+      unsigned int parameter_value_count = getUInt32();
+      char*        parameter_value       = getByteArray (parameter_value_count);
+      user_object->insert (map<unsigned int, char*>::value_type(parameter_id, parameter_value));
+    }
+    obj->setUserObject (user_object);
   }
    
   //obj->Object3D::print (cout);

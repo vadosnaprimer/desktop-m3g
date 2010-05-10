@@ -9,7 +9,6 @@ TEST (CompositingMode_default_variables)
 {
   CompositingMode* cmode = new CompositingMode;
   
-  CHECK_EQUAL (OBJTYPE_COMPOSITING_MODE, cmode->getObjectType());
   CHECK_EQUAL (CompositingMode::REPLACE, cmode->getBlending());
   CHECK_EQUAL (0.0, cmode->getAlphaThreshold());
   CHECK_EQUAL (0.0, cmode->getDepthOffsetFactor());
