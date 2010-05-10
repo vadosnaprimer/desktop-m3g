@@ -48,7 +48,7 @@ VALUE ruby_Texture2D_get_blend_color (VALUE self)
     Data_Get_Struct (self, Texture2D, p);
     argb = p->getBlendColor ();
 
-    return INT2FIX(argb);
+    return INT2NUM(argb);
 }
 
 VALUE ruby_Texture2D_get_blending (VALUE self)
@@ -59,7 +59,7 @@ VALUE ruby_Texture2D_get_blending (VALUE self)
     Data_Get_Struct (self, Texture2D, p);
     mode = p->getBlending();
 
-    return INT2FIX(mode);
+    return INT2NUM(mode);
 }
 
 VALUE ruby_Texture2D_get_filter (VALUE self)
@@ -98,7 +98,7 @@ VALUE ruby_Texture2D_set_blend_color (VALUE self, VALUE val_rgb)
     int rgb;
 
     Data_Get_Struct (self, Texture2D, p);
-    rgb = FIX2INT(val_rgb);
+    rgb = NUM2INT(val_rgb);
 
     p->setBlendColor (rgb);
 
@@ -111,7 +111,7 @@ VALUE ruby_Texture2D_set_blending (VALUE self, VALUE val_func)
     int func;
 
     Data_Get_Struct (self, Texture2D, p);
-    func = FIX2INT (val_func);
+    func = NUM2INT (val_func);
 
     p->setBlending (func);
 
@@ -124,8 +124,8 @@ VALUE ruby_Texture2D_set_filtering (VALUE self, VALUE val_filter)
   VALUE val_image = rb_ary_entry(val_filter, 1);
   Texture2D* p;
   Data_Get_Struct (self, Texture2D, p);
-  int level = FIX2INT (val_level);
-  int image = FIX2INT (val_image);
+  int level = NUM2INT (val_level);
+  int image = NUM2INT (val_image);
 
   p->setFiltering (level, image);
 
@@ -147,13 +147,13 @@ VALUE ruby_Texture2D_set_image (VALUE self, VALUE val_image)
 
 VALUE ruby_Texture2D_set_wrapping (VALUE self, VALUE val_wrapping)
 {
-  VALUE val_wrap_s = rb_ary_entry (val_wrapping, 0);
-  VALUE val_wrap_t = rb_ary_entry (val_wrapping, 1);
-    int wrap_s = FIX2INT (val_wrap_s);
-    int wrap_t = FIX2INT (val_wrap_t);
-    Texture2D* p;
+    VALUE val_wrap_s = rb_ary_entry (val_wrapping, 0);
+    VALUE val_wrap_t = rb_ary_entry (val_wrapping, 1);
+   Texture2D* p;
     Data_Get_Struct (self, Texture2D, p);
-
+    int wrap_s = NUM2INT (val_wrap_s);
+    int wrap_t = NUM2INT (val_wrap_t);
+ 
     p->setWrapping (wrap_s,wrap_t);
 
     return Qnil;
@@ -165,10 +165,10 @@ VALUE ruby_Texture2D_set_wrapping (VALUE self, VALUE val_wrapping)
 
 VALUE ruby_Texture2D_FilterAccessor_get_level (VALUE self)
 {
-  FilterAccessor* p;
+    FilterAccessor* p;
     Data_Get_Struct (self, FilterAccessor, p);
-	int level = p->texture2D->getLevelFilter ();
-    return INT2FIX(level);
+    int level = p->texture2D->getLevelFilter ();
+    return INT2NUM(level);
 }
 
 VALUE ruby_Texture2D_FilterAccessor_get_image (VALUE self)
@@ -176,7 +176,7 @@ VALUE ruby_Texture2D_FilterAccessor_get_image (VALUE self)
   FilterAccessor* p;
     Data_Get_Struct (self, FilterAccessor, p);
 	int image = p->texture2D->getImageFilter ();
-    return INT2FIX(image);
+    return INT2NUM(image);
 }
 
 /**
@@ -188,7 +188,7 @@ VALUE ruby_Texture2D_WrappingAccessor_get_s (VALUE self)
   WrappingAccessor* p;
     Data_Get_Struct (self, WrappingAccessor, p);
 	int wrap_s = p->texture2D->getWrappingS ();
-    return INT2FIX(wrap_s);
+    return INT2NUM(wrap_s);
 }
 
 VALUE ruby_Texture2D_WrappingAccessor_get_t (VALUE self)
@@ -196,7 +196,7 @@ VALUE ruby_Texture2D_WrappingAccessor_get_t (VALUE self)
   WrappingAccessor* p;
     Data_Get_Struct (self, WrappingAccessor, p);
 	int wrap_t = p->texture2D->getWrappingT ();
-    return INT2FIX(wrap_t);
+    return INT2NUM(wrap_t);
 }
 
 void register_Texture2D ()
@@ -204,16 +204,16 @@ void register_Texture2D ()
      // Texture2D
     rb_cTexture2D           = rb_define_class_under (rb_mM3G, "Texture2D",           rb_cTransformable);
 
-	rb_define_const (rb_cTexture2D, "FILTER_BASE_LEVEL", INT2FIX(Texture2D::FILTER_BASE_LEVEL));
-     rb_define_const (rb_cTexture2D, "FILTER_LINEAR",     INT2FIX(Texture2D::FILTER_LINEAR));
-     rb_define_const (rb_cTexture2D, "FILTER_NEAREST",    INT2FIX(Texture2D::FILTER_NEAREST));
-     rb_define_const (rb_cTexture2D, "FUNC_ADD",          INT2FIX(Texture2D::FUNC_ADD));
-     rb_define_const (rb_cTexture2D, "FUNC_BLEND",        INT2FIX(Texture2D::FUNC_BLEND));
-     rb_define_const (rb_cTexture2D, "FUNC_DECAL",        INT2FIX(Texture2D::FUNC_DECAL));
-     rb_define_const (rb_cTexture2D, "FUNC_MODULATE",     INT2FIX(Texture2D::FUNC_MODULATE));
-     rb_define_const (rb_cTexture2D, "FUNC_REPLACE",      INT2FIX(Texture2D::FUNC_REPLACE));
-     rb_define_const (rb_cTexture2D, "WRAP_CLAMP",        INT2FIX(Texture2D::WRAP_CLAMP));
-     rb_define_const (rb_cTexture2D, "WRAP_REPEAT",       INT2FIX(Texture2D::WRAP_REPEAT));
+	rb_define_const (rb_cTexture2D, "FILTER_BASE_LEVEL", INT2NUM(Texture2D::FILTER_BASE_LEVEL));
+     rb_define_const (rb_cTexture2D, "FILTER_LINEAR",     INT2NUM(Texture2D::FILTER_LINEAR));
+     rb_define_const (rb_cTexture2D, "FILTER_NEAREST",    INT2NUM(Texture2D::FILTER_NEAREST));
+     rb_define_const (rb_cTexture2D, "FUNC_ADD",          INT2NUM(Texture2D::FUNC_ADD));
+     rb_define_const (rb_cTexture2D, "FUNC_BLEND",        INT2NUM(Texture2D::FUNC_BLEND));
+     rb_define_const (rb_cTexture2D, "FUNC_DECAL",        INT2NUM(Texture2D::FUNC_DECAL));
+     rb_define_const (rb_cTexture2D, "FUNC_MODULATE",     INT2NUM(Texture2D::FUNC_MODULATE));
+     rb_define_const (rb_cTexture2D, "FUNC_REPLACE",      INT2NUM(Texture2D::FUNC_REPLACE));
+     rb_define_const (rb_cTexture2D, "WRAP_CLAMP",        INT2NUM(Texture2D::WRAP_CLAMP));
+     rb_define_const (rb_cTexture2D, "WRAP_REPEAT",       INT2NUM(Texture2D::WRAP_REPEAT));
 
      rb_define_alloc_func (rb_cTexture2D, ruby_Texture2D_allocate);
      rb_define_private_method (rb_cTexture2D, "initialize", (VALUE(*)(...))ruby_Texture2D_initialize, 1);

@@ -69,9 +69,9 @@ VALUE ruby_SkinnedMesh_add_transform (VALUE self, VALUE val_bone, VALUE val_weig
 
   Data_Get_Struct (self, SkinnedMesh, p);
   Data_Get_Struct (val_bone, Node, bone);
-  weight = FIX2INT (val_weight);
-  first_vertex = FIX2INT (val_first_vertex);
-  num_vertices = FIX2INT (num_vertices);
+  weight       = NUM2INT (val_weight);
+  first_vertex = NUM2INT (val_first_vertex);
+  num_vertices = NUM2INT (num_vertices);
 
   p->addTransform (bone, weight, first_vertex, num_vertices);
     

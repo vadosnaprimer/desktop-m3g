@@ -47,7 +47,7 @@ VALUE ruby_AnimationController_get_position (VALUE self, VALUE val_world_time)
 {
   AnimationController* p;
   Data_Get_Struct (self, AnimationController, p);
-  int world_time = FIX2INT(val_world_time);
+  int world_time = NUM2INT(val_world_time);
 
   float sequence_time = sequence_time = p->getPosition (world_time);
 
@@ -61,7 +61,7 @@ VALUE ruby_AnimationController_get_ref_world_time (VALUE self)
 
   int ref_world_time = p->getRefWorldTime ();
 
-  return INT2FIX(ref_world_time);
+  return INT2NUM(ref_world_time);
 }
 
 VALUE ruby_AnimationController_get_speed (VALUE self)
@@ -90,8 +90,8 @@ VALUE ruby_AnimationController_set_active_interval (VALUE self, VALUE val_args)
   VALUE val_end   = rb_ary_entry(val_args, 1);
   AnimationController* p;
   Data_Get_Struct (self, AnimationController, p);
-  int start = FIX2INT(val_start);
-  int end   = FIX2INT(val_end);
+  int start = NUM2INT(val_start);
+  int end   = NUM2INT(val_end);
 
   p->setActiveInterval (start, end);
 
@@ -104,8 +104,8 @@ VALUE ruby_AnimationController_set_position (VALUE self, VALUE val_args)
   VALUE val_world_time    = rb_ary_entry(val_args, 1);
   AnimationController* p;
   Data_Get_Struct (self, AnimationController, p);
-  float sequence_time = NUMERIC2FLOAT(val_sequence_time);
-  int  world_time     = FIX2INT(val_world_time);
+  float sequence_time = NUM2DBL(val_sequence_time);
+  int  world_time     = NUM2INT(val_world_time);
 
   p->setPosition (sequence_time, world_time);
 
@@ -118,8 +118,8 @@ VALUE ruby_AnimationController_set_speed (VALUE self, VALUE val_args)
   VALUE val_world_time = rb_ary_entry(val_args, 1);
   AnimationController* p;
   Data_Get_Struct (self, AnimationController, p);
-  float speed      = NUMERIC2FLOAT (val_speed);
-  int   world_time = FIX2INT (val_world_time);
+  float speed      = NUM2DBL (val_speed);
+  int   world_time = NUM2INT (val_world_time);
 
   p->setSpeed (speed, world_time);
 
@@ -130,7 +130,7 @@ VALUE ruby_AnimationController_set_weight (VALUE self, VALUE val_weight)
 {
   AnimationController* p;
   Data_Get_Struct (self, AnimationController, p);
-  int weight = FIX2INT(val_weight);
+  int weight = NUM2INT(val_weight);
 
   p->setWeight (weight);
 

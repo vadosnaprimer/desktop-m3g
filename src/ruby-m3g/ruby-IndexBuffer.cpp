@@ -31,7 +31,7 @@ VALUE ruby_IndexBuffer_get_index_count (VALUE self)
   IndexBuffer* p;
   Data_Get_Struct (self, IndexBuffer, p);
   int count = p->getIndexCount ();
-  return INT2FIX(count);
+  return INT2NUM(count);
 }
 
 
@@ -47,7 +47,7 @@ VALUE ruby_IndexBuffer_get_indices (VALUE self)
   
   VALUE val_indices = rb_ary_new ();
   for (int i = 0; i < count; i++) {
-    rb_ary_push (val_indices, INT2FIX(indices[i]));
+    rb_ary_push (val_indices, INT2NUM(indices[i]));
   }
 
   return val_indices;

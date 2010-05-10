@@ -99,10 +99,10 @@ VALUE ruby_Sprite3D_set_crop (VALUE self, VALUE val_crop)
   VALUE val_height = rb_ary_entry(val_crop, 3);
   Sprite3D* p;
   Data_Get_Struct (self, Sprite3D, p);
-  float x      = NUMERIC2FLOAT(val_x);
-  float y      = NUMERIC2FLOAT(val_y);
-  float width  = NUMERIC2FLOAT(val_width);
-  float height = NUMERIC2FLOAT(val_height);
+  float x      = NUM2DBL(val_x);
+  float y      = NUM2DBL(val_y);
+  float width  = NUM2DBL(val_width);
+  float height = NUM2DBL(val_height);
 
   p->setCrop (x, y, width, height);
   
@@ -130,7 +130,7 @@ VALUE ruby_Sprite3D_CropAccessor_get_x (VALUE self)
     CropAccessor* p;
     Data_Get_Struct (self, CropAccessor, p);
     int x = p->sprite3D->getCropX ();
-    return INT2FIX(x);
+    return INT2NUM(x);
 }
 
 VALUE ruby_Sprite3D_CropAccessor_get_y (VALUE self)
@@ -138,7 +138,7 @@ VALUE ruby_Sprite3D_CropAccessor_get_y (VALUE self)
     CropAccessor* p;
     Data_Get_Struct (self, CropAccessor, p);
     int y = p->sprite3D->getCropY ();
-    return INT2FIX(y);
+    return INT2NUM(y);
 }
 
 VALUE ruby_Sprite3D_CropAccessor_get_width (VALUE self)
@@ -146,7 +146,7 @@ VALUE ruby_Sprite3D_CropAccessor_get_width (VALUE self)
     CropAccessor* p;
     Data_Get_Struct (self, CropAccessor, p);
     int width = p->sprite3D->getCropWidth ();
-    return INT2FIX(width);
+    return INT2NUM(width);
 }
 
 VALUE ruby_Sprite3D_CropAccessor_get_height (VALUE self)
@@ -154,7 +154,7 @@ VALUE ruby_Sprite3D_CropAccessor_get_height (VALUE self)
   CropAccessor* p;
     Data_Get_Struct (self, CropAccessor, p);
     int height = p->sprite3D->getCropHeight ();
-    return INT2FIX(height);
+    return INT2NUM(height);
 }
 
 

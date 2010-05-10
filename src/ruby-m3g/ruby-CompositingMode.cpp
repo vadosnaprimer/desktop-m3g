@@ -54,7 +54,7 @@ VALUE ruby_CompositingMode_get_blending (VALUE self)
 
   mode = p->getBlending ();
 
-  return INT2FIX(mode);
+  return INT2NUM(mode);
 }
 
 VALUE ruby_CompositingMode_get_depth_offset (VALUE self)
@@ -135,7 +135,7 @@ VALUE ruby_CompositingMode_set_alpha_threshold (VALUE self, VALUE val_threshold)
   float threshold;
 
   Data_Get_Struct (self, CompositingMode, p);
-  threshold = NUMERIC2FLOAT(val_threshold);
+  threshold = NUM2DBL(val_threshold);
 
   p->setAlphaThreshold (threshold);
 
@@ -161,7 +161,7 @@ VALUE ruby_CompositingMode_set_blending (VALUE self, VALUE val_mode)
   int mode;
 
   Data_Get_Struct (self, CompositingMode, p);
-  mode = FIX2INT (val_mode);
+  mode = NUM2INT (val_mode);
 
   p->setBlending (mode);
 
@@ -187,8 +187,8 @@ VALUE ruby_CompositingMode_set_depth_offset (VALUE self, VALUE val_depth_offset)
   VALUE val_units  = rb_ary_entry(val_depth_offset, 1);
   CompositingMode* p;
   Data_Get_Struct (self, CompositingMode, p);
-  float factor = NUMERIC2FLOAT(val_factor);
-  float units  = NUMERIC2FLOAT(val_units);
+  float factor = NUM2DBL(val_factor);
+  float units  = NUM2DBL(val_units);
   
   p->setDepthOffset (factor, units);
 
@@ -246,11 +246,11 @@ void register_CompositingMode ()
     // CompositingMode
     rb_cCompositingMode     = rb_define_class_under (rb_mM3G, "CompositingMode",     rb_cObject3D);
 
-    rb_define_const (rb_cCompositingMode, "ALPHA",       INT2FIX(CompositingMode::ALPHA));
-    rb_define_const (rb_cCompositingMode, "ALPHA_ADD",   INT2FIX(CompositingMode::ALPHA_ADD));
-    rb_define_const (rb_cCompositingMode, "MODULATE",    INT2FIX(CompositingMode::MODULATE));
-    rb_define_const (rb_cCompositingMode, "MODULATE_X2", INT2FIX(CompositingMode::MODULATE_X2));
-    rb_define_const (rb_cCompositingMode, "REPLACE",     INT2FIX(CompositingMode::REPLACE));
+    rb_define_const (rb_cCompositingMode, "ALPHA",       INT2NUM(CompositingMode::ALPHA));
+    rb_define_const (rb_cCompositingMode, "ALPHA_ADD",   INT2NUM(CompositingMode::ALPHA_ADD));
+    rb_define_const (rb_cCompositingMode, "MODULATE",    INT2NUM(CompositingMode::MODULATE));
+    rb_define_const (rb_cCompositingMode, "MODULATE_X2", INT2NUM(CompositingMode::MODULATE_X2));
+    rb_define_const (rb_cCompositingMode, "REPLACE",     INT2NUM(CompositingMode::REPLACE));
 
      rb_define_alloc_func (rb_cCompositingMode, ruby_CompositingMode_allocate);
      rb_define_private_method (rb_cCompositingMode, "initialize", (VALUE(*)(...))ruby_CompositingMode_initialize, 0);

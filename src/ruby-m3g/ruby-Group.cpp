@@ -68,41 +68,33 @@ VALUE ruby_Group_get_child_count (VALUE self)
     Data_Get_Struct (self, Group, p);
     count = p->getChildCount();
 
-    return INT2FIX(count);
+    return INT2NUM(count);
 }
 
 VALUE ruby_Group_pick (VALUE self, VALUE val_scope, VALUE val_ox, VALUE val_oy, VALUE val_oz, VALUE val_dx, VALUE val_dy, VALUE val_dz, VALUE val_ri)
 {
     Group* p;
-    int scope;
-    float ox, oy, oz, dx, dy, dz;
-    RayIntersection* ri;
-    bool picked;
-
     Data_Get_Struct (self, Group, p);
-    scope = FIX2INT (val_scope);
-    ox = NUMERIC2FLOAT(val_ox);
-    oy = NUMERIC2FLOAT(val_oy);
-    oz = NUMERIC2FLOAT(val_oz);
-    dx = NUMERIC2FLOAT(val_dx);
-    dy = NUMERIC2FLOAT(val_dy);
-    dz = NUMERIC2FLOAT(val_dz);
+    int   scope = NUM2INT (val_scope);
+    float ox    = NUM2DBL(val_ox);
+    float oy    = NUM2DBL(val_oy);
+    float oz    = NUM2DBL(val_oz);
+    float dx    = NUM2DBL(val_dx);
+    float dy    = NUM2DBL(val_dy);
+    float dz    = NUM2DBL(val_dz);
+    RayIntersection* ri;
     Data_Get_Struct (val_ri, RayIntersection, ri);
 
-    picked = p->pick (scope, ox, oy, oz, dx, dy, dz, ri);
+    bool picked = p->pick (scope, ox, oy, oz, dx, dy, dz, ri);
 
-    if (picked)
-      return Qtrue;
-    else
-      return Qfalse;
+    return picked ? Qtrue : Qfalse;
 }
 
 VALUE ruby_Group_remove_child (VALUE self, VALUE val_child)
 {
     Group* p;
-    Node* child;
-
     Data_Get_Struct (self, Group, p);
+    Node* child;
     Data_Get_Struct (val_child, Node, child);
 
     p->removeChild (child);
@@ -119,7 +111,7 @@ VALUE ruby_Group_ChildAccessor_get_child (VALUE self, VALUE val_index)
 {
    ChildAccessor* p;
     Data_Get_Struct (self, ChildAccessor, p);
-   int   index = FIX2INT (val_index);
+   int   index = NUM2INT (val_index);
    Node* child = p->group->getChild (index);
     
     return child ? (VALUE)child->getExportedEntity() : Qnil;

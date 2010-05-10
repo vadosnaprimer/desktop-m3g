@@ -47,9 +47,9 @@ VALUE ruby_Loader_load (int argc, VALUE* argv, VALUE self)
       break;
     }
     case 3: {
-      int         length = FIX2INT  (val_arg1);
+      int         length = NUM2INT  (val_arg1);
       const char* data   = STR2CSTR (val_arg2);
-      int         offset = FIX2INT  (val_arg3);
+      int         offset = NUM2INT  (val_arg3);
       objs = Loader::load (length, data, offset);
       break;
     }

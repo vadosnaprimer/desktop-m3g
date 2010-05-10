@@ -41,7 +41,7 @@ VALUE ruby_Graphics3D_add_light (VALUE self, VALUE val_light, VALUE val_transfor
     int ret;
     ret = p->addLight (light, *transform);
 
-    return INT2FIX(ret);
+    return INT2NUM(ret);
 }
 
 VALUE ruby_Graphics3D_bind_target (int argc, VALUE* argv, VALUE self)
@@ -105,7 +105,7 @@ VALUE ruby_Graphics3D_get_hints (VALUE self)
     int ret;
     ret = p->getHints ();
 
-    return INT2FIX(ret);
+    return INT2NUM(ret);
 }
 
 VALUE ruby_Graphics3D_get_instance (VALUE self)
@@ -129,7 +129,7 @@ VALUE ruby_Graphics3D_get_light (VALUE self, VALUE val_index, VALUE val_transfor
     Transform*  trans;
 
     Data_Get_Struct (self, Graphics3D, p);
-    index = FIX2INT (val_index);
+    index = NUM2INT (val_index);
     Data_Get_Struct (val_transform, Transform, trans);
 
     Light* lig;
@@ -147,7 +147,7 @@ VALUE ruby_Graphics3D_get_light_count (VALUE self)
 
     count = p->getLightCount ();
 
-    return INT2FIX (count);
+    return INT2NUM (count);
 }
 
 VALUE ruby_Graphics3D_get_properties (VALUE self)
@@ -271,8 +271,8 @@ VALUE ruby_Graphics3D_set_depth_range (VALUE self, VALUE val_depth_range)
     VALUE val_far  = rb_ary_entry(val_depth_range, 1);
     Graphics3D* p;
     Data_Get_Struct (self, Graphics3D, p);
-    float near = NUMERIC2FLOAT(val_near);
-    float far  = NUMERIC2FLOAT(val_far);
+    float near = NUM2DBL(val_near);
+    float far  = NUM2DBL(val_far);
 
     p->setDepthRange (near, far);
 
@@ -287,7 +287,7 @@ VALUE ruby_Graphics3D_set_light (VALUE self, VALUE val_index, VALUE val_light, V
     Transform* trans;
 
     Data_Get_Struct (self, Graphics3D, p);
-    index = FIX2INT (val_index);
+    index = NUM2INT (val_index);
     Data_Get_Struct (val_light, Light, lig);
 
     p->setLight (index, lig, *trans);
@@ -303,10 +303,10 @@ VALUE ruby_Graphics3D_set_viewport (VALUE self, VALUE val_viewport)
     VALUE val_height = rb_ary_entry(val_viewport, 3);
     Graphics3D* p;
     Data_Get_Struct (self, Graphics3D, p);
-    float x      = NUMERIC2FLOAT(val_x);
-    float y      = NUMERIC2FLOAT(val_y);
-    float width  = NUMERIC2FLOAT(val_width);
-    float height = NUMERIC2FLOAT(val_height);
+    float x      = NUM2DBL(val_x);
+    float y      = NUM2DBL(val_y);
+    float width  = NUM2DBL(val_width);
+    float height = NUM2DBL(val_height);
 
     p->setViewport (x, y, width, height);
 
@@ -380,10 +380,10 @@ void register_Graphics3D ()
     // Graphics3D
     rb_cGraphics3D          = rb_define_class_under (rb_mM3G, "Graphics3D",          rb_cObject);
 
-    rb_define_const (rb_cGraphics3D, "ANTIALIAS",  INT2FIX(Graphics3D::ANTIALIAS));
-    rb_define_const (rb_cGraphics3D, "DITHER",     INT2FIX(Graphics3D::DITHER));
-    rb_define_const (rb_cGraphics3D, "OVERWRITE",  INT2FIX(Graphics3D::OVERWRITE));
-    rb_define_const (rb_cGraphics3D, "TRUE_COLOR", INT2FIX(Graphics3D::TRUE_COLOR));
+    rb_define_const (rb_cGraphics3D, "ANTIALIAS",  INT2NUM(Graphics3D::ANTIALIAS));
+    rb_define_const (rb_cGraphics3D, "DITHER",     INT2NUM(Graphics3D::DITHER));
+    rb_define_const (rb_cGraphics3D, "OVERWRITE",  INT2NUM(Graphics3D::OVERWRITE));
+    rb_define_const (rb_cGraphics3D, "TRUE_COLOR", INT2NUM(Graphics3D::TRUE_COLOR));
 
     rb_define_method (rb_cGraphics3D, "add_light",          (VALUE(*)(...))ruby_Graphics3D_add_light,       2);
     rb_define_method (rb_cGraphics3D, "bind_target",        (VALUE(*)(...))ruby_Graphics3D_bind_target,    -1);

@@ -73,10 +73,8 @@ VALUE ruby_Material_is_vertex_color_tracking_enabled (VALUE self)
 VALUE ruby_Material_set_shininess (VALUE self, VALUE val_shininess)
 {
   Material* p;
-  float shininess;
-
   Data_Get_Struct (self, Material, p);
-  shininess = NUMERIC2FLOAT (val_shininess);
+  float shininess = NUM2DBL (val_shininess);
 
   p->setShininess (shininess);
 
@@ -105,20 +103,20 @@ VALUE ruby_Material_ColorAccessor_get_color (VALUE self, VALUE val_target)
 {
   ColorAccessor* p;
   Data_Get_Struct (self, ColorAccessor, p);
-  int       target = FIX2INT(val_target);
+  int       target = NUM2INT(val_target);
   int       argb;
 
   argb = p->material->getColor (target);
 
-  return INT2FIX(argb);
+  return INT2NUM(argb);
 }
 
 VALUE ruby_Material_ColorAccessor_set_color (VALUE self, VALUE val_target, VALUE val_color)
 {
   ColorAccessor* p;
   Data_Get_Struct (self, ColorAccessor, p);
-  int target = FIX2INT(val_target);
-  int color  = FIX2INT(val_color);
+  int target = NUM2INT(val_target);
+  int color  = NUM2INT(val_color);
 
   p->material->setColor (target, color);
 
@@ -130,10 +128,10 @@ void register_Material ()
      // Material
     rb_cMaterial            = rb_define_class_under (rb_mM3G, "Material",            rb_cObject3D);
 
-     rb_define_const (rb_cMaterial, "AMBIENT",  INT2FIX(Material::AMBIENT));
-     rb_define_const (rb_cMaterial, "DIFFUSE",  INT2FIX(Material::DIFFUSE));
-     rb_define_const (rb_cMaterial, "EMISSIVE", INT2FIX(Material::EMISSIVE));
-     rb_define_const (rb_cMaterial, "SPECULAR", INT2FIX(Material::SPECULAR));
+     rb_define_const (rb_cMaterial, "AMBIENT",  INT2NUM(Material::AMBIENT));
+     rb_define_const (rb_cMaterial, "DIFFUSE",  INT2NUM(Material::DIFFUSE));
+     rb_define_const (rb_cMaterial, "EMISSIVE", INT2NUM(Material::EMISSIVE));
+     rb_define_const (rb_cMaterial, "SPECULAR", INT2NUM(Material::SPECULAR));
 
      rb_define_alloc_func (rb_cMaterial, ruby_Material_allocate);
      rb_define_private_method (rb_cMaterial, "initialize", (VALUE(*)(...))ruby_Material_initialize,0);

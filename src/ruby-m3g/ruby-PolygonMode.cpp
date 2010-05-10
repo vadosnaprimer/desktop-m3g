@@ -35,7 +35,7 @@ VALUE ruby_PolygonMode_get_culling (VALUE self)
     Data_Get_Struct (self, PolygonMode, p);
     culling = p->getCulling ();
 
-    return INT2FIX (culling);
+    return INT2NUM (culling);
 }
 
 VALUE ruby_PolygonMode_get_shading (VALUE self)
@@ -46,7 +46,7 @@ VALUE ruby_PolygonMode_get_shading (VALUE self)
     Data_Get_Struct (self, PolygonMode, p);
     shading = p->getShading ();
 
-    return INT2FIX(shading);
+    return INT2NUM(shading);
 }
 
 VALUE ruby_PolygonMode_get_winding (VALUE self)
@@ -57,7 +57,7 @@ VALUE ruby_PolygonMode_get_winding (VALUE self)
     Data_Get_Struct (self, PolygonMode, p);
     winding = p->getWinding ();
 
-    return INT2FIX(winding);
+    return INT2NUM(winding);
 }
 
 VALUE ruby_PolygonMode_is_local_camera_lighting_enabled (VALUE self)
@@ -99,7 +99,7 @@ VALUE ruby_PolygonMode_set_culling (VALUE self, VALUE val_mode)
     int mode;
 
     Data_Get_Struct (self, PolygonMode, p);
-    mode = FIX2INT (val_mode);
+    mode = NUM2INT (val_mode);
 
     p->setCulling (mode);
 
@@ -138,7 +138,7 @@ VALUE ruby_PolygonMode_set_shading (VALUE self, VALUE val_mode)
     int mode;
 
     Data_Get_Struct (self, PolygonMode, p);
-    mode = FIX2INT (val_mode);
+    mode = NUM2INT (val_mode);
 
     p->setShading (mode);
 
@@ -163,7 +163,7 @@ VALUE ruby_PolygonMode_set_winding (VALUE self, VALUE val_mode)
     PolygonMode* p;
     int mode; 
 
-    mode = FIX2INT (val_mode);
+    mode = NUM2INT (val_mode);
 
     Data_Get_Struct (self, PolygonMode, p);
     p->setWinding (mode);
@@ -177,13 +177,13 @@ void register_PolygonMode ()
      // PolygonMode
     rb_cPolygonMode         = rb_define_class_under (rb_mM3G, "PolygonMode",         rb_cObject3D);
 
-     rb_define_const (rb_cPolygonMode, "CULL_BACK",    INT2FIX(PolygonMode::CULL_BACK));
-     rb_define_const (rb_cPolygonMode, "CULL_FRONT",   INT2FIX(PolygonMode::CULL_FRONT));
-     rb_define_const (rb_cPolygonMode, "CULL_NONE",    INT2FIX(PolygonMode::CULL_NONE));
-     rb_define_const (rb_cPolygonMode, "SHADE_FLAT",   INT2FIX(PolygonMode::SHADE_FLAT));
-     rb_define_const (rb_cPolygonMode, "SHADE_SMOOTH", INT2FIX(PolygonMode::SHADE_SMOOTH));
-     rb_define_const (rb_cPolygonMode, "WINDING_CCW",  INT2FIX(PolygonMode::WINDING_CCW));
-     rb_define_const (rb_cPolygonMode, "WINDING_CW",   INT2FIX(PolygonMode::WINDING_CW));
+     rb_define_const (rb_cPolygonMode, "CULL_BACK",    INT2NUM(PolygonMode::CULL_BACK));
+     rb_define_const (rb_cPolygonMode, "CULL_FRONT",   INT2NUM(PolygonMode::CULL_FRONT));
+     rb_define_const (rb_cPolygonMode, "CULL_NONE",    INT2NUM(PolygonMode::CULL_NONE));
+     rb_define_const (rb_cPolygonMode, "SHADE_FLAT",   INT2NUM(PolygonMode::SHADE_FLAT));
+     rb_define_const (rb_cPolygonMode, "SHADE_SMOOTH", INT2NUM(PolygonMode::SHADE_SMOOTH));
+     rb_define_const (rb_cPolygonMode, "WINDING_CCW",  INT2NUM(PolygonMode::WINDING_CCW));
+     rb_define_const (rb_cPolygonMode, "WINDING_CW",   INT2NUM(PolygonMode::WINDING_CW));
      
      rb_define_alloc_func (rb_cPolygonMode, ruby_PolygonMode_allocate);
      rb_define_private_method (rb_cPolygonMode, "initialize",              (VALUE(*)(...))ruby_PolygonMode_initialize,0);

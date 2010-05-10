@@ -94,7 +94,7 @@ VALUE ruby_Node_get_scope (VALUE self)
     Data_Get_Struct (self, Node, p);
     scope = p->getScope();
 
-    return INT2FIX(scope);
+    return INT2NUM(scope);
 }
 
 VALUE ruby_Node_get_transform_to (VALUE self, VALUE val_target, VALUE val_transform)
@@ -154,9 +154,9 @@ VALUE ruby_Node_set_alignment (VALUE self, VALUE val_z_ref, VALUE val_z_target, 
 
     Data_Get_Struct (self, Node, p);
     Data_Get_Struct (val_z_ref, Node, z_ref);    
-    z_target = FIX2INT (val_z_ref);
+    z_target = NUM2INT (val_z_ref);
     Data_Get_Struct (val_y_ref, Node, y_ref);
-    y_target = FIX2INT (val_y_ref);
+    y_target = NUM2INT (val_y_ref);
 
     p->setAlignment (z_ref, z_target, y_ref, y_target);
 
@@ -166,10 +166,8 @@ VALUE ruby_Node_set_alignment (VALUE self, VALUE val_z_ref, VALUE val_z_target, 
 VALUE ruby_Node_set_alpha_factor (VALUE self, VALUE val_alpha_factor)
 {
     Node* p;
-    float alpha;
-
     Data_Get_Struct (self, Node, p);
-    alpha = RFLOAT_VALUE(val_alpha_factor);
+    float alpha = NUM2DBL(val_alpha_factor);
 
     p->setAlphaFactor (alpha);
 
@@ -208,7 +206,7 @@ VALUE ruby_Node_set_scope (VALUE self, VALUE val_scope)
     int scope;
 
     Data_Get_Struct (self, Node, p);
-    scope = INT2FIX (scope);
+    scope = INT2NUM (scope);
 
     p->setScope (scope);
 
@@ -226,7 +224,7 @@ VALUE ruby_Node_AlignmentAccessor_get_alignment (VALUE self, VALUE val_axis)
   TargetReferenceAccessor* accessor;
   VALUE val_accessor = Data_Make_Struct (rb_cNode_TargetReferenceAccessor, TargetReferenceAccessor, 0, -1, accessor);
   accessor->node = p->node;
-  accessor->axis = FIX2INT(val_axis);
+  accessor->axis = NUM2INT(val_axis);
   return val_accessor;
 }
 
@@ -238,7 +236,7 @@ VALUE ruby_Node_TargetReferenceAccessor_get_target (VALUE self)
   TargetReferenceAccessor* p;
   Data_Get_Struct (self, TargetReferenceAccessor, p);
   int target = p->node->getAlignmentTarget (p->axis);
-  return INT2FIX(target);
+  return INT2NUM(target);
 }
 
 VALUE ruby_Node_TargetReferenceAccessor_get_reference (VALUE self)
@@ -256,11 +254,11 @@ void register_Node ()
      // Node
     rb_cNode                = rb_define_class_under (rb_mM3G, "Node",                rb_cTransformable);
 
-     rb_define_const (rb_cNode, "NONE",   INT2FIX(Node::NONE));
-     rb_define_const (rb_cNode, "ORIGIN", INT2FIX(Node::ORIGIN));
-     rb_define_const (rb_cNode, "X_AXIS", INT2FIX(Node::X_AXIS));
-     rb_define_const (rb_cNode, "Y_AXIS", INT2FIX(Node::Y_AXIS));
-     rb_define_const (rb_cNode, "Z_AXIS", INT2FIX(Node::Z_AXIS));
+     rb_define_const (rb_cNode, "NONE",   INT2NUM(Node::NONE));
+     rb_define_const (rb_cNode, "ORIGIN", INT2NUM(Node::ORIGIN));
+     rb_define_const (rb_cNode, "X_AXIS", INT2NUM(Node::X_AXIS));
+     rb_define_const (rb_cNode, "Y_AXIS", INT2NUM(Node::Y_AXIS));
+     rb_define_const (rb_cNode, "Z_AXIS", INT2NUM(Node::Z_AXIS));
 
      rb_define_alloc_func (rb_cNode, ruby_Node_allocate);
      rb_define_private_method (rb_cNode, "initialize",  (VALUE(*)(...))ruby_Node_initialize, 0);

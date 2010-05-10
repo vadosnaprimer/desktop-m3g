@@ -112,7 +112,7 @@ VALUE ruby_RayIntersection_get_submesh_index (VALUE self)
 
     index = p->getSubmeshIndex();
     
-    return INT2FIX(index);
+    return INT2NUM(index);
 }
 
 VALUE ruby_RayIntersection_get_texture (VALUE self)
@@ -133,7 +133,7 @@ VALUE ruby_RayIntersection_TextureAccessor_get_st (VALUE self, VALUE val_index)
 {
     TextureAccessor* p;
     Data_Get_Struct (self, TextureAccessor, p);
-    int index = FIX2INT(val_index);
+    int index = NUM2INT(val_index);
     TextureSTAccessor* accessor;
     VALUE val_accessor = Data_Make_Struct (rb_cRayIntersection_TextureSTAccessor, TextureSTAccessor, 0, -1, accessor);
     accessor->ray_intersection = p->ray_intersection;

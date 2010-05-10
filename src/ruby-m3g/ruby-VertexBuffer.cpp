@@ -50,7 +50,7 @@ VALUE ruby_VertexBuffer_get_default_color (VALUE self)
     Data_Get_Struct (self, VertexBuffer, p);
     argb = p->getDefaultColor ();
 
-    return INT2FIX(argb);
+    return INT2NUM(argb);
 }
 
 VALUE ruby_VertexBuffer_get_normals (VALUE self)
@@ -113,7 +113,7 @@ VALUE ruby_VertexBuffer_set_default_color (VALUE self, VALUE val_argb)
     VertexBuffer* p;
     int argb;
     Data_Get_Struct (self, VertexBuffer, p);
-    argb = FIX2INT (val_argb);
+    argb = NUM2INT (val_argb);
 
     p->setDefaultColor (argb);
 
@@ -141,11 +141,11 @@ VALUE ruby_VertexBuffer_set_positions (VALUE self, VALUE val_args)
   Data_Get_Struct (self, VertexBuffer, p);
   VertexArray* positions;
   Data_Get_Struct (val_positions, VertexArray, positions);
-  float scale = NUMERIC2FLOAT(val_scale); 
+  float scale = NUM2DBL(val_scale); 
   float bias[3];
-  bias[0] = NUMERIC2FLOAT(rb_ary_entry(val_bias, 0));
-  bias[1] = NUMERIC2FLOAT(rb_ary_entry(val_bias, 1));
-  bias[2] = NUMERIC2FLOAT(rb_ary_entry(val_bias, 2));
+  bias[0] = NUM2DBL(rb_ary_entry(val_bias, 0));
+  bias[1] = NUM2DBL(rb_ary_entry(val_bias, 1));
+  bias[2] = NUM2DBL(rb_ary_entry(val_bias, 2));
 
   p->setPositions (positions, scale, bias);
 
@@ -158,7 +158,7 @@ VALUE ruby_VertexBuffer_set_positions (VALUE self, VALUE val_args)
 
 VALUE ruby_VertexBuffer_TextureAccessor_get_tex_coords (VALUE self, VALUE val_index)
 {
-    int   index = FIX2INT (val_index);
+    int   index = NUM2INT (val_index);
     TextureAccessor* p;
     Data_Get_Struct (self, TextureAccessor, p);
 
@@ -189,17 +189,17 @@ VALUE ruby_VertexBuffer_TextureAccessor_get_tex_coords (VALUE self, VALUE val_in
 
 VALUE ruby_VertexBuffer_TextureAccessor_set_tex_coords (VALUE self, VALUE val_index, VALUE val_args)
 {
-  int   index          = FIX2INT(val_index);
+  int   index          = NUM2INT(val_index);
   VALUE val_tex_coords = rb_ary_entry(val_args, 0);
   VALUE val_scale      = rb_ary_entry(val_args, 1);
   VALUE val_bias       = rb_ary_entry(val_args, 2);
   TextureAccessor* p;
   Data_Get_Struct (self, TextureAccessor, p);
-  float scale = NUMERIC2FLOAT(val_scale);
+  float scale = NUM2DBL(val_scale);
   float bias[4];
-  bias[0] = NUMERIC2FLOAT(rb_ary_entry(val_bias, 0));
-  bias[1] = NUMERIC2FLOAT(rb_ary_entry(val_bias, 1));
-  bias[2] = NUMERIC2FLOAT(rb_ary_entry(val_bias, 2));
+  bias[0] = NUM2DBL(rb_ary_entry(val_bias, 0));
+  bias[1] = NUM2DBL(rb_ary_entry(val_bias, 1));
+  bias[2] = NUM2DBL(rb_ary_entry(val_bias, 2));
   VertexArray* tex_coords;
   Data_Get_Struct (val_tex_coords, VertexArray, tex_coords);
  

@@ -28,24 +28,24 @@ VALUE ruby_Image2D_initialize (int argc, VALUE* argv, VALUE self)
 
     switch (num) {
     case 3: {
-      int format = FIX2INT (val_arg1);
-      int width  = FIX2INT (val_arg2);
-      int height = FIX2INT (val_arg3);
+      int format = NUM2INT (val_arg1);
+      int width  = NUM2INT (val_arg2);
+      int height = NUM2INT (val_arg3);
       new (p) Image2D (format, width, height);
       break;
     }
     case 4: {
-      int format = FIX2INT (val_arg1);
-      int width  = FIX2INT (val_arg2);
-      int height = FIX2INT (val_arg3);
+      int format = NUM2INT (val_arg1);
+      int width  = NUM2INT (val_arg2);
+      int height = NUM2INT (val_arg3);
       void* image = (void*)STR2CSTR (val_arg4);
       new (p) Image2D (format, width, height, image);
       break;
     }
     case 5: {
-      int format = FIX2INT (val_arg1);
-      int width = FIX2INT (val_arg2);
-      int height = FIX2INT (val_arg3);
+      int format = NUM2INT (val_arg1);
+      int width = NUM2INT (val_arg2);
+      int height = NUM2INT (val_arg3);
       void* image = (void*)STR2CSTR (val_arg4);
       void* palette = (void*)STR2CSTR (val_arg5);
       new (p) Image2D (format, width, height, image, palette);
@@ -69,7 +69,7 @@ VALUE ruby_Image2D_get_format (VALUE self)
   
   format = p->getFormat ();
 
-  return INT2FIX(format);
+  return INT2NUM(format);
 }
 
 VALUE ruby_Image2D_get_height (VALUE self)
@@ -81,7 +81,7 @@ VALUE ruby_Image2D_get_height (VALUE self)
   
   height = p->getHeight ();
 
-  return INT2FIX(height);
+  return INT2NUM(height);
 }
 
 VALUE ruby_Image2D_get_width (VALUE self)
@@ -93,7 +93,7 @@ VALUE ruby_Image2D_get_width (VALUE self)
   
   width = p->getWidth ();
 
-  return INT2FIX(width);
+  return INT2NUM(width);
 }
 
 VALUE ruby_Image2D_is_mutable (VALUE self)
@@ -117,10 +117,10 @@ VALUE ruby_Image2D_set (VALUE self, VALUE val_x, VALUE val_y, VALUE val_width, V
   void*    image;
 
   Data_Get_Struct (self, Image2D, p);
-  x      = FIX2INT (val_x);
-  y      = FIX2INT (val_y);
-  width  = FIX2INT (val_width);
-  height = FIX2INT (val_height);
+  x      = NUM2INT (val_x);
+  y      = NUM2INT (val_y);
+  width  = NUM2INT (val_width);
+  height = NUM2INT (val_height);
   image  = (void*)STR2CSTR (val_image);
 
   p->set (x, y, width, height, image);
@@ -133,11 +133,11 @@ void register_Image2D ()
      // Image2D
     rb_cImage2D = rb_define_class_under (rb_mM3G, "Image2D",             rb_cObject3D);
 
-     rb_define_const (rb_cImage2D, "ALPHA",           INT2FIX(Image2D::ALPHA));
-     rb_define_const (rb_cImage2D, "LUMINANCE",       INT2FIX(Image2D::LUMINANCE));
-     rb_define_const (rb_cImage2D, "LUMINANCE_ALPHA", INT2FIX(Image2D::LUMINANCE_ALPHA));
-     rb_define_const (rb_cImage2D, "RGB",             INT2FIX(Image2D::RGB));
-     rb_define_const (rb_cImage2D, "RGBA",            INT2FIX(Image2D::RGBA));
+     rb_define_const (rb_cImage2D, "ALPHA",           INT2NUM(Image2D::ALPHA));
+     rb_define_const (rb_cImage2D, "LUMINANCE",       INT2NUM(Image2D::LUMINANCE));
+     rb_define_const (rb_cImage2D, "LUMINANCE_ALPHA", INT2NUM(Image2D::LUMINANCE_ALPHA));
+     rb_define_const (rb_cImage2D, "RGB",             INT2NUM(Image2D::RGB));
+     rb_define_const (rb_cImage2D, "RGBA",            INT2NUM(Image2D::RGBA));
 
      rb_define_alloc_func (rb_cImage2D, ruby_Image2D_allocate);
      rb_define_private_method (rb_cImage2D, "initialize", (VALUE(*)(...))ruby_Image2D_initialize, -1);

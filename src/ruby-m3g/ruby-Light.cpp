@@ -45,7 +45,7 @@ VALUE ruby_Light_get_color (VALUE self)
 
     rgb = p->getColor ();
 
-    return INT2FIX(rgb);
+    return INT2NUM(rgb);
 }
 
 VALUE ruby_Light_get_attenuation (VALUE self)
@@ -79,7 +79,7 @@ VALUE ruby_Light_get_mode (VALUE self)
 
     mode = p->getMode();
 
-    return INT2FIX(mode);
+    return INT2NUM(mode);
 }
 
 
@@ -100,9 +100,9 @@ VALUE ruby_Light_set_attenuation (VALUE self, VALUE val_args)
   VALUE val_quadratic = rb_ary_entry(val_args, 2);
   Light* p;
   Data_Get_Struct (self, Light, p);
-  float constant  = RFLOAT_VALUE(val_constant);
-  float linear    = RFLOAT_VALUE(val_linear);
-  float quadratic = RFLOAT_VALUE(val_quadratic);
+  float constant  = NUM2DBL(val_constant);
+  float linear    = NUM2DBL(val_linear);
+  float quadratic = NUM2DBL(val_quadratic);
 
   p->setAttenuation (constant, linear, quadratic);
 
@@ -116,7 +116,7 @@ VALUE ruby_Light_set_color (VALUE self, VALUE val_rgb)
     int rgb;
 
     Data_Get_Struct (self, Light, p);
-    rgb = FIX2INT (rgb);
+    rgb = NUM2INT (rgb);
 
     p->setColor (rgb);
 
@@ -129,7 +129,7 @@ VALUE ruby_Light_set_intensity (VALUE self, VALUE val_intensity)
     float intensity;
 
     Data_Get_Struct (self, Light, p);
-    intensity = RFLOAT_VALUE(val_intensity);
+    intensity = NUM2DBL(val_intensity);
 
     p->setIntensity (intensity);
 
@@ -142,7 +142,7 @@ VALUE ruby_Light_set_mode (VALUE self, VALUE val_mode)
     int mode;
 
     Data_Get_Struct (self, Light, p);
-    mode = FIX2INT (val_mode);
+    mode = NUM2INT (val_mode);
 
     p->setMode (mode);
 
@@ -155,8 +155,8 @@ VALUE ruby_Light_set_spot (VALUE self, VALUE val_spot)
   VALUE val_exponent = rb_ary_entry(val_exponent, 0);
   Light* p;
   Data_Get_Struct (self, Light, p);
-  float angle    = NUMERIC2FLOAT(val_angle);
-  float exponent = NUMERIC2FLOAT(val_exponent);
+  float angle    = NUM2DBL(val_angle);
+  float exponent = NUM2DBL(val_exponent);
 
   p->setSpotAngle (angle);
   p->setSpotExponent (exponent);
@@ -216,37 +216,37 @@ VALUE ruby_Light_SpotAccessor_get_exponent (VALUE self)
 void register_Light ()
 {
      // Light
-    rb_cLight               = rb_define_class_under (rb_mM3G, "Light",               rb_cNode);
+    rb_cLight = rb_define_class_under (rb_mM3G, "Light", rb_cNode);
 
-     rb_define_const (rb_cLight, "AMBIENT",     INT2FIX(Light::AMBIENT));
-     rb_define_const (rb_cLight, "DIRECTIONAL", INT2FIX(Light::DIRECTIONAL));
-     rb_define_const (rb_cLight, "OMNI",        INT2FIX(Light::OMNI));
-     rb_define_const (rb_cLight, "SPOT",        INT2FIX(Light::SPOT));
+     rb_define_const (rb_cLight, "AMBIENT",     INT2NUM(Light::AMBIENT));
+     rb_define_const (rb_cLight, "DIRECTIONAL", INT2NUM(Light::DIRECTIONAL));
+     rb_define_const (rb_cLight, "OMNI",        INT2NUM(Light::OMNI));
+     rb_define_const (rb_cLight, "SPOT",        INT2NUM(Light::SPOT));
 
      rb_define_alloc_func (rb_cLight, ruby_Light_allocate);
-     rb_define_private_method (rb_cLight, "initialize", (VALUE(*)(...))ruby_Light_initialize, 0);
+     rb_define_private_method (rb_cLight, "initialize", (VALUE(*)(...))ruby_Light_initialize,      0);
 
-     rb_define_method (rb_cLight, "color",                (VALUE(*)(...))ruby_Light_get_color, 0);
-     rb_define_method (rb_cLight, "attenuation", (VALUE(*)(...))ruby_Light_get_attenuation, 0);
-     rb_define_method (rb_cLight, "intensity",            (VALUE(*)(...))ruby_Light_get_intensity, 0);
-     rb_define_method (rb_cLight, "mode",                 (VALUE(*)(...))ruby_Light_get_mode, 0);
-     rb_define_method (rb_cLight, "spot",           (VALUE(*)(...))ruby_Light_get_spot, 0);
-     rb_define_method (rb_cLight, "attenuation=",          (VALUE(*)(...))ruby_Light_set_attenuation, 1);
-     rb_define_method (rb_cLight, "color=",                (VALUE(*)(...))ruby_Light_set_color, 1);
-     rb_define_method (rb_cLight, "intensity=",            (VALUE(*)(...))ruby_Light_set_intensity, 1);
-     rb_define_method (rb_cLight, "mode=",                 (VALUE(*)(...))ruby_Light_set_mode, 1);
-     rb_define_method (rb_cLight, "spot=",           (VALUE(*)(...))ruby_Light_set_spot, 1);
+     rb_define_method (rb_cLight, "color",              (VALUE(*)(...))ruby_Light_get_color,       0);
+     rb_define_method (rb_cLight, "attenuation",        (VALUE(*)(...))ruby_Light_get_attenuation, 0);
+     rb_define_method (rb_cLight, "intensity",          (VALUE(*)(...))ruby_Light_get_intensity,   0);
+     rb_define_method (rb_cLight, "mode",               (VALUE(*)(...))ruby_Light_get_mode,        0);
+     rb_define_method (rb_cLight, "spot",               (VALUE(*)(...))ruby_Light_get_spot,        0);
+     rb_define_method (rb_cLight, "attenuation=",       (VALUE(*)(...))ruby_Light_set_attenuation, 1);
+     rb_define_method (rb_cLight, "color=",             (VALUE(*)(...))ruby_Light_set_color,       1);
+     rb_define_method (rb_cLight, "intensity=",         (VALUE(*)(...))ruby_Light_set_intensity,   1);
+     rb_define_method (rb_cLight, "mode=",              (VALUE(*)(...))ruby_Light_set_mode,        1);
+     rb_define_method (rb_cLight, "spot=",              (VALUE(*)(...))ruby_Light_set_spot,        1);
 
      // Light_AttenuationAccessor
      rb_cLight_AttenuationAccessor  = rb_define_class_under (rb_cLight, "AttenuationAccessor", rb_cObject);
 
-     rb_define_method (rb_cLight_AttenuationAccessor, "constant",           (VALUE(*)(...))ruby_Light_AttenuationAccessor_get_constant, 0);
-     rb_define_method (rb_cLight_AttenuationAccessor, "linear",             (VALUE(*)(...))ruby_Light_AttenuationAccessor_get_linear, 0);
+     rb_define_method (rb_cLight_AttenuationAccessor, "constant",           (VALUE(*)(...))ruby_Light_AttenuationAccessor_get_constant,  0);
+     rb_define_method (rb_cLight_AttenuationAccessor, "linear",             (VALUE(*)(...))ruby_Light_AttenuationAccessor_get_linear,    0);
      rb_define_method (rb_cLight_AttenuationAccessor, "quadratic",          (VALUE(*)(...))ruby_Light_AttenuationAccessor_get_quadratic, 0);
 
      // Light_SpotAccessor
      rb_cLight_SpotAccessor  = rb_define_class_under (rb_cLight, "SpotAccessor", rb_cObject);
 
-     rb_define_method (rb_cLight_SpotAccessor, "angle",         (VALUE(*)(...))ruby_Light_SpotAccessor_get_angle, 0);
+     rb_define_method (rb_cLight_SpotAccessor, "angle",         (VALUE(*)(...))ruby_Light_SpotAccessor_get_angle,    0);
      rb_define_method (rb_cLight_SpotAccessor, "exponent",      (VALUE(*)(...))ruby_Light_SpotAccessor_get_exponent, 0);
 }

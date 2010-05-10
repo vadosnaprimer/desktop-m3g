@@ -93,7 +93,7 @@ VALUE ruby_Mesh_get_submesh_count (VALUE self)
 
   count = p->getSubmeshCount ();
 
-  return INT2FIX (count);
+  return INT2NUM (count);
 }
 
 VALUE ruby_Mesh_get_vertex_buffer (VALUE self)
@@ -120,7 +120,7 @@ VALUE ruby_Mesh_IndexBufferAccessor_get_index_buffer (VALUE self, VALUE val_inde
     IndexBuffer* ibuf;
 
     Data_Get_Struct (self, IndexBufferAccessor, p);
-    index = FIX2INT (val_index);
+    index = NUM2INT (val_index);
 
     ibuf = p->mesh->getIndexBuffer (index);
     
@@ -135,7 +135,7 @@ VALUE ruby_Mesh_AppearanceAccessor_get_appearance (VALUE self, VALUE val_index)
 {
     AppearanceAccessor* p;
     Data_Get_Struct (self, AppearanceAccessor, p);
-    int index = FIX2INT (val_index);
+    int index = NUM2INT (val_index);
     Appearance* app;
 
     p->mesh->setAppearance (index, app);
@@ -147,7 +147,7 @@ VALUE ruby_Mesh_AppearanceAccessor_set_appearance (VALUE self, VALUE val_index, 
 {
     AppearanceAccessor* p;
     Data_Get_Struct (self, AppearanceAccessor, p);
-    int index = FIX2INT (val_index);
+    int index = NUM2INT (val_index);
     Appearance* app;
     Data_Get_Struct (val_appearance, Appearance, app);
 

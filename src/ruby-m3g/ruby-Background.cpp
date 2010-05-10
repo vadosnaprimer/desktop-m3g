@@ -47,7 +47,7 @@ VALUE ruby_Background_get_color (VALUE self)
 
     color = p->getColor ();
 
-    return INT2FIX(color);
+    return INT2NUM(color);
 }
 
 VALUE ruby_Background_get_crop (VALUE self)
@@ -120,7 +120,7 @@ VALUE ruby_Background_set_color (VALUE self, VALUE val_argb)
 {
   Background* p;
   Data_Get_Struct (self, Background, p);
-  int argb = FIX2INT(val_argb);
+  int argb = NUM2INT(val_argb);
 
   p->setColor (argb);
 
@@ -148,10 +148,10 @@ VALUE ruby_Background_set_crop (VALUE self, VALUE val_crop)
   VALUE val_height = rb_ary_entry(val_crop, 3);
   Background* p;
   Data_Get_Struct (self, Background, p);
-  float x      = NUMERIC2FLOAT (val_x);
-  float y      = NUMERIC2FLOAT (val_y);
-  float width  = NUMERIC2FLOAT (val_width);
-  float height = NUMERIC2FLOAT (val_height);
+  float x      = NUM2DBL (val_x);
+  float y      = NUM2DBL (val_y);
+  float width  = NUM2DBL (val_width);
+  float height = NUM2DBL (val_height);
 
   p->setCrop (x, y, width, height);
 
@@ -190,8 +190,8 @@ VALUE ruby_Background_set_image_mode (VALUE self, VALUE val_mode)
   VALUE val_y = rb_ary_entry(val_mode, 1);
   Background* p;
   Data_Get_Struct (self, Background, p);
-  float x = NUMERIC2FLOAT(val_x);
-  float y = NUMERIC2FLOAT(val_y);
+  float x = NUM2DBL(val_x);
+  float y = NUM2DBL(val_y);
 
   p->setImageMode (x, y);
 
@@ -208,7 +208,7 @@ VALUE ruby_Background_ImageModeAccessor_get_x (VALUE self)
   ImageModeAccessor* p;
   Data_Get_Struct (self, ImageModeAccessor, p);
   float x = p->background->getImageModeX ();
-  return INT2FIX(x);
+  return INT2NUM(x);
 }
 
 VALUE ruby_Background_ImageModeAccessor_get_y (VALUE self)
@@ -216,7 +216,7 @@ VALUE ruby_Background_ImageModeAccessor_get_y (VALUE self)
   ImageModeAccessor* p;
   Data_Get_Struct (self, ImageModeAccessor, p);
   float y = p->background->getImageModeY ();
-  return INT2FIX(y);
+  return INT2NUM(y);
 }
 
 /**
@@ -228,7 +228,7 @@ VALUE ruby_Background_CropAccessor_get_x (VALUE self)
   CropAccessor* p;
   Data_Get_Struct (self, CropAccessor, p);
   float x = p->background->getCropX();
-  return INT2FIX(x);
+  return INT2NUM(x);
 }
 
 VALUE ruby_Background_CropAccessor_get_y (VALUE self)
@@ -236,7 +236,7 @@ VALUE ruby_Background_CropAccessor_get_y (VALUE self)
   CropAccessor* p;
   Data_Get_Struct (self, CropAccessor, p);
   float y = p->background->getCropY();
-  return INT2FIX(y);
+  return INT2NUM(y);
 }
 
 VALUE ruby_Background_CropAccessor_get_width (VALUE self)
@@ -244,7 +244,7 @@ VALUE ruby_Background_CropAccessor_get_width (VALUE self)
   CropAccessor* p;
   Data_Get_Struct (self, CropAccessor, p);
   float width = p->background->getCropWidth();
-  return INT2FIX(width);
+  return INT2NUM(width);
 }
 
 VALUE ruby_Background_CropAccessor_get_height (VALUE self)
@@ -252,7 +252,7 @@ VALUE ruby_Background_CropAccessor_get_height (VALUE self)
   CropAccessor* p;
   Data_Get_Struct (self, CropAccessor, p);
   float height = p->background->getCropHeight();
-  return INT2FIX(height);
+  return INT2NUM(height);
 }
 
 
@@ -261,8 +261,8 @@ void register_Background ()
     // Background
     rb_cBackground          = rb_define_class_under (rb_mM3G, "Background", rb_cObject3D);
 
-    rb_define_const (rb_cBackground, "BORDER", INT2FIX(Background::BORDER)); 
-    rb_define_const (rb_cBackground, "REPEAT", INT2FIX(Background::REPEAT)); 
+    rb_define_const (rb_cBackground, "BORDER", INT2NUM(Background::BORDER)); 
+    rb_define_const (rb_cBackground, "REPEAT", INT2NUM(Background::REPEAT)); 
 
     rb_define_alloc_func (rb_cBackground, ruby_Background_allocate);
     rb_define_private_method (rb_cBackground, "initialize", (VALUE(*)(...))ruby_Background_initialize,               0);

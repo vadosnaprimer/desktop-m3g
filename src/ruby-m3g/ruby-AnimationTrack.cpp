@@ -26,7 +26,7 @@ VALUE ruby_AnimationTrack_initialize (VALUE self, VALUE val_keyframe_sequence, V
 
     Data_Get_Struct (self, AnimationTrack, p);
     Data_Get_Struct (val_keyframe_sequence, KeyframeSequence, key_seq);
-    property = INT2FIX (val_property);
+    property = INT2NUM (val_property);
 
     new (p) AnimationTrack (key_seq, property);
     p->setExportedEntity ((void*)self);
@@ -72,7 +72,7 @@ VALUE ruby_AnimationTrack_get_target_property (VALUE self)
 
   property = p->getTargetProperty ();
   
-  return INT2FIX(property);
+  return INT2NUM(property);
 }
 
 VALUE ruby_AnimationTrack_set_controller (VALUE self, VALUE val_controller)
@@ -94,27 +94,27 @@ void register_AnimationTrack ()
     // AnimationTrack
     rb_cAnimationTrack      = rb_define_class_under (rb_mM3G, "AnimationTrack",      rb_cObject3D);
 
-    rb_define_const (rb_cAnimationTrack, "ALPHA",          INT2FIX(AnimationTrack::ALPHA));
-    rb_define_const (rb_cAnimationTrack, "AMBIENT_COLOR",  INT2FIX(AnimationTrack::AMBIENT_COLOR));
-    rb_define_const (rb_cAnimationTrack, "COLOR",          INT2FIX(AnimationTrack::COLOR));
-    rb_define_const (rb_cAnimationTrack, "CROP",           INT2FIX(AnimationTrack::CROP));
-    rb_define_const (rb_cAnimationTrack, "DENSITY",        INT2FIX(AnimationTrack::DENSITY));
-    rb_define_const (rb_cAnimationTrack, "DIFFUSE_COLOR",  INT2FIX(AnimationTrack::DIFFUSE_COLOR));
-    rb_define_const (rb_cAnimationTrack, "EMISSIVE_COLOR", INT2FIX(AnimationTrack::EMISSIVE_COLOR));
-    rb_define_const (rb_cAnimationTrack, "FAR_DISTANCE",   INT2FIX(AnimationTrack::FAR_DISTANCE));
-    rb_define_const (rb_cAnimationTrack, "FIELD_OF_VIEW",  INT2FIX(AnimationTrack::FIELD_OF_VIEW));
-    rb_define_const (rb_cAnimationTrack, "INTENSITY",      INT2FIX(AnimationTrack::INTENSITY));
-    rb_define_const (rb_cAnimationTrack, "MORPH_WEIGHTS",  INT2FIX(AnimationTrack::MORPH_WEIGHTS));
-    rb_define_const (rb_cAnimationTrack, "NEAR_DISTANCE",  INT2FIX(AnimationTrack::NEAR_DISTANCE));
-    rb_define_const (rb_cAnimationTrack, "ORIENTATION",    INT2FIX(AnimationTrack::ORIENTATION));
-    rb_define_const (rb_cAnimationTrack, "PICKABILITY",    INT2FIX(AnimationTrack::PICKABILITY));
-    rb_define_const (rb_cAnimationTrack, "SCALE",          INT2FIX(AnimationTrack::SCALE));
-    rb_define_const (rb_cAnimationTrack, "SHININESS",      INT2FIX(AnimationTrack::SHININESS));
-    rb_define_const (rb_cAnimationTrack, "SPECULAR_COLOR", INT2FIX(AnimationTrack::SPECULAR_COLOR));
-    rb_define_const (rb_cAnimationTrack, "SPOT_ANGLE",     INT2FIX(AnimationTrack::SPOT_ANGLE));
-    rb_define_const (rb_cAnimationTrack, "SPOT_EXPONENT",  INT2FIX(AnimationTrack::SPOT_EXPONENT));
-    rb_define_const (rb_cAnimationTrack, "TRANSLATION",    INT2FIX(AnimationTrack::TRANSLATION));
-    rb_define_const (rb_cAnimationTrack, "VISIBILITY",     INT2FIX(AnimationTrack::VISIBILITY));
+    rb_define_const (rb_cAnimationTrack, "ALPHA",          INT2NUM(AnimationTrack::ALPHA));
+    rb_define_const (rb_cAnimationTrack, "AMBIENT_COLOR",  INT2NUM(AnimationTrack::AMBIENT_COLOR));
+    rb_define_const (rb_cAnimationTrack, "COLOR",          INT2NUM(AnimationTrack::COLOR));
+    rb_define_const (rb_cAnimationTrack, "CROP",           INT2NUM(AnimationTrack::CROP));
+    rb_define_const (rb_cAnimationTrack, "DENSITY",        INT2NUM(AnimationTrack::DENSITY));
+    rb_define_const (rb_cAnimationTrack, "DIFFUSE_COLOR",  INT2NUM(AnimationTrack::DIFFUSE_COLOR));
+    rb_define_const (rb_cAnimationTrack, "EMISSIVE_COLOR", INT2NUM(AnimationTrack::EMISSIVE_COLOR));
+    rb_define_const (rb_cAnimationTrack, "FAR_DISTANCE",   INT2NUM(AnimationTrack::FAR_DISTANCE));
+    rb_define_const (rb_cAnimationTrack, "FIELD_OF_VIEW",  INT2NUM(AnimationTrack::FIELD_OF_VIEW));
+    rb_define_const (rb_cAnimationTrack, "INTENSITY",      INT2NUM(AnimationTrack::INTENSITY));
+    rb_define_const (rb_cAnimationTrack, "MORPH_WEIGHTS",  INT2NUM(AnimationTrack::MORPH_WEIGHTS));
+    rb_define_const (rb_cAnimationTrack, "NEAR_DISTANCE",  INT2NUM(AnimationTrack::NEAR_DISTANCE));
+    rb_define_const (rb_cAnimationTrack, "ORIENTATION",    INT2NUM(AnimationTrack::ORIENTATION));
+    rb_define_const (rb_cAnimationTrack, "PICKABILITY",    INT2NUM(AnimationTrack::PICKABILITY));
+    rb_define_const (rb_cAnimationTrack, "SCALE",          INT2NUM(AnimationTrack::SCALE));
+    rb_define_const (rb_cAnimationTrack, "SHININESS",      INT2NUM(AnimationTrack::SHININESS));
+    rb_define_const (rb_cAnimationTrack, "SPECULAR_COLOR", INT2NUM(AnimationTrack::SPECULAR_COLOR));
+    rb_define_const (rb_cAnimationTrack, "SPOT_ANGLE",     INT2NUM(AnimationTrack::SPOT_ANGLE));
+    rb_define_const (rb_cAnimationTrack, "SPOT_EXPONENT",  INT2NUM(AnimationTrack::SPOT_EXPONENT));
+    rb_define_const (rb_cAnimationTrack, "TRANSLATION",    INT2NUM(AnimationTrack::TRANSLATION));
+    rb_define_const (rb_cAnimationTrack, "VISIBILITY",     INT2NUM(AnimationTrack::VISIBILITY));
 
     rb_define_alloc_func (rb_cAnimationTrack, ruby_AnimationTrack_allocate);
     rb_define_private_method (rb_cAnimationTrack, "initialize", (VALUE(*)(...))ruby_AnimationTrack_initialize,            2);

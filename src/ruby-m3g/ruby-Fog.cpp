@@ -42,7 +42,7 @@ VALUE ruby_Fog_get_color (VALUE self)
 
  color = p->getColor ();
 
- return INT2FIX (color);
+ return INT2NUM (color);
 }
 
 VALUE ruby_Fog_get_density (VALUE self)
@@ -74,7 +74,7 @@ VALUE ruby_Fog_get_mode (VALUE self)
   Data_Get_Struct (self, Fog, p);
   mode = p->getMode ();
 
-  return INT2FIX(mode);
+  return INT2NUM(mode);
 }
 
 VALUE ruby_Fog_set_color (VALUE self, VALUE val_rgb)
@@ -83,7 +83,7 @@ VALUE ruby_Fog_set_color (VALUE self, VALUE val_rgb)
   int rgb;
 
   Data_Get_Struct (self, Fog, p);
-  rgb = FIX2INT (val_rgb);
+  rgb = NUM2INT (val_rgb);
 
   p->setColor (rgb);
 
@@ -93,10 +93,8 @@ VALUE ruby_Fog_set_color (VALUE self, VALUE val_rgb)
 VALUE ruby_Fog_set_density (VALUE self, VALUE val_density)
 {
   Fog* p;
-  float density;
-
   Data_Get_Struct (self, Fog, p);
-  density = NUMERIC2FLOAT (val_density);
+  float density = NUM2DBL (val_density);
 
   p->setDensity (density);
 
@@ -109,8 +107,8 @@ VALUE ruby_Fog_set_linear (VALUE self, VALUE val_linear)
   VALUE val_far  = rb_ary_entry (val_linear, 1);
   Fog* p;
   Data_Get_Struct (self, Fog, p);
-  float near = NUMERIC2FLOAT (val_near);
-  float far  = NUMERIC2FLOAT (val_far);
+  float near = NUM2DBL (val_near);
+  float far  = NUM2DBL (val_far);
 
   p->setLinear (near, far);
 
@@ -120,10 +118,8 @@ VALUE ruby_Fog_set_linear (VALUE self, VALUE val_linear)
 VALUE ruby_Fog_set_mode (VALUE self, VALUE val_mode)
 {
   Fog* p;
-  int mode;
-
   Data_Get_Struct (self, Fog, p);
-  mode = FIX2INT (val_mode);
+  int mode = NUM2INT (val_mode);
 
   p->setMode (mode);
 
@@ -159,8 +155,8 @@ void register_Fog ()
      // Fog
     rb_cFog                 = rb_define_class_under (rb_mM3G, "Fog",                 rb_cObject3D);
 
-	rb_define_const (rb_cFog, "EXPONENTIAL", INT2FIX(Fog::EXPONENTIAL));
-	rb_define_const (rb_cFog, "LINEAR",      INT2FIX(Fog::LINEAR));
+	rb_define_const (rb_cFog, "EXPONENTIAL", INT2NUM(Fog::EXPONENTIAL));
+	rb_define_const (rb_cFog, "LINEAR",      INT2NUM(Fog::LINEAR));
 
      rb_define_alloc_func (rb_cFog, ruby_Fog_allocate);
      rb_define_private_method (rb_cFog, "initialize", (VALUE(*)(...))ruby_Fog_initialize, 0);

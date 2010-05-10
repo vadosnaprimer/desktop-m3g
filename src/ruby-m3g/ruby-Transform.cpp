@@ -84,13 +84,11 @@ VALUE ruby_Transform_post_multiply (VALUE self, VALUE val_transform)
 VALUE ruby_Transform_post_rotate (VALUE self, VALUE val_angle, VALUE val_ax, VALUE val_ay, VALUE val_az)
 {
   Transform* p;
-  float angle, ax, ay, az;
-
   Data_Get_Struct (self, Transform, p);
-  angle = NUMERIC2FLOAT (val_angle);
-  ax  = NUMERIC2FLOAT (val_ax);
-  ay  = NUMERIC2FLOAT (val_ay);
-  az  = NUMERIC2FLOAT (val_az);
+  float angle = NUM2DBL (val_angle);
+  float ax    = NUM2DBL (val_ax);
+  float ay    = NUM2DBL (val_ay);
+  float az    = NUM2DBL (val_az);
 
   p->postRotate (angle, ax, ay, az);
 
@@ -100,13 +98,11 @@ VALUE ruby_Transform_post_rotate (VALUE self, VALUE val_angle, VALUE val_ax, VAL
 VALUE ruby_Transform_post_rotate_quat (VALUE self, VALUE val_qx, VALUE val_qy, VALUE val_qz, VALUE val_qw)
 {
   Transform* p;
-  float qx, qy, qz, qw;
-
   Data_Get_Struct (self, Transform, p);
-  qx = NUMERIC2FLOAT (val_qx);
-  qy = NUMERIC2FLOAT (val_qy);
-  qz = NUMERIC2FLOAT (val_qz);
-  qw = NUMERIC2FLOAT (val_qw);
+  float qx = NUM2DBL (val_qx);
+  float qy = NUM2DBL (val_qy);
+  float qz = NUM2DBL (val_qz);
+  float qw = NUM2DBL (val_qw);
 
   p->postRotateQuat (qx, qy, qz, qw);
 
@@ -119,9 +115,9 @@ VALUE ruby_Transform_post_scale (VALUE self, VALUE val_sx, VALUE val_sy, VALUE v
   float sx, sy, sz;
 
   Data_Get_Struct (self, Transform, p);
-  sx = NUMERIC2FLOAT (val_sx);
-  sy = NUMERIC2FLOAT (val_sy);
-  sz = NUMERIC2FLOAT (val_sz);
+  sx = NUM2DBL (val_sx);
+  sy = NUM2DBL (val_sy);
+  sz = NUM2DBL (val_sz);
 
   p->postScale (sx, sy, sz);
 
@@ -132,9 +128,9 @@ VALUE ruby_Transform_post_translate (VALUE self, VALUE val_tx, VALUE val_ty, VAL
 {
   Transform* p;
   Data_Get_Struct (self, Transform, p);
-  float tx = NUMERIC2FLOAT (val_tx);
-  float ty = NUMERIC2FLOAT (val_ty);
-  float tz = NUMERIC2FLOAT (val_tz);
+  float tx = NUM2DBL (val_tx);
+  float ty = NUM2DBL (val_ty);
+  float tz = NUM2DBL (val_tz);
 
   p->postTranslate (tx, ty, tz);
 
@@ -149,7 +145,7 @@ VALUE ruby_Transform_set (VALUE self, VALUE val_arg1)
   if (TYPE(val_arg1) == T_ARRAY) {
     float m[16];
     for (int i = 0; i < 16; i++) {
-      m[i] = NUMERIC2FLOAT(rb_ary_entry (val_arg1, i));
+      m[i] = NUM2DBL(rb_ary_entry (val_arg1, i));
     }
     p->set (m);
 
@@ -182,7 +178,7 @@ VALUE ruby_Transform_transform (int argc, VALUE* argv, VALUE self)
   case 1: {
     float vectors[4];
     for (int i = 0; i < 4; i++) {
-      vectors[i] = NUMERIC2FLOAT (rb_ary_entry(val_arg1, i));
+      vectors[i] = NUM2DBL (rb_ary_entry(val_arg1, i));
     }
     p->transform (vectors);
     for (int i = 0; i < 4; i++) {

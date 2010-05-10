@@ -30,11 +30,11 @@ VALUE ruby_Object3D_animate (VALUE self, VALUE val_world_time)
 {
   Object3D* p;
   Data_Get_Struct (self, Object3D, p);
-  int world_time = FIX2INT(val_world_time);
+  int world_time = NUM2INT(val_world_time);
 
   int ret = p->animate (world_time);
 
-  return INT2FIX(ret);
+  return INT2NUM(ret);
 }
 
 VALUE ruby_Object3D_duplicate (VALUE self)
@@ -59,7 +59,7 @@ VALUE ruby_Object3D_find (VALUE self, VALUE val_user_id)
   int user_id;
   
   Data_Get_Struct (self, Object3D, p);
-  user_id = FIX2INT (val_user_id);
+  user_id = NUM2INT (val_user_id);
 
   Object3D* obj = p->find (user_id);
   cout << "obj = " << obj << "\n";
@@ -70,7 +70,7 @@ VALUE ruby_Object3D_get_animation_track (VALUE self, VALUE val_index)
 {
   Object3D* p;
   Data_Get_Struct (self, Object3D, p);
-  int index = FIX2INT (val_index);
+  int index = NUM2INT (val_index);
 
   AnimationTrack* anim_track = p->getAnimationTrack (index);
 
@@ -84,7 +84,7 @@ VALUE ruby_Object3D_get_animation_track_count (VALUE self)
 
   int count = p->getAnimationTrackCount ();
 
-  return INT2FIX(count);
+  return INT2NUM(count);
 }
 
 VALUE ruby_Object3D_get_references (VALUE self)
@@ -111,7 +111,7 @@ VALUE ruby_Object3D_get_user_id (VALUE self)
 
   int id = p->getUserID ();
 
-  return INT2FIX(id);
+  return INT2NUM(id);
 }
 
 VALUE ruby_Object3D_get_user_object (VALUE self)
@@ -146,7 +146,7 @@ VALUE ruby_Object3D_set_user_id (VALUE self, VALUE val_id)
   int id;
 
   Data_Get_Struct (self, Object3D, p);
-  id = FIX2INT (val_id);
+  id = NUM2INT (val_id);
   
   p->setUserID (id);
 

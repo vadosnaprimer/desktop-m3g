@@ -59,15 +59,15 @@ VALUE ruby_Camera_look_at (VALUE self, VALUE val_px, VALUE val_py, VALUE val_pz,
 {
     Camera* p;
     Data_Get_Struct (self, Camera, p);
-    float px = NUMERIC2FLOAT(val_px);
-    float py = NUMERIC2FLOAT(val_py);
-    float pz = NUMERIC2FLOAT(val_pz);
-    float dx = NUMERIC2FLOAT(val_dx);
-    float dy = NUMERIC2FLOAT(val_dy);
-    float dz = NUMERIC2FLOAT(val_dz);
-    float ux = NUMERIC2FLOAT(val_ux);
-    float uy = NUMERIC2FLOAT(val_uy);
-    float uz = NUMERIC2FLOAT(val_uz);
+    float px = NUM2DBL(val_px);
+    float py = NUM2DBL(val_py);
+    float pz = NUM2DBL(val_pz);
+    float dx = NUM2DBL(val_dx);
+    float dy = NUM2DBL(val_dy);
+    float dz = NUM2DBL(val_dz);
+    float ux = NUM2DBL(val_ux);
+    float uy = NUM2DBL(val_uy);
+    float uz = NUM2DBL(val_uz);
     p->lookAt (px, py, pz,
                dx, dy, dz,
                ux, uy, uz);
@@ -95,10 +95,10 @@ VALUE ruby_Camera_set_parallel (VALUE self, VALUE val_args)
   VALUE val_far          = rb_ary_entry(val_args, 3);
   Camera* p;
   Data_Get_Struct (self, Camera, p);
-  float height       = NUMERIC2FLOAT (val_fovy);
-  float aspect_ratio = NUMERIC2FLOAT (val_aspect_ratio);
-  float near         = NUMERIC2FLOAT (val_near);
-  float far          = NUMERIC2FLOAT (val_far);
+  float height       = NUM2DBL (val_fovy);
+  float aspect_ratio = NUM2DBL (val_aspect_ratio);
+  float near         = NUM2DBL (val_near);
+  float far          = NUM2DBL (val_far);
 
     p->setParallel (height, aspect_ratio, near, far);
 
@@ -113,10 +113,10 @@ VALUE ruby_Camera_set_perspective (VALUE self, VALUE val_args)
   VALUE val_far          = rb_ary_entry(val_args, 3);
   Camera* p;
   Data_Get_Struct (self, Camera, p);
-  float fovy         = NUMERIC2FLOAT (val_fovy);
-  float aspect_ratio = NUMERIC2FLOAT (val_aspect_ratio);
-  float near         = NUMERIC2FLOAT (val_near);
-  float far          = NUMERIC2FLOAT (val_far);
+  float fovy         = NUM2DBL (val_fovy);
+  float aspect_ratio = NUM2DBL (val_aspect_ratio);
+  float near         = NUM2DBL (val_near);
+  float far          = NUM2DBL (val_far);
 
     p->setPerspective (fovy, aspect_ratio, near, far);
 
@@ -146,7 +146,7 @@ VALUE ruby_Camera_ProjectionAccessor_get_type (VALUE self)
   ProjectionAccessor* p;
   Data_Get_Struct (self, ProjectionAccessor, p);
   int type = p->camera->getProjection ((float*)0);
-  return INT2FIX(type);
+  return INT2NUM(type);
 }
 
 
@@ -178,9 +178,9 @@ void register_Camera ()
      // Camera
     rb_cCamera              = rb_define_class_under (rb_mM3G, "Camera",              rb_cNode);
 
-     rb_define_const (rb_cCamera, "GENERIC",     INT2FIX(Camera::GENERIC));
-     rb_define_const (rb_cCamera, "PARALLEL",    INT2FIX(Camera::PARALLEL));
-     rb_define_const (rb_cCamera, "PERSPECTIVE", INT2FIX(Camera::PERSPECTIVE));
+     rb_define_const (rb_cCamera, "GENERIC",     INT2NUM(Camera::GENERIC));
+     rb_define_const (rb_cCamera, "PARALLEL",    INT2NUM(Camera::PARALLEL));
+     rb_define_const (rb_cCamera, "PERSPECTIVE", INT2NUM(Camera::PERSPECTIVE));
 
      rb_define_alloc_func (rb_cCamera, ruby_Camera_allocate);
      rb_define_private_method (rb_cCamera, "initialize", (VALUE(*)(...))ruby_Camera_initialize, 0);

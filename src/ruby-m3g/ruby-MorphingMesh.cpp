@@ -85,12 +85,10 @@ VALUE ruby_MorphingMesh_get_morph_target (VALUE self)
 VALUE ruby_MorphingMesh_get_morph_target_count (VALUE self)
 {
   MorphingMesh* p;
-  int count;
-
   Data_Get_Struct (self, MorphingMesh, p);
-  count = p->getMorphTargetCount();
+  int count = p->getMorphTargetCount();
   
-  return INT2FIX(count);
+  return INT2NUM(count);
 }
 
 VALUE ruby_MorphingMesh_get_weights (VALUE self)
@@ -124,7 +122,7 @@ VALUE ruby_MorphingMesh_set_weights (VALUE self, VALUE val_weights)
 
   float* weights = (float*)ruby_xmalloc (sizeof(float)*count);
   for (int i = 0; i < count; i++) {
-    weights[i] = RFLOAT_VALUE(rb_ary_entry(val_weights, i));
+    weights[i] = NUM2DBL (rb_ary_entry(val_weights, i));
   }
   p->setWeights (count, weights);
 
@@ -138,7 +136,7 @@ VALUE ruby_MorphTargetAccessor_get_target (VALUE self, VALUE val_index)
 {
   MorphTargetAccessor* p;
   Data_Get_Struct (self, MorphTargetAccessor, p);
-  int           index    = FIX2INT (val_index);
+  int           index    = NUM2INT (val_index);
   VertexBuffer* vertices = p->mesh->getMorphTarget (index);
 
   return (VALUE)vertices->getExportedEntity();

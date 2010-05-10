@@ -66,7 +66,7 @@ VALUE ruby_Appearance_get_layer (VALUE self)
   
   layer = p->getLayer ();
 
-  return INT2FIX(layer);
+  return INT2NUM(layer);
 }
 
 VALUE ruby_Appearance_get_material (VALUE self)
@@ -137,7 +137,7 @@ VALUE ruby_Appearance_set_layer (VALUE self, VALUE val_layer)
   int layer;
 
   Data_Get_Struct (self, Appearance, p);
-  layer = FIX2INT (val_layer);
+  layer = NUM2INT (val_layer);
 
   p->setLayer (layer);
 
@@ -192,7 +192,7 @@ VALUE ruby_Appearance_TextureAccessor_get_texture (VALUE self, VALUE val_index)
 {
   TextureAccessor* p;
   Data_Get_Struct (self, TextureAccessor, p);
-  int index = FIX2INT (val_index);
+  int index = NUM2INT (val_index);
   Texture2D* tex;
 
   tex = p->appearance->getTexture (index);
@@ -204,7 +204,7 @@ VALUE ruby_Appearance_TextureAccessor_set_texture (VALUE self, VALUE val_index, 
 {
   TextureAccessor* p;
   Data_Get_Struct (self, TextureAccessor, p);
-  int index = FIX2INT (val_index);
+  int index = NUM2INT (val_index);
   Texture2D* tex;
   Data_Get_Struct (val_tex, Texture2D, tex);
 

@@ -108,11 +108,10 @@ VALUE ruby_Transformable_post_rotate (VALUE self, VALUE val_angle, VALUE val_ax,
 {
   Transformable* p;
   Data_Get_Struct (self, Transformable, p);
-  float angle, ax, ay, az;
-  angle = NUMERIC2FLOAT(val_angle);
-  ax    = NUMERIC2FLOAT(val_ax);
-  ay    = NUMERIC2FLOAT(val_ay);
-  az    = NUMERIC2FLOAT(val_az);
+  float angle = NUM2DBL(val_angle);
+  float ax    = NUM2DBL(val_ax);
+  float ay    = NUM2DBL(val_ay);
+  float az    = NUM2DBL(val_az);
   
   p->postRotate (angle, ax, ay, az);
 
@@ -125,10 +124,10 @@ VALUE ruby_Transformable_pre_rotate (VALUE self, VALUE val_angle, VALUE val_ax, 
     float angle, ax, ay, az;
 
     Data_Get_Struct (self, Transformable, p);
-    angle = NUMERIC2FLOAT(val_angle);
-    ax    = NUMERIC2FLOAT(val_ax);
-    ay    = NUMERIC2FLOAT(val_ay);
-    az    = NUMERIC2FLOAT(val_az);
+    angle = NUM2DBL(val_angle);
+    ax    = NUM2DBL(val_ax);
+    ay    = NUM2DBL(val_ay);
+    az    = NUM2DBL(val_az);
 
     p->preRotate (angle, ax, ay, az);
 
@@ -138,12 +137,10 @@ VALUE ruby_Transformable_pre_rotate (VALUE self, VALUE val_angle, VALUE val_ax, 
 VALUE ruby_Transformable_scale (VALUE self, VALUE val_sx, VALUE val_sy, VALUE val_sz)
 {
     Transformable* p;
-    float sx, sy, sz;
-
     Data_Get_Struct (self, Transformable, p);
-    sx  = NUMERIC2FLOAT (val_sx);
-    sy  = NUMERIC2FLOAT (val_sy);
-    sz  = NUMERIC2FLOAT (val_sz);
+    float sx  = NUM2DBL (val_sx);
+    float sy  = NUM2DBL (val_sy);
+    float sz  = NUM2DBL (val_sz);
 
     p->setScale (sx, sy, sz);
 
@@ -158,10 +155,10 @@ VALUE ruby_Transformable_set_orientation (VALUE self,  VALUE val_args)
   VALUE val_az    = rb_ary_entry(val_args, 3);
   Transformable* p;
   Data_Get_Struct (self, Transformable, p);
-  float angle = NUMERIC2FLOAT (val_angle);
-  float ax    = NUMERIC2FLOAT (val_ax);
-  float ay    = NUMERIC2FLOAT (val_ay);
-  float az    = NUMERIC2FLOAT (val_az);
+  float angle = NUM2DBL (val_angle);
+  float ax    = NUM2DBL (val_ax);
+  float ay    = NUM2DBL (val_ay);
+  float az    = NUM2DBL (val_az);
 
     p->setOrientation (angle, ax, ay, az);
 
@@ -175,9 +172,9 @@ VALUE ruby_Transformable_set_scale (VALUE self, VALUE val_args)
   VALUE val_sz = rb_ary_entry(val_args, 2);
   Transformable* p;
   Data_Get_Struct (self, Transformable, p);
-  float sx = NUMERIC2FLOAT (val_sx);
-  float sy = NUMERIC2FLOAT (val_sy);
-  float sz = NUMERIC2FLOAT (val_sz);
+  float sx = NUM2DBL (val_sx);
+  float sy = NUM2DBL (val_sy);
+  float sz = NUM2DBL (val_sz);
 
   p->setScale (sx, sy, sz);
 
@@ -204,9 +201,9 @@ VALUE ruby_Transformable_set_translation (VALUE self, VALUE val_txyz)
     VALUE val_tz = rb_ary_entry(val_txyz, 2);
     Transformable* p;
     Data_Get_Struct (self, Transformable, p);
-    float tx  = NUMERIC2FLOAT (val_tx);
-    float ty  = NUMERIC2FLOAT (val_ty);
-    float tz  = NUMERIC2FLOAT (val_tz);
+    float tx  = NUM2DBL (val_tx);
+    float ty  = NUM2DBL (val_ty);
+    float tz  = NUM2DBL (val_tz);
 
     p->setTranslation (tx, ty, tz);
 
@@ -217,9 +214,9 @@ VALUE ruby_Transformable_translate (VALUE self, VALUE val_tx, VALUE val_ty, VALU
 {
   Transformable* p;
   Data_Get_Struct (self, Transformable, p);
-  float tx = NUMERIC2FLOAT (val_tx);
-  float ty = NUMERIC2FLOAT (val_ty);
-  float tz = NUMERIC2FLOAT (val_tz);
+  float tx = NUM2DBL (val_tx);
+  float ty = NUM2DBL (val_ty);
+  float tz = NUM2DBL (val_tz);
 
   p->translate (tx, ty, tz);
 
