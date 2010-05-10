@@ -45,7 +45,7 @@ VALUE ruby_IndexBuffer_get_indices (VALUE self)
   int* indices = (int*)ruby_xmalloc (sizeof(int)*count);
   p->getIndices (indices);
   
-  VALUE val_indices = rb_ary_new ();
+  VALUE val_indices = rb_ary_new2 (count);
   for (int i = 0; i < count; i++) {
     rb_ary_push (val_indices, INT2NUM(indices[i]));
   }

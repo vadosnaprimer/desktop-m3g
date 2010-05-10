@@ -156,7 +156,7 @@ VALUE ruby_Camera_ProjectionAccessor_get_params (VALUE self)
   Data_Get_Struct (self, ProjectionAccessor, p);
   float params[4];
   p->camera->getProjection (params);
-  VALUE val_params = rb_ary_new ();
+  VALUE val_params = rb_ary_new2 (4);
   for (int i = 0; i < 4; i++) {
     rb_ary_push (val_params, rb_float_new(params[i]));
   }

@@ -6,6 +6,8 @@
 using namespace m3g;
 using namespace std;
 
+
+// 30クラスのfree関数
 extern VALUE ruby_Object3D_free            (Object3D* ptr);
 extern VALUE ruby_AnimationController_free (AnimationController* ptr);
 extern VALUE ruby_AnimationTrack_free      (AnimationTrack* ptr);
@@ -29,8 +31,6 @@ extern VALUE ruby_Sprite3D_free            (Sprite3D* ptr);
 extern VALUE ruby_Texture2D_free           (Texture2D* ptr);
 extern VALUE ruby_VertexArray_free         (VertexArray* ptr);
 extern VALUE ruby_VertexBuffer_free        (VertexBuffer* ptr);
-
-
 
 
 VALUE ruby_Loader_load (int argc, VALUE* argv, VALUE self)
@@ -58,7 +58,7 @@ VALUE ruby_Loader_load (int argc, VALUE* argv, VALUE self)
     }
     }
 
-    VALUE val_objs = rb_ary_new ();
+    VALUE val_objs = rb_ary_new2 (objs.size());
     for (int i = 0; i < (int)objs.size(); i++) {
       VALUE val_obj;
       if      (typeid(*objs[i]) == typeid(AnimationController)) val_obj = Data_Wrap_Struct(rb_cAnimationController, 0, ruby_AnimationController_free, objs[i]);

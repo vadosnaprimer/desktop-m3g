@@ -40,38 +40,41 @@ extern VALUE rb_cRayIntersection;
 extern VALUE rb_cTransform;
 
 
+// 30クラスの登録
+extern void register_Graphics3D ();
+extern void register_Loader ();
+extern void register_Object3D ();
+extern void register_AnimationController ();
+extern void register_AnimationTrack ();
+extern void register_Appearance ();
+extern void register_Background ();
+extern void register_CompositingMode ();
+extern void register_Fog ();
+extern void register_Group ();
+extern void register_Image2D ();
+extern void register_IndexBuffer ();
+extern void register_TriangleStripArray ();
+extern void register_KeyframeSequence ();
+extern void register_Material ();
+extern void register_PolygonMode ();
+extern void register_Transformable ();
+extern void register_Node ();
+extern void register_Camera ();
+extern void register_Group ();
+extern void register_World ();
+extern void register_Light ();
+extern void register_Mesh ();
+extern void register_MorphingMesh ();
+extern void register_SkinnedMesh ();
+extern void register_Sprite3D ();
+extern void register_Texture2D ();
+extern void register_VertexArray ();
+extern void register_VertexBuffer ();
+extern void register_RayIntersection ();
+extern void register_Transform ();
 
-void register_Graphics3D ();
-void register_Loader ();
-void register_Object3D ();
-void register_AnimationController ();
-void register_AnimationTrack ();
-void register_Appearance ();
-void register_Background ();
-void register_CompositingMode ();
-void register_Fog ();
-void register_Group ();
-void register_Image2D ();
-void register_IndexBuffer ();
-void register_TriangleStripArray ();
-void register_KeyframeSequence ();
-void register_Material ();
-void register_PolygonMode ();
-void register_Transformable ();
-void register_Node ();
-void register_Camera ();
-void register_Group ();
-void register_World ();
-void register_Light ();
-void register_Mesh ();
-void register_MorphingMesh ();
-void register_SkinnedMesh ();
-void register_Sprite3D ();
-void register_Texture2D ();
-void register_VertexArray ();
-void register_VertexBuffer ();
-void register_RayIntersection ();
-void register_Transform ();
+
+
 
 
 #endif

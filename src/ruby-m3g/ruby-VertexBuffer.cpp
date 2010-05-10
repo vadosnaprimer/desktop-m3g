@@ -71,11 +71,11 @@ VALUE ruby_VertexBuffer_get_positions (VALUE self)
     Data_Get_Struct (self, VertexBuffer, p);
     positions = p->getPositions (scale_bias);
 
-    VALUE val_ret = rb_ary_new ();
+    VALUE val_ret = rb_ary_new2 (3);
     if (positions) {
       rb_ary_push (val_ret, (VALUE)positions->getExportedEntity());
       rb_ary_push (val_ret, rb_float_new(scale_bias[0]));
-      VALUE val_bias = rb_ary_new ();
+      VALUE val_bias = rb_ary_new2 (3);
       rb_ary_push (val_bias, rb_float_new(scale_bias[1]));
       rb_ary_push (val_bias, rb_float_new(scale_bias[2]));
       rb_ary_push (val_bias, rb_float_new(scale_bias[3]));
@@ -165,20 +165,17 @@ VALUE ruby_VertexBuffer_TextureAccessor_get_tex_coords (VALUE self, VALUE val_in
     float        scale_bias[4];
     VertexArray* tex_coords = p->vertex_buffer->getTexCoords (index, scale_bias);
     
-
-    VALUE val_bias = rb_ary_new ();
-    VALUE val_ret = rb_ary_new ();
-
+    VALUE val_scale = rb_float_new(scale_bias[0]);
+    VALUE val_bias  = rb_ary_new2 (3);
+    VALUE val_ret   = rb_ary_new2 (3);
     if (tex_coords) {
+      rb_ary_push (val_ret,  (VALUE)tex_coords->getExportedEntity());
+      rb_ary_push (val_ret,  val_scale);
       rb_ary_push (val_bias, rb_float_new(scale_bias[1]));
       rb_ary_push (val_bias, rb_float_new(scale_bias[2]));
       rb_ary_push (val_bias, rb_float_new(scale_bias[3]));
-
-      rb_ary_push (val_ret, (VALUE)tex_coords->getExportedEntity());
-      rb_ary_push (val_ret, rb_float_new(scale_bias[0]));
-      rb_ary_push (val_ret, val_bias);
+      rb_ary_push (val_ret,  val_bias);
     } else {
-      
       rb_ary_push (val_ret, Qnil);
       rb_ary_push (val_ret, Qnil);
       rb_ary_push (val_ret, Qnil);

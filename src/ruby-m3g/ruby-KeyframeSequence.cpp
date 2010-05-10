@@ -138,13 +138,13 @@ VALUE ruby_KeyframeSequence_KeyframeAccessor_get_keyframe (VALUE self, VALUE val
   int time = p->keyframe_sequence->getKeyframe (index, values);
   
   VALUE val_time   = INT2NUM(time);
-  VALUE val_values = rb_ary_new();
+  VALUE val_values = rb_ary_new2 (component_count);
   for (int i = 0; i < component_count; i++) {
     rb_ary_push (val_values, rb_float_new(values[i]));
   }
   ruby_xfree (values);
 
-  VALUE val_keyframe = rb_ary_new ();
+  VALUE val_keyframe = rb_ary_new2 (2);
   rb_ary_push (val_keyframe, val_time);
   rb_ary_push (val_keyframe, val_values);
   

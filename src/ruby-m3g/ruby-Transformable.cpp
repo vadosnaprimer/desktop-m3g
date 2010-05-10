@@ -44,13 +44,11 @@ VALUE ruby_Transformable_get_composite_transform (VALUE self)
 VALUE ruby_Transformable_get_orientation (VALUE self)
 {
     Transformable* p;
-    float angle_axis[4];
-
     Data_Get_Struct (self, Transformable, p);
-
+    float angle_axis[4];
     p->getOrientation (angle_axis);
 
-    VALUE val_angle_axis = rb_ary_new ();
+    VALUE val_angle_axis = rb_ary_new2 (4);
     rb_ary_push (val_angle_axis, rb_float_new(angle_axis[0]));
     rb_ary_push (val_angle_axis, rb_float_new(angle_axis[1]));
     rb_ary_push (val_angle_axis, rb_float_new(angle_axis[2]));
@@ -67,7 +65,7 @@ VALUE ruby_Transformable_get_scale (VALUE self)
     float scale[3];
     p->getScale (scale);
 
-    VALUE val_scale = rb_ary_new ();
+    VALUE val_scale = rb_ary_new2 (3);
     rb_ary_push (val_scale, rb_float_new(scale[0]));
     rb_ary_push (val_scale, rb_float_new(scale[1]));
     rb_ary_push (val_scale, rb_float_new(scale[2]));
@@ -96,7 +94,7 @@ VALUE ruby_Transformable_get_translation (VALUE self)
 
     p->getTranslation (trans);
 
-    VALUE val_trans = rb_ary_new ();
+    VALUE val_trans = rb_ary_new2 (3);
     rb_ary_push (val_trans, rb_float_new(trans[0]));
     rb_ary_push (val_trans, rb_float_new(trans[1]));
     rb_ary_push (val_trans, rb_float_new(trans[2]));

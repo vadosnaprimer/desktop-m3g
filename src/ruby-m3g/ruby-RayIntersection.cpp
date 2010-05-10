@@ -5,6 +5,31 @@
 using namespace m3g;
 using namespace std;
 
+// 30クラスのfree関数
+extern VALUE ruby_Object3D_free            (Object3D* ptr);
+extern VALUE ruby_AnimationController_free (AnimationController* ptr);
+extern VALUE ruby_AnimationTrack_free      (AnimationTrack* ptr);
+extern VALUE ruby_Appearance_free          (Appearance* ptr);
+extern VALUE ruby_Background_free          (Background* ptr);
+extern VALUE ruby_CompositingMode_free     (CompositingMode* ptr);
+extern VALUE ruby_Fog_free                 (Fog* ptr);
+extern VALUE ruby_Image2D_free             (Image2D* ptr);
+extern VALUE ruby_TriangleStripArray_free  (TriangleStripArray* ptr);
+extern VALUE ruby_KeyframeSequence_free    (KeyframeSequence* ptr);
+extern VALUE ruby_Material_free            (Material* ptr);
+extern VALUE ruby_PolygonMode_free         (PolygonMode* ptr);
+extern VALUE ruby_Camera_free              (Camera* ptr);
+extern VALUE ruby_Group_free               (Group* ptr);
+extern VALUE ruby_World_free               (World* ptr);
+extern VALUE ruby_Light_free               (Light* ptr);
+extern VALUE ruby_Mesh_free                (Mesh* ptr);
+extern VALUE ruby_MorphingMesh_free        (MorphingMesh* ptr);
+extern VALUE ruby_SkinnedMesh_free         (SkinnedMesh* ptr);
+extern VALUE ruby_Sprite3D_free            (Sprite3D* ptr);
+extern VALUE ruby_Texture2D_free           (Texture2D* ptr);
+extern VALUE ruby_VertexArray_free         (VertexArray* ptr);
+extern VALUE ruby_VertexBuffer_free        (VertexBuffer* ptr);
+
 
 namespace {
 	struct TextureAccessor {
@@ -72,7 +97,7 @@ VALUE ruby_RayIntersection_get_normal (VALUE self)
   y = p->getNormalY ();
   z = p->getNormalZ ();
 
-  VALUE val_ret = rb_ary_new ();
+  VALUE val_ret = rb_ary_new2 (3);
   rb_ary_push (val_ret, rb_float_new(x));
   rb_ary_push (val_ret, rb_float_new(y));
   rb_ary_push (val_ret, rb_float_new(z));

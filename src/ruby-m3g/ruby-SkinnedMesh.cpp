@@ -108,8 +108,8 @@ VALUE ruby_SkinnedMesh_get_bone_vertices (VALUE self, VALUE val_bone)
     float* weights = (float*)ruby_xmalloc (sizeof(float)*count);
     p->getBoneVertices (bone, indices, weights);
     
-    VALUE val_indices = rb_ary_new ();
-    VALUE val_weights = rb_ary_new ();
+    VALUE val_indices = rb_ary_new2 (count);
+    VALUE val_weights = rb_ary_new2 (count);
     for (int i = 0; i < count; i++) {
       rb_ary_push (val_indices, rb_float_new(indices[i]));
       rb_ary_push (val_weights, rb_float_new(weights[i]));
@@ -117,7 +117,7 @@ VALUE ruby_SkinnedMesh_get_bone_vertices (VALUE self, VALUE val_bone)
     ruby_xfree (indices);
     ruby_xfree (weights);
 
-    VALUE val_ret = rb_ary_new ();
+    VALUE val_ret = rb_ary_new2 (2);
     rb_ary_push (val_ret, val_indices);
     rb_ary_push (val_ret, val_weights);
     

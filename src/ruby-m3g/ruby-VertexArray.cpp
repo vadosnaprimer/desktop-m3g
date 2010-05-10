@@ -39,7 +39,7 @@ VALUE ruby_VertexArray_get (VALUE self, VALUE val_first_vertex, VALUE val_num_ve
   int component_count = p->getComponentCount ();
   int num_components  = num_vertices * component_count;
 
-  VALUE val_values = rb_ary_new ();
+  VALUE val_values = rb_ary_new2 (num_components);
   switch (component_size) {
   case 1: {
       char* values = (char*)ruby_xmalloc (sizeof(char)*num_components);

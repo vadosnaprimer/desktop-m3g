@@ -51,7 +51,7 @@ VALUE ruby_Transform_get (VALUE self)
 
   p->get (matrix);
 
-  VALUE val_matrix = rb_ary_new ();
+  VALUE val_matrix = rb_ary_new2 (16);
   for (int i = 0; i < 16; i++) {
     rb_ary_push (val_matrix, rb_float_new(matrix[i]));
   }

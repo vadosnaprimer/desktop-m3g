@@ -102,7 +102,7 @@ VALUE ruby_MorphingMesh_get_weights (VALUE self)
   float* weights = (float*)ruby_xmalloc (sizeof(float)*count);
   p->getWeights (weights);
 
-  VALUE val_weights = rb_ary_new ();
+  VALUE val_weights = rb_ary_new2 (count);
   for (int i = 0; i < count; i++) {
     rb_ary_push (val_weights, rb_float_new(weights[i]));
   }
