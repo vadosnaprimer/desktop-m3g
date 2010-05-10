@@ -20,8 +20,9 @@ namespace {
   VALUE rb_cCamera_ProjectionAccessor;
 };
 
-extern VALUE ruby_Transform_allocate (VALUE self);
+extern VALUE ruby_Transform_allocate   (VALUE self);
 extern VALUE ruby_Transform_initialize (int argc, VALUE* argv, VALUE self);
+
 
 VALUE ruby_Camera_free (Camera* ptr)
 {
@@ -175,6 +176,8 @@ VALUE ruby_Camera_ProjectionAccessor_get_transform (VALUE self)
 void register_Camera ()
 {
      // Camera
+    rb_cCamera              = rb_define_class_under (rb_mM3G, "Camera",              rb_cNode);
+
      rb_define_const (rb_cCamera, "GENERIC",     INT2FIX(Camera::GENERIC));
      rb_define_const (rb_cCamera, "PARALLEL",    INT2FIX(Camera::PARALLEL));
      rb_define_const (rb_cCamera, "PERSPECTIVE", INT2FIX(Camera::PERSPECTIVE));
@@ -182,7 +185,7 @@ void register_Camera ()
      rb_define_alloc_func (rb_cCamera, ruby_Camera_allocate);
      rb_define_private_method (rb_cCamera, "initialize", (VALUE(*)(...))ruby_Camera_initialize, 0);
 
-     rb_define_method (rb_cCamera, "projection",      (VALUE(*)(...))ruby_Camera_get_projection, 0);
+     rb_define_method (rb_cCamera, "projection",   (VALUE(*)(...))ruby_Camera_get_projection,  0);
      rb_define_method (rb_cCamera, "look_at",      (VALUE(*)(...))ruby_Camera_look_at,         9);
      rb_define_method (rb_cCamera, "generic=",     (VALUE(*)(...))ruby_Camera_set_generic,     1);
      rb_define_method (rb_cCamera, "parallel=",    (VALUE(*)(...))ruby_Camera_set_parallel,    1);
@@ -192,11 +195,8 @@ void register_Camera ()
      // Camera:: ProjectionAccessor
      rb_cCamera_ProjectionAccessor  = rb_define_class_under (rb_cCamera, "ProjectionAccessor", rb_cObject);
 
-     rb_define_alloc_func (rb_cCamera_ProjectionAccessor, ruby_Camera_ProjectionAccessor_allocate);
-     rb_define_private_method (rb_cCamera_ProjectionAccessor, "initialize", (VALUE(*)(...))ruby_Camera_ProjectionAccessor_initialize, 0);
-
-    rb_define_method (rb_cCamera_ProjectionAccessor, "type",     (VALUE(*)(...))ruby_Camera_ProjectionAccessor_get_type, 0);
-    rb_define_method (rb_cCamera_ProjectionAccessor, "params",     (VALUE(*)(...))ruby_Camera_ProjectionAccessor_get_params, 0);
-    rb_define_method (rb_cCamera_ProjectionAccessor, "transform",     (VALUE(*)(...))ruby_Camera_ProjectionAccessor_get_transform, 0);
+    rb_define_method (rb_cCamera_ProjectionAccessor, "type",       (VALUE(*)(...))ruby_Camera_ProjectionAccessor_get_type,      0);
+    rb_define_method (rb_cCamera_ProjectionAccessor, "params",     (VALUE(*)(...))ruby_Camera_ProjectionAccessor_get_params,    0);
+    rb_define_method (rb_cCamera_ProjectionAccessor, "transform",  (VALUE(*)(...))ruby_Camera_ProjectionAccessor_get_transform, 0);
 
 }

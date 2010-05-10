@@ -17,8 +17,6 @@ namespace m3g {
   {
     friend class Appearance;  // for rendere, setTextureUnit
 
-  public:
-
     struct Wrapping {
       Wrapping(int s_, int t_) : s(s_), t(t_) {};
       int s;

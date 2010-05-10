@@ -168,19 +168,6 @@ VALUE ruby_Light_set_spot (VALUE self, VALUE val_spot)
  * Light::AttenuationAccessor
  */
 
-VALUE ruby_Light_AttenuationAccessor_allocate (VALUE self)
-{
-  void* p = ruby_xmalloc (sizeof(AttenuationAccessor));
-  return Data_Wrap_Struct (self, 0, -1, p);
-}
-
-VALUE ruby_Light_AttenuationAccessor_initialize (VALUE self)
-{
-  AttenuationAccessor* p;
-  Data_Get_Struct (self, AttenuationAccessor, p);
-  return self;
-}
-
 VALUE ruby_Light_AttenuationAccessor_get_constant (VALUE self)
 {
   AttenuationAccessor* p;
@@ -209,19 +196,6 @@ VALUE ruby_Light_AttenuationAccessor_get_quadratic (VALUE self)
  * Light_SpotAccessor
  */
 
-VALUE ruby_Light_SpotAccessor_allocate (VALUE self)
-{
-  void* p = ruby_xmalloc (sizeof(SpotAccessor));
-  return Data_Wrap_Struct (self, 0, -1, p);
-}
-
-VALUE ruby_Light_SpotAccessor_initialize (VALUE self)
-{
-  SpotAccessor* p;
-  Data_Get_Struct (self, SpotAccessor, p);
-  return self;
-}
-
 VALUE ruby_Light_SpotAccessor_get_angle (VALUE self)
 {
   SpotAccessor* p;
@@ -242,6 +216,8 @@ VALUE ruby_Light_SpotAccessor_get_exponent (VALUE self)
 void register_Light ()
 {
      // Light
+    rb_cLight               = rb_define_class_under (rb_mM3G, "Light",               rb_cNode);
+
      rb_define_const (rb_cLight, "AMBIENT",     INT2FIX(Light::AMBIENT));
      rb_define_const (rb_cLight, "DIRECTIONAL", INT2FIX(Light::DIRECTIONAL));
      rb_define_const (rb_cLight, "OMNI",        INT2FIX(Light::OMNI));
@@ -264,18 +240,12 @@ void register_Light ()
      // Light_AttenuationAccessor
      rb_cLight_AttenuationAccessor  = rb_define_class_under (rb_cLight, "AttenuationAccessor", rb_cObject);
 
-     rb_define_alloc_func (rb_cLight_AttenuationAccessor, ruby_Light_AttenuationAccessor_allocate);
-     rb_define_private_method (rb_cLight_AttenuationAccessor, "initialize", (VALUE(*)(...))ruby_Light_AttenuationAccessor_initialize, 0);
-
      rb_define_method (rb_cLight_AttenuationAccessor, "constant",           (VALUE(*)(...))ruby_Light_AttenuationAccessor_get_constant, 0);
      rb_define_method (rb_cLight_AttenuationAccessor, "linear",             (VALUE(*)(...))ruby_Light_AttenuationAccessor_get_linear, 0);
      rb_define_method (rb_cLight_AttenuationAccessor, "quadratic",          (VALUE(*)(...))ruby_Light_AttenuationAccessor_get_quadratic, 0);
 
      // Light_SpotAccessor
      rb_cLight_SpotAccessor  = rb_define_class_under (rb_cLight, "SpotAccessor", rb_cObject);
-
-     rb_define_alloc_func (rb_cLight_SpotAccessor, ruby_Light_SpotAccessor_allocate);
-     rb_define_private_method (rb_cLight_SpotAccessor, "initialize", (VALUE(*)(...))ruby_Light_SpotAccessor_initialize, 0);
 
      rb_define_method (rb_cLight_SpotAccessor, "angle",         (VALUE(*)(...))ruby_Light_SpotAccessor_get_angle, 0);
      rb_define_method (rb_cLight_SpotAccessor, "exponent",      (VALUE(*)(...))ruby_Light_SpotAccessor_get_exponent, 0);

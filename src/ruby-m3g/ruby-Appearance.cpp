@@ -6,10 +6,10 @@ using namespace m3g;
 using namespace std;
 
 namespace {
-  struct TextureAccessor {
-    Appearance* appearance;
-  };
-  VALUE rb_cAppearance_TextureAccessor;
+	struct TextureAccessor {
+		Appearance* appearance;
+	};
+	VALUE rb_cAppearance_TextureAccessor;
 }
 
 VALUE ruby_Appearance_free (Appearance* ptr)
@@ -216,25 +216,27 @@ VALUE ruby_Appearance_TextureAccessor_set_texture (VALUE self, VALUE val_index, 
 void register_Appearance ()
 {
     // Appearance
-    rb_define_alloc_func (rb_cAppearance, ruby_Appearance_allocate);
-    rb_define_private_method (rb_cAppearance, "initialize", (VALUE(*)(...))ruby_Appearance_initialize, 0);
+    rb_cAppearance          = rb_define_class_under (rb_mM3G, "Appearance",          rb_cObject3D);
 
-    rb_define_method (rb_cAppearance, "compositing_mode", (VALUE(*)(...))ruby_Appearance_get_compositing_mode, 0); 
-    rb_define_method (rb_cAppearance, "fog",              (VALUE(*)(...))ruby_Appearance_get_fog, 0); 
-    rb_define_method (rb_cAppearance, "layer",            (VALUE(*)(...))ruby_Appearance_get_layer, 0); 
-    rb_define_method (rb_cAppearance, "material",         (VALUE(*)(...))ruby_Appearance_get_material, 0); 
-    rb_define_method (rb_cAppearance, "polygonMode",      (VALUE(*)(...))ruby_Appearance_get_polygon_mode, 0); 
-    rb_define_method (rb_cAppearance, "texture",          (VALUE(*)(...))ruby_Appearance_get_texture, 0); 
+    rb_define_alloc_func (rb_cAppearance, ruby_Appearance_allocate);
+    rb_define_private_method (rb_cAppearance, "initialize", (VALUE(*)(...))ruby_Appearance_initialize,          0);
+
+    rb_define_method (rb_cAppearance, "compositing_mode", (VALUE(*)(...))ruby_Appearance_get_compositing_mode,  0); 
+    rb_define_method (rb_cAppearance, "fog",              (VALUE(*)(...))ruby_Appearance_get_fog,               0); 
+    rb_define_method (rb_cAppearance, "layer",            (VALUE(*)(...))ruby_Appearance_get_layer,             0); 
+    rb_define_method (rb_cAppearance, "material",         (VALUE(*)(...))ruby_Appearance_get_material,          0); 
+    rb_define_method (rb_cAppearance, "polygonMode",      (VALUE(*)(...))ruby_Appearance_get_polygon_mode,      0); 
+    rb_define_method (rb_cAppearance, "texture",          (VALUE(*)(...))ruby_Appearance_get_texture,           0); 
     rb_define_method (rb_cAppearance, "compositing_mode=", (VALUE(*)(...))ruby_Appearance_set_compositing_mode, 1); 
-    rb_define_method (rb_cAppearance, "fog=",              (VALUE(*)(...))ruby_Appearance_set_fog, 1); 
-    rb_define_method (rb_cAppearance, "layer=",            (VALUE(*)(...))ruby_Appearance_set_layer, 1); 
-    rb_define_method (rb_cAppearance, "material=",         (VALUE(*)(...))ruby_Appearance_set_material, 1); 
-    rb_define_method (rb_cAppearance, "polygon_mode=",     (VALUE(*)(...))ruby_Appearance_set_polygon_mode, 1); 
+    rb_define_method (rb_cAppearance, "fog=",              (VALUE(*)(...))ruby_Appearance_set_fog,              1); 
+    rb_define_method (rb_cAppearance, "layer=",            (VALUE(*)(...))ruby_Appearance_set_layer,            1); 
+    rb_define_method (rb_cAppearance, "material=",         (VALUE(*)(...))ruby_Appearance_set_material,         1); 
+    rb_define_method (rb_cAppearance, "polygon_mode=",     (VALUE(*)(...))ruby_Appearance_set_polygon_mode,     1); 
 
     // Appearance_TextureAccessor
      rb_cAppearance_TextureAccessor  = rb_define_class_under (rb_cAppearance, "TextureAccessor", rb_cObject);
 
-    rb_define_method (rb_cAppearance_TextureAccessor, "[]",     (VALUE(*)(...))ruby_Appearance_TextureAccessor_get_texture, 1); 
-    rb_define_method (rb_cAppearance_TextureAccessor, "[]=",     (VALUE(*)(...))ruby_Appearance_TextureAccessor_set_texture, 2); 
+    rb_define_method (rb_cAppearance_TextureAccessor, "[]",     (VALUE(*)(...))ruby_Appearance_TextureAccessor_get_texture,  1); 
+    rb_define_method (rb_cAppearance_TextureAccessor, "[]=",    (VALUE(*)(...))ruby_Appearance_TextureAccessor_set_texture,  2); 
 
 }

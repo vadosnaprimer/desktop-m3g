@@ -12,6 +12,7 @@ namespace m3g {
    */
   class TriangleStripArray : public IndexBuffer
   {
+
   public:
     /**
      * @~English  Constructs a triangle strip array with explicit indices.

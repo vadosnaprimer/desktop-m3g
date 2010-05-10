@@ -6,7 +6,10 @@ using namespace m3g;
 using namespace std;
 
 namespace {
-  VALUE rb_cSprite3D_CropRect;
+	struct CropAccessor {
+		Sprite3D* sprite3D;
+	};
+	VALUE rb_cSprite3D_CropAccessor;
 }
 
 VALUE ruby_Sprite3D_free (Sprite3D* ptr)
@@ -52,40 +55,26 @@ VALUE ruby_Sprite3D_get_appearance (VALUE self)
 VALUE ruby_Sprite3D_get_crop (VALUE self)
 {
   Sprite3D* p;
-  Sprite3D::CropRect* crop;
-  VALUE val_crop;
-
   Data_Get_Struct (self, Sprite3D, p);
-  val_crop = Data_Make_Struct (rb_cSprite3D_CropRect, Sprite3D::CropRect, 0, -1, crop);
-  
-  crop->x = p->getCropX();
-  crop->y = p->getCropY();
-  crop->width = p->getCropWidth ();
-  crop->height = p->getCropHeight ();
-
-  return val_crop;
+  CropAccessor* accessor;
+  VALUE         val_accessor = Data_Make_Struct (rb_cSprite3D_CropAccessor, CropAccessor, 0, -1, accessor);
+  accessor->sprite3D = p;
+  return val_accessor;
 }
 
 VALUE ruby_Sprite3D_get_image (VALUE self)
 {
   Sprite3D* p;
-  Image2D* img;
-
   Data_Get_Struct (self, Sprite3D, p);
-  img = p->getImage ();
-  cout << "imge = " << img << "\n";
-  if (img)
-    return (VALUE)img->getExportedEntity();
-  else
-    return Qnil;
+  Image2D* img = p->getImage ();
+  return img ? (VALUE)img->getExportedEntity() : Qnil;
 }
 
 VALUE ruby_Sprite3D_is_scaled (VALUE self)
 {
   Sprite3D* p;
-  bool scaled;
   Data_Get_Struct (self, Sprite3D, p);
-  scaled = p->isScaled();
+  bool scaled = p->isScaled();
 
   return scaled ? Qtrue : Qfalse;
 }
@@ -93,9 +82,8 @@ VALUE ruby_Sprite3D_is_scaled (VALUE self)
 VALUE ruby_Sprite3D_set_appearance (VALUE self, VALUE val_appearance)
 {
   Sprite3D* p;
-  Appearance* app;
-
   Data_Get_Struct (self, Sprite3D, p);
+  Appearance* app;
   Data_Get_Struct (val_appearance, Appearance, app);
 
   p->setAppearance (app);
@@ -111,9 +99,9 @@ VALUE ruby_Sprite3D_set_crop (VALUE self, VALUE val_crop)
   VALUE val_height = rb_ary_entry(val_crop, 3);
   Sprite3D* p;
   Data_Get_Struct (self, Sprite3D, p);
-  float x = NUMERIC2FLOAT(val_x);
-  float y = NUMERIC2FLOAT(val_y);
-  float width = NUMERIC2FLOAT(val_width);
+  float x      = NUMERIC2FLOAT(val_x);
+  float y      = NUMERIC2FLOAT(val_y);
+  float width  = NUMERIC2FLOAT(val_width);
   float height = NUMERIC2FLOAT(val_height);
 
   p->setCrop (x, y, width, height);
@@ -134,58 +122,47 @@ VALUE ruby_Sprite3D_set_image (VALUE self, VALUE val_image)
 }
 
 /**
- * Sprite3D::CropRect
+ * Sprite3D::CropAccessor
  */
 
-VALUE ruby_Sprite3D_CropRect_allocate (VALUE self)
+VALUE ruby_Sprite3D_CropAccessor_get_x (VALUE self)
 {
-  void* p = ruby_xmalloc (sizeof(Sprite3D::CropRect));
-  return Data_Wrap_Struct (self, 0, -1, p);
+    CropAccessor* p;
+    Data_Get_Struct (self, CropAccessor, p);
+    int x = p->sprite3D->getCropX ();
+    return INT2FIX(x);
 }
 
-VALUE ruby_Sprite3D_CropRect_initialize (VALUE self, VALUE val_x, VALUE val_y, VALUE val_width, VALUE val_height)
+VALUE ruby_Sprite3D_CropAccessor_get_y (VALUE self)
 {
-  Sprite3D::CropRect* p;
-    Data_Get_Struct (self, Sprite3D::CropRect, p);
-    p->x = FIX2INT (val_x);
-    p->y = FIX2INT (val_y);
-    p->width = FIX2INT (val_width);
-    p->height = FIX2INT (val_height);
-    return self;
+    CropAccessor* p;
+    Data_Get_Struct (self, CropAccessor, p);
+    int y = p->sprite3D->getCropY ();
+    return INT2FIX(y);
 }
 
-VALUE ruby_Sprite3D_CropRect_get_x (VALUE self)
+VALUE ruby_Sprite3D_CropAccessor_get_width (VALUE self)
 {
-  Sprite3D::CropRect* p;
-    Data_Get_Struct (self, Sprite3D::CropRect, p);
-    return INT2FIX(p->x);
+    CropAccessor* p;
+    Data_Get_Struct (self, CropAccessor, p);
+    int width = p->sprite3D->getCropWidth ();
+    return INT2FIX(width);
 }
 
-VALUE ruby_Sprite3D_CropRect_get_y (VALUE self)
+VALUE ruby_Sprite3D_CropAccessor_get_height (VALUE self)
 {
-  Sprite3D::CropRect* p;
-    Data_Get_Struct (self, Sprite3D::CropRect, p);
-    return INT2FIX(p->y);
-}
-
-VALUE ruby_Sprite3D_CropRect_get_width (VALUE self)
-{
-  Sprite3D::CropRect* p;
-    Data_Get_Struct (self, Sprite3D::CropRect, p);
-    return INT2FIX(p->width);
-}
-
-VALUE ruby_Sprite3D_CropRect_get_height (VALUE self)
-{
-  Sprite3D::CropRect* p;
-    Data_Get_Struct (self, Sprite3D::CropRect, p);
-    return INT2FIX(p->height);
+  CropAccessor* p;
+    Data_Get_Struct (self, CropAccessor, p);
+    int height = p->sprite3D->getCropHeight ();
+    return INT2FIX(height);
 }
 
 
 void register_Sprite3D ()
 {
      // Sprite3D
+    rb_cSprite3D            = rb_define_class_under (rb_mM3G, "Sprite3D",            rb_cNode);
+
      rb_define_alloc_func (rb_cSprite3D, ruby_Sprite3D_allocate);
      rb_define_private_method (rb_cSprite3D, "initialize", (VALUE(*)(...))ruby_Sprite3D_initialize, 3);
 
@@ -197,13 +174,11 @@ void register_Sprite3D ()
      rb_define_method (rb_cSprite3D, "crop=",       (VALUE(*)(...))ruby_Sprite3D_set_crop,  1);
      rb_define_method (rb_cSprite3D, "image=",      (VALUE(*)(...))ruby_Sprite3D_set_image, 1);
 
-     // Srpte3D::CropRect
-     rb_cSprite3D_CropRect = rb_define_class_under (rb_cSprite3D, "CropRect", rb_cObject);
-     rb_define_alloc_func (rb_cSprite3D_CropRect, ruby_Sprite3D_CropRect_allocate);
-     rb_define_private_method (rb_cSprite3D_CropRect, "initialize", (VALUE(*)(...))ruby_Sprite3D_CropRect_initialize, 4);
+     // Srpte3D::CropAccessor
+     rb_cSprite3D_CropAccessor = rb_define_class_under (rb_cSprite3D, "CropAccessor", rb_cObject);
 
-     rb_define_method (rb_cSprite3D_CropRect, "x",      (VALUE(*)(...))ruby_Sprite3D_CropRect_get_x, 0);
-     rb_define_method (rb_cSprite3D_CropRect, "y",      (VALUE(*)(...))ruby_Sprite3D_CropRect_get_y, 0);
-     rb_define_method (rb_cSprite3D_CropRect, "width",  (VALUE(*)(...))ruby_Sprite3D_CropRect_get_width, 0);
-     rb_define_method (rb_cSprite3D_CropRect, "height", (VALUE(*)(...))ruby_Sprite3D_CropRect_get_height, 0);
+     rb_define_method (rb_cSprite3D_CropAccessor, "x",      (VALUE(*)(...))ruby_Sprite3D_CropAccessor_get_x,      0);
+     rb_define_method (rb_cSprite3D_CropAccessor, "y",      (VALUE(*)(...))ruby_Sprite3D_CropAccessor_get_y,      0);
+     rb_define_method (rb_cSprite3D_CropAccessor, "width",  (VALUE(*)(...))ruby_Sprite3D_CropAccessor_get_width,  0);
+     rb_define_method (rb_cSprite3D_CropAccessor, "height", (VALUE(*)(...))ruby_Sprite3D_CropAccessor_get_height, 0);
 }

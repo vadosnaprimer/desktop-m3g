@@ -139,11 +139,13 @@ VALUE ruby_SkinnedMesh_get_skeleton (VALUE self)
 void register_SkinnedMesh ()
 {
      // SkinnedMesh
+    rb_cSkinnedMesh         = rb_define_class_under (rb_mM3G, "SkinnedMesh",         rb_cMesh);
+
      rb_define_alloc_func (rb_cSkinnedMesh, ruby_SkinnedMesh_allocate);
      rb_define_private_method (rb_cSkinnedMesh, "initialize", (VALUE(*)(...))ruby_SkinnedMesh_initialize, -1);
 
-     rb_define_method (rb_cSkinnedMesh, "add_transform",       (VALUE(*)(...))ruby_SkinnedMesh_add_transform,  4);
-     rb_define_method (rb_cSkinnedMesh, "bone_transform", (VALUE(*)(...))ruby_SkinnedMesh_get_bone_transform, 1);
+     rb_define_method (rb_cSkinnedMesh, "add_transform",   (VALUE(*)(...))ruby_SkinnedMesh_add_transform,      4);
+     rb_define_method (rb_cSkinnedMesh, "bone_transform",  (VALUE(*)(...))ruby_SkinnedMesh_get_bone_transform, 1);
      rb_define_method (rb_cSkinnedMesh, "bone_vertices",   (VALUE(*)(...))ruby_SkinnedMesh_get_bone_vertices,  1);
-     rb_define_method (rb_cSkinnedMesh, "skeleton",         (VALUE(*)(...))ruby_SkinnedMesh_get_skeleton, 0);
+     rb_define_method (rb_cSkinnedMesh, "skeleton",        (VALUE(*)(...))ruby_SkinnedMesh_get_skeleton,       0);
 }

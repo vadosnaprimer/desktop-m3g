@@ -15,7 +15,7 @@ namespace m3g {
    */
   class Transformable : public Object3D
   {
-  public:
+
     /**
      * @~English  Structure of scaling parameter, for inner use.
      * @~Japanese スケール乗数を保持する内部使用の構造体.
@@ -36,6 +36,9 @@ namespace m3g {
       float y;
       float z;
     };
+
+
+  public:
 
     /**
      * @~English  Construct a new Tranformable object.

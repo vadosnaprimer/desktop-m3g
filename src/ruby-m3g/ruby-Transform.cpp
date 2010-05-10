@@ -222,18 +222,20 @@ VALUE ruby_Transform_transpose (VALUE self)
 void register_Transform ()
 {
      // Transform
+    rb_cTransform           = rb_define_class_under (rb_mM3G, "Transform",           rb_cObject);
+
      rb_define_alloc_func (rb_cTransform, ruby_Transform_allocate);
      rb_define_private_method (rb_cTransform, "initialize", (VALUE(*)(...))ruby_Transform_initialize, -1);
 
-     rb_define_method (rb_cTransform, "get",              (VALUE(*)(...))ruby_Transform_get,  0);
-     rb_define_method (rb_cTransform, "invert",           (VALUE(*)(...))ruby_Transform_invert,        0);
-     rb_define_method (rb_cTransform, "post_multiply",    (VALUE(*)(...))ruby_Transform_post_multiply,  1);
-     rb_define_method (rb_cTransform, "post_rotate",      (VALUE(*)(...))ruby_Transform_post_rotate,    4);
+     rb_define_method (rb_cTransform, "get",              (VALUE(*)(...))ruby_Transform_get,             0);
+     rb_define_method (rb_cTransform, "invert",           (VALUE(*)(...))ruby_Transform_invert,          0);
+     rb_define_method (rb_cTransform, "post_multiply",    (VALUE(*)(...))ruby_Transform_post_multiply,   1);
+     rb_define_method (rb_cTransform, "post_rotate",      (VALUE(*)(...))ruby_Transform_post_rotate,     4);
      rb_define_method (rb_cTransform, "post_rotate_quat", (VALUE(*)(...))ruby_Transform_post_rotate_quat,4);
-     rb_define_method (rb_cTransform, "post_scale",       (VALUE(*)(...))ruby_Transform_post_scale,     3);
-     rb_define_method (rb_cTransform, "post_translate",   (VALUE(*)(...))ruby_Transform_post_translate, 3);
-     rb_define_method (rb_cTransform, "set",              (VALUE(*)(...))ruby_Transform_set,           1);
-     rb_define_method (rb_cTransform, "identity",     (VALUE(*)(...))ruby_Transform_set_identity,   0);
-     rb_define_method (rb_cTransform, "transform",        (VALUE(*)(...))ruby_Transform_transform,    -1);
-     rb_define_method (rb_cTransform, "transpose",        (VALUE(*)(...))ruby_Transform_transpose,     0);
+     rb_define_method (rb_cTransform, "post_scale",       (VALUE(*)(...))ruby_Transform_post_scale,      3);
+     rb_define_method (rb_cTransform, "post_translate",   (VALUE(*)(...))ruby_Transform_post_translate,  3);
+     rb_define_method (rb_cTransform, "set",              (VALUE(*)(...))ruby_Transform_set,             1);
+     rb_define_method (rb_cTransform, "identity",         (VALUE(*)(...))ruby_Transform_set_identity,    0);
+     rb_define_method (rb_cTransform, "transform",        (VALUE(*)(...))ruby_Transform_transform,      -1);
+     rb_define_method (rb_cTransform, "transpose",        (VALUE(*)(...))ruby_Transform_transpose,       0);
 }

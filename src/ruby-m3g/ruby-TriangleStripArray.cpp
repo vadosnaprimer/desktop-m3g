@@ -70,6 +70,8 @@ VALUE ruby_TriangleStripArray_initialize (VALUE self, VALUE val_arg1, VALUE val_
 void register_TriangleStripArray ()
 {
      // TriangleStripArray
+    rb_cTriangleStripArray  = rb_define_class_under (rb_mM3G, "TriangleStripArray",  rb_cIndexBuffer);
+
      rb_define_alloc_func (rb_cTriangleStripArray, ruby_TriangleStripArray_allocate);
      rb_define_private_method (rb_cTriangleStripArray, "initialize", (VALUE(*)(...))ruby_TriangleStripArray_initialize, 2);
 }

@@ -57,9 +57,12 @@ VALUE ruby_IndexBuffer_get_indices (VALUE self)
 void register_IndexBuffer ()
 {
      // IndexBuffer
+    rb_cIndexBuffer         = rb_define_class_under (rb_mM3G, "IndexBuffer",         rb_cObject3D);
+
+
      rb_define_alloc_func (rb_cIndexBuffer, ruby_IndexBuffer_allocate);
      rb_define_private_method (rb_cIndexBuffer, "initialize", (VALUE(*)(...))ruby_IndexBuffer_initialize, 0);
 
      rb_define_method (rb_cIndexBuffer, "index_count", (VALUE(*)(...))ruby_IndexBuffer_get_index_count, 0);
-     rb_define_method (rb_cIndexBuffer, "indices",     (VALUE(*)(...))ruby_IndexBuffer_get_indices,    0);
+     rb_define_method (rb_cIndexBuffer, "indices",     (VALUE(*)(...))ruby_IndexBuffer_get_indices,     0);
 }

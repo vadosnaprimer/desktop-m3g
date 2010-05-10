@@ -175,6 +175,8 @@ VALUE ruby_PolygonMode_set_winding (VALUE self, VALUE val_mode)
 void register_PolygonMode ()
 {
      // PolygonMode
+    rb_cPolygonMode         = rb_define_class_under (rb_mM3G, "PolygonMode",         rb_cObject3D);
+
      rb_define_const (rb_cPolygonMode, "CULL_BACK",    INT2FIX(PolygonMode::CULL_BACK));
      rb_define_const (rb_cPolygonMode, "CULL_FRONT",   INT2FIX(PolygonMode::CULL_FRONT));
      rb_define_const (rb_cPolygonMode, "CULL_NONE",    INT2FIX(PolygonMode::CULL_NONE));
@@ -184,18 +186,18 @@ void register_PolygonMode ()
      rb_define_const (rb_cPolygonMode, "WINDING_CW",   INT2FIX(PolygonMode::WINDING_CW));
      
      rb_define_alloc_func (rb_cPolygonMode, ruby_PolygonMode_allocate);
-     rb_define_private_method (rb_cPolygonMode, "initialize", (VALUE(*)(...))ruby_PolygonMode_initialize,0);
+     rb_define_private_method (rb_cPolygonMode, "initialize",              (VALUE(*)(...))ruby_PolygonMode_initialize,0);
 
-     rb_define_method (rb_cPolygonMode, "culling", (VALUE(*)(...))ruby_PolygonMode_get_culling, 0);
-     rb_define_method (rb_cPolygonMode, "shading", (VALUE(*)(...))ruby_PolygonMode_get_shading, 0);
-     rb_define_method (rb_cPolygonMode, "winding", (VALUE(*)(...))ruby_PolygonMode_get_winding, 0);
-     rb_define_method (rb_cPolygonMode, "local_camera_lighting_enabled?",  (VALUE(*)(...))ruby_PolygonMode_is_local_camera_lighting_enabled, 0);
+     rb_define_method (rb_cPolygonMode, "culling",                         (VALUE(*)(...))ruby_PolygonMode_get_culling,                       0);
+     rb_define_method (rb_cPolygonMode, "shading",                         (VALUE(*)(...))ruby_PolygonMode_get_shading,                       0);
+     rb_define_method (rb_cPolygonMode, "winding",                         (VALUE(*)(...))ruby_PolygonMode_get_winding,                       0);
+     rb_define_method (rb_cPolygonMode, "local_camera_lighting_enabled?",  (VALUE(*)(...))ruby_PolygonMode_is_local_camera_lighting_enabled,  0);
      rb_define_method (rb_cPolygonMode, "perspective_correction_enabled?", (VALUE(*)(...))ruby_PolygonMode_is_perspective_correction_enabled, 0);
-     rb_define_method (rb_cPolygonMode, "two_sided_lighting_enabled?",     (VALUE(*)(...))ruby_PolygonMode_is_two_sided_lighting_enabled, 0);
-     rb_define_method (rb_cPolygonMode, "culling=",                        (VALUE(*)(...))ruby_PolygonMode_set_culling, 1);
-     rb_define_method (rb_cPolygonMode, "local_camera_lighting_enable=",   (VALUE(*)(...))ruby_PolygonMode_set_local_camera_lighting_enable, 1);
-     rb_define_method (rb_cPolygonMode, "perspective_correction_enable=",    (VALUE(*)(...))ruby_PolygonMode_set_perspective_correction_enable, 1);
-     rb_define_method (rb_cPolygonMode, "shading=",                        (VALUE(*)(...))ruby_PolygonMode_set_shading, 1);
-     rb_define_method (rb_cPolygonMode, "two_sided_lighting_enable=",       (VALUE(*)(...))ruby_PolygonMode_set_two_sided_lighting_enable, 1);
-     rb_define_method (rb_cPolygonMode, "winding=",                        (VALUE(*)(...))ruby_PolygonMode_set_winding, 1);
+     rb_define_method (rb_cPolygonMode, "two_sided_lighting_enabled?",     (VALUE(*)(...))ruby_PolygonMode_is_two_sided_lighting_enabled,     0);
+     rb_define_method (rb_cPolygonMode, "culling=",                        (VALUE(*)(...))ruby_PolygonMode_set_culling,                       1);
+     rb_define_method (rb_cPolygonMode, "local_camera_lighting_enable=",   (VALUE(*)(...))ruby_PolygonMode_set_local_camera_lighting_enable,  1);
+     rb_define_method (rb_cPolygonMode, "perspective_correction_enable=",  (VALUE(*)(...))ruby_PolygonMode_set_perspective_correction_enable, 1);
+     rb_define_method (rb_cPolygonMode, "shading=",                        (VALUE(*)(...))ruby_PolygonMode_set_shading,                       1);
+     rb_define_method (rb_cPolygonMode, "two_sided_lighting_enable=",      (VALUE(*)(...))ruby_PolygonMode_set_two_sided_lighting_enable,     1);
+     rb_define_method (rb_cPolygonMode, "winding=",                        (VALUE(*)(...))ruby_PolygonMode_set_winding,                       1);
 }

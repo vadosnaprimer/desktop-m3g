@@ -8,6 +8,7 @@ class M3GWidget < Qt::GLWidget
 
   def initialize
     super
+
     @tick = Qt::Timer.new
     @tick.start 1000
     @fps = 0
@@ -36,7 +37,6 @@ class M3GWidget < Qt::GLWidget
       @wld.background = M3G::Background.new
     end
     @wld.background.color = 0x003f7fff
-
   end
 
   def resizeGL width, height
@@ -49,14 +49,13 @@ class M3GWidget < Qt::GLWidget
     g3d = M3G::Graphics3D::instance
     g3d.render @wld
 
-    renderText 10, 10, "fps = #{@fps}"
-    puts "fps = #{@fps}"
+    renderText 10, 10, "time = #{@time}, fps = #{@fps}"
+    puts "time = #{@time}, fps = #{@fps}"
   end
 
   def tackEvent
     @tackCount += 1
     @time += 33
-    puts "time = {@time}"
     @wld.animate @time
     if (@time > 10000)
       @time = 0

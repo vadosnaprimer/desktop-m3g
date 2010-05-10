@@ -92,6 +92,8 @@ VALUE ruby_AnimationTrack_set_controller (VALUE self, VALUE val_controller)
 void register_AnimationTrack ()
 {
     // AnimationTrack
+    rb_cAnimationTrack      = rb_define_class_under (rb_mM3G, "AnimationTrack",      rb_cObject3D);
+
     rb_define_const (rb_cAnimationTrack, "ALPHA",          INT2FIX(AnimationTrack::ALPHA));
     rb_define_const (rb_cAnimationTrack, "AMBIENT_COLOR",  INT2FIX(AnimationTrack::AMBIENT_COLOR));
     rb_define_const (rb_cAnimationTrack, "COLOR",          INT2FIX(AnimationTrack::COLOR));
@@ -115,10 +117,10 @@ void register_AnimationTrack ()
     rb_define_const (rb_cAnimationTrack, "VISIBILITY",     INT2FIX(AnimationTrack::VISIBILITY));
 
     rb_define_alloc_func (rb_cAnimationTrack, ruby_AnimationTrack_allocate);
-    rb_define_private_method (rb_cAnimationTrack, "initialize", (VALUE(*)(...))ruby_AnimationTrack_initialize, 2);
+    rb_define_private_method (rb_cAnimationTrack, "initialize", (VALUE(*)(...))ruby_AnimationTrack_initialize,            2);
 
-    rb_define_method (rb_cAnimationTrack, "controller",        (VALUE(*)(...))ruby_AnimationTrack_get_controller, 0); 
-    rb_define_method (rb_cAnimationTrack, "keyframe_sequence", (VALUE(*)(...))ruby_AnimationTrack_get_keyframe_sequence, 0); 
-    rb_define_method (rb_cAnimationTrack, "target_property",   (VALUE(*)(...))ruby_AnimationTrack_get_target_property, 0); 
-    rb_define_method (rb_cAnimationTrack, "controller=",        (VALUE(*)(...))ruby_AnimationTrack_set_controller, 1); 
+    rb_define_method (rb_cAnimationTrack, "controller",         (VALUE(*)(...))ruby_AnimationTrack_get_controller,        0);
+    rb_define_method (rb_cAnimationTrack, "keyframe_sequence",  (VALUE(*)(...))ruby_AnimationTrack_get_keyframe_sequence, 0);
+    rb_define_method (rb_cAnimationTrack, "target_property",    (VALUE(*)(...))ruby_AnimationTrack_get_target_property,   0);
+    rb_define_method (rb_cAnimationTrack, "controller=",        (VALUE(*)(...))ruby_AnimationTrack_set_controller,        1);
 }

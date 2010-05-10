@@ -6,7 +6,10 @@ using namespace m3g;
 using namespace std;
 
 namespace {
-  VALUE rb_cFog_Distance;
+	struct DistanceAccessor {
+		Fog* fog;
+	};
+	VALUE rb_cFog_DistanceAccessor;
 }
 
 VALUE ruby_Fog_free (Fog* ptr)
@@ -57,11 +60,10 @@ VALUE ruby_Fog_get_distance (VALUE self)
 {
   Fog* p;
   Data_Get_Struct (self, Fog, p);
-  Fog::Distance* dist;
-  VALUE val_dist = Data_Make_Struct (rb_cFog_Distance, Fog::Distance, 0, -1, dist);
-  dist->near = p->getNearDistance();
-  dist->far  = p->getFarDistance();
-  return val_dist;
+  DistanceAccessor* accessor;
+  VALUE val_accessor = Data_Make_Struct (rb_cFog_DistanceAccessor, DistanceAccessor, 0, -1, accessor);
+  accessor->fog = p;
+  return val_accessor;
 }
 
 VALUE ruby_Fog_get_mode (VALUE self)
@@ -130,36 +132,24 @@ VALUE ruby_Fog_set_mode (VALUE self, VALUE val_mode)
 
 
 /**
- * Fog::Distance
+ * DistanceAccessor
  */
 
-VALUE ruby_Fog_Distance_allocate (VALUE self)
+
+VALUE ruby_Fog_DistanceAccessor_get_near (VALUE self)
 {
-  void* p = ruby_xmalloc (sizeof(Fog::Distance));
-    return Data_Wrap_Struct (self, 0, -1, p);
+  DistanceAccessor* p;
+  Data_Get_Struct (self, DistanceAccessor, p);
+  float near = p->fog->getNearDistance ();
+  return rb_float_new(near);
 }
 
-VALUE ruby_Fog_Distance_initialize (VALUE self, VALUE val_near, VALUE val_far)
+VALUE ruby_Fog_DistanceAccessor_get_far (VALUE self)
 {
-  Fog::Distance* p;
-    Data_Get_Struct (self, Fog::Distance, p);
-    p->near = NUMERIC2FLOAT (val_near);
-    p->far  = NUMERIC2FLOAT (val_far);
-    return self;
-}
-
-VALUE ruby_Fog_Distance_get_near (VALUE self)
-{
-  Fog::Distance* p;
-  Data_Get_Struct (self, Fog::Distance, p);
-  return rb_float_new(p->near);
-}
-
-VALUE ruby_Fog_Distance_get_far (VALUE self)
-{
-  Fog::Distance* p;
-  Data_Get_Struct (self, Fog::Distance, p);
-  return rb_float_new(p->far);
+  DistanceAccessor* p;
+  Data_Get_Struct (self, DistanceAccessor, p);
+  float far = p->fog->getFarDistance ();
+  return rb_float_new(far);
 }
 
 
@@ -167,8 +157,10 @@ VALUE ruby_Fog_Distance_get_far (VALUE self)
 void register_Fog ()
 {
      // Fog
-     rb_define_const (rb_cFog, "EXPONENTIAL", INT2FIX(Fog::EXPONENTIAL));
-     rb_define_const (rb_cFog, "LINEAR",      INT2FIX(Fog::LINEAR));
+    rb_cFog                 = rb_define_class_under (rb_mM3G, "Fog",                 rb_cObject3D);
+
+	rb_define_const (rb_cFog, "EXPONENTIAL", INT2FIX(Fog::EXPONENTIAL));
+	rb_define_const (rb_cFog, "LINEAR",      INT2FIX(Fog::LINEAR));
 
      rb_define_alloc_func (rb_cFog, ruby_Fog_allocate);
      rb_define_private_method (rb_cFog, "initialize", (VALUE(*)(...))ruby_Fog_initialize, 0);
@@ -182,13 +174,10 @@ void register_Fog ()
      rb_define_method (rb_cFog, "linear=",     (VALUE(*)(...))ruby_Fog_set_linear,  1);
      rb_define_method (rb_cFog, "mode=",       (VALUE(*)(...))ruby_Fog_set_mode,    1);
 
-     // Fog::Distance
-     rb_cFog_Distance  = rb_define_class_under (rb_cFog, "Distance", rb_cObject);
+     // DistanceAccessor
+     rb_cFog_DistanceAccessor  = rb_define_class_under (rb_cFog, "DistanceAccessor", rb_cObject);
 
-     rb_define_alloc_func (rb_cFog_Distance, ruby_Fog_Distance_allocate);
-     rb_define_private_method (rb_cFog_Distance, "initialize", (VALUE(*)(...))ruby_Fog_Distance_initialize, 0);
-
-     rb_define_method (rb_cFog_Distance, "near",        (VALUE(*)(...))ruby_Fog_Distance_get_near,   0);
-     rb_define_method (rb_cFog_Distance, "far",        (VALUE(*)(...))ruby_Fog_Distance_get_far,    0);
+     rb_define_method (rb_cFog_DistanceAccessor, "near",       (VALUE(*)(...))ruby_Fog_DistanceAccessor_get_near,   0);
+     rb_define_method (rb_cFog_DistanceAccessor, "far",        (VALUE(*)(...))ruby_Fog_DistanceAccessor_get_far,    0);
 
 }

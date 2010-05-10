@@ -42,42 +42,12 @@ VALUE rb_cTransform;
 
 void Init_m3g()
 {
-    // Declare 30 classes of M3G defined in JSR184
-    rb_mM3G                 = rb_define_module ("M3G");
-    rb_cGraphics3D          = rb_define_class_under (rb_mM3G, "Graphics3D",          rb_cObject);
-    rb_cLoader              = rb_define_class_under (rb_mM3G, "Loader",              rb_cObject);
-    rb_cObject3D            = rb_define_class_under (rb_mM3G, "Object3D",            rb_cObject);
-    rb_cAnimationController = rb_define_class_under (rb_mM3G, "AnimationController", rb_cObject3D);
-    rb_cAnimationTrack      = rb_define_class_under (rb_mM3G, "AnimationTrack",      rb_cObject3D);
-    rb_cAppearance          = rb_define_class_under (rb_mM3G, "Appearance",          rb_cObject3D);
-    rb_cBackground          = rb_define_class_under (rb_mM3G, "Background",          rb_cObject3D);
-    rb_cCompositingMode     = rb_define_class_under (rb_mM3G, "CompositingMode",     rb_cObject3D);
-    rb_cFog                 = rb_define_class_under (rb_mM3G, "Fog",                 rb_cObject3D);
-    rb_cImage2D             = rb_define_class_under (rb_mM3G, "Image2D",             rb_cObject3D);
-    rb_cIndexBuffer         = rb_define_class_under (rb_mM3G, "IndexBuffer",         rb_cObject3D);
-    rb_cTriangleStripArray  = rb_define_class_under (rb_mM3G, "TriangleStripArray",  rb_cIndexBuffer);
-    rb_cKeyframeSequence    = rb_define_class_under (rb_mM3G, "KeyframeSequence",    rb_cObject3D);
-    rb_cMaterial            = rb_define_class_under (rb_mM3G, "Material",            rb_cObject3D);
-    rb_cPolygonMode         = rb_define_class_under (rb_mM3G, "PolygonMode",         rb_cObject3D);
-    rb_cTransformable       = rb_define_class_under (rb_mM3G, "Transformable",       rb_cObject3D);
-    rb_cNode                = rb_define_class_under (rb_mM3G, "Node",                rb_cTransformable);
-    rb_cCamera              = rb_define_class_under (rb_mM3G, "Camera",              rb_cNode);
-    rb_cGroup               = rb_define_class_under (rb_mM3G, "Group",               rb_cNode);
-    rb_cWorld               = rb_define_class_under (rb_mM3G, "World",               rb_cGroup);
-    rb_cLight               = rb_define_class_under (rb_mM3G, "Light",               rb_cNode);
-    rb_cMesh                = rb_define_class_under (rb_mM3G, "Mesh",                rb_cNode);
-    rb_cMorphingMesh        = rb_define_class_under (rb_mM3G, "MorphingMesh",        rb_cMesh);
-    rb_cSkinnedMesh         = rb_define_class_under (rb_mM3G, "SkinnedMesh",         rb_cMesh);
-    rb_cSprite3D            = rb_define_class_under (rb_mM3G, "Sprite3D",            rb_cNode);
-    rb_cTexture2D           = rb_define_class_under (rb_mM3G, "Texture2D",           rb_cTransformable);
-    rb_cVertexArray         = rb_define_class_under (rb_mM3G, "VertexArray",         rb_cObject3D);
-    rb_cVertexBuffer        = rb_define_class_under (rb_mM3G, "VertexBuffer",        rb_cObject3D);
-    rb_cRayIntersection     = rb_define_class_under (rb_mM3G, "RayIntersection",     rb_cObject);
-    rb_cTransform           = rb_define_class_under (rb_mM3G, "Transform",           rb_cObject);
+    cout << "Init_m3g: called\n";
 
-    
+    // Declare "M3G" module
+    rb_mM3G = rb_define_module ("M3G");
 
-    // register all methods in 30 classes
+    // Register all 30 classes of M3G
     register_Graphics3D ();
     register_Loader ();
     register_Object3D ();
@@ -87,7 +57,6 @@ void Init_m3g()
     register_Background ();
     register_CompositingMode ();
     register_Fog ();
-    register_Group ();
     register_Image2D ();
     register_IndexBuffer ();
     register_TriangleStripArray ();
@@ -109,5 +78,6 @@ void Init_m3g()
     register_VertexBuffer ();
     register_RayIntersection ();
     register_Transform ();
+
 }
 

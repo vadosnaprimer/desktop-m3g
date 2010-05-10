@@ -13,7 +13,6 @@ namespace m3g {
    */
   class AnimationController : public Object3D
   {
-  public:
 
     /**
      * @~English  Structure of active interval.
@@ -26,6 +25,8 @@ namespace m3g {
       float end;
     };
 
+
+  public:
     /**
      * @~English  Create a new AnimationController object.
      * @~Japanese アニメーションコントローラークラスのコンストラクタ.

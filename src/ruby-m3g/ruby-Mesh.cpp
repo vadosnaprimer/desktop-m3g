@@ -112,18 +112,6 @@ VALUE ruby_Mesh_get_vertex_buffer (VALUE self)
 /**
  * Mesh_IndexBufferAccessor
  */
-VALUE ruby_Mesh_IndexBufferAccessor_allocate (VALUE self)
-{
-    void* p = ruby_xmalloc (sizeof(IndexBufferAccessor));
-    return Data_Wrap_Struct (self, 0, -1, p);
-}
-
-VALUE ruby_Mesh_IndexBufferAccessor_initialize (VALUE self)
-{
-    IndexBufferAccessor* p;
-    Data_Get_Struct (self, IndexBufferAccessor, p);
-    return self;
-}
 
 VALUE ruby_Mesh_IndexBufferAccessor_get_index_buffer (VALUE self, VALUE val_index)
 {
@@ -142,18 +130,6 @@ VALUE ruby_Mesh_IndexBufferAccessor_get_index_buffer (VALUE self, VALUE val_inde
 /**
  * Mesh_AppearanceAccessor
  */
-VALUE ruby_Mesh_AppearanceAccessor_allocate (VALUE self)
-{
-    void* p = ruby_xmalloc (sizeof(AppearanceAccessor));
-    return Data_Wrap_Struct (self, 0, -1, p);
-}
-
-VALUE ruby_Mesh_AppearanceAccessor_initialize (VALUE self)
-{
-    AppearanceAccessor* p;
-    Data_Get_Struct (self, AppearanceAccessor, p);
-    return self;
-}
 
 VALUE ruby_Mesh_AppearanceAccessor_get_appearance (VALUE self, VALUE val_index)
 {
@@ -184,6 +160,8 @@ VALUE ruby_Mesh_AppearanceAccessor_set_appearance (VALUE self, VALUE val_index, 
 void register_Mesh ()
 {
      // Mesh
+    rb_cMesh                = rb_define_class_under (rb_mM3G, "Mesh",                rb_cNode);
+
      rb_define_alloc_func (rb_cMesh, ruby_Mesh_allocate);
      rb_define_private_method (rb_cMesh, "initialize", (VALUE(*)(...))ruby_Mesh_initialize, 3);
 
@@ -194,15 +172,11 @@ void register_Mesh ()
 
      // Mesh_IndexBufferAccessor
      rb_cMesh_IndexBufferAccessor  = rb_define_class_under (rb_cMesh, "IndexBufferAccessor", rb_cObject);
-     rb_define_alloc_func     (rb_cMesh_IndexBufferAccessor, ruby_Mesh_IndexBufferAccessor_allocate);
-     rb_define_private_method (rb_cMesh_IndexBufferAccessor, "initialize", (VALUE(*)(...))ruby_Mesh_IndexBufferAccessor_initialize, 0);
 
      rb_define_method (rb_cMesh_IndexBufferAccessor, "[]",     (VALUE(*)(...))ruby_Mesh_IndexBufferAccessor_get_index_buffer, 1);
 
     // Mesh_AppearanceAccessor;
      rb_cMesh_AppearanceAccessor  = rb_define_class_under (rb_cMesh, "ApearanceAccessor", rb_cObject);
-     rb_define_alloc_func     (rb_cMesh_AppearanceAccessor, ruby_Mesh_AppearanceAccessor_allocate);
-     rb_define_private_method (rb_cMesh_AppearanceAccessor, "initialize", (VALUE(*)(...))ruby_Mesh_AppearanceAccessor_initialize, 0);
 
     rb_define_method (rb_cMesh_AppearanceAccessor, "[]",     (VALUE(*)(...))ruby_Mesh_AppearanceAccessor_get_appearance, 1);
     rb_define_method (rb_cMesh_AppearanceAccessor, "[]=",     (VALUE(*)(...))ruby_Mesh_AppearanceAccessor_set_appearance, 2);

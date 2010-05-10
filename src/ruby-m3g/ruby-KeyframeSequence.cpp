@@ -106,19 +106,6 @@ VALUE ruby_KeyframeSequence_get_valid_range (VALUE self)
  * KeyframeSequence_ValidRangeAccessor
  */
 
-VALUE ruby_KeyframeSequence_ValidRangeAccessor_allocate (VALUE self)
-{
-  void* p = ruby_xmalloc (sizeof(ValidRangeAccessor));
-    return Data_Wrap_Struct (self, 0, -1, p);
-}
-
-VALUE ruby_KeyframeSequence_ValidRangeAccessor_initialize (VALUE self)
-{
-  ValidRangeAccessor* p;
-    Data_Get_Struct (self, ValidRangeAccessor, p);
-    return self;
-}
-
 VALUE ruby_KeyframeSequence_ValidRangeAccessor_get_first (VALUE self)
 {
   ValidRangeAccessor* p;
@@ -138,19 +125,6 @@ VALUE ruby_KeyframeSequence_ValidRangeAccessor_get_last (VALUE self)
 /**
  * KeyframeSequence_KeyframeAccessor
  */
-
-VALUE ruby_KeyframeSequence_KeyframeAccessor_allocate (VALUE self)
-{
-  void* p = ruby_xmalloc (sizeof(KeyframeAccessor));
-    return Data_Wrap_Struct (self, 0, -1, p);
-}
-
-VALUE ruby_KeyframeSequence_KeyframeAccessor_initialize (VALUE self)
-{
-  KeyframeAccessor* p;
-    Data_Get_Struct (self, KeyframeAccessor, p);
-    return self;
-}
 
 VALUE ruby_KeyframeSequence_KeyframeAccessor_get_keyframe (VALUE self, VALUE val_index)
 {
@@ -202,6 +176,9 @@ VALUE ruby_KeyframeSequence_KeyframeAccessor_set_keyframe (VALUE self, VALUE val
 void register_KeyframeSequence ()
 {
   // KeyframeSequence
+    rb_cKeyframeSequence    = rb_define_class_under (rb_mM3G, "KeyframeSequence",    rb_cObject3D);
+
+
      rb_define_const (rb_cKeyframeSequence, "CONSTANT", INT2FIX(KeyframeSequence::CONSTANT));
      rb_define_const (rb_cKeyframeSequence, "LOOP",     INT2FIX(KeyframeSequence::LOOP));
      rb_define_const (rb_cKeyframeSequence, "LINEAR",   INT2FIX(KeyframeSequence::LINEAR));
@@ -225,17 +202,11 @@ void register_KeyframeSequence ()
      // KeyframeSequence_ValidRangeAccessor
     rb_cKeyframeSequence_ValidRangeAccessor    = rb_define_class_under (rb_cKeyframeSequence, "ValidRangeAccessor",    rb_cObject3D);
 
-     rb_define_alloc_func (rb_cKeyframeSequence_ValidRangeAccessor, ruby_KeyframeSequence_ValidRangeAccessor_allocate);
-     rb_define_private_method (rb_cKeyframeSequence_ValidRangeAccessor, "initialize", (VALUE(*)(...))ruby_KeyframeSequence_ValidRangeAccessor_initialize, 0);
-
      rb_define_method (rb_cKeyframeSequence_ValidRangeAccessor, "first",       (VALUE(*)(...))ruby_KeyframeSequence_ValidRangeAccessor_get_first,   0);
      rb_define_method (rb_cKeyframeSequence_ValidRangeAccessor, "last",       (VALUE(*)(...))ruby_KeyframeSequence_ValidRangeAccessor_get_last,   0);
 
      // KeyframeSequence_KeyframeAccessor
     rb_cKeyframeSequence_KeyframeAccessor    = rb_define_class_under (rb_cKeyframeSequence, "KeyframeAccessor",    rb_cObject3D);
-
-     rb_define_alloc_func (rb_cKeyframeSequence_KeyframeAccessor, ruby_KeyframeSequence_KeyframeAccessor_allocate);
-     rb_define_private_method (rb_cKeyframeSequence_KeyframeAccessor, "initialize", (VALUE(*)(...))ruby_KeyframeSequence_KeyframeAccessor_initialize, 0);
 
      rb_define_method (rb_cKeyframeSequence_KeyframeAccessor, "[]",       (VALUE(*)(...))ruby_KeyframeSequence_KeyframeAccessor_get_keyframe,   1);
      rb_define_method (rb_cKeyframeSequence_KeyframeAccessor, "[]=",       (VALUE(*)(...))ruby_KeyframeSequence_KeyframeAccessor_set_keyframe,   2);

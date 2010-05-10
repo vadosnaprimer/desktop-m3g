@@ -115,29 +115,12 @@ VALUE ruby_Group_remove_child (VALUE self, VALUE val_child)
  * Group_ChildAccessor
  */
 
-VALUE ruby_Group_ChildAccessor_allocate (VALUE self)
-{
-    void* p = ruby_xmalloc (sizeof(ChildAccessor));
-    return Data_Wrap_Struct (self, 0, -1, p);
-}
-
-VALUE ruby_Group_ChildAccessor_initialize (VALUE self)
-{
-    ChildAccessor* p;
-    Data_Get_Struct (self, ChildAccessor, p);
-    return self;
-}
-
 VALUE ruby_Group_ChildAccessor_get_child (VALUE self, VALUE val_index)
 {
    ChildAccessor* p;
-   int index;
-   Node* child;
-
     Data_Get_Struct (self, ChildAccessor, p);
-    index = FIX2INT (val_index);
-    
-    child = p->group->getChild (index);
+   int   index = FIX2INT (val_index);
+   Node* child = p->group->getChild (index);
     
     return child ? (VALUE)child->getExportedEntity() : Qnil;
  }
@@ -146,6 +129,8 @@ VALUE ruby_Group_ChildAccessor_get_child (VALUE self, VALUE val_index)
 void register_Group ()
 {
      // Group
+    rb_cGroup               = rb_define_class_under (rb_mM3G, "Group",               rb_cNode);
+
      rb_define_alloc_func (rb_cGroup, ruby_Group_allocate);
      rb_define_private_method (rb_cGroup, "initialize", (VALUE(*)(...))ruby_Group_initialize, 0);
 
@@ -157,9 +142,6 @@ void register_Group ()
 
      // Group_ChildAcdessor
      rb_cGroup_ChildAccessor  = rb_define_class_under (rb_cGroup, "ChildAccessor", rb_cObject);
-
-     rb_define_alloc_func (rb_cGroup_ChildAccessor, ruby_Group_ChildAccessor_allocate);
-     rb_define_private_method (rb_cGroup_ChildAccessor, "initialize", (VALUE(*)(...))ruby_Group_ChildAccessor_initialize, 0);
 
      rb_define_method (rb_cGroup_ChildAccessor, "[]",        (VALUE(*)(...))ruby_Group_ChildAccessor_get_child,    1);
 }

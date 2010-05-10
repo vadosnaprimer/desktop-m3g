@@ -100,18 +100,6 @@ VALUE ruby_Material_set_vertex_color_tracking_enable (VALUE self, VALUE val_enab
 /**
  * Material_ColorAccessor
  */
-VALUE ruby_Material_ColorAccessor_allocate (VALUE self)
-{
-    void* p = ruby_xmalloc (sizeof(ColorAccessor));
-    return Data_Wrap_Struct (self, 0, -1, p);
-}
-
-VALUE ruby_Material_ColorAccessor_initialize (VALUE self)
-{
-    ColorAccessor* p;
-    Data_Get_Struct (self, ColorAccessor, p);
-    return self;
-}
 
 VALUE ruby_Material_ColorAccessor_get_color (VALUE self, VALUE val_target)
 {
@@ -140,6 +128,8 @@ VALUE ruby_Material_ColorAccessor_set_color (VALUE self, VALUE val_target, VALUE
 void register_Material ()
 {
      // Material
+    rb_cMaterial            = rb_define_class_under (rb_mM3G, "Material",            rb_cObject3D);
+
      rb_define_const (rb_cMaterial, "AMBIENT",  INT2FIX(Material::AMBIENT));
      rb_define_const (rb_cMaterial, "DIFFUSE",  INT2FIX(Material::DIFFUSE));
      rb_define_const (rb_cMaterial, "EMISSIVE", INT2FIX(Material::EMISSIVE));
@@ -156,9 +146,6 @@ void register_Material ()
 
      // Material_ColorAccessor
      rb_cMaterial_ColorAccessor  = rb_define_class_under (rb_cMaterial, "ColorAccessor", rb_cObject);
-
-     rb_define_alloc_func (rb_cMaterial_ColorAccessor, ruby_Material_ColorAccessor_allocate);
-     rb_define_private_method (rb_cMaterial_ColorAccessor, "initialize", (VALUE(*)(...))ruby_Material_ColorAccessor_initialize, 0);
 
      rb_define_method (rb_cMaterial_ColorAccessor, "[]",     (VALUE(*)(...))ruby_Material_ColorAccessor_get_color, 1); 
      rb_define_method (rb_cMaterial_ColorAccessor, "[]=",     (VALUE(*)(...))ruby_Material_ColorAccessor_set_color, 2); 

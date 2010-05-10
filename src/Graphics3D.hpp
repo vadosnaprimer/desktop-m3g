@@ -27,7 +27,6 @@ namespace m3g {
    */
   class Graphics3D : public Object
   {
-  public:
 
     /**
      * @~English  Struct of viewport setting, for inner use.
@@ -50,12 +49,29 @@ namespace m3g {
       float far;
     };
 
+  public:
+
+
+    /**
+     * @~Japanese bindTarget()で使用するアンチエイリアスを指定する定数.
+     */
     static const int ANTIALIAS   = 1<<1;
+    /**
+     *
+     * @~Japanese bindTarget()で使用するディザーリングを指定する定数.
+     */
     static const int DITHER      = 1<<2;
+    /**
+     *
+     * @~Japanese bindTarget()で使用するレンダリングターゲットの内容が書き換えられることを示す定数.
+     */
     static const int OVERWRITE   = 1<<4;
+    /**
+     *
+     * @~Japanese bindTarget()で使用するを指定する定数.
+     */
     static const int TRUE_COLOR  = 1<<3;
 
-  public:
 
     /**
      * @~English  Destruct this object.

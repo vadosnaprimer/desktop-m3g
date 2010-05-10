@@ -14,8 +14,6 @@ namespace m3g {
   class KeyframeSequence : public Object3D
   {
 
-  public:
-
     /**
      * @~English  Struct of valid range, for inner use.
      * @~Japanese 有効時間を定義する内部使用構造体.
@@ -26,6 +24,8 @@ namespace m3g {
       int last;
     };
   
+
+  public:
 
     /**
      * @~English  A parameter to setRepeatMode, specifying that this sequence is to be played back just once and not repeated.

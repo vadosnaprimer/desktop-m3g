@@ -18,6 +18,7 @@ namespace m3g {
     friend class World;  // for render
 
   public:
+
     /**
      * @~English  Specifies a generic 4x4 projection matrix.
      * @~Japanese 4x4行列で汎用の投影を指定を表す定数.

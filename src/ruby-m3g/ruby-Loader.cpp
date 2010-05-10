@@ -35,26 +35,21 @@ extern VALUE ruby_VertexBuffer_free        (VertexBuffer* ptr);
 
 VALUE ruby_Loader_load (int argc, VALUE* argv, VALUE self)
 {
-  cout << "0: \n";
   std::vector<Object3D*> objs;
 
   VALUE val_arg1, val_arg2, val_arg3;
-  cout << "0.5: \n";
-  
+
   int num = rb_scan_args (argc, argv, "12", &val_arg1, &val_arg2, &val_arg3);
     switch (num) {
     case 1: {
-      cout << "1: \n";
       const char* name = STR2CSTR (val_arg1);
-      cout << "2: " << name << "\n";
       objs =  Loader::load (name);
-      cout << "3: \n";
       break;
     }
     case 3: {
-      int length       = FIX2INT (val_arg1);
-      const char* data = STR2CSTR (val_arg2);
-      int offset       = FIX2INT (val_arg3);
+      int         length = FIX2INT  (val_arg1);
+      const char* data   = STR2CSTR (val_arg2);
+      int         offset = FIX2INT  (val_arg3);
       objs = Loader::load (length, data, offset);
       break;
     }
@@ -63,7 +58,6 @@ VALUE ruby_Loader_load (int argc, VALUE* argv, VALUE self)
     }
     }
 
-    cout << "4: \n";
     VALUE val_objs = rb_ary_new ();
     for (int i = 0; i < (int)objs.size(); i++) {
       VALUE val_obj;
@@ -94,14 +88,18 @@ VALUE ruby_Loader_load (int argc, VALUE* argv, VALUE self)
       objs[i]->setExportedEntity ((void*)val_obj);
       rb_ary_push (val_objs, val_obj);
     }
-    cout << "5: \n";
 
     return val_objs;
 }
 
 
+/**
+ * LoaderクラスのRubyへの登録.
+ */
 void register_Loader ()
 {
     // Loader
+    rb_cLoader              = rb_define_class_under (rb_mM3G, "Loader",              rb_cObject);
+
     rb_define_singleton_method (rb_cLoader, "load", (VALUE(*)(...))ruby_Loader_load, -1);
 }

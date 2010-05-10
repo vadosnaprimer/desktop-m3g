@@ -134,30 +134,12 @@ VALUE ruby_MorphingMesh_set_weights (VALUE self, VALUE val_weights)
 /**
  * MorphingMesh_MorphTarget
  */
-
-VALUE ruby_MorphingMesh_MorphTargetAccessor_allocate (VALUE self)
-{
-    void* p = ruby_xmalloc (sizeof(MorphTargetAccessor));
-    return Data_Wrap_Struct (self, 0, -1, p);
-}
-
-VALUE ruby_MorphingMesh_MorphTargetAccessor_initialize (VALUE self)
-{
-    MorphTargetAccessor* p;
-    Data_Get_Struct (self, MorphTargetAccessor, p);
-    return self;
-}
-
 VALUE ruby_MorphTargetAccessor_get_target (VALUE self, VALUE val_index)
 {
   MorphTargetAccessor* p;
-  int index;
-  VertexBuffer* vertices;
-
   Data_Get_Struct (self, MorphTargetAccessor, p);
-  index = FIX2INT (val_index);
-
-  vertices = p->mesh->getMorphTarget (index);
+  int           index    = FIX2INT (val_index);
+  VertexBuffer* vertices = p->mesh->getMorphTarget (index);
 
   return (VALUE)vertices->getExportedEntity();
 }
@@ -166,19 +148,18 @@ VALUE ruby_MorphTargetAccessor_get_target (VALUE self, VALUE val_index)
 void register_MorphingMesh ()
 {
      // MorphingMesh
+    rb_cMorphingMesh        = rb_define_class_under (rb_mM3G, "MorphingMesh",        rb_cMesh);
+
      rb_define_alloc_func (rb_cMorphingMesh, ruby_MorphingMesh_allocate);
      rb_define_private_method (rb_cMorphingMesh, "initialize", (VALUE(*)(...))ruby_MorphingMesh_initialize, -1);
 
-     rb_define_method (rb_cMorphingMesh, "morph_target",       (VALUE(*)(...))ruby_MorphingMesh_get_morph_target, 1);
+     rb_define_method (rb_cMorphingMesh, "morph_target",       (VALUE(*)(...))ruby_MorphingMesh_get_morph_target,       1);
      rb_define_method (rb_cMorphingMesh, "morph_target_count", (VALUE(*)(...))ruby_MorphingMesh_get_morph_target_count, 0);
-     rb_define_method (rb_cMorphingMesh, "weights",            (VALUE(*)(...))ruby_MorphingMesh_get_weights, 0);
-     rb_define_method (rb_cMorphingMesh, "weights=",           (VALUE(*)(...))ruby_MorphingMesh_set_weights, 1);
+     rb_define_method (rb_cMorphingMesh, "weights",            (VALUE(*)(...))ruby_MorphingMesh_get_weights,            0);
+     rb_define_method (rb_cMorphingMesh, "weights=",           (VALUE(*)(...))ruby_MorphingMesh_set_weights,            1);
 
      // MorphingMesh_MorphTargetAccessor
      rb_cMorphingMesh_MorphTargetAccessor  = rb_define_class_under (rb_cMorphingMesh, "MorphTargetAccessor", rb_cObject);
-
-     rb_define_alloc_func (rb_cMorphingMesh_MorphTargetAccessor, ruby_MorphingMesh_MorphTargetAccessor_allocate);
-     rb_define_private_method (rb_cMorphingMesh_MorphTargetAccessor, "initialize", (VALUE(*)(...))ruby_MorphingMesh_MorphTargetAccessor_initialize, 0);
 
      rb_define_method (rb_cMorphingMesh_MorphTargetAccessor, "[]",     (VALUE(*)(...))ruby_MorphTargetAccessor_get_target, 1);
 }

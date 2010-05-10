@@ -20,17 +20,12 @@ VALUE ruby_VertexArray_allocate (VALUE self)
 VALUE ruby_VertexArray_initialize (VALUE self, VALUE val_num_vertices, VALUE val_num_components, VALUE val_component_size)
 {
     VertexArray* p;
-    int num_vertices;
-    int num_components;
-    int component_size;
     Data_Get_Struct (self, VertexArray, p);
-    num_vertices   = FIX2INT (val_num_vertices);
-    num_components = FIX2INT (val_num_components);
-    component_size = FIX2INT (val_component_size);
-
+    int num_vertices    = FIX2INT (val_num_vertices);
+    int num_components  = FIX2INT (val_num_components);
+    int component_size  = FIX2INT (val_component_size);
     new (p) VertexArray (num_vertices, num_components, component_size);
     p->setExportedEntity ((void*)self);
-
     return self;
 }
 
@@ -38,11 +33,11 @@ VALUE ruby_VertexArray_get (VALUE self, VALUE val_first_vertex, VALUE val_num_ve
 {
   VertexArray* p;
   Data_Get_Struct (self, VertexArray, p);
-  int first_vertex = FIX2INT (val_first_vertex);
-  int num_vertices = FIX2INT (val_num_vertices);
-  int component_size = p->getComponentType ();
+  int first_vertex    = FIX2INT (val_first_vertex);
+  int num_vertices    = FIX2INT (val_num_vertices);
+  int component_size  = p->getComponentType ();
   int component_count = p->getComponentCount ();
-  int num_components = num_vertices * component_count;
+  int num_components  = num_vertices * component_count;
 
   VALUE val_values = rb_ary_new ();
   switch (component_size) {
@@ -85,33 +80,24 @@ VALUE ruby_VertexArray_get (VALUE self, VALUE val_first_vertex, VALUE val_num_ve
 VALUE ruby_VertexArray_get_component_count (VALUE self)
 {
   VertexArray* p;
-  int component_count;
   Data_Get_Struct (self, VertexArray, p);
-
-  component_count = p->getComponentCount ();
-
+  int component_count = p->getComponentCount ();
   return INT2FIX(component_count);
 }
 
 VALUE ruby_VertexArray_get_component_type (VALUE self)
 {
   VertexArray* p;
-  int component_type;
   Data_Get_Struct (self, VertexArray, p);
-
-  component_type = p->getComponentType ();
-
+  int component_type = p->getComponentType ();
   return INT2FIX(component_type);
 }
 
 VALUE ruby_VertexArray_get_vertex_count (VALUE self)
 {
   VertexArray* p;
-  int vertex_count;
   Data_Get_Struct (self, VertexArray, p);
-
-  vertex_count = p->getVertexCount ();
-
+  int vertex_count = p->getVertexCount ();
   return INT2FIX(vertex_count);
 }
 
@@ -119,11 +105,11 @@ VALUE ruby_VertexArray_set (VALUE self, VALUE val_first_vertex, VALUE val_num_ve
 {
   VertexArray* p;
   Data_Get_Struct (self, VertexArray, p);
-  int first_vertex = FIX2INT(val_first_vertex);
-  int num_vertices = FIX2INT(val_num_vertices);
-  int component_size = p->getComponentType ();
+  int first_vertex    = FIX2INT(val_first_vertex);
+  int num_vertices    = FIX2INT(val_num_vertices);
+  int component_size  = p->getComponentType ();
   int component_count = p->getComponentCount ();
-  int num_components = num_vertices * component_count;
+  int num_components  = num_vertices * component_count;
 
   //cout << first_vertex << ", " << num_vertices << ", " << component_size << "\n";
 
@@ -168,9 +154,7 @@ VALUE ruby_VertexArray_convert (VALUE self, VALUE val_component_type)
   VertexArray* p;
   Data_Get_Struct (self, VertexArray, p);
   int component_type = FIX2INT(val_component_type);
-
   p->convert (component_type);
-
   return Qnil;
 }
 
@@ -178,13 +162,15 @@ VALUE ruby_VertexArray_convert (VALUE self, VALUE val_component_type)
 void register_VertexArray ()
 {
      // VertexArray
+    rb_cVertexArray         = rb_define_class_under (rb_mM3G, "VertexArray",         rb_cObject3D);
+
      rb_define_alloc_func (rb_cVertexArray, ruby_VertexArray_allocate);
      rb_define_private_method (rb_cVertexArray, "initialize", (VALUE(*)(...))ruby_VertexArray_initialize, 3);
 
-     rb_define_method (rb_cVertexArray, "get",             (VALUE(*)(...))ruby_VertexArray_get, 2);
+     rb_define_method (rb_cVertexArray, "get",             (VALUE(*)(...))ruby_VertexArray_get,                 2);
      rb_define_method (rb_cVertexArray, "component_count", (VALUE(*)(...))ruby_VertexArray_get_component_count, 0);
-     rb_define_method (rb_cVertexArray, "component_type",  (VALUE(*)(...))ruby_VertexArray_get_component_type, 0);
-     rb_define_method (rb_cVertexArray, "vertex_count",    (VALUE(*)(...))ruby_VertexArray_get_vertex_count, 0);
-     rb_define_method (rb_cVertexArray, "set",             (VALUE(*)(...))ruby_VertexArray_set, 3);
-     rb_define_method (rb_cVertexArray, "convert",         (VALUE(*)(...))ruby_VertexArray_convert, 1);
+     rb_define_method (rb_cVertexArray, "component_type",  (VALUE(*)(...))ruby_VertexArray_get_component_type,  0);
+     rb_define_method (rb_cVertexArray, "vertex_count",    (VALUE(*)(...))ruby_VertexArray_get_vertex_count,    0);
+     rb_define_method (rb_cVertexArray, "set",             (VALUE(*)(...))ruby_VertexArray_set,                 3);
+     rb_define_method (rb_cVertexArray, "convert",         (VALUE(*)(...))ruby_VertexArray_convert,             1);
 }

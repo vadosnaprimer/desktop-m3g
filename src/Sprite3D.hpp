@@ -18,8 +18,6 @@ namespace m3g {
   {
     friend class Group;   // for sort_by_layer
 
-  public:
-
     /**
      * @~English  Structure of defining crop region, for inner use.
      * @~Japanese クロップ領域を定義する内部使用の構造体.

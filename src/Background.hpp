@@ -18,7 +18,6 @@ namespace m3g {
   {
     friend class World;
 
-  public:
 
     /**
      * @~English  Image mode of x or y direction, for inner use .
@@ -43,6 +42,7 @@ namespace m3g {
       float height;
     };
 
+  public:
 
     /**
      * @~English  Specifies that the imaginary pixels outside of 

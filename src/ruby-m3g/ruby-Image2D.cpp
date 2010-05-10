@@ -117,11 +117,11 @@ VALUE ruby_Image2D_set (VALUE self, VALUE val_x, VALUE val_y, VALUE val_width, V
   void*    image;
 
   Data_Get_Struct (self, Image2D, p);
-  x = FIX2INT (val_x);
-  y = FIX2INT (val_y);
-  width = FIX2INT (val_width);
+  x      = FIX2INT (val_x);
+  y      = FIX2INT (val_y);
+  width  = FIX2INT (val_width);
   height = FIX2INT (val_height);
-  image = (void*)STR2CSTR (val_image);
+  image  = (void*)STR2CSTR (val_image);
 
   p->set (x, y, width, height, image);
 
@@ -131,6 +131,8 @@ VALUE ruby_Image2D_set (VALUE self, VALUE val_x, VALUE val_y, VALUE val_width, V
 void register_Image2D ()
 {
      // Image2D
+    rb_cImage2D = rb_define_class_under (rb_mM3G, "Image2D",             rb_cObject3D);
+
      rb_define_const (rb_cImage2D, "ALPHA",           INT2FIX(Image2D::ALPHA));
      rb_define_const (rb_cImage2D, "LUMINANCE",       INT2FIX(Image2D::LUMINANCE));
      rb_define_const (rb_cImage2D, "LUMINANCE_ALPHA", INT2FIX(Image2D::LUMINANCE_ALPHA));

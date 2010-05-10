@@ -6,8 +6,14 @@ using namespace m3g;
 using namespace std;
 
 namespace {
-  VALUE rb_cBackground_ImageMode;
-  VALUE rb_cBackground_CropRect;
+	struct ImageModeAccessor {
+		Background* background;
+	};
+	struct CropAccessor {
+		Background* background;
+	};
+	VALUE rb_cBackground_ImageModeAccessor;
+	VALUE rb_cBackground_CropAccessor;
 }
 
 
@@ -49,15 +55,10 @@ VALUE ruby_Background_get_crop (VALUE self)
   Background* p;
   Data_Get_Struct (self, Background, p);
 
-  Background::CropRect* crop;
-  VALUE val_crop = Data_Make_Struct (rb_cBackground_CropRect, Background::CropRect, 0, -1, crop);
-  
-    crop->x = p->getCropX();
-    crop->y = p->getCropY();
-    crop->width = p->getCropWidth();
-    crop->height = p->getCropHeight();
-
-    return val_crop;
+  CropAccessor* accessor;
+  VALUE val_accessor = Data_Make_Struct (rb_cBackground_CropAccessor, CropAccessor, 0, -1, accessor);
+  accessor->background = p;
+    return val_accessor;
 }
 
 VALUE ruby_Background_get_image (VALUE self)
@@ -79,13 +80,10 @@ VALUE ruby_Background_get_image_mode (VALUE self)
 {
   Background* p;
   Data_Get_Struct (self, Background, p);
-  Background::ImageMode* mode;
-  VALUE val_mode = Data_Make_Struct (rb_cBackground_ImageMode, Background::ImageMode, 0, -1, mode);
-  
-  mode->x = p->getImageModeX();
-  mode->y = p->getImageModeY();
-
-  return val_mode;
+  ImageModeAccessor* accessor;
+  VALUE val_accessor = Data_Make_Struct (rb_cBackground_ImageModeAccessor, ImageModeAccessor, 0, -1, accessor);
+  accessor->background = p;
+  return val_accessor;
 }
 
 VALUE ruby_Background_is_color_clear_enabled (VALUE self)
@@ -202,122 +200,100 @@ VALUE ruby_Background_set_image_mode (VALUE self, VALUE val_mode)
 
 
 /**
- * Background::ImageMode
+ * ImageModeAccessor
  */
-VALUE ruby_Background_ImageMode_allocate (VALUE self)
+
+VALUE ruby_Background_ImageModeAccessor_get_x (VALUE self)
 {
-    void* p = ruby_xmalloc (sizeof(Background::ImageMode));
-    return Data_Wrap_Struct (self, 0, -1, p);
+  ImageModeAccessor* p;
+  Data_Get_Struct (self, ImageModeAccessor, p);
+  float x = p->background->getImageModeX ();
+  return INT2FIX(x);
 }
 
-VALUE ruby_Background_ImageMode_initialize (VALUE self)
+VALUE ruby_Background_ImageModeAccessor_get_y (VALUE self)
 {
-  Background::ImageMode* p;
-  Data_Get_Struct (self, Background::ImageMode, p);
-  return self;
-}
-
-VALUE ruby_Background_ImageMode_get_x (VALUE self)
-{
-  Background::ImageMode* p;
-  Data_Get_Struct (self, Background::ImageMode, p);
-  return INT2FIX(p->x);
-}
-
-VALUE ruby_Background_ImageMode_get_y (VALUE self)
-{
-  Background::ImageMode* p;
-  Data_Get_Struct (self, Background::ImageMode, p);
-  return INT2FIX(p->y);
+  ImageModeAccessor* p;
+  Data_Get_Struct (self, ImageModeAccessor, p);
+  float y = p->background->getImageModeY ();
+  return INT2FIX(y);
 }
 
 /**
  * Background::Crop
  */
-VALUE ruby_Background_CropRect_allocate (VALUE self)
+
+VALUE ruby_Background_CropAccessor_get_x (VALUE self)
 {
-    void* p = ruby_xmalloc (sizeof(Background::CropRect));
-    return Data_Wrap_Struct (self, 0, -1, p);
+  CropAccessor* p;
+  Data_Get_Struct (self, CropAccessor, p);
+  float x = p->background->getCropX();
+  return INT2FIX(x);
 }
 
-VALUE ruby_Background_CropRect_initialize (VALUE self)
+VALUE ruby_Background_CropAccessor_get_y (VALUE self)
 {
-  Background::CropRect* p;
-  Data_Get_Struct (self, Background::CropRect, p);
-  return self;
+  CropAccessor* p;
+  Data_Get_Struct (self, CropAccessor, p);
+  float y = p->background->getCropY();
+  return INT2FIX(y);
 }
 
-VALUE ruby_Background_CropRect_get_x (VALUE self)
+VALUE ruby_Background_CropAccessor_get_width (VALUE self)
 {
-  Background::CropRect* p;
-  Data_Get_Struct (self, Background::CropRect, p);
-  return INT2FIX(p->x);
+  CropAccessor* p;
+  Data_Get_Struct (self, CropAccessor, p);
+  float width = p->background->getCropWidth();
+  return INT2FIX(width);
 }
 
-VALUE ruby_Background_CropRect_get_y (VALUE self)
+VALUE ruby_Background_CropAccessor_get_height (VALUE self)
 {
-  Background::CropRect* p;
-  Data_Get_Struct (self, Background::CropRect, p);
-  return INT2FIX(p->y);
-}
-
-VALUE ruby_Background_CropRect_get_width (VALUE self)
-{
-  Background::CropRect* p;
-  Data_Get_Struct (self, Background::CropRect, p);
-  return INT2FIX(p->width);
-}
-
-VALUE ruby_Background_CropRect_get_height (VALUE self)
-{
-  Background::CropRect* p;
-  Data_Get_Struct (self, Background::CropRect, p);
-  return INT2FIX(p->height);
+  CropAccessor* p;
+  Data_Get_Struct (self, CropAccessor, p);
+  float height = p->background->getCropHeight();
+  return INT2FIX(height);
 }
 
 
 void register_Background ()
 {
     // Background
+    rb_cBackground          = rb_define_class_under (rb_mM3G, "Background", rb_cObject3D);
+
     rb_define_const (rb_cBackground, "BORDER", INT2FIX(Background::BORDER)); 
     rb_define_const (rb_cBackground, "REPEAT", INT2FIX(Background::REPEAT)); 
 
     rb_define_alloc_func (rb_cBackground, ruby_Background_allocate);
-    rb_define_private_method (rb_cBackground, "initialize", (VALUE(*)(...))ruby_Background_initialize, 0);
+    rb_define_private_method (rb_cBackground, "initialize", (VALUE(*)(...))ruby_Background_initialize,               0);
 
-    rb_define_method (rb_cBackground, "color",               (VALUE(*)(...))ruby_Background_get_color, 0); 
-    rb_define_method (rb_cBackground, "crop",                (VALUE(*)(...))ruby_Background_get_crop, 0); 
-    rb_define_method (rb_cBackground, "image",               (VALUE(*)(...))ruby_Background_get_image, 0); 
-    rb_define_method (rb_cBackground, "image_mode",          (VALUE(*)(...))ruby_Background_get_image_mode, 0); 
-    rb_define_method (rb_cBackground, "color_clear_enabled?", (VALUE(*)(...))ruby_Background_is_color_clear_enabled, 0); 
-    rb_define_method (rb_cBackground, "depth_clear_enabled?", (VALUE(*)(...))ruby_Background_is_depth_clear_enabled, 0); 
-    rb_define_method (rb_cBackground, "color=",               (VALUE(*)(...))ruby_Background_set_color, 1); 
-    rb_define_method (rb_cBackground, "color_clear_enable=",  (VALUE(*)(...))ruby_Background_set_color_clear_enable, 1); 
-    rb_define_method (rb_cBackground, "crop=",                (VALUE(*)(...))ruby_Background_set_crop, 1); 
-    rb_define_method (rb_cBackground, "depth_clear_enable=",  (VALUE(*)(...))ruby_Background_set_depth_clear_enable, 1); 
-    rb_define_method (rb_cBackground, "image=",               (VALUE(*)(...))ruby_Background_set_image, 1); 
-    rb_define_method (rb_cBackground, "image_mode=",          (VALUE(*)(...))ruby_Background_set_image_mode, 1); 
+    rb_define_method (rb_cBackground, "color",               (VALUE(*)(...))ruby_Background_get_color,               0);
+    rb_define_method (rb_cBackground, "crop",                (VALUE(*)(...))ruby_Background_get_crop,                0);
+    rb_define_method (rb_cBackground, "image",               (VALUE(*)(...))ruby_Background_get_image,               0);
+    rb_define_method (rb_cBackground, "image_mode",          (VALUE(*)(...))ruby_Background_get_image_mode,          0);
+    rb_define_method (rb_cBackground, "color_clear_enabled?", (VALUE(*)(...))ruby_Background_is_color_clear_enabled, 0);
+    rb_define_method (rb_cBackground, "depth_clear_enabled?", (VALUE(*)(...))ruby_Background_is_depth_clear_enabled, 0);
+    rb_define_method (rb_cBackground, "color=",               (VALUE(*)(...))ruby_Background_set_color,              1);
+    rb_define_method (rb_cBackground, "color_clear_enable=",  (VALUE(*)(...))ruby_Background_set_color_clear_enable, 1);
+    rb_define_method (rb_cBackground, "crop=",                (VALUE(*)(...))ruby_Background_set_crop,               1);
+    rb_define_method (rb_cBackground, "depth_clear_enable=",  (VALUE(*)(...))ruby_Background_set_depth_clear_enable, 1);
+    rb_define_method (rb_cBackground, "image=",               (VALUE(*)(...))ruby_Background_set_image,              1);
+    rb_define_method (rb_cBackground, "image_mode=",          (VALUE(*)(...))ruby_Background_set_image_mode,         1);
 
-    // Background::ImageMode
-     rb_cBackground_ImageMode  = rb_define_class_under (rb_cBackground, "ImageMode", rb_cObject);
+    // Background:: ImageModeAccessor
+     rb_cBackground_ImageModeAccessor  = rb_define_class_under (rb_cBackground, "ImageModeAccessor", rb_cObject);
 
-    rb_define_alloc_func (rb_cBackground_ImageMode, ruby_Background_ImageMode_allocate);
-    rb_define_private_method (rb_cBackground_ImageMode, "initialize", (VALUE(*)(...))ruby_Background_ImageMode_initialize, 0);
-
-    rb_define_method (rb_cBackground_ImageMode, "x",               (VALUE(*)(...))ruby_Background_ImageMode_get_x, 0); 
-    rb_define_method (rb_cBackground_ImageMode, "y",               (VALUE(*)(...))ruby_Background_ImageMode_get_y, 0); 
+    rb_define_method (rb_cBackground_ImageModeAccessor, "x",               (VALUE(*)(...))ruby_Background_ImageModeAccessor_get_x, 0); 
+    rb_define_method (rb_cBackground_ImageModeAccessor, "y",               (VALUE(*)(...))ruby_Background_ImageModeAccessor_get_y, 0); 
 
 
-    // background::CropRect
-     rb_cBackground_CropRect  = rb_define_class_under (rb_cBackground, "CropRect", rb_cObject);
+    // Background:: CropAccessor
+     rb_cBackground_CropAccessor  = rb_define_class_under (rb_cBackground, "CropAccessor", rb_cObject);
 
-    rb_define_alloc_func (rb_cBackground_CropRect, ruby_Background_CropRect_allocate);
-    rb_define_private_method (rb_cBackground_CropRect, "initialize", (VALUE(*)(...))ruby_Background_CropRect_initialize, 0);
-
-    rb_define_method (rb_cBackground_CropRect, "x",               (VALUE(*)(...))ruby_Background_CropRect_get_x, 0); 
-    rb_define_method (rb_cBackground_CropRect, "y",               (VALUE(*)(...))ruby_Background_CropRect_get_y, 0); 
-    rb_define_method (rb_cBackground_CropRect, "width",           (VALUE(*)(...))ruby_Background_CropRect_get_width, 0); 
-    rb_define_method (rb_cBackground_CropRect, "height",          (VALUE(*)(...))ruby_Background_CropRect_get_height, 0); 
+    rb_define_method (rb_cBackground_CropAccessor, "x",               (VALUE(*)(...))ruby_Background_CropAccessor_get_x,      0); 
+    rb_define_method (rb_cBackground_CropAccessor, "y",               (VALUE(*)(...))ruby_Background_CropAccessor_get_y,      0); 
+    rb_define_method (rb_cBackground_CropAccessor, "width",           (VALUE(*)(...))ruby_Background_CropAccessor_get_width,  0); 
+    rb_define_method (rb_cBackground_CropAccessor, "height",          (VALUE(*)(...))ruby_Background_CropAccessor_get_height, 0); 
 
 
 }

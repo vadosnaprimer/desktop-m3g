@@ -6,7 +6,10 @@ using namespace m3g;
 using namespace std;
 
 namespace {
-  VALUE rb_cCompositingMode_DepthOffset;
+	struct DepthOffsetAccessor {
+		CompositingMode* compositing_mode;
+	};
+	VALUE rb_cCompositingMode_DepthOffsetAccessor;
 }
 
 VALUE ruby_CompositingMode_free (CompositingMode* ptr)
@@ -57,16 +60,11 @@ VALUE ruby_CompositingMode_get_blending (VALUE self)
 VALUE ruby_CompositingMode_get_depth_offset (VALUE self)
 {
   CompositingMode* p;
-  CompositingMode::DepthOffset* depth_offset;
-  VALUE val_depth_offset;
-
   Data_Get_Struct (self, CompositingMode, p);
-  val_depth_offset = Data_Make_Struct (rb_cCompositingMode_DepthOffset, CompositingMode::DepthOffset, 0, -1, depth_offset);
-
-  depth_offset->factor = p->getDepthOffsetFactor ();
-  depth_offset->units  = p->getDepthOffsetUnits ();
-
-  return val_depth_offset;
+  DepthOffsetAccessor* accessor;
+  VALUE val_accessor = Data_Make_Struct (rb_cCompositingMode_DepthOffsetAccessor, DepthOffsetAccessor, 0, -1, accessor);
+  accessor->compositing_mode = p;
+  return val_accessor;
 }
 
 
@@ -183,11 +181,10 @@ VALUE ruby_CompositingMode_set_color_write_enable (VALUE self, VALUE val_enable)
   return Qnil;
 }
 
-VALUE ruby_CompositingMode_set_depth_offset (VALUE self, VALUE val_args)
+VALUE ruby_CompositingMode_set_depth_offset (VALUE self, VALUE val_depth_offset)
 {
-  VALUE val_factor = rb_ary_entry(val_args, 0);
-  VALUE val_units  = rb_ary_entry(val_args, 1);
-
+  VALUE val_factor = rb_ary_entry(val_depth_offset, 0);
+  VALUE val_units  = rb_ary_entry(val_depth_offset, 1);
   CompositingMode* p;
   Data_Get_Struct (self, CompositingMode, p);
   float factor = NUMERIC2FLOAT(val_factor);
@@ -225,39 +222,30 @@ VALUE ruby_CompositingMode_set_depth_write_enable (VALUE self, VALUE val_enable)
 }
 
 /**
- * CompositingMode:: DepthOffset
+ * CompositingMode:: DepthOffsetAccessor
  */
 
-VALUE ruby_CompositingMode_DepthOffset_allocate (VALUE self)
+VALUE ruby_CompositingMode_DepthOffsetAccessor_get_factor (VALUE self)
 {
-  void* p = ruby_xmalloc (sizeof(CompositingMode::DepthOffset));
-  return Data_Wrap_Struct (self, 0, -1, p);
+  DepthOffsetAccessor* p;
+  Data_Get_Struct (self, DepthOffsetAccessor, p);
+  float factor = p->compositing_mode->getDepthOffsetFactor ();
+  return rb_float_new (factor);
 }
 
-VALUE ruby_CompositingMode_DepthOffset_initialize (VALUE self)
+VALUE ruby_CompositingMode_DepthOffsetAccessor_get_units (VALUE self)
 {
-  CompositingMode:: DepthOffset* p;
-  Data_Get_Struct (self, CompositingMode::DepthOffset, p);
-  return self;
-}
-
-VALUE ruby_CompositingMode_DepthOffset_get_factor (VALUE self)
-{
-  CompositingMode::DepthOffset* p;
-  Data_Get_Struct (self, CompositingMode::DepthOffset, p);
-  return rb_float_new (p->factor);
-}
-
-VALUE ruby_CompositingMode_DepthOffset_get_units (VALUE self)
-{
-  CompositingMode::DepthOffset* p;
-  Data_Get_Struct (self, CompositingMode::DepthOffset, p);
-  return rb_float_new (p->units);
+  DepthOffsetAccessor* p;
+  Data_Get_Struct (self, DepthOffsetAccessor, p);
+  float units = p->compositing_mode->getDepthOffsetUnits ();
+  return rb_float_new (units);
 }
 
 void register_CompositingMode ()
 {
     // CompositingMode
+    rb_cCompositingMode     = rb_define_class_under (rb_mM3G, "CompositingMode",     rb_cObject3D);
+
     rb_define_const (rb_cCompositingMode, "ALPHA",       INT2FIX(CompositingMode::ALPHA));
     rb_define_const (rb_cCompositingMode, "ALPHA_ADD",   INT2FIX(CompositingMode::ALPHA_ADD));
     rb_define_const (rb_cCompositingMode, "MODULATE",    INT2FIX(CompositingMode::MODULATE));
@@ -283,13 +271,10 @@ void register_CompositingMode ()
      rb_define_method (rb_cCompositingMode, "depth_write_enable=",  (VALUE(*)(...))ruby_CompositingMode_set_depth_write_enable, 1);
 
 
-    // CompositingMode:: DepthOffset
-     rb_cCompositingMode_DepthOffset = rb_define_class_under (rb_cCompositingMode, "DepthOffset", rb_cObject);
+    // CompositingMode:: DepthOffsetAccessor
+     rb_cCompositingMode_DepthOffsetAccessor = rb_define_class_under (rb_cCompositingMode, "DepthOffsetAccessor", rb_cObject);
 
-    rb_define_alloc_func (rb_cCompositingMode_DepthOffset, ruby_CompositingMode_DepthOffset_allocate);
-    rb_define_private_method (rb_cCompositingMode_DepthOffset, "initialize", (VALUE(*)(...))ruby_CompositingMode_DepthOffset_initialize, 0);
-
-    rb_define_method (rb_cCompositingMode_DepthOffset, "factor",          (VALUE(*)(...))ruby_CompositingMode_DepthOffset_get_factor, 0);
-    rb_define_method (rb_cCompositingMode_DepthOffset, "units",          (VALUE(*)(...))ruby_CompositingMode_DepthOffset_get_units, 0);
+    rb_define_method (rb_cCompositingMode_DepthOffsetAccessor, "factor",     (VALUE(*)(...))ruby_CompositingMode_DepthOffsetAccessor_get_factor, 0);
+    rb_define_method (rb_cCompositingMode_DepthOffsetAccessor, "units",      (VALUE(*)(...))ruby_CompositingMode_DepthOffsetAccessor_get_units,  0);
 
 }

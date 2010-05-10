@@ -6,8 +6,14 @@ using namespace m3g;
 using namespace std;
 
 namespace {
-  VALUE rb_cTexture2D_Filter;
-  VALUE rb_cTexture2D_Wrapping;
+	struct FilterAccessor {
+		Texture2D* texture2D;
+	};
+	struct WrappingAccessor {
+		Texture2D* texture2D;
+	};
+	VALUE rb_cTexture2D_FilterAccessor;
+	VALUE rb_cTexture2D_WrappingAccessor;
 }
 
 
@@ -59,16 +65,11 @@ VALUE ruby_Texture2D_get_blending (VALUE self)
 VALUE ruby_Texture2D_get_filter (VALUE self)
 {
     Texture2D* p;
-    Texture2D::Filter* filter;
-    VALUE val_filter;
-
     Data_Get_Struct (self, Texture2D, p);
-    val_filter = Data_Make_Struct (rb_cTexture2D_Filter, Texture2D::Filter, 0, -1, filter);
-    
-    filter->image = p->getImageFilter ();
-    filter->level = p->getLevelFilter ();
-
-    return val_filter;
+    FilterAccessor* accessor;
+    VALUE val_accessor = Data_Make_Struct (rb_cTexture2D_FilterAccessor, FilterAccessor, 0, -1, accessor);
+    accessor->texture2D = p;
+    return val_accessor;
 }
 
 VALUE ruby_Texture2D_get_image (VALUE self)
@@ -84,16 +85,11 @@ VALUE ruby_Texture2D_get_image (VALUE self)
 VALUE ruby_Texture2D_get_wrapping (VALUE self)
 {
     Texture2D* p;
-    Texture2D::Wrapping* wrapping;
-    VALUE val_wrapping;
-
     Data_Get_Struct (self, Texture2D, p);
-    val_wrapping = Data_Make_Struct (rb_cTexture2D_Wrapping, Texture2D::Wrapping, 0, -1, wrapping);
-      
-    wrapping->s = p->getWrappingS();
-    wrapping->t = p->getWrappingT();
-
-    return val_wrapping;
+    WrappingAccessor* accessor;
+    VALUE val_accessor = Data_Make_Struct (rb_cTexture2D_WrappingAccessor, WrappingAccessor, 0, -1, accessor);
+    accessor->texture2D = p;     
+    return val_accessor;
 }
 
 VALUE ruby_Texture2D_set_blend_color (VALUE self, VALUE val_rgb)
@@ -164,76 +160,51 @@ VALUE ruby_Texture2D_set_wrapping (VALUE self, VALUE val_wrapping)
 }
 
 /**
- * Texture2D:: Filter
+ *  FilterAccessor
  */
 
-VALUE ruby_Texture2D_Filter_allocate (VALUE self)
+VALUE ruby_Texture2D_FilterAccessor_get_level (VALUE self)
 {
-  void* p = ruby_xmalloc (sizeof(Texture2D::Filter));
-  return Data_Wrap_Struct (self, 0, -1, p);
+  FilterAccessor* p;
+    Data_Get_Struct (self, FilterAccessor, p);
+	int level = p->texture2D->getLevelFilter ();
+    return INT2FIX(level);
 }
 
-VALUE ruby_Texture2D_Filter_initialize (VALUE self, VALUE val_level, VALUE val_image)
+VALUE ruby_Texture2D_FilterAccessor_get_image (VALUE self)
 {
-  Texture2D::Filter* p;
-    Data_Get_Struct (self, Texture2D::Filter, p);
-    p->level = FIX2INT (val_level);
-    p->image = FIX2INT (val_image);
-    return self;
-}
-
-VALUE ruby_Texture2D_Filter_get_level (VALUE self)
-{
-  Texture2D::Filter* p;
-    Data_Get_Struct (self, Texture2D::Filter, p);
-    return INT2FIX(p->level);
-}
-
-VALUE ruby_Texture2D_Filter_get_image (VALUE self)
-{
-  Texture2D::Filter* p;
-    Data_Get_Struct (self, Texture2D::Filter, p);
-    return INT2FIX(p->image);
+  FilterAccessor* p;
+    Data_Get_Struct (self, FilterAccessor, p);
+	int image = p->texture2D->getImageFilter ();
+    return INT2FIX(image);
 }
 
 /**
- * Texture2D:: Wrapping
+ *  WrappingAccessor
  */
 
-
-VALUE ruby_Texture2D_Wrapping_allocate (VALUE self)
+VALUE ruby_Texture2D_WrappingAccessor_get_s (VALUE self)
 {
-  void* p = ruby_xmalloc (sizeof(Texture2D::Wrapping));
-  return Data_Wrap_Struct (self, 0, -1, p);
+  WrappingAccessor* p;
+    Data_Get_Struct (self, WrappingAccessor, p);
+	int wrap_s = p->texture2D->getWrappingS ();
+    return INT2FIX(wrap_s);
 }
 
-VALUE ruby_Texture2D_Wrapping_initialize (VALUE self, VALUE val_wrap_s, VALUE val_wrap_t)
+VALUE ruby_Texture2D_WrappingAccessor_get_t (VALUE self)
 {
-  Texture2D::Wrapping* p;
-    Data_Get_Struct (self, Texture2D::Wrapping, p);
-    p->s = FIX2INT(val_wrap_s);
-    p->t = FIX2INT(val_wrap_t);
-    return self;
-}
-
-VALUE ruby_Texture2D_Wrapping_get_s (VALUE self)
-{
-  Texture2D::Wrapping* p;
-    Data_Get_Struct (self, Texture2D::Wrapping, p);
-    return INT2FIX(p->s);
-}
-
-VALUE ruby_Texture2D_Wrapping_get_t (VALUE self)
-{
-  Texture2D::Wrapping* p;
-    Data_Get_Struct (self, Texture2D::Wrapping, p);
-    return INT2FIX(p->t);
+  WrappingAccessor* p;
+    Data_Get_Struct (self, WrappingAccessor, p);
+	int wrap_t = p->texture2D->getWrappingT ();
+    return INT2FIX(wrap_t);
 }
 
 void register_Texture2D ()
 {
      // Texture2D
-     rb_define_const (rb_cTexture2D, "FILTER_BASE_LEVEL", INT2FIX(Texture2D::FILTER_BASE_LEVEL));
+    rb_cTexture2D           = rb_define_class_under (rb_mM3G, "Texture2D",           rb_cTransformable);
+
+	rb_define_const (rb_cTexture2D, "FILTER_BASE_LEVEL", INT2FIX(Texture2D::FILTER_BASE_LEVEL));
      rb_define_const (rb_cTexture2D, "FILTER_LINEAR",     INT2FIX(Texture2D::FILTER_LINEAR));
      rb_define_const (rb_cTexture2D, "FILTER_NEAREST",    INT2FIX(Texture2D::FILTER_NEAREST));
      rb_define_const (rb_cTexture2D, "FUNC_ADD",          INT2FIX(Texture2D::FUNC_ADD));
@@ -249,29 +220,25 @@ void register_Texture2D ()
 
      rb_define_method (rb_cTexture2D, "blend_color",   (VALUE(*)(...))ruby_Texture2D_get_blend_color, 0);
      rb_define_method (rb_cTexture2D, "blending",      (VALUE(*)(...))ruby_Texture2D_get_blending,    0);
-     rb_define_method (rb_cTexture2D, "filter",        (VALUE(*)(...))ruby_Texture2D_get_filter, 0);
-     rb_define_method (rb_cTexture2D, "image",         (VALUE(*)(...))ruby_Texture2D_get_image,     0);
-     rb_define_method (rb_cTexture2D, "wrapping",      (VALUE(*)(...))ruby_Texture2D_get_wrapping, 0);
+     rb_define_method (rb_cTexture2D, "filter",        (VALUE(*)(...))ruby_Texture2D_get_filter,      0);
+     rb_define_method (rb_cTexture2D, "image",         (VALUE(*)(...))ruby_Texture2D_get_image,       0);
+     rb_define_method (rb_cTexture2D, "wrapping",      (VALUE(*)(...))ruby_Texture2D_get_wrapping,    0);
      rb_define_method (rb_cTexture2D, "blend_color=",  (VALUE(*)(...))ruby_Texture2D_set_blend_color, 1);
-     rb_define_method (rb_cTexture2D, "blending=",     (VALUE(*)(...))ruby_Texture2D_set_blending,  1);
-     rb_define_method (rb_cTexture2D, "filtering=",    (VALUE(*)(...))ruby_Texture2D_set_filtering, 1);
-     rb_define_method (rb_cTexture2D, "image=",        (VALUE(*)(...))ruby_Texture2D_set_image,     1);
-     rb_define_method (rb_cTexture2D, "wrapping=",     (VALUE(*)(...))ruby_Texture2D_set_wrapping,  1);
+     rb_define_method (rb_cTexture2D, "blending=",     (VALUE(*)(...))ruby_Texture2D_set_blending,    1);
+     rb_define_method (rb_cTexture2D, "filtering=",    (VALUE(*)(...))ruby_Texture2D_set_filtering,   1);
+     rb_define_method (rb_cTexture2D, "image=",        (VALUE(*)(...))ruby_Texture2D_set_image,       1);
+     rb_define_method (rb_cTexture2D, "wrapping=",     (VALUE(*)(...))ruby_Texture2D_set_wrapping,    1);
 
-     // Texture2D::Filtering
-     rb_cTexture2D_Filter = rb_define_class_under (rb_cTexture2D, "Filter", rb_cObject);
-     rb_define_alloc_func (rb_cTexture2D_Filter, ruby_Texture2D_Filter_allocate);
-     rb_define_private_method (rb_cTexture2D_Filter, "initialize", (VALUE(*)(...))ruby_Texture2D_Filter_initialize, 2);
+     // FilterAccessoring
+     rb_cTexture2D_FilterAccessor = rb_define_class_under (rb_cTexture2D, "FilterAccessor", rb_cObject);
 
-     rb_define_method (rb_cTexture2D_Filter, "level",      (VALUE(*)(...))ruby_Texture2D_Filter_get_level, 0);
-     rb_define_method (rb_cTexture2D_Filter, "image",      (VALUE(*)(...))ruby_Texture2D_Filter_get_image, 0);
+     rb_define_method (rb_cTexture2D_FilterAccessor, "level",      (VALUE(*)(...))ruby_Texture2D_FilterAccessor_get_level, 0);
+     rb_define_method (rb_cTexture2D_FilterAccessor, "image",      (VALUE(*)(...))ruby_Texture2D_FilterAccessor_get_image, 0);
 
 
-     // Texture2D::Wrapping
-     rb_cTexture2D_Wrapping = rb_define_class_under (rb_cTexture2D, "Wrapping", rb_cObject);
-     rb_define_alloc_func (rb_cTexture2D_Wrapping, ruby_Texture2D_Wrapping_allocate);
-     rb_define_private_method (rb_cTexture2D_Wrapping, "initialize", (VALUE(*)(...))ruby_Texture2D_Wrapping_initialize, 2);
+     // WrappingAccessor
+     rb_cTexture2D_WrappingAccessor = rb_define_class_under (rb_cTexture2D, "WrappingAccessor", rb_cObject);
 
-     rb_define_method (rb_cTexture2D_Wrapping, "s",      (VALUE(*)(...))ruby_Texture2D_Wrapping_get_s, 0);
-     rb_define_method (rb_cTexture2D_Wrapping, "t",      (VALUE(*)(...))ruby_Texture2D_Wrapping_get_t, 0);
+     rb_define_method (rb_cTexture2D_WrappingAccessor, "s",      (VALUE(*)(...))ruby_Texture2D_WrappingAccessor_get_s, 0);
+     rb_define_method (rb_cTexture2D_WrappingAccessor, "t",      (VALUE(*)(...))ruby_Texture2D_WrappingAccessor_get_t, 0);
 }

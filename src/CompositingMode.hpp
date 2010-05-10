@@ -15,7 +15,6 @@ namespace m3g {
   {
     friend class Appearance;  // for findByType
 
-  public:
 
     /**
      * @~English  Structure of depth offset, for inner use.
@@ -26,6 +25,8 @@ namespace m3g {
       float factor;
       float units;
     };
+
+  public:
 
     /**
      * @~English  Selects the alpha blend mode.

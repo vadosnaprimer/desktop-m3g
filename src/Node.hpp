@@ -21,8 +21,6 @@ namespace m3g {
     friend class Graphics3D; // for render
     friend class Mesh;       // for node
 
-  public:
-
     /**
      * @~English  Structure of aliment property, for inner use.
      * @~Japanese アライメントを保持する内部使用の構造体.
@@ -32,6 +30,8 @@ namespace m3g {
       int   target;
       Node* reference;
     };
+
+  public:
 
     /**
      * @~English  Specifies for the setAlignment method that no alignment should be done for the specified axis.

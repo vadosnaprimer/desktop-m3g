@@ -156,19 +156,6 @@ VALUE ruby_VertexBuffer_set_positions (VALUE self, VALUE val_args)
  * VertexBuffer_TextureAccessor
  */
 
-VALUE ruby_VertexBuffer_TextureAccessor_allocate (VALUE self)
-{
-    void* p = ruby_xmalloc (sizeof(TextureAccessor));
-    return Data_Wrap_Struct (self, 0, -1, p);
-}
-
-VALUE ruby_VertexBuffer_TextureAccessor_initialize (VALUE self)
-{
-    TextureAccessor* p;
-    Data_Get_Struct (self, TextureAccessor, p);
-    return self;
-}
-
 VALUE ruby_VertexBuffer_TextureAccessor_get_tex_coords (VALUE self, VALUE val_index)
 {
     int   index = FIX2INT (val_index);
@@ -224,25 +211,24 @@ VALUE ruby_VertexBuffer_TextureAccessor_set_tex_coords (VALUE self, VALUE val_in
 void register_VertexBuffer ()
 {
      // VertexBuffer
+    rb_cVertexBuffer        = rb_define_class_under (rb_mM3G, "VertexBuffer",        rb_cObject3D);
+
      rb_define_alloc_func (rb_cVertexBuffer, ruby_VertexBuffer_allocate);
      rb_define_private_method (rb_cVertexBuffer, "initialize", (VALUE(*)(...))ruby_VertexBuffer_initialize, 0);
 
-     rb_define_method (rb_cVertexBuffer, "colors",        (VALUE(*)(...))ruby_VertexBuffer_get_colors,    0);
-     rb_define_method (rb_cVertexBuffer, "default_color", (VALUE(*)(...))ruby_VertexBuffer_get_default_color, 0);
-     rb_define_method (rb_cVertexBuffer, "normals",       (VALUE(*)(...))ruby_VertexBuffer_get_normals,   0);
-     rb_define_method (rb_cVertexBuffer, "positions",     (VALUE(*)(...))ruby_VertexBuffer_get_positions, 0);
-     rb_define_method (rb_cVertexBuffer, "tex_coords",    (VALUE(*)(...))ruby_VertexBuffer_get_tex_coords, 0);
-     rb_define_method (rb_cVertexBuffer, "colors=",        (VALUE(*)(...))ruby_VertexBuffer_set_colors,    1);
+     rb_define_method (rb_cVertexBuffer, "colors",         (VALUE(*)(...))ruby_VertexBuffer_get_colors,        0);
+     rb_define_method (rb_cVertexBuffer, "default_color",  (VALUE(*)(...))ruby_VertexBuffer_get_default_color, 0);
+     rb_define_method (rb_cVertexBuffer, "normals",        (VALUE(*)(...))ruby_VertexBuffer_get_normals,       0);
+     rb_define_method (rb_cVertexBuffer, "positions",      (VALUE(*)(...))ruby_VertexBuffer_get_positions,     0);
+     rb_define_method (rb_cVertexBuffer, "tex_coords",     (VALUE(*)(...))ruby_VertexBuffer_get_tex_coords,    0);
+     rb_define_method (rb_cVertexBuffer, "colors=",        (VALUE(*)(...))ruby_VertexBuffer_set_colors,        1);
      rb_define_method (rb_cVertexBuffer, "default_color=", (VALUE(*)(...))ruby_VertexBuffer_set_default_color, 1);
-     rb_define_method (rb_cVertexBuffer, "normals=",       (VALUE(*)(...))ruby_VertexBuffer_set_normals,   1);
-     rb_define_method (rb_cVertexBuffer, "positions=",     (VALUE(*)(...))ruby_VertexBuffer_set_positions, 1);
+     rb_define_method (rb_cVertexBuffer, "normals=",       (VALUE(*)(...))ruby_VertexBuffer_set_normals,       1);
+     rb_define_method (rb_cVertexBuffer, "positions=",     (VALUE(*)(...))ruby_VertexBuffer_set_positions,     1);
 
      // VertexBuffer_TextureAccessor
      rb_cVertexBuffer_TextureAccessor  = rb_define_class_under (rb_cVertexBuffer, "TextureAccessor", rb_cObject);
 
-     rb_define_alloc_func (rb_cVertexBuffer_TextureAccessor, ruby_VertexBuffer_TextureAccessor_allocate);
-     rb_define_private_method (rb_cVertexBuffer_TextureAccessor, "initialize", (VALUE(*)(...))ruby_VertexBuffer_TextureAccessor_initialize, 0);
-
-     rb_define_method (rb_cVertexBuffer_TextureAccessor, "[]",        (VALUE(*)(...))ruby_VertexBuffer_TextureAccessor_get_tex_coords,    1);
-     rb_define_method (rb_cVertexBuffer_TextureAccessor, "[]=",        (VALUE(*)(...))ruby_VertexBuffer_TextureAccessor_set_tex_coords,    2);
+     rb_define_method (rb_cVertexBuffer_TextureAccessor, "[]",        (VALUE(*)(...))ruby_VertexBuffer_TextureAccessor_get_tex_coords,   1);
+     rb_define_method (rb_cVertexBuffer_TextureAccessor, "[]=",       (VALUE(*)(...))ruby_VertexBuffer_TextureAccessor_set_tex_coords,   2);
 }

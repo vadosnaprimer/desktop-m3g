@@ -12,21 +12,6 @@ VALUE ruby_Object3D_free (Object3D* ptr)
     ruby_xfree (ptr);
 }
 
-VALUE ruby_Object3D_allocate (VALUE self)
-{
-    void* p = ruby_xmalloc (sizeof(Object3D));
-    return Data_Wrap_Struct (self, 0, ruby_Object3D_free, p);
-}
-
-VALUE ruby_Object3D_initialize (VALUE self)
-{
-    Object3D* p;
-    Data_Get_Struct (self, Object3D, p);
-    new (p) Object3D;
-    p->setExportedEntity ((void*)self);
-    return self;
-}
-
 
 VALUE ruby_Object3D_add_animation_track (VALUE self, VALUE val_animation_track)
 {
@@ -58,6 +43,11 @@ VALUE ruby_Object3D_duplicate (VALUE self)
   Data_Get_Struct (self, Object3D, p);
 
   Object3D* d = p->duplicate();
+
+  // TODO: rb_cObject3Dでラップするのではなく
+  // 型チェックをして適切なrb_cXXXにラップすべき
+  // 要修正。
+
   VALUE val_d = Data_Wrap_Struct (rb_cObject3D, 0, ruby_Object3D_free, d);
   
   return val_d;
@@ -170,28 +160,29 @@ VALUE ruby_Object3D_set_user_object (VALUE self, VALUE val_user_object)
   Data_Get_Struct (self, Object3D, p);
 
   // 未実装
-  //p->setUserObject (0, 0);
+  // Ruby側からどう見えるべきか？
 
   return Qnil;
 }
 
-
+/**
+ * Object3DクラスのRubyへの登録.
+ */
 void register_Object3D ()
 {
     // Object3D
-    rb_define_alloc_func (rb_cObject3D, ruby_Object3D_allocate);
-    rb_define_private_method (rb_cObject3D, "initialize", (VALUE(*)(...))ruby_Object3D_initialize, 0);
+    rb_cObject3D            = rb_define_class_under (rb_mM3G, "Object3D",            rb_cObject);
 
-    rb_define_method (rb_cObject3D, "add_animation_track",    (VALUE(*)(...))ruby_Object3D_add_animation_track, 1); 
-    rb_define_method (rb_cObject3D, "animate",                (VALUE(*)(...))ruby_Object3D_animate, 1); 
-    rb_define_method (rb_cObject3D, "duplicate",              (VALUE(*)(...))ruby_Object3D_duplicate, 0); 
-    rb_define_method (rb_cObject3D, "find",                   (VALUE(*)(...))ruby_Object3D_find, 1); 
-    rb_define_method (rb_cObject3D, "animation_track",        (VALUE(*)(...))ruby_Object3D_get_animation_track, 1); 
+    rb_define_method (rb_cObject3D, "add_animation_track",    (VALUE(*)(...))ruby_Object3D_add_animation_track,       1);
+    rb_define_method (rb_cObject3D, "animate",                (VALUE(*)(...))ruby_Object3D_animate,                   1);
+    rb_define_method (rb_cObject3D, "duplicate",              (VALUE(*)(...))ruby_Object3D_duplicate,                 0);
+    rb_define_method (rb_cObject3D, "find",                   (VALUE(*)(...))ruby_Object3D_find,                      1);
+    rb_define_method (rb_cObject3D, "animation_track",        (VALUE(*)(...))ruby_Object3D_get_animation_track,       1);
     rb_define_method (rb_cObject3D, "animation_track_count",  (VALUE(*)(...))ruby_Object3D_get_animation_track_count, 0);
-    rb_define_method (rb_cObject3D, "references",             (VALUE(*)(...))ruby_Object3D_get_references, 0);
-    rb_define_method (rb_cObject3D, "user_id",                (VALUE(*)(...))ruby_Object3D_get_user_id, 0);
-    rb_define_method (rb_cObject3D, "user_object",            (VALUE(*)(...))ruby_Object3D_get_user_object, 0);
-    rb_define_method (rb_cObject3D, "remove_animation_track", (VALUE(*)(...))ruby_Object3D_remove_animation_track, 1);
-    rb_define_method (rb_cObject3D, "user_id=",               (VALUE(*)(...))ruby_Object3D_set_user_id, 1);
-    rb_define_method (rb_cObject3D, "user_object=",           (VALUE(*)(...))ruby_Object3D_set_user_object, 1);
+    rb_define_method (rb_cObject3D, "references",             (VALUE(*)(...))ruby_Object3D_get_references,            0);
+    rb_define_method (rb_cObject3D, "user_id",                (VALUE(*)(...))ruby_Object3D_get_user_id,               0);
+    rb_define_method (rb_cObject3D, "user_object",            (VALUE(*)(...))ruby_Object3D_get_user_object,           0);
+    rb_define_method (rb_cObject3D, "remove_animation_track", (VALUE(*)(...))ruby_Object3D_remove_animation_track,    1);
+    rb_define_method (rb_cObject3D, "user_id=",               (VALUE(*)(...))ruby_Object3D_set_user_id,               1);
+    rb_define_method (rb_cObject3D, "user_object=",           (VALUE(*)(...))ruby_Object3D_set_user_object,           1);
 }

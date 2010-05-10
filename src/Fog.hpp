@@ -15,7 +15,6 @@ namespace m3g {
   {
     friend class Appearance;  // for findByType
 
-  public:
     
     struct Distance {
       Distance (float n, float f) : near(n), far(f) {};
@@ -23,6 +22,8 @@ namespace m3g {
       float far;
     };
     
+
+  public:
 
     /**
      * @~English  A parameter to setMode, specifying exponential fog.
