@@ -46,7 +46,6 @@
  */
 #include "Exception.hpp"
 #include "RenderState.hpp"
-#include "Property.hpp"
 
 #endif
 

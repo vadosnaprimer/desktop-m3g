@@ -36,7 +36,9 @@ KeyframeSequence:: KeyframeSequence (int num_keyframes, int num_components, int 
 
   keyframes.reserve (keyframe_count);
   for (int i = 0; i < keyframe_count; i++) {
-    keyframes.push_back (Keyframe(-1,0));
+    int    time  = -1;
+    float* value = new float[component_count];
+    keyframes.push_back (Keyframe(time, value));
   }
 }
 
@@ -132,11 +134,10 @@ void KeyframeSequence:: setKeyframe (int index, int time, float* value)
     throw NullPointException (__FILE__, __func__, "Value is NULL.");
   }
 
-  keyframes[index].time = time;
-  keyframes[index].value = new float[component_count];
-  for (int i = 0; i < component_count; i++) {
-    keyframes[index].value[i] = value[i];
-  }
+  keyframes[index].time  = time;
+  memcpy (keyframes[index].value,
+          value,
+          sizeof(float)*component_count);
 }
 
 void KeyframeSequence:: setRepeatMode (int mode)

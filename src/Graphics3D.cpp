@@ -7,7 +7,6 @@
 #include "Transform.hpp"
 #include "Light.hpp"
 #include "Exception.hpp"
-#include "Property.hpp"
 #include "RenderState.hpp"
 #include "Loader.hpp"
 using namespace m3g;
