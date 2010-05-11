@@ -29,7 +29,7 @@ Loader:: ~Loader ()
 std::vector<Object3D*> Loader:: load (int length, const char* data, int offset)
 {
   if (data == NULL) {
-    throw NullPointException (__FILE__, __func__, "Data is NULL.");
+    throw NullPointerException (__FILE__, __func__, "Data is NULL.");
   }
   if (length <= 0) {
     throw IllegalArgumentException (__FILE__, __func__, "length is invalid, len=%d.", length);

@@ -6,15 +6,17 @@ using namespace m3g;
 using namespace std;
 
 namespace {
-	struct TextureAccessor {
-		Appearance* appearance;
-	};
-	VALUE rb_cAppearance_TextureAccessor;
+    struct TextureAccessor {
+        Appearance* appearance;
+    };
+    VALUE rb_cAppearance_TextureAccessor;
 }
 
 VALUE ruby_Appearance_free (Appearance* ptr)
 {
+    __TRY__;
     ptr->~Appearance ();
+    __CATCH__;
     ruby_xfree (ptr);
 }
 
@@ -28,146 +30,136 @@ VALUE ruby_Appearance_initialize (VALUE self)
 {
     Appearance* p;
     Data_Get_Struct (self, Appearance, p);
+    __TRY__;
     new (p) Appearance;
+    __CATCH__;
     p->setExportedEntity ((void*)self);
     return self;
 }
 
 VALUE ruby_Appearance_get_compositing_mode (VALUE self)
 {
-  Appearance* p;
-  CompositingMode* cmode;
-
-  Data_Get_Struct (self, Appearance, p);
-
-  cmode = p->getCompositingMode ();
-
-  return (VALUE)cmode->getExportedEntity();
+    Appearance* p;
+    Data_Get_Struct (self, Appearance, p);
+    CompositingMode* cmode;
+    __TRY__;
+    cmode = p->getCompositingMode ();
+    __CATCH__;
+    return cmode ? (VALUE)cmode->getExportedEntity() : Qnil;
 }
 
 VALUE ruby_Appearance_get_fog (VALUE self)
 {
-  Appearance* p;
-  Fog* fog;
-
-  Data_Get_Struct (self, Appearance, p);
-
-  fog = p->getFog ();
-  
-  return (VALUE)fog->getExportedEntity();
+    Appearance* p;
+    Data_Get_Struct (self, Appearance, p);
+    Fog* fog;
+    __TRY__;
+    fog = p->getFog ();
+    __CATCH__;
+      return fog ? (VALUE)fog->getExportedEntity() : Qnil;
 }
 
 VALUE ruby_Appearance_get_layer (VALUE self)
 {
-  Appearance* p;
-  int layer;
-
-  Data_Get_Struct (self, Appearance, p);
-  
-  layer = p->getLayer ();
-
-  return INT2NUM(layer);
+    Appearance* p;
+    Data_Get_Struct (self, Appearance, p);
+    int layer;
+    __TRY__;
+    layer = p->getLayer ();
+    __CATCH__;
+    return INT2NUM(layer);
 }
 
 VALUE ruby_Appearance_get_material (VALUE self)
 {
-  Appearance* p;
-  Material* mat;
-
-  Data_Get_Struct (self, Appearance, p);
-
-  mat = p->getMaterial ();
-
-  return mat ? (VALUE)mat->getExportedEntity() : Qnil;
+    Appearance* p;
+    Data_Get_Struct (self, Appearance, p);
+    Material* mat;
+    __TRY__;
+    mat = p->getMaterial ();
+    __CATCH__;
+    return mat ? (VALUE)mat->getExportedEntity() : Qnil;
 }
 
 VALUE ruby_Appearance_get_polygon_mode (VALUE self)
 {
-  Appearance* p;
-  PolygonMode* pmode;
-
-  Data_Get_Struct (self, Appearance, p);
-
-  pmode = p->getPolygonMode ();
-
-  return pmode ? (VALUE)pmode->getExportedEntity() : Qnil;
+    Appearance* p;
+    Data_Get_Struct (self, Appearance, p);
+    PolygonMode* pmode;
+    __TRY__;
+    pmode = p->getPolygonMode ();
+    __CATCH__;
+    return pmode ? (VALUE)pmode->getExportedEntity() : Qnil;
 }
 
 VALUE ruby_Appearance_get_texture (VALUE self)
 {
-  Appearance* p;
-  Data_Get_Struct (self, Appearance, p);
+    Appearance* p;
+    Data_Get_Struct (self, Appearance, p);
+    TextureAccessor* accessor;
+    VALUE val_accessor = Data_Make_Struct (rb_cAppearance_TextureAccessor, TextureAccessor, 0, -1, accessor);
+    accessor->appearance = p;
 
-  TextureAccessor* accessor;
-  VALUE val_accessor = Data_Make_Struct (rb_cAppearance_TextureAccessor, TextureAccessor, 0, -1, accessor);
-  accessor->appearance = p;
-
-  return val_accessor;
+    return val_accessor;
 }
 
 VALUE ruby_Appearance_set_compositing_mode (VALUE self, VALUE val_compositing_mode)
 {
-  Appearance* p;
-  CompositingMode* cmode;
-
-  Data_Get_Struct (self, Appearance, p);
-  Data_Get_Struct (val_compositing_mode, CompositingMode, cmode);
-
-  p->setCompositingMode (cmode);
-
-  return Qnil;
+    Appearance* p;
+    Data_Get_Struct (self, Appearance, p);
+    CompositingMode* cmode;
+    Data_Get_Struct (val_compositing_mode, CompositingMode, cmode);
+    __TRY__;
+    p->setCompositingMode (cmode);
+    __CATCH__;
+    return Qnil;
 }
 
 VALUE ruby_Appearance_set_fog (VALUE self, VALUE val_fog)
 {
-  Appearance* p;
-  Fog* fog;
-
-  Data_Get_Struct (self, Appearance, p);
-  Data_Get_Struct (val_fog, Fog, fog);
-
-  p->setFog (fog);
-
-  return Qnil;
+    Appearance* p;
+    Data_Get_Struct (self, Appearance, p);
+    Fog* fog;
+    Data_Get_Struct (val_fog, Fog, fog);
+    __TRY__;
+    p->setFog (fog);
+    __CATCH__;
+    return Qnil;
 }
 
 VALUE ruby_Appearance_set_layer (VALUE self, VALUE val_layer)
 {
-  Appearance* p;
-  int layer;
-
-  Data_Get_Struct (self, Appearance, p);
-  layer = NUM2INT (val_layer);
-
-  p->setLayer (layer);
-
-  return Qnil;
+    Appearance* p;
+    Data_Get_Struct (self, Appearance, p);
+    int layer = NUM2INT (val_layer);
+    __TRY__;
+    p->setLayer (layer);
+    __CATCH__;
+    return Qnil;
 }
 
 VALUE ruby_Appearance_set_material (VALUE self, VALUE val_material)
 {
-  Appearance* p;
-  Material* mat;
-
-  Data_Get_Struct (self, Appearance, p);
-  Data_Get_Struct (val_material, Material, mat);
-
-  p->setMaterial (mat);
-
-  return Qnil;
+    Appearance* p;
+    Data_Get_Struct (self, Appearance, p);
+    Material* mat;
+    Data_Get_Struct (val_material, Material, mat);
+    __TRY__;
+    p->setMaterial (mat);
+    __CATCH__;
+    return Qnil;
 }
 
 VALUE ruby_Appearance_set_polygon_mode (VALUE self, VALUE val_polygon_mode)
 {
-  Appearance* p;
-  PolygonMode* pmode;
-
-  Data_Get_Struct (self, Appearance, p);
-  Data_Get_Struct (val_polygon_mode, PolygonMode, pmode);
-
-  p->setPolygonMode (pmode);
-
-  return Qnil;
+    Appearance* p;
+    Data_Get_Struct (self, Appearance, p);
+    PolygonMode* pmode;
+    Data_Get_Struct (val_polygon_mode, PolygonMode, pmode);
+    __TRY__;
+    p->setPolygonMode (pmode);
+    __CATCH__;
+    return Qnil;
 }
 
 
@@ -190,27 +182,27 @@ VALUE ruby_Appearance_TextureAccessor_initialize (VALUE self)
 
 VALUE ruby_Appearance_TextureAccessor_get_texture (VALUE self, VALUE val_index)
 {
-  TextureAccessor* p;
-  Data_Get_Struct (self, TextureAccessor, p);
-  int index = NUM2INT (val_index);
-  Texture2D* tex;
-
-  tex = p->appearance->getTexture (index);
-
-  return tex ? (VALUE)tex->getExportedEntity() : Qnil;
+    TextureAccessor* p;
+    Data_Get_Struct (self, TextureAccessor, p);
+    int index = NUM2INT (val_index);
+    Texture2D* tex;
+    __TRY__;
+    tex = p->appearance->getTexture (index);
+    __CATCH__;
+    return tex ? (VALUE)tex->getExportedEntity() : Qnil;
 }
 
 VALUE ruby_Appearance_TextureAccessor_set_texture (VALUE self, VALUE val_index, VALUE val_tex)
 {
-  TextureAccessor* p;
-  Data_Get_Struct (self, TextureAccessor, p);
-  int index = NUM2INT (val_index);
-  Texture2D* tex;
-  Data_Get_Struct (val_tex, Texture2D, tex);
-
-  p->appearance->setTexture (index, tex);
-
-  return Qnil;
+    TextureAccessor* p;
+    Data_Get_Struct (self, TextureAccessor, p);
+    int index = NUM2INT (val_index);
+    Texture2D* tex;
+    Data_Get_Struct (val_tex, Texture2D, tex);
+    __TRY__;
+    p->appearance->setTexture (index, tex);
+    __CATCH__;
+    return Qnil;
 }
 
 void register_Appearance ()
@@ -234,7 +226,7 @@ void register_Appearance ()
     rb_define_method (rb_cAppearance, "polygon_mode=",     (VALUE(*)(...))ruby_Appearance_set_polygon_mode,     1); 
 
     // Appearance_TextureAccessor
-     rb_cAppearance_TextureAccessor  = rb_define_class_under (rb_cAppearance, "TextureAccessor", rb_cObject);
+    rb_cAppearance_TextureAccessor  = rb_define_class_under (rb_cAppearance, "TextureAccessor", rb_cObject);
 
     rb_define_method (rb_cAppearance_TextureAccessor, "[]",     (VALUE(*)(...))ruby_Appearance_TextureAccessor_get_texture,  1); 
     rb_define_method (rb_cAppearance_TextureAccessor, "[]=",    (VALUE(*)(...))ruby_Appearance_TextureAccessor_set_texture,  2); 

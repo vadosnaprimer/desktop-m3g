@@ -40,6 +40,19 @@ VALUE rb_cVertexBuffer;
 VALUE rb_cRayIntersection;
 VALUE rb_cTransform;
 
+// M3Gの例外クラス
+VALUE rb_eArithmeticException;
+VALUE rb_eIllegalArgumentException;
+VALUE rb_eIllegalStateException;
+VALUE rb_eIndexOutOfBoundsException;
+VALUE rb_eIOException;
+VALUE rb_eNullPointerException;
+VALUE rb_eSecurityException;
+VALUE rb_eNotImplementedException;
+VALUE rb_eOpenGLException;
+VALUE rb_eInternalException;
+
+
 void Init_m3g()
 {
     cout << "Init_m3g: called\n";
@@ -79,5 +92,7 @@ void Init_m3g()
     register_RayIntersection ();
     register_Transform ();
 
+    // Register all Exception classes of M3G
+    register_Exception ();
 }
 

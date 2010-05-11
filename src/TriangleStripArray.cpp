@@ -13,10 +13,10 @@ TriangleStripArray:: TriangleStripArray (int* indices_, int num_strips, int* str
   indices(0), ibuf(0)
 {
   if (indices_ == NULL) {
-    throw NullPointException (__FILE__, __func__, "Indices is NULL.");
+    throw NullPointerException (__FILE__, __func__, "Indices is NULL.");
   }
   if (strip_array == NULL) {
-    throw NullPointException (__FILE__, __func__, "Strips array is NULL.");
+    throw NullPointerException (__FILE__, __func__, "Strips array is NULL.");
   }
   if (num_strips < 1 || num_strips > 65535) {
     throw IllegalArgumentException (__FILE__, __func__, "Number of strip lengths is invalid, num_strips=%d.", num_strips);
@@ -45,7 +45,7 @@ TriangleStripArray:: TriangleStripArray (int first_index, int num_strips, int* s
   indices(0)
 {
   if (strip_array == NULL) {
-    throw NullPointException (__FILE__, __func__, "Strips array is NULL.");
+    throw NullPointerException (__FILE__, __func__, "Strips array is NULL.");
   }
   if (first_index < 0 || first_index > 65535) {
     throw IllegalArgumentException (__FILE__, __func__, "Fist index is invalid, first_idex=%d.", first_index);
@@ -103,7 +103,7 @@ int TriangleStripArray:: getIndexCount () const
 void TriangleStripArray:: getIndices (int* indices_)
 {
   if (indices_ == NULL) {
-    throw NullPointException (__FILE__, __func__, "Indices is NULL.");
+    throw NullPointerException (__FILE__, __func__, "Indices is NULL.");
   }
 
   int num = accumulate (strips.begin(), strips.end(), 0);

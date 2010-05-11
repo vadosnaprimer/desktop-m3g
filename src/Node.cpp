@@ -37,7 +37,7 @@ Node* Node:: duplicate () const
 void Node:: addAnimationTrack (AnimationTrack* animation_track)
 {
    if (animation_track == NULL) {
-     throw NullPointException (__FILE__, __func__, "Animation track is NULL.");
+     throw NullPointerException (__FILE__, __func__, "Animation track is NULL.");
   }
    int property = animation_track->getTargetProperty();
   if (property != AnimationTrack::ALPHA       &&
@@ -56,7 +56,7 @@ void Node:: addAnimationTrack (AnimationTrack* animation_track)
 void Node:: align (Node* reference)
 {
   if (reference == 0) {
-    throw NullPointException (__FILE__, __func__, "Reference is NULL.");
+    throw NullPointerException (__FILE__, __func__, "Reference is NULL.");
   }
   z_alignment.target    = ORIGIN;
   z_alignment.reference = reference;
@@ -189,10 +189,10 @@ int Node:: getScope () const
 bool Node:: getTransformTo (Node* target, Transform* transform) const
 {
   if (target == NULL) {
-    throw NullPointException (__FILE__, __func__, "Target is NULL.");
+    throw NullPointerException (__FILE__, __func__, "Target is NULL.");
   }
   if (transform == NULL) {
-    throw NullPointException (__FILE__, __func__, "Transform is NULL.");
+    throw NullPointerException (__FILE__, __func__, "Transform is NULL.");
   }
 
   const Node *root_a, *root_b, *node;

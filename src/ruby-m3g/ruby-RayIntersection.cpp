@@ -32,21 +32,23 @@ extern VALUE ruby_VertexBuffer_free        (VertexBuffer* ptr);
 
 
 namespace {
-	struct TextureAccessor {
-		RayIntersection* ray_intersection;
-	};
-	struct TextureSTAccessor {
-		RayIntersection* ray_intersection;
-		int index;
-	};
-	
-	VALUE rb_cRayIntersection_TextureAccessor;
-	VALUE rb_cRayIntersection_TextureSTAccessor;
+    struct TextureAccessor {
+        RayIntersection* ray_intersection;
+    };
+    struct TextureSTAccessor {
+        RayIntersection* ray_intersection;
+        int index;
+    };
+
+    VALUE rb_cRayIntersection_TextureAccessor;
+    VALUE rb_cRayIntersection_TextureSTAccessor;
 }
 
 VALUE ruby_RayIntersection_free (RayIntersection* ptr)
 {
+    __TRY__;
     ptr->~RayIntersection ();
+    __CATCH__;
     ruby_xfree (ptr);
 }
 
@@ -60,7 +62,9 @@ VALUE ruby_RayIntersection_initialize (VALUE self)
 {
     RayIntersection* p;
     Data_Get_Struct (self, RayIntersection, p);
+    __TRY__;
     new (p) RayIntersection;
+    __CATCH__;
     p->setExportedEntity((void*)self);
     return self;
 }
@@ -68,39 +72,39 @@ VALUE ruby_RayIntersection_initialize (VALUE self)
 VALUE ruby_RayIntersection_get_distance (VALUE self)
 {
     RayIntersection* p;
-    float distance;
-
     Data_Get_Struct (self, RayIntersection, p);
+    float distance;
+    __TRY__;
     distance = p->getDistance ();
-
+    __CATCH__;
     return rb_float_new(distance);
 }
 
 VALUE ruby_RayIntersection_get_intersected (VALUE self)
 {
     RayIntersection* p;
-    Node* node;
-
     Data_Get_Struct (self, RayIntersection, p);
+    Node* node;
+    __TRY__;
     node = p->getIntersected ();
-
+    __CATCH__;
     return node ? (VALUE)node->getExportedEntity() : Qnil;
 }
 
 VALUE ruby_RayIntersection_get_normal (VALUE self)
 {
-  float x,y,z;
-  RayIntersection* p;
-
-  Data_Get_Struct (self, RayIntersection, p);
-  x = p->getNormalX ();
-  y = p->getNormalY ();
-  z = p->getNormalZ ();
-
-  VALUE val_ret = rb_ary_new2 (3);
-  rb_ary_push (val_ret, rb_float_new(x));
-  rb_ary_push (val_ret, rb_float_new(y));
-  rb_ary_push (val_ret, rb_float_new(z));
+    RayIntersection* p;
+    Data_Get_Struct (self, RayIntersection, p);
+    float x,y,z;
+    __TRY__;
+    x = p->getNormalX ();
+    y = p->getNormalY ();
+    z = p->getNormalZ ();
+    __CATCH__;
+    VALUE val_ret = rb_ary_new2 (3);
+    rb_ary_push (val_ret, rb_float_new(x));
+    rb_ary_push (val_ret, rb_float_new(y));
+    rb_ary_push (val_ret, rb_float_new(z));
 
     return val_ret;
 }
@@ -109,10 +113,10 @@ VALUE ruby_RayIntersection_get_ray (VALUE self, VALUE val_ray)
 {
     RayIntersection* p;
     Data_Get_Struct (self, RayIntersection, p);
-
     float ray[6];
+    __TRY__;
     p->getRay (ray);
-
+    __CATCH__;
     VALUE val_pos = rb_ary_new ();
     VALUE val_dir = rb_ary_new ();
     VALUE val_ret = rb_ary_new ();
@@ -134,9 +138,9 @@ VALUE ruby_RayIntersection_get_submesh_index (VALUE self)
     RayIntersection* p;
     Data_Get_Struct (self, RayIntersection, p);
     int index;
-
+    __TRY__;
     index = p->getSubmeshIndex();
-    
+    __CATCH__;
     return INT2NUM(index);
 }
 
@@ -145,7 +149,7 @@ VALUE ruby_RayIntersection_get_texture (VALUE self)
     RayIntersection* p;
     Data_Get_Struct (self, RayIntersection, p);
     TextureAccessor* accessor;
-    VALUE val_accessor = Data_Make_Struct (rb_cRayIntersection_TextureAccessor, TextureAccessor, 0, -1, accessor);
+    VALUE        val_accessor = Data_Make_Struct (rb_cRayIntersection_TextureAccessor, TextureAccessor, 0, -1, accessor);
     accessor->ray_intersection = p;
     return val_accessor;
 }
@@ -160,7 +164,7 @@ VALUE ruby_RayIntersection_TextureAccessor_get_st (VALUE self, VALUE val_index)
     Data_Get_Struct (self, TextureAccessor, p);
     int index = NUM2INT(val_index);
     TextureSTAccessor* accessor;
-    VALUE val_accessor = Data_Make_Struct (rb_cRayIntersection_TextureSTAccessor, TextureSTAccessor, 0, -1, accessor);
+    VALUE          val_accessor = Data_Make_Struct (rb_cRayIntersection_TextureSTAccessor, TextureSTAccessor, 0, -1, accessor);
     accessor->ray_intersection = p->ray_intersection;
     accessor->index = index;
     return val_accessor;
@@ -175,7 +179,10 @@ VALUE ruby_RayIntersection_TextureSTAccessor_get_s (VALUE self)
 {
     TextureSTAccessor* p;
     Data_Get_Struct (self, TextureSTAccessor, p);
-    float s = p->ray_intersection->getTextureS (p->index);
+    float s;
+    __TRY__;
+    s = p->ray_intersection->getTextureS (p->index);
+    __CATCH__;
     return rb_float_new(s);
 }
 
@@ -183,7 +190,10 @@ VALUE ruby_RayIntersection_TextureSTAccessor_get_t (VALUE self)
 {
     TextureSTAccessor* p;
     Data_Get_Struct (self, TextureSTAccessor, p);
-    float t = p->ray_intersection->getTextureT (p->index);
+    float t;
+    __TRY__;
+    t = p->ray_intersection->getTextureT (p->index);
+    __CATCH__;
     return rb_float_new(t);
 }
 
@@ -192,28 +202,28 @@ VALUE ruby_RayIntersection_TextureSTAccessor_get_t (VALUE self)
  */
 void register_RayIntersection ()
 {
-     // RayIntersection
+    // RayIntersection
     rb_cRayIntersection     = rb_define_class_under (rb_mM3G, "RayIntersection",     rb_cObject);
 
-     rb_define_alloc_func (rb_cRayIntersection, ruby_RayIntersection_allocate);
-     rb_define_private_method (rb_cRayIntersection, "initialize", (VALUE(*)(...))ruby_RayIntersection_initialize,   0);
+    rb_define_alloc_func (rb_cRayIntersection, ruby_RayIntersection_allocate);
+    rb_define_private_method (rb_cRayIntersection, "initialize", (VALUE(*)(...))ruby_RayIntersection_initialize,   0);
 
-     rb_define_method (rb_cRayIntersection, "distance",      (VALUE(*)(...))ruby_RayIntersection_get_distance,      0);
-     rb_define_method (rb_cRayIntersection, "intersected",   (VALUE(*)(...))ruby_RayIntersection_get_intersected,   0);
-     rb_define_method (rb_cRayIntersection, "normal",        (VALUE(*)(...))ruby_RayIntersection_get_normal,        0);
-     rb_define_method (rb_cRayIntersection, "ray",           (VALUE(*)(...))ruby_RayIntersection_get_ray,           0);
-     rb_define_method (rb_cRayIntersection, "submesh_index", (VALUE(*)(...))ruby_RayIntersection_get_submesh_index, 0);
-     rb_define_method (rb_cRayIntersection, "texture",       (VALUE(*)(...))ruby_RayIntersection_get_texture,       0);
+    rb_define_method (rb_cRayIntersection, "distance",      (VALUE(*)(...))ruby_RayIntersection_get_distance,      0);
+    rb_define_method (rb_cRayIntersection, "intersected",   (VALUE(*)(...))ruby_RayIntersection_get_intersected,   0);
+    rb_define_method (rb_cRayIntersection, "normal",        (VALUE(*)(...))ruby_RayIntersection_get_normal,        0);
+    rb_define_method (rb_cRayIntersection, "ray",           (VALUE(*)(...))ruby_RayIntersection_get_ray,           0);
+    rb_define_method (rb_cRayIntersection, "submesh_index", (VALUE(*)(...))ruby_RayIntersection_get_submesh_index, 0);
+    rb_define_method (rb_cRayIntersection, "texture",       (VALUE(*)(...))ruby_RayIntersection_get_texture,       0);
 
-     // RayIntersection::TextureAccessor
-     rb_cRayIntersection_TextureAccessor  = rb_define_class_under (rb_cRayIntersection, "TextureAccessor", rb_cObject);
+    // RayIntersection::TextureAccessor
+    rb_cRayIntersection_TextureAccessor  = rb_define_class_under (rb_cRayIntersection, "TextureAccessor", rb_cObject);
 
-     rb_define_method (rb_cRayIntersection_TextureAccessor, "[]",        (VALUE(*)(...))ruby_RayIntersection_TextureAccessor_get_st,    1);
+    rb_define_method (rb_cRayIntersection_TextureAccessor, "[]",        (VALUE(*)(...))ruby_RayIntersection_TextureAccessor_get_st,    1);
 
-     // RayIntersection::TextureSTAccessor
-     rb_cRayIntersection_TextureSTAccessor  = rb_define_class_under (rb_cRayIntersection, "TextureAccessor", rb_cObject);
+    // RayIntersection::TextureSTAccessor
+    rb_cRayIntersection_TextureSTAccessor  = rb_define_class_under (rb_cRayIntersection, "TextureAccessor", rb_cObject);
 
-     rb_define_method (rb_cRayIntersection_TextureSTAccessor, "s",        (VALUE(*)(...))ruby_RayIntersection_TextureSTAccessor_get_s,    0);
-     rb_define_method (rb_cRayIntersection_TextureSTAccessor, "t",        (VALUE(*)(...))ruby_RayIntersection_TextureSTAccessor_get_t,    0);
+    rb_define_method (rb_cRayIntersection_TextureSTAccessor, "s",        (VALUE(*)(...))ruby_RayIntersection_TextureSTAccessor_get_s,    0);
+    rb_define_method (rb_cRayIntersection_TextureSTAccessor, "t",        (VALUE(*)(...))ruby_RayIntersection_TextureSTAccessor_get_t,    0);
 
 }

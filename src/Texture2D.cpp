@@ -28,7 +28,7 @@ Texture2D:: Texture2D (Image2D* img) :
   texobj(0)
 {
   if (img == NULL) {
-    throw NullPointException (__FILE__, __func__, "Image is NULL.");
+    throw NullPointerException (__FILE__, __func__, "Image is NULL.");
   }
 
   image = img;
@@ -65,7 +65,7 @@ Texture2D* Texture2D:: duplicate () const
 void Texture2D:: addAnimationTrack (AnimationTrack* animation_track)
 {
   if (animation_track == NULL) {
-    throw NullPointException (__FILE__, __func__, "Animation track is NULL.");
+    throw NullPointerException (__FILE__, __func__, "Animation track is NULL.");
   }
   int property = animation_track->getTargetProperty();
   if (property != AnimationTrack::COLOR       &&

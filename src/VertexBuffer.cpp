@@ -43,7 +43,7 @@ VertexBuffer* VertexBuffer:: duplicate () const
 void VertexBuffer:: addAnimationTrack (AnimationTrack* animation_track)
 {
   if (animation_track == NULL) {
-    throw NullPointException (__FILE__, __func__, "Animation track is NULL.");
+    throw NullPointerException (__FILE__, __func__, "Animation track is NULL.");
   }
   int property = animation_track->getTargetProperty();
   if (property != AnimationTrack::COLOR &&
@@ -224,7 +224,7 @@ void VertexBuffer:: setPositions (VertexArray* positions_, float scale, float* b
     return;
   }
   if (bias == NULL) {
-    throw NullPointException (__FILE__, __func__, "Bias is NULL.");
+    throw NullPointerException (__FILE__, __func__, "Bias is NULL.");
   }
   int vertex_count    = positions_->getVertexCount ();
   int component_count = positions_->getComponentCount ();
@@ -266,7 +266,7 @@ void VertexBuffer:: setTexCoords (int index, VertexArray* tex_coords_, float sca
     return;
   }
   if (bias == NULL) {
-    throw NullPointException (__FILE__, __func__, "Bias is NULL.");
+    throw NullPointerException (__FILE__, __func__, "Bias is NULL.");
   }
   int vertex_count    = tex_coords_->getVertexCount ();
   int component_count = tex_coords_->getComponentCount ();

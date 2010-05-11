@@ -13,16 +13,16 @@ Mesh:: Mesh (VertexBuffer* vertices_, int num_submesh,
              IndexBuffer** submeshes, Appearance** appearances_) : vertices(0)
 {
   if (vertices_ == 0) {
-    throw NullPointException (__FILE__, __func__, "VertexBuffer is NULL.");
+    throw NullPointerException (__FILE__, __func__, "VertexBuffer is NULL.");
   }
   if (num_submesh == 0) {
     throw IllegalArgumentException (__FILE__, __func__, "Number of submesh is invalid, num_submesh=%d.", num_submesh);
   }
   if (submeshes == 0) {
-    throw NullPointException (__FILE__, __func__, "IndexBuffer is NULL.");
+    throw NullPointerException (__FILE__, __func__, "IndexBuffer is NULL.");
   }
   if (appearances_ == 0) {
-    throw NullPointException (__FILE__, __func__, "Appearances is NULL.");
+    throw NullPointerException (__FILE__, __func__, "Appearances is NULL.");
   }
 
   vertices = vertices_;

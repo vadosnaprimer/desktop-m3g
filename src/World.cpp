@@ -67,7 +67,7 @@ Background* World:: getBackground () const
 void World:: setActiveCamera (Camera* cam)
 {
   if (cam == NULL) {
-    throw NullPointException (__FILE__, __func__, "Camera is NULL.");
+    throw NullPointerException (__FILE__, __func__, "Camera is NULL.");
   }
   camera = cam;
 }
@@ -75,7 +75,7 @@ void World:: setActiveCamera (Camera* cam)
 void World:: setBackground (Background* bg)
 {
   if (bg == NULL) {
-    throw NullPointException (__FILE__, __func__, "Background is NULL.");
+    throw NullPointerException (__FILE__, __func__, "Background is NULL.");
   }
 
   background = bg;

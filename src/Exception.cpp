@@ -104,7 +104,7 @@ const char* IOException:: what () const throw()
   return msg.c_str();
 }
 
-NullPointException:: NullPointException (const char* file, const char* func, const char* format, ...)
+NullPointerException:: NullPointerException (const char* file, const char* func, const char* format, ...)
 {
     char buf[size];
     va_list args;
@@ -114,11 +114,11 @@ NullPointException:: NullPointException (const char* file, const char* func, con
     msg = string(file) + ":" + string(func) + " " + string(buf);
 }
 
-NullPointException:: ~NullPointException () throw()
+NullPointerException:: ~NullPointerException () throw()
 {
 }
 
-const char* NullPointException:: what () const throw()
+const char* NullPointerException:: what () const throw()
 {
   return msg.c_str();
 }

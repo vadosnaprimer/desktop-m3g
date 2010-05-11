@@ -20,7 +20,7 @@ SkinnedMesh:: SkinnedMesh (VertexBuffer* vertices, int num_submesh,
   skeleton(0), skinned_vertices(0)
 {
   if (vertices->getPositions(0) == NULL) {
-    throw NullPointException (__FILE__, __func__, "Vertices has no positions.");
+    throw NullPointerException (__FILE__, __func__, "Vertices has no positions.");
   }
 
   skeleton = skeleton_;
@@ -168,7 +168,7 @@ void SkinnedMesh:: updateSkinnedVertices ()
 void SkinnedMesh:: addTransform (Node* node, int weight, int first_vertex, int num_vertices)
 {
   if (node == NULL) {
-    throw NullPointException (__FILE__, __func__, "Bone node is NULL.");
+    throw NullPointerException (__FILE__, __func__, "Bone node is NULL.");
   }
   if (dynamic_cast<Group*>(node) == 0 && dynamic_cast<World*>(node) == 0) {
     throw IllegalArgumentException (__FILE__, __func__, "Bone node must be Group or its descendant.");
@@ -209,10 +209,10 @@ void SkinnedMesh:: addTransform (Node* node, int weight, int first_vertex, int n
 void SkinnedMesh:: getBoneTransform (Node* node, Transform* transform) const
 {
   if (node == NULL) {
-    throw NullPointException (__FILE__, __func__, "Bone node is NULL.");
+    throw NullPointerException (__FILE__, __func__, "Bone node is NULL.");
   }
   if (transform == NULL) {
-    throw NullPointException (__FILE__, __func__, "Transform is NULL.");
+    throw NullPointerException (__FILE__, __func__, "Transform is NULL.");
   }
   if (getBoneIndex(node) == -1) {
     throw IllegalArgumentException (__FILE__, __func__, "Node is not bone of this SkinnedmEsh, node=0x%x.", node);
@@ -227,10 +227,10 @@ void SkinnedMesh:: getBoneTransform (Node* node, Transform* transform) const
 int SkinnedMesh:: getBoneVertices (Node* node, int* vertex_indices, float* weights) const
 {
   if (node == NULL) {
-    throw NullPointException (__FILE__, __func__, "Bone node is NULL.");
+    throw NullPointerException (__FILE__, __func__, "Bone node is NULL.");
   }
   if (vertices->getPositions(0) == NULL) {
-    throw NullPointException (__FILE__, __func__, "Positions are not set.");
+    throw NullPointerException (__FILE__, __func__, "Positions are not set.");
   }
   if (getBoneIndex(node) == -1) {
     throw IllegalArgumentException (__FILE__, __func__, "Node is not bone of this SkinnedMesh., node=0x%x", node);

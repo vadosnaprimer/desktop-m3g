@@ -7,7 +7,9 @@ using namespace std;
 
 VALUE ruby_Transform_free (Transform* ptr)
 {
+    __TRY__;
     ptr->~Transform ();
+    __CATCH__;
     ruby_xfree (ptr);
 }
 
@@ -26,13 +28,17 @@ VALUE ruby_Transform_initialize (int argc, VALUE* argv, VALUE self)
     int num = rb_scan_args (argc, argv, "01", &val_arg1);
     switch (num) {
     case 0: {
+    __TRY__;
       new (p) Transform();
+    __CATCH__;
       break;
     }
     case 1: {
       Transform* trans;
       Data_Get_Struct (val_arg1, Transform, trans);
+    __TRY__;
       new (p) Transform(*trans);
+    __CATCH__;
       break;
     }
     default: {
@@ -48,8 +54,9 @@ VALUE ruby_Transform_get (VALUE self)
   Transform* p;
   float matrix[16];
   Data_Get_Struct (self, Transform, p);
-
+    __TRY__;
   p->get (matrix);
+    __CATCH__;
 
   VALUE val_matrix = rb_ary_new2 (16);
   for (int i = 0; i < 16; i++) {
@@ -62,8 +69,9 @@ VALUE ruby_Transform_invert (VALUE self)
 {
   Transform* p;
   Data_Get_Struct (self, Transform, p);
-
+    __TRY__;
   p->invert ();
+    __CATCH__;
 
   return Qnil;
 }
@@ -75,8 +83,9 @@ VALUE ruby_Transform_post_multiply (VALUE self, VALUE val_transform)
 
   Data_Get_Struct (self, Transform, p);
   Data_Get_Struct (val_transform, Transform, trans);
-
+    __TRY__;
   p->postMultiply (*trans);
+    __CATCH__;
 
   return Qnil;
 }
@@ -89,8 +98,9 @@ VALUE ruby_Transform_post_rotate (VALUE self, VALUE val_angle, VALUE val_ax, VAL
   float ax    = NUM2DBL (val_ax);
   float ay    = NUM2DBL (val_ay);
   float az    = NUM2DBL (val_az);
-
+    __TRY__;
   p->postRotate (angle, ax, ay, az);
+    __CATCH__;
 
   return Qnil;
 }
@@ -103,8 +113,9 @@ VALUE ruby_Transform_post_rotate_quat (VALUE self, VALUE val_qx, VALUE val_qy, V
   float qy = NUM2DBL (val_qy);
   float qz = NUM2DBL (val_qz);
   float qw = NUM2DBL (val_qw);
-
+    __TRY__;
   p->postRotateQuat (qx, qy, qz, qw);
+    __CATCH__;
 
   return Qnil;
 }
@@ -118,8 +129,9 @@ VALUE ruby_Transform_post_scale (VALUE self, VALUE val_sx, VALUE val_sy, VALUE v
   sx = NUM2DBL (val_sx);
   sy = NUM2DBL (val_sy);
   sz = NUM2DBL (val_sz);
-
+    __TRY__;
   p->postScale (sx, sy, sz);
+    __CATCH__;
 
   return Qnil;
 }
@@ -131,9 +143,9 @@ VALUE ruby_Transform_post_translate (VALUE self, VALUE val_tx, VALUE val_ty, VAL
   float tx = NUM2DBL (val_tx);
   float ty = NUM2DBL (val_ty);
   float tz = NUM2DBL (val_tz);
-
+    __TRY__;
   p->postTranslate (tx, ty, tz);
-
+    __CATCH__;
   return Qnil;
 }
 
@@ -147,12 +159,16 @@ VALUE ruby_Transform_set (VALUE self, VALUE val_arg1)
     for (int i = 0; i < 16; i++) {
       m[i] = NUM2DBL(rb_ary_entry (val_arg1, i));
     }
+    __TRY__;
     p->set (m);
+    __CATCH__;
 
   } else {
     Transform *trans;
     Data_Get_Struct (val_arg1, Transform, trans);
+    __TRY__;
     p->set (*trans);
+    __CATCH__;
   }
   return Qnil;
 }
@@ -161,7 +177,9 @@ VALUE ruby_Transform_set_identity (VALUE self)
 {
   Transform* p;
   Data_Get_Struct (self, Transform, p);
+    __TRY__;
   p->setIdentity ();
+    __CATCH__;
   return Qnil;
 }
 
@@ -180,7 +198,9 @@ VALUE ruby_Transform_transform (int argc, VALUE* argv, VALUE self)
     for (int i = 0; i < 4; i++) {
       vectors[i] = NUM2DBL (rb_ary_entry(val_arg1, i));
     }
+    __TRY__;
     p->transform (vectors);
+    __CATCH__;
     for (int i = 0; i < 4; i++) {
       rb_ary_store(val_arg1, i, rb_float_new(vectors[i]));
     }
@@ -192,8 +212,10 @@ VALUE ruby_Transform_transform (int argc, VALUE* argv, VALUE self)
     int    num = RARRAY_LEN(val_arg1);
     float* out = (float*)ruby_xmalloc (sizeof(float)*num);
     bool   w   = (val_arg3 == Qtrue) ? true : false;
-    
+
+        __TRY__;
     p->transform (in, out, w);
+    __CATCH__;
     ruby_xfree (out);
     break;
   }
@@ -209,8 +231,9 @@ VALUE ruby_Transform_transpose (VALUE self)
 {
   Transform* p;
   Data_Get_Struct (self, Transform, p);
+    __TRY__;
   p->transpose ();
-
+    __CATCH__;
   return Qnil;
 }
 

@@ -16,7 +16,7 @@ Object3D:: ~Object3D ()
 void Object3D:: addAnimationTrack (AnimationTrack* animation_track)
 {
   if (animation_track == NULL) {
-    throw NullPointException (__FILE__, __func__, "Animation track is Null.");
+    throw NullPointerException (__FILE__, __func__, "Animation track is Null.");
   }
 
   anim_tracks.push_back (animation_track);

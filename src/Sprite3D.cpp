@@ -19,7 +19,7 @@ Sprite3D:: Sprite3D (bool scaled_, Image2D* image_, Appearance* appearance_) :
   texobj(0)
 {
   if (image_ == NULL) {
-    throw NullPointException (__FILE__, __func__, "Image is NULL.");
+    throw NullPointerException (__FILE__, __func__, "Image is NULL.");
   }
 
   scaled      = scaled_;
@@ -59,7 +59,7 @@ Sprite3D* Sprite3D:: duplicate () const
 void Sprite3D:: addAnimationTrack (AnimationTrack* animation_track)
 {
   if (animation_track == NULL) {
-    throw NullPointException (__FILE__, __func__, "Animation track is NULL.");
+    throw NullPointerException (__FILE__, __func__, "Animation track is NULL.");
   }
   int property = animation_track->getTargetProperty();
   if (property != AnimationTrack::CROP        &&
@@ -185,7 +185,7 @@ void Sprite3D:: setCrop (int crop_x, int crop_y, int width, int height)
 void Sprite3D:: setImage (Image2D* image_)
 {
   if (image_ == NULL) {
-    throw NullPointException (__FILE__, __func__, "Image is NULL.");
+    throw NullPointerException (__FILE__, __func__, "Image is NULL.");
   }
 
   image       = image_;

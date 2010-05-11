@@ -8,16 +8,16 @@ using namespace std;
 VALUE ruby_Transform_free (Transform* ptr);
 
 namespace {
-  // この構造体はm3g本体のCameraに取り込む
-  //struct Projection {
-  //  int        type;
-  //  float      params[4];
-  //  Transform* transform;
-  //};
-  struct ProjectionAccessor {
-    Camera* camera;
-  };
-  VALUE rb_cCamera_ProjectionAccessor;
+    // この構造体はm3g本体のCameraに取り込む
+    //struct Projection {
+    //  int        type;
+    //  float      params[4];
+    //  Transform* transform;
+    //};
+    struct ProjectionAccessor {
+        Camera* camera;
+    };
+    VALUE rb_cCamera_ProjectionAccessor;
 };
 
 extern VALUE ruby_Transform_allocate   (VALUE self);
@@ -26,7 +26,9 @@ extern VALUE ruby_Transform_initialize (int argc, VALUE* argv, VALUE self);
 
 VALUE ruby_Camera_free (Camera* ptr)
 {
+    __TRY__;
     ptr->~Camera ();
+    __CATCH__;
     ruby_xfree (ptr);
 }
 
@@ -40,7 +42,9 @@ VALUE ruby_Camera_initialize (VALUE self)
 {
     Camera* p;
     Data_Get_Struct (self, Camera, p);
+    __TRY__;
     new (p) Camera;
+    __CATCH__;
     p->setExportedEntity((void*)self);
     return self;
 }
@@ -68,9 +72,11 @@ VALUE ruby_Camera_look_at (VALUE self, VALUE val_px, VALUE val_py, VALUE val_pz,
     float ux = NUM2DBL(val_ux);
     float uy = NUM2DBL(val_uy);
     float uz = NUM2DBL(val_uz);
+    __TRY__;
     p->lookAt (px, py, pz,
                dx, dy, dz,
                ux, uy, uz);
+    __CATCH__;
     return Qnil;
 }
 
@@ -81,45 +87,45 @@ VALUE ruby_Camera_set_generic (VALUE self, VALUE val_transform)
 
     Data_Get_Struct (self, Camera, p);
     Data_Get_Struct (val_transform, Transform, trans);
-
+    __TRY__;
     p->setGeneric (*trans);
-
+    __CATCH__;
     return Qnil;
 }
 
 VALUE ruby_Camera_set_parallel (VALUE self, VALUE val_args)
 {
-  VALUE val_fovy         = rb_ary_entry(val_args, 0);
-  VALUE val_aspect_ratio = rb_ary_entry(val_args, 1);
-  VALUE val_near         = rb_ary_entry(val_args, 2);
-  VALUE val_far          = rb_ary_entry(val_args, 3);
-  Camera* p;
-  Data_Get_Struct (self, Camera, p);
-  float height       = NUM2DBL (val_fovy);
-  float aspect_ratio = NUM2DBL (val_aspect_ratio);
-  float near         = NUM2DBL (val_near);
-  float far          = NUM2DBL (val_far);
-
+    VALUE val_fovy         = rb_ary_entry(val_args, 0);
+    VALUE val_aspect_ratio = rb_ary_entry(val_args, 1);
+    VALUE val_near         = rb_ary_entry(val_args, 2);
+    VALUE val_far          = rb_ary_entry(val_args, 3);
+    Camera* p;
+    Data_Get_Struct (self, Camera, p);
+    float height       = NUM2DBL (val_fovy);
+    float aspect_ratio = NUM2DBL (val_aspect_ratio);
+    float near         = NUM2DBL (val_near);
+    float far          = NUM2DBL (val_far);
+    __TRY__;
     p->setParallel (height, aspect_ratio, near, far);
-
+    __CATCH__;
     return Qnil;
 }
 
 VALUE ruby_Camera_set_perspective (VALUE self, VALUE val_args)
 {
-  VALUE val_fovy         = rb_ary_entry(val_args, 0);
-  VALUE val_aspect_ratio = rb_ary_entry(val_args, 1);
-  VALUE val_near         = rb_ary_entry(val_args, 2);
-  VALUE val_far          = rb_ary_entry(val_args, 3);
-  Camera* p;
-  Data_Get_Struct (self, Camera, p);
-  float fovy         = NUM2DBL (val_fovy);
-  float aspect_ratio = NUM2DBL (val_aspect_ratio);
-  float near         = NUM2DBL (val_near);
-  float far          = NUM2DBL (val_far);
-
+    VALUE val_fovy         = rb_ary_entry(val_args, 0);
+    VALUE val_aspect_ratio = rb_ary_entry(val_args, 1);
+    VALUE val_near         = rb_ary_entry(val_args, 2);
+    VALUE val_far          = rb_ary_entry(val_args, 3);
+    Camera* p;
+    Data_Get_Struct (self, Camera, p);
+    float fovy         = NUM2DBL (val_fovy);
+    float aspect_ratio = NUM2DBL (val_aspect_ratio);
+    float near         = NUM2DBL (val_near);
+    float far          = NUM2DBL (val_far);
+    __TRY__;
     p->setPerspective (fovy, aspect_ratio, near, far);
-
+    __CATCH__;
     return Qnil;
 }
 
@@ -143,57 +149,64 @@ VALUE ruby_Camera_ProjectionAccessor_initialize (VALUE self)
 
 VALUE ruby_Camera_ProjectionAccessor_get_type (VALUE self)
 {
-  ProjectionAccessor* p;
-  Data_Get_Struct (self, ProjectionAccessor, p);
-  int type = p->camera->getProjection ((float*)0);
-  return INT2NUM(type);
+    ProjectionAccessor* p;
+    Data_Get_Struct (self, ProjectionAccessor, p);
+    int type;
+    __TRY__;
+    type = p->camera->getProjection ((float*)0);
+    __CATCH__;
+    return INT2NUM(type);
 }
 
 
 VALUE ruby_Camera_ProjectionAccessor_get_params (VALUE self)
 {
-  ProjectionAccessor* p;
-  Data_Get_Struct (self, ProjectionAccessor, p);
-  float params[4];
-  p->camera->getProjection (params);
-  VALUE val_params = rb_ary_new2 (4);
-  for (int i = 0; i < 4; i++) {
-    rb_ary_push (val_params, rb_float_new(params[i]));
-  }
-  return val_params;
+    ProjectionAccessor* p;
+    Data_Get_Struct (self, ProjectionAccessor, p);
+    float params[4];
+    __TRY__;
+    p->camera->getProjection (params);
+    __CATCH__;
+    VALUE val_params = rb_ary_new2 (4);
+    for (int i = 0; i < 4; i++) {
+        rb_ary_push (val_params, rb_float_new(params[i]));
+    }
+    return val_params;
 }
 
 VALUE ruby_Camera_ProjectionAccessor_get_transform (VALUE self)
 {
-  ProjectionAccessor* p;
-  Data_Get_Struct (self, ProjectionAccessor, p);
-  Transform* trans = 0;
-  VALUE val_trans = Data_Make_Struct (rb_cTransform, Transform, 0, ruby_Transform_free, trans);
-  p->camera->getProjection (trans);
-  return val_trans;
+    ProjectionAccessor* p;
+    Data_Get_Struct (self, ProjectionAccessor, p);
+    Transform* trans = 0;
+    VALUE  val_trans = Data_Make_Struct (rb_cTransform, Transform, 0, ruby_Transform_free, trans);
+    __TRY__;
+    p->camera->getProjection (trans);
+    __CATCH__;
+    return val_trans;
 }
 
 void register_Camera ()
 {
-     // Camera
+    // Camera
     rb_cCamera              = rb_define_class_under (rb_mM3G, "Camera",              rb_cNode);
 
-     rb_define_const (rb_cCamera, "GENERIC",     INT2NUM(Camera::GENERIC));
-     rb_define_const (rb_cCamera, "PARALLEL",    INT2NUM(Camera::PARALLEL));
-     rb_define_const (rb_cCamera, "PERSPECTIVE", INT2NUM(Camera::PERSPECTIVE));
+    rb_define_const (rb_cCamera, "GENERIC",     INT2NUM(Camera::GENERIC));
+    rb_define_const (rb_cCamera, "PARALLEL",    INT2NUM(Camera::PARALLEL));
+    rb_define_const (rb_cCamera, "PERSPECTIVE", INT2NUM(Camera::PERSPECTIVE));
 
-     rb_define_alloc_func (rb_cCamera, ruby_Camera_allocate);
-     rb_define_private_method (rb_cCamera, "initialize", (VALUE(*)(...))ruby_Camera_initialize, 0);
+    rb_define_alloc_func (rb_cCamera, ruby_Camera_allocate);
+    rb_define_private_method (rb_cCamera, "initialize", (VALUE(*)(...))ruby_Camera_initialize, 0);
 
-     rb_define_method (rb_cCamera, "projection",   (VALUE(*)(...))ruby_Camera_get_projection,  0);
-     rb_define_method (rb_cCamera, "look_at",      (VALUE(*)(...))ruby_Camera_look_at,         9);
-     rb_define_method (rb_cCamera, "generic=",     (VALUE(*)(...))ruby_Camera_set_generic,     1);
-     rb_define_method (rb_cCamera, "parallel=",    (VALUE(*)(...))ruby_Camera_set_parallel,    1);
-     rb_define_method (rb_cCamera, "perspective=", (VALUE(*)(...))ruby_Camera_set_perspective, 1);
+    rb_define_method (rb_cCamera, "projection",   (VALUE(*)(...))ruby_Camera_get_projection,  0);
+    rb_define_method (rb_cCamera, "look_at",      (VALUE(*)(...))ruby_Camera_look_at,         9);
+    rb_define_method (rb_cCamera, "generic=",     (VALUE(*)(...))ruby_Camera_set_generic,     1);
+    rb_define_method (rb_cCamera, "parallel=",    (VALUE(*)(...))ruby_Camera_set_parallel,    1);
+    rb_define_method (rb_cCamera, "perspective=", (VALUE(*)(...))ruby_Camera_set_perspective, 1);
 
 
-     // Camera:: ProjectionAccessor
-     rb_cCamera_ProjectionAccessor  = rb_define_class_under (rb_cCamera, "ProjectionAccessor", rb_cObject);
+    // Camera:: ProjectionAccessor
+    rb_cCamera_ProjectionAccessor  = rb_define_class_under (rb_cCamera, "ProjectionAccessor", rb_cObject);
 
     rb_define_method (rb_cCamera_ProjectionAccessor, "type",       (VALUE(*)(...))ruby_Camera_ProjectionAccessor_get_type,      0);
     rb_define_method (rb_cCamera_ProjectionAccessor, "params",     (VALUE(*)(...))ruby_Camera_ProjectionAccessor_get_params,    0);

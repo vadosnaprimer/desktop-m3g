@@ -102,7 +102,7 @@ void Appearance:: setCompositingMode (CompositingMode* mode)
 void Appearance:: setFog (Fog* f)
 {
   if (f == NULL) {
-    throw NullPointException (__FILE__, __func__, "Null fog is specified.");
+    throw NullPointerException (__FILE__, __func__, "Null fog is specified.");
   }
   fog = f;
 }
@@ -134,7 +134,7 @@ void Appearance:: setTexture (int index, Texture2D* texture)
     throw IndexOutOfBoundsException (__FILE__, __func__, "Texture unit index is invalid, i=%d in [0,%d).", index, textures.size());
   }
   if (texture == NULL) {
-    throw NullPointException (__FILE__, __func__, "Null texture is specified.");
+    throw NullPointerException (__FILE__, __func__, "Null texture is specified.");
   }
 
   textures[index] = texture;

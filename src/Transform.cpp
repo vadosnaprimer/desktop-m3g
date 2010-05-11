@@ -25,7 +25,7 @@ Transform:: ~Transform ()
 void Transform:: get (float* mat) const
 {
   if (mat == NULL) {
-    throw NullPointException (__FILE__, __func__, "Matrix is NULL.");
+    throw NullPointerException (__FILE__, __func__, "Matrix is NULL.");
   }
 
   memcpy (mat, &matrix.m, sizeof(matrix.m));
@@ -90,7 +90,7 @@ void Transform:: postTranslate (float tx, float ty, float tz)
 void Transform:: set (const float* mat)
 {
   if (mat == NULL) {
-    throw NullPointException (__FILE__, __func__, "Material is NULL.");
+    throw NullPointerException (__FILE__, __func__, "Material is NULL.");
   }
   matrix.set (mat);
 }
@@ -108,7 +108,7 @@ void Transform:: setIdentity ()
 void Transform:: transform (float* vectors) const
 {
   if (vectors == NULL) {
-    throw NullPointException (__FILE__, __func__, "Vectors is NULL.");
+    throw NullPointerException (__FILE__, __func__, "Vectors is NULL.");
   }
   Vector v (vectors[0], vectors[1], vectors[2]);
 

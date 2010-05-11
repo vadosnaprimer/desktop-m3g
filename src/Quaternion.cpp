@@ -70,7 +70,7 @@ float Quaternion:: getLength () const
 void Quaternion:: getAngleAxis (float* angle_axis) const
 {
   if (angle_axis == NULL) {
-    throw NullPointException (__FILE__, __func__, "Angle_axis is NULL.");
+    throw NullPointerException (__FILE__, __func__, "Angle_axis is NULL.");
   }
 
   float th = 2*acosf(w);

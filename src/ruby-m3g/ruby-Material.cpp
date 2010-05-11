@@ -6,15 +6,17 @@ using namespace m3g;
 using namespace std;
 
 namespace {
-  struct ColorAccessor{
-    Material* material;
-  };
-  VALUE rb_cMaterial_ColorAccessor;
+    struct ColorAccessor{
+        Material* material;
+    };
+    VALUE rb_cMaterial_ColorAccessor;
 }
 
 VALUE ruby_Material_free (Material* ptr)
 {
+    __TRY__;
     ptr->~Material ();
+    __CATCH__;
     ruby_xfree (ptr);
 }
 
@@ -28,7 +30,9 @@ VALUE ruby_Material_initialize (VALUE self)
 {
     Material* p;
     Data_Get_Struct (self, Material, p);
+    __TRY__;
     new (p) Material;
+    __CATCH__;
     p->setExportedEntity ((void*)self);
     return self;
 }
@@ -37,61 +41,54 @@ VALUE ruby_Material_get_color (VALUE self)
 {
     Material* p;
     Data_Get_Struct (self, Material, p);
-
     ColorAccessor* accessor;
     VALUE val_accessor = Data_Make_Struct (rb_cMaterial_ColorAccessor, ColorAccessor, 0, -1, accessor);
     accessor->material = p;
-
     return val_accessor;
 }
 
 VALUE ruby_Material_get_shininess (VALUE self)
 {
-  Material* p;
-  float shininess;
-
-  Data_Get_Struct (self, Material, p);
-  shininess = p->getShininess ();
-
-  return rb_float_new (shininess);
+    Material* p;
+    Data_Get_Struct (self, Material, p);
+    float shininess;
+    __TRY__;
+    shininess = p->getShininess ();
+    __CATCH__;
+    return rb_float_new (shininess);
 }
 
 VALUE ruby_Material_is_vertex_color_tracking_enabled (VALUE self)
 {
-  Material* p;
-  bool enabled;
-
-  Data_Get_Struct (self, Material, p);
-  enabled = p->isVertexColorTrackingEnabled ();
-
-  if (enabled)
-    return Qtrue;
-  else
-    return Qfalse;
+    Material* p;
+    Data_Get_Struct (self, Material, p);
+    bool enabled;
+    __TRY__;
+    enabled = p->isVertexColorTrackingEnabled ();
+    __CATCH__;
+    return enabled ? Qtrue : Qfalse;
 }
 
 VALUE ruby_Material_set_shininess (VALUE self, VALUE val_shininess)
 {
-  Material* p;
-  Data_Get_Struct (self, Material, p);
-  float shininess = NUM2DBL (val_shininess);
-
-  p->setShininess (shininess);
-
-  return Qnil;
+    Material* p;
+    Data_Get_Struct (self, Material, p);
+    float shininess = NUM2DBL (val_shininess);
+    __TRY__;
+    p->setShininess (shininess);
+    __CATCH__;
+    return Qnil;
 }
 
 VALUE ruby_Material_set_vertex_color_tracking_enable (VALUE self, VALUE val_enable)
 {
-  Material* p;
-  bool enable;
-
-  Data_Get_Struct (self, Material, p);
-
-  enable = (val_enable == Qtrue) ? Qtrue : Qfalse;
-  p->setVertexColorTrackingEnable (enable);
-
-  return Qnil;
+    Material* p;
+    Data_Get_Struct (self, Material, p);
+    bool enable = (val_enable == Qtrue) ? Qtrue : Qfalse;
+    __TRY__;
+    p->setVertexColorTrackingEnable (enable);
+    __CATCH__;
+    return Qnil;
 }
 
 
@@ -101,51 +98,51 @@ VALUE ruby_Material_set_vertex_color_tracking_enable (VALUE self, VALUE val_enab
 
 VALUE ruby_Material_ColorAccessor_get_color (VALUE self, VALUE val_target)
 {
-  ColorAccessor* p;
-  Data_Get_Struct (self, ColorAccessor, p);
-  int       target = NUM2INT(val_target);
-  int       argb;
-
-  argb = p->material->getColor (target);
-
-  return INT2NUM(argb);
+    ColorAccessor* p;
+    Data_Get_Struct (self, ColorAccessor, p);
+    int target = NUM2INT(val_target);
+    int argb;
+    __TRY__;
+    argb = p->material->getColor (target);
+    __CATCH__;
+    return INT2NUM(argb);
 }
 
 VALUE ruby_Material_ColorAccessor_set_color (VALUE self, VALUE val_target, VALUE val_color)
 {
-  ColorAccessor* p;
-  Data_Get_Struct (self, ColorAccessor, p);
-  int target = NUM2INT(val_target);
-  int color  = NUM2INT(val_color);
-
-  p->material->setColor (target, color);
-
-  return Qnil;
+    ColorAccessor* p;
+    Data_Get_Struct (self, ColorAccessor, p);
+    int target = NUM2INT(val_target);
+    int color  = NUM2INT(val_color);
+    __TRY__;
+    p->material->setColor (target, color);
+    __CATCH__;
+    return Qnil;
 }
 
 void register_Material ()
 {
-     // Material
+    // Material
     rb_cMaterial            = rb_define_class_under (rb_mM3G, "Material",            rb_cObject3D);
 
-     rb_define_const (rb_cMaterial, "AMBIENT",  INT2NUM(Material::AMBIENT));
-     rb_define_const (rb_cMaterial, "DIFFUSE",  INT2NUM(Material::DIFFUSE));
-     rb_define_const (rb_cMaterial, "EMISSIVE", INT2NUM(Material::EMISSIVE));
-     rb_define_const (rb_cMaterial, "SPECULAR", INT2NUM(Material::SPECULAR));
+    rb_define_const (rb_cMaterial, "AMBIENT",  INT2NUM(Material::AMBIENT));
+    rb_define_const (rb_cMaterial, "DIFFUSE",  INT2NUM(Material::DIFFUSE));
+    rb_define_const (rb_cMaterial, "EMISSIVE", INT2NUM(Material::EMISSIVE));
+    rb_define_const (rb_cMaterial, "SPECULAR", INT2NUM(Material::SPECULAR));
 
-     rb_define_alloc_func (rb_cMaterial, ruby_Material_allocate);
-     rb_define_private_method (rb_cMaterial, "initialize", (VALUE(*)(...))ruby_Material_initialize,0);
+    rb_define_alloc_func (rb_cMaterial, ruby_Material_allocate);
+    rb_define_private_method (rb_cMaterial, "initialize", (VALUE(*)(...))ruby_Material_initialize,0);
 
-     rb_define_method (rb_cMaterial, "color",                          (VALUE(*)(...))ruby_Material_get_color, 0);
-     rb_define_method (rb_cMaterial, "shininess",                      (VALUE(*)(...))ruby_Material_get_shininess, 0);
-     rb_define_method (rb_cMaterial, "vertex_color_tracking_enabled?", (VALUE(*)(...))ruby_Material_is_vertex_color_tracking_enabled, 0);
-     rb_define_method (rb_cMaterial, "shininess=",                     (VALUE(*)(...))ruby_Material_set_shininess, 1);
-     rb_define_method (rb_cMaterial, "vertex_color_tracking_enable=",  (VALUE(*)(...))ruby_Material_set_vertex_color_tracking_enable, 1);
+    rb_define_method (rb_cMaterial, "color",                          (VALUE(*)(...))ruby_Material_get_color, 0);
+    rb_define_method (rb_cMaterial, "shininess",                      (VALUE(*)(...))ruby_Material_get_shininess, 0);
+    rb_define_method (rb_cMaterial, "vertex_color_tracking_enabled?", (VALUE(*)(...))ruby_Material_is_vertex_color_tracking_enabled, 0);
+    rb_define_method (rb_cMaterial, "shininess=",                     (VALUE(*)(...))ruby_Material_set_shininess, 1);
+    rb_define_method (rb_cMaterial, "vertex_color_tracking_enable=",  (VALUE(*)(...))ruby_Material_set_vertex_color_tracking_enable, 1);
 
-     // Material_ColorAccessor
-     rb_cMaterial_ColorAccessor  = rb_define_class_under (rb_cMaterial, "ColorAccessor", rb_cObject);
+    // Material_ColorAccessor
+    rb_cMaterial_ColorAccessor  = rb_define_class_under (rb_cMaterial, "ColorAccessor", rb_cObject);
 
-     rb_define_method (rb_cMaterial_ColorAccessor, "[]",     (VALUE(*)(...))ruby_Material_ColorAccessor_get_color, 1); 
-     rb_define_method (rb_cMaterial_ColorAccessor, "[]=",     (VALUE(*)(...))ruby_Material_ColorAccessor_set_color, 2); 
+    rb_define_method (rb_cMaterial_ColorAccessor, "[]",     (VALUE(*)(...))ruby_Material_ColorAccessor_get_color, 1); 
+    rb_define_method (rb_cMaterial_ColorAccessor, "[]=",     (VALUE(*)(...))ruby_Material_ColorAccessor_set_color, 2); 
 
 }

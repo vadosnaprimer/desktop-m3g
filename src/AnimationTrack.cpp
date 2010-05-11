@@ -62,7 +62,7 @@ AnimationTrack:: AnimationTrack (KeyframeSequence* sequence_, int property_) :
   property(0), keyframe_sequence(0), animation_controller(0)
 {
   if (sequence_ == NULL) {
-    throw NullPointException (__FILE__, __func__, "KeyframeSequence is NULL.");
+    throw NullPointerException (__FILE__, __func__, "KeyframeSequence is NULL.");
   }
   if (property_ < ALPHA || property_ > VISIBILITY) {
     throw IllegalArgumentException (__FILE__, __func__, "Property is unkwon, property=%d", property_);

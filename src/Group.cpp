@@ -35,7 +35,7 @@ Group* Group:: duplicate () const
 void Group:: addChild (Node* child)
 {
   if (child == NULL) {
-    throw NullPointException (__FILE__, __func__, "Child is NULL.");
+    throw NullPointerException (__FILE__, __func__, "Child is NULL.");
   }
   if (child == this) {
     throw IllegalArgumentException (__FILE__, __func__, "Can't add myself.");

@@ -64,7 +64,7 @@ int Graphics3D:: addLight (Light* light, Transform& transform)
 
 void Graphics3D:: bindTarget (Graphics* g, bool depth_buffer_enabled, int hints)
 {
-  throw NotImplementedException (__FILE__, __func__, "Sorry, bindTarget is not implemented.");
+	throw NotImplementedException (__FILE__, __func__, "Sorry, bindTarget is not implemented.");
 }
 
 

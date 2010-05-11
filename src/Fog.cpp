@@ -29,7 +29,7 @@ Fog* Fog:: duplicate () const
 void Fog:: addAnimationTrack (AnimationTrack* animation_track)
 {
   if (animation_track == NULL) {
-    throw NullPointException (__FILE__, __func__, "Animation track is NULL.");
+    throw NullPointerException (__FILE__, __func__, "Animation track is NULL.");
   }
   int property = animation_track->getTargetProperty();
   if (property != AnimationTrack::COLOR         &&

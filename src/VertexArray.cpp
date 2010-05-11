@@ -68,7 +68,7 @@ void VertexArray:: get (int first_vertex, int num_vertices, char* values) const
     throw IllegalArgumentException(__FILE__, __func__, "Number of vertices is Invalid, first_vertex=%d, num_vertices=%d.", first_vertex, num_vertices);
   }
   if (values == NULL) {
-    throw NullPointException (__FILE__, __func__, "Values is NULL.");
+    throw NullPointerException (__FILE__, __func__, "Values is NULL.");
   }
   if (component_size != 1) {
     throw IllegalStateException (__FILE__, __func__, "Component size of this vertex array is not 1 byte, component_size=%d.", component_size);
@@ -88,7 +88,7 @@ void VertexArray:: get (int first_vertex, int num_vertices, short* values) const
     throw IllegalStateException (__FILE__, __func__, "Number of vertices is invalid, first_vertex=%d, num_vertices=%d.", first_vertex, num_vertices);
   }
   if (values == NULL) {
-    throw NullPointException (__FILE__, __func__, "Values is NULL.");
+    throw NullPointerException (__FILE__, __func__, "Values is NULL.");
   }
   if (component_size != 2) {
     throw IllegalStateException (__FILE__, __func__, "Component size of this vertex array is not 2 byte, component_size=%d.", component_size);
@@ -108,7 +108,7 @@ void VertexArray:: get (int first_vertex, int num_vertices, float* values) const
     throw IllegalStateException (__FILE__, __func__, "Number of vertices is invalid, first_vertex=%d, num_vertices=%d.", first_vertex, num_vertices);
   }
   if (values == NULL) {
-    throw NullPointException (__FILE__, __func__, "Values is NULL.");
+    throw NullPointerException (__FILE__, __func__, "Values is NULL.");
   }
   if (component_size != 4) {
     throw IllegalStateException (__FILE__, __func__, "Component size of this vertex array is not 4 byte, component_size=%d.", component_size);
@@ -137,7 +137,7 @@ int VertexArray:: getVertexCount () const
 void VertexArray:: set (int first_vertex, int num_vertices, const char* values)
 {
   if (values == NULL) {
-    throw NullPointException (__FILE__, __func__, "Values is NULL.");
+    throw NullPointerException (__FILE__, __func__, "Values is NULL.");
   }
   if (num_vertices < 0) {
     throw IllegalArgumentException (__FILE__, __func__, "Number of vertices is invalid, num_vertices=%d.", num_vertices);
@@ -167,7 +167,7 @@ void VertexArray:: set (int first_vertex, int num_vertices, const char* values)
 void VertexArray:: set (int first_vertex, int num_vertices, const short* values)
 {
   if (values == NULL) {
-    throw NullPointException (__FILE__, __func__, "Values is NULL.");
+    throw NullPointerException (__FILE__, __func__, "Values is NULL.");
   }
   if (num_vertices < 0) {
     throw IllegalArgumentException (__FILE__, __func__, "Number of vertices is invalid, num_vertices=%d.", num_vertices);
@@ -202,7 +202,7 @@ void VertexArray:: set (int first_vertex, int num_vertices, const short* values)
 void VertexArray:: set (int first_vertex, int num_vertices, const float* values)
 {
   if (values == NULL) {
-    throw NullPointException (__FILE__, __func__, "Values is NULL.");
+    throw NullPointerException (__FILE__, __func__, "Values is NULL.");
   }
   if (num_vertices < 0) {
     throw IllegalArgumentException (__FILE__, __func__, "Number of vertices is invalid, num_vertices=%d.", num_vertices);

@@ -8,7 +8,9 @@ using namespace std;
 
 VALUE ruby_AnimationTrack_free (AnimationTrack* ptr)
 {
+    __TRY__;
     ptr->~AnimationTrack ();
+    __CATCH__;
     ruby_xfree (ptr);
 }
 
@@ -27,65 +29,56 @@ VALUE ruby_AnimationTrack_initialize (VALUE self, VALUE val_keyframe_sequence, V
     Data_Get_Struct (self, AnimationTrack, p);
     Data_Get_Struct (val_keyframe_sequence, KeyframeSequence, key_seq);
     property = INT2NUM (val_property);
-
+    __TRY__;
     new (p) AnimationTrack (key_seq, property);
+    __CATCH__;
     p->setExportedEntity ((void*)self);
     return self;
 }
 
 VALUE ruby_AnimationTrack_get_controller (VALUE self)
 {
-  AnimationTrack* p;
-  AnimationController* anim_controller;
-
-  Data_Get_Struct (self, AnimationTrack, p);
-
-  anim_controller = p->getController ();
-
-  if (anim_controller)
-    return (VALUE)anim_controller->getExportedEntity();
-  else
-    return Qnil;
+    AnimationTrack* p;
+    Data_Get_Struct (self, AnimationTrack, p);
+    AnimationController* anim_controller;
+    __TRY__;
+    anim_controller = p->getController ();
+    __CATCH__;
+    return anim_controller ? (VALUE)anim_controller->getExportedEntity() : Qnil;
 }
 
 VALUE ruby_AnimationTrack_get_keyframe_sequence (VALUE self)
 {
-  AnimationTrack* p;
-  KeyframeSequence* key_seq;
-
-  Data_Get_Struct (self, AnimationTrack, p);
-
-  key_seq = p->getKeyframeSequence ();
-
-  if (key_seq)
-    return (VALUE)key_seq->getExportedEntity();
-  else
-    return Qnil;
+    AnimationTrack* p;
+    Data_Get_Struct (self, AnimationTrack, p);
+    KeyframeSequence* key_seq;
+    __TRY__;
+    key_seq = p->getKeyframeSequence ();
+    __CATCH__;
+    return key_seq ? (VALUE)key_seq->getExportedEntity() : Qnil;
 }
 
 VALUE ruby_AnimationTrack_get_target_property (VALUE self)
 {
-  AnimationTrack* p;
-  int property;
-
-  Data_Get_Struct (self, AnimationTrack, p);
-
-  property = p->getTargetProperty ();
-  
-  return INT2NUM(property);
+    AnimationTrack* p;
+    Data_Get_Struct (self, AnimationTrack, p);
+    int property;
+    __TRY__;
+    property = p->getTargetProperty ();
+    __CATCH__;
+    return INT2NUM(property);
 }
 
 VALUE ruby_AnimationTrack_set_controller (VALUE self, VALUE val_controller)
 {
-  AnimationTrack* p;
-  AnimationController* anim_controller;
-
-  Data_Get_Struct (self, AnimationTrack, p);
-  Data_Get_Struct (val_controller, AnimationController, anim_controller);
-
-  p->setController (anim_controller);
-
-  return Qnil;
+    AnimationTrack* p;
+    Data_Get_Struct (self, AnimationTrack, p);
+    AnimationController* anim_controller;
+    Data_Get_Struct (val_controller, AnimationController, anim_controller);
+    __TRY__;
+    p->setController (anim_controller);
+    __CATCH__;
+    return Qnil;
 }
 
 

@@ -34,7 +34,7 @@ Image2D:: Image2D (int format_, int width_, int height_, void* image_) :
     throw IllegalArgumentException (__FILE__, __func__, "Width or height is invalid, width=%f, height=%f.", width, height);
   }
   if (image_ == NULL) {
-    throw NullPointException (__FILE__, __func__, "Image is NULL.");
+    throw NullPointerException (__FILE__, __func__, "Image is NULL.");
   }
 
   int bpp  = format_to_bpp (format);
@@ -99,7 +99,7 @@ void Image2D:: set (int px, int py, int wid, int hei, void* image_)
     throw IllegalArgumentException (__FILE__, __func__, "Size(width,height) is invalid, width=%d, height=%d.", wid, hei);
   }
   if (image == NULL) {
-    throw NullPointException (__FILE__, __func__, "Image is NULL.");
+    throw NullPointerException (__FILE__, __func__, "Image is NULL.");
   }
 
   int bpp = format_to_bpp (format);

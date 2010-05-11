@@ -20,15 +20,15 @@ MorphingMesh:: MorphingMesh (VertexBuffer* base, int num_target, VertexBuffer** 
     throw IllegalArgumentException (__FILE__, __func__, "Number of target is invalid, num=%d.", num_target);
   }
   if (targets == NULL) {
-    throw NullPointException (__FILE__, __func__, "Morph targets are NULL.");
+    throw NullPointerException (__FILE__, __func__, "Morph targets are NULL.");
   }
   for (int i = 0; i < num_target; i++) {
     if (targets[i] == NULL) {
-      throw NullPointException (__FILE__, __func__, " Target vertices is NULL, index=%d.", i);
+      throw NullPointerException (__FILE__, __func__, " Target vertices is NULL, index=%d.", i);
     }
   }
   if (base->getPositions(0) == NULL) {
-    throw NullPointException (__FILE__, __func__, "Base vertices has no positions.");
+    throw NullPointerException (__FILE__, __func__, "Base vertices has no positions.");
   }
 
    morphed_vertices = base->duplicate ();
@@ -92,7 +92,7 @@ MorphingMesh* MorphingMesh:: duplicate () const
 void MorphingMesh:: addAnimationTrack (AnimationTrack* animation_track)
 {
   if (animation_track == NULL) {
-    throw NullPointException (__FILE__, __func__, "Animation track is NULL.");
+    throw NullPointerException (__FILE__, __func__, "Animation track is NULL.");
   }
   int property = animation_track->getTargetProperty();
   if (property != AnimationTrack::ALPHA       &&
@@ -237,7 +237,7 @@ int MorphingMesh:: getMorphTargetCount () const
 void MorphingMesh:: getWeights (float* weights) const
 {
   if (weights == NULL) {
-    throw NullPointException (__FILE__, __func__, "Weights is NULL.");
+    throw NullPointerException (__FILE__, __func__, "Weights is NULL.");
   }
 
   for (int i = 0; i < (int)morph_weights.size(); i++) {
@@ -248,7 +248,7 @@ void MorphingMesh:: getWeights (float* weights) const
 void MorphingMesh:: setWeights (int num_weights, float* weights)
 {
   if (weights == NULL) {
-    throw NullPointException (__FILE__, __func__, "Weights is NULL.");
+    throw NullPointerException (__FILE__, __func__, "Weights is NULL.");
   }
   if (num_weights != (int)morph_weights.size()) {
     throw IllegalArgumentException (__FILE__, __func__, "Number of weights is invalid, %d <--> %d.", num_weights, morph_weights.size());

@@ -131,7 +131,7 @@ void KeyframeSequence:: setKeyframe (int index, int time, float* value)
     throw IllegalArgumentException (__FILE__, __func__, "Time is Invalid, time=%d.", time);
   }
   if (value == NULL) {
-    throw NullPointException (__FILE__, __func__, "Value is NULL.");
+    throw NullPointerException (__FILE__, __func__, "Value is NULL.");
   }
 
   keyframes[index].time  = time;
@@ -168,7 +168,7 @@ void KeyframeSequence:: getFrame (int local_time, float* value) const
   //cout << "KeyframeSequence: local_time=" << local_time  << ", value = " << value << "\n";
 
   if (value == NULL) {
-    throw NullPointException (__FILE__, __func__, "Value is NULL.");
+    throw NullPointerException (__FILE__, __func__, "Value is NULL.");
   }
   if (valid_range.first == valid_range.last) {
     throw IllegalArgumentException (__FILE__, __func__, "Valid range is not setted.");

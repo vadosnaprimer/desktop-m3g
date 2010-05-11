@@ -43,14 +43,18 @@ VALUE ruby_Loader_load (int argc, VALUE* argv, VALUE self)
     switch (num) {
     case 1: {
       const char* name = STR2CSTR (val_arg1);
+      __TRY__;
       objs =  Loader::load (name);
+      __CATCH__;
       break;
     }
     case 3: {
       int         length = NUM2INT  (val_arg1);
       const char* data   = STR2CSTR (val_arg2);
       int         offset = NUM2INT  (val_arg3);
+      __TRY__;
       objs = Loader::load (length, data, offset);
+      __CATCH__;
       break;
     }
     default: {

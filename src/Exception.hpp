@@ -58,11 +58,11 @@ namespace m3g {
     std::string msg;
   };
 
-  class NullPointException : public std::exception
+  class NullPointerException : public std::exception
   {
   public:
-    explicit NullPointException (const char* file, const char* func, const char* format, ...);
-    virtual ~NullPointException () throw();
+    explicit NullPointerException (const char* file, const char* func, const char* format, ...);
+    virtual ~NullPointerException () throw();
     virtual const char* what () const throw();
 
     std::string msg;

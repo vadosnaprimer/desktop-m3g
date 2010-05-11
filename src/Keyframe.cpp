@@ -21,7 +21,7 @@ Keyframe:: ~Keyframe ()
 void m3g::step   (float s, const Keyframe& k0, const Keyframe& k1, int component_count, float* value)
 {
   if (value == NULL) {
-    throw NullPointException (__FILE__, __func__, "Value is NULL.");
+    throw NullPointerException (__FILE__, __func__, "Value is NULL.");
   }
   if (s < 0 || s > 1) {
     throw IllegalArgumentException (__FILE__, __func__, "S is invalid, s=%f.", s);
@@ -35,7 +35,7 @@ void m3g::step   (float s, const Keyframe& k0, const Keyframe& k1, int component
 void m3g::linear (float s, const Keyframe& k0, const Keyframe& k1, int component_count, float* value)
 {
   if (value == NULL) {
-    throw NullPointException (__FILE__, __func__, "Value is NULL.");
+    throw NullPointerException (__FILE__, __func__, "Value is NULL.");
   }
   if (s < 0 || s > 1) {
     throw IllegalArgumentException (__FILE__, __func__, "S is invalid, s=%f.", s);
@@ -49,7 +49,7 @@ void m3g::linear (float s, const Keyframe& k0, const Keyframe& k1, int component
 void m3g::slerp  (float s, const Keyframe& k0, const Keyframe& k1, int component_count, float* value)
 {
   if (value == NULL) {
-    throw NullPointException (__FILE__, __func__, "Value is NULL.");
+    throw NullPointerException (__FILE__, __func__, "Value is NULL.");
   }
   if (s < 0 || s > 1) {
     throw IllegalArgumentException (__FILE__, __func__, "S is invalid, s=%f.", s);
@@ -77,7 +77,7 @@ void m3g::squad  (float s, const Keyframe& k0, const Keyframe& k1, int component
 void m3g::spline (float s, const Keyframe& k0, const Keyframe& k1, const Keyframe& k2, const Keyframe& k3, int component_count, float* value)
 {
   if (value == NULL) {
-    throw NullPointException (__FILE__, __func__, "Value is NULL.");
+    throw NullPointerException (__FILE__, __func__, "Value is NULL.");
   }
   if (s < 0 || s > 1) {
     throw IllegalArgumentException (__FILE__, __func__, "S is invalid, s=%f.", s);
