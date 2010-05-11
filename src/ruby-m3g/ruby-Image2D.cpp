@@ -112,8 +112,12 @@ VALUE ruby_Image2D_is_mutable (VALUE self)
     return mutabl ? Qtrue : Qfalse;
 }
 
-VALUE ruby_Image2D_set (VALUE self, VALUE val_x, VALUE val_y, VALUE val_width, VALUE val_height, VALUE val_image)
+VALUE ruby_Image2D_set_image (VALUE self, VALUE val_index, VALUE val_image)
 {
+    VALUE val_x      = rb_ary_entry(val_index, 0);
+    VALUE val_y      = rb_ary_entry(val_index, 1);
+    VALUE val_width  = rb_ary_entry(val_index, 2);
+    VALUE val_height = rb_ary_entry(val_index, 3);
     Image2D* p;
     Data_Get_Struct (self, Image2D, p);
     int x      = NUM2INT (val_x);
@@ -141,9 +145,9 @@ void register_Image2D ()
     rb_define_alloc_func (rb_cImage2D, ruby_Image2D_allocate);
     rb_define_private_method (rb_cImage2D, "initialize", (VALUE(*)(...))ruby_Image2D_initialize, -1);
 
-    rb_define_method (rb_cImage2D, "format",  (VALUE(*)(...))ruby_Image2D_get_format, 0);
-    rb_define_method (rb_cImage2D, "height",  (VALUE(*)(...))ruby_Image2D_get_height, 0);
-    rb_define_method (rb_cImage2D, "width",   (VALUE(*)(...))ruby_Image2D_get_width,  0);
-    rb_define_method (rb_cImage2D, "mutable?", (VALUE(*)(...))ruby_Image2D_is_mutable,0);
-    rb_define_method (rb_cImage2D, "set",      (VALUE(*)(...))ruby_Image2D_set,       5);
+    rb_define_method (rb_cImage2D, "format",   (VALUE(*)(...))ruby_Image2D_get_format, 0);
+    rb_define_method (rb_cImage2D, "height",   (VALUE(*)(...))ruby_Image2D_get_height, 0);
+    rb_define_method (rb_cImage2D, "width",    (VALUE(*)(...))ruby_Image2D_get_width,  0);
+    rb_define_method (rb_cImage2D, "mutable?", (VALUE(*)(...))ruby_Image2D_is_mutable, 0);
+    rb_define_method (rb_cImage2D, "[]=",      (VALUE(*)(...))ruby_Image2D_set_image,  2);
 }
