@@ -33,14 +33,28 @@ VALUE ruby_VertexArray_initialize (VALUE self, VALUE val_num_vertices, VALUE val
     return self;
 }
 
-VALUE ruby_VertexArray_get (VALUE self, VALUE val_index)
+VALUE ruby_VertexArray_get (int argc, VALUE* argv, VALUE self)
 {
-    VALUE val_first_vertex = rb_ary_entry(val_index, 0);
-    VALUE val_num_vertices = rb_ary_entry(val_index, 1);
     VertexArray* p;
     Data_Get_Struct (self, VertexArray, p);
-    int first_vertex    = NUM2INT (val_first_vertex);
-    int num_vertices    = NUM2INT (val_num_vertices);
+    VALUE val_first_vertex;
+    VALUE val_num_vertices;
+    int   first_vertex;
+    int   num_vertices;
+    int   num = rb_scan_args (argc, argv, "11", &val_first_vertex, &val_num_vertices);
+    switch (num) {
+    case 1:
+        first_vertex = NUM2INT (val_first_vertex);
+        num_vertices = 1;
+        break;
+    case 2:
+        first_vertex = NUM2INT (val_first_vertex);
+        num_vertices = NUM2INT (val_num_vertices);
+        break;
+    default:
+        rb_raise (rb_eIllegalArgumentException, "Num of argument is invalid, num=%d.", num);
+    }
+
     int component_size  = p->getComponentType ();
     int component_count = p->getComponentCount ();
     int num_components  = num_vertices * component_count;
@@ -122,14 +136,31 @@ VALUE ruby_VertexArray_get_vertex_count (VALUE self)
     return INT2NUM(vertex_count);
 }
 
-VALUE ruby_VertexArray_set (VALUE self, VALUE val_index, VALUE val_values)
+VALUE ruby_VertexArray_set (int argc, VALUE* argv, VALUE self)
 {
-    VALUE val_first_vertex = rb_ary_entry(val_index, 0);
-    VALUE val_num_vertices = rb_ary_entry(val_index, 1);
     VertexArray* p;
     Data_Get_Struct (self, VertexArray, p);
-    int first_vertex    = NUM2INT(val_first_vertex);
-    int num_vertices    = NUM2INT(val_num_vertices);
+    int   first_vertex;
+    int   num_vertices;
+    VALUE val_values;
+    VALUE val_arg1, val_arg2, val_arg3;
+
+    int   num = rb_scan_args (argc, argv, "21", &val_arg1, &val_arg2, &val_arg3);
+    switch (num) {
+    case 2:
+        first_vertex     = NUM2INT(val_arg1);
+        num_vertices     = 1;
+        val_values       = val_arg2;
+        break;
+    case 3:
+        first_vertex     = NUM2INT(val_arg1);
+        num_vertices     = NUM2INT(val_arg2);
+        val_values       = val_arg3;
+        break;
+    default:
+        rb_raise (rb_eInternalException, "Num of argument is invalid. num=%d", num);
+    }        
+
     int component_size  = p->getComponentType ();
     int component_count = p->getComponentCount ();
     int num_components  = num_vertices * component_count;
@@ -202,6 +233,6 @@ void register_VertexArray ()
     rb_define_method (rb_cVertexArray, "component_type",  (VALUE(*)(...))ruby_VertexArray_get_component_type,  0);
     rb_define_method (rb_cVertexArray, "vertex_count",    (VALUE(*)(...))ruby_VertexArray_get_vertex_count,    0);
     rb_define_method (rb_cVertexArray, "convert",         (VALUE(*)(...))ruby_VertexArray_convert,             1);
-    rb_define_method (rb_cVertexArray, "[]",              (VALUE(*)(...))ruby_VertexArray_get,                 2);
-    rb_define_method (rb_cVertexArray, "[]=",             (VALUE(*)(...))ruby_VertexArray_set,                 2);
+    rb_define_method (rb_cVertexArray, "[]",              (VALUE(*)(...))ruby_VertexArray_get,                -1);
+    rb_define_method (rb_cVertexArray, "[]=",             (VALUE(*)(...))ruby_VertexArray_set,                -1);
 }

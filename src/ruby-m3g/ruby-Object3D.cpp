@@ -42,6 +42,27 @@ VALUE ruby_Object3D_free (Object3D* ptr)
     ruby_xfree (ptr);
 }
 
+VALUE ruby_Object3D_mark (Object3D* ptr)
+{
+    void* user_object = ptr->getUserObject();
+    if (user_object) {
+        rb_gc_mark ((VALUE)user_object);
+    }
+}
+
+VALUE ruby_Object3D_allocate (VALUE self)
+{
+    void* p = ruby_xmalloc (sizeof(Object3D));
+    return Data_Wrap_Struct (self, ruby_Object3D_mark, ruby_Object3D_free, p);
+}
+
+VALUE ruby_Object3D_initialize (VALUE self)
+{
+    Object3D* p;
+    Data_Get_Struct (self, Object3D, p);
+    return self;
+}
+
 
 VALUE ruby_Object3D_add_animation_track (VALUE self, VALUE val_animation_track)
 {
@@ -176,7 +197,6 @@ VALUE ruby_Object3D_get_user_id (VALUE self)
 {
     Object3D* p;
     Data_Get_Struct (self, Object3D, p);
-
     int id;
     __TRY__;
     id = p->getUserID ();
@@ -189,16 +209,12 @@ VALUE ruby_Object3D_get_user_object (VALUE self)
 {
     Object3D* p;
     Data_Get_Struct (self, Object3D, p);
-
     void* ptr;
     __TRY__;
     ptr = p->getUserObject ();
     __CATCH__;
 
-    // 未実装。
-    // ユーザーオブジェクトはRuby側からどう見えるべきなのか?
-
-    return Qnil;
+    return ptr ? (VALUE)ptr : Qnil;
 }
 
 VALUE ruby_Object3D_remove_animation_track (VALUE self, VALUE val_animation_track)
@@ -234,11 +250,9 @@ VALUE ruby_Object3D_set_user_id (VALUE self, VALUE val_id)
 VALUE ruby_Object3D_set_user_object (VALUE self, VALUE val_user_object)
 {
     Object3D* p;
-
     Data_Get_Struct (self, Object3D, p);
 
-    // 未実装
-    // Ruby側からどう見えるべきか？
+    p->setUserObject ((void*)val_user_object);
 
     return Qnil;
 }
@@ -250,6 +264,9 @@ void register_Object3D ()
 {
     // Object3D
     rb_cObject3D            = rb_define_class_under (rb_mM3G, "Object3D",            rb_cObject);
+
+    rb_define_alloc_func (rb_cObject3D, ruby_Object3D_allocate);
+    rb_define_private_method (rb_cObject3D, "initialize",     (VALUE(*)(...))ruby_Object3D_initialize,                0);
 
     rb_define_method (rb_cObject3D, "add_animation_track",    (VALUE(*)(...))ruby_Object3D_add_animation_track,       1);
     rb_define_method (rb_cObject3D, "animate",                (VALUE(*)(...))ruby_Object3D_animate,                   1);

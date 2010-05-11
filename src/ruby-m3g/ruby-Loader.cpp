@@ -42,23 +42,23 @@ VALUE ruby_Loader_load (int argc, VALUE* argv, VALUE self)
   int num = rb_scan_args (argc, argv, "12", &val_arg1, &val_arg2, &val_arg3);
     switch (num) {
     case 1: {
-      const char* name = STR2CSTR (val_arg1);
+      const char* name = StringValuePtr (val_arg1);
       __TRY__;
       objs =  Loader::load (name);
       __CATCH__;
       break;
     }
     case 3: {
-      int         length = NUM2INT  (val_arg1);
-      const char* data   = STR2CSTR (val_arg2);
-      int         offset = NUM2INT  (val_arg3);
+      int         length = NUM2INT        (val_arg1);
+      const char* data   = StringValuePtr (val_arg2);
+      int         offset = NUM2INT        (val_arg3);
       __TRY__;
       objs = Loader::load (length, data, offset);
       __CATCH__;
       break;
     }
     default: {
-      // えらー
+        rb_raise (rb_eIllegalArgumentException, "Num of args is invalid, num%d.", num);
     }
     }
 
@@ -93,6 +93,21 @@ VALUE ruby_Loader_load (int argc, VALUE* argv, VALUE self)
       rb_ary_push (val_objs, val_obj);
     }
 
+    // 注意：ユーザーオブジェクトはRubyのHashに詰め直す
+    for (int i = 0; i < (int)objs.size(); i++) {
+        void* ptr = objs[i]->getUserObject();
+        if (ptr) {
+            map<unsigned int, char*>* user_object = (map<unsigned int, char*>*)ptr;
+            map<unsigned int, char*>::iterator it;
+            VALUE val_user_object = rb_hash_new ();
+            for (it = user_object->begin(); it != user_object->end(); i++) {
+                rb_hash_aset (val_user_object, INT2NUM(it->first), rb_str_new2(it->second));
+            }
+            delete user_object;
+            objs[i]->setUserObject((void*)val_user_object);
+        }
+    }
+    
     return val_objs;
 }
 

@@ -42,7 +42,7 @@ VALUE ruby_Image2D_initialize (int argc, VALUE* argv, VALUE self)
         int format = NUM2INT (val_arg1);
         int width  = NUM2INT (val_arg2);
         int height = NUM2INT (val_arg3);
-        void* image = (void*)STR2CSTR (val_arg4);
+        void* image = (void*)StringValue (val_arg4);
         __TRY__;
         new (p) Image2D (format, width, height, image);
         __CATCH__;
@@ -52,8 +52,8 @@ VALUE ruby_Image2D_initialize (int argc, VALUE* argv, VALUE self)
         int format = NUM2INT (val_arg1);
         int width = NUM2INT (val_arg2);
         int height = NUM2INT (val_arg3);
-        void* image = (void*)STR2CSTR (val_arg4);
-        void* palette = (void*)STR2CSTR (val_arg5);
+        void* image = (void*)StringValue (val_arg4);
+        void* palette = (void*)StringValue (val_arg5);
         __TRY__;
         new (p) Image2D (format, width, height, image, palette);
         __CATCH__;
@@ -124,7 +124,7 @@ VALUE ruby_Image2D_set_image (VALUE self, VALUE val_index, VALUE val_image)
     int y      = NUM2INT (val_y);
     int width  = NUM2INT (val_width);
     int height = NUM2INT (val_height);
-    void* image = (void*)STR2CSTR (val_image);
+    void* image = (void*)StringValue (val_image);
     __TRY__;
     p->set (x, y, width, height, image);
     __CATCH__;
