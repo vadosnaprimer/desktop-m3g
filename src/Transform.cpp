@@ -15,7 +15,7 @@ Transform:: Transform ()
 
 Transform:: Transform (const Transform& t)
 {
-  matrix = t.matrix;
+    matrix = t.matrix;
 }
 
 Transform:: ~Transform ()
@@ -24,118 +24,118 @@ Transform:: ~Transform ()
 
 void Transform:: get (float* mat) const
 {
-  if (mat == NULL) {
-    throw NullPointerException (__FILE__, __func__, "Matrix is NULL.");
-  }
+    if (mat == NULL) {
+        throw NullPointerException (__FILE__, __func__, "Matrix is NULL.");
+    }
 
-  memcpy (mat, &matrix.m, sizeof(matrix.m));
+    memcpy (mat, &matrix.m, sizeof(matrix.m));
 }
 
 void Transform:: invert ()
 {
-  matrix.invert ();
+    matrix.invert ();
 }
 
 void Transform:: postMultiply (const Transform& t)
 {
-  matrix *= t.matrix;
+    matrix *= t.matrix;
 }
 
 void Transform:: postRotate (float angle, float ax, float ay, float az)
 {
-  float len2 = ax*ax+ay*ay+az*az;
-  if (len2 != 1.f) {
-    float len = sqrtf(len2);
-    ax /= len;
-    ay /= len;
-    az /= len;
-  }
+    float len2 = ax*ax+ay*ay+az*az;
+    if (len2 != 1.f) {
+        float len = sqrtf(len2);
+        ax /= len;
+        ay /= len;
+        az /= len;
+    }
 
-  Matrix rotate;
-  rotate.setRotate (angle, ax, ay, az);
+    Matrix rotate;
+    rotate.setRotate (angle, ax, ay, az);
 
-  matrix *= rotate;
+    matrix *= rotate;
 }
 
 void Transform:: postRotateQuat (float qx, float qy, float qz, float qw)
 {
-  Quaternion q;
-  q.set (qx, qy, qz, qw);
+    Quaternion q;
+    q.set (qx, qy, qz, qw);
 
-  float a[4];
-  q.getAngleAxis (a);
+    float a[4];
+    q.getAngleAxis (a);
 
-  Matrix rotate;
-  rotate.setRotate (a[0], a[1], a[2], a[3]);
+    Matrix rotate;
+    rotate.setRotate (a[0], a[1], a[2], a[3]);
   
-  matrix *= rotate;
+    matrix *= rotate;
 }
 
 void Transform:: postScale (float sx, float sy, float sz)
 {
-  Matrix scale;
-  scale.setScale (sx, sy, sz);
+    Matrix scale;
+    scale.setScale (sx, sy, sz);
 
-  matrix *= scale;
+    matrix *= scale;
 }
 
 void Transform:: postTranslate (float tx, float ty, float tz)
 {
-  Matrix translate;
-  translate.setTranslate (tx, ty, tz);
+    Matrix translate;
+    translate.setTranslate (tx, ty, tz);
 
-  matrix *= translate;
+    matrix *= translate;
 }
 
 void Transform:: set (const float* mat)
 {
-  if (mat == NULL) {
-    throw NullPointerException (__FILE__, __func__, "Material is NULL.");
-  }
-  matrix.set (mat);
+    if (mat == NULL) {
+        throw NullPointerException (__FILE__, __func__, "Material is NULL.");
+    }
+    matrix.set (mat);
 }
 
 void Transform:: set (const Transform& t)
 {
-  matrix = t.matrix;
+    matrix = t.matrix;
 }
 
 void Transform:: setIdentity ()
 {
-  matrix.setIdentity();
+    matrix.setIdentity();
 }
 
 void Transform:: transform (float* vectors) const
 {
-  if (vectors == NULL) {
-    throw NullPointerException (__FILE__, __func__, "Vectors is NULL.");
-  }
-  Vector v (vectors[0], vectors[1], vectors[2]);
+    if (vectors == NULL) {
+        throw NullPointerException (__FILE__, __func__, "Vectors is NULL.");
+    }
+    Vector v (vectors[0], vectors[1], vectors[2]);
 
-  Vector r = matrix * v;
-  r.get (vectors);
+    Vector r = matrix * v;
+    r.get (vectors);
 }
 
 void Transform:: transform (VertexArray* in, float* out, bool w) const
 {
-  // 
+    // 
 
 }
 
 void Transform:: transpose ()
 {
-  matrix.transpose();
+    matrix.transpose();
 }
 
 
 std::ostream& Transform:: print (std::ostream& out) const
 {
-  return out << matrix;
+    return out << matrix;
 }
 
 std::ostream& operator<< (std::ostream& out, const Transform& trns)
 {
-  return trns.print(out);
+    return trns.print(out);
 }
 
 

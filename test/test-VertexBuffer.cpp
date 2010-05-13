@@ -9,16 +9,16 @@ using namespace m3g;
 
 TEST (VertexBuffer_default_variables)
 {
-  VertexBuffer* vbuf = new VertexBuffer;
+    VertexBuffer* vbuf = new VertexBuffer;
 
-  CHECK_EQUAL (0xffffffff,      vbuf->getDefaultColor());
-  CHECK_EQUAL ((VertexArray*)0, vbuf->getColors());
-  CHECK_EQUAL ((VertexArray*)0, vbuf->getNormals());
-  CHECK_EQUAL ((VertexArray*)0, vbuf->getPositions(0));
-  CHECK_EQUAL ((VertexArray*)0, vbuf->getTexCoords(0, 0));
-  CHECK_EQUAL ((VertexArray*)0, vbuf->getTexCoords(1, 0));
+    CHECK_EQUAL (0xffffffff,      vbuf->getDefaultColor());
+    CHECK_EQUAL ((VertexArray*)0, vbuf->getColors());
+    CHECK_EQUAL ((VertexArray*)0, vbuf->getNormals());
+    CHECK_EQUAL ((VertexArray*)0, vbuf->getPositions(0));
+    CHECK_EQUAL ((VertexArray*)0, vbuf->getTexCoords(0, 0));
+    CHECK_EQUAL ((VertexArray*)0, vbuf->getTexCoords(1, 0));
   
-  delete vbuf;
+    delete vbuf;
 }
 
 TEST (VertexBuffer_set_variables)

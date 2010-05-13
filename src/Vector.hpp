@@ -5,34 +5,35 @@
 
 namespace m3g {
 
-  /**
-   * @~Japanese ベクトルクラス。M3G非標準.
-   */
-  class Vector
-  {
-  public:
-    Vector ();
-    Vector (float x, float y, float z, float w=1);
-    ~Vector ();
+    /**
+     * @~English  Vector class, not defined by M3G.
+     * @~Japanese ベクトルクラス。M3G非標準.
+     */
+    class Vector
+    {
+    public:
+        Vector ();
+        Vector (float x, float y, float z, float w=1);
+        ~Vector ();
 
-    void get (float* xyz) const;
-    float length () const;
+        void get (float* xyz) const;
+        float length () const;
 
-    void normalize ();
+        void normalize ();
     
-    float& operator[] (int n);
-    const float& operator[] (int n) const;
+        float& operator[] (int n);
+        const float& operator[] (int n) const;
 
-    Vector& operator+= (const Vector& rhs);
+        Vector& operator+= (const Vector& rhs);
 
-    std::ostream& print (std::ostream& out) const;
+        std::ostream& print (std::ostream& out) const;
 
-  public:
-    float x,y,z,w;
-  };
+    public:
+        float x,y,z,w;
+    };
 
-  float dot (const Vector& v0, const Vector& v1);
-  Vector cross (const Vector& v0, const Vector& v1);
+    float dot (const Vector& v0, const Vector& v1);
+    Vector cross (const Vector& v0, const Vector& v1);
 
 
 

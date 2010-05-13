@@ -14,24 +14,24 @@ Object:: ~Object ()
 
 void* Object:: getExportedEntity () const
 {
-  return exported_entity;
+    return exported_entity;
 }
 
 void Object:: setExportedEntity (void* entity)
 {
-  exported_entity = entity;
+    exported_entity = entity;
 }
 
 std::ostream& Object:: print (std::ostream& out) const
 {
-  out << "Object: ";
-  out << "  exported_entity=" << exported_entity;
-  return out;
+    out << "Object: ";
+    out << "  exported_entity=" << exported_entity;
+    return out;
 }
 
 std::ostream& operator<< (std::ostream& out, const m3g::Object& obj)
 {
-  return obj.print (out);
+    return obj.print (out);
 }
 
 

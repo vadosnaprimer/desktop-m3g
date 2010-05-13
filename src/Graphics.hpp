@@ -6,11 +6,11 @@ namespace m3g {
 /**
  * JAVAのGraphicsクラスに相当するダミークラス。C/C++およびRubyでは何も行わない.
  */
-class Graphics
-{
-public:
+    class Graphics
+    {
+    public:
 
-};
+    };
 
 
 } // namespace m3g {

@@ -6,31 +6,49 @@
 namespace m3g {
 
 
-  /**
-   *
-   */
-class Object
-{
-public:
-  Object ();
-  ~Object ();
+    /**
+     * @~English   The basis of all classes.
+     * @~Japanese  全てのオブジェクトの規程となるクラス.
+     */
+    class Object
+    {
 
-  /**
-   *
-   */
-    void* getExportedEntity () const;
+    public:
 
-  /**
-   *
-   */
-    void setExportedEntity (void* exported_entity);
+        /**
+         * @~English   Constructs an Object object with default values.
+         * @~Japanese  このObjectオブジェクトを作成するコンストラクタ.
+         */
+        Object ();
 
-  std::ostream& print (std::ostream& out) const;
+        /**
+         * @~English  Destruct this object.
+         * @~Japanese このオブジェクトを破壊するデストラクタ.
+         */
+        ~Object ();
 
-private:
+        /**
+         * @~Enslish   get mark of this object referenced by external library.
+         * @~Japanese  外部ライブラリからこのオブジェクトを参照するのに必要なデータを取得する.
+         */
+        void* getExportedEntity () const;
 
-  void* exported_entity;
-};
+        /**
+         * @~Enslish   set mark of this object referenced by external library.
+         * @~Japanese  外部ライブラリからこのオブジェクトを参照するのに必要なデータをセットする.
+         */
+        void setExportedEntity (void* exported_entity);
+
+        /**
+         * @~English  Print out information of this class, for debug only.
+         * @~Japanese このObjectクラスの情報を表示する。デバッグ用.
+         */
+        std::ostream& print (std::ostream& out) const;
+
+    private:
+
+        void* exported_entity;
+    };
 
 }  // using namespace std;
 

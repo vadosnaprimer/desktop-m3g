@@ -7,16 +7,16 @@
 namespace m3g {
 
   
-  class Node;
+    class Node;
 
     /**
      * @~English  Store bone index and weight, for inner use.
      * @~Japanese ボーンインデックスとウェイトを保持する内部使用の構造体.
      */
     struct BoneIndex {
-      BoneIndex (int i, int w) : index(i), weight(w) {};
-      int index;
-      int weight;
+        BoneIndex (int i, int w) : index(i), weight(w) {};
+        int index;
+        int weight;
     };
 
     /**
@@ -24,9 +24,9 @@ namespace m3g {
      * @~Japanese バインドポーズを保存する内部使用の構造体.
      */
     struct BindPose {
-      BindPose (Node* n, const Matrix& m) : bone(n), inverse(m) {};
-      Node*  bone;
-      Matrix inverse;
+        BindPose (Node* n, const Matrix& m) : bone(n), inverse(m) {};
+        Node*  bone;
+        Matrix inverse;
     };
 
 }// namespace m3g

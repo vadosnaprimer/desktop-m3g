@@ -16,7 +16,7 @@ IndexBuffer:: ~IndexBuffer ()
 
 IndexBuffer* IndexBuffer:: duplicate () const
 {
-  return new IndexBuffer (*this);
+    return new IndexBuffer (*this);
 }
 
 
@@ -35,19 +35,19 @@ void IndexBuffer:: getIndices (int*)
  */
 void IndexBuffer:: render (RenderState& state) const
 {
-  // nothing to do.
+    // nothing to do.
 }
 
 std::ostream& IndexBuffer:: print (std::ostream& out) const
 {
-  out << "IndexBuffer: ";
-  return out;
+    out << "IndexBuffer: ";
+    return out;
 }
 
 
 std::ostream& operator<< (std::ostream& out, const IndexBuffer& ibuf)
 {
-  return ibuf.print (out);
+    return ibuf.print (out);
 }
 
 

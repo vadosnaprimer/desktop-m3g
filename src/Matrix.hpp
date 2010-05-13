@@ -5,43 +5,43 @@
 
 namespace m3g {
 
-  class Vector;
+    class Vector;
 
-/**
- * @~English  4x4 Matrix, for inner use.
- * @~Japanese 4x4行列クラス。内部使用専用.
- */
-class Matrix
-{
-public:
-  Matrix ();
-  Matrix (float* m4x4);
-  Matrix (float m00, float m01, float m02, float m03, 
-          float m10, float m11, float m12, float m13, 
-          float m20, float m21, float m22, float m23, 
-          float m30, float m31, float m32, float m33);
-  ~Matrix ();
+    /**
+     * @~English  4x4 Matrix, for inner use.
+     * @~Japanese 4x4行列クラス。内部使用専用.
+     */
+    class Matrix
+    {
+    public:
+        Matrix ();
+        Matrix (float* m4x4);
+        Matrix (float m00, float m01, float m02, float m03, 
+                float m10, float m11, float m12, float m13, 
+                float m20, float m21, float m22, float m23, 
+                float m30, float m31, float m32, float m33);
+        ~Matrix ();
 
-  Matrix getInverse () const;
+        Matrix getInverse () const;
 
-  void set(const float* mat);
-  void setIdentity();
-  void setRotate (float angle, float ax, float ay, float az);
-  void setScale (float sx, float sy, float sz);
-  void setTranslate (float tx, float ty, float tz);
+        void set(const float* mat);
+        void setIdentity();
+        void setRotate (float angle, float ax, float ay, float az);
+        void setScale (float sx, float sy, float sz);
+        void setTranslate (float tx, float ty, float tz);
 
-  Matrix& invert ();
-  Matrix& transpose ();
-  Matrix& operator*= (const Matrix& rhs);
+        Matrix& invert ();
+        Matrix& transpose ();
+        Matrix& operator*= (const Matrix& rhs);
 
-  float& operator[] (int n);
-  const float& operator[] (int n) const;
+        float& operator[] (int n);
+        const float& operator[] (int n) const;
 
-  std::ostream& print (std::ostream& out) const;
+        std::ostream& print (std::ostream& out) const;
 
-public:
-  float m[16];
-};
+    public:
+        float m[16];
+    };
 
 
 
