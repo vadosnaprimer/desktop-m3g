@@ -254,11 +254,11 @@ void KeyframeSequence:: getFrame (int local_time, float* value) const
     slerp (s, k1, k2, component_count, value);
     return;
   case SPLINE:
-    //cout << "interp: " << k0 << ", " << k1 << ", " << k2 << ", " << k3 << "\n";
-    spline (s, k0, k1, k2, k3, component_count, value);
-    return;
+      spline (s, k0, k1, k2, k3, component_count, value);
+      return;
   case SQUAD:
-    throw NotImplementedException (__FILE__, __func__, "SQUAD Interpolated is not nimplemented.");
+      cout << "squad: " << k0 << ", " << k1 << ", " << k2 << ", " << k3 << "\n";
+      squad  (s, k0, k1, k2, k3, component_count, value);
   default:
     throw InternalException (__FILE__, __func__, "Interpolation type is unknwon, type=%d.", interp_type);
   }

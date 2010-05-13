@@ -42,16 +42,16 @@ public:
    */
 
   void slerp  (float s, const Keyframe& k0, const Keyframe& k1, int component_count, float* value);
-  /**
-   * @~Japanese キーフレームの？補完を行う.
-   */
-  void squad  (float s, const Keyframe& k0, const Keyframe& k1, int component_count, float* value);
 
   /**
    * @~Japanese キーフレームのスプライン補完を行う.
    */
-  void spline (float s, const Keyframe& k0, const Keyframe& k1, const Keyframe& k2, const Keyframe& key_3, int component_count, float* value);
+  void spline (float s, const Keyframe& k0, const Keyframe& k1, const Keyframe& k2, const Keyframe& k3, int component_count, float* value);
 
+  /**
+   * @~Japanese キーフレームのクォータニオンのスプライン補間を行う.
+   */
+  void squad  (float s, const Keyframe& k0, const Keyframe& k1, const Keyframe& k2, const Keyframe& k3, int component_count, float* value);
 
 } // namespace m3g {
 

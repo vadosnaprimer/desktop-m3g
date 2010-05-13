@@ -62,8 +62,8 @@ int main (int argc, char** argv)
   glutCreateWindow(argv[0]);
   glewInit ();
 
-  objs = Loader::load ("simple.m3g");
-  //objs = Loader::load ("test.m3g");
+  //objs = Loader::load ("simple.m3g");
+  objs = Loader::load ("test.m3g");
 
   for (int i = 0; i < (int)objs.size(); i++) {
     wld = dynamic_cast<World*>(objs[i]);

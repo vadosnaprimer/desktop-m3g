@@ -37,7 +37,7 @@ TEST (IOException)
 
 TEST (NullPointException)
 {
-  NullPointException e(__FILE__, __func__, "%s", "Eila Ilmatar Juutilainen");
+  NullPointerException e(__FILE__, __func__, "%s", "Eila Ilmatar Juutilainen");
   CHECK_EQUAL ("test-Exception.cpp:RunImpl Eila Ilmatar Juutilainen", e.what());
 }
 
