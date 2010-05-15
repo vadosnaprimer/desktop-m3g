@@ -19,7 +19,7 @@ namespace m3g {
         void get (float* xyz) const;
         float length () const;
 
-        void normalize ();
+        Vector& normalize ();
     
         float& operator[] (int n);
         const float& operator[] (int n) const;

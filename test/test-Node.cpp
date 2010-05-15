@@ -169,3 +169,22 @@ TEST (Node_getTransformTo)
                         0,0,0,1};
     CHECK_ARRAY_CLOSE (matrix, m, 16, 0.00001f);
 }
+
+TEST (Node_alignment)
+{
+    Node* z_ref = new Node;
+    z_ref->setOrientation (45, 0,1,0);
+    cout << "z_ref = " << z_ref->Transformable::print (cout) << "\n";
+
+    Node* y_ref = new Node;
+    y_ref->setOrientation (45, 1,0,0);
+    cout << "y_ref = " << y_ref->Transformable::print (cout) << "\n";
+
+    Node* node = new Node;
+    node->setAlignment (z_ref, Node::ORIGIN, y_ref, Node::ORIGIN);
+    node->align (0);
+
+    cout << "node = " << node->Transformable::print (cout) << "\n";
+
+
+}

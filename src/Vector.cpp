@@ -1,5 +1,6 @@
 #include "Vector.hpp"
 #include "Exception.hpp"
+#include "m3ginternal.hpp"
 #include <iostream>
 #include <cmath>
 using namespace std;
@@ -63,7 +64,7 @@ Vector& Vector:: operator+= (const Vector& rhs)
 }
 
 
-void Vector:: normalize ()
+Vector& Vector:: normalize ()
 {
     float len = length();
     if (len == 0) {
@@ -72,11 +73,13 @@ void Vector:: normalize ()
     x /= len;
     y /= len;
     z /= len;
+    return *this;
 }
 
 float m3g::dot (const Vector& p, const Vector& q)
 {
-    return sqrtf (p.x*q.x+p.y*q.y+p.z*q.z);
+    float d = p.x*q.x+p.y*q.y+p.z*q.z;
+    return clamp (-1, 1, d);
 }
 
 Vector m3g::cross (const Vector& p, const Vector& q)

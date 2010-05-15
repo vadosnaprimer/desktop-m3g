@@ -33,6 +33,11 @@ namespace m3g {
         virtual ~Group ();
 
         /**
+         *
+         */
+        virtual void align (Node* reference);
+
+        /**
          * @~English  Creates a duplicate of this Object3D. 
          * @~Japanese このオブジェクトの複製の作成.
          */

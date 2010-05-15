@@ -130,3 +130,30 @@ TEST (Vector_mul_float)
 }
 
 
+TEST (Vector_dot)
+{
+    Vector v1 = Vector(1,0,0).normalize();
+    Vector v2 = Vector(1,1,0).normalize();
+    Vector v3 = Vector(-1,1,0).normalize();
+    Vector v4 = Vector(-1,0,0).normalize();
+
+    CHECK_CLOSE (1,            dot(v1,v1), 0.00001f);
+    CHECK_CLOSE (0.70710678f,  dot(v1,v2), 0.00001f);
+    CHECK_CLOSE (-0.70710678f, dot(v1,v3), 0.00001f);
+    CHECK_CLOSE (-1,           dot(v1,v4), 0.00001f);
+}
+
+TEST (Vector_cross)
+{
+    Vector v1 = Vector(1,0,0).normalize();
+    Vector v2 = Vector(1,1,0).normalize();
+    Vector v3 = Vector(-1,1,0).normalize();
+    Vector v4 = Vector(-1,0,0).normalize();
+
+    cout << "v1 x v1 = " << cross(v1, v1) << "\n";
+    cout << "v1 x v2 = " << cross(v1, v2) << "\n";
+    cout << "v1 x v3 = " << cross(v1, v3) << "\n";
+    cout << "v1 x v4 = " << cross(v1, v4) << "\n";
+}
+
+

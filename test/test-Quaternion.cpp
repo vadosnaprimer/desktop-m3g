@@ -2,6 +2,8 @@
 #include <iostream>
 #include <cstdlib>
 #include "Quaternion.hpp"
+#include "Matrix.hpp"
+#include "Vector.hpp"
 using namespace std;
 using namespace m3g;
 
@@ -213,4 +215,23 @@ TEST (Quaternion_squad_1)
 
     // cout << "q4 = " << q4 << "\n";
     // cout << "q12 = " << q12 << "\n";
+}
+
+TEST (Quaternion_matrix2quat)
+{
+    float  angle = 120;
+    Vector axis (-1,0,0);
+    axis.normalize();
+    cout << "angle = " << angle << "\n";
+    cout << "axis  = " << axis  << "\n";
+    Matrix mat;
+    mat.setRotate (angle, axis.x, axis.y, axis.z);
+
+    Quaternion q = matrix2quat(mat);
+
+    float angle_axis[4];
+    q.getAngleAxis (angle_axis);
+
+    cout << "q = " << q << "\n";
+
 }

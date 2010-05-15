@@ -197,6 +197,9 @@ void Transformable:: scale (float sx, float sy, float sz)
 
 void Transformable:: setOrientation (float angle, float ax, float ay, float az)
 {
+    if (angle != 0 && ax == 0 && ay == 0 && az == 0) {
+        throw IllegalArgumentException (__FILE__, __func__, "Rotation axis is 0,0,0.");
+    }
     orientation = Quaternion (angle, ax, ay, az);
 }
 
@@ -246,7 +249,7 @@ std::ostream& Transformable:: print (std::ostream& out) const
     out << "Transformable: ";
     out << "  translation=" << translation.x << "," << translation.y << "," << translation.z;
     out << ", scale="       << scaling.x     << "," << scaling.y     << "," << scaling.z;
-    out << ", orientation=" << angle_axis[0] << "," << angle_axis[1] << "," << angle_axis[2] << "," << angle_axis[3];
+    out << ", orientation=" << angle_axis[0] << ",(" << angle_axis[1] << "," << angle_axis[2] << "," << angle_axis[3] << ")";
     out << ", transform="   << transform;
     return out;
 }

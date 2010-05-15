@@ -2,6 +2,7 @@
 #include "Exception.hpp"
 #include "m3ginternal.hpp"
 #include "Vector.hpp"
+#include "Matrix.hpp"
 #include <iostream>
 #include <cmath>
 using namespace std;
@@ -12,18 +13,25 @@ Quaternion:: Quaternion () :
 {
 }
 
+/**
+ * 注意：回転軸は正規化されている必要はない。ただしangle!=0なら(0,0,0)以外でなければならない
+ * 念のためangle=NANの時はエラーにはならず単位クォータニオンになる。
+ */
+
 Quaternion:: Quaternion (float angle, float ax, float ay, float az) :
     x(0), y(0), z(0), w(1)
 {
-    Vector axis (ax, ay, az);
-    axis.normalize ();
+    //cout << "ax = " << ax << ", ay = " << ay << ", az = " << az << "\n";
+    if (angle < 0 || angle > 0) {
+        Vector axis (ax, ay, az);
+        axis.normalize ();
   
-    if (angle != 0) {
         float th = 2*M_PI*angle/360.f;
         x = axis.x * sinf (th/2.f);
         y = axis.y * sinf (th/2.f);
         z = axis.z * sinf (th/2.f);
         w =          cosf (th/2.f);
+        //cout << "x = " << x << ", y = " << y << ", z = " << z << ", w = " << w << "\n";
     }
 }
 
@@ -45,6 +53,9 @@ void Quaternion:: setZero ()
 Quaternion& Quaternion:: normalize ()
 {
     float len = sqrtf(x*x + y*y + z*z + w*w);
+    if (len == 0) {
+        throw IllegalArgumentException (__FILE__, __func__, "Divided by 0.");
+    }
     x = x/len;
     y = y/len;
     z = z/len;
@@ -52,13 +63,16 @@ Quaternion& Quaternion:: normalize ()
     return *this;
 }
 
+/**
+ * セットするクォータニオン係数の長さが１である必要はない。
+ * (メモ：logの計算で1以外のクォータニオンも使用する。内部で自動的に正規化は出来ない）
+ */
 void Quaternion:: set (float qx, float qy, float qz, float qw)
 {
     x = qx;
     y = qy;
     z = qz;
     w = qw;
-    //normalize ();
 }
 
 float Quaternion:: getLength () const
@@ -68,6 +82,9 @@ float Quaternion:: getLength () const
 
 /**
  * (補足) 回転角度が0の場合はangle=0,axis=(x,y,z)が返る.
+ *        単位クォータニオンの場合は0,(0,0,0)が返る。
+ * (メモ) M3Gライブラリは回転としてangle=0,axis=0,0,0を正しく扱えなければならない。
+ *        この入力値は「正しい」。
  */
 void Quaternion:: getAngleAxis (float* angle_axis) const
 {
@@ -77,14 +94,19 @@ void Quaternion:: getAngleAxis (float* angle_axis) const
 
     float th = 2*acosf(w);
     angle_axis[0] = th*360/(2.f*M_PI);
-    if (sinf(th/2.f) != 0) {
+    if (sinf(th/2.f) > 0 || sinf(th/2.f) < 0) {
         angle_axis[1] = x/sinf(th/2.f);
         angle_axis[2] = y/sinf(th/2.f);
         angle_axis[3] = z/sinf(th/2.f);
     } else {
+        // 注意：NANを含む比較はfalseを返す。
+        // thが0もしくはNAN化した時こちらが実行される
+        // w=1のはずがw=1.000001で来てthがNAN化する事はよくある。
+        angle_axis[0] = 0;
         angle_axis[1] = x;
         angle_axis[2] = y;
         angle_axis[3] = z;
+        //cout << "NAN: " << x << ", " << y << ", " << z << ", " << w << ", th=" << th << "\n";
     }
 }
 
@@ -188,6 +210,38 @@ m3g::Quaternion m3g::exp (const m3g::Quaternion& q)
     Quaternion q2;
     q2.set (x, y, z, w);
     return q2;
+}
+
+Quaternion m3g::matrix2quat (const Matrix& m)
+{
+    float q[4];
+
+    float trace = m[0] + m[5] + m[10];
+    if (trace > 0) {
+        float s = sqrtf (trace + 1.f);
+        float t = 0.5f / s;
+        q[0] = (m[9] - m[6]) * t;
+        q[1] = (m[2] - m[8]) * t;
+        q[2] = (m[4] - m[1]) * t;
+        q[3] = s*0.5f;
+    } else {
+        int i = 0; 
+        i = (m[5]  > m[0])   ? 1 : i;
+        i = (m[10] > m[i*5]) ? 2 : i;
+        int j = (i+1) % 3;
+        int k = (j+1) % 3;
+        float s = sqrtf ((m[i*5] - (m[j*5] +m[k*5])) + 1.0f);
+        float t = (s != 0) ? 0.5f/s : s;
+        q[i] = s*0.5f;
+        q[j] = (m[j*4+i] + m[i*4+j]) * t;
+        q[k] = (m[k*4+i] + m[i*4+k]) * t;
+        q[3] = (m[k*4+j] - m[j*4+k]) * t;
+
+    }
+
+    Quaternion quat;
+    quat.set (q[0], q[1], q[2], q[3]);
+    return quat;
 }
 
 

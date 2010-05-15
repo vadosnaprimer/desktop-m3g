@@ -50,6 +50,16 @@ void Group:: addChild (Node* child)
     children.push_back (child);
 }
 
+void Group:: align (Node* reference)
+{
+    //cout << "Group: align, ref=0x" << reference << "\n";
+
+    Node:: align (reference);
+    for (int i = 0; i < (int)children.size(); i++) {
+        children[i]->align (reference);
+    }
+}
+
 int Group:: animate (int world_time)
 {
     //cout << "Group: animate, time=" << world_time << "\n";
@@ -59,7 +69,6 @@ int Group:: animate (int world_time)
     for (int i = 0; i < (int)children.size(); i++) {
         children[i]->animate (world_time);
     }
-
     return 0;
 }
 

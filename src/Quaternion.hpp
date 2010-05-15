@@ -5,10 +5,12 @@
 
 namespace m3g {
 
-/**
- * @~English   Quaterion class representing rotation, for inner use.
- * @~Japanese  回転を表すクォータニオンクラス。内部使用専用.
- */
+    class Matrix;
+
+    /**
+     * @~English   Quaterion class representing rotation, for inner use.
+     * @~Japanese  回転を表すクォータニオンクラス。内部使用専用.
+     */
     class Quaternion
     {
     public:
@@ -59,8 +61,8 @@ namespace m3g {
         Quaternion& normalize ();
 
         /**
-         * @~English   set quaternion, to be normalized.
-         * @~Japanese  クォータニオンを設定する。関数内部で正規化される.
+         * @~English   set quaternion in quaternion form.
+         * @~Japanese  クォータニオンを４元数で設定する.
          */
         void set (float qx, float qy, float qz, float qw);
 
@@ -118,7 +120,13 @@ namespace m3g {
      */
     m3g::Quaternion exp (const m3g::Quaternion& q);
 
+    /**
+     * @~English   Convert from rotation matrix to quaternion.
+     * @~Japanese  回転行列をクォータニオンに変換する.
+     */
+    m3g::Quaternion matrix2quat (const m3g::Matrix& m);
     
+
 } // namespace m3g {
 
 
@@ -128,6 +136,9 @@ m3g::Quaternion operator* (const m3g::Quaternion& p, float f);
 m3g::Quaternion operator* (const m3g::Quaternion& q1, const m3g::Quaternion& q2);
 m3g::Quaternion operator+ (const m3g::Quaternion& q1, const m3g::Quaternion& q2);
 m3g::Quaternion operator- (const m3g::Quaternion& q1, const m3g::Quaternion& q2);
+
+
+
 std::ostream& operator<< (std::ostream& out, const m3g::Quaternion& q);
 
 #endif

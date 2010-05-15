@@ -81,7 +81,7 @@ namespace m3g {
          * @~English   Applies alignments to this Node and its descendants.
          * @~Japanese このノードと子孫ノードにアライメントを適応する.
          */
-        void align (Node* reference);
+        virtual void align (Node* reference);
 
         /**
          * @~English  Adds the given AnimationTrack to this Object3D, 
