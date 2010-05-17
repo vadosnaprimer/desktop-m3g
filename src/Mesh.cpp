@@ -139,7 +139,7 @@ bool Mesh:: intersect (const Vector& org, const Vector& dir, RayIntersection* ri
         float position_values[3][3];
 
         for (int f = 0; f < face_count; f++) {
-            indices[i]->getFaceIndex (f, index_values);
+            indices[i]->getFaceVertexIndex (f, index_values);
             positions->get (index_values[0], 1, position_values[0]);
             positions->get (index_values[1], 1, position_values[1]);
             positions->get (index_values[2], 1, position_values[2]);

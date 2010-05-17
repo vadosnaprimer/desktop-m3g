@@ -40,6 +40,22 @@ namespace m3g {
         virtual TriangleStripArray* duplicate () const;
 
         /**
+         *
+         */
+        virtual int getFaceCount () const;
+
+        /**
+         *
+         */
+        virtual int getFaceVertexCount () const;
+
+        /**
+         *
+         */
+        virtual void getFaceVertexIndex (int face_index, int* vertex_indices) const;
+
+
+        /**
          * @~English  Returns the number of indices in this buffer.
          * @~Japanese このバッファーのインデックスの数を取得.
          */

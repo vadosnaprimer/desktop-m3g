@@ -48,7 +48,7 @@ namespace m3g {
         /**
          *
          */
-        virtual void getFaceIndex (int face, int* indices) const;
+        virtual void getFaceVertexIndex (int face_index, int* vertex_indices) const;
 
         /**
          * @~English  Returns the number of indices in this buffer.

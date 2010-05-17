@@ -27,6 +27,9 @@ TriangleStripArray:: TriangleStripArray (int* indices_, int num_strips, int* str
 
     strips.reserve (num_strips);
     for (int i = 0; i < num_strips; i++) {
+        if (strip_array[i] <= 2) {
+            throw IllegalArgumentException (__FILE__, __func__, "Strip length is invalid, i=%d, strips=%d.", i, strip_array[i]);
+        }
         strips.push_back (strip_array[i]);
     }
 
@@ -59,6 +62,9 @@ TriangleStripArray:: TriangleStripArray (int first_index, int num_strips, int* s
 
     strips.reserve (num_strips);
     for (int i = 0; i < num_strips; i++) {
+        if (strip_array[i] <= 2) {
+            throw IllegalArgumentException (__FILE__, __func__, "Strip length is invalid, i=%d, strips=%d.", i, strip_array[i]);
+        }
         strips.push_back (strip_array[i]);
     }
   
@@ -94,6 +100,45 @@ TriangleStripArray* TriangleStripArray:: duplicate () const
     //glBufferData (GL_ELEMENT_ARRAY_BUFFER, sizeof(int)*index_count, tris->indices, GL_STATIC_DRAW);
     return tris;
 }
+
+int TriangleStripArray:: getFaceCount () const
+{
+    int count = 0;
+    for (int i = 0; i < (int)strips.size(); i++) {
+        count += strips[i] - 2;
+    }
+    return count;
+}
+
+int TriangleStripArray:: getFaceVertexCount () const
+{
+    return 3;
+}
+
+void TriangleStripArray:: getFaceVertexIndex (int face, int* vertex_indices) const
+{
+    if (face < 0 || face >= getFaceCount()) {
+        throw IllegalArgumentException (__FILE__, __func__, "Face index is invalid, face=%d.", face);
+    }
+    if (indices == NULL) {
+        throw NullPointerException (__FILE__, __func__, "Indices is NULL.");
+    }
+
+    int index = 0;
+    for (int i = 0; i < (int)strips.size(); i++) {
+        index += strips[i];
+        face  -= strips[i]-2;
+        if (face < 0) {
+            index += face;
+            break;
+        }
+    }
+    vertex_indices[0] = indices[index-2];
+    vertex_indices[1] = indices[index-1];
+    vertex_indices[2] = indices[index-0];
+}
+
+
 
 int TriangleStripArray:: getIndexCount () const
 {

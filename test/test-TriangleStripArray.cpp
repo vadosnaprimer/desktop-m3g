@@ -61,3 +61,37 @@ TEST (TriangleStripArray_duplicate)
     // duplicate()は深いコピーなので
     // インターフェースがないのでチェックできない……
 }
+
+TEST (TriangleStripArray_get_face_index)
+{
+    int strips[3] = {4,3,3};
+    TriangleStripArray* tris = new TriangleStripArray (100, 3, strips);
+    
+    CHECK_EQUAL (4, tris->getFaceCount());
+    CHECK_EQUAL (3, tris->getFaceVertexCount());
+    
+    int indices[3];
+
+    tris->getFaceVertexIndex (0, indices);
+    CHECK_EQUAL (100, indices[0]);
+    CHECK_EQUAL (101, indices[1]);
+    CHECK_EQUAL (102, indices[2]);
+
+    tris->getFaceVertexIndex (1, indices);
+    CHECK_EQUAL (101, indices[0]);
+    CHECK_EQUAL (102, indices[1]);
+    CHECK_EQUAL (103, indices[2]);
+
+    tris->getFaceVertexIndex (2, indices);
+    CHECK_EQUAL (104, indices[0]);
+    CHECK_EQUAL (105, indices[1]);
+    CHECK_EQUAL (106, indices[2]);
+
+    tris->getFaceVertexIndex (3, indices);
+    CHECK_EQUAL (107, indices[0]);
+    CHECK_EQUAL (108, indices[1]);
+    CHECK_EQUAL (109, indices[2]);
+
+
+
+}

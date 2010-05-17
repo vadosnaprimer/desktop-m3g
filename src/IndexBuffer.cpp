@@ -20,12 +20,8 @@ IndexBuffer* IndexBuffer:: duplicate () const
 }
 
 
-/**
- *
- */
 int IndexBuffer:: getFaceCount () const
 {
-    // 後で実装する
     return 0;
 }
 
@@ -34,16 +30,14 @@ int IndexBuffer:: getFaceCount () const
  */
 int IndexBuffer:: getFaceVertexCount () const
 {
-    // 後で実装する
     return 0;
 }
 
-/**
- *
- */
-void IndexBuffer:: getFaceIndex (int face, int* indices) const
+void IndexBuffer:: getFaceVertexIndex (int face, int* vertex_indices) const
 {
-    // 後で実装する
+    if (face < 0 || face > getFaceCount()) {
+        throw IndexOutOfBoundsException (__FILE__, __func__, "Face index is invalid. face=%d.", face);
+    }
     return;
 }
 
