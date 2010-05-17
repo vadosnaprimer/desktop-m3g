@@ -34,7 +34,14 @@ void quit ()
   exit (0);
 }
 
-void keyboard(unsigned char key, int x, int y)
+void mouse (int button, int state, int x, int y)
+{
+    cout << "mouse button = " << button << "\n";
+    cout << "mouse state = " << state << "\n";
+    cout << "x = %d" << x << ", y = " << y << "\n";
+}
+
+void keyboard (unsigned char key, int x, int y)
 {
   switch (key) {
   case 'q':
@@ -99,6 +106,7 @@ int main (int argc, char** argv)
   objs.push_back (wld);
 
   glutKeyboardFunc(keyboard);
+  glutMouseFunc(mouse);
   glutDisplayFunc(display);
   glutReshapeFunc(resize);
   glutMainLoop ();

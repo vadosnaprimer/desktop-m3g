@@ -67,6 +67,11 @@ float RayIntersection:: getTextureT (int index) const
     return 0;
 }
 
+void RayIntersection:: transform (const Transform& trans)
+{
+    // 後で実装する
+}
+
 std::ostream& RayIntersection:: print (std::ostream& out) const
 {
     out << "RayIntersection: \n";

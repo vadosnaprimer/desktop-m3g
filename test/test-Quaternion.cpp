@@ -222,8 +222,8 @@ TEST (Quaternion_matrix2quat)
     float  angle = 120;
     Vector axis (-1,0,0);
     axis.normalize();
-    cout << "angle = " << angle << "\n";
-    cout << "axis  = " << axis  << "\n";
+    //cout << "angle = " << angle << "\n";
+    //cout << "axis  = " << axis  << "\n";
     Matrix mat;
     mat.setRotate (angle, axis.x, axis.y, axis.z);
 
@@ -232,6 +232,10 @@ TEST (Quaternion_matrix2quat)
     float angle_axis[4];
     q.getAngleAxis (angle_axis);
 
-    cout << "q = " << q << "\n";
-
+    // 注意：回転方向が逆だが気にしなくて良い
+    //cout << "q = " << q << "\n";
+    CHECK_CLOSE (240, angle_axis[0], 0.00001f);
+    CHECK_CLOSE (1,   angle_axis[1], 0.00001f);
+    CHECK_CLOSE (0,   angle_axis[2], 0.00001f);
+    CHECK_CLOSE (0,   angle_axis[3], 0.00001f);
 }

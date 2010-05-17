@@ -5,6 +5,8 @@
 #include "Appearance.hpp"
 #include "Exception.hpp"
 #include "RenderState.hpp"
+#include "Intersect.hpp"
+#include "Vector.hpp"
 #include <iostream>
 using namespace std;
 using namespace m3g;
@@ -114,8 +116,51 @@ void Mesh:: setAppearance (int index, Appearance* appearance)
         appearances.erase (it);
     }
 
-    // 古い方はdeleteした方が良い？
 }
+
+bool Mesh:: intersect (const Vector& org, const Vector& dir, RayIntersection* ri) const
+{
+    float scale_bias[4];
+    VertexArray* positions = vertices->getPositions(scale_bias);
+    bool ray_hit;
+    float ray_u, ray_v, ray_d;
+
+
+    for (int i = 0; i < (int)indices.size(); i++) {
+        int   face_count        = indices[i]->getFaceCount();
+        int   face_vertex_count = indices[i]->getFaceVertexCount();
+        int   index_values[3];
+        float position_values[3][3];
+
+        for (int f = 0; f < face_count; f++) {
+            indices[i]->getFaceIndex (f, index_values);
+            positions->get (index_values[0], 1, position_values[0]);
+            positions->get (index_values[1], 1, position_values[1]);
+            positions->get (index_values[2], 1, position_values[2]);
+            Vector v0 = Vector(position_values[0]);
+            Vector v1 = Vector(position_values[1]);
+            Vector v2 = Vector(position_values[2]);
+            float u, v, d;
+            bool hit = triangle_intersect (org, dir, position_values[0], position_values[1], position_values[2], &u, &v, &d);
+            if (hit && d < ray_d) {
+                ray_hit = true;
+                ray_u = u;
+                ray_v = v;
+                ray_d = d;
+            }
+        }
+
+    }
+    
+    if (ray_hit) {
+        // RayIntersectionを作る
+        return true;
+    }
+        
+    return false;
+}
+
+
 
 /**
  * Note: Mesh should be rendered only at second rendering pass(pass=2).

@@ -20,6 +20,34 @@ IndexBuffer* IndexBuffer:: duplicate () const
 }
 
 
+/**
+ *
+ */
+int IndexBuffer:: getFaceCount () const
+{
+    // 後で実装する
+    return 0;
+}
+
+/**
+ *
+ */
+int IndexBuffer:: getFaceVertexCount () const
+{
+    // 後で実装する
+    return 0;
+}
+
+/**
+ *
+ */
+void IndexBuffer:: getFaceIndex (int face, int* indices) const
+{
+    // 後で実装する
+    return;
+}
+
+
 int IndexBuffer:: getIndexCount () const
 {
     return 0;

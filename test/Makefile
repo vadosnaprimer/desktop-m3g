@@ -410,7 +410,7 @@ test-Keyframe.o: /usr/include/unittest++/TimeHelpers.h
 test-Keyframe.o: /usr/include/unittest++/Posix/TimeHelpers.h
 test-Keyframe.o: /usr/include/sys/time.h /usr/include/bits/time.h
 test-Keyframe.o: /usr/include/sys/select.h /usr/include/bits/select.h
-test-Keyframe.o: ../src/Keyframe.hpp
+test-Keyframe.o: ../src/Keyframe.hpp ../src/Quaternion.hpp
 test-KeyframeSequence.o: /usr/include/unittest++/UnitTest++.h
 test-KeyframeSequence.o: /usr/include/unittest++/Config.h
 test-KeyframeSequence.o: /usr/include/unittest++/Test.h
@@ -817,7 +817,7 @@ test-Quaternion.o: /usr/include/unittest++/TimeHelpers.h
 test-Quaternion.o: /usr/include/unittest++/Posix/TimeHelpers.h
 test-Quaternion.o: /usr/include/sys/time.h /usr/include/bits/time.h
 test-Quaternion.o: /usr/include/sys/select.h /usr/include/bits/select.h
-test-Quaternion.o: ../src/Quaternion.hpp
+test-Quaternion.o: ../src/Quaternion.hpp ../src/Matrix.hpp ../src/Vector.hpp
 test-SkinnedMesh.o: /usr/include/unittest++/UnitTest++.h
 test-SkinnedMesh.o: /usr/include/unittest++/Config.h
 test-SkinnedMesh.o: /usr/include/unittest++/Test.h

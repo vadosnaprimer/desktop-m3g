@@ -150,10 +150,32 @@ TEST (Vector_cross)
     Vector v3 = Vector(-1,1,0).normalize();
     Vector v4 = Vector(-1,0,0).normalize();
 
-    cout << "v1 x v1 = " << cross(v1, v1) << "\n";
-    cout << "v1 x v2 = " << cross(v1, v2) << "\n";
-    cout << "v1 x v3 = " << cross(v1, v3) << "\n";
-    cout << "v1 x v4 = " << cross(v1, v4) << "\n";
+    //cout << "v1 x v1 = " << cross(v1, v1) << "\n";
+    //cout << "v1 x v2 = " << cross(v1, v2) << "\n";
+    //cout << "v1 x v3 = " << cross(v1, v3) << "\n";
+    //cout << "v1 x v4 = " << cross(v1, v4) << "\n";
+
+    CHECK_CLOSE (0, cross(v1,v1).x, 0.00001f);
+    CHECK_CLOSE (0, cross(v1,v1).y, 0.00001f);
+    CHECK_CLOSE (0, cross(v1,v1).z, 0.00001f);
+    CHECK_CLOSE (1, cross(v1,v1).w, 0.00001f);
+
+    CHECK_CLOSE (0,        cross(v1,v2).x, 0.00001f);
+    CHECK_CLOSE (0,        cross(v1,v2).y, 0.00001f);
+    CHECK_CLOSE (0.707107, cross(v1,v2).z, 0.00001f);
+    CHECK_CLOSE (1,        cross(v1,v2).w, 0.00001f);
+
+    CHECK_CLOSE (0,        cross(v1,v3).x, 0.00001f);
+    CHECK_CLOSE (0,        cross(v1,v3).y, 0.00001f);
+    CHECK_CLOSE (0.707107, cross(v1,v3).z, 0.00001f);
+    CHECK_CLOSE (1,        cross(v1,v3).w, 0.00001f);
+
+    CHECK_CLOSE (0,        cross(v1,v4).x, 0.00001f);
+    CHECK_CLOSE (0,        cross(v1,v4).y, 0.00001f);
+    CHECK_CLOSE (0,        cross(v1,v4).z, 0.00001f);
+    CHECK_CLOSE (1,        cross(v1,v4).w, 0.00001f);
+
+
 }
 
 

@@ -7,6 +7,7 @@
 namespace m3g {
 
     class Node;
+    class Transform;
 
     /**
      * @~English A RayInersection objet is filled in by the pick methods in Group.
@@ -81,6 +82,11 @@ namespace m3g {
          * @~Japanese ピックしたMesh,Sprite3Dの交差地点のテクスチャー座標Tを返す.
          */
         float getTextureT (int index) const;
+
+        /**
+         * 
+         */
+        void transform (const Transform& trans);
 
         /**
          * @~English  Print out information of this object, for debug only.

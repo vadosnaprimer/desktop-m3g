@@ -11,6 +11,7 @@ namespace m3g {
     class VertexBuffer;
     class IndexBuffer;
     class Appearance;
+    class RayIntersection;
 
     /**
      * @~English  A scene graph node that represents a 3D object defined as a polygonal surface.
@@ -84,6 +85,12 @@ namespace m3g {
          * @~Japanese 指定されたサブメッシュのアピアランスを設定.
          */
         void setAppearance (int index, Appearance* appearance);
+
+
+        /**
+         * (ox,oy,oz),(dx,dy,dz)はこのメッシュのローカル座標系.RayIntersectionも同じ.
+         */
+        bool intersect (const Vector& org, const Vector& dir, RayIntersection* ri) const;
 
         /**
          * @~English  Print out information of this object, for only debug.

@@ -9,7 +9,7 @@
 namespace m3g {
 
     class RayIntersection;
-
+    class Camera;
 
     /**
      * @~Enslish  A scene graph node that stores an unordered set of nodes as its children.
@@ -69,10 +69,18 @@ namespace m3g {
 
         /**
          * @~Enslish  Picks the first Mesh or scaled Sprite3D in this Group that is enabled for picking,
-         *         is intercepted by the given pick ray, and is in the specified scope.
+         *            is intercepted by the given pick ray, and is in the specified scope.
+         * @~Japanese このグループのMeshのうち同じスコープでピッキング可能な最初にヒットしたMeshを返す.
+         */
+        bool pick (int scope, float x, float y, const Camera* camera, RayIntersection* ri) const;
+
+        /**
+         * @~Enslish  Picks the first Mesh or scaled Sprite3D in this Group that is enabled for picking,
+         *            is intercepted by the given pick ray, and is in the specified scope.
          * @~Japanese このグループのピッキング可能なMesh,scaled Sprite3Dのうち同じスコープで、指定されたピッキング光線で最初にヒットしたノードを返す.
          */
         bool pick (int scope, float ox, float oy, float oz, float dx, float dy, float dz, RayIntersection* ri) const;
+
 
         /**
          * @~Enslish  Picks the first Mesh in this Group that is itercepted by the given pick ray and is in the specified scope.

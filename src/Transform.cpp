@@ -2,6 +2,7 @@
 #include "Vector.hpp"
 #include "Exception.hpp"
 #include "Quaternion.hpp"
+#include "Vector.hpp"
 #include <iostream>
 #include <cstring>
 #include <cmath>
@@ -119,8 +120,14 @@ void Transform:: transform (float* vectors) const
 void Transform:: transform (VertexArray* in, float* out, bool w) const
 {
     // 
-
+    // あれ実装していない？
 }
+
+Vector Transform:: transform (const Vector& vector) const
+{
+    return Vector(0,0,0);
+}
+
 
 void Transform:: transpose ()
 {

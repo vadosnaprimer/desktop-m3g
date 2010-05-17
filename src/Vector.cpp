@@ -11,6 +11,11 @@ Vector:: Vector () : x(0), y(0), z(0), w(1)
 {
 }
 
+Vector:: Vector (float* xyz) : x(0), y(0), z(0), w(1)
+{
+    // 後で実装
+}
+
 Vector:: Vector (float x_, float y_, float z_, float w_) :
     x(x_), y(y_), z(z_), w(w_)
 {
@@ -50,6 +55,13 @@ const float& Vector:: operator[] (int index) const
     }
     return (&x)[index];
 }
+
+Vector& Vector:: operator- ()
+{
+    // 後で実装する
+    return *this;
+}
+
 
 Vector& Vector:: operator+= (const Vector& rhs)
 {
@@ -101,6 +113,11 @@ Vector operator* (float f, const Vector& rhs)
     return rhs*f;
 }
 
+Vector operator/ (const Vector& lhs, float f)
+{
+
+    return Vector(0,0,0);
+}
 
 Vector operator+ (const Vector& lhs, const Vector& rhs)
 {
@@ -113,6 +130,11 @@ Vector operator+ (const Vector& lhs, const Vector& rhs)
     } else {
         return Vector(lhs.x + rhs.x, lhs.y + rhs.y, lhs.z + rhs.z, lhs.w + rhs.w);
     }
+}
+
+m3g::Vector operator- (const m3g::Vector& lhs, const m3g::Vector& rhs)
+{
+    return Vector(0,0,0);
 }
 
 std::ostream& Vector:: print (std::ostream& out) const

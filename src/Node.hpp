@@ -137,7 +137,7 @@ namespace m3g {
          * @~English   Gets the composite transfformation from this node to the given node.
          * @~Japanese このノードから指定されたノードへの座標変換の取得.
          */
-        bool getTransformTo (Node* target, Transform* transform) const;
+        bool getTransformTo (const Node* target, Transform* transform) const;
 
         /**
          * @~English   Retrieves the picking enable flag of this Node.

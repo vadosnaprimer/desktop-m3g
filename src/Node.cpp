@@ -269,7 +269,7 @@ int Node:: getScope () const
     return scope;
 }
 
-bool Node:: getTransformTo (Node* target, Transform* transform) const
+bool Node:: getTransformTo (const Node* target, Transform* transform) const
 {
     if (target == NULL) {
         throw NullPointerException (__FILE__, __func__, "Target is NULL.");

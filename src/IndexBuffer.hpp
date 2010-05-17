@@ -36,6 +36,21 @@ namespace m3g {
         virtual IndexBuffer* duplicate () const;
 
         /**
+         *
+         */
+        virtual int getFaceCount () const;
+
+        /**
+         *
+         */
+        virtual int getFaceVertexCount () const;
+
+        /**
+         *
+         */
+        virtual void getFaceIndex (int face, int* indices) const;
+
+        /**
          * @~English  Returns the number of indices in this buffer.
          * @~Japanese このバッファーのインデックスの数を取得.
          */

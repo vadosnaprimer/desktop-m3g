@@ -8,6 +8,7 @@
 namespace m3g {
 
     class VertexArray;
+    class Vector;
 
     /**
      * @~English  A generic 4x4 floating point matrix, representing a transformation.
@@ -106,6 +107,11 @@ namespace m3g {
          *            結果はfloatの配列として収納する.
          */
         void transform (VertexArray* in, float* out, bool w) const;
+
+        /**
+         *
+         */
+        Vector transform (const Vector& vector) const;
 
         /**
          * @~English  Transpose this matrix.
