@@ -25,7 +25,7 @@ namespace m3g {
         float& operator[] (int n);
         const float& operator[] (int n) const;
 
-        Vector& operator- ();
+        Vector operator- () const;
 
         Vector& operator+= (const Vector& rhs);
 

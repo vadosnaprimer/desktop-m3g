@@ -13,7 +13,10 @@ Vector:: Vector () : x(0), y(0), z(0), w(1)
 
 Vector:: Vector (float* xyz) : x(0), y(0), z(0), w(1)
 {
-    // 後で実装
+    x = xyz[0];
+    y = xyz[1];
+    z = xyz[2];
+    w = 1;
 }
 
 Vector:: Vector (float x_, float y_, float z_, float w_) :
@@ -27,16 +30,22 @@ Vector:: ~Vector ()
 
 void Vector:: get (float* xyz) const
 {
-    if (w == 0) {
-        throw ArithmeticException (__FILE__, __func__, "W component is 0.");
+    if (w != 0) {
+        xyz[0] = x/w; 
+        xyz[1] = y/w;
+        xyz[2] = z/w;
+    } else {
+        xyz[0] = x;
+        xyz[1] = y;
+        xyz[2] = z;
     }
-    xyz[0] = x/w; 
-    xyz[1] = y/w;
-    xyz[2] = z/w;
 }
 
 float Vector:: length () const
 {
+    if (w == 0) {
+        throw ArithmeticException (__FILE__, __func__, "Lenght of vector, but w is 0.");
+    }
     return sqrtf ((x*x+y*y+z*z)/(w*w));
 }
 
@@ -56,10 +65,14 @@ const float& Vector:: operator[] (int index) const
     return (&x)[index];
 }
 
-Vector& Vector:: operator- ()
+Vector Vector:: operator- () const
 {
-    // 後で実装する
-    return *this;
+    Vector v;
+    v.x = -x;
+    v.y = -y;
+    v.z = -z;
+    v.w =  w;
+    return v;
 }
 
 
@@ -115,8 +128,14 @@ Vector operator* (float f, const Vector& rhs)
 
 Vector operator/ (const Vector& lhs, float f)
 {
-
-    return Vector(0,0,0);
+    if (f == 0) {
+        throw ArithmeticException (__FILE__, __func__, "Divided by 0. in Vector/f.");
+    }
+    Vector v (lhs);
+    v.x /= f;
+    v.y /= f;
+    v.z /= f;
+    return v;
 }
 
 Vector operator+ (const Vector& lhs, const Vector& rhs)
@@ -134,7 +153,17 @@ Vector operator+ (const Vector& lhs, const Vector& rhs)
 
 m3g::Vector operator- (const m3g::Vector& lhs, const m3g::Vector& rhs)
 {
-    return Vector(0,0,0);
+    if (lhs.w != rhs.w && lhs.w != 0 && rhs.w != 0) {
+        throw IllegalArgumentException (__FILE__, __func__, "Subtracted vectors with different w. lhs.w=%f, rhs.w=%f.", lhs.w, rhs.w);
+    }
+
+    if (lhs.w == rhs.w) {
+        return Vector(lhs.x - rhs.x, lhs.y - rhs.y, lhs.z - rhs.z, lhs.w);
+    } else if (lhs.w == 0) {
+        return Vector(lhs.x - rhs.x, lhs.y - rhs.y, lhs.z - rhs.z, rhs.w);
+    } else {
+        return Vector(lhs.x - rhs.x, lhs.y - rhs.y, lhs.z - rhs.z, lhs.w);
+    }
 }
 
 std::ostream& Vector:: print (std::ostream& out) const

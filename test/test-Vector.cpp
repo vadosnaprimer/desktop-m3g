@@ -5,22 +5,47 @@
 using namespace std;
 using namespace m3g;
 
+
+TEST (Vector_defualt_variables)
+{
+    Vector v;
+    
+    CHECK_EQUAL (0, v[0]);
+    CHECK_EQUAL (0, v[1]);
+    CHECK_EQUAL (0, v[2]);
+    CHECK_EQUAL (1, v[3]);
+}
+
 TEST (Vector_set_variables)
 {
-    Vector v (1,2,3,4);
+    Vector v0 (1,2,3,4);
   
-    CHECK_EQUAL (1.f, v[0]);
-    CHECK_EQUAL (2.f, v[1]);
-    CHECK_EQUAL (3.f, v[2]);
-    CHECK_EQUAL (4.f, v[3]);
-  
-    float f[4] = {0,0,0,999};
+    CHECK_EQUAL (1.f, v0[0]);
+    CHECK_EQUAL (2.f, v0[1]);
+    CHECK_EQUAL (3.f, v0[2]);
+    CHECK_EQUAL (4.f, v0[3]);
 
-    v.get (f);
-    CHECK_EQUAL (1/4.f, f[0]);
-    CHECK_EQUAL (2/4.f, f[1]);
-    CHECK_EQUAL (3/4.f, f[2]);
-    CHECK_EQUAL (999.f, f[3]);
+    float f[4] = {5,6,7};
+    Vector v1 (f);
+
+    CHECK_EQUAL (5.f, v1[0]);
+    CHECK_EQUAL (6.f, v1[1]);
+    CHECK_EQUAL (7.f, v1[2]);
+    CHECK_EQUAL (1.f, v1[3]);
+
+    float value[4] = {0,0,0,0};
+
+    v0.get (value);
+    CHECK_EQUAL (1/4.f, value[0]);
+    CHECK_EQUAL (2/4.f, value[1]);
+    CHECK_EQUAL (3/4.f, value[2]);
+    CHECK_EQUAL (0.f  , value[3]);
+
+    v1.get (value);
+    CHECK_EQUAL (5.f, value[0]);
+    CHECK_EQUAL (6.f, value[1]);
+    CHECK_EQUAL (7.f, value[2]);
+    CHECK_EQUAL (0.f, value[3]);
 }
 
 TEST (Vector_length)
@@ -85,6 +110,30 @@ TEST (Vector_plus)
     CHECK_CLOSE (2, v3.w, 0.00001);
 }
 
+TEST (Vector_minu)
+{
+    Vector v0(1,2,3,2);
+    Vector v1(2,4,6,2);
+    Vector v3;
+
+    v3 = v1 - v0;
+
+    CHECK_CLOSE (1, v3.x, 0.00001);
+    CHECK_CLOSE (2, v3.y, 0.00001);
+    CHECK_CLOSE (3, v3.z, 0.00001);
+    CHECK_CLOSE (2, v3.w, 0.00001);
+}
+
+TEST (Vector_unary_minus)
+{
+    Vector v0(1,2,3,2);
+    Vector v1 = -v0;
+    CHECK_CLOSE (-1, v1.x, 0.00001);
+    CHECK_CLOSE (-2, v1.y, 0.00001);
+    CHECK_CLOSE (-3, v1.z, 0.00001);
+    CHECK_CLOSE (2,  v1.w, 0.00001);
+}
+
 TEST (Vector_plus_equal)
 {
     Vector v0(1,2,3,2);
@@ -127,6 +176,18 @@ TEST (Vector_mul_float)
     CHECK_CLOSE (12, v0.y, 0.00001);
     CHECK_CLOSE (18, v0.z, 0.00001);
     CHECK_CLOSE (2, v0.w, 0.00001);
+}
+
+TEST (Vector_div_float)
+{
+    Vector v0(2,4,6,8);
+    v0 = v0 / 2.f;
+
+    CHECK_CLOSE (1, v0.x, 0.00001);
+    CHECK_CLOSE (2, v0.y, 0.00001);
+    CHECK_CLOSE (3, v0.z, 0.00001);
+    CHECK_CLOSE (8, v0.w, 0.00001);
+
 }
 
 
