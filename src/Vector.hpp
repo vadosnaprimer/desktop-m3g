@@ -13,7 +13,7 @@ namespace m3g {
     {
     public:
         Vector ();
-        Vector (float* xyz);
+        explicit Vector (float* xyz);
         Vector (float x, float y, float z, float w=1);
         ~Vector ();
 

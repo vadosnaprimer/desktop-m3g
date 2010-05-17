@@ -120,11 +120,17 @@ void Mesh:: setAppearance (int index, Appearance* appearance)
 
 bool Mesh:: intersect (const Vector& org, const Vector& dir, RayIntersection* ri) const
 {
+    if (org.w != 1 || dir.w != 1) {
+        throw IllegalArgumentException (__FILE__, __func__, "W must be 1. org.w=%f, dir.w=%f.", org.w, dir.w);
+    }
+    if (ri == NULL) {
+        throw NullPointerException (__FILE__, __func__, "RayIntersection is NULL.");
+    }
+
     float scale_bias[4];
     VertexArray* positions = vertices->getPositions(scale_bias);
-    bool ray_hit;
+    bool  ray_hit;
     float ray_u, ray_v, ray_d;
-
 
     for (int i = 0; i < (int)indices.size(); i++) {
         int   face_count        = indices[i]->getFaceCount();
@@ -141,7 +147,7 @@ bool Mesh:: intersect (const Vector& org, const Vector& dir, RayIntersection* ri
             Vector v1 = Vector(position_values[1]);
             Vector v2 = Vector(position_values[2]);
             float u, v, d;
-            bool hit = triangle_intersect (org, dir, position_values[0], position_values[1], position_values[2], &u, &v, &d);
+            bool hit = triangle_intersect (org, dir, v0, v1, v2, &u, &v, &d);
             if (hit && d < ray_d) {
                 ray_hit = true;
                 ray_u = u;

@@ -103,12 +103,17 @@ Vector& Vector:: normalize ()
 
 float m3g::dot (const Vector& p, const Vector& q)
 {
-    float d = p.x*q.x+p.y*q.y+p.z*q.z;
-    return clamp (-1, 1, d);
+    if (p.w != 1 || q.w != 1) {
+        throw ArithmeticException (__FILE__, __func__, "Dot, but w is not 1. p.w=%f, q.w=%f.", p.w, q.w);
+    }
+    return p.x*q.x+p.y*q.y+p.z*q.z;
 }
 
 Vector m3g::cross (const Vector& p, const Vector& q)
 {
+    if (p.w != 1 || q.w != 1) {
+        throw ArithmeticException (__FILE__, __func__, "Cross, but w is not 1. p.w=%f, q.w=%f.", p.w, q.w);
+    }
     return Vector (p.y*q.z-p.z*q.y, p.z*q.x-p.x*q.z, p.x*q.y-p.y*q.x);
 }
 

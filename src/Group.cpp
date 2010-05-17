@@ -125,8 +125,8 @@ bool Group:: pick (int scope, float x, float y, const Camera* camera, RayInterse
             camera->getTransformTo (mesh, &trans);
             Vector org = trans.transform (org_cam);
             Vector dir = trans.transform (dir_cam);
+            dir.w = 1;
             mesh->intersect (org, dir, &ri);
-
         }
         if (ri.getIntersected()) {
             // Camera座標系に戻す
