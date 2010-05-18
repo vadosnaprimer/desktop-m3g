@@ -59,18 +59,18 @@ TEST (Camera_set_variables_parallel)
     CHECK_EQUAL (Camera::PARALLEL, type);
 
     trans.get (m);
-    CHECK_CLOSE (1.f, m[0], 0.00001f);
+    CHECK_CLOSE (0.5f, m[0], 0.00001f);
     CHECK_CLOSE (0.f, m[1], 0.00001f);
     CHECK_CLOSE (0.f, m[2], 0.00001f);
     CHECK_CLOSE (0.f, m[3], 0.00001f);
     CHECK_CLOSE (0.f, m[4], 0.00001f);
-    CHECK_CLOSE (1.f, m[5], 0.00001f);
+    CHECK_CLOSE (0.666667f, m[5], 0.00001f);
     CHECK_CLOSE (0.f, m[6], 0.00001f);
     CHECK_CLOSE (0.f, m[7], 0.00001f);
     CHECK_CLOSE (0.f, m[8], 0.00001f);
     CHECK_CLOSE (0.f, m[9], 0.00001f);
-    CHECK_CLOSE (1.f, m[10], 0.00001f);
-    CHECK_CLOSE (0.f, m[11], 0.00001f);
+    CHECK_CLOSE (-0.020202f, m[10], 0.00001f);
+    CHECK_CLOSE (-1.020200f, m[11], 0.00001f);
     CHECK_CLOSE (0.f, m[12], 0.00001f);
     CHECK_CLOSE (0.f, m[13], 0.00001f);
     CHECK_CLOSE (0.f, m[14], 0.00001f);
@@ -87,35 +87,33 @@ TEST (Camera_set_variables_perspective)
     float m[16];
     int type;
 
-    float width  = 640;
-    float height = 480;
-    float aspect_ratio = width/height;
-    float fovy   = 1.5;
+    float fovy   = 60;
+    float aspect_ratio = 640/480.f;
     float near   = 1;
     float far    = 100;
 
-    cam->setParallel (fovy, aspect_ratio, near, far);
+    cam->setPerspective (fovy, aspect_ratio, near, far);
 
     type = cam->getProjection (&trans);
-    CHECK_EQUAL (Camera::PARALLEL, type);
+    CHECK_EQUAL (Camera::PERSPECTIVE, type);
 
     trans.get (m);
-    CHECK_CLOSE (1.f, m[0], 0.00001f);
+    CHECK_CLOSE (1.29904f, m[0], 0.00001f);
     CHECK_CLOSE (0.f, m[1], 0.00001f);
     CHECK_CLOSE (0.f, m[2], 0.00001f);
     CHECK_CLOSE (0.f, m[3], 0.00001f);
     CHECK_CLOSE (0.f, m[4], 0.00001f);
-    CHECK_CLOSE (1.f, m[5], 0.00001f);
+    CHECK_CLOSE (1.73205f, m[5], 0.00001f);
     CHECK_CLOSE (0.f, m[6], 0.00001f);
     CHECK_CLOSE (0.f, m[7], 0.00001f);
     CHECK_CLOSE (0.f, m[8], 0.00001f);
     CHECK_CLOSE (0.f, m[9], 0.00001f);
-    CHECK_CLOSE (1.f, m[10], 0.00001f);
-    CHECK_CLOSE (0., m[11], 0.00001f);
+    CHECK_CLOSE (-1.0202f, m[10], 0.00001f);
+    CHECK_CLOSE (-2.0202f, m[11], 0.00001f);
     CHECK_CLOSE (0.f, m[12], 0.00001f);
     CHECK_CLOSE (0.f, m[13], 0.00001f);
-    CHECK_CLOSE (0.f, m[14], 0.00001f);
-    CHECK_CLOSE (1.f, m[15], 0.00001f);
+    CHECK_CLOSE (-1.f, m[14], 0.00001f);
+    CHECK_CLOSE (0.f, m[15], 0.00001f);
 
     delete cam;    
 }

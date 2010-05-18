@@ -21,6 +21,7 @@ namespace m3g {
         float length () const;
 
         Vector& normalize ();
+        Vector& divided_by_w ();
     
         float& operator[] (int n);
         const float& operator[] (int n) const;
@@ -35,9 +36,9 @@ namespace m3g {
         float x,y,z,w;
     };
 
-    float dot (const Vector& v0, const Vector& v1);
+    float  dot (const Vector& v0, const Vector& v1);
     Vector cross (const Vector& v0, const Vector& v1);
-
+    Vector lerp (float u, float v, const Vector& v0, const Vector& v1, const Vector& v2);
 
 
 }; // namespace m3g {
@@ -47,6 +48,12 @@ m3g::Vector operator* (float f, const m3g::Vector& rhs);
 m3g::Vector operator/ (const m3g::Vector& lhs, float f);
 m3g::Vector operator+ (const m3g::Vector& lhs, const m3g::Vector& rhs);
 m3g::Vector operator- (const m3g::Vector& lhs, const m3g::Vector& rhs);
+
+
+
+
 std::ostream& operator<< (std::ostream& out , const m3g::Vector& v);
+
+
 
 #endif

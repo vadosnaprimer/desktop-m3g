@@ -49,7 +49,7 @@ namespace m3g {
          * @~English  Gets the current color array.
          * @~Japanese カレントのカラー配列の取得.
          */
-        VertexArray* getColors () const;
+        VertexArray* getColors (float* scale_bias=0) const;
 
         /**
          * @~English  Retrieves the default color of this VertexBuffer.
@@ -61,7 +61,7 @@ namespace m3g {
          * @~English  Gets the current normal vector array.
          * @~Japanese カレントの法線ベクトルの配列の取得.
          */
-        VertexArray* getNormals () const;
+        VertexArray* getNormals (float* scale_bias=0) const;
 
         /**
          * @~English  Returns the current vertex position array.

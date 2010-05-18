@@ -9,7 +9,7 @@ using namespace m3g;
 TEST (Vector_defualt_variables)
 {
     Vector v;
-    
+
     CHECK_EQUAL (0, v[0]);
     CHECK_EQUAL (0, v[1]);
     CHECK_EQUAL (0, v[2]);
@@ -55,7 +55,7 @@ TEST (Vector_length)
     CHECK_EQUAL (len, v.length());
 }
 
-TEST (Vector_normal)
+TEST (Vector_normalize)
 {
     Vector v0 (2,1,0);
     Vector v1 (0,2,0,2);
@@ -70,6 +70,17 @@ TEST (Vector_normal)
     //cout << "v0 = " << v0 << "\n";
     //cout << "v1 = " << v1 << "\n";
     //cout << "v2 = " << v2 << "\n";
+}
+
+TEST (Vector_divided_by_w)
+{
+    Vector v0 (4,6,8,2);
+    v0.divided_by_w ();
+    CHECK_CLOSE (2, v0.x, 0.00001f);
+    CHECK_CLOSE (3, v0.y, 0.00001f);
+    CHECK_CLOSE (4, v0.z, 0.00001f);
+    CHECK_CLOSE (1, v0.w, 0.00001f);
+
 }
 
 TEST (Vector_dot_cross)
@@ -235,8 +246,32 @@ TEST (Vector_cross)
     CHECK_CLOSE (0,        cross(v1,v4).y, 0.00001f);
     CHECK_CLOSE (0,        cross(v1,v4).z, 0.00001f);
     CHECK_CLOSE (1,        cross(v1,v4).w, 0.00001f);
-
-
 }
 
 
+TEST (Vector_lerp)
+{
+    Vector v0 (10,10,0);
+    Vector v1 (11,10,0);
+    Vector v2 (10,11,0);
+
+    Vector v3 = lerp (0, 0, v0, v1, v2);
+    CHECK_CLOSE (10.f,   v3.x, 0.00001f);
+    CHECK_CLOSE (10.f,   v3.y, 0.00001f);
+    CHECK_CLOSE (0.f,    v3.z, 0.00001f);
+
+    Vector v4 = lerp (1, 0, v0, v1, v2);
+    CHECK_CLOSE (11.f,   v4.x, 0.00001f);
+    CHECK_CLOSE (10.f,   v4.y, 0.00001f);
+    CHECK_CLOSE (0.f,    v4.z, 0.00001f);
+
+    Vector v5 = lerp (0, 1, v0, v1, v2);
+    CHECK_CLOSE (10.f,   v5.x, 0.00001f);
+    CHECK_CLOSE (11.f,   v5.y, 0.00001f);
+    CHECK_CLOSE (0.f,    v5.z, 0.00001f);
+
+    Vector v6 = lerp (0.5, 0.5, v0, v1, v2);
+    CHECK_CLOSE (10.5f,  v6.x, 0.00001f);
+    CHECK_CLOSE (10.5f,  v6.y, 0.00001f);
+    CHECK_CLOSE (0.f,    v6.z, 0.00001f);
+}

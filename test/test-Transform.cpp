@@ -3,6 +3,7 @@
 #include <cstdlib>
 #include "Transform.hpp"
 #include "Quaternion.hpp"
+#include "Vector.hpp"
 using namespace std;
 using namespace m3g;
 
@@ -18,11 +19,35 @@ TEST (Transform_default_variables)
     CHECK_CLOSE (1, m[3][3], 0.00001);
 }
 
+TEST (Transform_get_variables)
+{
+    Transform trs;
+    Matrix matrix (1,2,3,4,
+                   5,6,7,8,
+                   9,10,11,12,
+                   13,14,15,16);
+    
+    trs.set (matrix);
+
+    Matrix mat; 
+    trs.get (&mat);
+    for (int i = 0; i < 16; i++) {
+        CHECK_CLOSE (mat[i], matrix[i], 0.00001f);
+    }
+
+    float m[16];
+    trs.get (m);
+    for (int i = 0; i < 16; i++) {
+        CHECK_CLOSE (m[i], matrix[i], 0.00001f);
+    }
+    
+}
+
 TEST (Transform_set_variables)
 {
     Transform trs;
     float m[4][4] = {{0,2,3,4},{5,0,7,8},{9,10,0,12},{13,14,15,0}};
-    ;
+
     trs.set ((float*)m);
     trs.get ((float*)m);
     CHECK_CLOSE (0, m[0][0], 0.00001);
@@ -133,5 +158,22 @@ TEST (Transpose_post_rotate)
     }
  
 
+
+}
+
+
+TEST (Transform_transform)
+{
+    Vector v0 (1,2,3);
+    Transform trans;
+    trans.postTranslate (5,10,15);
+    trans.postScale (2,2,2);
+
+    Vector v1 = trans.transform (v0);
+
+    CHECK_CLOSE (7.f,  v1.x, 0.00001f);
+    CHECK_CLOSE (14.f, v1.y, 0.00001f);
+    CHECK_CLOSE (21.f, v1.z, 0.00001f);
+    CHECK_CLOSE (1.f,  v1.w, 0.00001f);
 
 }

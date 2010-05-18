@@ -101,6 +101,19 @@ Vector& Vector:: normalize ()
     return *this;
 }
 
+Vector& Vector:: divided_by_w ()
+{
+    if (w == 0) {
+        throw ArithmeticException (__FILE__, __func__, "Divied by w=0.");
+    }
+    x /= w;
+    y /= w;
+    z /= w;
+    w =  1;
+    return *this;
+}
+
+
 float m3g::dot (const Vector& p, const Vector& q)
 {
     if (p.w != 1 || q.w != 1) {
@@ -116,6 +129,19 @@ Vector m3g::cross (const Vector& p, const Vector& q)
     }
     return Vector (p.y*q.z-p.z*q.y, p.z*q.x-p.x*q.z, p.x*q.y-p.y*q.x);
 }
+
+Vector m3g::lerp (float u, float v, const Vector& v0, const Vector& v1, const Vector& v2)
+{
+    if (v0.w != 1 || v1.w != 1 || v2.w != 1) {
+        throw ArithmeticException (__FILE__, __func__, "lerp, w must be 1, v0.w=%f, v1.w=%f, v2.w=%f.", v0.w, v1.w, v2.w);
+    }
+
+    Vector e1 = v1 - v0;
+    Vector e2 = v2 - v0;
+    return v0 + e1*u + e2*v;
+}
+
+
 
 Vector operator* (const Vector& lhs, float f)
 {

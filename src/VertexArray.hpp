@@ -58,6 +58,12 @@ namespace m3g {
         void get (int first_vertex, int num_vertices, float* values) const;
 
         /**
+         * @~English  Returns a range of 32-bit float vertex attributes.
+         * @~Japanese 頂点データをscale,biasをかけた32bit浮動小数点で取得.
+         */
+        void get (int first_vertex, int num_vertices, float scale, float* bias, float* values) const;
+
+        /**
          * @~English  Returns the number of components per vertex.
          * @~Japanese 1頂点当たりの要素数の取得.
          */

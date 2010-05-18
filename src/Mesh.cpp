@@ -4,10 +4,14 @@
 #include "IndexBuffer.hpp"
 #include "Appearance.hpp"
 #include "Exception.hpp"
+#include "RayIntersection.hpp"
 #include "RenderState.hpp"
 #include "Intersect.hpp"
 #include "Vector.hpp"
 #include <iostream>
+#include <cassert>
+#include <limits>
+#include <cstring>
 using namespace std;
 using namespace m3g;
 
@@ -118,48 +122,69 @@ void Mesh:: setAppearance (int index, Appearance* appearance)
 
 }
 
-bool Mesh:: intersect (const Vector& org, const Vector& dir, RayIntersection* ri) const
+bool Mesh:: intersect (const Vector& org, const Vector& dir, RayIntersection* ri_) const
 {
     if (org.w != 1 || dir.w != 1) {
         throw IllegalArgumentException (__FILE__, __func__, "W must be 1. org.w=%f, dir.w=%f.", org.w, dir.w);
     }
-    if (ri == NULL) {
+    if (ri_ == NULL) {
         throw NullPointerException (__FILE__, __func__, "RayIntersection is NULL.");
     }
 
-    float scale_bias[4];
+    float  scale_bias[4];
+    float& scale = scale_bias[0];
+    float* bias  = &scale_bias[1];
+
     VertexArray* positions = vertices->getPositions(scale_bias);
-    bool  ray_hit;
-    float ray_u, ray_v, ray_d;
+    bool         ray_hit   = false;
+    float        ray_u, ray_v, ray_t = numeric_limits<float>::max();
+    int          ray_index_values[3];
+    int          ray_submesh_index;
+
+    cout << "indices.size() = " << indices.size() << "\n";
 
     for (int i = 0; i < (int)indices.size(); i++) {
-        int   face_count        = indices[i]->getFaceCount();
         int   face_vertex_count = indices[i]->getFaceVertexCount();
-        int   index_values[3];
+        assert (face_vertex_count == 3);
+
+        int   face_count        = indices[i]->getFaceCount();
         float position_values[3][3];
+        int   index_values[3];
 
         for (int f = 0; f < face_count; f++) {
             indices[i]->getFaceVertexIndex (f, index_values);
-            positions->get (index_values[0], 1, position_values[0]);
-            positions->get (index_values[1], 1, position_values[1]);
-            positions->get (index_values[2], 1, position_values[2]);
+            positions->get (index_values[0], 1, scale, bias, position_values[0]);
+            positions->get (index_values[1], 1, scale, bias, position_values[1]);
+            positions->get (index_values[2], 1, scale, bias, position_values[2]);
             Vector v0 = Vector(position_values[0]);
             Vector v1 = Vector(position_values[1]);
             Vector v2 = Vector(position_values[2]);
-            float u, v, d;
-            bool hit = triangle_intersect (org, dir, v0, v1, v2, &u, &v, &d);
-            if (hit && d < ray_d) {
+            cout << "Face = v0=[" << v0 << "], v1=[" << v1 << "], v2=[" << v2 << "]\n";
+            float u, v, t;
+            bool hit = triangle_intersect (org, dir, v0, v1, v2, &u, &v, &t);
+            if (hit && t < ray_t) {
                 ray_hit = true;
                 ray_u = u;
                 ray_v = v;
-                ray_d = d;
+                ray_t = t;
+                ray_submesh_index = i;
+                memcpy (ray_index_values, index_values, sizeof(int)*3);
+                cout << "submesh_index = " << i << "\n";
             }
         }
 
     }
-    
+
+    // ray_何とかよりri_何とかの方が良いか？
+
     if (ray_hit) {
-        // RayIntersectionを作る
+        if (ri_) {
+            *ri_ = RayIntersection (const_cast<Mesh*>(this),
+                                    org, dir, ray_t,
+                                    ray_u, ray_v,
+                                    3, ray_index_values,
+                                    ray_submesh_index);
+        }
         return true;
     }
         

@@ -9,6 +9,7 @@ namespace m3g {
 
     class VertexArray;
     class Vector;
+    class Matrix;
 
     /**
      * @~English  A generic 4x4 floating point matrix, representing a transformation.
@@ -40,6 +41,12 @@ namespace m3g {
          * @~Japanese この変換を16個のfloatの配列として取り出す.
          */
         void get (float* matrix) const;
+
+
+        /**
+         * M3G非標準.
+         */
+        void get (Matrix* matrix) const;
 
         /**
          * @~English  Invertes this matrix, if possible.
@@ -88,6 +95,12 @@ namespace m3g {
          * @~Japanese 指定されたTransformをコピーして変換を設定する.
          */
         void set (const Transform& transform);
+        
+        
+        /**
+         * M3G非標準.
+         */
+        void set (const Matrix& matrix);
 
         /**
          * @~English  Replaces this transformation with the 4x4 identity matrix.

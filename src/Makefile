@@ -71,13 +71,15 @@ Graphics3D.o: Loader.hpp
 Group.o: Group.hpp Node.hpp Transformable.hpp Object3D.hpp
 Group.o: /usr/include/GL/glew.h /usr/include/GL/glu.h /usr/include/GL/gl.h
 Group.o: m3gdef.hpp m3ginternal.hpp Object.hpp Quaternion.hpp Transform.hpp
-Group.o: Matrix.hpp RayIntersection.hpp Exception.hpp World.hpp
+Group.o: Matrix.hpp RayIntersection.hpp Vector.hpp Exception.hpp World.hpp
+Group.o: Camera.hpp Mesh.hpp
 Image2D.o: Image2D.hpp Object3D.hpp /usr/include/GL/glew.h
 Image2D.o: /usr/include/GL/glu.h /usr/include/GL/gl.h m3gdef.hpp
 Image2D.o: m3ginternal.hpp Object.hpp Exception.hpp
 IndexBuffer.o: IndexBuffer.hpp /usr/include/GL/glew.h /usr/include/GL/glu.h
 IndexBuffer.o: /usr/include/GL/gl.h Object3D.hpp m3gdef.hpp m3ginternal.hpp
 IndexBuffer.o: Object.hpp Exception.hpp
+Intersect.o: Intersect.hpp Vector.hpp Exception.hpp m3ginternal.hpp
 Keyframe.o: Keyframe.hpp Quaternion.hpp Exception.hpp
 KeyframeSequence.o: KeyframeSequence.hpp Object3D.hpp /usr/include/GL/glew.h
 KeyframeSequence.o: /usr/include/GL/glu.h /usr/include/GL/gl.h m3gdef.hpp
@@ -109,8 +111,8 @@ Loader.o: KeyframeSequence.hpp Keyframe.hpp Material.hpp PolygonMode.hpp
 Loader.o: Transformable.hpp Quaternion.hpp Transform.hpp Matrix.hpp Node.hpp
 Loader.o: Camera.hpp Group.hpp World.hpp Light.hpp Mesh.hpp MorphingMesh.hpp
 Loader.o: SkinnedMesh.hpp BoneIndex.hpp Sprite3D.hpp Texture2D.hpp
-Loader.o: VertexArray.hpp VertexBuffer.hpp RayIntersection.hpp Loader.hpp
-Loader.o: Exception.hpp RenderState.hpp /usr/include/stdlib.h
+Loader.o: VertexArray.hpp VertexBuffer.hpp RayIntersection.hpp Vector.hpp
+Loader.o: Loader.hpp Exception.hpp RenderState.hpp /usr/include/stdlib.h
 Loader.o: /usr/include/alloca.h
 Material.o: Material.hpp Object3D.hpp /usr/include/GL/glew.h
 Material.o: /usr/include/GL/glu.h /usr/include/GL/gl.h m3gdef.hpp
@@ -122,7 +124,8 @@ Mesh.o: Mesh.hpp Node.hpp Transformable.hpp Object3D.hpp
 Mesh.o: /usr/include/GL/glew.h /usr/include/GL/glu.h /usr/include/GL/gl.h
 Mesh.o: m3gdef.hpp m3ginternal.hpp Object.hpp Quaternion.hpp Transform.hpp
 Mesh.o: Matrix.hpp VertexBuffer.hpp VertexArray.hpp IndexBuffer.hpp
-Mesh.o: Appearance.hpp Exception.hpp RenderState.hpp
+Mesh.o: Appearance.hpp Exception.hpp RayIntersection.hpp Vector.hpp
+Mesh.o: RenderState.hpp Intersect.hpp
 MorphingMesh.o: MorphingMesh.hpp Mesh.hpp Node.hpp Transformable.hpp
 MorphingMesh.o: Object3D.hpp /usr/include/GL/glew.h /usr/include/GL/glu.h
 MorphingMesh.o: /usr/include/GL/gl.h m3gdef.hpp m3ginternal.hpp Object.hpp
@@ -134,7 +137,7 @@ Node.o: Node.hpp Transformable.hpp Object3D.hpp /usr/include/GL/glew.h
 Node.o: /usr/include/GL/glu.h /usr/include/GL/gl.h m3gdef.hpp m3ginternal.hpp
 Node.o: Object.hpp Quaternion.hpp Transform.hpp Matrix.hpp Exception.hpp
 Node.o: AnimationTrack.hpp AnimationController.hpp KeyframeSequence.hpp
-Node.o: Keyframe.hpp RenderState.hpp
+Node.o: Keyframe.hpp RenderState.hpp Vector.hpp
 Object.o: Object.hpp
 Object3D.o: Object3D.hpp /usr/include/GL/glew.h /usr/include/GL/glu.h
 Object3D.o: /usr/include/GL/gl.h m3gdef.hpp m3ginternal.hpp Object.hpp
@@ -143,10 +146,13 @@ PolygonMode.o: PolygonMode.hpp Object3D.hpp /usr/include/GL/glew.h
 PolygonMode.o: /usr/include/GL/glu.h /usr/include/GL/gl.h m3gdef.hpp
 PolygonMode.o: m3ginternal.hpp Object.hpp Exception.hpp RenderState.hpp
 Quaternion.o: Quaternion.hpp Exception.hpp m3ginternal.hpp Vector.hpp
-RayIntersection.o: RayIntersection.hpp Object.hpp Exception.hpp Node.hpp
-RayIntersection.o: Transformable.hpp Object3D.hpp /usr/include/GL/glew.h
-RayIntersection.o: /usr/include/GL/glu.h /usr/include/GL/gl.h m3gdef.hpp
-RayIntersection.o: m3ginternal.hpp Quaternion.hpp Transform.hpp Matrix.hpp
+Quaternion.o: Matrix.hpp
+RayIntersection.o: RayIntersection.hpp Object.hpp Vector.hpp Exception.hpp
+RayIntersection.o: VertexBuffer.hpp /usr/include/GL/glew.h
+RayIntersection.o: /usr/include/GL/glu.h /usr/include/GL/gl.h Object3D.hpp
+RayIntersection.o: m3gdef.hpp m3ginternal.hpp VertexArray.hpp Mesh.hpp
+RayIntersection.o: Node.hpp Transformable.hpp Quaternion.hpp Transform.hpp
+RayIntersection.o: Matrix.hpp
 RenderState.o: RenderState.hpp
 SkinnedMesh.o: SkinnedMesh.hpp Mesh.hpp Node.hpp Transformable.hpp
 SkinnedMesh.o: Object3D.hpp /usr/include/GL/glew.h /usr/include/GL/glu.h
@@ -179,7 +185,7 @@ TriangleStripArray.o: /usr/include/GL/glew.h /usr/include/GL/glu.h
 TriangleStripArray.o: /usr/include/GL/gl.h Object3D.hpp m3gdef.hpp
 TriangleStripArray.o: m3ginternal.hpp Object.hpp Exception.hpp
 TriangleStripArray.o: RenderState.hpp
-Vector.o: Vector.hpp Exception.hpp
+Vector.o: Vector.hpp Exception.hpp m3ginternal.hpp
 VertexArray.o: VertexArray.hpp /usr/include/GL/glew.h /usr/include/GL/glu.h
 VertexArray.o: /usr/include/GL/gl.h Object3D.hpp m3gdef.hpp m3ginternal.hpp
 VertexArray.o: Object.hpp Exception.hpp Vector.hpp BoneIndex.hpp Matrix.hpp

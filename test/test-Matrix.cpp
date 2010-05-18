@@ -206,3 +206,26 @@ TEST (Matrix_multiply_Vector)
     CHECK_CLOSE (-7, vec2.w, 0.0001);
 
 }
+
+TEST (Matrix_make_parallel_projection_matrix)
+{
+    float  width  = 640;
+    float  height = 480;
+    float  aspect_ratio = width/height;
+    float  near   = 1;
+    float  far    = 100;
+    Matrix proj   = make_parallel_projection_matrix (height, aspect_ratio, near, far);
+
+    cout << "parallel projection = " << proj << "\n";
+}
+
+TEST (Matrix_make_perspective_projection_matrix)
+{
+    float  fovy   = 60;
+    float  aspect_ratio = 640/480.f;
+    float  near   = 1;
+    float  far    = 100;
+    Matrix proj   = make_perspective_projection_matrix (fovy, aspect_ratio, near, far);
+
+    cout << "perspective projection = " << proj << "\n";
+}

@@ -44,7 +44,9 @@ namespace m3g {
     };
 
 
-
+    Matrix make_parallel_projection_matrix    (float height, float aspect_ratio, float near, float far);
+    Matrix make_perspective_projection_matrix (float fovy, float aspect_ratio, float near, float far);
+    
 } // namespace m3g {
 
 

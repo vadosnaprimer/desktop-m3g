@@ -122,8 +122,16 @@ int VertexBuffer:: animate (int world_time)
     return 0;
 }
 
-VertexArray* VertexBuffer:: getColors () const
+VertexArray* VertexBuffer:: getColors (float* scale_bias) const
 {
+    if (colors) {
+        if (scale_bias) {
+            scale_bias[0] = 1/255.f;
+            scale_bias[1] = 0;
+            scale_bias[2] = 0;
+            scale_bias[3] = 0;
+        }
+    }
     return colors;
 }
 
@@ -133,18 +141,29 @@ int VertexBuffer:: getDefaultColor () const
     return default_color;
 }
 
-VertexArray* VertexBuffer:: getNormals () const
+VertexArray* VertexBuffer:: getNormals (float* scale_bias) const
 {
+    if (normals) {
+        int component_size = normals->getComponentType();
+        if (scale_bias) {
+            scale_bias[0] = (component_size == 1) ? 2/255.f : (component_size == 2) ? 2/65535.f : 1.f;
+            scale_bias[1] = (component_size == 1) ? 1/255.f : (component_size == 2) ? 1/65535.f : 0.f;
+            scale_bias[2] = (component_size == 1) ? 1/255.f : (component_size == 2) ? 1/65535.f : 0.f;
+            scale_bias[3] = (component_size == 1) ? 1/255.f : (component_size == 2) ? 1/65535.f : 0.f;
+        }
+    }
     return normals;
 }
 
 VertexArray* VertexBuffer:: getPositions (float* scale_bias) const
 {
-    if (scale_bias) {
-        scale_bias[0] = positions_scale;
-        scale_bias[1] = positions_bias[0];
-        scale_bias[2] = positions_bias[1];
-        scale_bias[3] = positions_bias[2];
+    if (positions) {
+        if (scale_bias) {
+            scale_bias[0] = positions_scale;
+            scale_bias[1] = positions_bias[0];
+            scale_bias[2] = positions_bias[1];
+            scale_bias[3] = positions_bias[2];
+        }
     }
     return positions;
 }

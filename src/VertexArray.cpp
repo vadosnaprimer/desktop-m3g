@@ -119,6 +119,53 @@ void VertexArray:: get (int first_vertex, int num_vertices, float* values) const
             num_vertices*component_count*sizeof(float));
 }
 
+
+void VertexArray:: get (int first_vertex, int num_vertices, float scale, float* bias, float* values) const
+{
+    if (first_vertex < 0 || first_vertex >= vertex_count) {
+        throw IllegalStateException (__FILE__, __func__, "First vertex is invalid, first_vertex=%d.", first_vertex);
+    }
+    if (num_vertices < 0 || first_vertex + num_vertices > vertex_count) {
+        throw IllegalStateException (__FILE__, __func__, "Number of vertices is invalid, first_vertex=%d, num_vertices=%d.", first_vertex, num_vertices);
+    }
+    if (bias == NULL) {
+        throw NullPointerException (__FILE__, __func__, "Bias is NULL.");
+    }
+    if (values == NULL) {
+        throw NullPointerException (__FILE__, __func__, "Values is NULL.");
+    }
+
+    int cc = component_count;
+
+    switch (component_size) {
+    case 1:
+        for (int v = first_vertex; v < first_vertex+num_vertices; v++) {
+            for (int i = 0; i < cc; i++) {
+                values[v*cc+i] = char_values[v*cc+i] * scale + bias[i];
+            }
+        }
+        break;
+    case 2:
+        for (int v = first_vertex; v < first_vertex+num_vertices; v++) {
+            for (int i = 0; i < cc; i++) {
+                values[v*cc+i] = short_values[v*cc+i] * scale + bias[i];
+            }
+        }
+        break;
+    case 4:
+        for (int v = first_vertex; v < first_vertex+num_vertices; v++) {
+            for (int i = 0; i < cc; i++) {
+                values[v*cc+i] = float_values[v*cc+i] * scale + bias[i];
+            }
+        }
+        break;
+    default:
+        throw IllegalStateException (__FILE__, __func__, "Comonent size is invalid, size=%d.", component_size);
+    }
+
+}
+
+
 int VertexArray:: getComponentCount () const
 {
     return component_count;

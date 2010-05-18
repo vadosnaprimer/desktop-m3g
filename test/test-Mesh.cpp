@@ -1,9 +1,11 @@
 #include <unittest++/UnitTest++.h>
 #include <iostream>
 #include "Mesh.hpp"
+#include "VertexArray.hpp"
 #include "VertexBuffer.hpp"
 #include "TriangleStripArray.hpp"
 #include "Appearance.hpp"
+#include "RayIntersection.hpp"
 using namespace std;
 using namespace m3g;
 

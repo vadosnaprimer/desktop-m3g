@@ -231,3 +231,36 @@ TEST (VertexArray_convert)
 
     delete varry;
 }
+
+TEST (VertexArray_get_scale_bias_char)
+{
+    char  char_values[] = {-128,0,127, 127,127,127, 0,0,0, -128,-128,-128};
+
+    VertexArray* varry = new VertexArray (4,3,1);
+    varry->set (0, 4, char_values);
+
+    float scale = 2;
+    float bias[3]  = {256, 0, -254};
+
+    float float_values[] = {0,0,0, 0,0,0, 0,0,0, 0,0,0};
+
+    varry->get (0, 4, scale, bias, float_values);
+    CHECK_CLOSE (0,     float_values[0], 0.00001f);
+    CHECK_CLOSE (0,     float_values[1], 0.00001f);
+    CHECK_CLOSE (0,     float_values[2], 0.00001f);
+
+    CHECK_CLOSE (510,   float_values[3], 0.00001f);
+    CHECK_CLOSE (254,   float_values[4], 0.00001f);
+    CHECK_CLOSE (0,     float_values[5], 0.00001f);
+
+    CHECK_CLOSE (256,   float_values[6], 0.00001f);
+    CHECK_CLOSE (0,     float_values[7], 0.00001f);
+    CHECK_CLOSE (-254,  float_values[8], 0.00001f);
+
+    CHECK_CLOSE (0,     float_values[9], 0.00001f);
+    CHECK_CLOSE (-256,  float_values[10], 0.00001f);
+    CHECK_CLOSE (-510,     float_values[11], 0.00001f);
+}
+
+
+

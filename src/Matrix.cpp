@@ -221,6 +221,33 @@ Vector operator* (const Matrix& m, const Vector& v)
 }
 
 
+Matrix m3g:: make_parallel_projection_matrix    (float height, float aspect_ratio, float near, float far)
+{
+    float  width = height * aspect_ratio;
+    Matrix proj;
+    proj[0]  = 1/width;
+    proj[5]  = 1/height;
+    proj[10] = -2/(far-near);
+    proj[11] = -(near+far)/(far-near);
+    proj[15] = 1;
+    return proj;
+}
+
+Matrix m3g:: make_perspective_projection_matrix (float fovy, float aspect_ratio, float near, float far)
+{
+    fovy = fovy*2*M_PI/360.f;
+
+    float  height = tanf (fovy/2.f);
+    float  width  = height * aspect_ratio;
+    Matrix proj;
+    proj[0]  = 1/width;
+    proj[5]  = 1/height;
+    proj[10] = -(near+far)/(far-near);
+    proj[11] = -2*near*far/(far-near);
+    proj[14] = -1;
+    proj[15] = 0;
+    return proj;
+}
 
 std::ostream& Matrix:: print (std::ostream& out) const
 {

@@ -42,7 +42,7 @@ void resize(int w, int h)
   Graphics3D* g3d = Graphics3D::getInstance();
   g3d->setViewport (0,0,w,h);
   Camera* cam = wld->getActiveCamera();
-  cam->setPerspective (45, w/(float)w, 0.1, 100);
+  cam->setPerspective (45, w/(float)h, 0.1, 100);
   glutPostRedisplay();
 }
 

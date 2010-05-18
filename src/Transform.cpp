@@ -28,8 +28,15 @@ void Transform:: get (float* mat) const
     if (mat == NULL) {
         throw NullPointerException (__FILE__, __func__, "Matrix is NULL.");
     }
-
     memcpy (mat, &matrix.m, sizeof(matrix.m));
+}
+
+void Transform:: get (Matrix* mat) const
+{
+    if (mat == NULL) {
+        throw NullPointerException (__FILE__, __func__, "Matrix is NULL.");
+    }
+    *mat = matrix;
 }
 
 void Transform:: invert ()
@@ -101,6 +108,11 @@ void Transform:: set (const Transform& t)
     matrix = t.matrix;
 }
 
+void Transform:: set (const Matrix& mat)
+{
+    matrix = mat;
+}
+
 void Transform:: setIdentity ()
 {
     matrix.setIdentity();
@@ -123,9 +135,9 @@ void Transform:: transform (VertexArray* in, float* out, bool w) const
     // あれ実装していない？
 }
 
-Vector Transform:: transform (const Vector& vector) const
+Vector Transform:: transform (const Vector& v) const
 {
-    return Vector(0,0,0);
+    return matrix * v;
 }
 
 

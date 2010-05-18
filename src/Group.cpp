@@ -10,6 +10,8 @@
 using namespace m3g;
 using namespace std;
 
+#include <typeinfo>
+
 
 Group:: Group ()
 {
@@ -94,18 +96,27 @@ bool Group:: pick (int scope, float x, float y, const Camera* camera, RayInterse
     // NDC
     Vector p0_ndc = Vector(2*x-1, 1-2*y, -1);
     Vector p1_ndc = Vector(2*x-1, 1-2*y,  1);
+    cout << "p0(ndc) = " << p0_ndc << "\n";
+    cout << "p1(ndc) = " << p1_ndc << "\n";
 
     // Camera
     Transform proj;
     camera->getProjection (&proj);
+    proj.invert();
     Vector p0_cam = proj.transform (p0_ndc);
     Vector p1_cam = proj.transform (p1_ndc);
-    p0_cam = p0_cam / p0_cam.w;
-    p1_cam = p1_cam / p1_cam.w;
+    cout << "p0(cam) = " << p0_cam << "\n";
+    cout << "p1(cam) = " << p1_cam << "\n";
+
+    p0_cam.divided_by_w ();
+    p1_cam.divided_by_w ();
     
     Vector org_cam = p0_cam;
     Vector dir_cam = (p1_cam - p0_cam).normalize();
     dir_cam.w = 0;
+
+    cout << "org(cam) = " << org_cam << "\n";
+    cout << "dir(cam) = " << dir_cam << "\n";
 
     for (int i = 0; i < (int)children.size(); i++) {
         RayIntersection ri;
@@ -125,14 +136,17 @@ bool Group:: pick (int scope, float x, float y, const Camera* camera, RayInterse
             camera->getTransformTo (mesh, &trans);
             Vector org = trans.transform (org_cam);
             Vector dir = trans.transform (dir_cam);
-            dir.w = 1;
+            cout << "org(mesh) = " << org << "\n";
+            cout << "dir(mesh) = " << dir << "\n";
+            dir.w = 1;  // <-- 何かアホっぽいな
             mesh->intersect (org, dir, &ri);
+
+            // レイはGroupの座標系で格納する
+            dir.w = 0;  // <-- 何かアホっぽいな
+            mesh->getTransformTo (this, &trans);
+            ri.transformRay (trans);
         }
         if (ri.getIntersected()) {
-            // Camera座標系に戻す
-            children[i]->getTransformTo (camera, &trans);
-            ri.transform (trans);
-            
             if (min_ri->getIntersected() == NULL ||
                 ri.getDistance() < min_ri->getDistance()) {
                 *min_ri = ri;
@@ -141,13 +155,10 @@ bool Group:: pick (int scope, float x, float y, const Camera* camera, RayInterse
 
     }
 
-    // Group座標系に戻す
-    Transform trans;
-    camera->getTransformTo (this, &trans);
-    min_ri->transform (trans);
-
     return true;
 }
+
+
 
 bool Group:: pick (int scope, float ox, float oy, float oz, float dx, float dy, float dz, RayIntersection* ri) const
 {

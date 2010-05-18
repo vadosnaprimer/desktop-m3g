@@ -640,9 +640,10 @@ test-Mesh.o: ../src/Mesh.hpp ../src/Node.hpp ../src/Transformable.hpp
 test-Mesh.o: ../src/Object3D.hpp /usr/include/GL/glew.h /usr/include/GL/glu.h
 test-Mesh.o: /usr/include/GL/gl.h ../src/m3gdef.hpp ../src/m3ginternal.hpp
 test-Mesh.o: ../src/Object.hpp ../src/Quaternion.hpp ../src/Transform.hpp
-test-Mesh.o: ../src/Matrix.hpp ../src/VertexBuffer.hpp
+test-Mesh.o: ../src/Matrix.hpp ../src/VertexArray.hpp ../src/VertexBuffer.hpp
 test-Mesh.o: ../src/TriangleStripArray.hpp ../src/IndexBuffer.hpp
-test-Mesh.o: ../src/Appearance.hpp
+test-Mesh.o: ../src/Appearance.hpp ../src/RayIntersection.hpp
+test-Mesh.o: ../src/Vector.hpp
 test-MorphingMesh.o: /usr/include/unittest++/UnitTest++.h
 test-MorphingMesh.o: /usr/include/unittest++/Config.h
 test-MorphingMesh.o: /usr/include/unittest++/Test.h
@@ -849,6 +850,47 @@ test-Quaternion.o: /usr/include/unittest++/Posix/TimeHelpers.h
 test-Quaternion.o: /usr/include/sys/time.h /usr/include/bits/time.h
 test-Quaternion.o: /usr/include/sys/select.h /usr/include/bits/select.h
 test-Quaternion.o: ../src/Quaternion.hpp ../src/Matrix.hpp ../src/Vector.hpp
+test-RayIntersect.o: /usr/include/unittest++/UnitTest++.h
+test-RayIntersect.o: /usr/include/unittest++/Config.h
+test-RayIntersect.o: /usr/include/unittest++/Test.h
+test-RayIntersect.o: /usr/include/unittest++/TestDetails.h
+test-RayIntersect.o: /usr/include/unittest++/TestList.h
+test-RayIntersect.o: /usr/include/unittest++/TestSuite.h
+test-RayIntersect.o: /usr/include/unittest++/TestResults.h
+test-RayIntersect.o: /usr/include/unittest++/TestMacros.h
+test-RayIntersect.o: /usr/include/unittest++/Posix/SignalTranslator.h
+test-RayIntersect.o: /usr/include/setjmp.h /usr/include/features.h
+test-RayIntersect.o: /usr/include/sys/cdefs.h /usr/include/bits/wordsize.h
+test-RayIntersect.o: /usr/include/gnu/stubs.h /usr/include/gnu/stubs-64.h
+test-RayIntersect.o: /usr/include/bits/setjmp.h /usr/include/bits/sigset.h
+test-RayIntersect.o: /usr/include/signal.h /usr/include/bits/types.h
+test-RayIntersect.o: /usr/include/bits/typesizes.h /usr/include/bits/signum.h
+test-RayIntersect.o: /usr/include/time.h /usr/include/bits/siginfo.h
+test-RayIntersect.o: /usr/include/bits/sigaction.h
+test-RayIntersect.o: /usr/include/bits/sigcontext.h
+test-RayIntersect.o: /usr/include/bits/sigstack.h
+test-RayIntersect.o: /usr/include/bits/pthreadtypes.h
+test-RayIntersect.o: /usr/include/bits/sigthread.h
+test-RayIntersect.o: /usr/include/unittest++/CheckMacros.h
+test-RayIntersect.o: /usr/include/unittest++/Checks.h
+test-RayIntersect.o: /usr/include/unittest++/MemoryOutStream.h
+test-RayIntersect.o: /usr/include/unittest++/AssertException.h
+test-RayIntersect.o: /usr/include/unittest++/TestRunner.h
+test-RayIntersect.o: /usr/include/unittest++/TimeConstraint.h
+test-RayIntersect.o: /usr/include/unittest++/TimeHelpers.h
+test-RayIntersect.o: /usr/include/unittest++/Posix/TimeHelpers.h
+test-RayIntersect.o: /usr/include/sys/time.h /usr/include/bits/time.h
+test-RayIntersect.o: /usr/include/sys/select.h /usr/include/bits/select.h
+test-RayIntersect.o: ../src/Intersect.hpp ../src/VertexArray.hpp
+test-RayIntersect.o: /usr/include/GL/glew.h /usr/include/GL/glu.h
+test-RayIntersect.o: /usr/include/GL/gl.h ../src/Object3D.hpp
+test-RayIntersect.o: ../src/m3gdef.hpp ../src/m3ginternal.hpp
+test-RayIntersect.o: ../src/Object.hpp ../src/VertexBuffer.hpp
+test-RayIntersect.o: ../src/TriangleStripArray.hpp ../src/IndexBuffer.hpp
+test-RayIntersect.o: ../src/Appearance.hpp ../src/Mesh.hpp ../src/Node.hpp
+test-RayIntersect.o: ../src/Transformable.hpp ../src/Quaternion.hpp
+test-RayIntersect.o: ../src/Transform.hpp ../src/Matrix.hpp ../src/Vector.hpp
+test-RayIntersect.o: ../src/RayIntersection.hpp
 test-SkinnedMesh.o: /usr/include/unittest++/UnitTest++.h
 test-SkinnedMesh.o: /usr/include/unittest++/Config.h
 test-SkinnedMesh.o: /usr/include/unittest++/Test.h

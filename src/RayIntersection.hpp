@@ -3,6 +3,9 @@
 
 #include <iosfwd>
 #include "Object.hpp"
+#include "Vector.hpp"
+
+#include <vector>
 
 namespace m3g {
 
@@ -16,12 +19,29 @@ namespace m3g {
      */
     class RayIntersection : public Object
     {
+        struct Ray {
+            Ray (const Vector& o, const Vector& d, float t_) : org(o), dir(d), t(t_) {};
+            Vector org;
+            Vector dir;
+            float  t;
+        };
+
     public:
         /**
          * @~English  Construct sa new RayIntersection object with default values.
          * @~Japanese デフォルト値のコンストラクタ.
          */
         RayIntersection ();
+
+        /**
+         * M3G未定義.
+         * 第１引数はNodeではなくMeshの方が良いか？
+         */
+        RayIntersection (Node* node,
+                         const Vector& org, const Vector& dir, float t,
+                         float u, float v,
+                         int vertex_num, int* vertices,
+                         int submesh_index);
 
         /**
          * @~English  Destructs this object.
@@ -83,16 +103,25 @@ namespace m3g {
          */
         float getTextureT (int index) const;
 
+
         /**
-         * 
+         *  レイの座標変換を行うM3G未定義
          */
-        void transform (const Transform& trans);
+        void transformRay (const Transform& trans);
 
         /**
          * @~English  Print out information of this object, for debug only.
          * @~Japanese このオブジェクトの情報を表示する。デバッグ用.
          */
         std::ostream& print (std::ostream& out) const;
+
+    private:
+
+        Ray    ray;
+        Node*  node;
+        float  u, v;
+        std::vector<int> vertices;        
+        int    submesh_index;
 
     };
 

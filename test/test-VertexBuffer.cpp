@@ -28,21 +28,38 @@ TEST (VertexBuffer_set_variables)
     VertexArray* normals = new VertexArray (1, 3, 2);
     VertexArray* positions = new VertexArray (1, 3, 2);
     VertexArray* texcoords = new VertexArray (1, 2, 2);
-    float bias[4] = {32768/65535.f, 2*32768/65535.f, 3*32768/65535.f};
+    float scale   = 3;
+    float bias[3] = {1,2,3};
 
     vbuf->setDefaultColor (0x12345678);
     vbuf->setColors (colors);
     vbuf->setNormals (normals);
-    vbuf->setPositions (positions, 1/65535.f, bias);
-    vbuf->setTexCoords (1, texcoords, 1/65535.f, bias);
+    vbuf->setPositions (positions, scale, bias);
+    vbuf->setTexCoords (1, texcoords, scale, bias);
+
+    float scale_bias[4];
 
     CHECK_EQUAL (0x12345678, vbuf->getDefaultColor());
-    CHECK_EQUAL (colors, vbuf->getColors());
-    CHECK_EQUAL (normals, vbuf->getNormals());
-    CHECK_EQUAL (positions, vbuf->getPositions(0));
-    CHECK_EQUAL (texcoords, vbuf->getTexCoords(1,0));
-    CHECK_EQUAL ((VertexArray*)0, vbuf->getTexCoords(0,0));
-
+    CHECK_EQUAL (positions, vbuf->getPositions(scale_bias));
+    CHECK_EQUAL (3.f, scale_bias[0]);
+    CHECK_EQUAL (1.f, scale_bias[1]);
+    CHECK_EQUAL (2.f, scale_bias[2]);
+    CHECK_EQUAL (3.f, scale_bias[3]);
+    CHECK_EQUAL (colors, vbuf->getColors(scale_bias));
+    CHECK_EQUAL (1/255.f, scale_bias[0]);
+    CHECK_EQUAL (0.f, scale_bias[1]);
+    CHECK_EQUAL (0.f, scale_bias[2]);
+    CHECK_EQUAL (0.f, scale_bias[3]);
+    CHECK_EQUAL (normals, vbuf->getNormals(scale_bias));
+    CHECK_EQUAL (2/65535.f, scale_bias[0]);
+    CHECK_EQUAL (1/65535.f, scale_bias[1]);
+    CHECK_EQUAL (1/65535.f, scale_bias[2]);
+    CHECK_EQUAL (1/65535.f, scale_bias[3]);
+    CHECK_EQUAL (texcoords, vbuf->getTexCoords(1,scale_bias));
+    CHECK_EQUAL (3.f, scale_bias[0]);
+    CHECK_EQUAL (1.f, scale_bias[1]);
+    CHECK_EQUAL (2.f, scale_bias[2]);
+    CHECK_EQUAL ((VertexArray*)0, vbuf->getTexCoords(0,scale_bias));
 
     delete texcoords;
     delete positions;
