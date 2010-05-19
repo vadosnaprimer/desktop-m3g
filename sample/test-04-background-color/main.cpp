@@ -102,7 +102,7 @@ int main (int argc, char** argv)
     wld->setActiveCamera (cam);
     wld->addChild (mesh);
 
-    wld->translate (0,0,-10);
+    wld->translate (0,0,-20);
 
     cout << *wld << "\n";
 

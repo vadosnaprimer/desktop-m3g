@@ -189,6 +189,7 @@ void Group:: removeChild (Node* child)
 void Group:: render (RenderState& state) const
 {
     //cout << "Group: render\n";
+    glPushMatrix ();
     Node::render (state);
 
     for (int i = 0; i < (int)children.size(); i++) {
@@ -197,6 +198,7 @@ void Group:: render (RenderState& state) const
         glPopMatrix ();
     }
 
+    glPopMatrix ();
 
 }
   

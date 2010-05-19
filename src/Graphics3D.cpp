@@ -19,47 +19,47 @@ const int Graphics3D:: TRUE_COLOR;
 
 
 Graphics3D:: Graphics3D () : 
-  viewport(0,0,0,0), depth_buffer_enable(false), hints(0), depth_range(0,0)
+    viewport(0,0,0,0), depth_buffer_enable(false), hints(0), depth_range(0,0)
 {
-  // 今だけZテストを常時有効
-  glEnable (GL_DEPTH_TEST);
+    // 今だけZテストを常時有効
+    glEnable (GL_DEPTH_TEST);
 
-  // M3Gの規格では何も言及がないが
-  // リスケールしないとscaleした時に
-  // 法線の長さが1でなくなるので。
-  glEnable (GL_NORMALIZE);
+    // M3Gの規格では何も言及がないが
+    // リスケールしないとscaleした時に
+    // 法線の長さが1でなくなるので。
+    glEnable (GL_NORMALIZE);
 
-  // プロパティは決めうち
-  properties.insert (map<const char*, int>::value_type("supportAntialiasing"         , 1));
-  properties.insert (map<const char*, int>::value_type("supportTrueColor"            , 1));
-  properties.insert (map<const char*, int>::value_type("supportDithering"            , 1));
-  properties.insert (map<const char*, int>::value_type("supportMipmapping"           , 1));
-  properties.insert (map<const char*, int>::value_type("supportPerspectiveCorrection", 1));
-  properties.insert (map<const char*, int>::value_type("supportLocalCameraLighting"  , 1));
-  properties.insert (map<const char*, int>::value_type("maxLights"                   , 8));
-  properties.insert (map<const char*, int>::value_type("maxViewportWith"             , 2048));
-  properties.insert (map<const char*, int>::value_type("maxViewportHeight"           , 2048));
-  properties.insert (map<const char*, int>::value_type("maxViewportDimension"        , 2048));
-  properties.insert (map<const char*, int>::value_type("maxTextureDimension"         , 2048));
-  properties.insert (map<const char*, int>::value_type("maxSpriteCropDimension"      , 2048));
-  properties.insert (map<const char*, int>::value_type("maxTransformsPerVertex"      , 65535)); // unlimited.
-  properties.insert (map<const char*, int>::value_type("numTextureUnits"             , 4));
+    // プロパティは決めうち
+    properties.insert (map<const char*, int>::value_type("supportAntialiasing"         , 1));
+    properties.insert (map<const char*, int>::value_type("supportTrueColor"            , 1));
+    properties.insert (map<const char*, int>::value_type("supportDithering"            , 1));
+    properties.insert (map<const char*, int>::value_type("supportMipmapping"           , 1));
+    properties.insert (map<const char*, int>::value_type("supportPerspectiveCorrection", 1));
+    properties.insert (map<const char*, int>::value_type("supportLocalCameraLighting"  , 1));
+    properties.insert (map<const char*, int>::value_type("maxLights"                   , 8));
+    properties.insert (map<const char*, int>::value_type("maxViewportWith"             , 2048));
+    properties.insert (map<const char*, int>::value_type("maxViewportHeight"           , 2048));
+    properties.insert (map<const char*, int>::value_type("maxViewportDimension"        , 2048));
+    properties.insert (map<const char*, int>::value_type("maxTextureDimension"         , 2048));
+    properties.insert (map<const char*, int>::value_type("maxSpriteCropDimension"      , 2048));
+    properties.insert (map<const char*, int>::value_type("maxTransformsPerVertex"      , 65535)); // unlimited.
+    properties.insert (map<const char*, int>::value_type("numTextureUnits"             , 4));
 }
 
 Graphics3D:: ~Graphics3D ()
 {
-  if (Loader::file_info.authoring_field) {
-    delete [] Loader::file_info.authoring_field;
-  }
-  if (Loader::file_info.authoring_field) {
-    delete [] Loader::file_info.external_refference_uri;
-  }
+    if (Loader::file_info.authoring_field) {
+        delete [] Loader::file_info.authoring_field;
+    }
+    if (Loader::file_info.authoring_field) {
+        delete [] Loader::file_info.external_refference_uri;
+    }
 }  
 
 int Graphics3D:: addLight (Light* light, Transform& transform)
 {
-  throw NotImplementedException (__FILE__, __func__, "Sorry, addLight is not implemented.");
-  return 0;
+    throw NotImplementedException (__FILE__, __func__, "Sorry, addLight is not implemented.");
+    return 0;
 }
 
 void Graphics3D:: bindTarget (Graphics* g, bool depth_buffer_enabled, int hints)
@@ -70,190 +70,190 @@ void Graphics3D:: bindTarget (Graphics* g, bool depth_buffer_enabled, int hints)
 
 void Graphics3D:: clear (Background* background)
 {
-  throw NotImplementedException (__FILE__, __func__, "Sorry, clear is not implemented.");
+    throw NotImplementedException (__FILE__, __func__, "Sorry, clear is not implemented.");
 }
 
 Camera* Graphics3D:: getCamera (const Transform& transform)
 {
-  throw NotImplementedException (__FILE__, __func__, "Sorry, getCamera is not implemented.");
-  return 0;
+    throw NotImplementedException (__FILE__, __func__, "Sorry, getCamera is not implemented.");
+    return 0;
 }
 
 float Graphics3D:: getDepthRangeFar () const
 {
-  throw NotImplementedException (__FILE__, __func__, "Sorry, getDepthRangeFar is not implemented.");
-  return 0;
+    throw NotImplementedException (__FILE__, __func__, "Sorry, getDepthRangeFar is not implemented.");
+    return 0;
 }
 
 float Graphics3D:: getDepthRangeNear () const
 {
-  throw NotImplementedException (__FILE__, __func__, "Soryy, getDepthNear is not implemented.");
-  return 0;
+    throw NotImplementedException (__FILE__, __func__, "Soryy, getDepthNear is not implemented.");
+    return 0;
 }
 
 int Graphics3D:: getHints () const
 {
-  throw NotImplementedException (__FILE__, __func__, "Sorry, getHints is not implemented.");
-  return 0;
+    throw NotImplementedException (__FILE__, __func__, "Sorry, getHints is not implemented.");
+    return 0;
 }
 
 Graphics3D* Graphics3D:: getInstance ()
 {
-  static Graphics3D* g3d = new Graphics3D;
-  return g3d;
+    static Graphics3D* g3d = new Graphics3D;
+    return g3d;
 }
 
 Light* Graphics3D:: getLight (int index, const Transform& transform) const
 {
-  throw NotImplementedException (__FILE__, __func__, "Sorry, getLight is not implemented.");
+    throw NotImplementedException (__FILE__, __func__, "Sorry, getLight is not implemented.");
 
-  return 0;
+    return 0;
 }
 
 int Graphics3D:: getLightCount () const
 {
-  throw NotImplementedException (__FILE__, __func__, "Sorry, getLightCount is not implemented.");
+    throw NotImplementedException (__FILE__, __func__, "Sorry, getLightCount is not implemented.");
 
-  return 0;
+    return 0;
 }
 
 std::map<const char*, int> Graphics3D:: getProperties () const
 {
-  return properties;
+    return properties;
 }
 
 void* Graphics3D:: getTarget () const
 {
-  throw NotImplementedException (__FILE__, __func__, "getTarget is not implemented.");
+    throw NotImplementedException (__FILE__, __func__, "getTarget is not implemented.");
 
-  return 0;
+    return 0;
 }
 
 int Graphics3D:: getViewportHeight () const
 {
-  return viewport.height;
+    return viewport.height;
 }
 
 int Graphics3D:: getViewportWidth () const
 {
-  return viewport.width;
+    return viewport.width;
 }
 
 int Graphics3D:: getViewportX () const
 {
-  return viewport.x;
+    return viewport.x;
 }
 
 int Graphics3D:: getViewportY () const
 {
-  return viewport.y;
+    return viewport.y;
 }
 
 bool Graphics3D:: isDepthBufferEnabled () const
 {
-  throw NotImplementedException (__FILE__, __func__, "Sorry, isDepthBufferEnabled() is not implemented.");
-  return 0;
+    throw NotImplementedException (__FILE__, __func__, "Sorry, isDepthBufferEnabled() is not implemented.");
+    return 0;
 }
 
 void Graphics3D:: releaseTarget () const
 {
-  throw NotImplementedException (__FILE__, __func__, "Sorry, releaseTraget() is not implemented.");
+    throw NotImplementedException (__FILE__, __func__, "Sorry, releaseTraget() is not implemented.");
 }
 
 void Graphics3D:: render (Node* node, Transform* transform) const
 {
-  throw NotImplementedException (__FILE__, __func__, "Sorry, immediate render mode is not implemented.");
+    throw NotImplementedException (__FILE__, __func__, "Sorry, immediate render mode is not implemented.");
 }
 
 void Graphics3D:: render (VertexBuffer* vertices, IndexBuffer* triangles, Appearance* apperance, Transform& transform) const
 {
-  throw NotImplementedException (__FILE__, __func__, "Sorry, immediate render mode is not implemented.");
+    throw NotImplementedException (__FILE__, __func__, "Sorry, immediate render mode is not implemented.");
 }
 
 void Graphics3D:: render (VertexBuffer* vertices, IndexBuffer* triangles, Appearance* apperance, Transform& transform, int scope) const
 {
-  throw NotImplementedException (__FILE__, __func__, "Sorry, immediate render mode is not implemented.");
+    throw NotImplementedException (__FILE__, __func__, "Sorry, immediate render mode is not implemented.");
 }
 
 void Graphics3D:: render (World* wld) const
 {
-  //cout << "Graphics3D: レンダー " << wld->getChildCount() << " ノード\n";
+    //cout << "Graphics3D: レンダー " << wld->getChildCount() << " ノード\n";
+    
+    glMatrixMode (GL_TEXTURE);
+    glLoadIdentity ();
+    glMatrixMode (GL_PROJECTION);
+    glLoadIdentity ();
+    glMatrixMode (GL_MODELVIEW);
+    glLoadIdentity ();
 
-  glMatrixMode (GL_TEXTURE);
-  glLoadIdentity ();
-  glMatrixMode (GL_PROJECTION);
-  glLoadIdentity ();
-  glMatrixMode (GL_MODELVIEW);
-  glLoadIdentity ();
+    RenderState state;
 
-  RenderState state;
+    // pass -1 for set up valid layers.
+    // pass 0 for Background, Camera.
+    // pass 1 for Lights.
+    // pass 2 for Scene nodes.
+    for (int i = -1; i < 3; i++) {
+        state.pass = i;
+        wld->render (state);
+    }
 
-  // pass -1 for set up valid layers.
-  // pass 0 for Background, Camera.
-  // pass 1 for Lights.
-  // pass 2 for Scene nodes.
-  for (int i = -1; i < 3; i++) {
-    state.pass = i;
-    wld->render (state);
-  }
+    /*
+    // This is for Debug.
+    glDisable (GL_LIGHTING);
+    for (int i = 0; i < MAX_TEXTURE_UNITS; i++) {
+    glActiveTexture (GL_TEXTURE0+i);
+    glDisable (GL_TEXTURE_2D);
+    }
+    glActiveTexture (GL_TEXTURE0);
 
-  /*
-  // This is for Debug.
-  glDisable (GL_LIGHTING);
-  for (int i = 0; i < MAX_TEXTURE_UNITS; i++) {
-  glActiveTexture (GL_TEXTURE0+i);
-  glDisable (GL_TEXTURE_2D);
-  }
-  glActiveTexture (GL_TEXTURE0);
-
-  glBegin (GL_TRIANGLES);
-  glColor3f (1,1,0);
-  glVertex3f (1,1,0);
-  glVertex3f (0,0,0);
-  glVertex3f (-1,1,0);
-  glColor3f (1,1,1);
-  glEnd();
-  */
+    glBegin (GL_TRIANGLES);
+    glColor3f (1,1,0);
+    glVertex3f (1,1,0);
+    glVertex3f (0,0,0);
+    glVertex3f (-1,1,0);
+    glColor3f (1,1,1);
+    glEnd();
+    */
 }
 
 void Graphics3D:: resetLights ()
 {
-  throw NotImplementedException (__FILE__, __func__, "Sorry, resetLights is not implemented.");
+    throw NotImplementedException (__FILE__, __func__, "Sorry, resetLights is not implemented.");
 }
 
 void Graphics3D:: setCamera (Camera* camera, const Transform& transform)
 {
-  throw NotImplementedException (__FILE__, __func__, "Sorry, setCamera is not implemented.");
+    throw NotImplementedException (__FILE__, __func__, "Sorry, setCamera is not implemented.");
 }
 
 void Graphics3D:: setDepthRange (float near, float far)
 {
-  throw NotImplementedException (__FILE__, __func__, "Sorry setDepthRange is not implemented.");
+    throw NotImplementedException (__FILE__, __func__, "Sorry setDepthRange is not implemented.");
 }
 
 void Graphics3D:: setLight (int index, Light* light, const Transform& transform)
 {
-  throw NotImplementedException (__FILE__, __func__, "Sorry, setLight is not implemented.");
+    throw NotImplementedException (__FILE__, __func__, "Sorry, setLight is not implemented.");
 }
 
 void Graphics3D:: setViewport (int x, int y, int width, int height)
 {
-  viewport.x      = x;
-  viewport.y      = y;
-  viewport.width  = width;
-  viewport.height = height;
+    viewport.x      = x;
+    viewport.y      = y;
+    viewport.width  = width;
+    viewport.height = height;
 
-  //cout << "Graphcs3D: Viewport = " << x << ", " << y << ", " << width << ", " << height << "\n";
-  glViewport (viewport.x, viewport.y, viewport.width, viewport.height);
+    //cout << "Graphcs3D: Viewport = " << x << ", " << y << ", " << width << ", " << height << "\n";
+    glViewport (viewport.x, viewport.y, viewport.width, viewport.height);
 }
 
 std::ostream& Graphics3D:: print (std::ostream& out) const
 {
-  out << "Grapphics3D: no info.";
-  return out;
+    out << "Grapphics3D: no info.";
+    return out;
 }
 
 std::ostream& operator<< (std::ostream& out, const m3g::Graphics3D& g3d)
 {
-  return g3d.print (out);
+    return g3d.print (out);
 }

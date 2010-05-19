@@ -234,7 +234,6 @@ void Transformable:: render (RenderState& state) const
     Transform trans;
     getCompositeTransform(&trans);
     trans.transpose();
-
     float m[16];
     trans.get (m);
     glMultMatrixf ((GLfloat*)&m);

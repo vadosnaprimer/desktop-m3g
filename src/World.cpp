@@ -95,6 +95,8 @@ void World:: render (RenderState& state) const
     }
   
     //cout << "World render\n";
+    
+    
 
     vector<int>& v = state.valid_layers;
 
@@ -107,7 +109,7 @@ void World:: render (RenderState& state) const
         break;
     case 0: {
         // バックグラウンドとカメラ
-        Node::render (state);
+        //Node::render (state);
         if (background) {
             background->render (state);
         }
