@@ -100,11 +100,14 @@ void World:: render (RenderState& state) const
 
     switch (state.pass) {
     case -1:
+        // 使用するレイヤー番号の収集
         Group::render (state);
         sort (v.begin(), v.end());
         v.erase (unique(v.begin(), v.end()), v.end());
         break;
     case 0: {
+        // バックグラウンドとカメラ
+        Node::render (state);
         if (background) {
             background->render (state);
         }
@@ -117,11 +120,13 @@ void World:: render (RenderState& state) const
         break;
     }
     case 1:
+        // ライト
         state.light_index = 0;
         Group::render (state);
         break;
     case 2:
-        for (int i = 0; i < (int)v.size(); i++) {
+        // プリミティブ
+        for (int i = 0; i < (int)state.valid_layers.size(); i++) {
             state.layer = state.valid_layers[i];
             Group::render (state);
         }

@@ -153,15 +153,15 @@ bool Mesh:: intersect (const Vector& org, const Vector& dir, RayIntersection* ri
 
         for (int f = 0; f < face_count; f++) {
             indices[i]->getFaceVertexIndex (f, index_values);
-            positions->get (index_values[0], 1, scale, bias, position_values[0]);
-            positions->get (index_values[1], 1, scale, bias, position_values[1]);
-            positions->get (index_values[2], 1, scale, bias, position_values[2]);
+            positions->get (index_values[0], 1, scale, bias, &position_values[0][0]);
+            positions->get (index_values[1], 1, scale, bias, &position_values[1][0]);
+            positions->get (index_values[2], 1, scale, bias, &position_values[2][0]);
             Vector v0 = Vector(position_values[0]);
             Vector v1 = Vector(position_values[1]);
             Vector v2 = Vector(position_values[2]);
-            cout << "Face = v0=[" << v0 << "], v1=[" << v1 << "], v2=[" << v2 << "]\n";
             float u, v, t;
             bool hit = triangle_intersect (org, dir, v0, v1, v2, &u, &v, &t);
+            cout << "triangle-intersect : " << hit << "\n";
             if (hit && t < ray_t) {
                 ray_hit = true;
                 ray_u = u;
@@ -169,7 +169,6 @@ bool Mesh:: intersect (const Vector& org, const Vector& dir, RayIntersection* ri
                 ray_t = t;
                 ray_submesh_index = i;
                 memcpy (ray_index_values, index_values, sizeof(int)*3);
-                cout << "submesh_index = " << i << "\n";
             }
         }
 
@@ -178,6 +177,7 @@ bool Mesh:: intersect (const Vector& org, const Vector& dir, RayIntersection* ri
     // ray_何とかよりri_何とかの方が良いか？
 
     if (ray_hit) {
+        cout << "ray_hit = " << ray_hit << "\n";
         if (ri_) {
             *ri_ = RayIntersection (const_cast<Mesh*>(this),
                                     org, dir, ray_t,

@@ -297,7 +297,7 @@ bool Node:: getTransformTo (const Node* target, Transform* transform) const
     Matrix global_pose_a = this->getGlobalPose ();
     Matrix global_pose_b = target->getGlobalPose ();
 
-    Matrix transform_matrix = global_pose_b.invert() * global_pose_a;
+    Matrix transform_matrix = global_pose_b.getInverse() * global_pose_a;
     transform->set (transform_matrix.m);
 
     return true;

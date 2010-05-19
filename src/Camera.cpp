@@ -237,14 +237,30 @@ void Camera:: render (RenderState& state) const
     glMultMatrixf (mat.m);
 
     glMatrixMode (GL_MODELVIEW);
-    glLoadIdentity ();
+    //glLoadIdentity ();
 
+    float m[16];
+    glGetFloatv (GL_MODELVIEW_MATRIX, m);
+    cout << "model view matrix = ";
+    for (int i = 0; i < 16; i++) {
+        cout << m[i] << ", ";
+    }
+    cout << "\n";
+#if 1
     Transform trns;
     getCompositeTransform (&trns);
     trns.get (&mat);
     mat.invert ();
     mat.transpose ();
     glMultMatrixf (mat.m);
+#endif
+#if 0
+    mat = getGlobalPose();
+    cout << "global pose = " << mat << "\n";
+    mat.invert ();
+    mat.transpose ();
+    glMultMatrixf (mat.m);
+#endif
 
     //    gluLookAt (0, 0, 5, // from
     //	0, 0, 0, // to

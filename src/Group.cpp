@@ -91,8 +91,13 @@ int Group:: getChildCount () const
     return children.size();
 }
 
-bool Group:: pick (int scope, float x, float y, const Camera* camera, RayIntersection* min_ri) const
+// min_riはNULLも可.
+bool Group:: pick (int scope, float x, float y, const Camera* camera, RayIntersection* ri_out) const
 {
+    if (camera == NULL) {
+        throw NullPointerException (__FILE__, __func__, "Camera is NULL.");
+    }
+
     // NDC
     Vector p0_ndc = Vector(2*x-1, 1-2*y, -1);
     Vector p1_ndc = Vector(2*x-1, 1-2*y,  1);
@@ -107,16 +112,10 @@ bool Group:: pick (int scope, float x, float y, const Camera* camera, RayInterse
     Vector p1_cam = proj.transform (p1_ndc);
     cout << "p0(cam) = " << p0_cam << "\n";
     cout << "p1(cam) = " << p1_cam << "\n";
-
     p0_cam.divided_by_w ();
     p1_cam.divided_by_w ();
     
-    Vector org_cam = p0_cam;
-    Vector dir_cam = (p1_cam - p0_cam).normalize();
-    dir_cam.w = 0;
-
-    cout << "org(cam) = " << org_cam << "\n";
-    cout << "dir(cam) = " << dir_cam << "\n";
+    RayIntersection min_ri;
 
     for (int i = 0; i < (int)children.size(); i++) {
         RayIntersection ri;
@@ -124,8 +123,10 @@ bool Group:: pick (int scope, float x, float y, const Camera* camera, RayInterse
         Group* grp = dynamic_cast<Group*>(children[i]);
         if (grp) {
             camera->getTransformTo (grp, &trans);
-            Vector org = trans.transform (org_cam);
-            Vector dir = trans.transform (dir_cam);
+            Vector p0_grp = trans.transform (p0_cam);
+            Vector p1_grp = trans.transform (p1_cam);
+            Vector org = p0_grp;
+            Vector dir = (p1_grp-p0_grp).normalize();
             grp-> pick (scope, 
                         org.x, org.y, org.z,
                         dir.x, dir.y, dir.z, &ri);
@@ -134,28 +135,29 @@ bool Group:: pick (int scope, float x, float y, const Camera* camera, RayInterse
         if (mesh) {
             // 交差判定はMeshの座標系で行う
             camera->getTransformTo (mesh, &trans);
-            Vector org = trans.transform (org_cam);
-            Vector dir = trans.transform (dir_cam);
-            cout << "org(mesh) = " << org << "\n";
-            cout << "dir(mesh) = " << dir << "\n";
-            dir.w = 1;  // <-- 何かアホっぽいな
+            Vector p0_mesh = trans.transform (p0_cam);
+            Vector p1_mesh = trans.transform (p1_cam);
+            cout << "p0(mesh) = " << p0_mesh << "\n";
+            cout << "p1(mesh) = " << p1_mesh << "\n";
+            Vector org = p0_mesh;
+            Vector dir = (p1_mesh-p0_mesh).normalize();
             mesh->intersect (org, dir, &ri);
-
             // レイはGroupの座標系で格納する
-            dir.w = 0;  // <-- 何かアホっぽいな
             mesh->getTransformTo (this, &trans);
             ri.transformRay (trans);
         }
         if (ri.getIntersected()) {
-            if (min_ri->getIntersected() == NULL ||
-                ri.getDistance() < min_ri->getDistance()) {
-                *min_ri = ri;
+            if (min_ri.getIntersected() == NULL ||
+                ri.getDistance() < min_ri.getDistance()) {
+                min_ri = ri;
             }
         }
-
     }
 
-    return true;
+    if (ri_out)
+        *ri_out = min_ri;
+
+    return min_ri.getIntersected();
 }
 
 

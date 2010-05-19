@@ -139,23 +139,23 @@ void VertexArray:: get (int first_vertex, int num_vertices, float scale, float* 
 
     switch (component_size) {
     case 1:
-        for (int v = first_vertex; v < first_vertex+num_vertices; v++) {
+        for (int v = 0; v < num_vertices; v++) {
             for (int i = 0; i < cc; i++) {
-                values[v*cc+i] = char_values[v*cc+i] * scale + bias[i];
+                values[v*cc+i] = char_values[(first_vertex+v)*cc+i] * scale + bias[i];
             }
         }
         break;
     case 2:
-        for (int v = first_vertex; v < first_vertex+num_vertices; v++) {
+        for (int v = 0; v < num_vertices; v++) {
             for (int i = 0; i < cc; i++) {
-                values[v*cc+i] = short_values[v*cc+i] * scale + bias[i];
+                values[v*cc+i] = short_values[(first_vertex+v)*cc+i] * scale + bias[i];
             }
         }
         break;
     case 4:
-        for (int v = first_vertex; v < first_vertex+num_vertices; v++) {
+        for (int v = 0; v < num_vertices; v++) {
             for (int i = 0; i < cc; i++) {
-                values[v*cc+i] = float_values[v*cc+i] * scale + bias[i];
+                values[v*cc+i] = float_values[(first_vertex+v)*cc+i] * scale + bias[i];
             }
         }
         break;

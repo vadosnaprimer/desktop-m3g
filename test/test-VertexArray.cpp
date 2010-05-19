@@ -259,7 +259,17 @@ TEST (VertexArray_get_scale_bias_char)
 
     CHECK_CLOSE (0,     float_values[9], 0.00001f);
     CHECK_CLOSE (-256,  float_values[10], 0.00001f);
-    CHECK_CLOSE (-510,     float_values[11], 0.00001f);
+    CHECK_CLOSE (-510,  float_values[11], 0.00001f);
+
+
+    varry->get (2, 2, scale, bias, float_values);
+    CHECK_CLOSE (256,   float_values[0], 0.00001f);
+    CHECK_CLOSE (0,     float_values[1], 0.00001f);
+    CHECK_CLOSE (-254,  float_values[2], 0.00001f);
+
+    CHECK_CLOSE (0,     float_values[3], 0.00001f);
+    CHECK_CLOSE (-256,  float_values[4], 0.00001f);
+    CHECK_CLOSE (-510,  float_values[5], 0.00001f);
 }
 
 

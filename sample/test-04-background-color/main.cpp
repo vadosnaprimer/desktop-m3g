@@ -23,7 +23,10 @@ void resize(int w, int h)
     Graphics3D* g3d = Graphics3D::getInstance();
     g3d->setViewport (0,0,w,h);
     Camera* cam = wld->getActiveCamera();
-    cam->setPerspective (45, w/(float)h, 0.1, 100);
+    cam->setPerspective (90, w/(float)h, 1, 100);
+    //cam->setPerspective (30, w/(float)h, 1, 100);
+    //cam->setParallel (2, w/(float)h, 1, 100);
+    cout << "camera = " << *cam << "\n";
     width  = w;
     height = h;
 }
@@ -73,7 +76,7 @@ int main (int argc, char** argv)
     short        position_values[] = {1,-1,0, 1,1,0, -1,-1,0, -1,1,0};
     positions->set (0, 4, position_values);
 
-    float scale = 1;
+    float scale   = 1;
     float bias[3] = {0,0,0};
     VertexBuffer* vertices = new VertexBuffer;
     vertices->setPositions (positions, scale, bias);
@@ -91,7 +94,7 @@ int main (int argc, char** argv)
     bg->setColor (0xff66380e);
 
     Camera* cam = new Camera;
-    cam->translate (0,0,10);
+    cam->translate (0,0,2);
 
     wld = new World;
     wld->setBackground (bg);
@@ -99,8 +102,7 @@ int main (int argc, char** argv)
     wld->setActiveCamera (cam);
     wld->addChild (mesh);
 
-    wld->translate (0,0,-5);
-
+    wld->translate (0,0,-10);
 
     cout << *wld << "\n";
 
