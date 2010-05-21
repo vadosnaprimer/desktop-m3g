@@ -141,7 +141,7 @@ bool Mesh:: intersect (const Vector& org, const Vector& dir, RayIntersection* ri
     int          ray_index_values[3];
     int          ray_submesh_index;
 
-    cout << "indices.size() = " << indices.size() << "\n";
+    //cout << "indices.size() = " << indices.size() << "\n";
 
     for (int i = 0; i < (int)indices.size(); i++) {
         int   face_vertex_count = indices[i]->getFaceVertexCount();
@@ -161,7 +161,7 @@ bool Mesh:: intersect (const Vector& org, const Vector& dir, RayIntersection* ri
             Vector v2 = Vector(position_values[2]);
             float u, v, t;
             bool hit = triangle_intersect (org, dir, v0, v1, v2, &u, &v, &t);
-            cout << "triangle-intersect : " << hit << "\n";
+            //cout << "triangle-intersect : " << hit << "\n";
             if (hit && t < ray_t) {
                 ray_hit = true;
                 ray_u = u;
@@ -177,7 +177,7 @@ bool Mesh:: intersect (const Vector& org, const Vector& dir, RayIntersection* ri
     // ray_何とかよりri_何とかの方が良いか？
 
     if (ray_hit) {
-        cout << "ray_hit = " << ray_hit << "\n";
+        //cout << "ray_hit = " << ray_hit << "\n";
         if (ri_) {
             *ri_ = RayIntersection (const_cast<Mesh*>(this),
                                     org, dir, ray_t,

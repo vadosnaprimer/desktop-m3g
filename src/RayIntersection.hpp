@@ -117,12 +117,19 @@ namespace m3g {
 
     private:
 
+        void setNormal ();
+        void setTexCoord (int index);
+
+    private:
+
         Ray    ray;
         Node*  node;
         float  u, v;
         std::vector<int> vertices;        
         int    submesh_index;
 
+        Vector* normal;
+        std::vector<Vector*> tex_coord;
     };
 
 } // namespace m3g {

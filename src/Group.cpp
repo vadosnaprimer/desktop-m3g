@@ -101,8 +101,8 @@ bool Group:: pick (int scope, float x, float y, const Camera* camera, RayInterse
     // NDC
     Vector p0_ndc = Vector(2*x-1, 1-2*y, -1);
     Vector p1_ndc = Vector(2*x-1, 1-2*y,  1);
-    cout << "p0(ndc) = " << p0_ndc << "\n";
-    cout << "p1(ndc) = " << p1_ndc << "\n";
+    //cout << "p0(ndc) = " << p0_ndc << "\n";
+    //cout << "p1(ndc) = " << p1_ndc << "\n";
 
     // Camera
     Transform proj;
@@ -110,8 +110,8 @@ bool Group:: pick (int scope, float x, float y, const Camera* camera, RayInterse
     proj.invert();
     Vector p0_cam = proj.transform (p0_ndc);
     Vector p1_cam = proj.transform (p1_ndc);
-    cout << "p0(cam) = " << p0_cam << "\n";
-    cout << "p1(cam) = " << p1_cam << "\n";
+    //cout << "p0(cam) = " << p0_cam << "\n";
+    //cout << "p1(cam) = " << p1_cam << "\n";
     p0_cam.divided_by_w ();
     p1_cam.divided_by_w ();
     
@@ -137,8 +137,8 @@ bool Group:: pick (int scope, float x, float y, const Camera* camera, RayInterse
             camera->getTransformTo (mesh, &trans);
             Vector p0_mesh = trans.transform (p0_cam);
             Vector p1_mesh = trans.transform (p1_cam);
-            cout << "p0(mesh) = " << p0_mesh << "\n";
-            cout << "p1(mesh) = " << p1_mesh << "\n";
+            //cout << "p0(mesh) = " << p0_mesh << "\n";
+            //cout << "p1(mesh) = " << p1_mesh << "\n";
             Vector org = p0_mesh;
             Vector dir = (p1_mesh-p0_mesh).normalize();
             mesh->intersect (org, dir, &ri);

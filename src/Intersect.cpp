@@ -21,25 +21,26 @@ bool m3g::triangle_intersect (const Vector& org, const Vector& dir,
     Vector e2 = v2 - v0;
     Vector p  = cross (dir, e2);
     float  a  = dot (e1, p);
-    if (a > -M3G_EPSILON && a < M3G_EPSILON)
+    if (a < M3G_EPSILON)
         return false;
 
-    float  f = 1/a;
     Vector s = org - v0;
-
-    float  u = f * dot(s, p);
-    if (u < 0 || u > 1)
+    float  u = dot (s, p);
+    if (u < 0 || u > a)
         return false;
+
 
     Vector q = cross (s, e1);
 
-    float  v = f * dot(dir, q);
-    if (v < 0 || u+v > 1)
+    float  v = dot(dir, q);
+    if (v < 0 || u+v > a)
         return false;
 
-    float t = f * dot(e2, q);
-    if (t < 0) 
-        return false;
+    float t = dot(e2, q);
+    float f = 1/a;
+    t *= f;
+    u *= f;
+    v *= f;
 
     if (u_)
         *u_ = u;

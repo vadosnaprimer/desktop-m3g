@@ -1035,7 +1035,7 @@ test-Transform.o: /usr/include/unittest++/Posix/TimeHelpers.h
 test-Transform.o: /usr/include/sys/time.h /usr/include/bits/time.h
 test-Transform.o: /usr/include/sys/select.h /usr/include/bits/select.h
 test-Transform.o: ../src/Transform.hpp ../src/Matrix.hpp ../src/Object.hpp
-test-Transform.o: ../src/Quaternion.hpp
+test-Transform.o: ../src/Quaternion.hpp ../src/Vector.hpp
 test-Transformable.o: /usr/include/unittest++/UnitTest++.h
 test-Transformable.o: /usr/include/unittest++/Config.h
 test-Transformable.o: /usr/include/unittest++/Test.h

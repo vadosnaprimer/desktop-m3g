@@ -50,6 +50,14 @@ void mouse (int button, int state, int x, int y)
     RayIntersection ri;
     bool hit = wld->pick (-1, x/width, y/height, cam, &ri);
     cout << ((hit) ? "HIT!" : "miss") << "\n";
+    if (hit) {
+        float nx = ri.getNormalX();
+        float ny = ri.getNormalY();
+        float nz = ri.getNormalZ();
+        int   submesh_index = ri.getSubmeshIndex();
+        cout << "normal = " << Vector(nx,ny,nz) << "\n";
+        cout << "submesh index = " << submesh_index << "\n";
+    }
 }
 
 void keyboard (unsigned char key, int x, int y)
@@ -76,18 +84,33 @@ int main (int argc, char** argv)
     short        position_values[] = {1,-1,0, 1,1,0, -1,-1,0, -1,1,0};
     positions->set (0, 4, position_values);
 
+    VertexArray* normals           = new VertexArray (4, 3, 1);
+    char         normal_values[]   = {0,0,127, 0,127,0, 0,0,127, 0,127,0};
+    normals->set (0, 4, normal_values);
+
+    VertexArray* tex_coords         = new VertexArray (4, 2, 4);
+    float        tex_coord_values[] = {1,0, 1,1, 0,0, 0,1};
+    tex_coords->set (0, 4, tex_coord_values);
+
     float scale   = 1;
     float bias[3] = {0,0,0};
     VertexBuffer* vertices = new VertexBuffer;
     vertices->setPositions (positions, scale, bias);
+    vertices->setNormals   (normals);
+    vertices->setTexCoords (0, tex_coords, scale, bias);
   
-    int strips[1] = {4};
-    int indices[4] = {0,1,2,3};
+    int strips[2][1]  = {{3}, {3}};
+    int indices[2][3] = {{0,1,2}, {1,2,3}};
 
-    TriangleStripArray* tris = new TriangleStripArray (indices, 1, strips);
+    IndexBuffer* submesh[2];
+    submesh[0] = new TriangleStripArray (indices[0], 1, strips[0]);
+    submesh[1] = new TriangleStripArray (indices[1], 1, strips[1]);
 
-    Appearance* app = new Appearance;
-    Mesh* mesh = new Mesh (vertices, tris, app);
+    Appearance* app[2];
+    app[0]     = new Appearance;
+    app[1]     = new Appearance;
+
+    Mesh* mesh = new Mesh (vertices, 2, submesh, app);
   
     Background* bg = new Background;
     //bg->setColor (0xff0000ff);
@@ -108,8 +131,10 @@ int main (int argc, char** argv)
 
     objs.push_back (positions);
     objs.push_back (vertices);
-    objs.push_back (tris);
-    objs.push_back (app);
+    objs.push_back (submesh[0]);
+    objs.push_back (submesh[1]);
+    objs.push_back (app[0]);
+    objs.push_back (app[1]);
     objs.push_back (mesh);
     objs.push_back (bg);
     objs.push_back (cam);
