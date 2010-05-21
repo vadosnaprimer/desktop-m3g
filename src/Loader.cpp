@@ -4,6 +4,7 @@
 #include <zlib.h>
 #include <cstring>
 #include <map>
+#include <png.h>
 #include "m3g.hpp"
 #include "Loader.hpp"
 #include "Exception.hpp"
@@ -15,7 +16,9 @@ std::istrstream* Loader::iss = 0;
 std::vector<Object3D*> Loader::objs;
 Loader::FileInfo Loader::file_info;
 
-const char m3g_ident[12] = {0xAB,0x4A,0x53,0x52,0x31,0x38,0x34,0xBB,0x0D,0x0A,0x1A,0x0A};
+const char m3g_signature[12] = {0xAB,0x4A,0x53,0x52,0x31,0x38,0x34,0xBB,0x0D,0x0A,0x1A,0x0A};
+const char png_signature[8]  = {0x89,0x50,0x4e,0x47,0x0d,0x0a,0x1a,0x0a};
+
 
 Loader:: Loader () 
 {
@@ -25,24 +28,9 @@ Loader:: ~Loader ()
 {
 }
 
-
-std::vector<Object3D*> Loader:: load (int length, const char* data, int offset)
+void Loader:: load_m3g ()
 {
-    if (data == NULL) {
-        throw NullPointerException (__FILE__, __func__, "Data is NULL.");
-    }
-    if (length <= 0) {
-        throw IllegalArgumentException (__FILE__, __func__, "length is invalid, len=%d.", length);
-    }
-    if (offset < 0 || offset >= length) {
-        throw IndexOutOfBoundsException (__FILE__, __func__, "Offset is invalid, %d in [0, ).", offset, length);
-    }
-
-    iss = new istrstream ((char*)data+offset, length-offset);
-    if (iss == 0) {
-        throw IOException (__FILE__, __func__, "Can't load from memory 0x%p.", data);
-    }
-    if (!getM3GIdent()) {
+    if (!getM3GSignature()) {
         throw IOException (__FILE__, __func__, "This is not M3G format.");
     }
 
@@ -76,12 +64,8 @@ std::vector<Object3D*> Loader:: load (int length, const char* data, int offset)
         istrstream* tmp = iss;
         iss = new istrstream (uncompressed_objects, uncompressed_length);
 
-        // 注意：オブジェクトインデックスは１から始まる
-        // int i = 0;
-
         while (1) {
 
-            //cout << "object -------- " << i++ << " --------\n";
             int          start_of_object = (int)iss->tellg();
             char         object_type     = getByte ();
             unsigned int length          = getUInt32 ();
@@ -131,7 +115,7 @@ std::vector<Object3D*> Loader:: load (int length, const char* data, int offset)
         iss = tmp;
 
         unsigned int file_checksum    = getUInt32();
-        unsigned int memory_checksum  = adler32 ((const unsigned char*)data+start_of_section, total_section_length-4);
+        unsigned int memory_checksum  = adler32 ((const unsigned char*)iss->str()+start_of_section, total_section_length-4);
         if (memory_checksum != file_checksum) {
             throw IOException (__FILE__, __func__, "Checksum is invalid. file=0x%x, mem=0x%x.", file_checksum, memory_checksum);
         }
@@ -145,10 +129,106 @@ std::vector<Object3D*> Loader:: load (int length, const char* data, int offset)
         else
             it++;
     }
-    //for (int i = 0; i < (int)objs.size(); i++) {
-    //  if (objs[i])
-    //    objs[i]->print(cout); 
-    //}
+
+}
+
+void Loader:: load_png ()
+{
+    png_structp png_ptr;
+    png_infop   info_ptr;
+
+    int pos = iss->tellg();
+    int end = iss->seekg(0, ios::end).tellg();
+    iss->seekg(pos); 
+
+    FILE* fp = fmemopen (iss->str(), end-pos, "rb");
+    if (fp == NULL) {
+        throw IOException (__FILE__, __func__, "Can't open memory.");
+    }
+
+    png_ptr = png_create_read_struct (PNG_LIBPNG_VER_STRING, 0, 0, 0);
+    if (!png_ptr) {
+        throw IOException (__FILE__, __func__, "Can't create png struct.");
+    }
+  
+    info_ptr = png_create_info_struct (png_ptr);
+    if (!info_ptr) {
+        throw IOException (__FILE__, __func__, "Can't create png struct.");
+    }
+  
+    if (setjmp (png_jmpbuf (png_ptr))) {
+        png_destroy_read_struct (&png_ptr, &info_ptr, png_infopp_NULL);
+        throw IOException (__FILE__, __func__, "Error at libpng.");
+    }
+
+    png_init_io (png_ptr, fp);
+	
+    png_read_png (png_ptr, info_ptr, PNG_TRANSFORM_IDENTITY, png_voidp_NULL);
+  
+    //  cout << "Loader: width       = " << info_ptr->width << "\n";
+    //  cout << "Loader: height      = " << info_ptr->height << "\n";
+    //  cout << "Loader: bit_depth   = " << (int)info_ptr->bit_depth << "\n";
+    //  cout << "Loader: pixel_depth = " << (int)info_ptr->pixel_depth << "\n";
+    //  cout << "Loader: channels    = " << (int)info_ptr->channels << "\n";
+    
+    png_byte** row_pointers = png_get_rows(png_ptr, info_ptr);
+
+    int            size   = info_ptr->width * info_ptr->height * info_ptr->channels;
+    unsigned char* pixels = new unsigned char [size];
+    unsigned char* p      = pixels;
+    for (int y = (int)info_ptr->height-1; y >= 0; y--) {
+        memcpy (p, row_pointers[y], info_ptr->width * info_ptr->channels);
+        p += info_ptr->width * info_ptr->channels;
+    }
+    
+    int format;
+    switch (info_ptr->color_type) {
+    case PNG_COLOR_TYPE_GRAY       : format = Image2D::LUMINANCE;       break;
+    case PNG_COLOR_TYPE_GRAY_ALPHA : format = Image2D::LUMINANCE_ALPHA; break;
+    case PNG_COLOR_TYPE_RGB        : format = Image2D::RGB;             break;
+    case PNG_COLOR_TYPE_RGB_ALPHA  : format = Image2D::RGBA;            break;
+    default: throw IOException (__FILE__, __func__, "Unknwon png format=%d.", format);
+    }
+
+    Image2D*   img = new Image2D   (format, info_ptr->width, info_ptr->height, pixels);
+
+    png_destroy_read_struct (&png_ptr, &info_ptr, png_infopp_NULL);
+    delete [] pixels;
+    fclose (fp);
+
+    objs.push_back (img);
+}
+
+
+
+
+std::vector<Object3D*> Loader:: load (int length, const char* data, int offset)
+{
+    if (data == NULL) {
+        throw NullPointerException (__FILE__, __func__, "Data is NULL.");
+    }
+    if (length <= 0) {
+        throw IllegalArgumentException (__FILE__, __func__, "length is invalid, len=%d.", length);
+    }
+    if (offset < 0 || offset >= length) {
+        throw IndexOutOfBoundsException (__FILE__, __func__, "Offset is invalid, %d in [0, ).", offset, length);
+    }
+
+    objs.clear();
+
+    iss = new istrstream ((char*)data+offset, length-offset);
+    if (iss == 0) {
+        throw IOException (__FILE__, __func__, "Can't load from memory 0x%p.", data);
+    }
+
+    if (isM3GSignature())
+        load_m3g ();
+    else if (isPngSignature())
+        load_png ();
+    else
+        throw IOException (__FILE__, __func__, "This is not M3G format or png. ");
+
+    delete iss;
 
     return objs;
 }
@@ -168,7 +248,24 @@ std::vector<Object3D*> Loader:: load (const char* name)
     load (size, buf, 0);
 
     delete [] buf;
+
     return objs;
+}
+
+bool Loader:: isM3GSignature ()
+{
+    unsigned int pos = iss->tellg ();
+    bool         yes = getM3GSignature ();
+    iss->seekg (pos);
+    return yes;
+}
+
+bool Loader:: isPngSignature ()
+{
+    unsigned int pos = iss->tellg ();
+    bool         yes = getPngSignature ();
+    iss->seekg (pos);
+    return yes;
 }
 
 bool Loader:: getBoolean ()
@@ -253,16 +350,18 @@ int          Loader:: getColorRGB ()
     return (r << 16) | (g << 8) | (b << 0);
 }
 
-bool         Loader:: getM3GIdent ()
+bool Loader:: getM3GSignature ()
 {
-    char ident[12];
-    iss->read ((char*)ident, 12);
-    //cout << "ident = ";
-    //for (int i = 0; i < 12; i++) {
-    //  cout << ident[i];
-    //}
-    //cout << "\n";
-    return true;
+    char sig[12];
+    iss->read ((char*)sig, 12);
+    return (memcmp (sig, m3g_signature, 12) == 0) ? true : false;
+}
+
+bool Loader:: getPngSignature ()
+{
+    char sig[12];
+    iss->read ((char*)sig, 8);
+    return (memcmp (sig, png_signature, 8) == 0) ? true : false;
 }
 
 char* Loader:: getByteArray (int n)
@@ -365,7 +464,7 @@ void Loader:: parseHeader ()
     //cout << "  has_external_refference  = " << has_external_refference  << "\n";
     //cout << "  total_file_size          = " << total_file_size          << "\n";
     //cout << "  approximate_content_size = " << approximate_content_size << "\n";
-    ////cout << "  authoring_field          = " << authoring_field          << "\n";
+    //cout << "  authoring_field          = " << authoring_field          << "\n";
 
     if (has_external_refference) {
         throw NotImplementedException (__FILE__, __func__, "Has_external_reference is not implemented.");

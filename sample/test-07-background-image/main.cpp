@@ -4,7 +4,6 @@
 #include <cstring>
 #include <cmath>
 #include <cstdlib>
-#include "libpng.hpp"
 using namespace std;
 using namespace m3g;
 
@@ -61,13 +60,10 @@ int main (int argc, char** argv)
   glutCreateWindow(argv[0]);
   glewInit ();
 
-  int   width, height;
-  char* png = 0;
-
-  png = (char*)readpng ("moe.png", &width, &height);
-  //cout << "png = " << width << "x" << height << "\n";
-
-  Image2D*    img = new Image2D (Image2D::RGB, width, height, png);
+  Image2D* img = dynamic_cast<Image2D*>(Loader::load ("mizugi.png")[0]);
+  cout << *img << "\n";
+  int width    = img->getWidth();
+  int height   = img->getHeight();
   Background* bg  = new Background;
   bg->setImage (img);
   //bg->setCrop (0,0,width,height);
@@ -84,8 +80,6 @@ int main (int argc, char** argv)
   wld->setBackground (bg);
 
   cout << *wld << "\n";
-
-  free (png);
 
   objs.push_back (img);
   objs.push_back (bg);

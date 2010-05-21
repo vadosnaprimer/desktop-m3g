@@ -4,7 +4,7 @@ TARGET = libm3g.so
 CXX = g++
 CXXFLAGS = -Wall -g -shared -fPIC -Wno-deprecated -fno-strict-aliasing
 LD = g++
-LDFLAGS = -shared
+LDFLAGS = -shared -lpng
 LIBS = 
 
 
@@ -101,19 +101,23 @@ Loader.o: /usr/include/sys/select.h /usr/include/bits/select.h
 Loader.o: /usr/include/bits/sigset.h /usr/include/bits/time.h
 Loader.o: /usr/include/sys/sysmacros.h /usr/include/bits/pthreadtypes.h
 Loader.o: /usr/include/unistd.h /usr/include/bits/posix_opt.h
-Loader.o: /usr/include/bits/confname.h /usr/include/getopt.h m3g.hpp
-Loader.o: m3gdef.hpp Graphics3D.hpp Object.hpp Object3D.hpp
-Loader.o: /usr/include/GL/glew.h /usr/include/GL/glu.h /usr/include/GL/gl.h
-Loader.o: m3ginternal.hpp AnimationController.hpp AnimationTrack.hpp
-Loader.o: Appearance.hpp Background.hpp CompositingMode.hpp Fog.hpp
-Loader.o: Image2D.hpp IndexBuffer.hpp TriangleStripArray.hpp
-Loader.o: KeyframeSequence.hpp Keyframe.hpp Material.hpp PolygonMode.hpp
-Loader.o: Transformable.hpp Quaternion.hpp Transform.hpp Matrix.hpp Node.hpp
-Loader.o: Camera.hpp Group.hpp World.hpp Light.hpp Mesh.hpp MorphingMesh.hpp
-Loader.o: SkinnedMesh.hpp BoneIndex.hpp Sprite3D.hpp Texture2D.hpp
-Loader.o: VertexArray.hpp VertexBuffer.hpp RayIntersection.hpp Vector.hpp
-Loader.o: Loader.hpp Exception.hpp RenderState.hpp /usr/include/stdlib.h
-Loader.o: /usr/include/alloca.h
+Loader.o: /usr/include/bits/confname.h /usr/include/getopt.h
+Loader.o: /usr/include/png.h /usr/include/pngconf.h /usr/include/stdio.h
+Loader.o: /usr/include/libio.h /usr/include/_G_config.h /usr/include/wchar.h
+Loader.o: /usr/include/bits/stdio_lim.h /usr/include/bits/sys_errlist.h
+Loader.o: /usr/include/setjmp.h /usr/include/bits/setjmp.h
+Loader.o: /usr/include/string.h m3g.hpp m3gdef.hpp Graphics3D.hpp Object.hpp
+Loader.o: Object3D.hpp /usr/include/GL/glew.h /usr/include/GL/glu.h
+Loader.o: /usr/include/GL/gl.h m3ginternal.hpp AnimationController.hpp
+Loader.o: AnimationTrack.hpp Appearance.hpp Background.hpp
+Loader.o: CompositingMode.hpp Fog.hpp Image2D.hpp IndexBuffer.hpp
+Loader.o: TriangleStripArray.hpp KeyframeSequence.hpp Keyframe.hpp
+Loader.o: Material.hpp PolygonMode.hpp Transformable.hpp Quaternion.hpp
+Loader.o: Transform.hpp Matrix.hpp Node.hpp Camera.hpp Group.hpp World.hpp
+Loader.o: Light.hpp Mesh.hpp MorphingMesh.hpp SkinnedMesh.hpp BoneIndex.hpp
+Loader.o: Sprite3D.hpp Texture2D.hpp VertexArray.hpp VertexBuffer.hpp
+Loader.o: RayIntersection.hpp Vector.hpp Loader.hpp Exception.hpp
+Loader.o: RenderState.hpp /usr/include/stdlib.h /usr/include/alloca.h
 Material.o: Material.hpp Object3D.hpp /usr/include/GL/glew.h
 Material.o: /usr/include/GL/glu.h /usr/include/GL/gl.h m3gdef.hpp
 Material.o: m3ginternal.hpp Object.hpp Exception.hpp AnimationTrack.hpp

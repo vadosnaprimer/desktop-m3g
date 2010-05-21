@@ -56,6 +56,20 @@ namespace m3g {
 
 
     private:
+
+        /**
+         *
+         */
+        static void load_m3g ();
+
+
+        /**
+         *
+         */
+        static void load_png ();
+
+
+
         /**
          * @~English  Creat a new Loader object.
          * @~Japanese コンストラクタ.
@@ -67,24 +81,27 @@ namespace m3g {
          */
         ~Loader ();
 
-        static bool            getBoolean ();
-        static char            getByte ();
-        static short           getInt16 ();
-        static unsigned short  getUInt16 ();
-        static int             getInt32 ();
-        static unsigned int    getUInt32 ();
-        static float           getFloat32 ();
-        static const char*     getString ();
+        static bool            isM3GSignature ();
+        static bool            isPngSignature ();
+        static bool            getBoolean     ();
+        static char            getByte        ();
+        static short           getInt16       ();
+        static unsigned short  getUInt16      ();
+        static int             getInt32       ();
+        static unsigned int    getUInt32      ();
+        static float           getFloat32     ();
+        static const char*     getString      ();
         static unsigned int    getObjectIndex ();
-        static int             getColorRGBA ();
-        static int             getColorRGB ();
-        static bool            getM3GIdent ();
-        static char*           getByteArray (int n);
-        static short*          getInt16Array (int n);
+        static int             getColorRGBA   ();
+        static int             getColorRGB    ();
+        static bool            getM3GSignature();
+        static bool            getPngSignature();
+        static char*           getByteArray   (int n);
+        static short*          getInt16Array  (int n);
         static unsigned short* getUInt16Array (int n);
-        static int*            getInt32Array (int n);
+        static int*            getInt32Array  (int n);
         static unsigned int*   getUInt32Array (int n);
-        static float*          getFloat32Array (int n);
+        static float*          getFloat32Array(int n);
 
         static void            read_raw (char* buf, int length);
         static void            read_zlib (char* decoded_buf, int decoded_buf_length, int compressed_length);
