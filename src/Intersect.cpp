@@ -42,6 +42,9 @@ bool m3g::triangle_intersect (const Vector& org, const Vector& dir,
     u *= f;
     v *= f;
 
+    if (t < 0)
+        return false;
+
     if (u_)
         *u_ = u;
     if (v_)

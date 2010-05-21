@@ -81,9 +81,11 @@ void RayIntersection:: setNormal ()
         VertexArray* normals = mesh->getVertexBuffer()->getNormals(scale_bias);
         if (normals) {
             float scale    = scale_bias[0];
-            float bias[3]  = {scale_bias[0], scale_bias[1], scale_bias[2]};
+            float bias[3]  = {scale_bias[1], scale_bias[2], scale_bias[3]};
             //cout << "RI: scale = " << scale << ", bias[] = " << bias[0] << ", " << bias[1] << ", " << bias[2] << "\n";
+            //cout << "vertex_indices = " << vertices[0] << ", " << vertices[1] << ", " << vertices[2] << "\n";
             float normal_values[3][3];
+            normals->get (0, 1, scale, bias, normal_values[0]);
             normals->get (vertices[0], 1, scale, bias, normal_values[0]);
             normals->get (vertices[1], 1, scale, bias, normal_values[1]);
             normals->get (vertices[2], 1, scale, bias, normal_values[2]);

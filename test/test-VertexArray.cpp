@@ -273,4 +273,47 @@ TEST (VertexArray_get_scale_bias_char)
 }
 
 
+TEST (VertexArray_get_scale_bias_float)
+{
+    float  values[] = {1,2,3, 4,5,6, 7,8,9, 10,11,12};
+
+    VertexArray* varry = new VertexArray (4,3,4);
+    varry->set (0, 4, values);
+
+    float scale = 2;
+    float bias[3]  = {1,2,3};
+
+    float float_values[] = {0,0,0, 0,0,0, 0,0,0, 0,0,0};
+
+    varry->get (0, 4, scale, bias, float_values);
+
+    CHECK_CLOSE (3,   float_values[0], 0.00001f);
+    CHECK_CLOSE (6,   float_values[1], 0.00001f);
+    CHECK_CLOSE (9,   float_values[2], 0.00001f);
+
+    CHECK_CLOSE (9,   float_values[3], 0.00001f);
+    CHECK_CLOSE (12,  float_values[4], 0.00001f);
+    CHECK_CLOSE (15,  float_values[5], 0.00001f);
+
+    CHECK_CLOSE (15,  float_values[6], 0.00001f);
+    CHECK_CLOSE (18,  float_values[7], 0.00001f);
+    CHECK_CLOSE (21,  float_values[8], 0.00001f);
+
+    CHECK_CLOSE (21,  float_values[9], 0.00001f);
+    CHECK_CLOSE (24,  float_values[10], 0.00001f);
+    CHECK_CLOSE (27,  float_values[11], 0.00001f);
+
+
+    varry->get (2, 2, scale, bias, float_values);
+
+    CHECK_CLOSE (15,  float_values[0], 0.00001f);
+    CHECK_CLOSE (18,  float_values[1], 0.00001f);
+    CHECK_CLOSE (21,  float_values[2], 0.00001f);
+
+    CHECK_CLOSE (21,  float_values[3], 0.00001f);
+    CHECK_CLOSE (24,  float_values[4], 0.00001f);
+    CHECK_CLOSE (27,  float_values[5], 0.00001f);
+}
+
+
 

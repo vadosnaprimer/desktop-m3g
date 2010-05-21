@@ -152,7 +152,7 @@ RayIntersection.o: VertexBuffer.hpp /usr/include/GL/glew.h
 RayIntersection.o: /usr/include/GL/glu.h /usr/include/GL/gl.h Object3D.hpp
 RayIntersection.o: m3gdef.hpp m3ginternal.hpp VertexArray.hpp Mesh.hpp
 RayIntersection.o: Node.hpp Transformable.hpp Quaternion.hpp Transform.hpp
-RayIntersection.o: Matrix.hpp
+RayIntersection.o: Matrix.hpp Sprite3D.hpp
 RenderState.o: RenderState.hpp
 SkinnedMesh.o: SkinnedMesh.hpp Mesh.hpp Node.hpp Transformable.hpp
 SkinnedMesh.o: Object3D.hpp /usr/include/GL/glew.h /usr/include/GL/glu.h

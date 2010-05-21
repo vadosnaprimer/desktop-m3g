@@ -257,7 +257,7 @@ void KeyframeSequence:: getFrame (int local_time, float* value) const
         spline (s, k0, k1, k2, k3, component_count, value);
         return;
     case SQUAD:
-        cout << "squad: " << k0 << ", " << k1 << ", " << k2 << ", " << k3 << "\n";
+        //cout << "squad: " << k0 << ", " << k1 << ", " << k2 << ", " << k3 << "\n";
         squad  (s, k0, k1, k2, k3, component_count, value);
     default:
         throw InternalException (__FILE__, __func__, "Interpolation type is unknwon, type=%d.", interp_type);
