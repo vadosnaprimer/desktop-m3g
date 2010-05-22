@@ -108,6 +108,8 @@ namespace m3g {
                           const std::vector<std::vector<BoneIndex> >& bone_indices,
                           const std::vector<Matrix>&    matrix_palette);
 
+        void updateOpenGLData (const void* value) const;
+
         void convert (int component_size);
 
         /**

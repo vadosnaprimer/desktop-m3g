@@ -370,6 +370,19 @@ void VertexArray:: setSkinning (const VertexArray* base_positions,
 
 }
 
+void VertexArray:: updateOpenGLData (const void* values) const
+{
+    if (values == NULL) {
+        throw NullPointerException (__FILE__, __func__, "Values is NULL.");
+    }
+
+    glBindBuffer    (GL_ARRAY_BUFFER, vbo);
+    glBufferSubData (GL_ARRAY_BUFFER,
+                     0,
+                     vertex_count * component_count * component_size,
+                     values);
+}
+
 void VertexArray:: convert (int to)
 {
     int from = component_size;

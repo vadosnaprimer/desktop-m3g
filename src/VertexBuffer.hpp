@@ -130,8 +130,8 @@ namespace m3g {
         float        tex_coords_scale[MAX_TEXTURE_UNITS];
         float        tex_coords_bias[MAX_TEXTURE_UNITS][3];
 
-        int          default_color;
-
+        int           default_color;
+        mutable float node_alpha;
     };
 
 

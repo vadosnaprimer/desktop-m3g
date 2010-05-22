@@ -244,6 +244,16 @@ float Node:: getAlphaFactor () const
     return alpha_factor;
 }
 
+float Node:: getGlobalAlphaFactor () const
+{
+    const Node* node  = this;
+    float alpha = 1;
+    do {
+        alpha *= node->getAlphaFactor () ;
+    } while ((node = node->getParent()) != NULL);
+    return alpha;
+}
+
 Matrix Node:: getGlobalPose () const
 {
     const Node* node = this;
@@ -360,13 +370,13 @@ void Node:: render (RenderState& state) const
 {
     Transformable::render (state);
   
-    float alpha = 1;
-    const Node* node  = this;
-    do {
-        alpha *= node->getAlphaFactor();
-    } while ((node = node->getParent()) != 0);
+    //float alpha = 1;
+    //const Node* node  = this;
+    //do {
+    //    alpha *= node->getAlphaFactor();
+    //} while ((node = node->getParent()) != 0);
 
-    state.alpha = alpha;
+    state.alpha = getGlobalAlphaFactor();
 }
 
 std::ostream& Node:: print (std::ostream& out) const

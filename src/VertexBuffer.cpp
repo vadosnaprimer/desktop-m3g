@@ -12,7 +12,7 @@ using namespace m3g;
 
 VertexBuffer:: VertexBuffer () :
     positions(0), normals(0), colors(0), positions_scale(1),
-    default_color(0xffffffff)
+    default_color(0xffffffff), node_alpha(1)
 {
     for (int i = 0; i < 3; i++) {
         positions_bias[i] = 0;
@@ -127,9 +127,9 @@ VertexArray* VertexBuffer:: getColors (float* scale_bias) const
     if (colors) {
         if (scale_bias) {
             scale_bias[0] = 1/255.f;
-            scale_bias[1] = 128/255.f;
-            scale_bias[2] = 128/255.f;
-            scale_bias[3] = 128/255.f;
+            scale_bias[1] = 0;
+            scale_bias[2] = 0;
+            scale_bias[3] = 0;
         }
     }
     return colors;
@@ -201,7 +201,8 @@ void VertexBuffer:: setColors (VertexArray* colors_)
         throw IllegalArgumentException (__FILE__, __func__, "Component count must be 3 or 4, size=%d.", component_count);
     }
 
-    colors = colors_;
+    colors     = colors_;
+    node_alpha = 1;
 }
 
 void VertexBuffer:: setDefaultColor (int argb)
@@ -365,6 +366,24 @@ void VertexBuffer:: render (RenderState& state) const
     }
 
     if (colors) {
+        //cout << "state.alpha = " << state.alpha << ", node_alpha = " << node_alpha << "\n";
+        if (state.alpha != node_alpha) {
+            int vertex_count    = colors->getVertexCount ();
+            int component_count = colors->getComponentCount ();
+            int component_num   = vertex_count*component_count;
+            if (component_count == 4) {
+                //cout << "VertexBuffer: update vertex color by node-alpha\n";
+                unsigned char* values = new unsigned char[component_num];
+                colors->get (0, vertex_count, (char*)values);
+                for (int v = 0; v < vertex_count; v++) {
+                    values[v*component_count + 3] *= state.alpha;
+                }
+                colors->updateOpenGLData (values);
+                delete [] values;
+            }
+            node_alpha = state.alpha;
+        }
+
         //cout << "VertexBuffer: send vertex color array\n";
         // 注意：頂点カラーを使うかどうかはMaterial::render()で決定される。
         // ここではデータをGPUに送るだけでdisableにしておく。

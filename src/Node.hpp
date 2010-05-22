@@ -116,6 +116,12 @@ namespace m3g {
         float getAlphaFactor () const;
 
         /**
+         * @~English   Retrieves the alpha factor of this Node and all ancestors, not in M3G.
+         * @~Japanese このノードと先祖のα値を全て乗算した値の取得, M3G未定義.
+         */
+        float getGlobalAlphaFactor () const;
+
+        /**
          * @~English   Get global pose matrix (bone coordinate to local coordinate), for inner use.
          * @~Japanese  グローバルポーズ（ボーン座標からローカル座標）を計算するM3G非標準の関数.
          */

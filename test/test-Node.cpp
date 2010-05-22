@@ -97,6 +97,20 @@ TEST (Node_duplicate)
     delete parent;
 }
 
+TEST (Node_getGlobalAlphaFactor)
+{
+    Group* grp = new Group;
+    Node* node = new Node;
+    grp->setAlphaFactor (0.8);
+    node->setAlphaFactor (0.6);
+    grp->addChild (node);
+
+    CHECK_CLOSE (0.48f, node->getGlobalAlphaFactor(), 0.00001f);
+
+    delete node;
+    delete grp;
+}
+
 TEST (Node_getGlobalPose)
 {
     // grp0 --> grp1 --> grp2
