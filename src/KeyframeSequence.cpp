@@ -163,9 +163,9 @@ void KeyframeSequence:: setValidRange (int first, int last)
     valid_range = ValidRange (first, last);
 }
 
-void KeyframeSequence:: getFrame (int local_time, float* value) const
+void KeyframeSequence:: getFrame (int sequence_time, float* value) const
 {
-    //cout << "KeyframeSequence: local_time=" << local_time  << ", value = " << value << "\n";
+    //cout << "KeyframeSequence: sequence_time=" << sequence_time  << ", value = " << value << "\n";
 
     if (value == NULL) {
         throw NullPointerException (__FILE__, __func__, "Value is NULL.");
@@ -185,36 +185,36 @@ void KeyframeSequence:: getFrame (int local_time, float* value) const
 
     /*
       if (repeat_mode == LOOP) {
-      while (local_time < keyframes[first].time) {
-      local_time += keyframes[last].time - keyframes[first].time;
+      while (sequence_time < keyframes[first].time) {
+      sequence_time += keyframes[last].time - keyframes[first].time;
       }
-      while (local_time > keyframes[last].time) {
-      local_time -= keyframes[last].time - keyframes[first].time;
+      while (sequence_time > keyframes[last].time) {
+      sequence_time -= keyframes[last].time - keyframes[first].time;
       }
       }
     */
     //cout << "duration = " << duration << "\n";
 
     if (repeat_mode == LOOP) {
-        local_time %= duration;
+        sequence_time %= duration;
     }
     /*
-      while (local_time < 0) {
-      local_time += duration;
+      while (sequence_time < 0) {
+      sequence_time += duration;
       }
-      while (local_time > duration) {
-      local_time -= duration;
+      while (sequence_time > duration) {
+      sequence_time -= duration;
       }
       }
     */
 
-    if (local_time <= keyframes[first].time) {
+    if (sequence_time <= keyframes[first].time) {
         for (int i = 0; i < component_count; i++) {
             value[i] = keyframes[first].value[i];
         }
         return;
     }
-    if (local_time >= keyframes[last].time) {
+    if (sequence_time >= keyframes[last].time) {
         for (int i = 0; i < component_count; i++) {
             value[i] = keyframes[last].value[i];
         }
@@ -226,22 +226,22 @@ void KeyframeSequence:: getFrame (int local_time, float* value) const
     int right = -1;
 
     for (int i = first; i <= last; i++) {
-        if (keyframes[i].time > local_time) {
+        if (keyframes[i].time > sequence_time) {
             left  = i-1;
             right = i;
             break;
         }
     }
 
-    float     s  = (local_time - keyframes[left].time) / (float)(keyframes[right].time - keyframes[left].time);
-    const Keyframe& k0 = (left == first && repeat_mode == LOOP) ? Keyframe(-1,0) : 
-        (left == first && repeat_mode == CONSTANT) ? Keyframe(-1,0) :
-        keyframes[left-1];
+    float     s  = (sequence_time - keyframes[left].time) / (float)(keyframes[right].time - keyframes[left].time);
+    const Keyframe& k0 = (left == first && repeat_mode == LOOP)     ? Keyframe(-1,0) : 
+                         (left == first && repeat_mode == CONSTANT) ? Keyframe(-1,0) :
+                         keyframes[left-1];
     const Keyframe& k1 = keyframes[left];
     const Keyframe& k2 = keyframes[right];
-    const Keyframe& k3 = (right == last && repeat_mode == LOOP) ? Keyframe(-1,0) :
-        (right == last && repeat_mode == CONSTANT) ? Keyframe(-1,0) :
-        keyframes[right+1];
+    const Keyframe& k3 = (right == last && repeat_mode == LOOP)     ? Keyframe(-1,0) :
+                         (right == last && repeat_mode == CONSTANT) ? Keyframe(-1,0) :
+                         keyframes[right+1];
 
     switch (interp_type) {
     case STEP: 
@@ -257,8 +257,8 @@ void KeyframeSequence:: getFrame (int local_time, float* value) const
         spline (s, k0, k1, k2, k3, component_count, value);
         return;
     case SQUAD:
-        //cout << "squad: " << k0 << ", " << k1 << ", " << k2 << ", " << k3 << "\n";
         squad  (s, k0, k1, k2, k3, component_count, value);
+        return;
     default:
         throw InternalException (__FILE__, __func__, "Interpolation type is unknwon, type=%d.", interp_type);
     }

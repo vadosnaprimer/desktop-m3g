@@ -164,9 +164,9 @@ namespace m3g {
 
         /**
          * @~English  Returns interpolated values at specified time, for inner use.
-         * @~Japanese 指定された時刻のフレームを取得する内部使用の関数.
+         * @~Japanese 指定されたシーケンス時間のフレームを取得する内部使用の関数.
          */
-        void getFrame (int local_time, float* value) const;
+        void getFrame (int sequence_time, float* value) const;
 
 
     private:

@@ -76,12 +76,12 @@ int Fog :: animate (int world_time)
       continue;
     }
     float weight     = controller->getWeight ();
-    float local_time = controller->getPosition (world_time);
+    float sequence_time = controller->getPosition (world_time);
     
     switch (track->getTargetProperty()) {
     case AnimationTrack::COLOR: {
       float value[3] = {1,1,1};
-      keyframe->getFrame (local_time, value);
+      keyframe->getFrame (sequence_time, value);
       rgb[0] += value[0] * weight;
       rgb[1] += value[1] * weight;
       rgb[2] += value[2] * weight;
@@ -91,7 +91,7 @@ int Fog :: animate (int world_time)
     }
     case AnimationTrack::DENSITY: {
       float value[1] = {1};
-      keyframe->getFrame (local_time, value);
+      keyframe->getFrame (sequence_time, value);
       new_density += value[0] * weight;
       is_density_modefied = true;
       //cout << "Fog: density --> " << new_density << "\n";
@@ -99,7 +99,7 @@ int Fog :: animate (int world_time)
     }
     case AnimationTrack::FAR_DISTANCE: {
       float value[1] = {1};
-      keyframe->getFrame (local_time, value);
+      keyframe->getFrame (sequence_time, value);
       new_far += value[0] * weight;
       is_far_modefied = true;
       //cout << "Fog: far --> " << new_far << "\n";
@@ -107,7 +107,7 @@ int Fog :: animate (int world_time)
     }
     case AnimationTrack::NEAR_DISTANCE: {
       float value[1] = {1};
-      keyframe->getFrame (local_time, value);
+      keyframe->getFrame (sequence_time, value);
       new_near += value[0] * weight;
       is_near_modefied = true;
       //cout << "Fog: near --> " << new_near << "\n";

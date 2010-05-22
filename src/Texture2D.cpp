@@ -33,22 +33,20 @@ Texture2D:: Texture2D (Image2D* img) :
 
     image = img;
 
-    int format = image->getOpenGLFormat();
-    int width  = image->getWidth();
-    int height = image->getHeight();
-    void* data = image->getOpenGLData();
-
     glGenTextures (1, &texobj);
-    glBindTexture (GL_TEXTURE_2D, texobj);
-    glPixelStorei (GL_UNPACK_ALIGNMENT, 1);
-    //glTexImage2D (GL_TEXTURE_2D, 0, format, width, height, 0, format, GL_UNSIGNED_BYTE, data);
-    gluBuild2DMipmaps (GL_TEXTURE_2D, format, width, height, format, GL_UNSIGNED_BYTE, data);
-  
-    //cout << "AAA: gluBuild2DMipmaps, texobj = " << texobj << "\n";
+    int err = glGetError();
+    if (err != GL_NO_ERROR) {
+        throw OpenGLException (__FILE__, __func__, "Can't make texture object, err=%d.", err);
+    }
+
+    setImage (img);
 }
 
 Texture2D:: ~Texture2D ()
 {
+    if (texobj > 0) {
+        glDeleteTextures(1, &texobj);
+    }
 }
 
 Texture2D* Texture2D:: duplicate () const
@@ -56,6 +54,7 @@ Texture2D* Texture2D:: duplicate () const
     Texture2D* tex  = new Texture2D (*this);
     Transformable* trns = Transformable::duplicate ();
     *(Transformable*)tex = *trns;
+    // 現状ではOpenGLのテクスチャーオブジェクトを共通で使用するのでコメントアウト
     //glGenTextures (1, &tex->texobj);
     //tex->setImage (image);
     return tex;
@@ -98,13 +97,13 @@ int Texture2D:: animate (int world_time)
         if (!controller->isActiveInterval(world_time)) {
             continue;
         }
-        float weight     = controller->getWeight ();
-        float local_time = controller->getPosition (world_time);
+        float weight        = controller->getWeight ();
+        float sequence_time = controller->getPosition (world_time);
     
         switch (track->getTargetProperty()) {
         case AnimationTrack::COLOR: {
             float value[3] = {1,1,1};
-            keyframe->getFrame (local_time, value);
+            keyframe->getFrame (sequence_time, value);
             rgb[0] += value[0] * weight;
             rgb[1] += value[1] * weight;
             rgb[2] += value[2] * weight;
@@ -199,7 +198,25 @@ void Texture2D:: setFiltering (int level_filter, int image_filter)
 
 void Texture2D:: setImage (Image2D* img)
 {
+    if (texobj == 0) {
+        throw OpenGLException (__FILE__, __func__, "Texture object is not ready.");
+    }
+
     image = img;
+
+    if (image == NULL)
+        return;
+
+    int   format = image->getOpenGLFormat();
+    int   width  = image->getWidth();
+    int   height = image->getHeight();
+    void* data   = image->getOpenGLData();
+
+    glBindTexture (GL_TEXTURE_2D, texobj);
+    glPixelStorei (GL_UNPACK_ALIGNMENT, 1);
+    //glTexImage2D (GL_TEXTURE_2D, 0, format, width, height, 0, format, GL_UNSIGNED_BYTE, data);
+    gluBuild2DMipmaps (GL_TEXTURE_2D, format, width, height, format, GL_UNSIGNED_BYTE, data);
+
 }
 
 void Texture2D:: setWrapping (int wrap_s, int wrap_t)
@@ -227,6 +244,10 @@ void Texture2D:: render (RenderState& state) const
 
     //cout << "Texture2D: render \n";
 
+    if (image == NULL || texobj == 0) {
+        return;
+    }
+
     glBindTexture   (GL_TEXTURE_2D, texobj);
 
     // マトリックスパレットの設定
@@ -240,25 +261,41 @@ void Texture2D:: render (RenderState& state) const
     case FUNC_REPLACE : glTexEnvi (GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE) ; break;
     default: throw IllegalStateException (__FILE__, __func__, "Blending mode is invalid, mode=%d.", blending_mode);
     }
+    
+    if (filter.level != FILTER_BASE_LEVEL && filter.level != FILTER_NEAREST && filter.level != FILTER_LINEAR) {
+        throw IllegalStateException (__FILE__, __func__, "Level filter is invalid, f=%d.", filter.level);
+    }
+    if (filter.image != FILTER_NEAREST && filter.image != FILTER_LINEAR) {
+        throw IllegalStateException (__FILE__, __func__, "Image filter is invalid, f=%d.", filter.image);
+    }
 
     switch (filter.image) {
+    case FILTER_NEAREST: glTexParameteri  (GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST); break;
+    case FILTER_LINEAR : glTexParameteri  (GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR ); break;
+    }
+
+    switch (filter.level) {
     case FILTER_BASE_LEVEL:
         glTexParameteri  (GL_TEXTURE_2D, GL_TEXTURE_BASE_LEVEL, 0);
         glTexParameteri  (GL_TEXTURE_2D, GL_TEXTURE_MAX_LEVEL, 0);
-        break;
-    case FILTER_LINEAR:
-        glTexParameteri  (GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-        glTexParameteri  (GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+        switch (filter.image) {
+        case FILTER_NEAREST: glTexParameteri  (GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST); break;
+        case FILTER_LINEAR : glTexParameteri  (GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR) ; break;
+        }
         break;
     case FILTER_NEAREST:
-        glTexParameteri  (GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-        glTexParameteri  (GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+        switch (filter.image) {
+        case FILTER_NEAREST: glTexParameteri  (GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST_MIPMAP_NEAREST); break;
+        case FILTER_LINEAR : glTexParameteri  (GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_NEAREST) ; break;
+        }
         break;
-    default:
-        throw IllegalStateException (__FILE__, __func__, "Level filter is invalid.");
+    case FILTER_LINEAR:
+        switch (filter.image) {
+        case FILTER_NEAREST: glTexParameteri  (GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST_MIPMAP_LINEAR); break;
+        case FILTER_LINEAR : glTexParameteri  (GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR) ; break;
+        }
+        break;
     }
-
-    // filter.levelは？
 
     switch (wrapping.s) {
     case WRAP_CLAMP :  glTexParameteri (GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP) ; break;

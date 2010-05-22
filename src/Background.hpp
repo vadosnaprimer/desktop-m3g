@@ -194,22 +194,25 @@ namespace m3g {
          */
         virtual std::ostream& print (std::ostream& out) const;
 
-    private:
         /**
          * @~English  
          * @~Japanese このBackgroundをレンダリングする内部使用の関数.
          */
         virtual void render (RenderState& state) const;
 
+        /**
+         * @~English  Render this object, for inner use.
+         * @~Japanese このオブジェクトをレンダリングする内部使用の関数.
+         */
+        static void renderX ();
+
     private:
         bool      color_clear_enable;
         bool      depth_clear_enable;
-        int       background_color;
-        Image2D*  background_image;
-        ImageMode image_mode;
-        CropRect  crop_rectangle;
-        int       background_width;
-        int       background_height;
+        int       color;
+        Image2D*  image;
+        ImageMode mode;
+        CropRect  crop;
 
     private:
         GLuint texobj;

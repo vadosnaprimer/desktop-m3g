@@ -79,12 +79,12 @@ int Light:: animate (int world_time)
             continue;
         }
         float weight     = controller->getWeight ();
-        float local_time = controller->getPosition (world_time);
+        float sequence_time = controller->getPosition (world_time);
     
         switch (track->getTargetProperty()) {
         case AnimationTrack::COLOR: {
             float value[3] = {1,1,1};
-            keyframe->getFrame (local_time, value);
+            keyframe->getFrame (sequence_time, value);
             rgb[0] += value[0] * weight;
             rgb[1] += value[1] * weight;
             rgb[2] += value[2] * weight;
@@ -94,7 +94,7 @@ int Light:: animate (int world_time)
         }
         case AnimationTrack::INTENSITY: {
             float value[1] = {1};
-            keyframe->getFrame (local_time, value);
+            keyframe->getFrame (sequence_time, value);
             new_intensity += value[0] * weight;
             is_intensity_modefied = true;
             //cout << "Light: intensity --> " << new_intensity << "\n";
@@ -102,7 +102,7 @@ int Light:: animate (int world_time)
         }
         case AnimationTrack::SPOT_ANGLE: {
             float value[1] = {1};
-            keyframe->getFrame (local_time, value);
+            keyframe->getFrame (sequence_time, value);
             new_spot.angle += value[0] * weight;
             is_spot_angle_modefied = true;
             //cout << "Light: spot_angle --> " << new_spot.angle << "\n";
@@ -110,7 +110,7 @@ int Light:: animate (int world_time)
         }
         case AnimationTrack::SPOT_EXPONENT: {
             float value[1] = {1};
-            keyframe->getFrame (local_time, value);
+            keyframe->getFrame (sequence_time, value);
             new_spot.exponent += value[0] * weight;
             is_spot_exponent_modefied = true;
             //cout << "Light: spot_angle --> " << new_spot.exponent << "\n";

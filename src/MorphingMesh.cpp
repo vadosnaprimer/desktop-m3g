@@ -129,7 +129,7 @@ int MorphingMesh:: animate (int world_time)
             continue;
         }
         float animation_weight = controller->getWeight ();
-        float local_time       = controller->getPosition (world_time);
+        float sequence_time    = controller->getPosition (world_time);
 
  
         switch (track->getTargetProperty()) {
@@ -138,7 +138,7 @@ int MorphingMesh:: animate (int world_time)
             int    num   = max ((int)morph_weights.size(), keyframe->getComponentCount());
             float* value = new float[num];
             fill (value, value+num, 0);
-            keyframe->getFrame (local_time, value);
+            keyframe->getFrame (sequence_time, value);
             for (int i = 0; i < (int)morph_weights.size(); i++) {
                 new_weights[i] += value[i] * animation_weight;
             }

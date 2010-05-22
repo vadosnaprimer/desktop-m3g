@@ -67,7 +67,7 @@ int main (int argc, char** argv)
   VertexBuffer* vertices = new VertexBuffer;
   vertices->setPositions (positions, scale, bias);
   vertices->setColors    (colors);
-  
+
   int indices[] = {0,1,2,3};
   int strips[]  = {4};
   TriangleStripArray* tris = new TriangleStripArray (indices, 1, strips);

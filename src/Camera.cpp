@@ -79,12 +79,12 @@ int Camera:: animate (int world_time)
             continue;
         }
         float weight     = controller->getWeight ();
-        float local_time = controller->getPosition (world_time);
+        float sequence_time = controller->getPosition (world_time);
     
         switch (track->getTargetProperty()) {
         case AnimationTrack:: FAR_DISTANCE: {
             float value[1] = {1};
-            keyframe->getFrame (local_time, value);
+            keyframe->getFrame (sequence_time, value);
             new_far += value[0] * weight;
             is_far_modefied = true;
             //cout << "Camera: far --> " << new_far << "\n";
@@ -92,7 +92,7 @@ int Camera:: animate (int world_time)
         }
         case AnimationTrack::FIELD_OF_VIEW: {
             float value[1] = {1};
-            keyframe->getFrame (local_time, value);
+            keyframe->getFrame (sequence_time, value);
             new_fovy += value[0] * weight;
             is_fovy_modefied = true;
             //cout << "Fog: fovy --> " << new_fovy << "\n";
@@ -100,7 +100,7 @@ int Camera:: animate (int world_time)
         }
         case AnimationTrack:: NEAR_DISTANCE: {
             float value[1] = {1};
-            keyframe->getFrame (local_time, value);
+            keyframe->getFrame (sequence_time, value);
             new_near += value[0] * weight;
             is_near_modefied = true;
             //cout << "Camera: near --> " << new_near << "\n";

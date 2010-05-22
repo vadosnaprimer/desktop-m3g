@@ -95,13 +95,13 @@ int Sprite3D:: animate (int world_time)
         if (!controller->isActiveInterval(world_time)) {
             continue;
         }
-        float weight     = controller->getWeight ();
-        float local_time = controller->getPosition (world_time);
+        float weight        = controller->getWeight ();
+        float sequence_time = controller->getPosition (world_time);
     
         switch (track->getTargetProperty()) {
         case AnimationTrack:: CROP: {
             float value[4] = {0,0,0,0};
-            keyframe->getFrame (local_time, value);
+            keyframe->getFrame (sequence_time, value);
             if (keyframe->getComponentCount() == 4) {
                 new_crop.x      += value[0] * weight;
                 new_crop.y      += value[1] * weight;

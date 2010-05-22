@@ -4,7 +4,6 @@
 #include <cstring>
 #include <cmath>
 #include <cstdlib>
-#include "libpng.hpp"
 #include "data.hpp"
 using namespace std;
 using namespace m3g;

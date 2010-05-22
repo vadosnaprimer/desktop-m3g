@@ -75,12 +75,12 @@ int Material:: animate (int world_time)
             continue;
         }
         float weight     = controller->getWeight ();
-        float local_time = controller->getPosition (world_time);
+        float sequence_time = controller->getPosition (world_time);
     
         switch (track->getTargetProperty()) {
         case AnimationTrack::ALPHA: {
             float value[1] = {1};
-            keyframe->getFrame (local_time, value);
+            keyframe->getFrame (sequence_time, value);
             alpha += value[0] * weight;
             is_alpha_modefied = true;
             //cout << "Material: alpha --> " << alpha << "\n";
@@ -88,7 +88,7 @@ int Material:: animate (int world_time)
         }
         case AnimationTrack::AMBIENT_COLOR: {
             float value[3] = {1,1,1};
-            keyframe->getFrame (local_time, value);
+            keyframe->getFrame (sequence_time, value);
             ambient_rgb[0] += value[0] * weight;
             ambient_rgb[1] += value[1] * weight;
             ambient_rgb[2] += value[2] * weight;
@@ -98,7 +98,7 @@ int Material:: animate (int world_time)
         }
         case AnimationTrack::DIFFUSE_COLOR: {
             float value[3] = {1,1,1};
-            keyframe->getFrame (local_time, value);
+            keyframe->getFrame (sequence_time, value);
             diffuse_rgb[0] += value[0] * weight;
             diffuse_rgb[1] += value[1] * weight;
             diffuse_rgb[2] += value[2] * weight;
@@ -108,7 +108,7 @@ int Material:: animate (int world_time)
         }
         case AnimationTrack::EMISSIVE_COLOR: {
             float value[3] = {1,1,1};
-            keyframe->getFrame (local_time, value);
+            keyframe->getFrame (sequence_time, value);
             emissive_rgb[0] += value[0] * weight;
             emissive_rgb[1] += value[1] * weight;
             emissive_rgb[2] += value[2] * weight;
@@ -118,7 +118,7 @@ int Material:: animate (int world_time)
         }
         case AnimationTrack::SHININESS: {
             float value[1] = {1};
-            keyframe->getFrame (local_time, value);
+            keyframe->getFrame (sequence_time, value);
             shininess += value[0] * weight;
             is_shininess_modefied = true;
             //cout << "Material: shininess --> " << shininess << "\n";
@@ -126,7 +126,7 @@ int Material:: animate (int world_time)
         }
         case AnimationTrack::SPECULAR_COLOR: {
             float value[3] = {1,1,1};
-            keyframe->getFrame (local_time, value);
+            keyframe->getFrame (sequence_time, value);
             specular_rgb[0] += value[0] * weight;
             specular_rgb[1] += value[1] * weight;
             specular_rgb[2] += value[2] * weight;
@@ -245,7 +245,8 @@ void Material:: render (RenderState& state) const
 
     GLfloat ambient_rgb[4] = {((ambient_color & 0x00ff0000) >> 16) / 255.f,
                               ((ambient_color & 0x0000ff00) >> 8 ) / 255.f,
-                              ((ambient_color & 0x000000ff) >> 0 ) / 255.f, 1};
+                              ((ambient_color & 0x000000ff) >> 0 ) / 255.f,
+                              1};
     glMaterialfv (GL_FRONT_AND_BACK, GL_AMBIENT, ambient_rgb);
 
     GLfloat diffuse_rgba[4] = {((diffuse_color & 0x00ff0000) >> 16) / 255.f,
@@ -271,7 +272,6 @@ void Material:: render (RenderState& state) const
 
     // 頂点カラーが有効なとき
     if (vertex_color_tracking) {
-        //cout << "Material: enable vertex color tracking.\n";
         glDisable (GL_LIGHTING);
         if (state.vertex_color_buffer_ready) {
             //cout << "Material: enable colors per vertex .\n";
@@ -286,7 +286,6 @@ void Material:: render (RenderState& state) const
         }
     }
 
-    //cout << *this;
 }
 
 

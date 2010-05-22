@@ -14,18 +14,28 @@ const int Background:: BORDER;
 const int Background:: REPEAT;
 
 Background:: Background () :
-    color_clear_enable(true), depth_clear_enable(true), background_color(0x00000000), 
-    background_image(0), image_mode(BORDER,BORDER), crop_rectangle(0,0,0,0),
+    color_clear_enable(true), depth_clear_enable(true), color(0x00000000), 
+    image(0), mode(BORDER,BORDER), crop(0,0,0,0),
     texobj(0)
 {
+    glGenTextures   (1, &texobj);
+    int err = glGetError();
+    if (err != GL_NO_ERROR) {
+        throw OpenGLException (__FILE__, __func__, "Can't make texture object, err=%d.", err);
+    }
+
 }
 
 Background:: ~Background ()
 {
+    if (texobj > 0) {
+        glDeleteTextures(1, &texobj);
+    }
 }
 
 Background* Background:: duplicate () const
 {
+    // texobjの作り直しが必要な気がする
     return new Background (*this);
 }
 
@@ -68,13 +78,13 @@ int Background:: animate (int world_time)
         if (world_time < controller->getActiveIntervalStart() || world_time >= controller->getActiveIntervalEnd()) {
             continue;
         }
-        float weight     = controller->getWeight ();
-        float local_time = controller->getPosition (world_time);
+        float weight        = controller->getWeight ();
+        float sequence_time = controller->getPosition (world_time);
     
         switch (track->getTargetProperty()) {
         case AnimationTrack:: ALPHA: {
             float value[1] = {1};
-            keyframe->getFrame (local_time, value);
+            keyframe->getFrame (sequence_time, value);
             new_alpha += value[0] * weight;
             is_alpha_modefied = true;
             //cout << "Background: alpha --> " << new_alpha << "\n";
@@ -82,7 +92,7 @@ int Background:: animate (int world_time)
         }
         case AnimationTrack:: CROP: {
             float value[4] = {0,0,0,0};
-            keyframe->getFrame (local_time, value);
+            keyframe->getFrame (sequence_time, value);
             if (keyframe->getComponentCount() == 4) {
                 new_crop.x      += value[0] * weight;
                 new_crop.y      += value[1] * weight;
@@ -91,8 +101,8 @@ int Background:: animate (int world_time)
             } else {
                 new_crop.x      += value[0] * weight;
                 new_crop.y      += value[1] * weight;
-                new_crop.width  += crop_rectangle.width * weight;
-                new_crop.height += crop_rectangle.height * weight;
+                new_crop.width  += crop.width * weight;
+                new_crop.height += crop.height * weight;
 	
             }
             is_crop_modefied = true;
@@ -100,7 +110,7 @@ int Background:: animate (int world_time)
         }
         case AnimationTrack:: COLOR: {
             float value[3] = {1,1,1};
-            keyframe->getFrame (local_time, value);
+            keyframe->getFrame (sequence_time, value);
             new_color[0] += value[0] * weight;
             new_color[1] += value[1] * weight;
             new_color[2] += value[2] * weight;
@@ -118,61 +128,60 @@ int Background:: animate (int world_time)
     if (is_crop_modefied) {
         new_crop.width  = max(0.f, new_crop.width);
         new_crop.height = max(0.f, new_crop.height);
-        crop_rectangle  = CropRect(new_crop.x, new_crop.y, new_crop.width, new_crop.height);
+        crop  = CropRect(new_crop.x, new_crop.y, new_crop.width, new_crop.height);
     }
     if (is_color_modefied) {
         unsigned char r  = clamp(0, 1, new_color[0]) * 255;
         unsigned char g  = clamp(0, 1, new_color[1]) * 255;
         unsigned char b  = clamp(0, 1, new_color[2]) * 255;
-        background_color = (background_color & 0xff000000) | (r << 16) | (g << 8) | (b << 0);
+        color = (color & 0xff000000) | (r << 16) | (g << 8) | (b << 0);
     }
     if (is_alpha_modefied) {
         unsigned char a  = clamp(0, 1, new_alpha) * 255;
-        background_color = (background_color & 0x00ffffff) | (a << 24);
+        color = (color & 0x00ffffff) | (a << 24);
     }
   
     return 0;
-
 }
 
 int Background:: getColor () const
 {
-    return background_color;
+    return color;
 }
 
 int Background:: getCropHeight () const
 {
-    return crop_rectangle.height;
+    return crop.height;
 }
 
 int Background:: getCropWidth () const
 {
-    return crop_rectangle.width;
+    return crop.width;
 }
     
 int Background:: getCropX () const
 {
-    return crop_rectangle.x;
+    return crop.x;
 }
 
 int Background:: getCropY () const
 {
-    return crop_rectangle.y;
+    return crop.y;
 }
 
 Image2D* Background:: getImage () const
 {
-    return background_image;
+    return image;
 }
 
 int Background:: getImageModeX () const
 {
-    return image_mode.x;
+    return mode.x;
 }
 
 int Background:: getImageModeY () const
 {
-    return image_mode.y;
+    return mode.y;
 }
 
 bool Background:: isColorClearEnabled () const
@@ -188,7 +197,7 @@ bool Background:: isDepthClearEnabled () const
 
 void Background:: setColor (int argb)
 {
-    background_color = argb;
+    color = argb;
 }
 
 void Background:: setColorClearEnable (bool enable)
@@ -196,9 +205,9 @@ void Background:: setColorClearEnable (bool enable)
     color_clear_enable = enable;
 }
 
-void Background:: setCrop (int crop_x, int crop_y, int width, int height)
+void Background:: setCrop (int x, int y, int width, int height)
 {
-    crop_rectangle = CropRect(crop_x, crop_y, width, height);
+    crop = CropRect (x, y, width, height);
 }
 
 void Background:: setDepthClearEnable (bool enable)
@@ -206,22 +215,29 @@ void Background:: setDepthClearEnable (bool enable)
     depth_clear_enable = enable;
 }
 
-void Background:: setImage (Image2D* image)
+void Background:: setImage (Image2D* img)
 {
-    background_image  = image;
-    background_width  = image->getWidth ();
-    background_height = image->getHeight ();
-    crop_rectangle = CropRect (0,0,background_width,background_height);
+    image = img;
+    if (image == NULL) 
+        return;
 
-    int format = image->getOpenGLFormat ();
-    void* data = image->getOpenGLData ();
+    int fmt = img->getFormat ();
+    if (fmt != Image2D::RGB && fmt != Image2D::RGBA) {
+        throw IllegalArgumentException (__FILE__, __func__, "Image format is invalid, format=%d.", fmt);
+    }
 
-    glGenTextures   (1, &texobj);
+
+    int   width  = image->getWidth ();
+    int   height = image->getHeight ();
+    int   format = image->getOpenGLFormat ();
+    void* data   = image->getOpenGLData ();
+
+    crop    = CropRect (0, 0, width, height);
+
     glBindTexture   (GL_TEXTURE_2D, texobj);
     glPixelStorei   (GL_UNPACK_ALIGNMENT, 1);
 
-    //glTexImage2D    (GL_TEXTURE_2D, 0, format, background_width, background_height, 0, format, GL_UNSIGNED_BYTE, data);
-    gluBuild2DMipmaps (GL_TEXTURE_2D, format, background_width, background_height, format, GL_UNSIGNED_BYTE, data);
+    gluBuild2DMipmaps (GL_TEXTURE_2D, format, width, height, format, GL_UNSIGNED_BYTE, data);
 
 }
 
@@ -232,7 +248,7 @@ void Background:: setImageMode (int mode_x, int mode_y)
         throw IllegalArgumentException (__FILE__, __func__, "Mode is invalid, x=%d, y=%d.\n", mode_x, mode_y);
     }
 
-    image_mode = ImageMode(mode_x, mode_y);
+    mode = ImageMode (mode_x, mode_y);
 }
 
 
@@ -249,24 +265,26 @@ void Background:: render (RenderState& state) const
 
     //cout << "Background: render\n";
 
-    float r = ((background_color & 0x00ff0000) >> 16) / 255.f;
-    float g = ((background_color & 0x0000ff00) >>  8) / 255.f;
-    float b = ((background_color & 0x000000ff) >>  0) / 255.f;
-    float a = ((background_color & 0xff000000) >> 24) / 255.f;
+    float r = ((color & 0x00ff0000) >> 16) / 255.f;
+    float g = ((color & 0x0000ff00) >>  8) / 255.f;
+    float b = ((color & 0x000000ff) >>  0) / 255.f;
+    float a = ((color & 0xff000000) >> 24) / 255.f;
     float rgba[4] = {r,g,b,a};
 
     glClearColor (r,g,b,a);
     glClearDepth (1.f);
 
     if (color_clear_enable) {
-        //cout << "Background: glClear (GL_COLOR_BUFFER_BIT)\n";
         glClear (GL_COLOR_BUFFER_BIT);
     }
     if (depth_clear_enable) {
-        //cout << "Background: glClear (GL_DEPTH_BUFFER_BIT)\n";
         glClear (GL_DEPTH_BUFFER_BIT);
     }
-    if (background_image) {
+    if (image) {
+
+        int width  = image->getWidth ();
+        int height = image->getHeight ();
+
         glEnable (GL_TEXTURE_2D);
 
         //cout << "Background: render image, texobj = " << texobj << "\n";
@@ -274,13 +292,13 @@ void Background:: render (RenderState& state) const
         glTexParameteri  (GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
         glTexParameteri  (GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
         glTexEnvi        (GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
-        if (image_mode.x == BORDER) {
+        if (mode.x == BORDER) {
             glTexParameteri  (GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_BORDER);
             glTexParameterfv (GL_TEXTURE_2D, GL_TEXTURE_BORDER_COLOR, (GLfloat*)&rgba);
         } else {
             glTexParameteri (GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
         }
-        if (image_mode.y == BORDER) {
+        if (mode.y == BORDER) {
             glTexParameteri (GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_BORDER);
             glTexParameterfv (GL_TEXTURE_2D, GL_TEXTURE_BORDER_COLOR, (GLfloat*)&rgba);
         } else {
@@ -294,10 +312,11 @@ void Background:: render (RenderState& state) const
         glPushMatrix   ();
         glLoadIdentity ();
 
-        float s0 = crop_rectangle.x / background_width;
-        float t0 = (background_height - crop_rectangle.y) / background_height;
-        float s1 = (crop_rectangle.x + crop_rectangle.width) / background_width;
-        float t1 = (background_height - (crop_rectangle.y + crop_rectangle.height)) / background_height;
+        float s0 = crop.x / width;
+        float t0 = (height - crop.y) / height;
+        float s1 = (crop.x + crop.width) / width;
+        float t1 = (height - (crop.y + crop.height)) / height;
+
         glBegin      (GL_TRIANGLE_STRIP);
         glTexCoord2f (s1, t1);
         glVertex3f   (1, -1, 0.99999);
@@ -318,6 +337,14 @@ void Background:: render (RenderState& state) const
     }
 }
 
+void Background:: renderX ()
+{
+    glClearColor (0,0,0,0);   // r,g,b,a
+    glClearDepth (1.0f);
+    glClear      (GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+}
+
+
 static
 const char* mode_to_string (int mode)
 {
@@ -331,16 +358,16 @@ const char* mode_to_string (int mode)
 std::ostream& Background:: print (std::ostream& out) const
 {
     out << "Background: ";
-    out << "  color clear="        << color_clear_enable;
-    out << ", depth clear="        << depth_clear_enable;
-    out << ", background color=0x" << hex << background_color << dec;
-    out << ", background image="   << background_image;
-    out << ", image mode="         << mode_to_string(image_mode.x);
-    out << ","                     << mode_to_string(image_mode.y);
-    out << ", crop rectangle="     << crop_rectangle.x;
-    out << ","                     << crop_rectangle.y;
-    out << ","                     << crop_rectangle.width;
-    out << ","                     << crop_rectangle.height;
+    out << "  color clear=" << color_clear_enable;
+    out << ", depth clear=" << depth_clear_enable;
+    out << ", color=0x"     << hex << color << dec;
+    out << ", image=0x"     << image;
+    out << ", mode="        << mode_to_string(mode.x);
+    out << ","              << mode_to_string(mode.y);
+    out << ", crop="        << crop.x;
+    out << ","              << crop.y;
+    out << ","              << crop.width;
+    out << ","              << crop.height;
     return out;
 }
 

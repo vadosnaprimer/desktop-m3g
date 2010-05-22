@@ -76,13 +76,13 @@ int VertexBuffer:: animate (int world_time)
         if (!controller->isActiveInterval(world_time)) {
             continue;
         }
-        float weight     = controller->getWeight ();
-        float local_time = controller->getPosition (world_time);
+        float weight        = controller->getWeight ();
+        float sequence_time = controller->getPosition (world_time);
     
         switch (track->getTargetProperty()) {
         case AnimationTrack::COLOR: {
             float value[3] = {1,1,1};
-            keyframe->getFrame (local_time, value);
+            keyframe->getFrame (sequence_time, value);
             rgb[0] += value[0] * weight;
             rgb[1] += value[1] * weight;
             rgb[2] += value[2] * weight;
@@ -92,7 +92,7 @@ int VertexBuffer:: animate (int world_time)
         }
         case AnimationTrack::ALPHA: {
             float value[1] = {1};
-            keyframe->getFrame (local_time, value);
+            keyframe->getFrame (sequence_time, value);
             new_alpha += value[0] * weight;
             is_alpha_modefied = true;
             //cout << "VertexBuffer: alpha --> " << alpha << "\n";
@@ -127,9 +127,9 @@ VertexArray* VertexBuffer:: getColors (float* scale_bias) const
     if (colors) {
         if (scale_bias) {
             scale_bias[0] = 1/255.f;
-            scale_bias[1] = 0;
-            scale_bias[2] = 0;
-            scale_bias[3] = 0;
+            scale_bias[1] = 128/255.f;
+            scale_bias[2] = 128/255.f;
+            scale_bias[3] = 128/255.f;
         }
     }
     return colors;
@@ -188,6 +188,10 @@ VertexArray* VertexBuffer:: getTexCoords (int index, float* scale_bias) const
  */
 void VertexBuffer:: setColors (VertexArray* colors_)
 {
+    if (colors_ == NULL) {
+        colors = NULL;
+        return;
+    }
     int component_type  = colors_->getComponentType ();
     int component_count = colors_->getComponentCount ();
     if (component_type != 1) {
