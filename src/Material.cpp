@@ -1,4 +1,5 @@
 #include <iostream>
+#include "m3g-gl.hpp"
 #include "Material.hpp"
 #include "Exception.hpp"
 #include "AnimationTrack.hpp"

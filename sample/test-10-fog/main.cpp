@@ -59,7 +59,6 @@ int main (int argc, char** argv)
   glutInit(&argc, argv);
   glutInitDisplayMode(GLUT_RGB | GLUT_DEPTH | GLUT_DOUBLE);
   glutCreateWindow(argv[0]);
-  glewInit ();
 
   AnimationController* controller = new AnimationController;
 

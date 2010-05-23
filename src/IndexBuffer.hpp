@@ -1,7 +1,7 @@
 #ifndef __INDEX_BUFFER_HPP__
 #define __INDEX_BUFFER_HPP__
 
-#include <GL/glew.h>
+
 #include "Object3D.hpp"
 #include "m3ginternal.hpp"
 #include <iosfwd>

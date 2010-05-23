@@ -1,7 +1,7 @@
 #ifndef __TEXTURE2D_HPP__
 #define __TEXTURE2D_HPP__
 
-#include <GL/glew.h>
+
 #include "Transformable.hpp"
 #include <iostream>
 
@@ -209,7 +209,7 @@ namespace m3g {
         int      blending_mode;
         int      blend_color;
 
-        GLuint texobj;
+        unsigned int texobj;
     };
 
 } // namespace m3g {

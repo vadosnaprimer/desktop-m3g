@@ -1,5 +1,6 @@
 #include <iostream>
 #include <cmath>
+#include "m3g-gl.hpp"
 #include "Camera.hpp"
 #include "Vector.hpp"
 #include "Transform.hpp"

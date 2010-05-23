@@ -82,7 +82,6 @@ int main (int argc, char** argv)
   glutInit(&argc, argv);
   glutInitDisplayMode(GLUT_RGBA | GLUT_DEPTH | GLUT_DOUBLE);
   glutCreateWindow(argv[0]);
-  glewInit ();
 
   Quaternion q0 ( 45, 0,0,1);
   Quaternion q1 (-45 , 0,0,1);

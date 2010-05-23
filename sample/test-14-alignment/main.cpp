@@ -90,7 +90,6 @@ int main (int argc, char** argv)
   glutInit(&argc, argv);
   glutInitDisplayMode(GLUT_RGBA | GLUT_DEPTH | GLUT_DOUBLE);
   glutCreateWindow(argv[0]);
-  glewInit ();
 
   Background* bg = new Background;
   bg->setColor (0xff3f3fff);

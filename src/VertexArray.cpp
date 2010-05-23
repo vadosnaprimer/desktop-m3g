@@ -1,3 +1,4 @@
+#include "m3g-gl.hpp"
 #include "VertexArray.hpp"
 #include "Exception.hpp"
 #include "Vector.hpp"

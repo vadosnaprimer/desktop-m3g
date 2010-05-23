@@ -54,7 +54,6 @@ int main (int argc, char** argv)
   glutInit(&argc, argv);
   glutInitDisplayMode(GLUT_RGBA | GLUT_DEPTH | GLUT_DOUBLE);
   glutCreateWindow(argv[0]);
-  glewInit ();
 
   Camera* cam = new Camera;
   cam->lookAt (0,0,5, 0,0,0, 0,1,0);

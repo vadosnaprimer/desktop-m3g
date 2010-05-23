@@ -1,4 +1,5 @@
 #include <iostream>
+#include "m3g-gl.hpp"
 #include "CompositingMode.hpp"
 #include "Exception.hpp"
 #include "RenderState.hpp"

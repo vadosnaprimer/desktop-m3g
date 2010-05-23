@@ -1,6 +1,7 @@
 #include <unittest++/UnitTest++.h>
 #include <iostream>
 #include <cstring>
+#include <GL/gl.h>
 #include "VertexArray.hpp"
 using namespace std;
 using namespace m3g;

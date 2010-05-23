@@ -123,7 +123,7 @@ namespace m3g {
          * @~English  Return OpenGL format, for inner use.
          * @~Japanese OpenGLの画像形式を返すM3G未定義の関数.
          */
-        GLenum getOpenGLFormat () const;
+        unsigned int getOpenGLFormat () const;
 
         /**
          * @~English  Return pointer to raw data, for inner use.

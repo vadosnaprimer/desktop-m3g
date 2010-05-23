@@ -1,6 +1,5 @@
 require 'opengl'
 require 'm3g'
-require 'glew'
 require 'pp'
 
 class M3GWidget < Qt::GLWidget
@@ -24,7 +23,6 @@ class M3GWidget < Qt::GLWidget
   end
 
   def initializeGL
-    GLEW.Init
     objs = M3G::Loader::load "test.m3g"
     objs.each { |obj|
       pp obj

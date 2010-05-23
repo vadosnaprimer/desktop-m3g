@@ -1,4 +1,5 @@
 #include <iostream>
+#include "m3g-gl.hpp"
 #include "Appearance.hpp"
 #include "CompositingMode.hpp"
 #include "Fog.hpp"

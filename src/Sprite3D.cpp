@@ -1,6 +1,5 @@
+#include "m3g-gl.hpp"
 #include "Sprite3D.hpp"
-#include <iostream>
-#include <cmath>
 #include "Appearance.hpp"
 #include "Image2D.hpp"
 #include "Exception.hpp"
@@ -10,6 +9,8 @@
 #include "AnimationController.hpp"
 #include "KeyframeSequence.hpp"
 #include "RenderState.hpp"
+#include <iostream>
+#include <cmath>
 using namespace std;
 using namespace m3g;
 

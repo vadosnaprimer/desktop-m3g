@@ -1,5 +1,6 @@
 #include <iostream>
 #include <cmath>
+#include "m3g-gl.hpp"
 #include "Background.hpp"
 #include "Image2D.hpp"
 #include "Exception.hpp"

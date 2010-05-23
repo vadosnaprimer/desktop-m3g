@@ -1,6 +1,7 @@
-#include "Fog.hpp"
 #include <iostream>
 #include <algorithm>
+#include "m3g-gl.hpp"
+#include "Fog.hpp"
 #include "Exception.hpp"
 #include "AnimationTrack.hpp"
 #include "AnimationController.hpp"

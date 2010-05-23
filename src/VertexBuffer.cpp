@@ -1,3 +1,4 @@
+#include "m3g-gl.hpp"
 #include "VertexBuffer.hpp"
 #include "VertexArray.hpp"
 #include "AnimationTrack.hpp"

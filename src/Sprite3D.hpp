@@ -154,7 +154,7 @@ namespace m3g {
         Appearance* appearance;
         CropRect    crop;
 
-        GLuint      texobj;
+        unsigned int      texobj;
     };
 
 } // namespace m3g {

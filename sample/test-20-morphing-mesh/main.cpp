@@ -62,7 +62,6 @@ int main (int argc, char** argv)
   glutInit (&argc, argv);
   glutInitDisplayMode (GLUT_RGBA | GLUT_DEPTH | GLUT_DOUBLE);
   glutCreateWindow (argv[0]);
-  glewInit ();
   
   KeyframeSequence* keyframe_sequence = new KeyframeSequence (4, 2, KeyframeSequence::LINEAR);
   float keyframe_weights[4][2]  = {{0,0},

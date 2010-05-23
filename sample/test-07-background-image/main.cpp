@@ -58,7 +58,6 @@ int main (int argc, char** argv)
   glutInit(&argc, argv);
   glutInitDisplayMode(GLUT_RGB|GLUT_DEPTH|GLUT_DOUBLE);
   glutCreateWindow(argv[0]);
-  glewInit ();
 
   Image2D* img = dynamic_cast<Image2D*>(Loader::load ("mizugi.png")[0]);
   cout << *img << "\n";

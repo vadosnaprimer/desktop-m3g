@@ -85,7 +85,7 @@ namespace m3g {
         int*             indices;
         std::vector<int> strips;
 
-        GLuint ibuf;
+        unsigned int ibuf;
     };
   
 

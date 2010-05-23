@@ -23,7 +23,6 @@ void MyWidget:: initializeGL ()
 {
   cout << "initializeGL is called\n";
   cout << "version = " << glGetString (GL_VERSION) << "\n";
-  glewInit ();
 
   wld = new World;
 

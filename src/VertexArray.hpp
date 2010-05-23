@@ -1,7 +1,7 @@
 #ifndef __VERTEX_ARRAY_HPP__
 #define __VERTEX_ARRAY_HPP__
 
-#include <GL/glew.h>
+
 #include "Object3D.hpp"
 #include <iosfwd>
 #include "m3ginternal.hpp"
@@ -147,7 +147,7 @@ namespace m3g {
             short* short_values;
             float* float_values;
         };
-        GLuint vbo;
+        unsigned int vbo;
     };
 
 } // namespace m3g {

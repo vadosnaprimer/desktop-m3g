@@ -60,7 +60,6 @@ int main (int argc, char** argv)
   glutInit(&argc, argv);
   glutInitDisplayMode(GLUT_RGBA | GLUT_DEPTH | GLUT_DOUBLE);
   glutCreateWindow(argv[0]);
-  glewInit ();
 
   //objs = Loader::load ("simple.m3g");
   objs = Loader::load ("test.m3g");

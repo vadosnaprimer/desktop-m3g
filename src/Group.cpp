@@ -1,6 +1,7 @@
-#include "Group.hpp"
 #include <iostream>
 #include <algorithm>
+#include "m3g-gl.hpp"
+#include "Group.hpp"
 #include "RayIntersection.hpp"
 #include "Exception.hpp"
 #include "World.hpp"

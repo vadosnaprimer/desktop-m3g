@@ -1,7 +1,7 @@
 #ifndef __VERTEX_BUFFER_HPP__
 #define __VERTEX_BUFFER_HPP__
 
-#include <GL/glew.h>
+
 #include "Object3D.hpp"
 #include "m3gdef.hpp"
 #include <iosfwd>

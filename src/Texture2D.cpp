@@ -1,12 +1,13 @@
+#include "m3g-gl.hpp"
 #include "Texture2D.hpp"
 #include "m3gdef.hpp"
-#include <iostream>
 #include "Image2D.hpp"
 #include "Exception.hpp"
 #include "AnimationTrack.hpp"
 #include "AnimationController.hpp"
 #include "KeyframeSequence.hpp"
 #include "RenderState.hpp"
+#include <iostream>
 using namespace std;
 using namespace m3g;
 

@@ -1,7 +1,7 @@
 #ifndef __OBJECT3D_HPP__
 #define __OBJECT3D_HPP__
 
-#include <GL/glew.h>
+
 #include <iosfwd>
 #include <vector>
 #include "m3gdef.hpp"

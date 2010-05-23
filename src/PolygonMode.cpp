@@ -1,3 +1,4 @@
+#include "m3g-gl.hpp"
 #include "PolygonMode.hpp"
 #include "Exception.hpp"
 #include "RenderState.hpp"

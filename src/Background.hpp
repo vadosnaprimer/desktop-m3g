@@ -215,7 +215,7 @@ namespace m3g {
         CropRect  crop;
 
     private:
-        GLuint texobj;
+        unsigned int texobj;
     };
 
 } //namespace m3g {

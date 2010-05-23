@@ -1,3 +1,4 @@
+#include "m3g-gl.hpp"
 #include "SkinnedMesh.hpp"
 #include "VertexBuffer.hpp"
 #include "IndexBuffer.hpp"

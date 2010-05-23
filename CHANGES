@@ -1,6 +1,8 @@
 
 
-
+2010/xx/xx  ver 0.3.0
+   - remove GLEW
+   - implement RayIntersection.
 
 2010/05/10  ver 0.2.0
    - implemente SkinndMesh, MorphingMesh.

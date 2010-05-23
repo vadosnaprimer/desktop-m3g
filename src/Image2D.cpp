@@ -1,3 +1,4 @@
+#include "m3g-gl.hpp"
 #include "Image2D.hpp"
 #include "Exception.hpp"
 #include <iostream>
@@ -130,7 +131,7 @@ void Image2D:: write_ppm (const char* name) const
     ofs << "\n";
 }
 
-GLenum Image2D:: getOpenGLFormat () const
+unsigned int Image2D:: getOpenGLFormat () const
 {
     switch (format) {
     case Image2D::ALPHA          : return GL_ALPHA;

@@ -19,4 +19,4 @@ QMAKE_FLAGS +=  -Wno-deprecated
 
 
 # 
-LIBS +=  -L../../src -lm3g -lQtOpenGL -lGLEW -lz
+LIBS +=  -L../../src -lm3g -lQtOpenGL -lz
