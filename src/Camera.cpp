@@ -73,7 +73,7 @@ int Camera:: animate (int world_time)
         KeyframeSequence*    keyframe   = track->getKeyframeSequence();
         AnimationController* controller = track->getController();
         if (controller == NULL) {
-            //cout << "Node: missing controller, this animation track is ignored.\n";
+            //cout << "Camera: missing controller, this animation track is ignored.\n";
             continue;
         }
         if (!controller->isActiveInterval(world_time)) {
@@ -96,7 +96,7 @@ int Camera:: animate (int world_time)
             keyframe->getFrame (sequence_time, value);
             new_fovy += value[0] * weight;
             is_fovy_modefied = true;
-            //cout << "Fog: fovy --> " << new_fovy << "\n";
+            //cout << "Camera: fovy --> " << new_fovy << "\n";
             break;
         }
         case AnimationTrack:: NEAR_DISTANCE: {
@@ -115,30 +115,28 @@ int Camera:: animate (int world_time)
     }
 
     if (is_near_modefied) {
-        if (type == PERSPECTIVE) {
-            near = max (M3G_EPSILON, new_near);
-        } else {
-            near = new_near;
+        switch (type) {
+        case PERSPECTIVE: near = max (M3G_EPSILON, new_near); break;
+        case PARALLEL   : near = new_near                   ; break;
         }
     }
     if (is_far_modefied) {
-        if (type == PERSPECTIVE) {
-            far = max (M3G_EPSILON, new_far);
-        } else {
-            far = new_far;
+        switch (type) {
+        case PERSPECTIVE: far = max (M3G_EPSILON, new_far); break;
+        case PARALLEL   : far = new_far                   ; break;
         }
     }
     if (is_fovy_modefied) {
-        if (type == PERSPECTIVE) {
-            fovy = clamp (M3G_EPSILON, 180-M3G_EPSILON, new_fovy);
-        } else {
-            fovy = max (M3G_EPSILON, new_fovy);
+        switch (type) {
+        case PERSPECTIVE: fovy = clamp (M3G_EPSILON, 180-M3G_EPSILON, new_fovy); break;
+        case PARALLEL   : fovy = max (M3G_EPSILON, new_fovy)                   ; break;
         }
     }
-
-    // don't permit this condition.
-    if (near == far) {
-        throw IllegalArgumentException (__FILE__, __func__, "Near equals far, n,f=%f.", near);
+    if (is_fovy_modefied || is_near_modefied || is_far_modefied) {
+        switch (type) {
+        case PERSPECTIVE: setPerspective (fovy, aspect_ratio, near, far); break;
+        case PARALLEL   : setParallel (fovy, aspect_ratio, near, far); break;
+        }
     }
 
   
