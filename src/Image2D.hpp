@@ -6,6 +6,8 @@
 
 namespace m3g {
 
+    class RenderState;
+
     /**
      * @~English  A two-dimensional image that can be used as a textur, backgoround or sprite image.
      * @~Japanese テクスチャー、バックグラウンド、スプライト画像として使う2D画像クラス.
@@ -107,17 +109,22 @@ namespace m3g {
 
 
         /**
-         * @~English  Write image as ppm file(alpha component is ignored), for only debug .
-         * @~Japanese ppm画像として出力するM3G非標準の関数。
-         *            この関数はデバッグ用でありリリースに含まれていてはならない.
+         * @~English  Write image as png file, not in M3G.
+         * @~Japanese png画像として出力するM3G非標準の関数。
          */
-        void write_ppm (const char* file_name) const;
+        void writePNG (const char* name) const;
 
         /**
          * @~English  Print out information of this class, for only debug.
          * @~Japanese このImage2Dクラスの情報を表示する。デバッグ用.
          */
         virtual std::ostream& print (std::ostream& out) const;
+
+        /**
+         * @~English  Render this object, for inner use.
+         * @~Japanese このオブジェクトをレンダリングする内部使用の関数.
+         */
+        virtual void render (RenderState& state) const;
 
         /**
          * @~English  Return OpenGL format, for inner use.

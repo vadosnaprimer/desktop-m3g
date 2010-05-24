@@ -274,6 +274,20 @@ Node* Node:: getParent () const
     return parent;
 }
 
+Node* Node:: getGlobalParent () const
+{
+    Node* node = const_cast<Node*>(this);
+    if (node->getParent() == NULL)
+        return NULL;
+
+    while (node->getParent() != NULL)
+        node = node->getParent();
+
+    return node;
+}
+
+
+
 int Node:: getScope () const
 {
     return scope;

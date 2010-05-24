@@ -5,6 +5,8 @@
 
 namespace m3g {
 
+    class Light;
+
     /**
      * @~English  Struct of rendering state, for inner use.
      * @~Japanese レンダリングループ中でデータの受け渡しに使う内部使用の構造体.
@@ -21,6 +23,7 @@ namespace m3g {
         bool  vertex_color_buffer_ready;
         int   default_vertex_color;
         std::vector<int>   valid_layers;
+        std::vector<Light*> active_lights;
     };
 
 

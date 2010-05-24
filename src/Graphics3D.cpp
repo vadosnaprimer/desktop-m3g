@@ -3,13 +3,11 @@
 #include "m3g-gl.hpp"
 #include "Graphics3D.hpp"
 #include "World.hpp"
-#include "Camera.hpp"
-#include "Graphics.hpp"
-#include "Transform.hpp"
-#include "Light.hpp"
-#include "Exception.hpp"
-#include "RenderState.hpp"
+#include "Image2D.hpp"
 #include "Loader.hpp"
+#include "Camera.hpp"
+#include "RenderState.hpp"
+#include "Exception.hpp"
 using namespace m3g;
 using namespace std;
 
@@ -18,18 +16,15 @@ const int Graphics3D:: DITHER;
 const int Graphics3D:: OVERWRITE;
 const int Graphics3D:: TRUE_COLOR;
 
+const int Graphics3D:: TARGET_NONE;
+const int Graphics3D:: TARGET_DEFAULT;
+const int Graphics3D:: TARGET_IMAGE2D;
+
 
 Graphics3D:: Graphics3D () : 
-    viewport(0,0,0,0), depth_buffer_enable(false), hints(0), depth_range(0,0)
+    viewport(0,0,0,0), depth_buffer_enable(true), hints(0),
+    target(TARGET_DEFAULT)
 {
-    // 今だけZテストを常時有効
-    glEnable (GL_DEPTH_TEST);
-
-    // M3Gの規格では何も言及がないが
-    // リスケールしないとscaleした時に
-    // 法線の長さが1でなくなるので。
-    glEnable (GL_NORMALIZE);
-
     // プロパティは決めうち
     properties.insert (map<const char*, int>::value_type("supportAntialiasing"         , 1));
     properties.insert (map<const char*, int>::value_type("supportTrueColor"            , 1));
@@ -57,45 +52,81 @@ Graphics3D:: ~Graphics3D ()
     }
 }  
 
-int Graphics3D:: addLight (Light* light, Transform& transform)
+int Graphics3D:: addLight (Light* light, const Transform& transform)
 {
-    throw NotImplementedException (__FILE__, __func__, "Sorry, addLight is not implemented.");
+    throw NotImplementedException (__FILE__, __func__, "Immediate mode is obsoleted, Please use retained mode.");
     return 0;
 }
 
-void Graphics3D:: bindTarget (Graphics* g, bool depth_buffer_enabled, int hints)
+void Graphics3D:: initOpenGL ()
 {
-	throw NotImplementedException (__FILE__, __func__, "Sorry, bindTarget is not implemented.");
 }
 
-
-void Graphics3D:: clear (Background* background)
+void Graphics3D:: bindTarget (void* target_fb, bool depth_buffer_enable_, int hints_)
 {
-    throw NotImplementedException (__FILE__, __func__, "Sorry, clear is not implemented.");
+    if (target_fb != NULL) {
+        throw IllegalArgumentException (__FILE__, __func__, "Bind target is invalid, t=%p.", target_fb);
+    }
+    if (target != TARGET_DEFAULT) {
+        throw IllegalArgumentException (__FILE__, __func__, "Graphics3D already has render target, t=%p.", target);
+    }
+
+    target              = TARGET_DEFAULT;
+    fb                  = 0;
+    depth_buffer_enable = depth_buffer_enable_;
+    hints               = hints_;
+
 }
 
-Camera* Graphics3D:: getCamera (const Transform& transform)
+void Graphics3D:: bindTarget (Image2D* target_img, bool depth_buffer_enable_, int hints_)
 {
-    throw NotImplementedException (__FILE__, __func__, "Sorry, getCamera is not implemented.");
+    if (target_img == NULL) {
+        throw IllegalArgumentException (__FILE__, __func__, "Bind target is Null.");
+    }
+    if (target != TARGET_DEFAULT) {
+        throw IllegalArgumentException (__FILE__, __func__, "Graphics3D already has render target, t=%p.", target);
+    }
+    if (!target_img->isMutable()) {
+        throw IllegalArgumentException (__FILE__, __func__, "Target image must be mutable.");
+    }
+    int format = target_img->getFormat();
+    if (format != Image2D::RGB && format != Image2D::RGBA) {
+        throw IllegalArgumentException (__FILE__, __func__, "Image2D format must be RGB or RGBA, format=%d.", format);
+    }
+
+    target              = TARGET_IMAGE2D;
+    img                 = target_img;
+    depth_buffer_enable = depth_buffer_enable_;
+    hints               = hints_;
+
+}
+
+void Graphics3D:: clear (Background* bg)
+{
+    throw NotImplementedException (__FILE__, __func__, "Immediate mode is obsoleted, Please use retained mode.");
+}
+
+Camera* Graphics3D:: getCamera (Transform* transform)
+{
+    throw NotImplementedException (__FILE__, __func__, "Immediate mode is obsoleted, Please use retained mode.");
     return 0;
 }
 
 float Graphics3D:: getDepthRangeFar () const
 {
-    throw NotImplementedException (__FILE__, __func__, "Sorry, getDepthRangeFar is not implemented.");
+    throw NotImplementedException (__FILE__, __func__, "Immediate mode is obsoleted, Please use retained mode.");
     return 0;
 }
 
 float Graphics3D:: getDepthRangeNear () const
 {
-    throw NotImplementedException (__FILE__, __func__, "Soryy, getDepthNear is not implemented.");
+    throw NotImplementedException (__FILE__, __func__, "Immediate mode is obsoleted, Please use retained mode.");
     return 0;
 }
 
 int Graphics3D:: getHints () const
 {
-    throw NotImplementedException (__FILE__, __func__, "Sorry, getHints is not implemented.");
-    return 0;
+    return hints;
 }
 
 Graphics3D* Graphics3D:: getInstance ()
@@ -104,17 +135,15 @@ Graphics3D* Graphics3D:: getInstance ()
     return g3d;
 }
 
-Light* Graphics3D:: getLight (int index, const Transform& transform) const
+Light* Graphics3D:: getLight (int index, Transform* transform) const
 {
-    throw NotImplementedException (__FILE__, __func__, "Sorry, getLight is not implemented.");
-
+    throw NotImplementedException (__FILE__, __func__, "Immediate mode is obsoleted, Please use retained mode.");
     return 0;
 }
 
 int Graphics3D:: getLightCount () const
 {
-    throw NotImplementedException (__FILE__, __func__, "Sorry, getLightCount is not implemented.");
-
+    throw NotImplementedException (__FILE__, __func__, "Immediate mode is obsoleted, Please use retained mode.");
     return 0;
 }
 
@@ -125,9 +154,7 @@ std::map<const char*, int> Graphics3D:: getProperties () const
 
 void* Graphics3D:: getTarget () const
 {
-    throw NotImplementedException (__FILE__, __func__, "getTarget is not implemented.");
-
-    return 0;
+    return fb;
 }
 
 int Graphics3D:: getViewportHeight () const
@@ -152,40 +179,61 @@ int Graphics3D:: getViewportY () const
 
 bool Graphics3D:: isDepthBufferEnabled () const
 {
-    throw NotImplementedException (__FILE__, __func__, "Sorry, isDepthBufferEnabled() is not implemented.");
-    return 0;
+    return depth_buffer_enable;
 }
 
-void Graphics3D:: releaseTarget () const
+void Graphics3D:: releaseTarget ()
 {
-    throw NotImplementedException (__FILE__, __func__, "Sorry, releaseTraget() is not implemented.");
+    target = TARGET_DEFAULT;
+    glFinish ();
 }
 
-void Graphics3D:: render (Node* node, Transform* transform) const
+void Graphics3D:: render (Node* node, const Transform& transform) const
 {
-    throw NotImplementedException (__FILE__, __func__, "Sorry, immediate render mode is not implemented.");
+    throw NotImplementedException (__FILE__, __func__, "Immediate mode is obsoleted, Please use retained mode.");
 }
 
-void Graphics3D:: render (VertexBuffer* vertices, IndexBuffer* triangles, Appearance* apperance, Transform& transform) const
+void Graphics3D:: render (VertexBuffer* vertices, IndexBuffer* submesh, Appearance* apperance, Transform& transform, int scope) const
 {
-    throw NotImplementedException (__FILE__, __func__, "Sorry, immediate render mode is not implemented.");
-}
-
-void Graphics3D:: render (VertexBuffer* vertices, IndexBuffer* triangles, Appearance* apperance, Transform& transform, int scope) const
-{
-    throw NotImplementedException (__FILE__, __func__, "Sorry, immediate render mode is not implemented.");
+    throw NotImplementedException (__FILE__, __func__, "Immediate mode is obsoleted, Please use retained mode.");
 }
 
 void Graphics3D:: render (World* wld) const
 {
+    if (wld == NULL) {
+        throw NullPointerException (__FILE__, __func__, "World is NULL.");
+    }
+    if (target == TARGET_NONE) {
+        throw IllegalStateException (__FILE__, __func__, "Render target is not set.");
+    }
+    Camera* cam = wld->getActiveCamera();
+    if (cam == NULL) {
+        throw IllegalStateException (__FILE__, __func__, "Active camera is NULL.");
+    }
+    Node* parent = cam->getGlobalParent();
+    if (parent != wld) {
+        throw IllegalStateException (__FILE__, __func__, "Activated camera must be under the World.");
+    }
+
     //cout << "Graphics3D: レンダー " << wld->getChildCount() << " ノード\n";
-    
+
+    switch (depth_buffer_enable) {
+    case true : glEnable  (GL_DEPTH_TEST); break;
+    case false: glDisable (GL_DEPTH_TEST); break;
+    }
+
+    // M3Gの規格では何も言及がないが
+    // リスケールしないとscaleした時に
+    // 法線の長さが1でなくなるので。
+    glEnable (GL_NORMALIZE);
+
     glMatrixMode (GL_TEXTURE);
     glLoadIdentity ();
     glMatrixMode (GL_PROJECTION);
     glLoadIdentity ();
     glMatrixMode (GL_MODELVIEW);
     glLoadIdentity ();
+
 
     RenderState state;
 
@@ -198,43 +246,30 @@ void Graphics3D:: render (World* wld) const
         wld->render (state);
     }
 
-    /*
-    // This is for Debug.
-    glDisable (GL_LIGHTING);
-    for (int i = 0; i < MAX_TEXTURE_UNITS; i++) {
-    glActiveTexture (GL_TEXTURE0+i);
-    glDisable (GL_TEXTURE_2D);
-    }
-    glActiveTexture (GL_TEXTURE0);
 
-    glBegin (GL_TRIANGLES);
-    glColor3f (1,1,0);
-    glVertex3f (1,1,0);
-    glVertex3f (0,0,0);
-    glVertex3f (-1,1,0);
-    glColor3f (1,1,1);
-    glEnd();
-    */
+    if (target == TARGET_IMAGE2D) {
+        img->render (state);
+    }
 }
 
 void Graphics3D:: resetLights ()
 {
-    throw NotImplementedException (__FILE__, __func__, "Sorry, resetLights is not implemented.");
+    throw NotImplementedException (__FILE__, __func__, "Immediate mode is obsoleted, Please use retained mode.");
 }
 
-void Graphics3D:: setCamera (Camera* camera, const Transform& transform)
+void Graphics3D:: setCamera (Camera* camera_, const Transform& transform)
 {
-    throw NotImplementedException (__FILE__, __func__, "Sorry, setCamera is not implemented.");
+    throw NotImplementedException (__FILE__, __func__, "Immediate mode is obsoleted, Please use retained mode.");
 }
 
 void Graphics3D:: setDepthRange (float near, float far)
 {
-    throw NotImplementedException (__FILE__, __func__, "Sorry setDepthRange is not implemented.");
+    throw NotImplementedException (__FILE__, __func__, "Immediate mode is obsoleted, Please use retained mode.");
 }
 
 void Graphics3D:: setLight (int index, Light* light, const Transform& transform)
 {
-    throw NotImplementedException (__FILE__, __func__, "Sorry, setLight is not implemented.");
+    throw NotImplementedException (__FILE__, __func__, "Immediate mode is obsoleted, Please use retained mode.");
 }
 
 void Graphics3D:: setViewport (int x, int y, int width, int height)
@@ -244,13 +279,27 @@ void Graphics3D:: setViewport (int x, int y, int width, int height)
     viewport.width  = width;
     viewport.height = height;
 
-    //cout << "Graphcs3D: Viewport = " << x << ", " << y << ", " << width << ", " << height << "\n";
     glViewport (viewport.x, viewport.y, viewport.width, viewport.height);
+}
+
+static 
+const char* target_to_string (int target)
+{
+    switch (target) {
+    case Graphics3D::TARGET_NONE   : return "None"; break;
+    case Graphics3D::TARGET_DEFAULT: return "Default(FrameBuffer)"; break;
+    case Graphics3D::TARGET_IMAGE2D: return "Image2D"; break;
+    default: throw IllegalStateException (__FILE__, __func__, "Target is unknown, t=%d.", target);
+    }
 }
 
 std::ostream& Graphics3D:: print (std::ostream& out) const
 {
-    out << "Grapphics3D: no info.";
+    out << "Grapphics3D: ";
+    out << "  depth_buffer_enable=" << depth_buffer_enable;
+    out << ", hints="  << hints;
+    out << ", target=" << target_to_string(target);
+
     return out;
 }
 

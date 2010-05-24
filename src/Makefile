@@ -4,7 +4,7 @@ TARGET = libm3g.so
 CXX = g++
 CXXFLAGS = -Wall -g -shared -fPIC -Wno-deprecated -fno-strict-aliasing
 LD = g++
-LDFLAGS = -shared -lpng
+LDFLAGS = -shared -lpng -lGL -lGLU
 LIBS = 
 
 

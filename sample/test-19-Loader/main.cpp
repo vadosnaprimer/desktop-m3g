@@ -11,11 +11,25 @@ using namespace m3g;
 
 std::vector<Object3D*> objs;
 World* wld = 0;
+int file_index = 1;
 
 void display(void)
 {
   Graphics3D* g3d = Graphics3D::getInstance();
+
+  //char name[256];
+  //sprintf (name, "%03d.png", file_index++);
+  //int width  = glutGet (GLUT_WINDOW_WIDTH);
+  //int height = glutGet (GLUT_WINDOW_HEIGHT);
+  //Image2D* img = new Image2D (Image2D::RGBA, width, height);
+  //g3d->bindTarget (img);
+
   g3d->render (wld);
+
+  //g3d->releaseTarget ();
+  //img->writePNG (name);
+  //delete img;
+
   glutSwapBuffers();
 }
 

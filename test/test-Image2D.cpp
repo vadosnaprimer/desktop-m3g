@@ -2,6 +2,7 @@
 #include <iostream>
 #include "Image2D.hpp"
 #include "Exception.hpp"
+#include "Loader.hpp"
 using namespace std;
 using namespace m3g;
 
@@ -69,12 +70,23 @@ TEST (Image2D_set)
         }
     }
 
-    img->write_ppm ("before.ppm");
+    img->writePNG ("before.png");
     img->set (10,10,10,10,buf);
-    img->write_ppm ("after.ppm");
+    img->writePNG ("after.png");
     //CHECK_EQUAL (0x00020100, img->get(10,10));
     //CHECK_EQUAL (0x002b2a29, img->get(19,19));
+    
+    // 目で見て確認
+}
 
+TEST (Image2D_writePng)
+{
+    Image2D* img = dynamic_cast<Image2D*>(Loader::load ("simple.png")[0]);
+    CHECK (img != NULL);
+
+    img->writePNG ("test.png");
+
+    // 目で見て確認
 }
 
 TEST (Image2D_duplicate)

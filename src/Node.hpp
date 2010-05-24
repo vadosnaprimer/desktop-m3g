@@ -134,6 +134,12 @@ namespace m3g {
         Node* getParent () const;
 
         /**
+         * @~English   Returns the top scene graph parent of this node.
+         * @~Japanese  このノードの一番上の親ノードの取得.
+         */
+        Node* getGlobalParent () const;
+
+        /**
          * @~English  Retrieves the scope of this Node. 
          * @~Japanese このノードのスコープの取得.
          */

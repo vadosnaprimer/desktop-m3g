@@ -28,6 +28,8 @@ namespace m3g {
     class Graphics3D : public Object
     {
 
+
+
         /**
          * @~English  Struct of viewport setting, for inner use.
          * @~Japanese ビューポートを定義する内部使用の構造体.
@@ -40,14 +42,6 @@ namespace m3g {
             float height;
         };
 
-        /**
-         *
-         */
-        struct DepthRange {
-            DepthRange (float n, float f) : near(n), far(f) {};
-            float near;
-            float far;
-        };
 
     public:
 
@@ -73,6 +67,11 @@ namespace m3g {
         static const int TRUE_COLOR  = 1<<3;
 
 
+        static const int TARGET_NONE    = 0;
+        static const int TARGET_DEFAULT = 1;
+        static const int TARGET_IMAGE2D = 2;
+
+
         /**
          * @~English  Destruct this object.
          * @~Japanese このオブジェクトを削除するデストラクタ.
@@ -83,13 +82,19 @@ namespace m3g {
          * @~English  Binds a Light to use in subsequent immediate mode rendering.
          * @~Japanese イミーディエイトモードで使用するライトのバインド.
          */
-        int addLight (Light* light, Transform& transform);
+        int addLight (Light* light, const Transform& transform);
 
         /**
-         * @~English  Binds the given Graphics or mutable Image 2D as the rendring ttarget of this Graphics3D.
-         * @~Japanese このGraphics3DクラスにGraphicsをバインドする.
+         * @~English  Binds the defualt (frame buffer) as the rendring ttarget of this Graphics3D.
+         * @~Japanese レンダーターゲットとしてデフォルト（フレームバッファー）をバインドする.
          */
-        void bindTarget (Graphics* g, bool depth_buffer_enabled=true, int hints=0);
+        void bindTarget (void* target, bool depth_buffer_enabled=true, int hints=0);
+
+        /**
+         * @~English  Binds mutable Image 2D as the rendring ttarget of this Graphics3D.
+         * @~Japanese レンダーターゲットとしてImage2Dをバインドする.
+         */
+        void bindTarget (Image2D* target, bool depth_buffer_enabled=true, int hints=0);
 
         /**
          * @~English  Clears the viewport as specified in the given Background object.
@@ -101,7 +106,7 @@ namespace m3g {
          * @~English  Returns the current camera.
          * @~Japanese カレントのカメラを取得する.
          */
-        Camera* getCamera (const Transform& transform);
+        Camera* getCamera (Transform* transform);
 
         /**
          * @~English  Returns the far distance of the depth range.
@@ -131,7 +136,7 @@ namespace m3g {
          * @~English  Returns a light int he current light array.
          * @~Japanese カレントのライト配列からライトを取得する.
          */
-        Light* getLight (int index, const Transform& transform) const;
+        Light* getLight (int index, Transform* transform) const;
 
         /**
          * @~English  Returns the size of the current light array.
@@ -185,25 +190,19 @@ namespace m3g {
          * @~English  Flushes the renderd 3D image to the currently bound target and then releases the target.
          * @~Japanese 現在バウンドされているターゲットをレンダリングし、ターゲットを解放する.
          */
-        void releaseTarget () const;
+        void releaseTarget ();
 
         /**
          * @~English  Renders the given Sprite3D, Mesh, or Group node with the given transformation from local coordinates to world coordinates.
          * @~Japanese 指定されたSprite3D,Mesh,Groupノードを指定された行列でローカル座用からワールド座標に変換してレンダリングする.
          */
-        void render (Node* node, Transform* transform) const;
-
-        /**
-         * @~English  Renders the given submesh with the given transformation from local coordinates to world coordinates.
-         * @~Japanese 指定されたsubmeshを指定された行列でローカル座標からワールド座標に変換してレンダリングする.
-         */
-        void render (VertexBuffer* vertices, IndexBuffer* triangles, Appearance* apperance, Transform& transform) const;
+        void render (Node* node, const Transform& transform) const;
 
         /**
          * @~English  Renders 
          * @~Japanese 指定されたスコープのsubmeshを指定された行列でローカル座標からワールド座標に変換してレンダリングする.
          */
-        void render (VertexBuffer* vertices, IndexBuffer* triangles, Appearance* apperance, Transform& transform, int scope) const;
+        void render (VertexBuffer* vertices, IndexBuffer* triangles, Appearance* apperance, Transform& transform, int scope=-1) const;
 
         /**
          * @~English  Rnders a image of world as viewd by the active camera of that World.
@@ -255,12 +254,20 @@ namespace m3g {
          */
         Graphics3D ();
 
-    public:
+
+        void initOpenGL ();
+
+    private:
         Viewport viewport;
         bool     depth_buffer_enable;
         int      hints;
         std::map<const char*, int> properties;
-        DepthRange depth_range;
+
+        int target;
+        union {
+            void*    fb;
+            Image2D* img;
+        };
     };
 
 } // namespace m3g {

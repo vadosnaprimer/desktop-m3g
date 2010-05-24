@@ -2,6 +2,7 @@
 #include <iostream>
 #include "Node.hpp"
 #include "Group.hpp"
+#include "World.hpp"
 using namespace std;
 using namespace m3g;
 
@@ -11,6 +12,7 @@ TEST (Node_default_variables)
     Node* node = new Node;
 
     CHECK_EQUAL ((Node*)0, node->getParent());
+    CHECK_EQUAL ((Node*)0, node->getGlobalParent());
     CHECK_EQUAL (true, node->isRenderingEnabled());
     CHECK_EQUAL (true, node->isPickingEnabled());
     CHECK_EQUAL (1.0f, node->getAlphaFactor());
@@ -25,11 +27,11 @@ TEST (Node_default_variables)
 
 TEST (Node_set_variables)
 {
-    Node* node = new Node;
-    Node* zref = new Node;
-    Node* yref = new Node;
-    Node* parent = new Node;
-    Group* grp = new Group;
+    Node*  node = new Node;
+    Node*  zref = new Node;
+    Node*  yref = new Node;
+    Group* grp  = new Group;
+    World* wld  = new World;
 
     node->setAlignment (zref, Node::ORIGIN, yref, Node::ORIGIN);
     node->setAlphaFactor (0.5);
@@ -37,10 +39,10 @@ TEST (Node_set_variables)
     node->setPickingEnable (false);
     node->setScope (1);
     grp->addChild (node);
-    //node->setParent (parent);
+    wld->addChild (grp);
 
-    //CHECK_EQUAL ((Node*)parent, node->getParent());
     CHECK_EQUAL (grp, node->getParent());
+    CHECK_EQUAL (wld, node->getGlobalParent());
     CHECK_EQUAL (false, node->isRenderingEnabled());
     CHECK_EQUAL (false, node->isPickingEnabled());
     CHECK_EQUAL (0.5f, node->getAlphaFactor());
@@ -53,7 +55,8 @@ TEST (Node_set_variables)
     delete node;
     delete zref;
     delete yref;
-    delete parent;
+    delete grp;
+    delete wld;
 }
 
 
