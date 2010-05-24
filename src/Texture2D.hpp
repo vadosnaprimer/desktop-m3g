@@ -15,13 +15,20 @@ namespace m3g {
      */
     class Texture2D : public Transformable
     {
-        friend class Appearance;  // for rendere, setTextureUnit
 
+        /**
+         * @~English  Struct of wraping mode. for inner use.
+         * @~Japanese ラッピングモードを保持する内部使用の構造体.
+         */
         struct Wrapping {
             Wrapping(int s_, int t_) : s(s_), t(t_) {};
             int s;
             int t;
         };
+        /**
+         * @~English  Struct of filter mode. for inner use.
+         * @~Japanese フィルターモードを保持する内部使用の構造体.
+         */
         struct Filter {
             Filter (int l, int i) : level(l), image(i) {};
             int level;
@@ -109,13 +116,13 @@ namespace m3g {
 
 
         /**
-         * @~English  
+         * @~English  Returns the current texture blend color for this Texture2D.
          * @~Japanese カレントのテクスチャーブレンドカラーの取得.
          */
         int getBlendColor () const;
 
         /**
-         * @~English  
+         * @~English  Returns the current texture blend mode for this Texture2D.
          * @~Japanese このTexture2Dのブレンドモードの取得.
          */
         int getBlending () const;
@@ -140,25 +147,25 @@ namespace m3g {
         int getLevelFilter () const;
 
         /**
-         * @~English  
+         * @~English  Returns the current texture wrapping mode for the S texture coordinate.
          * @~Japanese S方向のテクスチャー座標系のカレントのラッピングモードの取得.
          */
         int getWrappingS () const;
 
         /**
-         * @~English  
+         * @~English  Returns the current texture wrapping mode for the T texture coordinate.
          * @~Japanese T方向のテクスチャー座標系のカレントのラッピングモードの取得.
          */
         int getWrappingT () const;
     
         /**
-         * @~English  
+         * @~English  Sets the texture blend color for this Texture2D.
          * @~Japanese このTexture2Dのブレンドカラーの取得.
          */
         void setBlendColor (int rgb);
 
         /**
-         * @~English  
+         * @~English  Selects the texture blend mode, or blend function, for this Texture2D.
          * @~Japanese このTexute2Dで使用するテクスチャーブレンドモードやブレンド関数の選択.
          */
         void setBlending (int func);
@@ -193,8 +200,6 @@ namespace m3g {
          */
         virtual void render (RenderState& state) const;
 
-
-    private:
         /**
          * @~English  Render this object, for inner use.
          * @~Japanese デフォルトでレンダリングする内部使用の関数.

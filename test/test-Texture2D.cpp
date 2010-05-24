@@ -8,15 +8,15 @@ using namespace m3g;
 
 TEST (Texture2D_default_variables)
 {
-    Image2D*   img = new Image2D (Image2D::RGBA, 64, 48);
+    Image2D*   img = new Image2D (Image2D::RGBA, 64, 64);
     Texture2D* tex = new Texture2D (img);
 
     CHECK_EQUAL (img, tex->getImage());
-    CHECK_EQUAL (Texture2D::WRAP_REPEAT, tex->getWrappingS());
-    CHECK_EQUAL (Texture2D::WRAP_REPEAT, tex->getWrappingT());
+    CHECK_EQUAL (Texture2D::WRAP_REPEAT,       tex->getWrappingS());
+    CHECK_EQUAL (Texture2D::WRAP_REPEAT,       tex->getWrappingT());
     CHECK_EQUAL (Texture2D::FILTER_BASE_LEVEL, tex->getLevelFilter());
-    CHECK_EQUAL (Texture2D::FILTER_NEAREST, tex->getImageFilter());
-    CHECK_EQUAL (Texture2D::FUNC_MODULATE, tex->getBlending());
+    CHECK_EQUAL (Texture2D::FILTER_NEAREST,    tex->getImageFilter());
+    CHECK_EQUAL (Texture2D::FUNC_MODULATE,     tex->getBlending());
 
     delete img;
     delete tex;
@@ -24,8 +24,8 @@ TEST (Texture2D_default_variables)
 
 TEST (Texure2D_set_variables)
 {
-    Image2D*   img  = new Image2D(Image2D::RGBA, 64, 48);
-    Image2D*   img2 = new Image2D(Image2D::RGBA, 64, 48);
+    Image2D*   img  = new Image2D(Image2D::RGBA, 64, 64);
+    Image2D*   img2 = new Image2D(Image2D::RGBA, 64, 64);
     Texture2D* tex  = new Texture2D (img);
 
     tex->setBlendColor (0x12345678);
@@ -35,11 +35,11 @@ TEST (Texure2D_set_variables)
     tex->setWrapping (Texture2D::WRAP_CLAMP, Texture2D::WRAP_CLAMP);
 
     CHECK_EQUAL (img2, tex->getImage());
-    CHECK_EQUAL (Texture2D::WRAP_CLAMP, tex->getWrappingS());
-    CHECK_EQUAL (Texture2D::WRAP_CLAMP, tex->getWrappingT());
+    CHECK_EQUAL (Texture2D::WRAP_CLAMP,    tex->getWrappingS());
+    CHECK_EQUAL (Texture2D::WRAP_CLAMP,    tex->getWrappingT());
     CHECK_EQUAL (Texture2D::FILTER_LINEAR, tex->getLevelFilter());
     CHECK_EQUAL (Texture2D::FILTER_LINEAR, tex->getImageFilter());
-    CHECK_EQUAL (Texture2D::FUNC_BLEND, tex->getBlending());
+    CHECK_EQUAL (Texture2D::FUNC_BLEND,    tex->getBlending());
 
     delete img2;
     delete img;
@@ -48,7 +48,7 @@ TEST (Texure2D_set_variables)
 
 TEST (Texure2D_duplicate)
 {
-    Image2D*   img  = new Image2D(Image2D::RGBA, 64, 48);
+    Image2D*   img  = new Image2D(Image2D::RGBA, 64, 64);
     Texture2D* tex0 = new Texture2D (img);
 
     tex0->setBlendColor (0x12345678);

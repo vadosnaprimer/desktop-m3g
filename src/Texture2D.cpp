@@ -31,6 +31,12 @@ Texture2D:: Texture2D (Image2D* img) :
     if (img == NULL) {
         throw NullPointerException (__FILE__, __func__, "Image is NULL.");
     }
+    int width  = img->getWidth ();
+    int height = img->getHeight ();
+    if ((width & (width-1)) || (height & (height-1))) {
+        throw IllegalArgumentException (__FILE__, __func__, "Image size must be power of 2. w=%d,h=%d", width, height);
+    }
+
 
     image = img;
 
@@ -199,23 +205,26 @@ void Texture2D:: setFiltering (int level_filter, int image_filter)
 
 void Texture2D:: setImage (Image2D* img)
 {
+    if (image == NULL)
+        return;
+
+    int width  = img->getWidth ();
+    int height = img->getHeight ();
+
+    if ((width & (width-1)) || (height & (height-1))) {
+        throw IllegalArgumentException (__FILE__, __func__, "Image size must be power of 2. w=%d,h=%d", width, height);
+    }
     if (texobj == 0) {
         throw OpenGLException (__FILE__, __func__, "Texture object is not ready.");
     }
 
     image = img;
 
-    if (image == NULL)
-        return;
-
     int   format = image->getOpenGLFormat();
-    int   width  = image->getWidth();
-    int   height = image->getHeight();
     void* data   = image->getOpenGLData();
 
     glBindTexture (GL_TEXTURE_2D, texobj);
     glPixelStorei (GL_UNPACK_ALIGNMENT, 1);
-    //glTexImage2D (GL_TEXTURE_2D, 0, format, width, height, 0, format, GL_UNSIGNED_BYTE, data);
     gluBuild2DMipmaps (GL_TEXTURE_2D, format, width, height, format, GL_UNSIGNED_BYTE, data);
 
 }
