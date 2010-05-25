@@ -69,6 +69,9 @@ namespace m3g {
         static void load_png ();
 
 
+        static void load_jpeg ();
+
+
 
         /**
          * @~English  Creat a new Loader object.
@@ -83,6 +86,7 @@ namespace m3g {
 
         static bool            isM3GSignature ();
         static bool            isPngSignature ();
+        static bool            isJpegSignature ();
         static bool            getBoolean     ();
         static char            getByte        ();
         static short           getInt16       ();
@@ -96,6 +100,7 @@ namespace m3g {
         static int             getColorRGB    ();
         static bool            getM3GSignature();
         static bool            getPngSignature();
+        static bool            getJpegSignature();
         static char*           getByteArray   (int n);
         static short*          getInt16Array  (int n);
         static unsigned short* getUInt16Array (int n);

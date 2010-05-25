@@ -4,7 +4,7 @@ TARGET = libm3g.so
 CXX = g++
 CXXFLAGS = -Wall -g -shared -fPIC -Wno-deprecated -fno-strict-aliasing
 LD = g++
-LDFLAGS = -shared -lpng -lGL -lGLU
+LDFLAGS = -shared -lGL -lGLU -lpng -ljpeg
 LIBS = 
 
 
@@ -120,8 +120,9 @@ Loader.o: /usr/include/png.h /usr/include/pngconf.h /usr/include/stdio.h
 Loader.o: /usr/include/libio.h /usr/include/_G_config.h /usr/include/wchar.h
 Loader.o: /usr/include/bits/stdio_lim.h /usr/include/bits/sys_errlist.h
 Loader.o: /usr/include/setjmp.h /usr/include/bits/setjmp.h
-Loader.o: /usr/include/string.h m3g.hpp m3gdef.hpp Graphics3D.hpp Object.hpp
-Loader.o: Object3D.hpp m3ginternal.hpp AnimationController.hpp
+Loader.o: /usr/include/string.h /usr/include/jpeglib.h /usr/include/jconfig.h
+Loader.o: /usr/include/jmorecfg.h m3g.hpp m3gdef.hpp Graphics3D.hpp
+Loader.o: Object.hpp Object3D.hpp m3ginternal.hpp AnimationController.hpp
 Loader.o: AnimationTrack.hpp Appearance.hpp Background.hpp
 Loader.o: CompositingMode.hpp Fog.hpp Image2D.hpp IndexBuffer.hpp
 Loader.o: TriangleStripArray.hpp KeyframeSequence.hpp Keyframe.hpp

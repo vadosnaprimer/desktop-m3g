@@ -5,7 +5,7 @@ CXX = g++
 CXXFLAGS = -Wall -g  -Wno-deprecated -I../../src
 LD = g++
 LDFLAGS = -L../../src
-LIBS = -lm3g  -lglut -lGL -lpng -lz
+LIBS = -lm3g  -lglut -lGL
 
 
 all: $(OBJS)

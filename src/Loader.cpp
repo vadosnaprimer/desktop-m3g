@@ -5,6 +5,7 @@
 #include <cstring>
 #include <map>
 #include <png.h>
+#include <jpeglib.h>
 #include "m3g.hpp"
 #include "Loader.hpp"
 #include "Exception.hpp"
@@ -16,9 +17,9 @@ std::istrstream* Loader::iss = 0;
 std::vector<Object3D*> Loader::objs;
 Loader::FileInfo Loader::file_info;
 
-const char m3g_signature[12] = {0xAB,0x4A,0x53,0x52,0x31,0x38,0x34,0xBB,0x0D,0x0A,0x1A,0x0A};
-const char png_signature[8]  = {0x89,0x50,0x4e,0x47,0x0d,0x0a,0x1a,0x0a};
-
+const char m3g_signature[12]  = {0xAB,0x4A,0x53,0x52,0x31,0x38,0x34,0xBB,0x0D,0x0A,0x1A,0x0A};
+const char png_signature[8]   = {0x89,0x50,0x4e,0x47,0x0d,0x0a,0x1a,0x0a};
+const char jpeg_signature[11] = {0xff,0xd8,0xff,0xe0,0x00,0x10,0x4a,0x46,0x49,0x46,0x00};
 
 Loader:: Loader () 
 {
@@ -187,7 +188,7 @@ void Loader:: load_png ()
     case PNG_COLOR_TYPE_GRAY_ALPHA : format = Image2D::LUMINANCE_ALPHA; break;
     case PNG_COLOR_TYPE_RGB        : format = Image2D::RGB;             break;
     case PNG_COLOR_TYPE_RGB_ALPHA  : format = Image2D::RGBA;            break;
-    default: throw IOException (__FILE__, __func__, "Unknwon png format=%d.", format);
+    default: throw IOException (__FILE__, __func__, "Unknwon png format=%d.", info_ptr->color_type);
     }
 
     Image2D*   img = new Image2D   (format, info_ptr->width, info_ptr->height, pixels);
@@ -199,7 +200,71 @@ void Loader:: load_png ()
     objs.push_back (img);
 }
 
+void Loader:: load_jpeg ()
+{
+#include <jpeglib.h>
+    struct jpeg_decompress_struct cinfo;
+    struct jpeg_error_mgr         jerr;
+    cinfo.err = jpeg_std_error (&jerr);
+    jpeg_create_decompress (&cinfo);
 
+    int pos = iss->tellg();
+    int end = iss->seekg(0, ios::end).tellg();
+    iss->seekg(pos); 
+
+    FILE* fp = fmemopen (iss->str(), end-pos, "rb");
+    if (fp == NULL) {
+        throw IOException (__FILE__, __func__, "Can't open memory.");
+    }
+
+    jpeg_stdio_src (&cinfo, fp);
+
+    jpeg_read_header (&cinfo, TRUE);
+    jpeg_start_decompress (&cinfo);
+
+    int width            = cinfo.output_width;
+    int height           = cinfo.output_height;
+    int color_components = cinfo.out_color_components;
+
+    cout << "width  = " << width  << "\n";
+    cout << "height = " << height << "\n";
+    cout << "color components = " << cinfo.out_color_components << "\n";
+    cout << "color space = " << cinfo.out_color_space << "\n";
+
+
+    unsigned char*  pixels  = new unsigned char  [height*width*color_components];
+    unsigned char** row_ptr = new unsigned char* [height];
+    for (int y = 0; y < height; y++) {
+        row_ptr[y] = pixels + width*color_components*(height-1 - y);
+    }
+
+    while (cinfo.output_scanline < cinfo.output_height) {
+        jpeg_read_scanlines (&cinfo,
+                             &row_ptr[cinfo.output_scanline],
+                             cinfo.output_height - cinfo.output_scanline);
+    }
+
+    jpeg_finish_decompress (&cinfo);
+    jpeg_destroy_decompress (&cinfo);
+    
+    int format;
+    switch (cinfo.out_color_space) {
+    case JCS_GRAYSCALE : format = Image2D::LUMINANCE; break;
+    case JCS_RGB       : format = Image2D::RGB;       break;
+    default: throw IOException (__FILE__, __func__, "Unknwon jpeg format=%d.", cinfo.out_color_space);
+    }
+
+    Image2D*   img = new Image2D (format, width, height, pixels);
+    img->writePNG ("a.png");
+
+    delete [] row_ptr;
+    delete [] pixels;
+    fclose (fp);
+
+    objs.push_back (img);
+
+
+}
 
 
 std::vector<Object3D*> Loader:: load (int length, const char* data, int offset)
@@ -225,6 +290,8 @@ std::vector<Object3D*> Loader:: load (int length, const char* data, int offset)
         load_m3g ();
     else if (isPngSignature())
         load_png ();
+    else if (isJpegSignature())
+        load_jpeg ();
     else
         throw IOException (__FILE__, __func__, "This is not M3G format or png. ");
 
@@ -264,6 +331,14 @@ bool Loader:: isPngSignature ()
 {
     unsigned int pos = iss->tellg ();
     bool         yes = getPngSignature ();
+    iss->seekg (pos);
+    return yes;
+}
+
+bool Loader:: isJpegSignature()
+{
+    unsigned int pos = iss->tellg ();
+    bool         yes = getJpegSignature ();
     iss->seekg (pos);
     return yes;
 }
@@ -359,9 +434,18 @@ bool Loader:: getM3GSignature ()
 
 bool Loader:: getPngSignature ()
 {
-    char sig[12];
+    char sig[8];
     iss->read ((char*)sig, 8);
     return (memcmp (sig, png_signature, 8) == 0) ? true : false;
+}
+
+bool Loader:: getJpegSignature ()
+{
+    char sig[11];
+    iss->read ((char*)sig, 11);
+    // メモ：5,6バイト目はサイズなのでチェックしたら駄目
+    return (memcmp (sig, jpeg_signature, 4) == 0 &&
+            memcmp (sig+6, jpeg_signature+6, 5) == 0) ? true : false;
 }
 
 char* Loader:: getByteArray (int n)
