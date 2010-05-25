@@ -34,6 +34,11 @@ VertexArray:: VertexArray (int num_vertices, int num_components, int component_s
     glGenBuffers (1, &vbo);
     glBindBuffer (GL_ARRAY_BUFFER, vbo);
     glBufferData (GL_ARRAY_BUFFER, size, 0, GL_STATIC_DRAW);
+
+    int err = glGetError ();
+    if (err != GL_NO_ERROR) {
+        throw OpenGLException (__FILE__, __func__, "Can't make vertex buffer object, err=%d.", err);
+    }
 }
 
 VertexArray:: ~VertexArray ()
@@ -196,6 +201,9 @@ void VertexArray:: set (int first_vertex, int num_vertices, const char* values)
     if (component_size != 1) {
         throw IllegalStateException (__FILE__, __func__, "Component size of this vertex array is not 1 byte, component_size=%d.", component_size);
     }
+    if (vbo == 0) {
+        throw OpenGLException (__FILE__, __func__, "Vertex Buffre Object is not ready.");
+    }
 
     int offset      = first_vertex*component_count;
     int offset_size = first_vertex*component_count*sizeof(char);
@@ -210,6 +218,12 @@ void VertexArray:: set (int first_vertex, int num_vertices, const char* values)
                      offset_size,
                      size, 
                      &char_values[offset]);
+
+    int err = glGetError ();
+    if (err != GL_NO_ERROR) {
+        throw OpenGLException (__FILE__, __func__, "Can't send to GPU, err=%d.", err);
+    }
+    
 }
 
 void VertexArray:: set (int first_vertex, int num_vertices, const short* values)
@@ -225,6 +239,9 @@ void VertexArray:: set (int first_vertex, int num_vertices, const short* values)
     }
     if (component_size != 2) {
         throw IllegalStateException (__FILE__, __func__, "Component size of this vertex array is not 2 byte, component_size=%d.", component_size);
+    }
+    if (vbo == 0) {
+        throw OpenGLException (__FILE__, __func__, "Vertex Buffre Object is not ready.");
     }
 
     int offset      = first_vertex*component_count;
@@ -245,6 +262,11 @@ void VertexArray:: set (int first_vertex, int num_vertices, const short* values)
                      offset_size,
                      size,
                      &short_values[offset]);
+
+    int err = glGetError ();
+    if (err != GL_NO_ERROR) {
+        throw OpenGLException (__FILE__, __func__, "Can't send to GPU, err=%d.", err);
+    }
 }
 
 void VertexArray:: set (int first_vertex, int num_vertices, const float* values)
@@ -261,6 +283,9 @@ void VertexArray:: set (int first_vertex, int num_vertices, const float* values)
     if (component_size != 4) {
         throw IllegalStateException (__FILE__, __func__, "Component size of this vertex array is not 4 byte, component_size=%d.", component_size);
     }
+    if (vbo == 0) {
+        throw OpenGLException (__FILE__, __func__, "Vertex Buffre Object is not ready.");
+    }
 
     int offset      = first_vertex*component_count;
     int offset_size = first_vertex*component_count*sizeof(float);
@@ -275,6 +300,11 @@ void VertexArray:: set (int first_vertex, int num_vertices, const float* values)
                      offset_size,
                      size,
                      &float_values[offset]);
+
+    int err = glGetError ();
+    if (err != GL_NO_ERROR) {
+        throw OpenGLException (__FILE__, __func__, "Can't send to GPU, err=%d.", err);
+    }
 }
 
 
@@ -282,6 +312,17 @@ void VertexArray:: setMorphing (const VertexArray* base,
                                 const std::vector<const VertexArray*>& targets,
                                 const std::vector<float>& weights)
 {
+    if (base == NULL) {
+        throw NullPointerException (__FILE__, __func__, "Base vertex array is NULL.");
+    }
+    if (targets.size() != weights.size()) {
+        throw IllegalArgumentException (__FILE__, __func__, "Size of targes and weight must be same, %d,%d.", targets.size(), weights.size());
+    }
+    if (vbo == 0) {
+        throw OpenGLException (__FILE__, __func__, "Vertex Buffre Object is not ready.");
+    }
+
+
     int size = vertex_count * component_count * component_size;
     memcpy (char_values, base->char_values, size);
 
@@ -319,6 +360,11 @@ void VertexArray:: setMorphing (const VertexArray* base,
                      0,
                      vertex_count * component_count * component_size,
                      char_values);
+
+    int err = glGetError ();
+    if (err != GL_NO_ERROR) {
+        throw OpenGLException (__FILE__, __func__, "Can't send to GPU, err=%d.", err);
+    }
 }
 
 
@@ -326,6 +372,13 @@ void VertexArray:: setSkinning (const VertexArray* base_positions,
                                 const std::vector<std::vector<BoneIndex> >& bone_indices,
                                 const std::vector<Matrix>& matrix_palette)
 {
+    if (base_positions == NULL) {
+        throw NullPointerException (__FILE__, __func__, "Base vertex array is NULL.");
+    }
+    if (vbo == 0) {
+        throw OpenGLException (__FILE__, __func__, "Vertex Buffre Object is not ready.");
+    }
+
     for (int v = 0; v < vertex_count; v++) {
         Vector v0;
         switch (component_size) {
@@ -369,6 +422,10 @@ void VertexArray:: setSkinning (const VertexArray* base_positions,
                      vertex_count * component_count * component_size,
                      char_values);
 
+    int err = glGetError ();
+    if (err != GL_NO_ERROR) {
+        throw OpenGLException (__FILE__, __func__, "Can't send to GPU, err=%d.", err);
+    }
 }
 
 void VertexArray:: updateOpenGLData (const void* values) const
@@ -376,12 +433,20 @@ void VertexArray:: updateOpenGLData (const void* values) const
     if (values == NULL) {
         throw NullPointerException (__FILE__, __func__, "Values is NULL.");
     }
+    if (vbo == 0) {
+        throw OpenGLException (__FILE__, __func__, "Vertex Buffre Object is not ready.");
+    }
 
     glBindBuffer    (GL_ARRAY_BUFFER, vbo);
     glBufferSubData (GL_ARRAY_BUFFER,
                      0,
                      vertex_count * component_count * component_size,
                      values);
+
+    int err = glGetError ();
+    if (err != GL_NO_ERROR) {
+        throw OpenGLException (__FILE__, __func__, "Can't send to GPU, err=%d.", err);
+    }
 }
 
 void VertexArray:: convert (int to)
@@ -457,9 +522,8 @@ unsigned int VertexArray:: getOpenGLFormat () const
     case 1: return GL_BYTE;
     case 2: return GL_SHORT;
     case 4: return GL_FLOAT;
-    default: IllegalStateException (__FILE__, __func__, "Component type is invalid, type=%d.", component_size);
+    default: throw IllegalStateException (__FILE__, __func__, "Component type is invalid, type=%d.", component_size);
     }
-    return 0;
 }
 
 

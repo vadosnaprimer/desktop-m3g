@@ -41,7 +41,7 @@ Texture2D:: Texture2D (Image2D* img) :
     image = img;
 
     glGenTextures (1, &texobj);
-    int err = glGetError();
+    int err = glGetError ();
     if (err != GL_NO_ERROR) {
         throw OpenGLException (__FILE__, __func__, "Can't make texture object, err=%d.", err);
     }
@@ -205,8 +205,10 @@ void Texture2D:: setFiltering (int level_filter, int image_filter)
 
 void Texture2D:: setImage (Image2D* img)
 {
-    if (image == NULL)
+    if (img == NULL) {
+        image = NULL;
         return;
+    }
 
     int width  = img->getWidth ();
     int height = img->getHeight ();

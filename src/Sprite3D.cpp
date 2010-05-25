@@ -31,15 +31,14 @@ Sprite3D:: Sprite3D (bool scaled_, Image2D* image_, Appearance* appearance_) :
     crop.width  = image->getWidth();
     crop.height = image->getHeight();
 
-    int format = image->getOpenGLFormat ();
-    void* data = image->getOpenGLData ();
-
     glGenTextures   (1, &texobj);
-    glBindTexture   (GL_TEXTURE_2D, texobj);
-    glPixelStorei   (GL_UNPACK_ALIGNMENT, 1);
 
-    //glTexImage2D    (GL_TEXTURE_2D, 0, format, background_width, background_height, 0, format, GL_UNSIGNED_BYTE, data);
-    gluBuild2DMipmaps (GL_TEXTURE_2D, GL_RGBA, image->getWidth(), image->getHeight(), format, GL_UNSIGNED_BYTE, data);
+    int err = glGetError ();
+    if (err != GL_NO_ERROR) {
+        throw OpenGLException (__FILE__, __func__, "Can't make texture object, err=%d.", err);
+    }
+
+    setImage (image);
 
 }
 
@@ -183,17 +182,33 @@ void Sprite3D:: setCrop (int crop_x, int crop_y, int width, int height)
 
 
 
-void Sprite3D:: setImage (Image2D* image_)
+void Sprite3D:: setImage (Image2D* img)
 {
-    if (image_ == NULL) {
+    if (img == NULL) {
         throw NullPointerException (__FILE__, __func__, "Image is NULL.");
     }
+    int width  = img->getWidth ();
+    int height = img->getHeight ();
+    if ((width & (width-1)) || (height & (height-1))) {
+        throw IllegalArgumentException (__FILE__, __func__, "Image size must be power of 2. w=%d,h=%d", width, height);
+    }
+    if (texobj == 0) {
+        throw OpenGLException (__FILE__, __func__, "Texture object is not ready.");
+    }
 
-    image       = image_;
+    image       = img;
     crop.x      = 0;
     crop.y      = 0;
     crop.width  = image->getWidth();
     crop.height = image->getHeight();
+
+    int   format = image->getOpenGLFormat ();
+    void* data   = image->getOpenGLData ();
+
+    glBindTexture   (GL_TEXTURE_2D, texobj);
+    glPixelStorei   (GL_UNPACK_ALIGNMENT, 1);
+
+    gluBuild2DMipmaps (GL_TEXTURE_2D, GL_RGBA, image->getWidth(), image->getHeight(), format, GL_UNSIGNED_BYTE, data);
 }
 
 /**

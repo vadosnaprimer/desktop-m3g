@@ -61,12 +61,7 @@ int main (int argc, char** argv)
   Background* bg = new Background;
   bg->setColor (0xff3f3f3f);
 
-  int width, height;
-  char*  png = (char*)readpng ("moe-small.png", &width, &height);
-  //cout << "png = " << width << "x" << height << "\n";
-
-  Image2D* img = new Image2D (Image2D::RGB, width, height, png);
-  delete png;
+  Image2D* img = dynamic_cast<Image2D*>(Loader::load ("moe-small.png")[0]);
 
   CompositingMode* cmp = new CompositingMode;
   cmp->setDepthTestEnable (true);
