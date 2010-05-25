@@ -14,7 +14,7 @@ using namespace m3g;
 
 
 Appearance:: Appearance () :
-  rendering_layer(0), polygon_mode(0), compositing_mode(0),
+  layer(0), polygon_mode(0), compositing_mode(0),
   material(0), fog(0)
 {
   for (int i = 0; i < MAX_TEXTURE_UNITS; i++) {
@@ -73,7 +73,16 @@ Fog* Appearance:: getFog () const
 
 int Appearance:: getLayer () const
 {
-    return rendering_layer;
+    return layer;
+}
+
+int Appearance:: getLayer2 () const
+{
+    int layer2 = layer*2;
+    if (compositing_mode && compositing_mode->getBlending() != CompositingMode::REPLACE) {
+        layer2 += 1;
+    }
+    return layer2;
 }
 
 Material* Appearance:: getMaterial () const
@@ -108,13 +117,12 @@ void Appearance:: setFog (Fog* f)
   fog = f;
 }
 
-void Appearance:: setLayer (int layer)
+void Appearance:: setLayer (int layer_)
 {
-  // TODO: ここ値の範囲チェック忘れてないか？
-  if (layer < -63 || layer > 64) {
-    throw IllegalArgumentException (__FILE__, __func__, "Lyaer is invalid, layer=%d.", layer);
+  if (layer_ < -63 || layer > 64) {
+    throw IllegalArgumentException (__FILE__, __func__, "Lyaer is invalid, layer=%d.", layer_);
   }
-  rendering_layer = layer;
+  layer = layer_;
 }
 
 void Appearance:: setMaterial (Material* mat)
@@ -201,7 +209,7 @@ void Appearance:: render (RenderState& state) const
 std::ostream& Appearance:: print (std::ostream& out) const
 {
   out << "Appearance: ";
-  out << "  layer=" << rendering_layer;
+  out << "  layer=" << layer;
   if (polygon_mode)
     out << ", polygon_mode=" << *polygon_mode;
   else

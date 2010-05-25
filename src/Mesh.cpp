@@ -18,16 +18,16 @@ using namespace m3g;
 Mesh:: Mesh (VertexBuffer* vertices_, int num_submesh,
              IndexBuffer** submeshes, Appearance** appearances_) : vertices(0)
 {
-    if (vertices_ == 0) {
+    if (vertices_ == NULL) {
         throw NullPointerException (__FILE__, __func__, "VertexBuffer is NULL.");
     }
     if (num_submesh == 0) {
         throw IllegalArgumentException (__FILE__, __func__, "Number of submesh is invalid, num_submesh=%d.", num_submesh);
     }
-    if (submeshes == 0) {
+    if (submeshes == NULL) {
         throw NullPointerException (__FILE__, __func__, "IndexBuffer is NULL.");
     }
-    if (appearances_ == 0) {
+    if (appearances_ == NULL) {
         throw NullPointerException (__FILE__, __func__, "Appearances is NULL.");
     }
 
@@ -201,7 +201,7 @@ void Mesh:: render (RenderState& state) const
 {
     if (state.pass == -1) {
         for (int i = 0; i < (int)appearances.size(); i++) {
-            state.valid_layers.push_back (appearances[i]->getLayer());
+            state.valid_layers.push_back (appearances[i]->getLayer2());
         }
     }
     if (state.pass != 2) {
@@ -221,7 +221,8 @@ void Mesh:: render (RenderState& state) const
 
     // マテリアルとインデックスの指定
     for (int i = 0; i < (int)appearances.size(); i++) {
-        if (appearances[i] && appearances[i]->getLayer() == state.layer) {
+        if (appearances[i] && appearances[i]->getLayer2() == state.layer) {
+            //cout << "Mesh:: render layer=" << appearances[i]->getLayer2() << "\n";
             appearances[i]->render (state);
             indices[i]->render (state);
         }

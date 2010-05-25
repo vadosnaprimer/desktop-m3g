@@ -16,6 +16,7 @@ TEST (Appearance_default_variables)
     Appearance* app = new Appearance;
 
     CHECK_EQUAL (0, app->getLayer());
+    CHECK_EQUAL (0, app->getLayer2());
     CHECK_EQUAL ((PolygonMode*)0,    app->getPolygonMode());
     CHECK_EQUAL ((CompositingMode*)0,app->getCompositingMode());
     CHECK_EQUAL ((Texture2D*)0,      app->getTexture(0));  // うちのGF9500だと4つ
@@ -44,12 +45,18 @@ TEST (Appearance_set_variables)
     app->setTexture (1, tex);
 
     CHECK_EQUAL (1,             app->getLayer());
+    CHECK_EQUAL (2,             app->getLayer2());
     CHECK_EQUAL (pmode,         app->getPolygonMode());
     CHECK_EQUAL (cmode,         app->getCompositingMode());
-    CHECK_EQUAL ((Texture2D*)0, app->getTexture(0));  // うちのGF9500だと4つ
-    CHECK_EQUAL (tex,           app->getTexture(1));            // うちのGF9500だと4つ
+    CHECK_EQUAL ((Texture2D*)0, app->getTexture(0));         // うちのGF9500だと4つ
+    CHECK_EQUAL (tex,           app->getTexture(1));         // うちのGF9500だと4つ
     CHECK_EQUAL (mat,           app->getMaterial());
     CHECK_EQUAL (fog,           app->getFog());
+
+
+    cmode->setBlending (CompositingMode::ALPHA);
+    CHECK_EQUAL (1,             app->getLayer());
+    CHECK_EQUAL (3,             app->getLayer2());
 
     delete img;
     delete tex;

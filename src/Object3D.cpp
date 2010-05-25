@@ -5,7 +5,7 @@
 using namespace std;
 using namespace m3g;
 
-Object3D:: Object3D () : obj_type(OBJTYPE_OBJECT3D), user_id(0), user_object(0)
+Object3D:: Object3D () : user_id(0), user_object(0)
 {
 }
 

@@ -129,10 +129,9 @@ void CompositingMode:: render (RenderState& state) const
 
   //cout << "CompositingMode: render\n";
 
-  if (depth_test) {
-    glDepthFunc (GL_LESS);
-  } else {
-    glDepthFunc (GL_ALWAYS);
+  switch (depth_test) {
+  case true  : glDepthFunc (GL_LESS); break;
+  case false : glDepthFunc (GL_ALWAYS);
   }
 
   glDepthMask (depth_write);

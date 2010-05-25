@@ -272,6 +272,8 @@ void Background:: render (RenderState& state) const
     float a = ((color & 0xff000000) >> 24) / 255.f;
     float rgba[4] = {r,g,b,a};
 
+    glDepthMask (GL_TRUE);
+    glColorMask (GL_TRUE, GL_TRUE, GL_TRUE, GL_TRUE);
     glClearColor (r,g,b,a);
     glClearDepth (1.f);
 
@@ -320,19 +322,19 @@ void Background:: render (RenderState& state) const
 
         glBegin      (GL_TRIANGLE_STRIP);
         glTexCoord2f (s1, t1);
-        glVertex3f   (1, -1, 0.99999);
+        glVertex3f   (1, -1, 0.99999f);
         glTexCoord2f (s1, t0);
-        glVertex3f   (1, 1,  0.99999);
+        glVertex3f   (1, 1,  0.99999f);
         glTexCoord2f (s0, t1);
-        glVertex3f   (-1, -1, 0.99999);
+        glVertex3f   (-1, -1, 0.99999f);
         glTexCoord2f (s0, t0);
-        glVertex3f   (-1, 1,  0.99999);
+        glVertex3f   (-1, 1,  0.99999f);
         glEnd        ();
 
         glMatrixMode (GL_PROJECTION);
-        glPopMatrix ();
+        glPopMatrix  ();
         glMatrixMode (GL_MODELVIEW);
-        glPopMatrix ();
+        glPopMatrix  ();
 
 
     }
@@ -340,6 +342,8 @@ void Background:: render (RenderState& state) const
 
 void Background:: renderX ()
 {
+    glDepthMask  (GL_TRUE);
+    glColorMask  (GL_TRUE, GL_TRUE, GL_TRUE, GL_TRUE);
     glClearColor (0,0,0,0);   // r,g,b,a
     glClearDepth (1.0f);
     glClear      (GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);

@@ -154,7 +154,11 @@ std::map<const char*, int> Graphics3D:: getProperties () const
 
 void* Graphics3D:: getTarget () const
 {
-    return fb;
+    switch (target) {
+    case TARGET_DEFAULT: return fb;
+    case TARGET_IMAGE2D: return img;
+    default: throw InternalException (__FILE__, __func__, "Unknwon render target, t=%d.", target);
+    }
 }
 
 int Graphics3D:: getViewportHeight () const

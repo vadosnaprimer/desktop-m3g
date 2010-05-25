@@ -69,6 +69,12 @@ namespace m3g {
         int getLayer () const;
 
         /**
+         * @~English  Gets the current rendering layer including tranceparency for this Appearance, for inner use.
+         * @~Japanese このアピアランスの透明度を考慮したレンダリングレイヤーの取得。内部使用専用.
+         */
+        int getLayer2 () const;
+
+        /**
          * @~English  
          * @~Japanese このアピアランスのMaterialの取得
          */
@@ -139,12 +145,12 @@ namespace m3g {
 
 
     private:
-        int              rendering_layer;    // 短くlayerではどうか？
-        PolygonMode*     polygon_mode;
-        CompositingMode* compositing_mode;
-        Material*        material;
+        int                     layer;
+        PolygonMode*            polygon_mode;
+        CompositingMode*        compositing_mode;
+        Material*               material;
         std::vector<Texture2D*> textures;
-        Fog*             fog;
+        Fog*                    fog;
     };
 
 

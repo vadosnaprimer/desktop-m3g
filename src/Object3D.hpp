@@ -130,7 +130,6 @@ namespace m3g {
 
 
     private:
-        int   obj_type;     ///< M3G非標準のオブジェクトタイプ
         int   user_id;
         void* user_object;
         std::vector<AnimationTrack*> anim_tracks;
