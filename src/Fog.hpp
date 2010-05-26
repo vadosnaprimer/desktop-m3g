@@ -137,7 +137,6 @@ namespace m3g {
          */
         virtual void render (RenderState& state) const;
 
-    private:
         /**
          * @~English  Render defualt, for inner use.
          * @~Japanese デフォルト値でレンダリングする内部使用の関数.

@@ -9,6 +9,8 @@
 #include "AnimationController.hpp"
 #include "KeyframeSequence.hpp"
 #include "RenderState.hpp"
+#include "CompositingMode.hpp"
+#include "Fog.hpp"
 #include <iostream>
 #include <cmath>
 using namespace std;
@@ -81,8 +83,8 @@ int Sprite3D:: animate (int world_time)
 
     //cout << "Sprite3D: animte, time=" << world_time << "\n";
 
-    bool  is_crop_modefied = false;
-    CropRect new_crop = CropRect(0,0,0,0);
+    bool     is_crop_modefied = false;
+    CropRect new_crop         = CropRect(0,0,0,0);
     
     for (int i = 0; i < getAnimationTrackCount(); i++) {
         AnimationTrack*      track      = getAnimationTrack (i);
@@ -214,47 +216,56 @@ void Sprite3D:: setImage (Image2D* img)
 /**
  * Note: Sprite3D should be rendered only at second rendering pass(pass=2).
  * In other cases, do nothing.
- * メモ： 改良の余地があるな……。あとappearanceがNULLの時は”何もしない”ではなく
- * ”デフォルトでレンダー”にすべき。
  */
 void Sprite3D:: render (RenderState& state) const
 {
+    if (appearance == 0)
+        return;
+
     if (state.pass == -1) {
-        if (appearance)
-            state.valid_layers.push_back (appearance->getLayer());
+        state.valid_layers.push_back (appearance->getLayer2());
     }
     if (state.pass != 2) {
         return;
     }
-
-    // レイヤーが異なるときは何もしない
-    if (appearance == 0 && state.layer != 0)
+    if (appearance->getLayer2() != state.layer) {
         return;
-    if (appearance != 0 && appearance->getLayer() != state.layer)
-        return;
+    }
 
     // cout << "Sprite3D: render \n";
 
     Node:: render (state);
 
-    if (appearance) {
-        appearance->render(state);
+    Appearance:: renderX ();
+    CompositingMode* cmp = appearance->getCompositingMode ();
+    if (cmp) {
+        cmp->render (state);
+    }
+    Fog* fog = appearance->getFog ();
+    if (fog) {
+        fog->render (state);
     }
 
-    Matrix model_view;
-    Matrix projection;
-    Matrix model_view_projection;
+
     GLfloat m[16];
+
+    Matrix model_view;
     glGetFloatv (GL_MODELVIEW_MATRIX, m);
     model_view.set (m);
     model_view.transpose ();
+
+    Matrix projection;
     glGetFloatv (GL_PROJECTION_MATRIX, m);
     projection.set (m);
     projection.transpose ();
+
+    Matrix  model_view_projection;
     model_view_projection = projection * model_view;
+
     //cout << model_view_projection << "\n";
-    float tx = model_view_projection.m[3]/model_view_projection.m[15];
-    float ty = model_view_projection.m[7]/model_view_projection.m[15];
+
+    float tx = model_view_projection.m[3] /model_view_projection.m[15];
+    float ty = model_view_projection.m[7] /model_view_projection.m[15];
     float tz = model_view_projection.m[11]/model_view_projection.m[15];
 
     Graphics3D* g3d = Graphics3D::getInstance();
@@ -285,13 +296,15 @@ void Sprite3D:: render (RenderState& state) const
     float t0 = (image->getHeight() - y) / image->getHeight();
     float s1 = (x + crop.width) / image->getWidth();
     float t1 = (image->getHeight() - (y + crop.height)) / image->getHeight();
-    //cout << "s = (" << s0 << ", " << s1 << ")\n";
-    //cout << "t = (" << t0 << ", " << t1 << ")\n";
+
+    cout << "s = (" << s0 << ", " << s1 << ")\n";
+    cout << "t = (" << t0 << ", " << t1 << ")\n";
 
     if (scaled) {
-        Vector o  = model_view * Vector(0,0,0);
-        Vector px = model_view * Vector(1,0,0);
-        Vector py = model_view * Vector(0,1,0);
+
+        Vector o  = (model_view * Vector(0,0,0)).divided_by_w();
+        Vector px = (model_view * Vector(1,0,0)).divided_by_w();
+        Vector py = (model_view * Vector(0,1,0)).divided_by_w();
         //cout << "o  = " << o << "\n";
         //cout << "px = " << px << "\n";
         //cout << "py = " << py << "\n";
@@ -299,17 +312,17 @@ void Sprite3D:: render (RenderState& state) const
         float  dy = fabsf(py.y - o.y);
         //cout << "dx = " << dx << "\n";
         //cout << "dy = " << dy << "\n";
-        Vector oo  = projection * o;
-        Vector ppx = projection * (o + Vector(dx,0,0,0));
-        Vector ppy = projection * (o + Vector(0,dy,0,0));
+        Vector oo  = (projection *  o                    ).divided_by_w();
+        Vector ppx = (projection * (o + Vector(dx,0,0,0))).divided_by_w();
+        Vector ppy = (projection * (o + Vector(0,dy,0,0))).divided_by_w();
         //cout << "oo  = " << oo << "\n";
         //cout << "ppx = " << ppx << "\n";
         //cout << "ppy = " << ppy << "\n";
-        float  width  = fabsf(ppx.x/ppx.w - oo.x/oo.w);
-        float  height = fabsf(ppy.y/ppy.w - oo.y/oo.w);
+        float  width  = fabsf(ppx.x - oo.x);
+        float  height = fabsf(ppy.y - oo.y);
 
-        //cout << "Sprite3D: scaled (clip-coord) width = " << width << "\n";
-        //cout << "Sprite3D: scaled (clip-coord) height = " << height << "\n";
+        //cout << "Sprite3D: scaled (NDC-coord) width  = " << width  << "\n";
+        //cout << "Sprite3D: scaled (NDC-coord) height = " << height << "\n";
 
         glMatrixMode   (GL_PROJECTION);
         glPushMatrix   ();
@@ -331,12 +344,13 @@ void Sprite3D:: render (RenderState& state) const
         glEnd        ();
 
         glMatrixMode (GL_PROJECTION);
-        glPopMatrix ();
+        glPopMatrix  ();
         glMatrixMode (GL_MODELVIEW);
-        glPopMatrix ();
+        glPopMatrix  ();
 
     } else {
-    
+        // unscaled
+
         float width  = 2*image->getWidth()/viewport_width;
         float height = 2*image->getHeight()/viewport_height;
         //cout << "Sprite3D: unscaled (clip-coord) width = " << width << "\n";
@@ -366,15 +380,6 @@ void Sprite3D:: render (RenderState& state) const
         glMatrixMode (GL_MODELVIEW);
         glPopMatrix ();
 
-    }
-}
-
-int Sprite3D:: getLayer () const
-{
-    if (appearance) {
-        return appearance->getLayer();
-    } else {
-        return 0;
     }
 }
 

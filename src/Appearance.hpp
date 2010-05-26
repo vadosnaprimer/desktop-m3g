@@ -135,14 +135,14 @@ namespace m3g {
         virtual std::ostream& print (std::ostream& out) const;
 
   
-
-    private:
         /**
          * @~English  Render this object, inner use only.
          * @~Japanese このノードをレンダリングする内部使用の関数.
          */
         virtual void render (RenderState& state) const;
 
+
+        static void renderX ();
 
     private:
         int                     layer;
