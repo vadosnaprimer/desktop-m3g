@@ -60,15 +60,43 @@ void mouse (int button, int state, int x, int y)
     }
 }
 
+float cur_x = 0;
+float cur_y = 0;
+
 void keyboard (unsigned char key, int x, int y)
 {
     switch (key) {
-    case 'q':
+    case 'q': {
         quit ();
         break;
+    }
+    case '4': {
+        cur_x -= 0.2;
+        break;
+    }
+    case '6': {
+        cur_x += 0.2;
+        break;
+    }
+    case '2': {
+        cur_y -= 0.2;
+        break;
+    }
+    case '8': {
+        cur_y += 0.2;
+        break;
+    }
+    case ' ': {
+        RayIntersection ri;
+        bool hit = wld->pick (-1, cur_x,cur_y,1, 0,0,-1, &ri);
+        cout << ((hit) ? "HIT!" : "miss") << "\n";
+        break;
+    }
     default:
         break;
     }
+    cout << "cur = (" << cur_x << ", " << cur_y << ")\n";
+
     glutPostRedisplay();
 }
 
@@ -78,7 +106,7 @@ int main (int argc, char** argv)
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_RGBA|GLUT_DOUBLE);
     glutCreateWindow(argv[0]);
-    a
+    
     VertexArray* positions         = new VertexArray (4, 3, 2);
     short        position_values[] = {1,-1,0, 1,1,0, -1,-1,0, -1,1,0};
     positions->set (0, 4, position_values);

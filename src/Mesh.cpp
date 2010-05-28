@@ -122,12 +122,12 @@ void Mesh:: setAppearance (int index, Appearance* appearance)
 
 }
 
-bool Mesh:: intersect (const Vector& org, const Vector& dir, RayIntersection* ri_) const
+bool Mesh:: intersect (const Vector& org, const Vector& dir, RayIntersection* ri_out) const
 {
     if (org.w != 1 || dir.w != 1) {
         throw IllegalArgumentException (__FILE__, __func__, "W must be 1. org.w=%f, dir.w=%f.", org.w, dir.w);
     }
-    if (ri_ == NULL) {
+    if (ri_out == NULL) {
         throw NullPointerException (__FILE__, __func__, "RayIntersection is NULL.");
     }
 
@@ -136,10 +136,10 @@ bool Mesh:: intersect (const Vector& org, const Vector& dir, RayIntersection* ri
     float* bias  = &scale_bias[1];
 
     VertexArray* positions = vertices->getPositions(scale_bias);
-    bool         ray_hit   = false;
-    float        ray_u, ray_v, ray_t = numeric_limits<float>::max();
-    int          ray_index_values[3];
-    int          ray_submesh_index;
+    bool         ri_hit   = false;
+    float        ri_u, ri_v, ri_t = numeric_limits<float>::max();
+    int          ri_index_values[3];
+    int          ri_submesh_index;
 
     //cout << "indices.size() = " << indices.size() << "\n";
 
@@ -162,28 +162,26 @@ bool Mesh:: intersect (const Vector& org, const Vector& dir, RayIntersection* ri
             float u, v, t;
             bool hit = triangle_intersect (org, dir, v0, v1, v2, &u, &v, &t);
             //cout << "triangle-intersect : " << hit << "\n";
-            if (hit && t < ray_t) {
-                ray_hit = true;
-                ray_u = u;
-                ray_v = v;
-                ray_t = t;
-                ray_submesh_index = i;
-                memcpy (ray_index_values, index_values, sizeof(int)*3);
+            if (hit && t < ri_t) {
+                ri_hit = true;
+                ri_u = u;
+                ri_v = v;
+                ri_t = t;
+                ri_submesh_index = i;
+                memcpy (ri_index_values, index_values, sizeof(int)*3);
             }
         }
 
     }
 
-    // ray_何とかよりri_何とかの方が良いか？
-
-    if (ray_hit) {
-        //cout << "ray_hit = " << ray_hit << "\n";
-        if (ri_) {
-            *ri_ = RayIntersection (const_cast<Mesh*>(this),
-                                    org, dir, ray_t,
-                                    ray_u, ray_v,
-                                    3, ray_index_values,
-                                    ray_submesh_index);
+    if (ri_hit) {
+        //cout << "ri_hit = " << ri_hit << "\n";
+        if (ri_out) {
+            *ri_out = RayIntersection (const_cast<Mesh*>(this),
+                                       org, dir, ri_t,
+                                       ri_u, ri_v,
+                                       3, ri_index_values,
+                                       ri_submesh_index);
         }
         return true;
     }
@@ -222,7 +220,6 @@ void Mesh:: render (RenderState& state) const
     // マテリアルとインデックスの指定
     for (int i = 0; i < (int)appearances.size(); i++) {
         if (appearances[i] && appearances[i]->getLayer2() == state.layer) {
-            //cout << "Mesh:: render layer=" << appearances[i]->getLayer2() << "\n";
             appearances[i]->render (state);
             indices[i]->render (state);
         }

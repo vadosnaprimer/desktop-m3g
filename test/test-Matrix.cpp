@@ -19,6 +19,26 @@ TEST (Matrix_default_value)
     CHECK_ARRAY_EQUAL (m1, mat2.m, 16);
 }
 
+TEST (Matrix_set_values)
+{
+    const Matrix mat1 (1,2,2,2,
+                 -5,-6,0,0,
+                 4,3,2,1,
+                 2,0,0,2);
+    Matrix mat2 = mat1.getInverse ();
+    float m2[16] = {-0.3157895, 0.0526316,  0.3157895,  0.1578947,
+                    0.2631579, -0.2105263, -0.2631579, -0.1315789,
+                    0.0789474,  0.2368421,  0.4210526, -0.2894737,
+                    0.3157895, -0.0526316, -0.3157895,  0.3421053};
+    CHECK_ARRAY_CLOSE (m2, mat2.m, 16, 0.0001f);
+
+    Matrix mat3 = mat1.get3x3 ();
+    float m3[16] = {1,2,2,0,
+                    -5,-6,0,0,
+                    4,3,2,0,
+                    0,0,0,1};
+    CHECK_ARRAY_CLOSE (m3, mat3.m, 16, 0.0001f);   
+}
 
 TEST (Matrix_setIdentity)
 {

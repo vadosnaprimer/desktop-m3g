@@ -137,6 +137,11 @@ Vector Transform:: transform (const Vector& v) const
     return matrix * v;
 }
 
+Vector Transform:: transform3x3 (const Vector& v) const
+{
+    return matrix.get3x3() * v;
+}
+
 
 void Transform:: transpose ()
 {

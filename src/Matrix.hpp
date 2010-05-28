@@ -23,6 +23,7 @@ namespace m3g {
         ~Matrix ();
 
         Matrix getInverse () const;
+        Matrix get3x3 () const;
 
         void set(const float* mat);
         void setIdentity();

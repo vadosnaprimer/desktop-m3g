@@ -93,7 +93,11 @@ int Group:: getChildCount () const
     return children.size();
 }
 
-// min_riはNULLも可.
+/**
+ * 注意1: (x,y)にはウィンドウ座標をピクセル数で指定する。
+ *        左上が(0,0)、右下(width,height)
+ * 注意2: ピック可能＝Mesh,Sprite3D
+ */
 bool Group:: pick (int scope, float x, float y, const Camera* camera, RayIntersection* ri_out) const
 {
     if (camera == NULL) {
@@ -136,7 +140,7 @@ bool Group:: pick (int scope, float x, float y, const Camera* camera, RayInterse
                         dir.x, dir.y, dir.z, &ri);
         }
         Mesh* mesh = dynamic_cast<Mesh*>(children[i]);
-        if (mesh) {
+        if (mesh && (mesh->getScope() & scope)) {
             // 交差判定はMeshのモデル座標系で行う
             camera->getTransformTo (mesh, &trans);
             Vector p0_mesh = trans.transform (p0_cam);
@@ -151,7 +155,7 @@ bool Group:: pick (int scope, float x, float y, const Camera* camera, RayInterse
             ri.transformRay (trans);
         }
         Sprite3D* spr = dynamic_cast<Sprite3D*>(children[i]);
-        if (spr) {
+        if (spr && (spr->getScope() & scope)) {
             // 交差判定はNDC座標系で行う
             Vector org = p0_ndc;
             Vector dir = (p1_ndc-p0_ndc).normalize();
@@ -175,10 +179,58 @@ bool Group:: pick (int scope, float x, float y, const Camera* camera, RayInterse
 
 
 
-bool Group:: pick (int scope, float ox, float oy, float oz, float dx, float dy, float dz, RayIntersection* ri) const
+/**
+ * 注意1: レイの原点と方向はこのGroupのモデル座標系で表す。
+ *        左上が(0,0)、右下(width,height)
+ *        方向ベクトルの長さは１である必要はない。
+ * 注意2: ピック可能＝Meshのみ
+ */
+bool Group:: pick (int scope, float ox, float oy, float oz, float dx, float dy, float dz, RayIntersection* ri_out) const
 {
-    throw NotImplementedException (__FILE__, __func__, "Sorry, pick is not implemented.");
-    return false;
+    if (dx == 0 && dy == 0 && dz == 0) {
+        throw IllegalArgumentException (__FILE__, __func__, "Direction is 0.");
+    }
+
+    Vector org_mdl (ox,oy,oz);
+    Vector dir_mdl (dx,dy,dz);
+
+    RayIntersection min_ri;
+
+    for (int i = 0; i < (int)children.size(); i++) {
+        RayIntersection ri;
+        Transform trans;
+        Group* grp = dynamic_cast<Group*>(children[i]);
+        if (grp) {
+            getTransformTo (grp, &trans);
+            Vector org_grp = trans.transform (org_mdl).divided_by_w();
+            Vector dir_grp = trans.transform3x3 (dir_mdl).divided_by_w();
+            grp-> pick (scope, 
+                        org_grp.x, org_grp.y, org_grp.z,
+                        dir_grp.x, dir_grp.y, dir_grp.z, &ri);
+        }
+        Mesh* mesh = dynamic_cast<Mesh*>(children[i]);
+        if (mesh && (mesh->getScope() & scope)) {
+            // 交差判定はMeshのモデル座標系で行う
+            getTransformTo (mesh, &trans);
+            Vector org_mesh = trans.transform (org_mdl).divided_by_w();
+            Vector dir_mesh = trans.transform (dir_mdl).divided_by_w();
+            mesh->intersect (org_mesh, dir_mesh, &ri);
+            // レイはこのGroupの座標系で格納する
+            mesh->getTransformTo (this, &trans);
+            ri.transformRay (trans);
+        }
+        if (ri.getIntersected()) {
+            if (min_ri.getIntersected() == NULL ||
+                ri.getDistance() < min_ri.getDistance()) {
+                min_ri = ri;
+            }
+        }
+    }
+
+    if (ri_out)
+        *ri_out = min_ri;
+
+    return min_ri.getIntersected();
 }
 
 void Group:: removeChild (Node* child)

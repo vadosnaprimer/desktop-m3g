@@ -127,6 +127,11 @@ namespace m3g {
         Vector transform (const Vector& vector) const;
 
         /**
+         *
+         */
+        Vector transform3x3 (const Vector& vector) const;
+
+        /**
          * @~English  Transpose this matrix.
          * @~Japanese 転置を取りこの行列と入れ替える.
          */

@@ -42,6 +42,15 @@ Matrix Matrix:: getInverse () const
     return mat.invert();
 }
 
+Matrix Matrix:: get3x3 () const
+{
+    Matrix mat = *this;
+    mat[3]  = mat[7]  = mat[11] = 0;
+    mat[12] = mat[13] = mat[14] = 0;
+    mat[15] = 1;
+    return mat;
+}
+
 
 void Matrix:: set(const float* mat)
 {
