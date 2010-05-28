@@ -17,7 +17,8 @@ namespace m3g {
         Vector (float x, float y, float z, float w=1);
         ~Vector ();
 
-        void get (float* xyz) const;
+        void  get (float* xyz) const;
+        void  get4 (float* xyzw) const;
         float length () const;
 
         Vector& normalize ();

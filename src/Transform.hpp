@@ -112,14 +112,14 @@ namespace m3g {
          * @~English  Multiplies the given array of 4D vectors with this matrix.
          * @~Japanese 指定された4要素のfloatのベクトルにこの変換行列を乗算する.
          */
-        void transform (float* vectors) const;
+        void transform (int vector_num, float* vectors) const;
 
         /**
          * @~English  Multiplies the elements of the given VertexArray with this matrix, storeing the transformed values in a flloat array.
          * @~Japanese 指定されたVertexArrayの要素にこの変換行列を乗算する。
          *            結果はfloatの配列として収納する.
          */
-        void transform (VertexArray* in, float* out, bool w) const;
+        void transform (const VertexArray* in, float* out, bool w) const;
 
         /**
          *

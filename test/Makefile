@@ -367,6 +367,7 @@ test-Image2D.o: /usr/include/sys/time.h /usr/include/bits/time.h
 test-Image2D.o: /usr/include/sys/select.h /usr/include/bits/select.h
 test-Image2D.o: ../src/Image2D.hpp ../src/Object3D.hpp ../src/m3gdef.hpp
 test-Image2D.o: ../src/m3ginternal.hpp ../src/Object.hpp ../src/Exception.hpp
+test-Image2D.o: ../src/Loader.hpp
 test-Intersect.o: /usr/include/unittest++/UnitTest++.h
 test-Intersect.o: /usr/include/unittest++/Config.h
 test-Intersect.o: /usr/include/unittest++/Test.h
@@ -695,7 +696,7 @@ test-Node.o: /usr/include/sys/select.h /usr/include/bits/select.h
 test-Node.o: ../src/Node.hpp ../src/Transformable.hpp ../src/Object3D.hpp
 test-Node.o: ../src/m3gdef.hpp ../src/m3ginternal.hpp ../src/Object.hpp
 test-Node.o: ../src/Quaternion.hpp ../src/Transform.hpp ../src/Matrix.hpp
-test-Node.o: ../src/Group.hpp
+test-Node.o: ../src/Group.hpp ../src/World.hpp
 test-Object.o: /usr/include/unittest++/UnitTest++.h
 test-Object.o: /usr/include/unittest++/Config.h
 test-Object.o: /usr/include/unittest++/Test.h

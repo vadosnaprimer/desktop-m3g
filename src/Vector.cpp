@@ -41,6 +41,14 @@ void Vector:: get (float* xyz) const
     }
 }
 
+void Vector:: get4 (float* xyzw) const
+{
+    xyzw[0] = x;
+    xyzw[1] = y;
+    xyzw[2] = z;
+    xyzw[3] = w;
+}
+
 float Vector:: length () const
 {
     if (w == 0) {

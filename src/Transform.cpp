@@ -3,6 +3,7 @@
 #include "Exception.hpp"
 #include "Quaternion.hpp"
 #include "Vector.hpp"
+#include "VertexArray.hpp"
 #include <iostream>
 #include <cstring>
 #include <cmath>
@@ -115,21 +116,47 @@ void Transform:: setIdentity ()
     matrix.setIdentity();
 }
 
-void Transform:: transform (float* vectors) const
+void Transform:: transform (int vector_num, float* vectors) const
 {
     if (vectors == NULL) {
         throw NullPointerException (__FILE__, __func__, "Vectors is NULL.");
     }
-    Vector v (vectors[0], vectors[1], vectors[2]);
+    if (vector_num < 0 || vector_num % 4 != 0) {
+        throw IllegalArgumentException (__FILE__, __func__, "Vector num is invalid. num=%d", vector_num);
+    }
 
-    Vector r = matrix * v;
-    r.get (vectors);
+    for (int v = 0; v < vector_num; v+=4) {
+        Vector in (vectors[v+0], vectors[v+1], vectors[v+2], vectors[v+3]);        
+        Vector out = matrix * in;
+        out.get4 (vectors + v);
+    }
+
+
+
 }
 
-void Transform:: transform (VertexArray* in, float* out, bool w) const
+void Transform:: transform (const VertexArray* in, float* out, bool w) const
 {
-    // 
-    // あれ実装していない？
+    if (in == NULL) {
+        throw NullPointerException (__FILE__, __func__, "VertexArray is NULL.");
+    }
+    if (out == NULL) {
+        throw NullPointerException (__FILE__, __func__, "Out values is NULL.");
+    }
+    if (in->getComponentCount() == 4) {
+        throw IllegalArgumentException (__FILE__, __func__, "Component count must be 2 or 3.");
+    }
+
+    float scale   = 1;
+    float bias[4] = {0,0,0,0};
+
+    for (int v = 0; v < (int)in->getVertexCount(); v++) {
+        float* values = out + v*4;
+        values[0] = values[1] = values[2] = 0;
+        values[3] = w ? 1 : 0;
+        in->get (v, 1, scale, bias, values);
+        transform (4, values);
+    }
 }
 
 Vector Transform:: transform (const Vector& v) const
