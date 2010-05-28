@@ -19,25 +19,23 @@ bool m3g::triangle_intersect (const Vector& org, const Vector& dir,
                                         org.w, dir.w, v0.w, v1.w, v2.w);
     }
     
-    cout << "org = " << org << "\n";
-    cout << "dir = " << dir << "\n";
+    //cout << "triangle_intersect: \n";
+    //cout << "org = " << org << "\n";
+    //cout << "dir = " << dir << "\n";
 
-    cout << "v0 = " << v0 << "\n";
-    cout << "v1 = " << v1 << "\n";
-    cout << "v2 = " << v2 << "\n";
+    //cout << "v0 = " << v0 << "\n";
+    //cout << "v1 = " << v1 << "\n";
+    //cout << "v2 = " << v2 << "\n";
 
     Vector e1 = v1 - v0;
     Vector e2 = v2 - v0;
 
-    cout << "e1 = " << e1 << "\n";
-    cout << "e2 = " << e2 << "\n";
+    //cout << "e1 = " << e1 << "\n";
+    //cout << "e2 = " << e2 << "\n";
 
     Vector p  = cross (dir, e2);
 
-    cout << "p  = " << p << "\n";
-
     float  a  = dot (e1, p);
-    cout << "a  = " << a << "\n";
     if (a < M3G_EPSILON)
         return false;
 

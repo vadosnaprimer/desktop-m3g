@@ -31,12 +31,9 @@ void Transform:: get (float* mat) const
     memcpy (mat, &matrix.m, sizeof(matrix.m));
 }
 
-void Transform:: get (Matrix* mat) const
+Matrix Transform:: getMatrix () const
 {
-    if (mat == NULL) {
-        throw NullPointerException (__FILE__, __func__, "Matrix is NULL.");
-    }
-    *mat = matrix;
+    return matrix;
 }
 
 void Transform:: invert ()

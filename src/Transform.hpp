@@ -46,7 +46,7 @@ namespace m3g {
         /**
          * M3G非標準.
          */
-        void get (Matrix* matrix) const;
+        Matrix getMatrix () const;
 
         /**
          * @~English  Invertes this matrix, if possible.

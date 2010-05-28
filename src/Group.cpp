@@ -100,7 +100,7 @@ bool Group:: pick (int scope, float x, float y, const Camera* camera, RayInterse
         throw NullPointerException (__FILE__, __func__, "Camera is NULL.");
     }
 
-    cout << "Group: pick\n";
+    //cout << "Group: pick\n";
 
     // NDC
     Vector p0_ndc = Vector(2*x-1, 1-2*y, -1);
@@ -155,7 +155,7 @@ bool Group:: pick (int scope, float x, float y, const Camera* camera, RayInterse
             // 交差判定はNDC座標系で行う
             Vector org = p0_ndc;
             Vector dir = (p1_ndc-p0_ndc).normalize();
-            spr->intersect (org, dir, &ri);
+            spr->intersect (org, dir, camera, &ri);
             // レイはGroupの座標系で格納する
             ri.transformRay (proj);
         }

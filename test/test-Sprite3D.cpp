@@ -8,22 +8,26 @@ using namespace m3g;
 
 TEST (Sprite3D_default_variables)
 {
-    Image2D*    img = new Image2D (Image2D::RGBA, 64, 48);
+    Image2D*    img = new Image2D (Image2D::RGBA, 64, 64);
     Appearance* app = new Appearance;
     Sprite3D*   spr = new Sprite3D (true, img, app);
 
     CHECK_EQUAL (0, spr->getCropX());
     CHECK_EQUAL (0, spr->getCropY());
     CHECK_EQUAL (64, spr->getCropWidth());
-    CHECK_EQUAL (48, spr->getCropHeight());
+    CHECK_EQUAL (64, spr->getCropHeight());
     CHECK_EQUAL (true, spr->isScaled());
     CHECK_EQUAL (img, spr->getImage());
     CHECK_EQUAL (app, spr->getAppearance());
+
+    delete img;
+    delete app;
+    delete spr;
 }
 
 TEST (Sprite3D_set_variables)
 {
-    Image2D*     img = new Image2D (Image2D::RGBA, 64, 48);
+    Image2D*     img = new Image2D (Image2D::RGBA, 64, 64);
     Appearance* app = new Appearance;
     Sprite3D*   spr = new Sprite3D (false, img, app);
 
@@ -34,23 +38,29 @@ TEST (Sprite3D_set_variables)
     CHECK_EQUAL (40, spr->getCropHeight());
 
     Appearance* app2 = new Appearance;
-    Image2D*    img2 = new Image2D (Image2D::RGBA, 128, 96);
+    Image2D*    img2 = new Image2D (Image2D::RGBA, 128, 128);
     spr->setImage (img2);
     spr->setAppearance (app2);
 
     CHECK_EQUAL (0,    spr->getCropX());
     CHECK_EQUAL (0,    spr->getCropY());
     CHECK_EQUAL (128,  spr->getCropWidth());
-    CHECK_EQUAL (96,   spr->getCropHeight());
+    CHECK_EQUAL (128,   spr->getCropHeight());
     CHECK_EQUAL (false, spr->isScaled());
     CHECK_EQUAL (img2, spr->getImage());
     CHECK_EQUAL (app2, spr->getAppearance());
+
+    delete img;
+    delete app;
+    delete img2;
+    delete app2;
+    delete spr;
 }
 
 TEST (Sprite3D_duplicate)
 {
-    Image2D*     img = new Image2D (Image2D::RGBA, 64, 48);
-    Appearance* app = new Appearance;
+    Image2D*    img  = new Image2D (Image2D::RGBA, 64, 64);
+    Appearance* app  = new Appearance;
     Sprite3D*   spr0 = new Sprite3D (false, img, app);
 
     spr0->setCrop (1,2,30,40);
@@ -63,4 +73,9 @@ TEST (Sprite3D_duplicate)
     CHECK_EQUAL (spr0->getCropHeight(), spr1->getCropHeight());
     CHECK_EQUAL (spr0->getImage()     , spr1->getImage());
     CHECK_EQUAL (spr0->getAppearance(), spr1->getAppearance());
+
+    delete img;
+    delete app;
+    delete spr0;
+    delete spr1;
 }

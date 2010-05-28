@@ -10,6 +10,7 @@ namespace m3g {
     class Image2D;
     class Appearance;
     class RayIntersection;
+    class Camera;
 
     /**
      * @~English  A scene graph node that represents a 2-dimensional image with a 3D position.
@@ -105,7 +106,7 @@ namespace m3g {
         /**
          * 座標は全てNDC座標で渡す.
          */
-        bool intersect (const Vector& org, const Vector& dir, RayIntersection* ri) const;
+        bool intersect (const Vector& org, const Vector& dir, const Camera* cam, RayIntersection* ri) const;
 
         /**
          * @~English  Returns the automatic scaling status of this Sprite3D.
@@ -151,19 +152,19 @@ namespace m3g {
          * @~English  Retrieves center of scaled sprite in NDC coordinate.
          * @~Japanese スケールドスプライトのNDC座標での中心点を取得.
          */
-        Vector getCenterPoint () const;
+        Vector getCenterPoint (const Camera* cam) const;
 
         /**
          * @~English  Retrieves width of scaled sprite in NDC coordinate.
          * @~Japanese スケールドスプライトのNDC座標での横幅を取得.
          */
-        float getScaledWidth () const;
+        float getScaledWidth (const Camera* cam) const;
 
         /**
          * @~English  Retrieves height of scaled sprite in NDC coordinate.
          * @~Japanese スケールドスプライトのNDC座標での立て幅を取得.
          */
-        float getScaledHeight () const;
+        float getScaledHeight (const Camera* cam) const;
 
 
         /**

@@ -70,7 +70,7 @@ Group.o: m3g-gl.hpp /usr/include/GL/gl.h /usr/include/GL/glext.h
 Group.o: /usr/include/GL/glu.h Group.hpp Node.hpp Transformable.hpp
 Group.o: Object3D.hpp m3gdef.hpp m3ginternal.hpp Object.hpp Quaternion.hpp
 Group.o: Transform.hpp Matrix.hpp RayIntersection.hpp Vector.hpp
-Group.o: Exception.hpp World.hpp Camera.hpp Mesh.hpp
+Group.o: Exception.hpp World.hpp Camera.hpp Mesh.hpp Sprite3D.hpp
 Image2D.o: m3g-gl.hpp /usr/include/GL/gl.h /usr/include/GL/glext.h
 Image2D.o: /usr/include/GL/glu.h Image2D.hpp Object3D.hpp m3gdef.hpp
 Image2D.o: m3ginternal.hpp Object.hpp Exception.hpp RenderState.hpp
@@ -177,7 +177,8 @@ Sprite3D.o: Object3D.hpp m3gdef.hpp m3ginternal.hpp Object.hpp Quaternion.hpp
 Sprite3D.o: Transform.hpp Matrix.hpp Appearance.hpp Image2D.hpp Exception.hpp
 Sprite3D.o: Graphics3D.hpp Vector.hpp AnimationTrack.hpp
 Sprite3D.o: AnimationController.hpp KeyframeSequence.hpp Keyframe.hpp
-Sprite3D.o: RenderState.hpp
+Sprite3D.o: RenderState.hpp CompositingMode.hpp Fog.hpp Intersect.hpp
+Sprite3D.o: RayIntersection.hpp
 Texture2D.o: m3g-gl.hpp /usr/include/GL/gl.h /usr/include/GL/glext.h
 Texture2D.o: /usr/include/GL/glu.h Texture2D.hpp Transformable.hpp
 Texture2D.o: Object3D.hpp m3gdef.hpp m3ginternal.hpp Object.hpp

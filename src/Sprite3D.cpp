@@ -13,6 +13,7 @@
 #include "Fog.hpp"
 #include "Intersect.hpp"
 #include "RayIntersection.hpp"
+#include "Camera.hpp"
 #include <iostream>
 #include <cmath>
 using namespace std;
@@ -171,24 +172,24 @@ Image2D* Sprite3D:: getImage () const
  * 注意1: org,dir,riはすべてNDC座標系
  * 注意2: NDC座標系はOpenGLで一般的な右手座標系ではなく「左手座標系」
  *        従って交差判定に渡す頂点は「時計回り」
+ *        v3 -- v1
+ *         | ／ |
+ *        v2 -- v0
+ * 注意3: M3Gの仕様ではピック出来るのはscaledのみ。unscaledもピック出来るのは独自拡張
  */
-bool Sprite3D:: intersect (const Vector& org, const Vector& dir, RayIntersection* ri) const
+bool Sprite3D:: intersect (const Vector& org, const Vector& dir, const Camera* cam, RayIntersection* ri) const
 {
-    if (scaled == false) {
-        return false;
-    }
+    //cout << "Sprite3D: intersect, scaled=" << scaled << "\n";
+    //cout << "org = " << org << "\n";
+    //cout << "dir = " << dir << "\n";
 
-    cout << "Sprite3D: intersect\n";
-    cout << "org = " << org << "\n";
-    cout << "dir = " << dir << "\n";
+    Vector center = getCenterPoint (cam);
+    float  width  = scaled ? getScaledWidth (cam)  : getUnscaledWidth ();
+    float  height = scaled ? getScaledHeight (cam) : getUnscaledHeight ();
 
-    Vector center = getCenterPoint ();
-    float  width  = getScaledWidth ();
-    float  height = getScaledHeight ();
-
-    cout << "center = " << center << "\n";
-    cout << "width  = " << width   << "\n";
-    cout << "height = " << height  << "\n";
+    //cout << "center = " << center << "\n";
+    //cout << "width  = " << width   << "\n";
+    //cout << "height = " << height  << "\n";
     
     Vector v0 = center + Vector(width/2, -height/2, 0);
     Vector v1 = center + Vector(width/2,  height/2, 0);
@@ -198,34 +199,24 @@ bool Sprite3D:: intersect (const Vector& org, const Vector& dir, RayIntersection
     float u,v,t;
     bool  hit;
     
-    hit = triangle_intersect (org, dir, v2, v1, v0, &u, &v, &t);
-    cout << "hit = " << hit << "\n";
-    if (hit) {
-        if (ri) {
-            int indices[3] = {2,1,0};
-            *ri = RayIntersection (const_cast<Sprite3D*>(this),
-                                   org, dir, t,
-                                   u, v,
-                                   3, indices,
-                                   0);
+    Vector* vertices[2][3] = {{&v2, &v1, &v0}, {&v2,&v3,&v1}};
+    int     indices[2][3]  = {{2,1,0}, {2,3,1}};
+
+    for (int i = 0; i < 2; i++) {
+        hit = triangle_intersect (org, dir, 
+                                  *vertices[i][0], *vertices[i][1], *vertices[i][2],
+                                  &u, &v, &t);
+        if (hit) {
+            if (ri) {
+                *ri = RayIntersection (const_cast<Sprite3D*>(this),
+                                       org, dir, t,
+                                       u, v,
+                                       3, indices[i],
+                                       0);
+            }
+            return true;
         }
-        return true;
     }
-#if 0
-    hit = triangle_intersect (org, dir, v2, v3, v1, &u, &v, &t);
-    cout << "hit = " << hit << "\n";
-    if (hit) {
-        if (ri) {
-            int indices[3] = {2,3,1};
-            *ri = RayIntersection (const_cast<Sprite3D*>(this),
-                                   org, dir, t,
-                                   u, v,
-                                   3, indices,
-                                   0);
-        }
-        return true;
-    }
-#endif
 
     return false;
 }
@@ -326,8 +317,9 @@ void Sprite3D:: render (RenderState& state) const
     glEnable         (GL_ALPHA_TEST);
     glAlphaFunc      (GL_GREATER, 0);
 
+    const Camera* cam = state.camera;
 
-    Vector center = getCenterPoint ();
+    Vector center = getCenterPoint (cam);
     float  tx     = center.x;
     float  ty     = center.y;
     float  tz     = center.z;
@@ -339,8 +331,8 @@ void Sprite3D:: render (RenderState& state) const
     float  s1         = tex_coord1.x;
     float  t1         = tex_coord1.y;
 
-    float width  = scaled ? getScaledWidth()  : getUnscaledWidth();
-    float height = scaled ? getScaledHeight() : getUnscaledHeight();
+    float width  = scaled ? getScaledWidth(cam)  : getUnscaledWidth();
+    float height = scaled ? getScaledHeight(cam) : getUnscaledHeight();
 
     glMatrixMode   (GL_PROJECTION);
     glPushMatrix   ();
@@ -368,19 +360,16 @@ void Sprite3D:: render (RenderState& state) const
     
 }
 
-Vector Sprite3D:: getCenterPoint () const
+Vector Sprite3D:: getCenterPoint (const Camera* cam) const
 {
-    GLfloat m[16];
+    Transform tr;
 
-    Matrix model_view;
-    glGetFloatv (GL_MODELVIEW_MATRIX, m);
-    model_view.set (m);
-    model_view.transpose ();
+    getTransformTo (cam, &tr);
+    Matrix model_view = tr.getMatrix ();
 
-    Matrix projection;
-    glGetFloatv (GL_PROJECTION_MATRIX, m);
-    projection.set (m);
-    projection.transpose ();
+    cam->getProjection (&tr);
+    Matrix projection = tr.getMatrix ();
+
 
     Vector o_mdl = Vector(0,0,0);
     Vector o_cam = (model_view * o_mdl).divided_by_w();
@@ -389,34 +378,6 @@ Vector Sprite3D:: getCenterPoint () const
     return o_ndc;
 }
 
-float Sprite3D:: getScaledWidth () const
-{
-    GLfloat m[16];
-
-    Matrix model_view;
-    glGetFloatv (GL_MODELVIEW_MATRIX, m);
-    model_view.set (m);
-    model_view.transpose ();
-
-    Matrix projection;
-    glGetFloatv (GL_PROJECTION_MATRIX, m);
-    projection.set (m);
-    projection.transpose ();
-
-    // カメラ空間
-    Vector o_cam  = (model_view * Vector(0,0,0)).divided_by_w();
-    Vector px_cam = (model_view * Vector(1,0,0)).divided_by_w();
-    float  dx_cam = fabsf(px_cam.x - o_cam.x);
-    //cout << "Sprite3D: dx_cam = " << dx_cam << "\n";
-
-    // NDC空間
-    Vector o_ndc  = (projection * o_cam                       ).divided_by_w();
-    Vector px_ndc = (projection * (o_cam + Vector(dx_cam,0,0))).divided_by_w();
-    float  dx_ndc = fabsf(px_ndc.x - o_ndc.x);
-    //cout << "Sprite3D: dx_ndc = " << dx_ndc << "\n";
-
-    return dx_ndc;
-}
 
 Vector Sprite3D:: getTexCoord0 () const
 {
@@ -444,24 +405,18 @@ Vector Sprite3D:: getTexCoord1 () const
     return Vector (s,1-t,0);
 }
 
-float Sprite3D:: getScaledHeight () const
+float Sprite3D:: getScaledHeight (const Camera* cam) const
 {
-    GLfloat m[16];
+    Transform tr;
 
-    Matrix model_view;
-    glGetFloatv (GL_MODELVIEW_MATRIX, m);
-    model_view.set (m);
-    model_view.transpose ();
+    getTransformTo (cam, &tr);
+    Matrix model_view = tr.getMatrix ();
 
-    cout << "Sprite3D:: OpenGL: model_view = " << model_view << "\n";
+    cam->getProjection (&tr);
+    Matrix projection = tr.getMatrix ();
 
-    Matrix global_pose = this->getGlobalPose ();
-    cout << "Sprite3D:: global_pose = " << global_pose << "\n";
-
-    Matrix projection;
-    glGetFloatv (GL_PROJECTION_MATRIX, m);
-    projection.set (m);
-    projection.transpose ();
+    //cout << "Sprite3D:: model_view = " << model_view << "\n";
+    //cout << "Sprite3D:: projection = " << projection << "\n";
 
     // カメラ空間
     Vector o_cam  = (model_view * Vector(0,0,0)).divided_by_w();
@@ -478,19 +433,47 @@ float Sprite3D:: getScaledHeight () const
     return dy_ndc;
 }
 
+float Sprite3D:: getScaledWidth (const Camera* cam) const
+{
+    Transform tr;
+
+    getTransformTo (cam, &tr);
+    Matrix model_view = tr.getMatrix ();
+
+    cam->getProjection (&tr);
+    Matrix projection = tr.getMatrix ();
+
+    //cout << "Sprite3D:: model_view = " << model_view << "\n";
+    //cout << "Sprite3D:: projection = " << projection << "\n";
+
+    // カメラ空間
+    Vector o_cam  = (model_view * Vector(0,0,0)).divided_by_w();
+    Vector px_cam = (model_view * Vector(1,0,0)).divided_by_w();
+    float  dx_cam = fabsf(px_cam.x - o_cam.x);
+    //cout << "Sprite3D: dx_cam = " << dx_cam << "\n";
+
+    // NDC空間
+    Vector o_ndc  = (projection * o_cam                       ).divided_by_w();
+    Vector px_ndc = (projection * (o_cam + Vector(dx_cam,0,0))).divided_by_w();
+    float  dx_ndc = fabsf(px_ndc.x - o_ndc.x);
+    //cout << "Sprite3D: dx_ndc = " << dx_ndc << "\n";
+
+    return dx_ndc;
+}
+
 float Sprite3D:: getUnscaledWidth () const
 {
-    Graphics3D* g3d = Graphics3D::getInstance();
-    float image_width     = image->getWidth ();
-    float viewport_width  = g3d->getViewportWidth ();
-    float dx_ndc          = 2*image_width/viewport_width;
+    Graphics3D* g3d      = Graphics3D::getInstance();
+    float image_width    = image->getWidth ();
+    float viewport_width = g3d->getViewportWidth ();
+    float dx_ndc         = 2*image_width/viewport_width;
 
     return dx_ndc;
 }
 
 float Sprite3D:: getUnscaledHeight () const
 {
-    Graphics3D* g3d = Graphics3D::getInstance();
+    Graphics3D* g3d       = Graphics3D::getInstance();
     float image_height    = image->getHeight ();
     float viewport_height = g3d->getViewportHeight ();
     float dy_ndc          = 2*image_height/viewport_height;

@@ -93,10 +93,10 @@ void World:: render (RenderState& state) const
     if (camera == NULL) {
         throw IllegalStateException (__FILE__, __func__, "Active camera is NULL.");
     }
-  
+    
     //cout << "World render\n";
     
-    
+    state.camera = camera;
 
     vector<int>& v = state.valid_layers;
 

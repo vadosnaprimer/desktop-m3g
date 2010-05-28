@@ -229,15 +229,17 @@ void Camera:: render (RenderState& state) const
     Matrix mat;
 
     glMatrixMode(GL_PROJECTION);
-    proj_trans.get (&mat);
-    mat.transpose();
-    glMultMatrixf (mat.m);
+    Matrix projection = proj_trans.getMatrix().transpose();
+    //proj_trans.get (&mat);
+    //mat.transpose();
+    glMultMatrixf (projection.m);
 
     glMatrixMode (GL_MODELVIEW);
-    mat = getGlobalPose ();
-    mat.invert ();
-    mat.transpose ();
-    glMultMatrixf (mat.m);
+    Matrix model_view = getGlobalPose().invert().transpose();
+    //mat = getGlobalPose ();
+    //mat.invert ();
+    //mat.transpose ();
+    glMultMatrixf (model_view.m);
 
     //    gluLookAt (0, 0, 5, // from
     //	0, 0, 0, // to

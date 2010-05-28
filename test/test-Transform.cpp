@@ -29,8 +29,7 @@ TEST (Transform_get_variables)
     
     trs.set (matrix);
 
-    Matrix mat; 
-    trs.get (&mat);
+    Matrix mat = trs.getMatrix();
     for (int i = 0; i < 16; i++) {
         CHECK_CLOSE (mat[i], matrix[i], 0.00001f);
     }

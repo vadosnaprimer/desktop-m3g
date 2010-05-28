@@ -5,7 +5,7 @@
 
 namespace m3g {
 
-    class Light;
+    class Camera;
 
     /**
      * @~English  Struct of rendering state, for inner use.
@@ -23,6 +23,7 @@ namespace m3g {
         bool  vertex_color_buffer_ready;
         int   default_vertex_color;
         std::vector<int>   valid_layers;
+        const Camera* camera;
     };
 
 
