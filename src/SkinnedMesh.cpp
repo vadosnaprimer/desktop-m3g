@@ -272,7 +272,9 @@ Group* SkinnedMesh:: getSkeleton () const
  */
 void SkinnedMesh:: render (RenderState& state) const
 {
-    // Mesh::render()でチェックするのでここでは何もしなくて良い
+    if (!isGlobalRenderingEnabled()) {
+        return;
+    }
 
     //cout << "SkinnedMesh: render\n";
 

@@ -82,6 +82,7 @@ void Sprite3D:: addAnimationTrack (AnimationTrack* animation_track)
 
 int Sprite3D:: animate (int world_time)
 {
+
     Object3D:: animate (world_time);
 
     //cout << "Sprite3D: animte, time=" << world_time << "\n";
@@ -179,6 +180,10 @@ Image2D* Sprite3D:: getImage () const
  */
 bool Sprite3D:: intersect (const Vector& org, const Vector& dir, const Camera* cam, RayIntersection* ri) const
 {
+    if (!isGlobalPickingEnabled()) {
+        return false;
+    }
+
     //cout << "Sprite3D: intersect, scaled=" << scaled << "\n";
     //cout << "org = " << org << "\n";
     //cout << "dir = " << dir << "\n";
@@ -276,6 +281,9 @@ void Sprite3D:: setImage (Image2D* img)
  */
 void Sprite3D:: render (RenderState& state) const
 {
+    if (!isGlobalRenderingEnabled()) {
+        return;
+    }
     if (appearance == 0)
         return;
 

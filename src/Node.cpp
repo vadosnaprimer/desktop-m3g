@@ -171,7 +171,7 @@ int Node:: animate (int world_time)
         if (!controller->isActiveInterval(world_time)) {
             continue;
         }
-        float weight     = controller->getWeight ();
+        float weight        = controller->getWeight ();
         float sequence_time = controller->getPosition (world_time);
     
         switch (track->getTargetProperty()) {
@@ -288,6 +288,29 @@ Node* Node:: getGlobalParent () const
     return node;
 }
 
+bool Node:: isGlobalPickingEnabled () const
+{
+    const Node* node = this;
+    do {
+        if (!node->isPickingEnabled())
+            return false;
+    } while ((node = node->getParent()) != NULL);
+
+    return true;
+}
+
+bool Node:: isGlobalRenderingEnabled () const
+{
+    const Node* node = this;
+    do {
+        if (!node->isRenderingEnabled())
+            return false;
+    } while ((node = node->getParent()) != NULL);
+
+    return true;
+
+}
+
 
 
 int Node:: getScope () const
@@ -384,14 +407,12 @@ void Node:: setParent (Node* node)
  */
 void Node:: render (RenderState& state) const
 {
+    if (!isGlobalRenderingEnabled()) {
+        return;
+    }
+
     Transformable::render (state);
   
-    //float alpha = 1;
-    //const Node* node  = this;
-    //do {
-    //    alpha *= node->getAlphaFactor();
-    //} while ((node = node->getParent()) != 0);
-
     state.alpha = getGlobalAlphaFactor();
 }
 

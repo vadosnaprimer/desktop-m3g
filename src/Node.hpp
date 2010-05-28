@@ -141,6 +141,8 @@ namespace m3g {
          */
         Node* getGlobalParent () const;
 
+        
+
         /**
          * @~English  Retrieves the scope of this Node. 
          * @~Japanese このノードのスコープの取得.
@@ -152,6 +154,12 @@ namespace m3g {
          * @~Japanese このノードから指定されたノードへの座標変換の取得.
          */
         bool getTransformTo (const Node* target, Transform* transform) const;
+
+ 
+       bool isGlobalPickingEnabled () const;
+
+
+        bool isGlobalRenderingEnabled () const;
 
         /**
          * @~English   Retrieves the picking enable flag of this Node.

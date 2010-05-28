@@ -103,6 +103,9 @@ bool Group:: pick (int scope, float x, float y, const Camera* camera, RayInterse
     if (camera == NULL) {
         throw NullPointerException (__FILE__, __func__, "Camera is NULL.");
     }
+    if (!isGlobalPickingEnabled()) {
+        return false;
+    }
 
     //cout << "Group: pick\n";
 
@@ -253,6 +256,10 @@ void Group:: removeChild (Node* child)
  */
 void Group:: render (RenderState& state) const
 {
+    if (!isGlobalRenderingEnabled()) {
+        return;
+    }
+
     //cout << "Group: render\n";
     glPushMatrix ();
     Node::render (state);

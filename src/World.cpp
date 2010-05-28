@@ -106,11 +106,6 @@ void World:: render (RenderState& state) const
         Group::render (state);
         sort (v.begin(), v.end());
         v.erase (unique(v.begin(), v.end()), v.end());
-        //cout << "World: layers = ";
-        //for (int i = 0; i < (int)v.size(); i++) {
-        //    cout << v[i] << ", ";
-        //}
-        //cout << "\n";
         break;
     case 0: {
         // バックグラウンドとカメラ
@@ -131,7 +126,6 @@ void World:: render (RenderState& state) const
         // プリミティブ
         for (int i = 0; i < (int)state.valid_layers.size(); i++) {
             state.layer = state.valid_layers[i];
-            //cout << "World: render layer = " << state.layer << "\n";
             Group::render (state);
         }
         break;

@@ -264,7 +264,9 @@ void MorphingMesh:: setWeights (int num_weights, float* weights)
 
 void MorphingMesh:: render (RenderState& state) const
 {
-    // Mesh::render()でチェックするのでここでは何もしなくて良い
+    if (!isGlobalRenderingEnabled()) {
+        return;
+    }
 
     //cout << "MorphingMesh: render\n";
 

@@ -130,6 +130,9 @@ bool Mesh:: intersect (const Vector& org, const Vector& dir, RayIntersection* ri
     if (ri_out == NULL) {
         throw NullPointerException (__FILE__, __func__, "RayIntersection is NULL.");
     }
+    if (!isGlobalPickingEnabled()) {
+        return false;
+    }
 
     float  scale_bias[4];
     float& scale = scale_bias[0];
@@ -197,6 +200,10 @@ bool Mesh:: intersect (const Vector& org, const Vector& dir, RayIntersection* ri
  */
 void Mesh:: render (RenderState& state) const
 {
+    if (!isGlobalRenderingEnabled()) {
+        return;
+    }
+
     if (state.pass == -1) {
         for (int i = 0; i < (int)appearances.size(); i++) {
             state.valid_layers.push_back (appearances[i]->getLayer2());

@@ -204,3 +204,24 @@ TEST (Node_alignment)
     //cout << "node = " << node->Transformable::print (cout) << "\n";
 
 }
+
+TEST (Node_is_global_enabled_flag)
+{
+    Node*  node = new Node;
+    Group* grp0 = new Group;
+    Group* grp1 = new Group;
+
+    grp0->addChild (node);
+    grp1->addChild (grp0);
+
+    CHECK_EQUAL (true, node->isGlobalRenderingEnabled());
+    CHECK_EQUAL (true, node->isGlobalPickingEnabled());
+
+    grp1->setRenderingEnable (false);
+    grp1->setPickingEnable (false);
+
+    CHECK_EQUAL (false, node->isGlobalRenderingEnabled());
+    CHECK_EQUAL (false, node->isGlobalPickingEnabled());
+
+
+}
