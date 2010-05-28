@@ -56,6 +56,7 @@ namespace m3g {
          */
         virtual int animate (int world_time);
 
+        
         /**
          * @~English  Gets the current Appearance of the specified submesh.
          * @~Japanese 指定されたサブメッシュのカレントのアピアランスを取得.
@@ -88,7 +89,7 @@ namespace m3g {
 
 
         /**
-         * (ox,oy,oz),(dx,dy,dz)はこのメッシュのローカル座標系.RayIntersectionも同じ.
+         * 座標は全てこのメッシュのローカル座標系で指定する.
          */
         bool intersect (const Vector& org, const Vector& dir, RayIntersection* ri) const;
 

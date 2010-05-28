@@ -97,6 +97,8 @@ namespace m3g {
          */
         virtual int animate (int world_time);
 
+
+
         /**
          * @~English   Returns the alignment reference node for the given axis.
          * @~Japanese 指定された軸にアライメントされた参照ノードを返す.

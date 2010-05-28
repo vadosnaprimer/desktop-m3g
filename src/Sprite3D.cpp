@@ -11,6 +11,8 @@
 #include "RenderState.hpp"
 #include "CompositingMode.hpp"
 #include "Fog.hpp"
+#include "Intersect.hpp"
+#include "RayIntersection.hpp"
 #include <iostream>
 #include <cmath>
 using namespace std;
@@ -164,6 +166,70 @@ Image2D* Sprite3D:: getImage () const
     return image;
 }
 
+
+/**
+ * 注意1: org,dir,riはすべてNDC座標系
+ * 注意2: NDC座標系はOpenGLで一般的な右手座標系ではなく「左手座標系」
+ *        従って交差判定に渡す頂点は「時計回り」
+ */
+bool Sprite3D:: intersect (const Vector& org, const Vector& dir, RayIntersection* ri) const
+{
+    if (scaled == false) {
+        return false;
+    }
+
+    cout << "Sprite3D: intersect\n";
+    cout << "org = " << org << "\n";
+    cout << "dir = " << dir << "\n";
+
+    Vector center = getCenterPoint ();
+    float  width  = getScaledWidth ();
+    float  height = getScaledHeight ();
+
+    cout << "center = " << center << "\n";
+    cout << "width  = " << width   << "\n";
+    cout << "height = " << height  << "\n";
+    
+    Vector v0 = center + Vector(width/2, -height/2, 0);
+    Vector v1 = center + Vector(width/2,  height/2, 0);
+    Vector v2 = center + Vector(-width/2, -height/2, 0);
+    Vector v3 = center + Vector(-width/2,  height/2, 0);
+    
+    float u,v,t;
+    bool  hit;
+    
+    hit = triangle_intersect (org, dir, v2, v1, v0, &u, &v, &t);
+    cout << "hit = " << hit << "\n";
+    if (hit) {
+        if (ri) {
+            int indices[3] = {2,1,0};
+            *ri = RayIntersection (const_cast<Sprite3D*>(this),
+                                   org, dir, t,
+                                   u, v,
+                                   3, indices,
+                                   0);
+        }
+        return true;
+    }
+#if 0
+    hit = triangle_intersect (org, dir, v2, v3, v1, &u, &v, &t);
+    cout << "hit = " << hit << "\n";
+    if (hit) {
+        if (ri) {
+            int indices[3] = {2,3,1};
+            *ri = RayIntersection (const_cast<Sprite3D*>(this),
+                                   org, dir, t,
+                                   u, v,
+                                   3, indices,
+                                   0);
+        }
+        return true;
+    }
+#endif
+
+    return false;
+}
+
 bool Sprite3D:: isScaled () const
 {
     return scaled;
@@ -247,6 +313,63 @@ void Sprite3D:: render (RenderState& state) const
     }
 
 
+    GLfloat border_color[4] = {1,1,1,0};
+    glActiveTexture  (GL_TEXTURE0);
+    glEnable         (GL_TEXTURE_2D);
+    glBindTexture    (GL_TEXTURE_2D, texobj);
+    glTexParameteri  (GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    glTexParameteri  (GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+    glTexParameteri  (GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_BORDER);
+    glTexParameteri  (GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_BORDER);
+    glTexParameterfv (GL_TEXTURE_2D, GL_TEXTURE_BORDER_COLOR, border_color);
+    glTexEnvi        (GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
+    glEnable         (GL_ALPHA_TEST);
+    glAlphaFunc      (GL_GREATER, 0);
+
+
+    Vector center = getCenterPoint ();
+    float  tx     = center.x;
+    float  ty     = center.y;
+    float  tz     = center.z;
+
+    Vector tex_coord0 = getTexCoord0 ();
+    Vector tex_coord1 = getTexCoord1 ();
+    float  s0         = tex_coord0.x;
+    float  t0         = tex_coord0.y;
+    float  s1         = tex_coord1.x;
+    float  t1         = tex_coord1.y;
+
+    float width  = scaled ? getScaledWidth()  : getUnscaledWidth();
+    float height = scaled ? getScaledHeight() : getUnscaledHeight();
+
+    glMatrixMode   (GL_PROJECTION);
+    glPushMatrix   ();
+    glLoadIdentity ();
+    glMatrixMode   (GL_MODELVIEW);
+    glPushMatrix   ();
+    glLoadIdentity ();
+    
+    glBegin      (GL_TRIANGLE_STRIP);
+    glColor4f    (1,1,1,1);
+    glTexCoord2f (s1, t1);
+    glVertex3f   (tx+width/2.f, ty-height/2.f, tz);
+    glTexCoord2f (s1, t0);
+    glVertex3f   (tx+width/2.f, ty+height/2.f, tz);
+    glTexCoord2f (s0, t1);
+    glVertex3f   (tx-width/2.f, ty-height/2.f, tz);
+    glTexCoord2f (s0, t0);
+    glVertex3f   (tx-width/2.f, ty+height/2.f, tz);
+    glEnd        ();
+    
+    glMatrixMode (GL_PROJECTION);
+    glPopMatrix  ();
+    glMatrixMode (GL_MODELVIEW);
+    glPopMatrix  ();
+    
+}
+
+Vector Sprite3D:: getCenterPoint () const
+{
     GLfloat m[16];
 
     Matrix model_view;
@@ -259,128 +382,120 @@ void Sprite3D:: render (RenderState& state) const
     projection.set (m);
     projection.transpose ();
 
-    Matrix  model_view_projection;
-    model_view_projection = projection * model_view;
+    Vector o_mdl = Vector(0,0,0);
+    Vector o_cam = (model_view * o_mdl).divided_by_w();
+    Vector o_ndc = (projection * o_cam).divided_by_w();
+    
+    return o_ndc;
+}
 
-    //cout << model_view_projection << "\n";
+float Sprite3D:: getScaledWidth () const
+{
+    GLfloat m[16];
 
-    float tx = model_view_projection.m[3] /model_view_projection.m[15];
-    float ty = model_view_projection.m[7] /model_view_projection.m[15];
-    float tz = model_view_projection.m[11]/model_view_projection.m[15];
+    Matrix model_view;
+    glGetFloatv (GL_MODELVIEW_MATRIX, m);
+    model_view.set (m);
+    model_view.transpose ();
 
+    Matrix projection;
+    glGetFloatv (GL_PROJECTION_MATRIX, m);
+    projection.set (m);
+    projection.transpose ();
+
+    // カメラ空間
+    Vector o_cam  = (model_view * Vector(0,0,0)).divided_by_w();
+    Vector px_cam = (model_view * Vector(1,0,0)).divided_by_w();
+    float  dx_cam = fabsf(px_cam.x - o_cam.x);
+    //cout << "Sprite3D: dx_cam = " << dx_cam << "\n";
+
+    // NDC空間
+    Vector o_ndc  = (projection * o_cam                       ).divided_by_w();
+    Vector px_ndc = (projection * (o_cam + Vector(dx_cam,0,0))).divided_by_w();
+    float  dx_ndc = fabsf(px_ndc.x - o_ndc.x);
+    //cout << "Sprite3D: dx_ndc = " << dx_ndc << "\n";
+
+    return dx_ndc;
+}
+
+Vector Sprite3D:: getTexCoord0 () const
+{
+    float width  = image->getWidth ();
+    float height = image->getHeight ();
+
+    // s,t = 0〜1
+    float s = (crop.width  >= 0) ? crop.x/width  : (crop.x - crop.width)/width;
+    float t = (crop.height >= 0) ? crop.y/height : (crop.y - crop.height)/height;
+    
+    // テクスチャー座標は左下が(0,0)
+    return Vector (s,1-t,0);
+}
+
+Vector Sprite3D:: getTexCoord1 () const
+{
+    float width  = image->getWidth ();
+    float height = image->getHeight ();
+
+    // s,t = 0〜1
+    float s = (crop.width  >= 0) ? (crop.x + crop.width) /width  : crop.x/width;
+    float t = (crop.height >= 0) ? (crop.y + crop.height)/height : crop.y/height;
+    
+    // テクスチャー座標は左下が(0,0)
+    return Vector (s,1-t,0);
+}
+
+float Sprite3D:: getScaledHeight () const
+{
+    GLfloat m[16];
+
+    Matrix model_view;
+    glGetFloatv (GL_MODELVIEW_MATRIX, m);
+    model_view.set (m);
+    model_view.transpose ();
+
+    cout << "Sprite3D:: OpenGL: model_view = " << model_view << "\n";
+
+    Matrix global_pose = this->getGlobalPose ();
+    cout << "Sprite3D:: global_pose = " << global_pose << "\n";
+
+    Matrix projection;
+    glGetFloatv (GL_PROJECTION_MATRIX, m);
+    projection.set (m);
+    projection.transpose ();
+
+    // カメラ空間
+    Vector o_cam  = (model_view * Vector(0,0,0)).divided_by_w();
+    Vector px_cam = (model_view * Vector(0,1,0)).divided_by_w();
+    float  dy_cam = fabsf(px_cam.y - o_cam.y);
+    //cout << "Sprite3D: dy_cam = " << dy_cam << "\n";
+
+    // NDC空間
+    Vector o_ndc  = (projection * o_cam                       ).divided_by_w();
+    Vector px_ndc = (projection * (o_cam + Vector(0,dy_cam,0))).divided_by_w();
+    float  dy_ndc = fabsf(px_ndc.y - o_ndc.y);
+    //cout << "Sprite3D: dy_cam = " << dy_cam << "\n";
+
+    return dy_ndc;
+}
+
+float Sprite3D:: getUnscaledWidth () const
+{
     Graphics3D* g3d = Graphics3D::getInstance();
-    float viewport_width  = g3d->getViewportWidth();
-    float viewport_height = g3d->getViewportHeight();
-    //cout << "Sprite3D: viewport width = " << viewport_width << "\n";
-    //cout << "Sprite3D: viewport height = " << viewport_height << "\n";
-    //cout << "Sprite3D: crop width = " << crop.width << "\n";
-    //cout << "Sprite3D: crop height = " << crop.height << "\n";
+    float image_width     = image->getWidth ();
+    float viewport_width  = g3d->getViewportWidth ();
+    float dx_ndc          = 2*image_width/viewport_width;
 
-    glEnable (GL_ALPHA_TEST);  // これ多分いらない。後で消す。
+    return dx_ndc;
+}
 
-    GLfloat rgba[4] = {1,1,1,0};
-    glActiveTexture  (GL_TEXTURE0);  // テクスチャーユニットは必ず０を使う
-    glEnable         (GL_TEXTURE_2D);
-    glBindTexture    (GL_TEXTURE_2D, texobj);
-    glTexParameteri  (GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-    glTexParameteri  (GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
-    glTexParameteri  (GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_BORDER);
-    glTexParameteri  (GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_BORDER);
-    glTexParameterfv (GL_TEXTURE_2D, GL_TEXTURE_BORDER_COLOR, rgba);
-    glTexEnvi        (GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
-    glAlphaFunc      (GL_GREATER, 0);
+float Sprite3D:: getUnscaledHeight () const
+{
+    Graphics3D* g3d = Graphics3D::getInstance();
+    float image_height    = image->getHeight ();
+    float viewport_height = g3d->getViewportHeight ();
+    float dy_ndc          = 2*image_height/viewport_height;
 
-    float x = (crop.width  >= 0) ? crop.x : (-crop.width + crop.x);
-    float y = (crop.height >= 0) ? crop.y : (-crop.height + crop.y);
-    float s0 = x / image->getWidth();
-    float t0 = (image->getHeight() - y) / image->getHeight();
-    float s1 = (x + crop.width) / image->getWidth();
-    float t1 = (image->getHeight() - (y + crop.height)) / image->getHeight();
-
-    cout << "s = (" << s0 << ", " << s1 << ")\n";
-    cout << "t = (" << t0 << ", " << t1 << ")\n";
-
-    if (scaled) {
-
-        Vector o  = (model_view * Vector(0,0,0)).divided_by_w();
-        Vector px = (model_view * Vector(1,0,0)).divided_by_w();
-        Vector py = (model_view * Vector(0,1,0)).divided_by_w();
-        //cout << "o  = " << o << "\n";
-        //cout << "px = " << px << "\n";
-        //cout << "py = " << py << "\n";
-        float  dx = fabsf(px.x - o.x);
-        float  dy = fabsf(py.y - o.y);
-        //cout << "dx = " << dx << "\n";
-        //cout << "dy = " << dy << "\n";
-        Vector oo  = (projection *  o                    ).divided_by_w();
-        Vector ppx = (projection * (o + Vector(dx,0,0,0))).divided_by_w();
-        Vector ppy = (projection * (o + Vector(0,dy,0,0))).divided_by_w();
-        //cout << "oo  = " << oo << "\n";
-        //cout << "ppx = " << ppx << "\n";
-        //cout << "ppy = " << ppy << "\n";
-        float  width  = fabsf(ppx.x - oo.x);
-        float  height = fabsf(ppy.y - oo.y);
-
-        //cout << "Sprite3D: scaled (NDC-coord) width  = " << width  << "\n";
-        //cout << "Sprite3D: scaled (NDC-coord) height = " << height << "\n";
-
-        glMatrixMode   (GL_PROJECTION);
-        glPushMatrix   ();
-        glLoadIdentity ();
-        glMatrixMode   (GL_MODELVIEW);
-        glPushMatrix   ();
-        glLoadIdentity ();
-
-        glBegin      (GL_TRIANGLE_STRIP);
-        glColor4f    (1,1,1,1);
-        glTexCoord2f (s1, t1);
-        glVertex3f   (tx+width/2.f, ty-height/2.f, tz);
-        glTexCoord2f (s1, t0);
-        glVertex3f   (tx+width/2.f, ty+height/2.f, tz);
-        glTexCoord2f (s0, t1);
-        glVertex3f   (tx-width/2.f, ty-height/2.f, tz);
-        glTexCoord2f (s0, t0);
-        glVertex3f   (tx-width/2.f, ty+height/2.f, tz);
-        glEnd        ();
-
-        glMatrixMode (GL_PROJECTION);
-        glPopMatrix  ();
-        glMatrixMode (GL_MODELVIEW);
-        glPopMatrix  ();
-
-    } else {
-        // unscaled
-
-        float width  = 2*image->getWidth()/viewport_width;
-        float height = 2*image->getHeight()/viewport_height;
-        //cout << "Sprite3D: unscaled (clip-coord) width = " << width << "\n";
-        //cout << "Sprite3D: unscaled (clip-coord) height = " << height << "\n";
-
-        glMatrixMode   (GL_PROJECTION);
-        glPushMatrix   ();
-        glLoadIdentity ();
-        glMatrixMode   (GL_MODELVIEW);
-        glPushMatrix   ();
-        glLoadIdentity ();
-
-        glBegin      (GL_TRIANGLE_STRIP);
-        glColor4f    (1,1,1,1);
-        glTexCoord2f (s1, t1);
-        glVertex3f   (tx+width/2.f, ty-height/2.f, tz);
-        glTexCoord2f (s1, t0);
-        glVertex3f   (tx+width/2.f, ty+height/2.f, tz);
-        glTexCoord2f (s0, t1);
-        glVertex3f   (tx-width/2.f, ty-height/2.f, tz);
-        glTexCoord2f (s0, t0);
-        glVertex3f   (tx-width/2.f, ty+height/2.f, tz);
-        glEnd        ();
-
-        glMatrixMode (GL_PROJECTION);
-        glPopMatrix ();
-        glMatrixMode (GL_MODELVIEW);
-        glPopMatrix ();
-
-    }
+    return dy_ndc;
 }
 
 

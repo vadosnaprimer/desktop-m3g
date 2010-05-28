@@ -23,7 +23,6 @@ namespace m3g {
         bool  vertex_color_buffer_ready;
         int   default_vertex_color;
         std::vector<int>   valid_layers;
-        std::vector<Light*> active_lights;
     };
 
 

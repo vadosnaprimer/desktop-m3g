@@ -7,7 +7,9 @@ using namespace m3g;
 using namespace std;
 
 
-
+/**
+ * バックフェースカリングを考慮する交差判定.
+ */
 bool m3g::triangle_intersect (const Vector& org, const Vector& dir, 
                               const Vector& v0, const Vector& v1, const Vector& v2,
                               float* u_, float* v_, float* t_)
@@ -16,11 +18,26 @@ bool m3g::triangle_intersect (const Vector& org, const Vector& dir,
         throw IllegalArgumentException (__FILE__, __func__, "W of input vectors must be 1, org.w=%f, dir.w=%f, v0.w=%f, v1.w=%f, v2.w=%f",
                                         org.w, dir.w, v0.w, v1.w, v2.w);
     }
+    
+    cout << "org = " << org << "\n";
+    cout << "dir = " << dir << "\n";
+
+    cout << "v0 = " << v0 << "\n";
+    cout << "v1 = " << v1 << "\n";
+    cout << "v2 = " << v2 << "\n";
 
     Vector e1 = v1 - v0;
     Vector e2 = v2 - v0;
+
+    cout << "e1 = " << e1 << "\n";
+    cout << "e2 = " << e2 << "\n";
+
     Vector p  = cross (dir, e2);
+
+    cout << "p  = " << p << "\n";
+
     float  a  = dot (e1, p);
+    cout << "a  = " << a << "\n";
     if (a < M3G_EPSILON)
         return false;
 

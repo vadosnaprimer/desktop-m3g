@@ -8,6 +8,7 @@
 #include "Vector.hpp"
 #include "Camera.hpp"
 #include "Mesh.hpp"
+#include "Sprite3D.hpp"
 using namespace m3g;
 using namespace std;
 
@@ -99,6 +100,8 @@ bool Group:: pick (int scope, float x, float y, const Camera* camera, RayInterse
         throw NullPointerException (__FILE__, __func__, "Camera is NULL.");
     }
 
+    cout << "Group: pick\n";
+
     // NDC
     Vector p0_ndc = Vector(2*x-1, 1-2*y, -1);
     Vector p1_ndc = Vector(2*x-1, 1-2*y,  1);
@@ -134,7 +137,7 @@ bool Group:: pick (int scope, float x, float y, const Camera* camera, RayInterse
         }
         Mesh* mesh = dynamic_cast<Mesh*>(children[i]);
         if (mesh) {
-            // 交差判定はMeshの座標系で行う
+            // 交差判定はMeshのモデル座標系で行う
             camera->getTransformTo (mesh, &trans);
             Vector p0_mesh = trans.transform (p0_cam);
             Vector p1_mesh = trans.transform (p1_cam);
@@ -146,6 +149,15 @@ bool Group:: pick (int scope, float x, float y, const Camera* camera, RayInterse
             // レイはGroupの座標系で格納する
             mesh->getTransformTo (this, &trans);
             ri.transformRay (trans);
+        }
+        Sprite3D* spr = dynamic_cast<Sprite3D*>(children[i]);
+        if (spr) {
+            // 交差判定はNDC座標系で行う
+            Vector org = p0_ndc;
+            Vector dir = (p1_ndc-p0_ndc).normalize();
+            spr->intersect (org, dir, &ri);
+            // レイはGroupの座標系で格納する
+            ri.transformRay (proj);
         }
         if (ri.getIntersected()) {
             if (min_ri.getIntersected() == NULL ||

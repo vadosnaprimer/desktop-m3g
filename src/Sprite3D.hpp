@@ -9,6 +9,7 @@ namespace m3g {
 
     class Image2D;
     class Appearance;
+    class RayIntersection;
 
     /**
      * @~English  A scene graph node that represents a 2-dimensional image with a 3D position.
@@ -102,6 +103,11 @@ namespace m3g {
         Image2D* getImage () const;
 
         /**
+         * 座標は全てNDC座標で渡す.
+         */
+        bool intersect (const Vector& org, const Vector& dir, RayIntersection* ri) const;
+
+        /**
          * @~English  Returns the automatic scaling status of this Sprite3D.
          * @~Japanese このSprite3Dの自動スケーリングの状態を返す.
          */
@@ -132,7 +138,6 @@ namespace m3g {
          */
         virtual std::ostream& print (std::ostream& out) const;
 
-    protected:
         /**
          * @~English  Render this object, for inner use.
          * @~Japanese このノードをレンダリングする内部使用の関数.
@@ -141,11 +146,49 @@ namespace m3g {
 
 
     private:
+        
         /**
-         * @~English  Gets the layer number, for inner use.
-         * @~Japanese レイヤー番号を取得する内部使用の関数.
+         * @~English  Retrieves center of scaled sprite in NDC coordinate.
+         * @~Japanese スケールドスプライトのNDC座標での中心点を取得.
          */
-        int getLayer () const;
+        Vector getCenterPoint () const;
+
+        /**
+         * @~English  Retrieves width of scaled sprite in NDC coordinate.
+         * @~Japanese スケールドスプライトのNDC座標での横幅を取得.
+         */
+        float getScaledWidth () const;
+
+        /**
+         * @~English  Retrieves height of scaled sprite in NDC coordinate.
+         * @~Japanese スケールドスプライトのNDC座標での立て幅を取得.
+         */
+        float getScaledHeight () const;
+
+
+        /**
+         * @~English  Retrieves width of unscaled sprite in NDC coordinate.
+         * @~Japanese アンスケールドスプライトのNDC座標での横幅を取得.
+         */
+        float getUnscaledWidth () const;
+
+        /**
+         * @~English  Retrieves height of unscaled sprite in NDC coordinate.
+         * @~Japanese アンスケールドスプライトのNDC座標での立て幅を取得.
+         */
+        float getUnscaledHeight () const;
+
+        /**
+         * @~English  Retrieves tex coord(bottom-left) of sprite.
+         * @~Japanese 左下のテクスチャー座標を計算して取得.
+         */
+        Vector getTexCoord0 () const;
+
+        /**
+         * @~English  Retrieves tex coord(top-right) of sprite.
+         * @~Japanese 右上のテクスチャー座標を計算して取得.
+         */
+        Vector getTexCoord1 () const;
 
 
     private:
