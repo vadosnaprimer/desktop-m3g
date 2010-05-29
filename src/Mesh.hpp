@@ -91,7 +91,7 @@ namespace m3g {
         /**
          * 座標は全てこのメッシュのローカル座標系で指定する.
          */
-        bool intersect (const Vector& org, const Vector& dir, RayIntersection* ri) const;
+        virtual bool intersect (const Vector& org, const Vector& dir, RayIntersection* ri) const;
 
         /**
          * @~English  Print out information of this object, for only debug.

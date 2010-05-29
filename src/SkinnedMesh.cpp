@@ -9,11 +9,16 @@
 #include "World.hpp"
 #include <iostream>
 #include <vector>
+#include <cassert>
 #include "Group.hpp"
+#include "RayIntersection.hpp"
 using namespace std;
 using namespace m3g;
 
-
+/**
+ * メモ：skeletonのparentをthisにするべき？
+ *       それをすると現状では動かない。
+ */
 SkinnedMesh:: SkinnedMesh (VertexBuffer* vertices, int num_submesh,
                            IndexBuffer** submeshes, Appearance** appearances_,
                            Group* skeleton_) :
@@ -25,6 +30,7 @@ SkinnedMesh:: SkinnedMesh (VertexBuffer* vertices, int num_submesh,
     }
 
     skeleton = skeleton_;
+    //skeleton->setParent (this);
 
     skinned_vertices = vertices->duplicate ();
 
@@ -264,6 +270,50 @@ int SkinnedMesh:: getBoneVertices (Node* node, int* vertex_indices, float* weigh
 Group* SkinnedMesh:: getSkeleton () const
 {
     return skeleton;
+}
+
+bool SkinnedMesh:: intersect (const Vector& org, const Vector& dir, RayIntersection* ri) const
+{
+    bool hit;
+    VertexBuffer* tmp = vertices;
+#if 1
+    (const_cast<SkinnedMesh*>(this))->vertices = skinned_vertices;
+    hit = Mesh::intersect (org, dir, ri);
+    (const_cast<SkinnedMesh*>(this))->vertices = tmp;
+    if (hit) {
+        return true;
+    }
+#endif
+#if 1
+    //cout << "org_mesh = " << org << "\n";
+    //cout << "dir_mesh = " << dir << "\n";
+    Transform trans;
+    bool      pass;
+    pass = getTransformTo (skeleton, &trans);
+    skeleton->Transformable:: print (cout) << "\n";
+    //assert (pass == true);
+    // skeleton->setParent()していないので
+    // 現状はfalseが返り単位行列
+
+    //cout << "skeleton->parent = " << skeleton->getParent() << "\n";
+    //cout << "trans = " << trans << "\n";
+    Vector org_skel = trans.transform (org).divided_by_w();
+    Vector dir_skel = trans.transform3x3 (dir).divided_by_w().normalize();
+    //cout << "org_skel = " << org_skel << "\n";
+    //cout << "dir_skel = " << dir_skel << "\n";
+
+    hit = skeleton->pick (-1, 
+                          org_skel.x, org_skel.y, org_skel.z,
+                          dir_skel.x, dir_skel.y, dir_skel.z,
+                          ri);
+    if (ri) {
+        skeleton->getTransformTo (this, &trans);
+        ri->transformRay (trans);
+    }
+
+#endif
+
+    return hit;
 }
 
 /**

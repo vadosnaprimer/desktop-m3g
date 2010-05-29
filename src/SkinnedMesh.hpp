@@ -13,9 +13,9 @@ namespace m3g {
     class Group;
     class VertexBuffer;
     class IndexBuffer;
+    class RayIntersection;
+    class Vector;
   
-  
-
 
     /**
      * @~English  A scene graph node that represents a skeletally animated polygon mesh.
@@ -81,6 +81,12 @@ namespace m3g {
          * @~Japanese このスキンメッシュのスケルトンGroupを返す.
          */
         Group* getSkeleton () const;
+
+
+        /**
+         *
+         */
+        virtual bool intersect (const Vector& org, const Vector& dir, RayIntersection* ri) const;
 
         /**
          * @~English  Print out information of this class, for debug only.

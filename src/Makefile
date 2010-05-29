@@ -178,7 +178,7 @@ Sprite3D.o: Transform.hpp Matrix.hpp Appearance.hpp Image2D.hpp Exception.hpp
 Sprite3D.o: Graphics3D.hpp Vector.hpp AnimationTrack.hpp
 Sprite3D.o: AnimationController.hpp KeyframeSequence.hpp Keyframe.hpp
 Sprite3D.o: RenderState.hpp CompositingMode.hpp Fog.hpp Intersect.hpp
-Sprite3D.o: RayIntersection.hpp
+Sprite3D.o: RayIntersection.hpp Camera.hpp
 Texture2D.o: m3g-gl.hpp /usr/include/GL/gl.h /usr/include/GL/glext.h
 Texture2D.o: /usr/include/GL/glu.h Texture2D.hpp Transformable.hpp
 Texture2D.o: Object3D.hpp m3gdef.hpp m3ginternal.hpp Object.hpp
@@ -186,7 +186,8 @@ Texture2D.o: Quaternion.hpp Transform.hpp Matrix.hpp Image2D.hpp
 Texture2D.o: Exception.hpp AnimationTrack.hpp AnimationController.hpp
 Texture2D.o: KeyframeSequence.hpp Keyframe.hpp RenderState.hpp
 Transform.o: Transform.hpp Matrix.hpp Object.hpp Vector.hpp Exception.hpp
-Transform.o: Quaternion.hpp
+Transform.o: Quaternion.hpp VertexArray.hpp Object3D.hpp m3gdef.hpp
+Transform.o: m3ginternal.hpp
 Transformable.o: m3g-gl.hpp /usr/include/GL/gl.h /usr/include/GL/glext.h
 Transformable.o: /usr/include/GL/glu.h Transformable.hpp Object3D.hpp
 Transformable.o: m3gdef.hpp m3ginternal.hpp Object.hpp Quaternion.hpp

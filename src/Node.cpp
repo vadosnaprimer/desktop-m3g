@@ -340,6 +340,7 @@ bool Node:: getTransformTo (const Node* target, Transform* transform) const
     } while ((node = node->parent));
 
     if (root_a != root_b) {
+        cout << "Node: can't getTransformTo\n";
         return false;
     }
 
