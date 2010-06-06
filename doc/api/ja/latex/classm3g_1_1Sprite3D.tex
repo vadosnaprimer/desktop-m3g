@@ -13,7 +13,7 @@ Sprite3Dに対する継承グラフ:\begin{figure}[H]
 \subsection*{構成}
 \begin{CompactItemize}
 \item 
-struct \hyperlink{structm3g_1_1Sprite3D_1_1CropRect}{CropRect}
+struct \textbf{CropRect}
 \end{CompactItemize}
 \subsection*{Public メソッド}
 \begin{CompactItemize}
@@ -22,7 +22,7 @@ struct \hyperlink{structm3g_1_1Sprite3D_1_1CropRect}{CropRect}
 \item 
 virtual \hyperlink{classm3g_1_1Sprite3D_a57bd1e3141ba11c88ddec1e46c188d6}{$\sim$Sprite3D} ()
 \item 
-\hyperlink{classm3g_1_1Sprite3D}{Sprite3D} $\ast$ \hyperlink{classm3g_1_1Sprite3D_0af34e87be803eb476f9e118d2363246}{duplicate} () const 
+virtual \hyperlink{classm3g_1_1Sprite3D}{Sprite3D} $\ast$ \hyperlink{classm3g_1_1Sprite3D_0af34e87be803eb476f9e118d2363246}{duplicate} () const 
 \item 
 virtual void \hyperlink{classm3g_1_1Sprite3D_415c0b110f95410ded9b85e5d99a496b}{addAnimationTrack} (\hyperlink{classm3g_1_1AnimationTrack}{AnimationTrack} $\ast$animation\_\-track)
 \item 
@@ -40,6 +40,8 @@ int \hyperlink{classm3g_1_1Sprite3D_9ef03b219415a1f08aef6745ad5d87d0}{getCropY} 
 \item 
 \hyperlink{classm3g_1_1Image2D}{Image2D} $\ast$ \hyperlink{classm3g_1_1Sprite3D_a8c0193b0e7d47d4b5c9f60df24c44f5}{getImage} () const 
 \item 
+bool \hyperlink{classm3g_1_1Sprite3D_b6ca418b9c39fed3206e02aed801ee3b}{intersect} (const \hyperlink{classm3g_1_1Vector}{Vector} \&org, const \hyperlink{classm3g_1_1Vector}{Vector} \&dir, const \hyperlink{classm3g_1_1Camera}{Camera} $\ast$cam, \hyperlink{classm3g_1_1RayIntersection}{RayIntersection} $\ast$ri) const 
+\item 
 bool \hyperlink{classm3g_1_1Sprite3D_8e3e7fa70e1d3f2342580991105779f5}{isScaled} () const 
 \item 
 void \hyperlink{classm3g_1_1Sprite3D_b9b44bad4241635062ed66437c9bae48}{setAppearance} (\hyperlink{classm3g_1_1Appearance}{Appearance} $\ast$appearance)
@@ -49,19 +51,8 @@ void \hyperlink{classm3g_1_1Sprite3D_35ca6d3ff64f2232a0f3a11bf4ab483e}{setCrop} 
 void \hyperlink{classm3g_1_1Sprite3D_705b89b41cd1b38f664ed912be44baaa}{setImage} (\hyperlink{classm3g_1_1Image2D}{Image2D} $\ast$image)
 \item 
 virtual std::ostream \& \hyperlink{classm3g_1_1Sprite3D_6fea17fa1532df3794f8cb39cb4f911f}{print} (std::ostream \&out) const 
-\end{CompactItemize}
-\subsection*{Protected メソッド}
-\begin{CompactItemize}
 \item 
 virtual void \hyperlink{classm3g_1_1Sprite3D_8babc8a79b78615da51161e94029eea9}{render} (\hyperlink{structm3g_1_1RenderState}{RenderState} \&state) const 
-\end{CompactItemize}
-\subsection*{フレンド}
-\begin{CompactItemize}
-\item 
-\hypertarget{classm3g_1_1Sprite3D_2697825715974a353728f0d4d5658112}{
-class \textbf{Group}}
-\label{classm3g_1_1Sprite3D_2697825715974a353728f0d4d5658112}
-
 \end{CompactItemize}
 
 
@@ -155,7 +146,16 @@ class \textbf{Group}}
 \label{classm3g_1_1Sprite3D_a8c0193b0e7d47d4b5c9f60df24c44f5}
 
 
-カレントのSprite3D画像の取得. \hypertarget{classm3g_1_1Sprite3D_8e3e7fa70e1d3f2342580991105779f5}{
+カレントのSprite3D画像の取得. \hypertarget{classm3g_1_1Sprite3D_b6ca418b9c39fed3206e02aed801ee3b}{
+\index{m3g::Sprite3D@{m3g::Sprite3D}!intersect@{intersect}}
+\index{intersect@{intersect}!m3g::Sprite3D@{m3g::Sprite3D}}
+\subsubsection[{intersect}]{\setlength{\rightskip}{0pt plus 5cm}bool intersect (const {\bf Vector} \& {\em org}, \/  const {\bf Vector} \& {\em dir}, \/  const {\bf Camera} $\ast$ {\em cam}, \/  {\bf RayIntersection} $\ast$ {\em ri}) const}}
+\label{classm3g_1_1Sprite3D_b6ca418b9c39fed3206e02aed801ee3b}
+
+
+座標は全てNDC座標で渡す.
+
+注意1: org,dir,riはすべてNDC座標系 注意2: NDC座標系はOpenGLで一般的な右手座標系ではなく「左手座標系」 従って交差判定に渡す頂点は「時計回り」 v3 -- v1 $|$ ／ $|$ v2 -- v0 注意3: M3Gの仕様ではピック出来るのはscaledのみ。unscaledもピック出来るのは独自拡張 \hypertarget{classm3g_1_1Sprite3D_8e3e7fa70e1d3f2342580991105779f5}{
 \index{m3g::Sprite3D@{m3g::Sprite3D}!isScaled@{isScaled}}
 \index{isScaled@{isScaled}!m3g::Sprite3D@{m3g::Sprite3D}}
 \subsubsection[{isScaled}]{\setlength{\rightskip}{0pt plus 5cm}bool isScaled () const}}
@@ -174,13 +174,13 @@ class \textbf{Group}}
 \hyperlink{classm3g_1_1Node_6fea17fa1532df3794f8cb39cb4f911f}{Node}を再定義しています。\hypertarget{classm3g_1_1Sprite3D_8babc8a79b78615da51161e94029eea9}{
 \index{m3g::Sprite3D@{m3g::Sprite3D}!render@{render}}
 \index{render@{render}!m3g::Sprite3D@{m3g::Sprite3D}}
-\subsubsection[{render}]{\setlength{\rightskip}{0pt plus 5cm}void render ({\bf RenderState} \& {\em state}) const\hspace{0.3cm}{\tt  \mbox{[}protected, virtual\mbox{]}}}}
+\subsubsection[{render}]{\setlength{\rightskip}{0pt plus 5cm}void render ({\bf RenderState} \& {\em state}) const\hspace{0.3cm}{\tt  \mbox{[}virtual\mbox{]}}}}
 \label{classm3g_1_1Sprite3D_8babc8a79b78615da51161e94029eea9}
 
 
 このノードをレンダリングする内部使用の関数.
 
-Note: \hyperlink{classm3g_1_1Sprite3D}{Sprite3D} should be rendered only at second rendering pass(pass=2). In other cases, do nothing. メモ： 改良の余地があるな……。あとappearanceがNULLの時は”何もしない”ではなく ”デフォルトでレンダー”にすべき。 
+Note: \hyperlink{classm3g_1_1Sprite3D}{Sprite3D} should be rendered only at second rendering pass(pass=2). In other cases, do nothing. 
 
 \hyperlink{classm3g_1_1Node_8babc8a79b78615da51161e94029eea9}{Node}を再定義しています。\hypertarget{classm3g_1_1Sprite3D_b9b44bad4241635062ed66437c9bae48}{
 \index{m3g::Sprite3D@{m3g::Sprite3D}!setAppearance@{setAppearance}}

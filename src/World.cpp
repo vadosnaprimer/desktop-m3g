@@ -155,11 +155,11 @@ std::ostream& World::print (std::ostream& out) const
         out << "  background    = " << *background;
     else 
         out << "  background    = NOT FOUND\n";
-
     for (int i = 0; i < (int)children.size(); i++) {
         out << "  [" << i << "] : ";
-        children[i]->print(out) << "\n";
+        children[i]->print(out);
     }
+
     return out;
 }
 

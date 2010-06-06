@@ -26,44 +26,52 @@
 <a name="l00006"></a>00006 
 <a name="l00007"></a>00007 <span class="keyword">namespace </span>m3g {
 <a name="l00008"></a>00008 
-<a name="l00013"></a><a class="code" href="classm3g_1_1TriangleStripArray.html">00013</a>   <span class="keyword">class </span><a class="code" href="classm3g_1_1TriangleStripArray.html">TriangleStripArray</a> : <span class="keyword">public</span> <a class="code" href="classm3g_1_1IndexBuffer.html">IndexBuffer</a>
-<a name="l00014"></a>00014   {
-<a name="l00015"></a>00015   <span class="keyword">public</span>:
-<a name="l00020"></a>00020     <a class="code" href="classm3g_1_1TriangleStripArray.html#57d4e874819367084aeadb11593c4436">TriangleStripArray</a> (<span class="keywordtype">int</span>* indices, <span class="keywordtype">int</span> num_strips, <span class="keywordtype">int</span>* strips);
-<a name="l00021"></a>00021 
-<a name="l00026"></a>00026     <a class="code" href="classm3g_1_1TriangleStripArray.html#57d4e874819367084aeadb11593c4436">TriangleStripArray</a> (<span class="keywordtype">int</span> first_index, <span class="keywordtype">int</span> num_strips, <span class="keywordtype">int</span>* strips);
-<a name="l00027"></a>00027 
+<a name="l00013"></a><a class="code" href="classm3g_1_1TriangleStripArray.html">00013</a>     <span class="keyword">class </span><a class="code" href="classm3g_1_1TriangleStripArray.html">TriangleStripArray</a> : <span class="keyword">public</span> <a class="code" href="classm3g_1_1IndexBuffer.html">IndexBuffer</a>
+<a name="l00014"></a>00014     {
+<a name="l00015"></a>00015 
+<a name="l00016"></a>00016     <span class="keyword">public</span>:
+<a name="l00021"></a>00021         <a class="code" href="classm3g_1_1TriangleStripArray.html#57d4e874819367084aeadb11593c4436">TriangleStripArray</a> (<span class="keywordtype">int</span>* indices, <span class="keywordtype">int</span> num_strips, <span class="keywordtype">int</span>* strips);
+<a name="l00022"></a>00022 
+<a name="l00027"></a>00027         <a class="code" href="classm3g_1_1TriangleStripArray.html#57d4e874819367084aeadb11593c4436">TriangleStripArray</a> (<span class="keywordtype">int</span> first_index, <span class="keywordtype">int</span> num_strips, <span class="keywordtype">int</span>* strips);
 <a name="l00028"></a>00028 
-<a name="l00033"></a>00033     <span class="keyword">virtual</span> <a class="code" href="classm3g_1_1TriangleStripArray.html#1cb3853bf79b7710d57044da818d2cde">~TriangleStripArray</a> ();
-<a name="l00034"></a>00034 
-<a name="l00039"></a>00039     <span class="keyword">virtual</span> <a class="code" href="classm3g_1_1TriangleStripArray.html">TriangleStripArray</a>* <a class="code" href="classm3g_1_1TriangleStripArray.html#1623fbdfe91eb2e9d4a67bece6a46904">duplicate</a> () <span class="keyword">const</span>;
-<a name="l00040"></a>00040 
-<a name="l00045"></a>00045     <span class="keyword">virtual</span> <span class="keywordtype">int</span> <a class="code" href="classm3g_1_1TriangleStripArray.html#fe9ae2993ebcdb93d5ff26d57c81b73e">getIndexCount</a> () <span class="keyword">const</span>;
+<a name="l00029"></a>00029 
+<a name="l00034"></a>00034         <span class="keyword">virtual</span> <a class="code" href="classm3g_1_1TriangleStripArray.html#1cb3853bf79b7710d57044da818d2cde">~TriangleStripArray</a> ();
+<a name="l00035"></a>00035 
+<a name="l00040"></a>00040         <span class="keyword">virtual</span> <a class="code" href="classm3g_1_1TriangleStripArray.html">TriangleStripArray</a>* <a class="code" href="classm3g_1_1TriangleStripArray.html#1623fbdfe91eb2e9d4a67bece6a46904">duplicate</a> () <span class="keyword">const</span>;
+<a name="l00041"></a>00041 
+<a name="l00045"></a>00045         <span class="keyword">virtual</span> <span class="keywordtype">int</span> getFaceCount () <span class="keyword">const</span>;
 <a name="l00046"></a>00046 
-<a name="l00051"></a>00051     <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classm3g_1_1TriangleStripArray.html#650953afac45099025a524ab160b911f">getIndices</a> (<span class="keywordtype">int</span>* indices);
-<a name="l00052"></a>00052 
-<a name="l00057"></a>00057     <span class="keyword">virtual</span> std::ostream&amp; <a class="code" href="classm3g_1_1TriangleStripArray.html#6fea17fa1532df3794f8cb39cb4f911f">print</a> (std::ostream&amp; out) <span class="keyword">const</span>;
-<a name="l00058"></a>00058 
-<a name="l00059"></a>00059 
-<a name="l00064"></a>00064     <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classm3g_1_1TriangleStripArray.html#8babc8a79b78615da51161e94029eea9">render</a> (<a class="code" href="structm3g_1_1RenderState.html">RenderState</a>&amp; state) <span class="keyword">const</span>;
-<a name="l00065"></a>00065 
-<a name="l00066"></a>00066 
-<a name="l00067"></a>00067   <span class="keyword">private</span>:
-<a name="l00068"></a>00068     <span class="keywordtype">int</span>*             indices;
-<a name="l00069"></a>00069     std::vector&lt;int&gt; strips;
-<a name="l00070"></a>00070 
-<a name="l00071"></a>00071     GLuint ibuf;
-<a name="l00072"></a>00072   };
-<a name="l00073"></a>00073   
-<a name="l00074"></a>00074 
-<a name="l00075"></a>00075 } <span class="comment">// namespace m3g {</span>
+<a name="l00050"></a>00050         <span class="keyword">virtual</span> <span class="keywordtype">int</span> getFaceVertexCount () <span class="keyword">const</span>;
+<a name="l00051"></a>00051 
+<a name="l00055"></a>00055         <span class="keyword">virtual</span> <span class="keywordtype">void</span> getFaceVertexIndex (<span class="keywordtype">int</span> face_index, <span class="keywordtype">int</span>* vertex_indices) <span class="keyword">const</span>;
+<a name="l00056"></a>00056 
+<a name="l00057"></a>00057 
+<a name="l00062"></a>00062         <span class="keyword">virtual</span> <span class="keywordtype">int</span> <a class="code" href="classm3g_1_1TriangleStripArray.html#fe9ae2993ebcdb93d5ff26d57c81b73e">getIndexCount</a> () <span class="keyword">const</span>;
+<a name="l00063"></a>00063 
+<a name="l00068"></a>00068         <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classm3g_1_1TriangleStripArray.html#650953afac45099025a524ab160b911f">getIndices</a> (<span class="keywordtype">int</span>* indices);
+<a name="l00069"></a>00069 
+<a name="l00074"></a>00074         <span class="keyword">virtual</span> std::ostream&amp; <a class="code" href="classm3g_1_1TriangleStripArray.html#6fea17fa1532df3794f8cb39cb4f911f">print</a> (std::ostream&amp; out) <span class="keyword">const</span>;
+<a name="l00075"></a>00075 
 <a name="l00076"></a>00076 
-<a name="l00077"></a>00077 std::ostream&amp; operator&lt;&lt; (std::ostream&amp; out, <span class="keyword">const</span> <a class="code" href="classm3g_1_1TriangleStripArray.html">m3g::TriangleStripArray</a>&amp; a);
-<a name="l00078"></a>00078 
-<a name="l00079"></a>00079 
-<a name="l00080"></a>00080 <span class="preprocessor">#endif</span>
+<a name="l00081"></a>00081         <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classm3g_1_1TriangleStripArray.html#8babc8a79b78615da51161e94029eea9">render</a> (<a class="code" href="structm3g_1_1RenderState.html">RenderState</a>&amp; state) <span class="keyword">const</span>;
+<a name="l00082"></a>00082 
+<a name="l00083"></a>00083 
+<a name="l00084"></a>00084     <span class="keyword">private</span>:
+<a name="l00085"></a>00085         <span class="keywordtype">int</span>*             indices;
+<a name="l00086"></a>00086         std::vector&lt;int&gt; strips;
+<a name="l00087"></a>00087 
+<a name="l00088"></a>00088         <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> ibuf;
+<a name="l00089"></a>00089     };
+<a name="l00090"></a>00090   
+<a name="l00091"></a>00091 
+<a name="l00092"></a>00092 } <span class="comment">// namespace m3g {</span>
+<a name="l00093"></a>00093 
+<a name="l00094"></a>00094 std::ostream&amp; operator&lt;&lt; (std::ostream&amp; out, <span class="keyword">const</span> <a class="code" href="classm3g_1_1TriangleStripArray.html">m3g::TriangleStripArray</a>&amp; a);
+<a name="l00095"></a>00095 
+<a name="l00096"></a>00096 
+<a name="l00097"></a>00097 <span class="preprocessor">#endif</span>
 </pre></div></div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Mon May 10 08:47:29 2010 by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Sun Jun 6 11:22:40 2010 by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.8 </small></address>
 </body>

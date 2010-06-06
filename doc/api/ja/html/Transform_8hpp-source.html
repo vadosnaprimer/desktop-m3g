@@ -27,58 +27,70 @@
 <a name="l00007"></a>00007 
 <a name="l00008"></a>00008 <span class="keyword">namespace </span>m3g {
 <a name="l00009"></a>00009 
-<a name="l00010"></a>00010   <span class="keyword">class </span>VertexArray;
-<a name="l00011"></a>00011 
-<a name="l00016"></a><a class="code" href="classm3g_1_1Transform.html">00016</a>   <span class="keyword">class </span><a class="code" href="classm3g_1_1Transform.html">Transform</a> : <span class="keyword">public</span> Object
-<a name="l00017"></a>00017   {
-<a name="l00018"></a>00018   <span class="keyword">public</span>:
-<a name="l00023"></a>00023     <a class="code" href="classm3g_1_1Transform.html#9de68ec1c9b7809129814a3233ae4655">Transform</a> ();
-<a name="l00024"></a>00024 
-<a name="l00029"></a>00029     <a class="code" href="classm3g_1_1Transform.html#9de68ec1c9b7809129814a3233ae4655">Transform</a> (<span class="keyword">const</span> <a class="code" href="classm3g_1_1Transform.html">Transform</a>&amp; t);
-<a name="l00030"></a>00030 
-<a name="l00035"></a>00035     <a class="code" href="classm3g_1_1Transform.html#8e627263611a76aad02c9e0b89287c68">~Transform</a> ();
-<a name="l00036"></a>00036 
-<a name="l00041"></a>00041     <span class="keywordtype">void</span> <span class="keyword">get</span> (<span class="keywordtype">float</span>* matrix) <span class="keyword">const</span>;
-<a name="l00042"></a>00042 
-<a name="l00047"></a>00047     <span class="keywordtype">void</span> <a class="code" href="classm3g_1_1Transform.html#7fa1616cc61c19a5efcc863c950f7f30">invert</a> ();
-<a name="l00048"></a>00048 
-<a name="l00053"></a>00053     <span class="keywordtype">void</span> <a class="code" href="classm3g_1_1Transform.html#ad6083d90dbecc7e5bb39d5062723a0d">postMultiply</a> (<span class="keyword">const</span> <a class="code" href="classm3g_1_1Transform.html">Transform</a>&amp; <a class="code" href="classm3g_1_1Transform.html#0b85978885624f651df63da4137692df">transform</a>);
-<a name="l00054"></a>00054 
-<a name="l00059"></a>00059     <span class="keywordtype">void</span> <a class="code" href="classm3g_1_1Transform.html#4abf135257f132cdf9580f3a3e11ea6c">postRotate</a> (<span class="keywordtype">float</span> angle, <span class="keywordtype">float</span> ax, <span class="keywordtype">float</span> ay, <span class="keywordtype">float</span> az);
-<a name="l00060"></a>00060 
-<a name="l00065"></a>00065     <span class="keywordtype">void</span> <a class="code" href="classm3g_1_1Transform.html#7ce6ca00ac17bc4bb5f271c48da5e2dc">postRotateQuat</a> (<span class="keywordtype">float</span> qx, <span class="keywordtype">float</span> qy, <span class="keywordtype">float</span> qz, <span class="keywordtype">float</span> qw);
-<a name="l00066"></a>00066 
-<a name="l00071"></a>00071     <span class="keywordtype">void</span> <a class="code" href="classm3g_1_1Transform.html#4cbb4aa3878b658da54a144896f71446">postScale</a> (<span class="keywordtype">float</span> sx, <span class="keywordtype">float</span> sy, <span class="keywordtype">float</span> sz);
-<a name="l00072"></a>00072 
-<a name="l00077"></a>00077     <span class="keywordtype">void</span> <a class="code" href="classm3g_1_1Transform.html#638498b811d6ccdf60b7f1f3de157ed6">postTranslate</a> (<span class="keywordtype">float</span> tx, <span class="keywordtype">float</span> ty, <span class="keywordtype">float</span> tz);
-<a name="l00078"></a>00078 
-<a name="l00083"></a>00083     <span class="keywordtype">void</span> <span class="keyword">set</span> (<span class="keyword">const</span> <span class="keywordtype">float</span>* matrix);
-<a name="l00084"></a>00084 
-<a name="l00089"></a>00089     <span class="keywordtype">void</span> <span class="keyword">set</span> (<span class="keyword">const</span> <a class="code" href="classm3g_1_1Transform.html">Transform</a>&amp; transform);
-<a name="l00090"></a>00090 
-<a name="l00095"></a>00095     <span class="keywordtype">void</span> <a class="code" href="classm3g_1_1Transform.html#382e6ad7e6721b121e510959e1011be3">setIdentity</a> ();
-<a name="l00096"></a>00096 
-<a name="l00101"></a>00101     <span class="keywordtype">void</span> <a class="code" href="classm3g_1_1Transform.html#0b85978885624f651df63da4137692df">transform</a> (<span class="keywordtype">float</span>* vectors) <span class="keyword">const</span>;
-<a name="l00102"></a>00102 
-<a name="l00108"></a>00108     <span class="keywordtype">void</span> <a class="code" href="classm3g_1_1Transform.html#0b85978885624f651df63da4137692df">transform</a> (<a class="code" href="classm3g_1_1VertexArray.html">VertexArray</a>* in, <span class="keywordtype">float</span>* out, <span class="keywordtype">bool</span> w) <span class="keyword">const</span>;
-<a name="l00109"></a>00109 
-<a name="l00114"></a>00114     <span class="keywordtype">void</span> <a class="code" href="classm3g_1_1Transform.html#f3a99ffb20127be48232d12260e934dc">transpose</a> ();
-<a name="l00115"></a>00115 
-<a name="l00120"></a>00120     <span class="keyword">virtual</span> std::ostream&amp; <a class="code" href="classm3g_1_1Transform.html#6fea17fa1532df3794f8cb39cb4f911f">print</a> (std::ostream&amp; out) <span class="keyword">const</span>;
-<a name="l00121"></a>00121 
-<a name="l00122"></a>00122   <span class="keyword">private</span>:
-<a name="l00123"></a>00123     <a class="code" href="classm3g_1_1Matrix.html">Matrix</a> matrix;
-<a name="l00124"></a>00124   };
-<a name="l00125"></a>00125 
-<a name="l00126"></a>00126 
-<a name="l00127"></a>00127 
-<a name="l00128"></a>00128 } <span class="comment">// namespace m3g {</span>
-<a name="l00129"></a>00129 
-<a name="l00130"></a>00130 std::ostream&amp; operator&lt;&lt; (std::ostream&amp; out, <span class="keyword">const</span> <a class="code" href="classm3g_1_1Transform.html">m3g::Transform</a>&amp; t);
-<a name="l00131"></a>00131 
-<a name="l00132"></a>00132 <span class="preprocessor">#endif</span>
+<a name="l00010"></a>00010     <span class="keyword">class </span>VertexArray;
+<a name="l00011"></a>00011     <span class="keyword">class </span>Vector;
+<a name="l00012"></a>00012     <span class="keyword">class </span>Matrix;
+<a name="l00013"></a>00013 
+<a name="l00018"></a><a class="code" href="classm3g_1_1Transform.html">00018</a>     <span class="keyword">class </span><a class="code" href="classm3g_1_1Transform.html">Transform</a> : <span class="keyword">public</span> <a class="code" href="classm3g_1_1Object.html">Object</a>
+<a name="l00019"></a>00019     {
+<a name="l00020"></a>00020     <span class="keyword">public</span>:
+<a name="l00025"></a>00025         <a class="code" href="classm3g_1_1Transform.html#9de68ec1c9b7809129814a3233ae4655">Transform</a> ();
+<a name="l00026"></a>00026 
+<a name="l00031"></a>00031         <a class="code" href="classm3g_1_1Transform.html#9de68ec1c9b7809129814a3233ae4655">Transform</a> (<span class="keyword">const</span> <a class="code" href="classm3g_1_1Transform.html">Transform</a>&amp; t);
+<a name="l00032"></a>00032 
+<a name="l00037"></a>00037         <a class="code" href="classm3g_1_1Transform.html#8e627263611a76aad02c9e0b89287c68">~Transform</a> ();
+<a name="l00038"></a>00038 
+<a name="l00043"></a>00043         <span class="keywordtype">void</span> <span class="keyword">get</span> (<span class="keywordtype">float</span>* matrix) <span class="keyword">const</span>;
+<a name="l00044"></a>00044 
+<a name="l00045"></a>00045 
+<a name="l00049"></a>00049         <a class="code" href="classm3g_1_1Matrix.html">Matrix</a> <a class="code" href="classm3g_1_1Transform.html#3ab68d9aa9eafd77e47631467de93f6f">getMatrix</a> () <span class="keyword">const</span>;
+<a name="l00050"></a>00050 
+<a name="l00055"></a>00055         <span class="keywordtype">void</span> <a class="code" href="classm3g_1_1Transform.html#7fa1616cc61c19a5efcc863c950f7f30">invert</a> ();
+<a name="l00056"></a>00056 
+<a name="l00061"></a>00061         <span class="keywordtype">void</span> <a class="code" href="classm3g_1_1Transform.html#ad6083d90dbecc7e5bb39d5062723a0d">postMultiply</a> (<span class="keyword">const</span> <a class="code" href="classm3g_1_1Transform.html">Transform</a>&amp; <a class="code" href="classm3g_1_1Transform.html#441599a6e846a344be78571668406619">transform</a>);
+<a name="l00062"></a>00062 
+<a name="l00067"></a>00067         <span class="keywordtype">void</span> <a class="code" href="classm3g_1_1Transform.html#4abf135257f132cdf9580f3a3e11ea6c">postRotate</a> (<span class="keywordtype">float</span> angle, <span class="keywordtype">float</span> ax, <span class="keywordtype">float</span> ay, <span class="keywordtype">float</span> az);
+<a name="l00068"></a>00068 
+<a name="l00073"></a>00073         <span class="keywordtype">void</span> <a class="code" href="classm3g_1_1Transform.html#7ce6ca00ac17bc4bb5f271c48da5e2dc">postRotateQuat</a> (<span class="keywordtype">float</span> qx, <span class="keywordtype">float</span> qy, <span class="keywordtype">float</span> qz, <span class="keywordtype">float</span> qw);
+<a name="l00074"></a>00074 
+<a name="l00079"></a>00079         <span class="keywordtype">void</span> <a class="code" href="classm3g_1_1Transform.html#4cbb4aa3878b658da54a144896f71446">postScale</a> (<span class="keywordtype">float</span> sx, <span class="keywordtype">float</span> sy, <span class="keywordtype">float</span> sz);
+<a name="l00080"></a>00080 
+<a name="l00085"></a>00085         <span class="keywordtype">void</span> <a class="code" href="classm3g_1_1Transform.html#638498b811d6ccdf60b7f1f3de157ed6">postTranslate</a> (<span class="keywordtype">float</span> tx, <span class="keywordtype">float</span> ty, <span class="keywordtype">float</span> tz);
+<a name="l00086"></a>00086 
+<a name="l00091"></a>00091         <span class="keywordtype">void</span> <span class="keyword">set</span> (<span class="keyword">const</span> <span class="keywordtype">float</span>* matrix);
+<a name="l00092"></a>00092 
+<a name="l00097"></a>00097         <span class="keywordtype">void</span> <span class="keyword">set</span> (<span class="keyword">const</span> <a class="code" href="classm3g_1_1Transform.html">Transform</a>&amp; transform);
+<a name="l00098"></a>00098         
+<a name="l00099"></a>00099         
+<a name="l00103"></a>00103         <span class="keywordtype">void</span> <span class="keyword">set</span> (<span class="keyword">const</span> <a class="code" href="classm3g_1_1Matrix.html">Matrix</a>&amp; matrix);
+<a name="l00104"></a>00104 
+<a name="l00109"></a>00109         <span class="keywordtype">void</span> <a class="code" href="classm3g_1_1Transform.html#382e6ad7e6721b121e510959e1011be3">setIdentity</a> ();
+<a name="l00110"></a>00110 
+<a name="l00115"></a>00115         <span class="keywordtype">void</span> <a class="code" href="classm3g_1_1Transform.html#441599a6e846a344be78571668406619">transform</a> (<span class="keywordtype">int</span> vector_num, <span class="keywordtype">float</span>* vectors) <span class="keyword">const</span>;
+<a name="l00116"></a>00116 
+<a name="l00122"></a>00122         <span class="keywordtype">void</span> <a class="code" href="classm3g_1_1Transform.html#441599a6e846a344be78571668406619">transform</a> (<span class="keyword">const</span> <a class="code" href="classm3g_1_1VertexArray.html">VertexArray</a>* in, <span class="keywordtype">float</span>* out, <span class="keywordtype">bool</span> w) <span class="keyword">const</span>;
+<a name="l00123"></a>00123 
+<a name="l00127"></a>00127         <a class="code" href="classm3g_1_1Vector.html">Vector</a> <a class="code" href="classm3g_1_1Transform.html#441599a6e846a344be78571668406619">transform</a> (<span class="keyword">const</span> <a class="code" href="classm3g_1_1Vector.html">Vector</a>&amp; vector) <span class="keyword">const</span>;
+<a name="l00128"></a>00128 
+<a name="l00132"></a>00132         <a class="code" href="classm3g_1_1Vector.html">Vector</a> transform3x3 (<span class="keyword">const</span> <a class="code" href="classm3g_1_1Vector.html">Vector</a>&amp; vector) <span class="keyword">const</span>;
+<a name="l00133"></a>00133 
+<a name="l00138"></a>00138         <span class="keywordtype">void</span> <a class="code" href="classm3g_1_1Transform.html#f3a99ffb20127be48232d12260e934dc">transpose</a> ();
+<a name="l00139"></a>00139 
+<a name="l00144"></a>00144         <span class="keyword">virtual</span> std::ostream&amp; <a class="code" href="classm3g_1_1Transform.html#6fea17fa1532df3794f8cb39cb4f911f">print</a> (std::ostream&amp; out) <span class="keyword">const</span>;
+<a name="l00145"></a>00145 
+<a name="l00146"></a>00146     <span class="keyword">private</span>:
+<a name="l00147"></a>00147         <a class="code" href="classm3g_1_1Matrix.html">Matrix</a> matrix;
+<a name="l00148"></a>00148     };
+<a name="l00149"></a>00149 
+<a name="l00150"></a>00150 
+<a name="l00151"></a>00151 
+<a name="l00152"></a>00152 } <span class="comment">// namespace m3g {</span>
+<a name="l00153"></a>00153 
+<a name="l00154"></a>00154 std::ostream&amp; operator&lt;&lt; (std::ostream&amp; out, <span class="keyword">const</span> <a class="code" href="classm3g_1_1Transform.html">m3g::Transform</a>&amp; t);
+<a name="l00155"></a>00155 
+<a name="l00156"></a>00156 <span class="preprocessor">#endif</span>
 </pre></div></div>
-<hr size="1"><address style="text-align: right;"><small>Mon May 10 08:47:23 2010に生成されました。&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Sun Jun 6 11:22:34 2010に生成されました。&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.8 </small></address>
 </body>

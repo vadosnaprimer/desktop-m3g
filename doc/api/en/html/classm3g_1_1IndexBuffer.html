@@ -33,6 +33,7 @@ Inheritance diagram for IndexBuffer:</div>
 <p><center><img src="classm3g_1_1IndexBuffer.png" usemap="#IndexBuffer_map" border="0" alt=""></center>
 <map name="IndexBuffer_map">
 <area href="classm3g_1_1Object3D.html" alt="Object3D" shape="rect" coords="0,56,117,80">
+<area href="classm3g_1_1Object.html" alt="Object" shape="rect" coords="0,0,117,24">
 <area href="classm3g_1_1TriangleStripArray.html" alt="TriangleStripArray" shape="rect" coords="0,168,117,192">
 </map>
 </div>
@@ -47,18 +48,22 @@ Inheritance diagram for IndexBuffer:</div>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">virtual <a class="el" href="classm3g_1_1IndexBuffer.html">IndexBuffer</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1IndexBuffer.html#fab6fc0a0ec393e527f849c3af10ad76">duplicate</a> () const </td></tr>
 
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="f4554e20b080880f27da67c539bb6748"></a><!-- doxytag: member="m3g::IndexBuffer::getFaceCount" ref="f4554e20b080880f27da67c539bb6748" args="() const " -->
+virtual int&nbsp;</td><td class="memItemRight" valign="bottom"><b>getFaceCount</b> () const </td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="007506f2b3f5563a65e4cfc1007d57ff"></a><!-- doxytag: member="m3g::IndexBuffer::getFaceVertexCount" ref="007506f2b3f5563a65e4cfc1007d57ff" args="() const " -->
+virtual int&nbsp;</td><td class="memItemRight" valign="bottom"><b>getFaceVertexCount</b> () const </td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="d2721de0db09f6c65d9d4b088a269171"></a><!-- doxytag: member="m3g::IndexBuffer::getFaceVertexIndex" ref="d2721de0db09f6c65d9d4b088a269171" args="(int face_index, int *vertex_indices) const " -->
+virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><b>getFaceVertexIndex</b> (int face_index, int *vertex_indices) const </td></tr>
+
 <tr><td class="memItemLeft" nowrap align="right" valign="top">virtual int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1IndexBuffer.html#fe9ae2993ebcdb93d5ff26d57c81b73e">getIndexCount</a> () const </td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1IndexBuffer.html#650953afac45099025a524ab160b911f">getIndices</a> (int *indices)</td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">virtual std::ostream &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1IndexBuffer.html#6fea17fa1532df3794f8cb39cb4f911f">print</a> (std::ostream &amp;out) const </td></tr>
 
-<tr><td colspan="2"><br><h2>Protected Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1IndexBuffer.html#8babc8a79b78615da51161e94029eea9">render</a> (<a class="el" href="structm3g_1_1RenderState.html">RenderState</a> &amp;state) const </td></tr>
-
-<tr><td colspan="2"><br><h2>Friends</h2></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="a41a130f156b145bffb3f4b5172c4c93"></a><!-- doxytag: member="m3g::IndexBuffer::Mesh" ref="a41a130f156b145bffb3f4b5172c4c93" args="" -->
-class&nbsp;</td><td class="memItemRight" valign="bottom"><b>Mesh</b></td></tr>
 
 </table>
 <hr><a name="_details"></a><h2>Detailed Description</h2>
@@ -79,7 +84,7 @@ An abstract class defining how to connect vertices to form a geometric object. <
 <div class="memdoc">
 
 <p>
-Construct a new <a class="el" href="classm3g_1_1IndexBuffer.html">IndexBuffer</a> Object. 
+Construct a new <a class="el" href="classm3g_1_1IndexBuffer.html">IndexBuffer</a> <a class="el" href="classm3g_1_1Object.html">Object</a>. 
 </div>
 </div><p>
 <a class="anchor" name="ac7952364fe4d2d7b2731da5380c841c"></a><!-- doxytag: member="m3g::IndexBuffer::~IndexBuffer" ref="ac7952364fe4d2d7b2731da5380c841c" args="()" -->
@@ -202,7 +207,7 @@ Print out information of this object, for only debug.
           <td class="paramtype"><a class="el" href="structm3g_1_1RenderState.html">RenderState</a> &amp;&nbsp;</td>
           <td class="paramname"> <em>state</em>          </td>
           <td>&nbsp;)&nbsp;</td>
-          <td> const<code> [protected, virtual]</code></td>
+          <td> const<code> [virtual]</code></td>
         </tr>
       </table>
 </div>
@@ -220,7 +225,7 @@ Note: <a class="el" href="classm3g_1_1Background.html">Background</a> should be 
 <hr>The documentation for this class was generated from the following files:<ul>
 <li>/work/workspace.desktop-m3g/src/<a class="el" href="IndexBuffer_8hpp-source.html">IndexBuffer.hpp</a><li>/work/workspace.desktop-m3g/src/IndexBuffer.cpp</ul>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Mon May 10 08:47:31 2010 by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Sun Jun 6 11:22:42 2010 by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.8 </small></address>
 </body>

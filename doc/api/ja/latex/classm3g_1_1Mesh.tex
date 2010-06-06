@@ -19,7 +19,7 @@ Meshに対する継承グラフ:\begin{figure}[H]
 \item 
 virtual \hyperlink{classm3g_1_1Mesh_6e26384cfb03023e7dc2e5419baf813f}{$\sim$Mesh} ()
 \item 
-\hyperlink{classm3g_1_1Mesh}{Mesh} $\ast$ \hyperlink{classm3g_1_1Mesh_52ce6d0b3eda2bd3a95bfb5b7dbb6f82}{duplicate} () const 
+virtual \hyperlink{classm3g_1_1Mesh}{Mesh} $\ast$ \hyperlink{classm3g_1_1Mesh_52ce6d0b3eda2bd3a95bfb5b7dbb6f82}{duplicate} () const 
 \item 
 virtual int \hyperlink{classm3g_1_1Mesh_8aad1ceab4c2a03609c8a42324ce484d}{animate} (int world\_\-time)
 \item 
@@ -32,6 +32,8 @@ int \hyperlink{classm3g_1_1Mesh_5dc5a57ad549eb97504c2a1280a882dd}{getSubmeshCoun
 \hyperlink{classm3g_1_1VertexBuffer}{VertexBuffer} $\ast$ \hyperlink{classm3g_1_1Mesh_7602e9bf450fa8b3ec3c60e2e88cba25}{getVertexBuffer} () const 
 \item 
 void \hyperlink{classm3g_1_1Mesh_bb03b872c453c4f8f3fe31e8b54d1b52}{setAppearance} (int index, \hyperlink{classm3g_1_1Appearance}{Appearance} $\ast$appearance)
+\item 
+virtual bool \hyperlink{classm3g_1_1Mesh_dc812d8230f94f0b6b8e4fecdb802a16}{intersect} (const \hyperlink{classm3g_1_1Vector}{Vector} \&org, const \hyperlink{classm3g_1_1Vector}{Vector} \&dir, \hyperlink{classm3g_1_1RayIntersection}{RayIntersection} $\ast$ri) const 
 \item 
 virtual std::ostream \& \hyperlink{classm3g_1_1Mesh_6fea17fa1532df3794f8cb39cb4f911f}{print} (std::ostream \&out) const 
 \item 
@@ -135,7 +137,16 @@ std::vector$<$ \hyperlink{classm3g_1_1Appearance}{Appearance} $\ast$ $>$ \textbf
 \label{classm3g_1_1Mesh_7602e9bf450fa8b3ec3c60e2e88cba25}
 
 
-このメッシュの頂点バッファーの取得. \hypertarget{classm3g_1_1Mesh_6fea17fa1532df3794f8cb39cb4f911f}{
+このメッシュの頂点バッファーの取得. \hypertarget{classm3g_1_1Mesh_dc812d8230f94f0b6b8e4fecdb802a16}{
+\index{m3g::Mesh@{m3g::Mesh}!intersect@{intersect}}
+\index{intersect@{intersect}!m3g::Mesh@{m3g::Mesh}}
+\subsubsection[{intersect}]{\setlength{\rightskip}{0pt plus 5cm}bool intersect (const {\bf Vector} \& {\em org}, \/  const {\bf Vector} \& {\em dir}, \/  {\bf RayIntersection} $\ast$ {\em ri}) const\hspace{0.3cm}{\tt  \mbox{[}virtual\mbox{]}}}}
+\label{classm3g_1_1Mesh_dc812d8230f94f0b6b8e4fecdb802a16}
+
+
+座標は全てこのメッシュのローカル座標系で指定する. 
+
+\hyperlink{classm3g_1_1SkinnedMesh_dc812d8230f94f0b6b8e4fecdb802a16}{SkinnedMesh}で再定義されています。\hypertarget{classm3g_1_1Mesh_6fea17fa1532df3794f8cb39cb4f911f}{
 \index{m3g::Mesh@{m3g::Mesh}!print@{print}}
 \index{print@{print}!m3g::Mesh@{m3g::Mesh}}
 \subsubsection[{print}]{\setlength{\rightskip}{0pt plus 5cm}std::ostream \& print (std::ostream \& {\em out}) const\hspace{0.3cm}{\tt  \mbox{[}virtual\mbox{]}}}}

@@ -19,24 +19,28 @@ virtual \hyperlink{classm3g_1_1IndexBuffer_ac7952364fe4d2d7b2731da5380c841c}{$\s
 \item 
 virtual \hyperlink{classm3g_1_1IndexBuffer}{IndexBuffer} $\ast$ \hyperlink{classm3g_1_1IndexBuffer_fab6fc0a0ec393e527f849c3af10ad76}{duplicate} () const 
 \item 
+\hypertarget{classm3g_1_1IndexBuffer_f4554e20b080880f27da67c539bb6748}{
+virtual int \textbf{getFaceCount} () const }
+\label{classm3g_1_1IndexBuffer_f4554e20b080880f27da67c539bb6748}
+
+\item 
+\hypertarget{classm3g_1_1IndexBuffer_007506f2b3f5563a65e4cfc1007d57ff}{
+virtual int \textbf{getFaceVertexCount} () const }
+\label{classm3g_1_1IndexBuffer_007506f2b3f5563a65e4cfc1007d57ff}
+
+\item 
+\hypertarget{classm3g_1_1IndexBuffer_d2721de0db09f6c65d9d4b088a269171}{
+virtual void \textbf{getFaceVertexIndex} (int face\_\-index, int $\ast$vertex\_\-indices) const }
+\label{classm3g_1_1IndexBuffer_d2721de0db09f6c65d9d4b088a269171}
+
+\item 
 virtual int \hyperlink{classm3g_1_1IndexBuffer_fe9ae2993ebcdb93d5ff26d57c81b73e}{getIndexCount} () const 
 \item 
 virtual void \hyperlink{classm3g_1_1IndexBuffer_650953afac45099025a524ab160b911f}{getIndices} (int $\ast$indices)
 \item 
 virtual std::ostream \& \hyperlink{classm3g_1_1IndexBuffer_6fea17fa1532df3794f8cb39cb4f911f}{print} (std::ostream \&out) const 
-\end{CompactItemize}
-\subsection*{Protected Member Functions}
-\begin{CompactItemize}
 \item 
 virtual void \hyperlink{classm3g_1_1IndexBuffer_8babc8a79b78615da51161e94029eea9}{render} (\hyperlink{structm3g_1_1RenderState}{RenderState} \&state) const 
-\end{CompactItemize}
-\subsection*{Friends}
-\begin{CompactItemize}
-\item 
-\hypertarget{classm3g_1_1IndexBuffer_a41a130f156b145bffb3f4b5172c4c93}{
-class \textbf{Mesh}}
-\label{classm3g_1_1IndexBuffer_a41a130f156b145bffb3f4b5172c4c93}
-
 \end{CompactItemize}
 
 
@@ -51,7 +55,7 @@ An abstract class defining how to connect vertices to form a geometric object.
 \label{classm3g_1_1IndexBuffer_d2e68a2d7c6c753d3abfeef42ee79427}
 
 
-Construct a new \hyperlink{classm3g_1_1IndexBuffer}{IndexBuffer} Object. \hypertarget{classm3g_1_1IndexBuffer_ac7952364fe4d2d7b2731da5380c841c}{
+Construct a new \hyperlink{classm3g_1_1IndexBuffer}{IndexBuffer} \hyperlink{classm3g_1_1Object}{Object}. \hypertarget{classm3g_1_1IndexBuffer_ac7952364fe4d2d7b2731da5380c841c}{
 \index{m3g::IndexBuffer@{m3g::IndexBuffer}!$\sim$IndexBuffer@{$\sim$IndexBuffer}}
 \index{$\sim$IndexBuffer@{$\sim$IndexBuffer}!m3g::IndexBuffer@{m3g::IndexBuffer}}
 \subsubsection[{$\sim$IndexBuffer}]{\setlength{\rightskip}{0pt plus 5cm}$\sim${\bf IndexBuffer} ()\hspace{0.3cm}{\tt  \mbox{[}virtual\mbox{]}}}}
@@ -104,7 +108,7 @@ Reimplemented from \hyperlink{classm3g_1_1Object3D_6fea17fa1532df3794f8cb39cb4f9
 Reimplemented in \hyperlink{classm3g_1_1TriangleStripArray_6fea17fa1532df3794f8cb39cb4f911f}{TriangleStripArray}.\hypertarget{classm3g_1_1IndexBuffer_8babc8a79b78615da51161e94029eea9}{
 \index{m3g::IndexBuffer@{m3g::IndexBuffer}!render@{render}}
 \index{render@{render}!m3g::IndexBuffer@{m3g::IndexBuffer}}
-\subsubsection[{render}]{\setlength{\rightskip}{0pt plus 5cm}void render ({\bf RenderState} \& {\em state}) const\hspace{0.3cm}{\tt  \mbox{[}protected, virtual\mbox{]}}}}
+\subsubsection[{render}]{\setlength{\rightskip}{0pt plus 5cm}void render ({\bf RenderState} \& {\em state}) const\hspace{0.3cm}{\tt  \mbox{[}virtual\mbox{]}}}}
 \label{classm3g_1_1IndexBuffer_8babc8a79b78615da51161e94029eea9}
 
 

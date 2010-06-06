@@ -29,48 +29,47 @@
 <a name="l00009"></a>00009 
 <a name="l00010"></a>00010 <span class="keyword">namespace </span>m3g {
 <a name="l00011"></a>00011 
-<a name="l00012"></a>00012   <span class="keyword">class </span>Camera;
-<a name="l00013"></a>00013   <span class="keyword">class </span>Background;
+<a name="l00012"></a>00012     <span class="keyword">class </span>Camera;
+<a name="l00013"></a>00013     <span class="keyword">class </span>Background;
 <a name="l00014"></a>00014 
-<a name="l00019"></a><a class="code" href="classm3g_1_1World.html">00019</a>   <span class="keyword">class </span><a class="code" href="classm3g_1_1World.html">World</a> : <span class="keyword">public</span> <a class="code" href="classm3g_1_1Group.html">Group</a>
-<a name="l00020"></a>00020   {
-<a name="l00021"></a>00021     <span class="keyword">friend</span> <span class="keyword">class </span><a class="code" href="classm3g_1_1Graphics3D.html">Graphics3D</a>;
-<a name="l00022"></a>00022 
-<a name="l00023"></a>00023   <span class="keyword">public</span>:
-<a name="l00028"></a>00028     <a class="code" href="classm3g_1_1World.html#75e827b8787e735882f60c266d58e02e">World</a> ();
-<a name="l00029"></a>00029 
-<a name="l00034"></a>00034     <span class="keyword">virtual</span> <a class="code" href="classm3g_1_1World.html#bd170ded455f0b2273c1fe06da6ea0cb">~World</a> ();
-<a name="l00035"></a>00035 
-<a name="l00040"></a>00040     <a class="code" href="classm3g_1_1World.html">World</a>* <a class="code" href="classm3g_1_1World.html#efde97aaf753d48fff769d9011f187f2">duplicate</a> () <span class="keyword">const</span>;
-<a name="l00041"></a>00041 
-<a name="l00046"></a>00046     <span class="keyword">virtual</span> <span class="keywordtype">int</span> <a class="code" href="classm3g_1_1World.html#8aad1ceab4c2a03609c8a42324ce484d">animate</a> (<span class="keywordtype">int</span> world_time);
-<a name="l00047"></a>00047 
-<a name="l00052"></a>00052     <a class="code" href="classm3g_1_1Camera.html">Camera</a>* <a class="code" href="classm3g_1_1World.html#812e01ec4fd0fd872b0ca5ea6a30b2f6">getActiveCamera</a> () <span class="keyword">const</span>;
-<a name="l00053"></a>00053 
-<a name="l00058"></a>00058     <a class="code" href="classm3g_1_1Background.html">Background</a>* <a class="code" href="classm3g_1_1World.html#fb10ab7fd2ad14b7b1d49caf129670e0">getBackground</a> () <span class="keyword">const</span>;
-<a name="l00059"></a>00059 
-<a name="l00064"></a>00064     <span class="keywordtype">void</span> <a class="code" href="classm3g_1_1World.html#dd9a82b335e8521592ad410c662a5cfd">setActiveCamera</a> (<a class="code" href="classm3g_1_1Camera.html">Camera</a>* camera);
-<a name="l00065"></a>00065 
-<a name="l00070"></a>00070     <span class="keywordtype">void</span> <a class="code" href="classm3g_1_1World.html#6193765c76d6dc0450f264918ebe7e1c">setBackground</a> (<a class="code" href="classm3g_1_1Background.html">Background</a>* background);
-<a name="l00071"></a>00071 
-<a name="l00076"></a>00076     <span class="keyword">virtual</span> std::ostream&amp; <a class="code" href="classm3g_1_1World.html#6fea17fa1532df3794f8cb39cb4f911f">print</a> (std::ostream&amp; out) <span class="keyword">const</span>;
-<a name="l00077"></a>00077 
-<a name="l00082"></a>00082     <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classm3g_1_1World.html#8babc8a79b78615da51161e94029eea9">render</a> (<a class="code" href="structm3g_1_1RenderState.html">RenderState</a>&amp; state) <span class="keyword">const</span>;
-<a name="l00083"></a>00083 
-<a name="l00084"></a>00084   <span class="keyword">private</span>:
-<a name="l00085"></a>00085     <a class="code" href="classm3g_1_1Background.html">Background</a>* background;
-<a name="l00086"></a>00086     <a class="code" href="classm3g_1_1Camera.html">Camera</a>*     camera;
-<a name="l00087"></a>00087   };
+<a name="l00019"></a><a class="code" href="classm3g_1_1World.html">00019</a>     <span class="keyword">class </span><a class="code" href="classm3g_1_1World.html">World</a> : <span class="keyword">public</span> <a class="code" href="classm3g_1_1Group.html">Group</a>
+<a name="l00020"></a>00020     {
+<a name="l00021"></a>00021 
+<a name="l00022"></a>00022     <span class="keyword">public</span>:
+<a name="l00027"></a>00027         <a class="code" href="classm3g_1_1World.html#75e827b8787e735882f60c266d58e02e">World</a> ();
+<a name="l00028"></a>00028 
+<a name="l00033"></a>00033         <span class="keyword">virtual</span> <a class="code" href="classm3g_1_1World.html#bd170ded455f0b2273c1fe06da6ea0cb">~World</a> ();
+<a name="l00034"></a>00034 
+<a name="l00039"></a>00039         <span class="keyword">virtual</span> <a class="code" href="classm3g_1_1World.html">World</a>* <a class="code" href="classm3g_1_1World.html#efde97aaf753d48fff769d9011f187f2">duplicate</a> () <span class="keyword">const</span>;
+<a name="l00040"></a>00040 
+<a name="l00045"></a>00045         <span class="keyword">virtual</span> <span class="keywordtype">int</span> <a class="code" href="classm3g_1_1World.html#8aad1ceab4c2a03609c8a42324ce484d">animate</a> (<span class="keywordtype">int</span> world_time);
+<a name="l00046"></a>00046 
+<a name="l00051"></a>00051         <a class="code" href="classm3g_1_1Camera.html">Camera</a>* <a class="code" href="classm3g_1_1World.html#812e01ec4fd0fd872b0ca5ea6a30b2f6">getActiveCamera</a> () <span class="keyword">const</span>;
+<a name="l00052"></a>00052 
+<a name="l00057"></a>00057         <a class="code" href="classm3g_1_1Background.html">Background</a>* <a class="code" href="classm3g_1_1World.html#fb10ab7fd2ad14b7b1d49caf129670e0">getBackground</a> () <span class="keyword">const</span>;
+<a name="l00058"></a>00058 
+<a name="l00063"></a>00063         <span class="keywordtype">void</span> <a class="code" href="classm3g_1_1World.html#dd9a82b335e8521592ad410c662a5cfd">setActiveCamera</a> (<a class="code" href="classm3g_1_1Camera.html">Camera</a>* camera);
+<a name="l00064"></a>00064 
+<a name="l00069"></a>00069         <span class="keywordtype">void</span> <a class="code" href="classm3g_1_1World.html#6193765c76d6dc0450f264918ebe7e1c">setBackground</a> (<a class="code" href="classm3g_1_1Background.html">Background</a>* background);
+<a name="l00070"></a>00070 
+<a name="l00075"></a>00075         <span class="keyword">virtual</span> std::ostream&amp; <a class="code" href="classm3g_1_1World.html#6fea17fa1532df3794f8cb39cb4f911f">print</a> (std::ostream&amp; out) <span class="keyword">const</span>;
+<a name="l00076"></a>00076 
+<a name="l00081"></a>00081         <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classm3g_1_1World.html#8babc8a79b78615da51161e94029eea9">render</a> (<a class="code" href="structm3g_1_1RenderState.html">RenderState</a>&amp; state) <span class="keyword">const</span>;
+<a name="l00082"></a>00082 
+<a name="l00083"></a>00083     <span class="keyword">private</span>:
+<a name="l00084"></a>00084         <a class="code" href="classm3g_1_1Background.html">Background</a>* background;
+<a name="l00085"></a>00085         <a class="code" href="classm3g_1_1Camera.html">Camera</a>*     camera;
+<a name="l00086"></a>00086     };
+<a name="l00087"></a>00087 
 <a name="l00088"></a>00088 
-<a name="l00089"></a>00089 
-<a name="l00090"></a>00090 } <span class="comment">// namespace m3g {</span>
-<a name="l00091"></a>00091 
-<a name="l00092"></a>00092 std::ostream&amp; operator&lt;&lt; (std::ostream&amp; out, <span class="keyword">const</span> <a class="code" href="classm3g_1_1World.html">m3g::World</a>&amp; wld);
+<a name="l00089"></a>00089 } <span class="comment">// namespace m3g {</span>
+<a name="l00090"></a>00090 
+<a name="l00091"></a>00091 std::ostream&amp; operator&lt;&lt; (std::ostream&amp; out, <span class="keyword">const</span> <a class="code" href="classm3g_1_1World.html">m3g::World</a>&amp; wld);
+<a name="l00092"></a>00092 
 <a name="l00093"></a>00093 
-<a name="l00094"></a>00094 
-<a name="l00095"></a>00095 <span class="preprocessor">#endif</span>
+<a name="l00094"></a>00094 <span class="preprocessor">#endif</span>
 </pre></div></div>
-<hr size="1"><address style="text-align: right;"><small>Mon May 10 08:47:23 2010に生成されました。&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Sun Jun 6 11:22:34 2010に生成されました。&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.8 </small></address>
 </body>

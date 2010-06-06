@@ -32,6 +32,7 @@ Inheritance diagram for Object3D:</div>
 
 <p><center><img src="classm3g_1_1Object3D.png" usemap="#Object3D_map" border="0" alt=""></center>
 <map name="Object3D_map">
+<area href="classm3g_1_1Object.html" alt="Object" shape="rect" coords="0,0,123,24">
 <area href="classm3g_1_1AnimationController.html" alt="AnimationController" shape="rect" coords="133,112,256,136">
 <area href="classm3g_1_1AnimationTrack.html" alt="AnimationTrack" shape="rect" coords="133,168,256,192">
 <area href="classm3g_1_1Appearance.html" alt="Appearance" shape="rect" coords="133,224,256,248">
@@ -42,9 +43,10 @@ Inheritance diagram for Object3D:</div>
 <area href="classm3g_1_1IndexBuffer.html" alt="IndexBuffer" shape="rect" coords="133,504,256,528">
 <area href="classm3g_1_1KeyframeSequence.html" alt="KeyframeSequence" shape="rect" coords="133,560,256,584">
 <area href="classm3g_1_1Material.html" alt="Material" shape="rect" coords="133,616,256,640">
-<area href="classm3g_1_1Transformable.html" alt="Transformable" shape="rect" coords="133,672,256,696">
-<area href="classm3g_1_1VertexArray.html" alt="VertexArray" shape="rect" coords="133,728,256,752">
-<area href="classm3g_1_1VertexBuffer.html" alt="VertexBuffer" shape="rect" coords="133,784,256,808">
+<area href="classm3g_1_1PolygonMode.html" alt="PolygonMode" shape="rect" coords="133,672,256,696">
+<area href="classm3g_1_1Transformable.html" alt="Transformable" shape="rect" coords="133,728,256,752">
+<area href="classm3g_1_1VertexArray.html" alt="VertexArray" shape="rect" coords="133,784,256,808">
+<area href="classm3g_1_1VertexBuffer.html" alt="VertexBuffer" shape="rect" coords="133,840,256,864">
 </map>
 </div>
 
@@ -78,16 +80,11 @@ Inheritance diagram for Object3D:</div>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Object3D.html#8eaa86665b4ca2c39691b6efc50108ee">setUserID</a> (int user_id)</td></tr>
 
-<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Object3D.html#990adc7f146e1b5d229e1d8fc3625a24">setUserObject</a> (int id, char *value)</td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Object3D.html#06be1b37b707b5f227cba2308043f3df">getObjectType</a> () const </td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Object3D.html#2285b0af7d6d293c4cf0e0d4559fd9b5">setUserObject</a> (void *user_object)</td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">virtual std::ostream &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Object3D.html#6fea17fa1532df3794f8cb39cb4f911f">print</a> (std::ostream &amp;out) const </td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Object3D.html#8babc8a79b78615da51161e94029eea9">render</a> (<a class="el" href="structm3g_1_1RenderState.html">RenderState</a> &amp;state) const </td></tr>
-
-<tr><td colspan="2"><br><h2>Protected Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Object3D.html#777701a101d1332abffa2ad6a255b91d">setObjectType</a> (int type)</td></tr>
 
 </table>
 <hr><a name="_details"></a><h2>Detailed Description</h2>
@@ -192,7 +189,7 @@ Updates all animated properties in this <a class="el" href="classm3g_1_1Object3D
 
 <p>
 Creates a duplicate of this <a class="el" href="classm3g_1_1Object3D.html">Object3D</a>. 
-<p>Reimplemented in <a class="el" href="classm3g_1_1AnimationController.html#aab6521891038ced0961ecb78611646e">AnimationController</a>, <a class="el" href="classm3g_1_1AnimationTrack.html#e19aae30ee68ef05afd74ec9c19cf7d1">AnimationTrack</a>, <a class="el" href="classm3g_1_1Appearance.html#ceaab703eb45cba7cf8705bc3a087127">Appearance</a>, <a class="el" href="classm3g_1_1Background.html#f99eb943724fede230c51353bad6d453">Background</a>, <a class="el" href="classm3g_1_1Camera.html#6279f7f8ab52af683fadd193d7694f2d">Camera</a>, <a class="el" href="classm3g_1_1CompositingMode.html#ab6fcd945b68728bbe2c65a8f45dc8dd">CompositingMode</a>, <a class="el" href="classm3g_1_1Fog.html#d46dc959a547ee3a804fc871b83c0bbf">Fog</a>, <a class="el" href="classm3g_1_1Image2D.html#47eefc8e0b0b3d4c5b16b3f57285fe6b">Image2D</a>, <a class="el" href="classm3g_1_1IndexBuffer.html#fab6fc0a0ec393e527f849c3af10ad76">IndexBuffer</a>, <a class="el" href="classm3g_1_1KeyframeSequence.html#f925b7c3107b6cdba08dbb045b203b4f">KeyframeSequence</a>, <a class="el" href="classm3g_1_1Light.html#7a41af040d0c1566358d84f089cd0cd1">Light</a>, <a class="el" href="classm3g_1_1Material.html#1bdbc2f934efac291bf7d8f49ba10dda">Material</a>, <a class="el" href="classm3g_1_1Mesh.html#52ce6d0b3eda2bd3a95bfb5b7dbb6f82">Mesh</a>, <a class="el" href="classm3g_1_1MorphingMesh.html#7e7b2c3c4c988c6341a5e249bd468f57">MorphingMesh</a>, <a class="el" href="classm3g_1_1Node.html#0b9f7531a4b56d34f47aeb1fff0d37e0">Node</a>, <a class="el" href="classm3g_1_1SkinnedMesh.html#d3f422cf7656b73687d789094c7eae42">SkinnedMesh</a>, <a class="el" href="classm3g_1_1Sprite3D.html#0af34e87be803eb476f9e118d2363246">Sprite3D</a>, <a class="el" href="classm3g_1_1Texture2D.html#f4b50abcea8e4a6d6981c779d5009c05">Texture2D</a>, <a class="el" href="classm3g_1_1Transformable.html#4f64f95a34c56cb1553dc6de660dff6f">Transformable</a>, <a class="el" href="classm3g_1_1TriangleStripArray.html#1623fbdfe91eb2e9d4a67bece6a46904">TriangleStripArray</a>, <a class="el" href="classm3g_1_1VertexArray.html#f0dc6a5510bf837ef48129f344d666a8">VertexArray</a>, <a class="el" href="classm3g_1_1VertexBuffer.html#d069984e7455bfe074cab9497b47cadf">VertexBuffer</a>, and <a class="el" href="classm3g_1_1World.html#efde97aaf753d48fff769d9011f187f2">World</a>.</p>
+<p>Reimplemented in <a class="el" href="classm3g_1_1AnimationController.html#aab6521891038ced0961ecb78611646e">AnimationController</a>, <a class="el" href="classm3g_1_1AnimationTrack.html#e19aae30ee68ef05afd74ec9c19cf7d1">AnimationTrack</a>, <a class="el" href="classm3g_1_1Appearance.html#ceaab703eb45cba7cf8705bc3a087127">Appearance</a>, <a class="el" href="classm3g_1_1Background.html#f99eb943724fede230c51353bad6d453">Background</a>, <a class="el" href="classm3g_1_1Camera.html#6279f7f8ab52af683fadd193d7694f2d">Camera</a>, <a class="el" href="classm3g_1_1CompositingMode.html#ab6fcd945b68728bbe2c65a8f45dc8dd">CompositingMode</a>, <a class="el" href="classm3g_1_1Fog.html#d46dc959a547ee3a804fc871b83c0bbf">Fog</a>, <a class="el" href="classm3g_1_1Image2D.html#47eefc8e0b0b3d4c5b16b3f57285fe6b">Image2D</a>, <a class="el" href="classm3g_1_1IndexBuffer.html#fab6fc0a0ec393e527f849c3af10ad76">IndexBuffer</a>, <a class="el" href="classm3g_1_1KeyframeSequence.html#f925b7c3107b6cdba08dbb045b203b4f">KeyframeSequence</a>, <a class="el" href="classm3g_1_1Light.html#7a41af040d0c1566358d84f089cd0cd1">Light</a>, <a class="el" href="classm3g_1_1Material.html#1bdbc2f934efac291bf7d8f49ba10dda">Material</a>, <a class="el" href="classm3g_1_1Mesh.html#52ce6d0b3eda2bd3a95bfb5b7dbb6f82">Mesh</a>, <a class="el" href="classm3g_1_1MorphingMesh.html#7e7b2c3c4c988c6341a5e249bd468f57">MorphingMesh</a>, <a class="el" href="classm3g_1_1Node.html#0b9f7531a4b56d34f47aeb1fff0d37e0">Node</a>, <a class="el" href="classm3g_1_1PolygonMode.html#a302cb097523e044bc03198ec8448c32">PolygonMode</a>, <a class="el" href="classm3g_1_1SkinnedMesh.html#d3f422cf7656b73687d789094c7eae42">SkinnedMesh</a>, <a class="el" href="classm3g_1_1Sprite3D.html#0af34e87be803eb476f9e118d2363246">Sprite3D</a>, <a class="el" href="classm3g_1_1Texture2D.html#f4b50abcea8e4a6d6981c779d5009c05">Texture2D</a>, <a class="el" href="classm3g_1_1Transformable.html#4f64f95a34c56cb1553dc6de660dff6f">Transformable</a>, <a class="el" href="classm3g_1_1TriangleStripArray.html#1623fbdfe91eb2e9d4a67bece6a46904">TriangleStripArray</a>, <a class="el" href="classm3g_1_1VertexArray.html#f0dc6a5510bf837ef48129f344d666a8">VertexArray</a>, <a class="el" href="classm3g_1_1VertexBuffer.html#d069984e7455bfe074cab9497b47cadf">VertexBuffer</a>, and <a class="el" href="classm3g_1_1World.html#efde97aaf753d48fff769d9011f187f2">World</a>.</p>
 
 </div>
 </div><p>
@@ -253,25 +250,6 @@ Gets an <a class="el" href="classm3g_1_1AnimationTrack.html">AnimationTrack</a> 
 
 <p>
 Gets the number of AnimationTracks currently associated with this <a class="el" href="classm3g_1_1Object3D.html">Object3D</a>. 
-</div>
-</div><p>
-<a class="anchor" name="06be1b37b707b5f227cba2308043f3df"></a><!-- doxytag: member="m3g::Object3D::getObjectType" ref="06be1b37b707b5f227cba2308043f3df" args="() const " -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int getObjectType           </td>
-          <td>(</td>
-          <td class="paramname">          </td>
-          <td>&nbsp;)&nbsp;</td>
-          <td> const</td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-Retrievs object type, for inner use. 
 </div>
 </div><p>
 <a class="anchor" name="d52d3c63076c4341b34c3631a17820e4"></a><!-- doxytag: member="m3g::Object3D::getReferences" ref="d52d3c63076c4341b34c3631a17820e4" args="(Object3D **references) const " -->
@@ -350,7 +328,9 @@ Rerieves the user object that is currently associated with this <a class="el" hr
 
 <p>
 Print out information of this object, for debug only. 
-<p>Reimplemented in <a class="el" href="classm3g_1_1AnimationController.html#6fea17fa1532df3794f8cb39cb4f911f">AnimationController</a>, <a class="el" href="classm3g_1_1AnimationTrack.html#6fea17fa1532df3794f8cb39cb4f911f">AnimationTrack</a>, <a class="el" href="classm3g_1_1Appearance.html#6fea17fa1532df3794f8cb39cb4f911f">Appearance</a>, <a class="el" href="classm3g_1_1Background.html#6fea17fa1532df3794f8cb39cb4f911f">Background</a>, <a class="el" href="classm3g_1_1Camera.html#6fea17fa1532df3794f8cb39cb4f911f">Camera</a>, <a class="el" href="classm3g_1_1CompositingMode.html#6fea17fa1532df3794f8cb39cb4f911f">CompositingMode</a>, <a class="el" href="classm3g_1_1Fog.html#6fea17fa1532df3794f8cb39cb4f911f">Fog</a>, <a class="el" href="classm3g_1_1Image2D.html#6fea17fa1532df3794f8cb39cb4f911f">Image2D</a>, <a class="el" href="classm3g_1_1IndexBuffer.html#6fea17fa1532df3794f8cb39cb4f911f">IndexBuffer</a>, <a class="el" href="classm3g_1_1KeyframeSequence.html#6fea17fa1532df3794f8cb39cb4f911f">KeyframeSequence</a>, <a class="el" href="classm3g_1_1Light.html#6fea17fa1532df3794f8cb39cb4f911f">Light</a>, <a class="el" href="classm3g_1_1Material.html#6fea17fa1532df3794f8cb39cb4f911f">Material</a>, <a class="el" href="classm3g_1_1Mesh.html#6fea17fa1532df3794f8cb39cb4f911f">Mesh</a>, <a class="el" href="classm3g_1_1MorphingMesh.html#6fea17fa1532df3794f8cb39cb4f911f">MorphingMesh</a>, <a class="el" href="classm3g_1_1Node.html#6fea17fa1532df3794f8cb39cb4f911f">Node</a>, <a class="el" href="classm3g_1_1SkinnedMesh.html#6fea17fa1532df3794f8cb39cb4f911f">SkinnedMesh</a>, <a class="el" href="classm3g_1_1Sprite3D.html#6fea17fa1532df3794f8cb39cb4f911f">Sprite3D</a>, <a class="el" href="classm3g_1_1Texture2D.html#6fea17fa1532df3794f8cb39cb4f911f">Texture2D</a>, <a class="el" href="classm3g_1_1Transformable.html#6fea17fa1532df3794f8cb39cb4f911f">Transformable</a>, <a class="el" href="classm3g_1_1TriangleStripArray.html#6fea17fa1532df3794f8cb39cb4f911f">TriangleStripArray</a>, <a class="el" href="classm3g_1_1VertexArray.html#6fea17fa1532df3794f8cb39cb4f911f">VertexArray</a>, <a class="el" href="classm3g_1_1VertexBuffer.html#6fea17fa1532df3794f8cb39cb4f911f">VertexBuffer</a>, and <a class="el" href="classm3g_1_1World.html#6fea17fa1532df3794f8cb39cb4f911f">World</a>.</p>
+<p>Reimplemented from <a class="el" href="classm3g_1_1Object.html#6fea17fa1532df3794f8cb39cb4f911f">Object</a>.</p>
+
+<p>Reimplemented in <a class="el" href="classm3g_1_1AnimationController.html#6fea17fa1532df3794f8cb39cb4f911f">AnimationController</a>, <a class="el" href="classm3g_1_1AnimationTrack.html#6fea17fa1532df3794f8cb39cb4f911f">AnimationTrack</a>, <a class="el" href="classm3g_1_1Appearance.html#6fea17fa1532df3794f8cb39cb4f911f">Appearance</a>, <a class="el" href="classm3g_1_1Background.html#6fea17fa1532df3794f8cb39cb4f911f">Background</a>, <a class="el" href="classm3g_1_1Camera.html#6fea17fa1532df3794f8cb39cb4f911f">Camera</a>, <a class="el" href="classm3g_1_1CompositingMode.html#6fea17fa1532df3794f8cb39cb4f911f">CompositingMode</a>, <a class="el" href="classm3g_1_1Fog.html#6fea17fa1532df3794f8cb39cb4f911f">Fog</a>, <a class="el" href="classm3g_1_1Image2D.html#6fea17fa1532df3794f8cb39cb4f911f">Image2D</a>, <a class="el" href="classm3g_1_1IndexBuffer.html#6fea17fa1532df3794f8cb39cb4f911f">IndexBuffer</a>, <a class="el" href="classm3g_1_1KeyframeSequence.html#6fea17fa1532df3794f8cb39cb4f911f">KeyframeSequence</a>, <a class="el" href="classm3g_1_1Light.html#6fea17fa1532df3794f8cb39cb4f911f">Light</a>, <a class="el" href="classm3g_1_1Material.html#6fea17fa1532df3794f8cb39cb4f911f">Material</a>, <a class="el" href="classm3g_1_1Mesh.html#6fea17fa1532df3794f8cb39cb4f911f">Mesh</a>, <a class="el" href="classm3g_1_1MorphingMesh.html#6fea17fa1532df3794f8cb39cb4f911f">MorphingMesh</a>, <a class="el" href="classm3g_1_1Node.html#6fea17fa1532df3794f8cb39cb4f911f">Node</a>, <a class="el" href="classm3g_1_1PolygonMode.html#6fea17fa1532df3794f8cb39cb4f911f">PolygonMode</a>, <a class="el" href="classm3g_1_1SkinnedMesh.html#6fea17fa1532df3794f8cb39cb4f911f">SkinnedMesh</a>, <a class="el" href="classm3g_1_1Sprite3D.html#6fea17fa1532df3794f8cb39cb4f911f">Sprite3D</a>, <a class="el" href="classm3g_1_1Texture2D.html#6fea17fa1532df3794f8cb39cb4f911f">Texture2D</a>, <a class="el" href="classm3g_1_1Transformable.html#6fea17fa1532df3794f8cb39cb4f911f">Transformable</a>, <a class="el" href="classm3g_1_1TriangleStripArray.html#6fea17fa1532df3794f8cb39cb4f911f">TriangleStripArray</a>, <a class="el" href="classm3g_1_1VertexArray.html#6fea17fa1532df3794f8cb39cb4f911f">VertexArray</a>, <a class="el" href="classm3g_1_1VertexBuffer.html#6fea17fa1532df3794f8cb39cb4f911f">VertexBuffer</a>, and <a class="el" href="classm3g_1_1World.html#6fea17fa1532df3794f8cb39cb4f911f">World</a>.</p>
 
 </div>
 </div><p>
@@ -392,28 +372,8 @@ Removves the given <a class="el" href="classm3g_1_1AnimationTrack.html">Animatio
 
 <p>
 Render this object, for inner use. 
-<p>Reimplemented in <a class="el" href="classm3g_1_1Camera.html#8babc8a79b78615da51161e94029eea9">Camera</a>, <a class="el" href="classm3g_1_1CompositingMode.html#8babc8a79b78615da51161e94029eea9">CompositingMode</a>, <a class="el" href="classm3g_1_1Fog.html#8babc8a79b78615da51161e94029eea9">Fog</a>, <a class="el" href="classm3g_1_1IndexBuffer.html#8babc8a79b78615da51161e94029eea9">IndexBuffer</a>, <a class="el" href="classm3g_1_1Light.html#8babc8a79b78615da51161e94029eea9">Light</a>, <a class="el" href="classm3g_1_1Material.html#8babc8a79b78615da51161e94029eea9">Material</a>, <a class="el" href="classm3g_1_1Mesh.html#8babc8a79b78615da51161e94029eea9">Mesh</a>, <a class="el" href="classm3g_1_1MorphingMesh.html#8babc8a79b78615da51161e94029eea9">MorphingMesh</a>, <a class="el" href="classm3g_1_1Node.html#8babc8a79b78615da51161e94029eea9">Node</a>, <a class="el" href="classm3g_1_1SkinnedMesh.html#8babc8a79b78615da51161e94029eea9">SkinnedMesh</a>, <a class="el" href="classm3g_1_1Sprite3D.html#8babc8a79b78615da51161e94029eea9">Sprite3D</a>, <a class="el" href="classm3g_1_1Texture2D.html#8babc8a79b78615da51161e94029eea9">Texture2D</a>, <a class="el" href="classm3g_1_1Transformable.html#8babc8a79b78615da51161e94029eea9">Transformable</a>, <a class="el" href="classm3g_1_1TriangleStripArray.html#8babc8a79b78615da51161e94029eea9">TriangleStripArray</a>, <a class="el" href="classm3g_1_1VertexBuffer.html#8babc8a79b78615da51161e94029eea9">VertexBuffer</a>, and <a class="el" href="classm3g_1_1World.html#8babc8a79b78615da51161e94029eea9">World</a>.</p>
+<p>Reimplemented in <a class="el" href="classm3g_1_1Appearance.html#8babc8a79b78615da51161e94029eea9">Appearance</a>, <a class="el" href="classm3g_1_1Background.html#8babc8a79b78615da51161e94029eea9">Background</a>, <a class="el" href="classm3g_1_1Camera.html#8babc8a79b78615da51161e94029eea9">Camera</a>, <a class="el" href="classm3g_1_1CompositingMode.html#8babc8a79b78615da51161e94029eea9">CompositingMode</a>, <a class="el" href="classm3g_1_1Fog.html#8babc8a79b78615da51161e94029eea9">Fog</a>, <a class="el" href="classm3g_1_1Image2D.html#8babc8a79b78615da51161e94029eea9">Image2D</a>, <a class="el" href="classm3g_1_1IndexBuffer.html#8babc8a79b78615da51161e94029eea9">IndexBuffer</a>, <a class="el" href="classm3g_1_1Light.html#8babc8a79b78615da51161e94029eea9">Light</a>, <a class="el" href="classm3g_1_1Material.html#8babc8a79b78615da51161e94029eea9">Material</a>, <a class="el" href="classm3g_1_1Mesh.html#8babc8a79b78615da51161e94029eea9">Mesh</a>, <a class="el" href="classm3g_1_1MorphingMesh.html#8babc8a79b78615da51161e94029eea9">MorphingMesh</a>, <a class="el" href="classm3g_1_1Node.html#8babc8a79b78615da51161e94029eea9">Node</a>, <a class="el" href="classm3g_1_1PolygonMode.html#8babc8a79b78615da51161e94029eea9">PolygonMode</a>, <a class="el" href="classm3g_1_1SkinnedMesh.html#8babc8a79b78615da51161e94029eea9">SkinnedMesh</a>, <a class="el" href="classm3g_1_1Sprite3D.html#8babc8a79b78615da51161e94029eea9">Sprite3D</a>, <a class="el" href="classm3g_1_1Texture2D.html#8babc8a79b78615da51161e94029eea9">Texture2D</a>, <a class="el" href="classm3g_1_1Transformable.html#8babc8a79b78615da51161e94029eea9">Transformable</a>, <a class="el" href="classm3g_1_1TriangleStripArray.html#8babc8a79b78615da51161e94029eea9">TriangleStripArray</a>, <a class="el" href="classm3g_1_1VertexBuffer.html#8babc8a79b78615da51161e94029eea9">VertexBuffer</a>, and <a class="el" href="classm3g_1_1World.html#8babc8a79b78615da51161e94029eea9">World</a>.</p>
 
-</div>
-</div><p>
-<a class="anchor" name="777701a101d1332abffa2ad6a255b91d"></a><!-- doxytag: member="m3g::Object3D::setObjectType" ref="777701a101d1332abffa2ad6a255b91d" args="(int type)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void setObjectType           </td>
-          <td>(</td>
-          <td class="paramtype">int&nbsp;</td>
-          <td class="paramname"> <em>type</em>          </td>
-          <td>&nbsp;)&nbsp;</td>
-          <td><code> [protected]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-Sets object type. 
 </div>
 </div><p>
 <a class="anchor" name="8eaa86665b4ca2c39691b6efc50108ee"></a><!-- doxytag: member="m3g::Object3D::setUserID" ref="8eaa86665b4ca2c39691b6efc50108ee" args="(int user_id)" -->
@@ -436,39 +396,30 @@ Sets object type.
 Sets the user ID for this object. 
 </div>
 </div><p>
-<a class="anchor" name="990adc7f146e1b5d229e1d8fc3625a24"></a><!-- doxytag: member="m3g::Object3D::setUserObject" ref="990adc7f146e1b5d229e1d8fc3625a24" args="(int id, char *value)" -->
+<a class="anchor" name="2285b0af7d6d293c4cf0e0d4559fd9b5"></a><!-- doxytag: member="m3g::Object3D::setUserObject" ref="2285b0af7d6d293c4cf0e0d4559fd9b5" args="(void *user_object)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">void setUserObject           </td>
           <td>(</td>
-          <td class="paramtype">int&nbsp;</td>
-          <td class="paramname"> <em>id</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
+          <td class="paramtype">void *&nbsp;</td>
+          <td class="paramname"> <em>user_object</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
           <td></td>
-          <td class="paramtype">char *&nbsp;</td>
-          <td class="paramname"> <em>value</em></td><td>&nbsp;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td><td></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
 <p>
-Associates an arbitrary, application specific Object wth this <a class="el" href="classm3g_1_1Object3D.html">Object3D</a>. 
+Associates an arbitrary, application specific <a class="el" href="classm3g_1_1Object.html">Object</a> wth this <a class="el" href="classm3g_1_1Object3D.html">Object3D</a>. 
 </div>
 </div><p>
 <hr>The documentation for this class was generated from the following files:<ul>
 <li>/work/workspace.desktop-m3g/src/<a class="el" href="Object3D_8hpp-source.html">Object3D.hpp</a><li>/work/workspace.desktop-m3g/src/Object3D.cpp</ul>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Mon May 10 08:47:33 2010 by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Sun Jun 6 11:22:44 2010 by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.8 </small></address>
 </body>

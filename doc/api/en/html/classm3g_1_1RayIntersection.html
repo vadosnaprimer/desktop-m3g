@@ -32,14 +32,20 @@ Inheritance diagram for RayIntersection:</div>
 
 <p><center><img src="classm3g_1_1RayIntersection.png" usemap="#RayIntersection_map" border="0" alt=""></center>
 <map name="RayIntersection_map">
+<area href="classm3g_1_1Object.html" alt="Object" shape="rect" coords="0,0,99,24">
 </map>
 </div>
 
 <p>
 <a href="classm3g_1_1RayIntersection-members.html">List of all members.</a><table border="0" cellpadding="0" cellspacing="0">
 <tr><td></td></tr>
+<tr><td colspan="2"><br><h2>Classes</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><b>Ray</b></td></tr>
+
 <tr><td colspan="2"><br><h2>Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1RayIntersection.html#242b33a79f98ed90ad5a36912d2a46d5">RayIntersection</a> ()</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1RayIntersection.html#c7d946885706d0cefed30d9ee257a771">RayIntersection</a> (<a class="el" href="classm3g_1_1Node.html">Node</a> *node, const <a class="el" href="classm3g_1_1Vector.html">Vector</a> &amp;org, const <a class="el" href="classm3g_1_1Vector.html">Vector</a> &amp;dir, float t, float u, float v, int vertex_num, int *vertices, int submesh_index)</td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1RayIntersection.html#bf9eb45cc9ff31acd542bb0da1b46fe1">~RayIntersection</a> ()</td></tr>
 
@@ -60,6 +66,8 @@ Inheritance diagram for RayIntersection:</div>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">float&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1RayIntersection.html#bc14e1d5a83d5fca608b1fbf772614d4">getTextureS</a> (int index) const </td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">float&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1RayIntersection.html#843d5b907bb54a6f28571f0a0f14c932">getTextureT</a> (int index) const </td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1RayIntersection.html#ee558b3e4c2a54d66f2bb47e3dea6188">transformRay</a> (const <a class="el" href="classm3g_1_1Transform.html">Transform</a> &amp;trans)</td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">std::ostream &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1RayIntersection.html#6fea17fa1532df3794f8cb39cb4f911f">print</a> (std::ostream &amp;out) const </td></tr>
 
@@ -83,6 +91,77 @@ A RayInersection objet is filled in by the pick methods in Group. <a class="el" 
 
 <p>
 Construct sa new <a class="el" href="classm3g_1_1RayIntersection.html">RayIntersection</a> object with default values. 
+</div>
+</div><p>
+<a class="anchor" name="c7d946885706d0cefed30d9ee257a771"></a><!-- doxytag: member="m3g::RayIntersection::RayIntersection" ref="c7d946885706d0cefed30d9ee257a771" args="(Node *node, const Vector &amp;org, const Vector &amp;dir, float t, float u, float v, int vertex_num, int *vertices, int submesh_index)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classm3g_1_1RayIntersection.html">RayIntersection</a>           </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classm3g_1_1Node.html">Node</a> *&nbsp;</td>
+          <td class="paramname"> <em>node</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classm3g_1_1Vector.html">Vector</a> &amp;&nbsp;</td>
+          <td class="paramname"> <em>org</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classm3g_1_1Vector.html">Vector</a> &amp;&nbsp;</td>
+          <td class="paramname"> <em>dir</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&nbsp;</td>
+          <td class="paramname"> <em>t</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&nbsp;</td>
+          <td class="paramname"> <em>u</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&nbsp;</td>
+          <td class="paramname"> <em>v</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>vertex_num</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int *&nbsp;</td>
+          <td class="paramname"> <em>vertices</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>submesh_index</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+M3G未定義. 第１引数はNodeではなくMeshの方が良いか？ 
 </div>
 </div><p>
 <a class="anchor" name="bf9eb45cc9ff31acd542bb0da1b46fe1"></a><!-- doxytag: member="m3g::RayIntersection::~RayIntersection" ref="bf9eb45cc9ff31acd542bb0da1b46fe1" args="()" -->
@@ -297,12 +376,34 @@ Retrives the T texture coordinate at the intersection point on the picked <a cla
 
 <p>
 Print out information of this object, for debug only. 
+<p>Reimplemented from <a class="el" href="classm3g_1_1Object.html#6fea17fa1532df3794f8cb39cb4f911f">Object</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="ee558b3e4c2a54d66f2bb47e3dea6188"></a><!-- doxytag: member="m3g::RayIntersection::transformRay" ref="ee558b3e4c2a54d66f2bb47e3dea6188" args="(const Transform &amp;trans)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void transformRay           </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classm3g_1_1Transform.html">Transform</a> &amp;&nbsp;</td>
+          <td class="paramname"> <em>trans</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+レイの座標変換を行うM3G未定義 
 </div>
 </div><p>
 <hr>The documentation for this class was generated from the following files:<ul>
 <li>/work/workspace.desktop-m3g/src/<a class="el" href="RayIntersection_8hpp-source.html">RayIntersection.hpp</a><li>/work/workspace.desktop-m3g/src/RayIntersection.cpp</ul>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Mon May 10 08:47:33 2010 by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Sun Jun 6 11:22:45 2010 by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.8 </small></address>
 </body>

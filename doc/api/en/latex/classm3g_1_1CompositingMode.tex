@@ -13,7 +13,7 @@ Inheritance diagram for CompositingMode::\begin{figure}[H]
 \subsection*{Classes}
 \begin{CompactItemize}
 \item 
-struct \hyperlink{structm3g_1_1CompositingMode_1_1DepthOffset}{DepthOffset}
+struct \textbf{DepthOffset}
 \end{CompactItemize}
 \subsection*{Public Member Functions}
 \begin{CompactItemize}
@@ -58,6 +58,11 @@ virtual std::ostream \& \hyperlink{classm3g_1_1CompositingMode_6fea17fa1532df379
 \item 
 virtual void \hyperlink{classm3g_1_1CompositingMode_8babc8a79b78615da51161e94029eea9}{render} (\hyperlink{structm3g_1_1RenderState}{RenderState} \&state) const 
 \end{CompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{CompactItemize}
+\item 
+static void \hyperlink{classm3g_1_1CompositingMode_443a7a301f77f625335ecc06d13bad06}{renderX} ()
+\end{CompactItemize}
 \subsection*{Static Public Attributes}
 \begin{CompactItemize}
 \item 
@@ -70,14 +75,6 @@ static const int \hyperlink{classm3g_1_1CompositingMode_96b64c2847348fb73a90c4a5
 static const int \hyperlink{classm3g_1_1CompositingMode_cb426684e42a5ae425989c65fbb7dbc4}{MODULATE\_\-X2} = 67
 \item 
 static const int \hyperlink{classm3g_1_1CompositingMode_47a00ac5a59817a48db06fb2a538883c}{REPLACE} = 68
-\end{CompactItemize}
-\subsection*{Friends}
-\begin{CompactItemize}
-\item 
-\hypertarget{classm3g_1_1CompositingMode_afa5201a494f65c37039281d9b63a2a9}{
-class \textbf{Appearance}}
-\label{classm3g_1_1CompositingMode_afa5201a494f65c37039281d9b63a2a9}
-
 \end{CompactItemize}
 
 
@@ -187,7 +184,14 @@ Render this object, for inner use.
 
 Note: \hyperlink{classm3g_1_1CompositingMode}{CompositingMode} should be rendered only at second rendering pass(pass=2). In other cases, do nothing. 
 
-Reimplemented from \hyperlink{classm3g_1_1Object3D_8babc8a79b78615da51161e94029eea9}{Object3D}.\hypertarget{classm3g_1_1CompositingMode_6becafaefd18a2b8b1adeba491576837}{
+Reimplemented from \hyperlink{classm3g_1_1Object3D_8babc8a79b78615da51161e94029eea9}{Object3D}.\hypertarget{classm3g_1_1CompositingMode_443a7a301f77f625335ecc06d13bad06}{
+\index{m3g::CompositingMode@{m3g::CompositingMode}!renderX@{renderX}}
+\index{renderX@{renderX}!m3g::CompositingMode@{m3g::CompositingMode}}
+\subsubsection[{renderX}]{\setlength{\rightskip}{0pt plus 5cm}void renderX ()\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{classm3g_1_1CompositingMode_443a7a301f77f625335ecc06d13bad06}
+
+
+Render this object, for inner use. \hypertarget{classm3g_1_1CompositingMode_6becafaefd18a2b8b1adeba491576837}{
 \index{m3g::CompositingMode@{m3g::CompositingMode}!setAlphaThreshold@{setAlphaThreshold}}
 \index{setAlphaThreshold@{setAlphaThreshold}!m3g::CompositingMode@{m3g::CompositingMode}}
 \subsubsection[{setAlphaThreshold}]{\setlength{\rightskip}{0pt plus 5cm}void setAlphaThreshold (float {\em threshold})}}

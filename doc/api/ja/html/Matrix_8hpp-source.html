@@ -25,53 +25,56 @@
 <a name="l00005"></a>00005 
 <a name="l00006"></a>00006 <span class="keyword">namespace </span>m3g {
 <a name="l00007"></a>00007 
-<a name="l00008"></a>00008   <span class="keyword">class </span>Vector;
+<a name="l00008"></a>00008     <span class="keyword">class </span>Vector;
 <a name="l00009"></a>00009 
-<a name="l00014"></a><a class="code" href="classm3g_1_1Matrix.html">00014</a> <span class="keyword">class </span><a class="code" href="classm3g_1_1Matrix.html">Matrix</a>
-<a name="l00015"></a>00015 {
-<a name="l00016"></a>00016 <span class="keyword">public</span>:
-<a name="l00017"></a>00017   <a class="code" href="classm3g_1_1Matrix.html">Matrix</a> ();
-<a name="l00018"></a>00018   <a class="code" href="classm3g_1_1Matrix.html">Matrix</a> (<span class="keywordtype">float</span>* m4x4);
-<a name="l00019"></a>00019   <a class="code" href="classm3g_1_1Matrix.html">Matrix</a> (<span class="keywordtype">float</span> m00, <span class="keywordtype">float</span> m01, <span class="keywordtype">float</span> m02, <span class="keywordtype">float</span> m03, 
-<a name="l00020"></a>00020           <span class="keywordtype">float</span> m10, <span class="keywordtype">float</span> m11, <span class="keywordtype">float</span> m12, <span class="keywordtype">float</span> m13, 
-<a name="l00021"></a>00021           <span class="keywordtype">float</span> m20, <span class="keywordtype">float</span> m21, <span class="keywordtype">float</span> m22, <span class="keywordtype">float</span> m23, 
-<a name="l00022"></a>00022           <span class="keywordtype">float</span> m30, <span class="keywordtype">float</span> m31, <span class="keywordtype">float</span> m32, <span class="keywordtype">float</span> m33);
-<a name="l00023"></a>00023   ~<a class="code" href="classm3g_1_1Matrix.html">Matrix</a> ();
+<a name="l00014"></a><a class="code" href="classm3g_1_1Matrix.html">00014</a>     <span class="keyword">class </span><a class="code" href="classm3g_1_1Matrix.html">Matrix</a>
+<a name="l00015"></a>00015     {
+<a name="l00016"></a>00016     <span class="keyword">public</span>:
+<a name="l00017"></a>00017         <a class="code" href="classm3g_1_1Matrix.html">Matrix</a> ();
+<a name="l00018"></a>00018         <a class="code" href="classm3g_1_1Matrix.html">Matrix</a> (<span class="keywordtype">float</span>* m4x4);
+<a name="l00019"></a>00019         <a class="code" href="classm3g_1_1Matrix.html">Matrix</a> (<span class="keywordtype">float</span> m00, <span class="keywordtype">float</span> m01, <span class="keywordtype">float</span> m02, <span class="keywordtype">float</span> m03, 
+<a name="l00020"></a>00020                 <span class="keywordtype">float</span> m10, <span class="keywordtype">float</span> m11, <span class="keywordtype">float</span> m12, <span class="keywordtype">float</span> m13, 
+<a name="l00021"></a>00021                 <span class="keywordtype">float</span> m20, <span class="keywordtype">float</span> m21, <span class="keywordtype">float</span> m22, <span class="keywordtype">float</span> m23, 
+<a name="l00022"></a>00022                 <span class="keywordtype">float</span> m30, <span class="keywordtype">float</span> m31, <span class="keywordtype">float</span> m32, <span class="keywordtype">float</span> m33);
+<a name="l00023"></a>00023         ~<a class="code" href="classm3g_1_1Matrix.html">Matrix</a> ();
 <a name="l00024"></a>00024 
-<a name="l00025"></a>00025   <a class="code" href="classm3g_1_1Matrix.html">Matrix</a> getInverse () <span class="keyword">const</span>;
-<a name="l00026"></a>00026 
-<a name="l00027"></a>00027   <span class="keywordtype">void</span> <span class="keyword">set</span>(<span class="keyword">const</span> <span class="keywordtype">float</span>* mat);
-<a name="l00028"></a>00028   <span class="keywordtype">void</span> setIdentity();
-<a name="l00029"></a>00029   <span class="keywordtype">void</span> setRotate (<span class="keywordtype">float</span> angle, <span class="keywordtype">float</span> ax, <span class="keywordtype">float</span> ay, <span class="keywordtype">float</span> az);
-<a name="l00030"></a>00030   <span class="keywordtype">void</span> setScale (<span class="keywordtype">float</span> sx, <span class="keywordtype">float</span> sy, <span class="keywordtype">float</span> sz);
-<a name="l00031"></a>00031   <span class="keywordtype">void</span> setTranslate (<span class="keywordtype">float</span> tx, <span class="keywordtype">float</span> ty, <span class="keywordtype">float</span> tz);
-<a name="l00032"></a>00032 
-<a name="l00033"></a>00033   <a class="code" href="classm3g_1_1Matrix.html">Matrix</a>&amp; invert ();
-<a name="l00034"></a>00034   <a class="code" href="classm3g_1_1Matrix.html">Matrix</a>&amp; transpose ();
-<a name="l00035"></a>00035   <a class="code" href="classm3g_1_1Matrix.html">Matrix</a>&amp; operator*= (<span class="keyword">const</span> <a class="code" href="classm3g_1_1Matrix.html">Matrix</a>&amp; rhs);
-<a name="l00036"></a>00036 
-<a name="l00037"></a>00037   <span class="keywordtype">float</span>&amp; operator[] (<span class="keywordtype">int</span> n);
-<a name="l00038"></a>00038   <span class="keyword">const</span> <span class="keywordtype">float</span>&amp; operator[] (<span class="keywordtype">int</span> n) <span class="keyword">const</span>;
-<a name="l00039"></a>00039 
-<a name="l00040"></a>00040   std::ostream&amp; print (std::ostream&amp; out) <span class="keyword">const</span>;
-<a name="l00041"></a>00041 
-<a name="l00042"></a>00042 <span class="keyword">public</span>:
-<a name="l00043"></a>00043   <span class="keywordtype">float</span> m[16];
-<a name="l00044"></a>00044 };
-<a name="l00045"></a>00045 
+<a name="l00025"></a>00025         <a class="code" href="classm3g_1_1Matrix.html">Matrix</a> getInverse () <span class="keyword">const</span>;
+<a name="l00026"></a>00026         <a class="code" href="classm3g_1_1Matrix.html">Matrix</a> get3x3 () <span class="keyword">const</span>;
+<a name="l00027"></a>00027 
+<a name="l00028"></a>00028         <span class="keywordtype">void</span> <span class="keyword">set</span>(<span class="keyword">const</span> <span class="keywordtype">float</span>* mat);
+<a name="l00029"></a>00029         <span class="keywordtype">void</span> setIdentity();
+<a name="l00030"></a>00030         <span class="keywordtype">void</span> setRotate (<span class="keywordtype">float</span> angle, <span class="keywordtype">float</span> ax, <span class="keywordtype">float</span> ay, <span class="keywordtype">float</span> az);
+<a name="l00031"></a>00031         <span class="keywordtype">void</span> setScale (<span class="keywordtype">float</span> sx, <span class="keywordtype">float</span> sy, <span class="keywordtype">float</span> sz);
+<a name="l00032"></a>00032         <span class="keywordtype">void</span> setTranslate (<span class="keywordtype">float</span> tx, <span class="keywordtype">float</span> ty, <span class="keywordtype">float</span> tz);
+<a name="l00033"></a>00033 
+<a name="l00034"></a>00034         <a class="code" href="classm3g_1_1Matrix.html">Matrix</a>&amp; invert ();
+<a name="l00035"></a>00035         <a class="code" href="classm3g_1_1Matrix.html">Matrix</a>&amp; transpose ();
+<a name="l00036"></a>00036         <a class="code" href="classm3g_1_1Matrix.html">Matrix</a>&amp; operator*= (<span class="keyword">const</span> <a class="code" href="classm3g_1_1Matrix.html">Matrix</a>&amp; rhs);
+<a name="l00037"></a>00037 
+<a name="l00038"></a>00038         <span class="keywordtype">float</span>&amp; operator[] (<span class="keywordtype">int</span> n);
+<a name="l00039"></a>00039         <span class="keyword">const</span> <span class="keywordtype">float</span>&amp; operator[] (<span class="keywordtype">int</span> n) <span class="keyword">const</span>;
+<a name="l00040"></a>00040 
+<a name="l00041"></a>00041         std::ostream&amp; print (std::ostream&amp; out) <span class="keyword">const</span>;
+<a name="l00042"></a>00042 
+<a name="l00043"></a>00043     <span class="keyword">public</span>:
+<a name="l00044"></a>00044         <span class="keywordtype">float</span> m[16];
+<a name="l00045"></a>00045     };
 <a name="l00046"></a>00046 
 <a name="l00047"></a>00047 
-<a name="l00048"></a>00048 } <span class="comment">// namespace m3g {</span>
-<a name="l00049"></a>00049 
-<a name="l00050"></a>00050 
-<a name="l00051"></a>00051 <a class="code" href="classm3g_1_1Matrix.html">m3g:: Matrix</a> operator* (<span class="keyword">const</span> <a class="code" href="classm3g_1_1Matrix.html">m3g::Matrix</a>&amp; lhs, <span class="keyword">const</span> <a class="code" href="classm3g_1_1Matrix.html">m3g::Matrix</a>&amp; rhs);
-<a name="l00052"></a>00052 <a class="code" href="classm3g_1_1Vector.html">m3g:: Vector</a> operator* (<span class="keyword">const</span> <a class="code" href="classm3g_1_1Matrix.html">m3g::Matrix</a>&amp; m, <span class="keyword">const</span> <a class="code" href="classm3g_1_1Vector.html">m3g::Vector</a>&amp; v);
-<a name="l00053"></a>00053 std::ostream&amp; operator&lt;&lt; (std::ostream&amp; out, <span class="keyword">const</span> <a class="code" href="classm3g_1_1Matrix.html">m3g::Matrix</a>&amp; mat);
-<a name="l00054"></a>00054 
-<a name="l00055"></a>00055 
-<a name="l00056"></a>00056 <span class="preprocessor">#endif</span>
+<a name="l00048"></a>00048     <a class="code" href="classm3g_1_1Matrix.html">Matrix</a> make_parallel_projection_matrix    (<span class="keywordtype">float</span> height, <span class="keywordtype">float</span> aspect_ratio, <span class="keywordtype">float</span> near, <span class="keywordtype">float</span> far);
+<a name="l00049"></a>00049     <a class="code" href="classm3g_1_1Matrix.html">Matrix</a> make_perspective_projection_matrix (<span class="keywordtype">float</span> fovy, <span class="keywordtype">float</span> aspect_ratio, <span class="keywordtype">float</span> near, <span class="keywordtype">float</span> far);
+<a name="l00050"></a>00050     
+<a name="l00051"></a>00051 } <span class="comment">// namespace m3g {</span>
+<a name="l00052"></a>00052 
+<a name="l00053"></a>00053 
+<a name="l00054"></a>00054 <a class="code" href="classm3g_1_1Matrix.html">m3g:: Matrix</a> operator* (<span class="keyword">const</span> <a class="code" href="classm3g_1_1Matrix.html">m3g::Matrix</a>&amp; lhs, <span class="keyword">const</span> <a class="code" href="classm3g_1_1Matrix.html">m3g::Matrix</a>&amp; rhs);
+<a name="l00055"></a>00055 <a class="code" href="classm3g_1_1Vector.html">m3g:: Vector</a> operator* (<span class="keyword">const</span> <a class="code" href="classm3g_1_1Matrix.html">m3g::Matrix</a>&amp; m, <span class="keyword">const</span> <a class="code" href="classm3g_1_1Vector.html">m3g::Vector</a>&amp; v);
+<a name="l00056"></a>00056 std::ostream&amp; operator&lt;&lt; (std::ostream&amp; out, <span class="keyword">const</span> <a class="code" href="classm3g_1_1Matrix.html">m3g::Matrix</a>&amp; mat);
+<a name="l00057"></a>00057 
+<a name="l00058"></a>00058 
+<a name="l00059"></a>00059 <span class="preprocessor">#endif</span>
 </pre></div></div>
-<hr size="1"><address style="text-align: right;"><small>Mon May 10 08:47:23 2010に生成されました。&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Sun Jun 6 11:22:34 2010に生成されました。&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.8 </small></address>
 </body>

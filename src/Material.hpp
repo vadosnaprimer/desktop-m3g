@@ -12,7 +12,6 @@ namespace m3g {
      */
     class Material : public Object3D
     {
-        friend class Appearance;  // for findByType
 
     public:
         /**

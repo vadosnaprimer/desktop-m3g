@@ -39,18 +39,11 @@ void \hyperlink{classm3g_1_1Object3D_e36d8f8544daee6bd4e2ccd6755ed03d}{removeAni
 \item 
 void \hyperlink{classm3g_1_1Object3D_8eaa86665b4ca2c39691b6efc50108ee}{setUserID} (int user\_\-id)
 \item 
-void \hyperlink{classm3g_1_1Object3D_990adc7f146e1b5d229e1d8fc3625a24}{setUserObject} (int id, char $\ast$value)
-\item 
-int \hyperlink{classm3g_1_1Object3D_06be1b37b707b5f227cba2308043f3df}{getObjectType} () const 
+void \hyperlink{classm3g_1_1Object3D_2285b0af7d6d293c4cf0e0d4559fd9b5}{setUserObject} (void $\ast$user\_\-object)
 \item 
 virtual std::ostream \& \hyperlink{classm3g_1_1Object3D_6fea17fa1532df3794f8cb39cb4f911f}{print} (std::ostream \&out) const 
 \item 
 virtual void \hyperlink{classm3g_1_1Object3D_8babc8a79b78615da51161e94029eea9}{render} (\hyperlink{structm3g_1_1RenderState}{RenderState} \&state) const 
-\end{CompactItemize}
-\subsection*{Protected Member Functions}
-\begin{CompactItemize}
-\item 
-void \hyperlink{classm3g_1_1Object3D_777701a101d1332abffa2ad6a255b91d}{setObjectType} (int type)
 \end{CompactItemize}
 
 
@@ -102,7 +95,7 @@ Reimplemented in \hyperlink{classm3g_1_1Appearance_8aad1ceab4c2a03609c8a42324ce4
 
 Creates a duplicate of this \hyperlink{classm3g_1_1Object3D}{Object3D}. 
 
-Reimplemented in \hyperlink{classm3g_1_1AnimationController_aab6521891038ced0961ecb78611646e}{AnimationController}, \hyperlink{classm3g_1_1AnimationTrack_e19aae30ee68ef05afd74ec9c19cf7d1}{AnimationTrack}, \hyperlink{classm3g_1_1Appearance_ceaab703eb45cba7cf8705bc3a087127}{Appearance}, \hyperlink{classm3g_1_1Background_f99eb943724fede230c51353bad6d453}{Background}, \hyperlink{classm3g_1_1Camera_6279f7f8ab52af683fadd193d7694f2d}{Camera}, \hyperlink{classm3g_1_1CompositingMode_ab6fcd945b68728bbe2c65a8f45dc8dd}{CompositingMode}, \hyperlink{classm3g_1_1Fog_d46dc959a547ee3a804fc871b83c0bbf}{Fog}, \hyperlink{classm3g_1_1Image2D_47eefc8e0b0b3d4c5b16b3f57285fe6b}{Image2D}, \hyperlink{classm3g_1_1IndexBuffer_fab6fc0a0ec393e527f849c3af10ad76}{IndexBuffer}, \hyperlink{classm3g_1_1KeyframeSequence_f925b7c3107b6cdba08dbb045b203b4f}{KeyframeSequence}, \hyperlink{classm3g_1_1Light_7a41af040d0c1566358d84f089cd0cd1}{Light}, \hyperlink{classm3g_1_1Material_1bdbc2f934efac291bf7d8f49ba10dda}{Material}, \hyperlink{classm3g_1_1Mesh_52ce6d0b3eda2bd3a95bfb5b7dbb6f82}{Mesh}, \hyperlink{classm3g_1_1MorphingMesh_7e7b2c3c4c988c6341a5e249bd468f57}{MorphingMesh}, \hyperlink{classm3g_1_1Node_0b9f7531a4b56d34f47aeb1fff0d37e0}{Node}, \hyperlink{classm3g_1_1SkinnedMesh_d3f422cf7656b73687d789094c7eae42}{SkinnedMesh}, \hyperlink{classm3g_1_1Sprite3D_0af34e87be803eb476f9e118d2363246}{Sprite3D}, \hyperlink{classm3g_1_1Texture2D_f4b50abcea8e4a6d6981c779d5009c05}{Texture2D}, \hyperlink{classm3g_1_1Transformable_4f64f95a34c56cb1553dc6de660dff6f}{Transformable}, \hyperlink{classm3g_1_1TriangleStripArray_1623fbdfe91eb2e9d4a67bece6a46904}{TriangleStripArray}, \hyperlink{classm3g_1_1VertexArray_f0dc6a5510bf837ef48129f344d666a8}{VertexArray}, \hyperlink{classm3g_1_1VertexBuffer_d069984e7455bfe074cab9497b47cadf}{VertexBuffer}, and \hyperlink{classm3g_1_1World_efde97aaf753d48fff769d9011f187f2}{World}.\hypertarget{classm3g_1_1Object3D_01924458161ea59220f2cc29339e2b00}{
+Reimplemented in \hyperlink{classm3g_1_1AnimationController_aab6521891038ced0961ecb78611646e}{AnimationController}, \hyperlink{classm3g_1_1AnimationTrack_e19aae30ee68ef05afd74ec9c19cf7d1}{AnimationTrack}, \hyperlink{classm3g_1_1Appearance_ceaab703eb45cba7cf8705bc3a087127}{Appearance}, \hyperlink{classm3g_1_1Background_f99eb943724fede230c51353bad6d453}{Background}, \hyperlink{classm3g_1_1Camera_6279f7f8ab52af683fadd193d7694f2d}{Camera}, \hyperlink{classm3g_1_1CompositingMode_ab6fcd945b68728bbe2c65a8f45dc8dd}{CompositingMode}, \hyperlink{classm3g_1_1Fog_d46dc959a547ee3a804fc871b83c0bbf}{Fog}, \hyperlink{classm3g_1_1Image2D_47eefc8e0b0b3d4c5b16b3f57285fe6b}{Image2D}, \hyperlink{classm3g_1_1IndexBuffer_fab6fc0a0ec393e527f849c3af10ad76}{IndexBuffer}, \hyperlink{classm3g_1_1KeyframeSequence_f925b7c3107b6cdba08dbb045b203b4f}{KeyframeSequence}, \hyperlink{classm3g_1_1Light_7a41af040d0c1566358d84f089cd0cd1}{Light}, \hyperlink{classm3g_1_1Material_1bdbc2f934efac291bf7d8f49ba10dda}{Material}, \hyperlink{classm3g_1_1Mesh_52ce6d0b3eda2bd3a95bfb5b7dbb6f82}{Mesh}, \hyperlink{classm3g_1_1MorphingMesh_7e7b2c3c4c988c6341a5e249bd468f57}{MorphingMesh}, \hyperlink{classm3g_1_1Node_0b9f7531a4b56d34f47aeb1fff0d37e0}{Node}, \hyperlink{classm3g_1_1PolygonMode_a302cb097523e044bc03198ec8448c32}{PolygonMode}, \hyperlink{classm3g_1_1SkinnedMesh_d3f422cf7656b73687d789094c7eae42}{SkinnedMesh}, \hyperlink{classm3g_1_1Sprite3D_0af34e87be803eb476f9e118d2363246}{Sprite3D}, \hyperlink{classm3g_1_1Texture2D_f4b50abcea8e4a6d6981c779d5009c05}{Texture2D}, \hyperlink{classm3g_1_1Transformable_4f64f95a34c56cb1553dc6de660dff6f}{Transformable}, \hyperlink{classm3g_1_1TriangleStripArray_1623fbdfe91eb2e9d4a67bece6a46904}{TriangleStripArray}, \hyperlink{classm3g_1_1VertexArray_f0dc6a5510bf837ef48129f344d666a8}{VertexArray}, \hyperlink{classm3g_1_1VertexBuffer_d069984e7455bfe074cab9497b47cadf}{VertexBuffer}, and \hyperlink{classm3g_1_1World_efde97aaf753d48fff769d9011f187f2}{World}.\hypertarget{classm3g_1_1Object3D_01924458161ea59220f2cc29339e2b00}{
 \index{m3g::Object3D@{m3g::Object3D}!find@{find}}
 \index{find@{find}!m3g::Object3D@{m3g::Object3D}}
 \subsubsection[{find}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Object3D} $\ast$ find (int {\em user\_\-id}) const\hspace{0.3cm}{\tt  \mbox{[}virtual\mbox{]}}}}
@@ -123,14 +116,7 @@ Gets an \hyperlink{classm3g_1_1AnimationTrack}{AnimationTrack} by index. \hypert
 \label{classm3g_1_1Object3D_0926843b66090795972850376b8e4e6c}
 
 
-Gets the number of AnimationTracks currently associated with this \hyperlink{classm3g_1_1Object3D}{Object3D}. \hypertarget{classm3g_1_1Object3D_06be1b37b707b5f227cba2308043f3df}{
-\index{m3g::Object3D@{m3g::Object3D}!getObjectType@{getObjectType}}
-\index{getObjectType@{getObjectType}!m3g::Object3D@{m3g::Object3D}}
-\subsubsection[{getObjectType}]{\setlength{\rightskip}{0pt plus 5cm}int getObjectType () const}}
-\label{classm3g_1_1Object3D_06be1b37b707b5f227cba2308043f3df}
-
-
-Retrievs object type, for inner use. \hypertarget{classm3g_1_1Object3D_d52d3c63076c4341b34c3631a17820e4}{
+Gets the number of AnimationTracks currently associated with this \hyperlink{classm3g_1_1Object3D}{Object3D}. \hypertarget{classm3g_1_1Object3D_d52d3c63076c4341b34c3631a17820e4}{
 \index{m3g::Object3D@{m3g::Object3D}!getReferences@{getReferences}}
 \index{getReferences@{getReferences}!m3g::Object3D@{m3g::Object3D}}
 \subsubsection[{getReferences}]{\setlength{\rightskip}{0pt plus 5cm}int getReferences ({\bf Object3D} $\ast$$\ast$ {\em references}) const\hspace{0.3cm}{\tt  \mbox{[}virtual\mbox{]}}}}
@@ -160,7 +146,9 @@ Rerieves the user object that is currently associated with this \hyperlink{class
 
 Print out information of this object, for debug only. 
 
-Reimplemented in \hyperlink{classm3g_1_1AnimationController_6fea17fa1532df3794f8cb39cb4f911f}{AnimationController}, \hyperlink{classm3g_1_1AnimationTrack_6fea17fa1532df3794f8cb39cb4f911f}{AnimationTrack}, \hyperlink{classm3g_1_1Appearance_6fea17fa1532df3794f8cb39cb4f911f}{Appearance}, \hyperlink{classm3g_1_1Background_6fea17fa1532df3794f8cb39cb4f911f}{Background}, \hyperlink{classm3g_1_1Camera_6fea17fa1532df3794f8cb39cb4f911f}{Camera}, \hyperlink{classm3g_1_1CompositingMode_6fea17fa1532df3794f8cb39cb4f911f}{CompositingMode}, \hyperlink{classm3g_1_1Fog_6fea17fa1532df3794f8cb39cb4f911f}{Fog}, \hyperlink{classm3g_1_1Image2D_6fea17fa1532df3794f8cb39cb4f911f}{Image2D}, \hyperlink{classm3g_1_1IndexBuffer_6fea17fa1532df3794f8cb39cb4f911f}{IndexBuffer}, \hyperlink{classm3g_1_1KeyframeSequence_6fea17fa1532df3794f8cb39cb4f911f}{KeyframeSequence}, \hyperlink{classm3g_1_1Light_6fea17fa1532df3794f8cb39cb4f911f}{Light}, \hyperlink{classm3g_1_1Material_6fea17fa1532df3794f8cb39cb4f911f}{Material}, \hyperlink{classm3g_1_1Mesh_6fea17fa1532df3794f8cb39cb4f911f}{Mesh}, \hyperlink{classm3g_1_1MorphingMesh_6fea17fa1532df3794f8cb39cb4f911f}{MorphingMesh}, \hyperlink{classm3g_1_1Node_6fea17fa1532df3794f8cb39cb4f911f}{Node}, \hyperlink{classm3g_1_1SkinnedMesh_6fea17fa1532df3794f8cb39cb4f911f}{SkinnedMesh}, \hyperlink{classm3g_1_1Sprite3D_6fea17fa1532df3794f8cb39cb4f911f}{Sprite3D}, \hyperlink{classm3g_1_1Texture2D_6fea17fa1532df3794f8cb39cb4f911f}{Texture2D}, \hyperlink{classm3g_1_1Transformable_6fea17fa1532df3794f8cb39cb4f911f}{Transformable}, \hyperlink{classm3g_1_1TriangleStripArray_6fea17fa1532df3794f8cb39cb4f911f}{TriangleStripArray}, \hyperlink{classm3g_1_1VertexArray_6fea17fa1532df3794f8cb39cb4f911f}{VertexArray}, \hyperlink{classm3g_1_1VertexBuffer_6fea17fa1532df3794f8cb39cb4f911f}{VertexBuffer}, and \hyperlink{classm3g_1_1World_6fea17fa1532df3794f8cb39cb4f911f}{World}.\hypertarget{classm3g_1_1Object3D_e36d8f8544daee6bd4e2ccd6755ed03d}{
+Reimplemented from \hyperlink{classm3g_1_1Object_6fea17fa1532df3794f8cb39cb4f911f}{Object}.
+
+Reimplemented in \hyperlink{classm3g_1_1AnimationController_6fea17fa1532df3794f8cb39cb4f911f}{AnimationController}, \hyperlink{classm3g_1_1AnimationTrack_6fea17fa1532df3794f8cb39cb4f911f}{AnimationTrack}, \hyperlink{classm3g_1_1Appearance_6fea17fa1532df3794f8cb39cb4f911f}{Appearance}, \hyperlink{classm3g_1_1Background_6fea17fa1532df3794f8cb39cb4f911f}{Background}, \hyperlink{classm3g_1_1Camera_6fea17fa1532df3794f8cb39cb4f911f}{Camera}, \hyperlink{classm3g_1_1CompositingMode_6fea17fa1532df3794f8cb39cb4f911f}{CompositingMode}, \hyperlink{classm3g_1_1Fog_6fea17fa1532df3794f8cb39cb4f911f}{Fog}, \hyperlink{classm3g_1_1Image2D_6fea17fa1532df3794f8cb39cb4f911f}{Image2D}, \hyperlink{classm3g_1_1IndexBuffer_6fea17fa1532df3794f8cb39cb4f911f}{IndexBuffer}, \hyperlink{classm3g_1_1KeyframeSequence_6fea17fa1532df3794f8cb39cb4f911f}{KeyframeSequence}, \hyperlink{classm3g_1_1Light_6fea17fa1532df3794f8cb39cb4f911f}{Light}, \hyperlink{classm3g_1_1Material_6fea17fa1532df3794f8cb39cb4f911f}{Material}, \hyperlink{classm3g_1_1Mesh_6fea17fa1532df3794f8cb39cb4f911f}{Mesh}, \hyperlink{classm3g_1_1MorphingMesh_6fea17fa1532df3794f8cb39cb4f911f}{MorphingMesh}, \hyperlink{classm3g_1_1Node_6fea17fa1532df3794f8cb39cb4f911f}{Node}, \hyperlink{classm3g_1_1PolygonMode_6fea17fa1532df3794f8cb39cb4f911f}{PolygonMode}, \hyperlink{classm3g_1_1SkinnedMesh_6fea17fa1532df3794f8cb39cb4f911f}{SkinnedMesh}, \hyperlink{classm3g_1_1Sprite3D_6fea17fa1532df3794f8cb39cb4f911f}{Sprite3D}, \hyperlink{classm3g_1_1Texture2D_6fea17fa1532df3794f8cb39cb4f911f}{Texture2D}, \hyperlink{classm3g_1_1Transformable_6fea17fa1532df3794f8cb39cb4f911f}{Transformable}, \hyperlink{classm3g_1_1TriangleStripArray_6fea17fa1532df3794f8cb39cb4f911f}{TriangleStripArray}, \hyperlink{classm3g_1_1VertexArray_6fea17fa1532df3794f8cb39cb4f911f}{VertexArray}, \hyperlink{classm3g_1_1VertexBuffer_6fea17fa1532df3794f8cb39cb4f911f}{VertexBuffer}, and \hyperlink{classm3g_1_1World_6fea17fa1532df3794f8cb39cb4f911f}{World}.\hypertarget{classm3g_1_1Object3D_e36d8f8544daee6bd4e2ccd6755ed03d}{
 \index{m3g::Object3D@{m3g::Object3D}!removeAnimationTrack@{removeAnimationTrack}}
 \index{removeAnimationTrack@{removeAnimationTrack}!m3g::Object3D@{m3g::Object3D}}
 \subsubsection[{removeAnimationTrack}]{\setlength{\rightskip}{0pt plus 5cm}void removeAnimationTrack ({\bf AnimationTrack} $\ast$ {\em animation\_\-track})}}
@@ -176,28 +164,21 @@ Removves the given \hyperlink{classm3g_1_1AnimationTrack}{AnimationTrack} from t
 
 Render this object, for inner use. 
 
-Reimplemented in \hyperlink{classm3g_1_1Camera_8babc8a79b78615da51161e94029eea9}{Camera}, \hyperlink{classm3g_1_1CompositingMode_8babc8a79b78615da51161e94029eea9}{CompositingMode}, \hyperlink{classm3g_1_1Fog_8babc8a79b78615da51161e94029eea9}{Fog}, \hyperlink{classm3g_1_1IndexBuffer_8babc8a79b78615da51161e94029eea9}{IndexBuffer}, \hyperlink{classm3g_1_1Light_8babc8a79b78615da51161e94029eea9}{Light}, \hyperlink{classm3g_1_1Material_8babc8a79b78615da51161e94029eea9}{Material}, \hyperlink{classm3g_1_1Mesh_8babc8a79b78615da51161e94029eea9}{Mesh}, \hyperlink{classm3g_1_1MorphingMesh_8babc8a79b78615da51161e94029eea9}{MorphingMesh}, \hyperlink{classm3g_1_1Node_8babc8a79b78615da51161e94029eea9}{Node}, \hyperlink{classm3g_1_1SkinnedMesh_8babc8a79b78615da51161e94029eea9}{SkinnedMesh}, \hyperlink{classm3g_1_1Sprite3D_8babc8a79b78615da51161e94029eea9}{Sprite3D}, \hyperlink{classm3g_1_1Texture2D_8babc8a79b78615da51161e94029eea9}{Texture2D}, \hyperlink{classm3g_1_1Transformable_8babc8a79b78615da51161e94029eea9}{Transformable}, \hyperlink{classm3g_1_1TriangleStripArray_8babc8a79b78615da51161e94029eea9}{TriangleStripArray}, \hyperlink{classm3g_1_1VertexBuffer_8babc8a79b78615da51161e94029eea9}{VertexBuffer}, and \hyperlink{classm3g_1_1World_8babc8a79b78615da51161e94029eea9}{World}.\hypertarget{classm3g_1_1Object3D_777701a101d1332abffa2ad6a255b91d}{
-\index{m3g::Object3D@{m3g::Object3D}!setObjectType@{setObjectType}}
-\index{setObjectType@{setObjectType}!m3g::Object3D@{m3g::Object3D}}
-\subsubsection[{setObjectType}]{\setlength{\rightskip}{0pt plus 5cm}void setObjectType (int {\em type})\hspace{0.3cm}{\tt  \mbox{[}protected\mbox{]}}}}
-\label{classm3g_1_1Object3D_777701a101d1332abffa2ad6a255b91d}
-
-
-Sets object type. \hypertarget{classm3g_1_1Object3D_8eaa86665b4ca2c39691b6efc50108ee}{
+Reimplemented in \hyperlink{classm3g_1_1Appearance_8babc8a79b78615da51161e94029eea9}{Appearance}, \hyperlink{classm3g_1_1Background_8babc8a79b78615da51161e94029eea9}{Background}, \hyperlink{classm3g_1_1Camera_8babc8a79b78615da51161e94029eea9}{Camera}, \hyperlink{classm3g_1_1CompositingMode_8babc8a79b78615da51161e94029eea9}{CompositingMode}, \hyperlink{classm3g_1_1Fog_8babc8a79b78615da51161e94029eea9}{Fog}, \hyperlink{classm3g_1_1Image2D_8babc8a79b78615da51161e94029eea9}{Image2D}, \hyperlink{classm3g_1_1IndexBuffer_8babc8a79b78615da51161e94029eea9}{IndexBuffer}, \hyperlink{classm3g_1_1Light_8babc8a79b78615da51161e94029eea9}{Light}, \hyperlink{classm3g_1_1Material_8babc8a79b78615da51161e94029eea9}{Material}, \hyperlink{classm3g_1_1Mesh_8babc8a79b78615da51161e94029eea9}{Mesh}, \hyperlink{classm3g_1_1MorphingMesh_8babc8a79b78615da51161e94029eea9}{MorphingMesh}, \hyperlink{classm3g_1_1Node_8babc8a79b78615da51161e94029eea9}{Node}, \hyperlink{classm3g_1_1PolygonMode_8babc8a79b78615da51161e94029eea9}{PolygonMode}, \hyperlink{classm3g_1_1SkinnedMesh_8babc8a79b78615da51161e94029eea9}{SkinnedMesh}, \hyperlink{classm3g_1_1Sprite3D_8babc8a79b78615da51161e94029eea9}{Sprite3D}, \hyperlink{classm3g_1_1Texture2D_8babc8a79b78615da51161e94029eea9}{Texture2D}, \hyperlink{classm3g_1_1Transformable_8babc8a79b78615da51161e94029eea9}{Transformable}, \hyperlink{classm3g_1_1TriangleStripArray_8babc8a79b78615da51161e94029eea9}{TriangleStripArray}, \hyperlink{classm3g_1_1VertexBuffer_8babc8a79b78615da51161e94029eea9}{VertexBuffer}, and \hyperlink{classm3g_1_1World_8babc8a79b78615da51161e94029eea9}{World}.\hypertarget{classm3g_1_1Object3D_8eaa86665b4ca2c39691b6efc50108ee}{
 \index{m3g::Object3D@{m3g::Object3D}!setUserID@{setUserID}}
 \index{setUserID@{setUserID}!m3g::Object3D@{m3g::Object3D}}
 \subsubsection[{setUserID}]{\setlength{\rightskip}{0pt plus 5cm}void setUserID (int {\em user\_\-id})}}
 \label{classm3g_1_1Object3D_8eaa86665b4ca2c39691b6efc50108ee}
 
 
-Sets the user ID for this object. \hypertarget{classm3g_1_1Object3D_990adc7f146e1b5d229e1d8fc3625a24}{
+Sets the user ID for this object. \hypertarget{classm3g_1_1Object3D_2285b0af7d6d293c4cf0e0d4559fd9b5}{
 \index{m3g::Object3D@{m3g::Object3D}!setUserObject@{setUserObject}}
 \index{setUserObject@{setUserObject}!m3g::Object3D@{m3g::Object3D}}
-\subsubsection[{setUserObject}]{\setlength{\rightskip}{0pt plus 5cm}void setUserObject (int {\em id}, \/  char $\ast$ {\em value})}}
-\label{classm3g_1_1Object3D_990adc7f146e1b5d229e1d8fc3625a24}
+\subsubsection[{setUserObject}]{\setlength{\rightskip}{0pt plus 5cm}void setUserObject (void $\ast$ {\em user\_\-object})}}
+\label{classm3g_1_1Object3D_2285b0af7d6d293c4cf0e0d4559fd9b5}
 
 
-Associates an arbitrary, application specific Object wth this \hyperlink{classm3g_1_1Object3D}{Object3D}. 
+Associates an arbitrary, application specific \hyperlink{classm3g_1_1Object}{Object} wth this \hyperlink{classm3g_1_1Object3D}{Object3D}. 
 
 The documentation for this class was generated from the following files:\begin{CompactItemize}
 \item 

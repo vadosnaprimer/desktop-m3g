@@ -13,9 +13,9 @@ Backgroundに対する継承グラフ:\begin{figure}[H]
 \subsection*{構成}
 \begin{CompactItemize}
 \item 
-struct \hyperlink{structm3g_1_1Background_1_1CropRect}{CropRect}
+struct \textbf{CropRect}
 \item 
-struct \hyperlink{structm3g_1_1Background_1_1ImageMode}{ImageMode}
+struct \textbf{ImageMode}
 \end{CompactItemize}
 \subsection*{Public メソッド}
 \begin{CompactItemize}
@@ -63,6 +63,13 @@ void \hyperlink{classm3g_1_1Background_705b89b41cd1b38f664ed912be44baaa}{setImag
 void \hyperlink{classm3g_1_1Background_aba37cb460a2376f1a4722eebb4de9a9}{setImageMode} (int mode\_\-x, int mode\_\-y)
 \item 
 virtual std::ostream \& \hyperlink{classm3g_1_1Background_6fea17fa1532df3794f8cb39cb4f911f}{print} (std::ostream \&out) const 
+\item 
+virtual void \hyperlink{classm3g_1_1Background_8babc8a79b78615da51161e94029eea9}{render} (\hyperlink{structm3g_1_1RenderState}{RenderState} \&state) const 
+\end{CompactItemize}
+\subsection*{Static Public メソッド}
+\begin{CompactItemize}
+\item 
+static void \hyperlink{classm3g_1_1Background_443a7a301f77f625335ecc06d13bad06}{renderX} ()
 \end{CompactItemize}
 \subsection*{Static Public 変数}
 \begin{CompactItemize}
@@ -70,14 +77,6 @@ virtual std::ostream \& \hyperlink{classm3g_1_1Background_6fea17fa1532df3794f8cb
 static const int \hyperlink{classm3g_1_1Background_ee380e01b33e589c24984e4c4c1c6501}{BORDER} = 32
 \item 
 static const int \hyperlink{classm3g_1_1Background_a466d02b3d88f856854d0a0955be32e8}{REPEAT} = 33
-\end{CompactItemize}
-\subsection*{フレンド}
-\begin{CompactItemize}
-\item 
-\hypertarget{classm3g_1_1Background_7b4bcdf992c21ae83363f25df05b1d25}{
-class \textbf{World}}
-\label{classm3g_1_1Background_7b4bcdf992c21ae83363f25df05b1d25}
-
 \end{CompactItemize}
 
 
@@ -208,7 +207,25 @@ Backgroundオブジェクトの作成. \hypertarget{classm3g_1_1Background_b793c
 
 このBackgroundクラスの情報を表示する。デバッグ用. 
 
-\hyperlink{classm3g_1_1Object3D_6fea17fa1532df3794f8cb39cb4f911f}{Object3D}を再定義しています。\hypertarget{classm3g_1_1Background_38439e862c59a31b90e57c18669061ae}{
+\hyperlink{classm3g_1_1Object3D_6fea17fa1532df3794f8cb39cb4f911f}{Object3D}を再定義しています。\hypertarget{classm3g_1_1Background_8babc8a79b78615da51161e94029eea9}{
+\index{m3g::Background@{m3g::Background}!render@{render}}
+\index{render@{render}!m3g::Background@{m3g::Background}}
+\subsubsection[{render}]{\setlength{\rightskip}{0pt plus 5cm}void render ({\bf RenderState} \& {\em state}) const\hspace{0.3cm}{\tt  \mbox{[}virtual\mbox{]}}}}
+\label{classm3g_1_1Background_8babc8a79b78615da51161e94029eea9}
+
+
+このBackgroundをレンダリングする内部使用の関数.
+
+Note: \hyperlink{classm3g_1_1Background}{Background} should be rendered only at 0th rendering pass(pass=0). In other cases, do nothing. 
+
+\hyperlink{classm3g_1_1Object3D_8babc8a79b78615da51161e94029eea9}{Object3D}を再定義しています。\hypertarget{classm3g_1_1Background_443a7a301f77f625335ecc06d13bad06}{
+\index{m3g::Background@{m3g::Background}!renderX@{renderX}}
+\index{renderX@{renderX}!m3g::Background@{m3g::Background}}
+\subsubsection[{renderX}]{\setlength{\rightskip}{0pt plus 5cm}void renderX ()\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{classm3g_1_1Background_443a7a301f77f625335ecc06d13bad06}
+
+
+このオブジェクトをレンダリングする内部使用の関数. \hypertarget{classm3g_1_1Background_38439e862c59a31b90e57c18669061ae}{
 \index{m3g::Background@{m3g::Background}!setColor@{setColor}}
 \index{setColor@{setColor}!m3g::Background@{m3g::Background}}
 \subsubsection[{setColor}]{\setlength{\rightskip}{0pt plus 5cm}void setColor (int {\em argb})}}

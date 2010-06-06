@@ -33,6 +33,7 @@ Inheritance diagram for Appearance:</div>
 <p><center><img src="classm3g_1_1Appearance.png" usemap="#Appearance_map" border="0" alt=""></center>
 <map name="Appearance_map">
 <area href="classm3g_1_1Object3D.html" alt="Object3D" shape="rect" coords="0,56,82,80">
+<area href="classm3g_1_1Object.html" alt="Object" shape="rect" coords="0,0,82,24">
 </map>
 </div>
 
@@ -54,10 +55,12 @@ Inheritance diagram for Appearance:</div>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Appearance.html#df831e0e0ebf9d7e997150e497e6a6cf">getLayer</a> () const </td></tr>
 
+<tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Appearance.html#0843200b0a6a79f7753380e833a1af0c">getLayer2</a> () const </td></tr>
+
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="a412c7074ed5d51f6b8b6fd89275c405"></a><!-- doxytag: member="m3g::Appearance::getMaterial" ref="a412c7074ed5d51f6b8b6fd89275c405" args="() const " -->
 <a class="el" href="classm3g_1_1Material.html">Material</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><b>getMaterial</b> () const </td></tr>
 
-<tr><td class="memItemLeft" nowrap align="right" valign="top">PolygonMode *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Appearance.html#dd3ddcefcd18339150d281b155602886">getPolygonMode</a> () const </td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="el" href="classm3g_1_1PolygonMode.html">PolygonMode</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Appearance.html#dd3ddcefcd18339150d281b155602886">getPolygonMode</a> () const </td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="987cc21bd78d0e4e664da717479bdd57"></a><!-- doxytag: member="m3g::Appearance::getTexture" ref="987cc21bd78d0e4e664da717479bdd57" args="(int index) const " -->
 <a class="el" href="classm3g_1_1Texture2D.html">Texture2D</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><b>getTexture</b> (int index) const </td></tr>
@@ -71,18 +74,16 @@ Inheritance diagram for Appearance:</div>
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="1dfd1a55fa3cc625719dab8e95c8a2de"></a><!-- doxytag: member="m3g::Appearance::setMaterial" ref="1dfd1a55fa3cc625719dab8e95c8a2de" args="(Material *material)" -->
 void&nbsp;</td><td class="memItemRight" valign="bottom"><b>setMaterial</b> (<a class="el" href="classm3g_1_1Material.html">Material</a> *material)</td></tr>
 
-<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Appearance.html#cc21fac7868e2ad37e689ac642db1aae">setPolygonMode</a> (PolygonMode *polygonMode)</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Appearance.html#cc21fac7868e2ad37e689ac642db1aae">setPolygonMode</a> (<a class="el" href="classm3g_1_1PolygonMode.html">PolygonMode</a> *polygonMode)</td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Appearance.html#493e54b1c7ab839b9e76b28e0629cf6a">setTexture</a> (int index, <a class="el" href="classm3g_1_1Texture2D.html">Texture2D</a> *texture)</td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">virtual std::ostream &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Appearance.html#6fea17fa1532df3794f8cb39cb4f911f">print</a> (std::ostream &amp;out) const </td></tr>
 
-<tr><td colspan="2"><br><h2>Friends</h2></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="a41a130f156b145bffb3f4b5172c4c93"></a><!-- doxytag: member="m3g::Appearance::Mesh" ref="a41a130f156b145bffb3f4b5172c4c93" args="" -->
-class&nbsp;</td><td class="memItemRight" valign="bottom"><b>Mesh</b></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Appearance.html#8babc8a79b78615da51161e94029eea9">render</a> (<a class="el" href="structm3g_1_1RenderState.html">RenderState</a> &amp;state) const </td></tr>
 
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="639cf38c41878a4f0fc8d24c010c96de"></a><!-- doxytag: member="m3g::Appearance::Sprite3D" ref="639cf38c41878a4f0fc8d24c010c96de" args="" -->
-class&nbsp;</td><td class="memItemRight" valign="bottom"><b>Sprite3D</b></td></tr>
+<tr><td colspan="2"><br><h2>Static Public Member Functions</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">static void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Appearance.html#443a7a301f77f625335ecc06d13bad06">renderX</a> ()</td></tr>
 
 </table>
 <hr><a name="_details"></a><h2>Detailed Description</h2>
@@ -226,12 +227,12 @@ Returns the current foggin attributes for this <a class="el" href="classm3g_1_1A
 Gets the current rendering layer for this <a class="el" href="classm3g_1_1Appearance.html">Appearance</a>. 
 </div>
 </div><p>
-<a class="anchor" name="dd3ddcefcd18339150d281b155602886"></a><!-- doxytag: member="m3g::Appearance::getPolygonMode" ref="dd3ddcefcd18339150d281b155602886" args="() const " -->
+<a class="anchor" name="0843200b0a6a79f7753380e833a1af0c"></a><!-- doxytag: member="m3g::Appearance::getLayer2" ref="0843200b0a6a79f7753380e833a1af0c" args="() const " -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">PolygonMode * getPolygonMode           </td>
+          <td class="memname">int getLayer2           </td>
           <td>(</td>
           <td class="paramname">          </td>
           <td>&nbsp;)&nbsp;</td>
@@ -242,7 +243,26 @@ Gets the current rendering layer for this <a class="el" href="classm3g_1_1Appear
 <div class="memdoc">
 
 <p>
-Returns the current PolygonMode for this <a class="el" href="classm3g_1_1Appearance.html">Appearance</a>. 
+Gets the current rendering layer including tranceparency for this <a class="el" href="classm3g_1_1Appearance.html">Appearance</a>, for inner use. 
+</div>
+</div><p>
+<a class="anchor" name="dd3ddcefcd18339150d281b155602886"></a><!-- doxytag: member="m3g::Appearance::getPolygonMode" ref="dd3ddcefcd18339150d281b155602886" args="() const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classm3g_1_1PolygonMode.html">PolygonMode</a> * getPolygonMode           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Returns the current <a class="el" href="classm3g_1_1PolygonMode.html">PolygonMode</a> for this <a class="el" href="classm3g_1_1Appearance.html">Appearance</a>. 
 </div>
 </div><p>
 <a class="anchor" name="6fea17fa1532df3794f8cb39cb4f911f"></a><!-- doxytag: member="m3g::Appearance::print" ref="6fea17fa1532df3794f8cb39cb4f911f" args="(std::ostream &amp;out) const " -->
@@ -265,6 +285,48 @@ Returns the current PolygonMode for this <a class="el" href="classm3g_1_1Appeara
 Print out information of this class, for debug only. 
 <p>Reimplemented from <a class="el" href="classm3g_1_1Object3D.html#6fea17fa1532df3794f8cb39cb4f911f">Object3D</a>.</p>
 
+</div>
+</div><p>
+<a class="anchor" name="8babc8a79b78615da51161e94029eea9"></a><!-- doxytag: member="m3g::Appearance::render" ref="8babc8a79b78615da51161e94029eea9" args="(RenderState &amp;state) const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void render           </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structm3g_1_1RenderState.html">RenderState</a> &amp;&nbsp;</td>
+          <td class="paramname"> <em>state</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const<code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Render this object, inner use only.<p>
+Note: <a class="el" href="classm3g_1_1Appearance.html">Appearance</a> should be rendered only at second rendering pass(pass=2). In other cases, do nothing. 
+<p>Reimplemented from <a class="el" href="classm3g_1_1Object3D.html#8babc8a79b78615da51161e94029eea9">Object3D</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="443a7a301f77f625335ecc06d13bad06"></a><!-- doxytag: member="m3g::Appearance::renderX" ref="443a7a301f77f625335ecc06d13bad06" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void renderX           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [static]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Render this object, inner use only. 
 </div>
 </div><p>
 <a class="anchor" name="8f9514f1c01268fff95b7c31f3a194b6"></a><!-- doxytag: member="m3g::Appearance::setCompositingMode" ref="8f9514f1c01268fff95b7c31f3a194b6" args="(CompositingMode *compositing_mode)" -->
@@ -334,7 +396,7 @@ Sets the rendering layer for this <a class="el" href="classm3g_1_1Appearance.htm
         <tr>
           <td class="memname">void setPolygonMode           </td>
           <td>(</td>
-          <td class="paramtype">PolygonMode *&nbsp;</td>
+          <td class="paramtype"><a class="el" href="classm3g_1_1PolygonMode.html">PolygonMode</a> *&nbsp;</td>
           <td class="paramname"> <em>polygonMode</em>          </td>
           <td>&nbsp;)&nbsp;</td>
           <td></td>
@@ -344,7 +406,7 @@ Sets the rendering layer for this <a class="el" href="classm3g_1_1Appearance.htm
 <div class="memdoc">
 
 <p>
-Sets the PolygonMode to use for this <a class="el" href="classm3g_1_1Appearance.html">Appearance</a>. 
+Sets the <a class="el" href="classm3g_1_1PolygonMode.html">PolygonMode</a> to use for this <a class="el" href="classm3g_1_1Appearance.html">Appearance</a>. 
 </div>
 </div><p>
 <a class="anchor" name="493e54b1c7ab839b9e76b28e0629cf6a"></a><!-- doxytag: member="m3g::Appearance::setTexture" ref="493e54b1c7ab839b9e76b28e0629cf6a" args="(int index, Texture2D *texture)" -->
@@ -379,7 +441,7 @@ Sets the texture image and its attributes for the given textureing unit.
 <hr>The documentation for this class was generated from the following files:<ul>
 <li>/work/workspace.desktop-m3g/src/<a class="el" href="Appearance_8hpp-source.html">Appearance.hpp</a><li>/work/workspace.desktop-m3g/src/Appearance.cpp</ul>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Mon May 10 08:47:30 2010 by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Sun Jun 6 11:22:41 2010 by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.8 </small></address>
 </body>

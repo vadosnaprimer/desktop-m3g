@@ -16,8 +16,6 @@ namespace m3g {
      */
     class Background : public Object3D
     {
-        friend class World;
-
 
         /**
          * @~English  Image mode of x or y direction, for inner use .
@@ -214,7 +212,6 @@ namespace m3g {
         ImageMode mode;
         CropRect  crop;
 
-    private:
         unsigned int texobj;
     };
 

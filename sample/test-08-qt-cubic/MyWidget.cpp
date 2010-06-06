@@ -39,7 +39,7 @@ void MyWidget:: initializeGL ()
   bg->setImage (bg_img);
   wld->setBackground (bg);
 
-  QImage   cube_qimg = convertToGLFormat (QImage ("moe.png"));
+  QImage   cube_qimg = convertToGLFormat (QImage ("onnanoko.png"));
   Image2D* cube_img  = new Image2D (Image2D::RGBA, cube_qimg.width(), cube_qimg.height(), cube_qimg.bits());
 
   short position_values[] = { 1,-1,1,  1,1,1,  -1,-1,1,  -1,1,1,

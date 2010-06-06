@@ -35,6 +35,7 @@ Groupに対する継承グラフ</div>
 <area href="classm3g_1_1Node.html" alt="Node" shape="rect" coords="0,168,93,192">
 <area href="classm3g_1_1Transformable.html" alt="Transformable" shape="rect" coords="0,112,93,136">
 <area href="classm3g_1_1Object3D.html" alt="Object3D" shape="rect" coords="0,56,93,80">
+<area href="classm3g_1_1Object.html" alt="Object" shape="rect" coords="0,0,93,24">
 <area href="classm3g_1_1World.html" alt="World" shape="rect" coords="0,280,93,304">
 </map>
 </div>
@@ -47,6 +48,8 @@ Groupに対する継承グラフ</div>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">virtual&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Group.html#a2a755272411c0d861f46f30970f5ca5">~Group</a> ()</td></tr>
 
+<tr><td class="memItemLeft" nowrap align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Group.html#3db1b4be060fe3d4f3dbf9720ef85234">align</a> (<a class="el" href="classm3g_1_1Node.html">Node</a> *reference)</td></tr>
+
 <tr><td class="memItemLeft" nowrap align="right" valign="top">virtual <a class="el" href="classm3g_1_1Group.html">Group</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Group.html#1212dbd493e73180a6204874bd97df6b">duplicate</a> () const </td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Group.html#f7c798f6f7924dc14403df261f82153a">addChild</a> (<a class="el" href="classm3g_1_1Node.html">Node</a> *child)</td></tr>
@@ -57,6 +60,8 @@ Groupに対する継承グラフ</div>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Group.html#756d01dca16e146d69bb1881aca8fbb7">getChildCount</a> () const </td></tr>
 
+<tr><td class="memItemLeft" nowrap align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Group.html#cfd72d6baf225d638f1436bb45e958dd">pick</a> (int scope, float x, float y, const <a class="el" href="classm3g_1_1Camera.html">Camera</a> *camera, <a class="el" href="classm3g_1_1RayIntersection.html">RayIntersection</a> *ri) const </td></tr>
+
 <tr><td class="memItemLeft" nowrap align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Group.html#10a3c77fa36fdb5d09b2bf39fe2a7c0b">pick</a> (int scope, float ox, float oy, float oz, float dx, float dy, float dz, <a class="el" href="classm3g_1_1RayIntersection.html">RayIntersection</a> *ri) const </td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Group.html#7415646c6f397f080d198176df44395c">removeChild</a> (<a class="el" href="classm3g_1_1Node.html">Node</a> *child)</td></tr>
@@ -65,9 +70,9 @@ Groupに対する継承グラフ</div>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Group.html#8babc8a79b78615da51161e94029eea9">render</a> (<a class="el" href="structm3g_1_1RenderState.html">RenderState</a> &amp;state) const </td></tr>
 
-<tr><td colspan="2"><br><h2>フレンド</h2></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="7b4bcdf992c21ae83363f25df05b1d25"></a><!-- doxytag: member="m3g::Group::World" ref="7b4bcdf992c21ae83363f25df05b1d25" args="" -->
-class&nbsp;</td><td class="memItemRight" valign="bottom"><b>World</b></td></tr>
+<tr><td colspan="2"><br><h2>Protected 変数</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="00bd6c5c98c6cfcf7dd1c7381bfa20fd"></a><!-- doxytag: member="m3g::Group::children" ref="00bd6c5c98c6cfcf7dd1c7381bfa20fd" args="" -->
+std::vector&lt; <a class="el" href="classm3g_1_1Node.html">Node</a> * &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><b>children</b></td></tr>
 
 </table>
 <hr><a name="_details"></a><h2>説明</h2>
@@ -129,6 +134,28 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>World</b></td></tr>
 
 <p>
 指定されたノードを追加する。以前に追加されていた子ノードの順番とインデックスは変更される可能性がある. 
+</div>
+</div><p>
+<a class="anchor" name="3db1b4be060fe3d4f3dbf9720ef85234"></a><!-- doxytag: member="m3g::Group::align" ref="3db1b4be060fe3d4f3dbf9720ef85234" args="(Node *reference)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void align           </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classm3g_1_1Node.html">Node</a> *&nbsp;</td>
+          <td class="paramname"> <em>reference</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+このノードと子孫ノードにアライメントを適応する. 
+<p><a class="el" href="classm3g_1_1Node.html#3db1b4be060fe3d4f3dbf9720ef85234">Node</a>を再定義しています。</p>
+
 </div>
 </div><p>
 <a class="anchor" name="8aad1ceab4c2a03609c8a42324ce484d"></a><!-- doxytag: member="m3g::Group::animate" ref="8aad1ceab4c2a03609c8a42324ce484d" args="(int world_time)" -->
@@ -267,7 +294,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>World</b></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype"><a class="el" href="classm3g_1_1RayIntersection.html">RayIntersection</a> *&nbsp;</td>
-          <td class="paramname"> <em>ri</em></td><td>&nbsp;</td>
+          <td class="paramname"> <em>ri_out</em></td><td>&nbsp;</td>
         </tr>
         <tr>
           <td></td>
@@ -279,7 +306,56 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>World</b></td></tr>
 <div class="memdoc">
 
 <p>
-このグループのピッキング可能なMesh,scaled Sprite3Dのうち同じスコープで、指定されたピッキング光線で最初にヒットしたノードを返す. 
+このグループのピッキング可能なMesh,scaled Sprite3Dのうち同じスコープで、指定されたピッキング光線で最初にヒットしたノードを返す.<p>
+注意1: レイの原点と方向はこのGroupのモデル座標系で表す。 左上が(0,0)、右下(width,height) 方向ベクトルの長さは１である必要はない。 注意2: ピック可能＝Meshのみ 
+</div>
+</div><p>
+<a class="anchor" name="cfd72d6baf225d638f1436bb45e958dd"></a><!-- doxytag: member="m3g::Group::pick" ref="cfd72d6baf225d638f1436bb45e958dd" args="(int scope, float x, float y, const Camera *camera, RayIntersection *ri) const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool pick           </td>
+          <td>(</td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>scope</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&nbsp;</td>
+          <td class="paramname"> <em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&nbsp;</td>
+          <td class="paramname"> <em>y</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classm3g_1_1Camera.html">Camera</a> *&nbsp;</td>
+          <td class="paramname"> <em>camera</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classm3g_1_1RayIntersection.html">RayIntersection</a> *&nbsp;</td>
+          <td class="paramname"> <em>ri_out</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td> const</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+このグループのMeshのうち同じスコープでピッキング可能な最初にヒットしたMeshを返す.<p>
+注意1: (x,y)にはウィンドウ座標をピクセル数で指定する。 左上が(0,0)、右下(width,height) 注意2: ピック可能＝Mesh,<a class="el" href="classm3g_1_1Sprite3D.html">Sprite3D</a> 
 </div>
 </div><p>
 <a class="anchor" name="6fea17fa1532df3794f8cb39cb4f911f"></a><!-- doxytag: member="m3g::Group::print" ref="6fea17fa1532df3794f8cb39cb4f911f" args="(std::ostream &amp;out) const " -->
@@ -354,7 +430,7 @@ Note: <a class="el" href="classm3g_1_1Group.html">Group</a> should be rendered v
 <hr>このクラスの説明は次のファイルから生成されました:<ul>
 <li>/work/workspace.desktop-m3g/src/<a class="el" href="Group_8hpp-source.html">Group.hpp</a><li>/work/workspace.desktop-m3g/src/Group.cpp</ul>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Mon May 10 08:47:25 2010に生成されました。&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Sun Jun 6 11:22:35 2010に生成されました。&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.8 </small></address>
 </body>

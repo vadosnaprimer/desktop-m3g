@@ -171,6 +171,7 @@ SkinnedMesh.o: Transformable.hpp Object3D.hpp m3gdef.hpp m3ginternal.hpp
 SkinnedMesh.o: Object.hpp Quaternion.hpp Transform.hpp Matrix.hpp
 SkinnedMesh.o: BoneIndex.hpp VertexBuffer.hpp IndexBuffer.hpp VertexArray.hpp
 SkinnedMesh.o: Vector.hpp Exception.hpp World.hpp Group.hpp
+SkinnedMesh.o: RayIntersection.hpp
 Sprite3D.o: m3g-gl.hpp /usr/include/GL/gl.h /usr/include/GL/glext.h
 Sprite3D.o: /usr/include/GL/glu.h Sprite3D.hpp Node.hpp Transformable.hpp
 Sprite3D.o: Object3D.hpp m3gdef.hpp m3ginternal.hpp Object.hpp Quaternion.hpp

@@ -35,6 +35,7 @@ Meshに対する継承グラフ</div>
 <area href="classm3g_1_1Node.html" alt="Node" shape="rect" coords="53,168,150,192">
 <area href="classm3g_1_1Transformable.html" alt="Transformable" shape="rect" coords="53,112,150,136">
 <area href="classm3g_1_1Object3D.html" alt="Object3D" shape="rect" coords="53,56,150,80">
+<area href="classm3g_1_1Object.html" alt="Object" shape="rect" coords="53,0,150,24">
 <area href="classm3g_1_1MorphingMesh.html" alt="MorphingMesh" shape="rect" coords="0,280,97,304">
 <area href="classm3g_1_1SkinnedMesh.html" alt="SkinnedMesh" shape="rect" coords="107,280,204,304">
 </map>
@@ -50,7 +51,7 @@ Meshに対する継承グラフ</div>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">virtual&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Mesh.html#6e26384cfb03023e7dc2e5419baf813f">~Mesh</a> ()</td></tr>
 
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="el" href="classm3g_1_1Mesh.html">Mesh</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Mesh.html#52ce6d0b3eda2bd3a95bfb5b7dbb6f82">duplicate</a> () const </td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">virtual <a class="el" href="classm3g_1_1Mesh.html">Mesh</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Mesh.html#52ce6d0b3eda2bd3a95bfb5b7dbb6f82">duplicate</a> () const </td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">virtual int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Mesh.html#8aad1ceab4c2a03609c8a42324ce484d">animate</a> (int world_time)</td></tr>
 
@@ -63,6 +64,8 @@ Meshに対する継承グラフ</div>
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="el" href="classm3g_1_1VertexBuffer.html">VertexBuffer</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Mesh.html#7602e9bf450fa8b3ec3c60e2e88cba25">getVertexBuffer</a> () const </td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Mesh.html#bb03b872c453c4f8f3fe31e8b54d1b52">setAppearance</a> (int index, <a class="el" href="classm3g_1_1Appearance.html">Appearance</a> *appearance)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">virtual bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Mesh.html#dc812d8230f94f0b6b8e4fecdb802a16">intersect</a> (const <a class="el" href="classm3g_1_1Vector.html">Vector</a> &amp;org, const <a class="el" href="classm3g_1_1Vector.html">Vector</a> &amp;dir, <a class="el" href="classm3g_1_1RayIntersection.html">RayIntersection</a> *ri) const </td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">virtual std::ostream &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Mesh.html#6fea17fa1532df3794f8cb39cb4f911f">print</a> (std::ostream &amp;out) const </td></tr>
 
@@ -302,6 +305,43 @@ std::vector&lt; <a class="el" href="classm3g_1_1Appearance.html">Appearance</a> 
 このメッシュの頂点バッファーの取得. 
 </div>
 </div><p>
+<a class="anchor" name="dc812d8230f94f0b6b8e4fecdb802a16"></a><!-- doxytag: member="m3g::Mesh::intersect" ref="dc812d8230f94f0b6b8e4fecdb802a16" args="(const Vector &amp;org, const Vector &amp;dir, RayIntersection *ri) const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool intersect           </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classm3g_1_1Vector.html">Vector</a> &amp;&nbsp;</td>
+          <td class="paramname"> <em>org</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classm3g_1_1Vector.html">Vector</a> &amp;&nbsp;</td>
+          <td class="paramname"> <em>dir</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classm3g_1_1RayIntersection.html">RayIntersection</a> *&nbsp;</td>
+          <td class="paramname"> <em>ri</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td> const<code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+座標は全てこのメッシュのローカル座標系で指定する. 
+<p><a class="el" href="classm3g_1_1SkinnedMesh.html#dc812d8230f94f0b6b8e4fecdb802a16">SkinnedMesh</a>で再定義されています。</p>
+
+</div>
+</div><p>
 <a class="anchor" name="6fea17fa1532df3794f8cb39cb4f911f"></a><!-- doxytag: member="m3g::Mesh::print" ref="6fea17fa1532df3794f8cb39cb4f911f" args="(std::ostream &amp;out) const " -->
 <div class="memitem">
 <div class="memproto">
@@ -383,7 +423,7 @@ Note: <a class="el" href="classm3g_1_1Mesh.html">Mesh</a> should be rendered onl
 <hr>このクラスの説明は次のファイルから生成されました:<ul>
 <li>/work/workspace.desktop-m3g/src/<a class="el" href="Mesh_8hpp-source.html">Mesh.hpp</a><li>/work/workspace.desktop-m3g/src/Mesh.cpp</ul>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Mon May 10 08:47:26 2010に生成されました。&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Sun Jun 6 11:22:37 2010に生成されました。&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.8 </small></address>
 </body>

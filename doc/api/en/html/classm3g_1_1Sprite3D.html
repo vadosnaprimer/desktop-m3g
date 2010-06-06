@@ -35,6 +35,7 @@ Inheritance diagram for Sprite3D:</div>
 <area href="classm3g_1_1Node.html" alt="Node" shape="rect" coords="0,168,93,192">
 <area href="classm3g_1_1Transformable.html" alt="Transformable" shape="rect" coords="0,112,93,136">
 <area href="classm3g_1_1Object3D.html" alt="Object3D" shape="rect" coords="0,56,93,80">
+<area href="classm3g_1_1Object.html" alt="Object" shape="rect" coords="0,0,93,24">
 </map>
 </div>
 
@@ -42,14 +43,14 @@ Inheritance diagram for Sprite3D:</div>
 <a href="classm3g_1_1Sprite3D-members.html">List of all members.</a><table border="0" cellpadding="0" cellspacing="0">
 <tr><td></td></tr>
 <tr><td colspan="2"><br><h2>Classes</h2></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="structm3g_1_1Sprite3D_1_1CropRect.html">CropRect</a></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><b>CropRect</b></td></tr>
 
 <tr><td colspan="2"><br><h2>Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Sprite3D.html#9cb33fd453d441ed8e99b95f5e29df0c">Sprite3D</a> (bool scaled, <a class="el" href="classm3g_1_1Image2D.html">Image2D</a> *image, <a class="el" href="classm3g_1_1Appearance.html">Appearance</a> *appearance)</td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">virtual&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Sprite3D.html#a57bd1e3141ba11c88ddec1e46c188d6">~Sprite3D</a> ()</td></tr>
 
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="el" href="classm3g_1_1Sprite3D.html">Sprite3D</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Sprite3D.html#0af34e87be803eb476f9e118d2363246">duplicate</a> () const </td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">virtual <a class="el" href="classm3g_1_1Sprite3D.html">Sprite3D</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Sprite3D.html#0af34e87be803eb476f9e118d2363246">duplicate</a> () const </td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Sprite3D.html#415c0b110f95410ded9b85e5d99a496b">addAnimationTrack</a> (<a class="el" href="classm3g_1_1AnimationTrack.html">AnimationTrack</a> *animation_track)</td></tr>
 
@@ -67,6 +68,8 @@ Inheritance diagram for Sprite3D:</div>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="el" href="classm3g_1_1Image2D.html">Image2D</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Sprite3D.html#a8c0193b0e7d47d4b5c9f60df24c44f5">getImage</a> () const </td></tr>
 
+<tr><td class="memItemLeft" nowrap align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Sprite3D.html#b6ca418b9c39fed3206e02aed801ee3b">intersect</a> (const <a class="el" href="classm3g_1_1Vector.html">Vector</a> &amp;org, const <a class="el" href="classm3g_1_1Vector.html">Vector</a> &amp;dir, const <a class="el" href="classm3g_1_1Camera.html">Camera</a> *cam, <a class="el" href="classm3g_1_1RayIntersection.html">RayIntersection</a> *ri) const </td></tr>
+
 <tr><td class="memItemLeft" nowrap align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Sprite3D.html#8e3e7fa70e1d3f2342580991105779f5">isScaled</a> () const </td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Sprite3D.html#b9b44bad4241635062ed66437c9bae48">setAppearance</a> (<a class="el" href="classm3g_1_1Appearance.html">Appearance</a> *appearance)</td></tr>
@@ -77,12 +80,7 @@ Inheritance diagram for Sprite3D:</div>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">virtual std::ostream &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Sprite3D.html#6fea17fa1532df3794f8cb39cb4f911f">print</a> (std::ostream &amp;out) const </td></tr>
 
-<tr><td colspan="2"><br><h2>Protected Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Sprite3D.html#8babc8a79b78615da51161e94029eea9">render</a> (<a class="el" href="structm3g_1_1RenderState.html">RenderState</a> &amp;state) const </td></tr>
-
-<tr><td colspan="2"><br><h2>Friends</h2></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="2697825715974a353728f0d4d5658112"></a><!-- doxytag: member="m3g::Sprite3D::Group" ref="2697825715974a353728f0d4d5658112" args="" -->
-class&nbsp;</td><td class="memItemRight" valign="bottom"><b>Group</b></td></tr>
 
 </table>
 <hr><a name="_details"></a><h2>Detailed Description</h2>
@@ -321,6 +319,48 @@ Retrieves the current cropping rectangle Y offset relative to the source image t
 Gets the current <a class="el" href="classm3g_1_1Sprite3D.html">Sprite3D</a> image. 
 </div>
 </div><p>
+<a class="anchor" name="b6ca418b9c39fed3206e02aed801ee3b"></a><!-- doxytag: member="m3g::Sprite3D::intersect" ref="b6ca418b9c39fed3206e02aed801ee3b" args="(const Vector &amp;org, const Vector &amp;dir, const Camera *cam, RayIntersection *ri) const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool intersect           </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classm3g_1_1Vector.html">Vector</a> &amp;&nbsp;</td>
+          <td class="paramname"> <em>org</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classm3g_1_1Vector.html">Vector</a> &amp;&nbsp;</td>
+          <td class="paramname"> <em>dir</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classm3g_1_1Camera.html">Camera</a> *&nbsp;</td>
+          <td class="paramname"> <em>cam</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classm3g_1_1RayIntersection.html">RayIntersection</a> *&nbsp;</td>
+          <td class="paramname"> <em>ri</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td> const</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+座標は全てNDC座標で渡す.<p>
+注意1: org,dir,riはすべてNDC座標系 注意2: NDC座標系はOpenGLで一般的な右手座標系ではなく「左手座標系」 従って交差判定に渡す頂点は「時計回り」 v3 -- v1 | ／ | v2 -- v0 注意3: M3Gの仕様ではピック出来るのはscaledのみ。unscaledもピック出来るのは独自拡張 
+</div>
+</div><p>
 <a class="anchor" name="8e3e7fa70e1d3f2342580991105779f5"></a><!-- doxytag: member="m3g::Sprite3D::isScaled" ref="8e3e7fa70e1d3f2342580991105779f5" args="() const " -->
 <div class="memitem">
 <div class="memproto">
@@ -372,7 +412,7 @@ Rrint out information of this object, for only debug.
           <td class="paramtype"><a class="el" href="structm3g_1_1RenderState.html">RenderState</a> &amp;&nbsp;</td>
           <td class="paramname"> <em>state</em>          </td>
           <td>&nbsp;)&nbsp;</td>
-          <td> const<code> [protected, virtual]</code></td>
+          <td> const<code> [virtual]</code></td>
         </tr>
       </table>
 </div>
@@ -380,7 +420,7 @@ Rrint out information of this object, for only debug.
 
 <p>
 Render this object, for inner use.<p>
-Note: <a class="el" href="classm3g_1_1Sprite3D.html">Sprite3D</a> should be rendered only at second rendering pass(pass=2). In other cases, do nothing. メモ： 改良の余地があるな……。あとappearanceがNULLの時は”何もしない”ではなく ”デフォルトでレンダー”にすべき。 
+Note: <a class="el" href="classm3g_1_1Sprite3D.html">Sprite3D</a> should be rendered only at second rendering pass(pass=2). In other cases, do nothing. 
 <p>Reimplemented from <a class="el" href="classm3g_1_1Node.html#8babc8a79b78615da51161e94029eea9">Node</a>.</p>
 
 </div>
@@ -469,7 +509,7 @@ Sets the sprite image to display.
 <hr>The documentation for this class was generated from the following files:<ul>
 <li>/work/workspace.desktop-m3g/src/<a class="el" href="Sprite3D_8hpp-source.html">Sprite3D.hpp</a><li>/work/workspace.desktop-m3g/src/Sprite3D.cpp</ul>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Mon May 10 08:47:33 2010 by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Sun Jun 6 11:22:45 2010 by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.8 </small></address>
 </body>

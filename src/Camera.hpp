@@ -14,8 +14,6 @@ namespace m3g {
      */
     class Camera : public Node
     {
-        friend class Graphics3D;  // for render
-        friend class World;  // for render
 
     public:
 
@@ -114,7 +112,6 @@ namespace m3g {
                      float to_x, float to_y, float to_z, 
                      float up_x, float up_y, float up_z);
 
-    protected:
         /**
          * @~English  Render this Camear object, for inner use.
          * @~Japanese このCameraをレンダリングする内部使用の関数.
@@ -129,7 +126,7 @@ namespace m3g {
         float near;
         float far;
 
-        Transform proj_trans;
+        Transform projection;
     };
 
 

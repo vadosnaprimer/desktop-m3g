@@ -1,6 +1,9 @@
 
 
-2010/xx/xx  ver 0.3.0
+2010/06/06  ver 0.3.0
+   - Yes, I implemented all 30 classes defined by M3G-1.1 (JSR-184)
+       - Some features are still buggy or untested.
+       - But anyway, I implemented all.
    - remove GLEW
    - implement RayIntersection class.
    - implement picking.

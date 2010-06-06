@@ -107,7 +107,7 @@ namespace m3g {
          * @~English  Creates a duplicate of this Object3D. 
          * @~Japanese このオブジェクトの複製の作成.
          */
-        Texture2D* duplicate () const;
+        virtual Texture2D* duplicate () const;
 
         virtual int animate (int world_time);
 

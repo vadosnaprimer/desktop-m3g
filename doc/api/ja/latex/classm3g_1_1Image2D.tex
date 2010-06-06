@@ -33,11 +33,13 @@ bool \hyperlink{classm3g_1_1Image2D_d687aabba553d1c66bfc253ec7e5bd05}{isMutable}
 \item 
 void \hyperlink{classm3g_1_1Image2D_fe9ef1abefb9e92b38687e27c9004bdc}{set} (int x, int y, int width, int height, void $\ast$image)
 \item 
-void \hyperlink{classm3g_1_1Image2D_32ee5b2bcc9c7bf69b925413eeccb4bf}{write\_\-ppm} (const char $\ast$file\_\-name) const 
+void \hyperlink{classm3g_1_1Image2D_8957959000d658fd8a3cff474f7ee7e8}{writePNG} (const char $\ast$name) const 
 \item 
 virtual std::ostream \& \hyperlink{classm3g_1_1Image2D_6fea17fa1532df3794f8cb39cb4f911f}{print} (std::ostream \&out) const 
 \item 
-GLenum \hyperlink{classm3g_1_1Image2D_7923da2fe82fee768ec9937a693e843c}{getOpenGLFormat} () const 
+virtual void \hyperlink{classm3g_1_1Image2D_8babc8a79b78615da51161e94029eea9}{render} (\hyperlink{structm3g_1_1RenderState}{RenderState} \&state) const 
+\item 
+unsigned int \hyperlink{classm3g_1_1Image2D_3e28ae5596cde78a980de02005a136f2}{getOpenGLFormat} () const 
 \item 
 void $\ast$ \hyperlink{classm3g_1_1Image2D_b837b1bdda59947a6d818c448965c502}{getOpenGLData} () const 
 \end{CompactItemize}
@@ -53,24 +55,6 @@ static const int \hyperlink{classm3g_1_1Image2D_1a74b878039f244c27120cacb4eb6a3e
 static const int \hyperlink{classm3g_1_1Image2D_5f237f1b0f2ce6351e9e4a494b8dc759}{RGB} = 99
 \item 
 static const int \hyperlink{classm3g_1_1Image2D_0aaf9f2f4c064633c6d2888ec2c39e92}{RGBA} = 100
-\end{CompactItemize}
-\subsection*{フレンド}
-\begin{CompactItemize}
-\item 
-\hypertarget{classm3g_1_1Image2D_a70951a0328ba29f64176f16b3ea47d8}{
-class \textbf{Texture2D}}
-\label{classm3g_1_1Image2D_a70951a0328ba29f64176f16b3ea47d8}
-
-\item 
-\hypertarget{classm3g_1_1Image2D_d70dac188b152e81b4323bb274bee959}{
-class \textbf{Background}}
-\label{classm3g_1_1Image2D_d70dac188b152e81b4323bb274bee959}
-
-\item 
-\hypertarget{classm3g_1_1Image2D_639cf38c41878a4f0fc8d24c010c96de}{
-class \textbf{Sprite3D}}
-\label{classm3g_1_1Image2D_639cf38c41878a4f0fc8d24c010c96de}
-
 \end{CompactItemize}
 
 
@@ -139,11 +123,11 @@ class \textbf{Sprite3D}}
 \label{classm3g_1_1Image2D_b837b1bdda59947a6d818c448965c502}
 
 
-内部データへのポインターを返すM3G未定義の関数. \hypertarget{classm3g_1_1Image2D_7923da2fe82fee768ec9937a693e843c}{
+内部データへのポインターを返すM3G未定義の関数. \hypertarget{classm3g_1_1Image2D_3e28ae5596cde78a980de02005a136f2}{
 \index{m3g::Image2D@{m3g::Image2D}!getOpenGLFormat@{getOpenGLFormat}}
 \index{getOpenGLFormat@{getOpenGLFormat}!m3g::Image2D@{m3g::Image2D}}
-\subsubsection[{getOpenGLFormat}]{\setlength{\rightskip}{0pt plus 5cm}GLenum getOpenGLFormat () const}}
-\label{classm3g_1_1Image2D_7923da2fe82fee768ec9937a693e843c}
+\subsubsection[{getOpenGLFormat}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int getOpenGLFormat () const}}
+\label{classm3g_1_1Image2D_3e28ae5596cde78a980de02005a136f2}
 
 
 OpenGLの画像形式を返すM3G未定義の関数. \hypertarget{classm3g_1_1Image2D_f149cb053bc8b5fbc1364b5dbb934488}{
@@ -169,23 +153,34 @@ OpenGLの画像形式を返すM3G未定義の関数. \hypertarget{classm3g_1_1Im
 
 このImage2Dクラスの情報を表示する。デバッグ用. 
 
-\hyperlink{classm3g_1_1Object3D_6fea17fa1532df3794f8cb39cb4f911f}{Object3D}を再定義しています。\hypertarget{classm3g_1_1Image2D_fe9ef1abefb9e92b38687e27c9004bdc}{
+\hyperlink{classm3g_1_1Object3D_6fea17fa1532df3794f8cb39cb4f911f}{Object3D}を再定義しています。\hypertarget{classm3g_1_1Image2D_8babc8a79b78615da51161e94029eea9}{
+\index{m3g::Image2D@{m3g::Image2D}!render@{render}}
+\index{render@{render}!m3g::Image2D@{m3g::Image2D}}
+\subsubsection[{render}]{\setlength{\rightskip}{0pt plus 5cm}void render ({\bf RenderState} \& {\em state}) const\hspace{0.3cm}{\tt  \mbox{[}virtual\mbox{]}}}}
+\label{classm3g_1_1Image2D_8babc8a79b78615da51161e94029eea9}
+
+
+このオブジェクトをレンダリングする内部使用の関数.
+
+現在のフレームバッファーからこのImag2Dへコピーする. 
+
+\hyperlink{classm3g_1_1Object3D_8babc8a79b78615da51161e94029eea9}{Object3D}を再定義しています。\hypertarget{classm3g_1_1Image2D_fe9ef1abefb9e92b38687e27c9004bdc}{
 \index{m3g::Image2D@{m3g::Image2D}!set@{set}}
 \index{set@{set}!m3g::Image2D@{m3g::Image2D}}
 \subsubsection[{set}]{\setlength{\rightskip}{0pt plus 5cm}void set (int {\em x}, \/  int {\em y}, \/  int {\em width}, \/  int {\em height}, \/  void $\ast$ {\em image})}}
 \label{classm3g_1_1Image2D_fe9ef1abefb9e92b38687e27c9004bdc}
 
 
-バイト配列からピクセルをコピーしてこのImage2Dクラスの矩形領域を更新する. \hypertarget{classm3g_1_1Image2D_32ee5b2bcc9c7bf69b925413eeccb4bf}{
-\index{m3g::Image2D@{m3g::Image2D}!write\_\-ppm@{write\_\-ppm}}
-\index{write\_\-ppm@{write\_\-ppm}!m3g::Image2D@{m3g::Image2D}}
-\subsubsection[{write\_\-ppm}]{\setlength{\rightskip}{0pt plus 5cm}void write\_\-ppm (const char $\ast$ {\em name}) const}}
-\label{classm3g_1_1Image2D_32ee5b2bcc9c7bf69b925413eeccb4bf}
+バイト配列からピクセルをコピーしてこのImage2Dクラスの矩形領域を更新する. \hypertarget{classm3g_1_1Image2D_8957959000d658fd8a3cff474f7ee7e8}{
+\index{m3g::Image2D@{m3g::Image2D}!writePNG@{writePNG}}
+\index{writePNG@{writePNG}!m3g::Image2D@{m3g::Image2D}}
+\subsubsection[{writePNG}]{\setlength{\rightskip}{0pt plus 5cm}void writePNG (const char $\ast$ {\em name}) const}}
+\label{classm3g_1_1Image2D_8957959000d658fd8a3cff474f7ee7e8}
 
 
-ppm画像として出力するM3G非標準の関数。 この関数はデバッグ用でありリリースに含まれていてはならない.
+png画像として出力するM3G非標準の関数。
 
-注意：OpenGLは左下が(0,0)、ppmは左上が(0,0) 
+注意：OpenGLは左下が(0,0) 
 
 \subsection{変数}
 \hypertarget{classm3g_1_1Image2D_417581fcde4067111f47320edb2aa378}{

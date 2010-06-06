@@ -17,13 +17,15 @@ VertexArrayに対する継承グラフ:\begin{figure}[H]
 \item 
 virtual \hyperlink{classm3g_1_1VertexArray_267fa63cb2f4216729437dc826415911}{$\sim$VertexArray} ()
 \item 
-\hyperlink{classm3g_1_1VertexArray}{VertexArray} $\ast$ \hyperlink{classm3g_1_1VertexArray_f0dc6a5510bf837ef48129f344d666a8}{duplicate} () const 
+virtual \hyperlink{classm3g_1_1VertexArray}{VertexArray} $\ast$ \hyperlink{classm3g_1_1VertexArray_f0dc6a5510bf837ef48129f344d666a8}{duplicate} () const 
 \item 
 void \hyperlink{classm3g_1_1VertexArray_9d1b801a7c196a07553a5ef4a5473573}{get} (int first\_\-vertex, int num\_\-vertices, char $\ast$values) const 
 \item 
 void \hyperlink{classm3g_1_1VertexArray_575822f60d7b5e74ed51e94851123038}{get} (int first\_\-vertex, int num\_\-vertices, short $\ast$values) const 
 \item 
 void \hyperlink{classm3g_1_1VertexArray_79b1ffd7586fe23fb5e31661e4d296e3}{get} (int first\_\-vertex, int num\_\-vertices, float $\ast$values) const 
+\item 
+void \hyperlink{classm3g_1_1VertexArray_1adedf59e0c6a047242a3914ca52b929}{get} (int first\_\-vertex, int num\_\-vertices, float scale, float $\ast$bias, float $\ast$values) const 
 \item 
 int \hyperlink{classm3g_1_1VertexArray_7016f51d2788e78fdd736efd040f5e5e}{getComponentCount} () const 
 \item 
@@ -47,6 +49,11 @@ void \textbf{setSkinning} (const \hyperlink{classm3g_1_1VertexArray}{VertexArray
 \label{classm3g_1_1VertexArray_fcfcc1258ce0be7d0322d2e00809e1ea}
 
 \item 
+\hypertarget{classm3g_1_1VertexArray_f5518d17b77d25b05dc0b943b30a2fc0}{
+void \textbf{updateOpenGLData} (const void $\ast$value) const }
+\label{classm3g_1_1VertexArray_f5518d17b77d25b05dc0b943b30a2fc0}
+
+\item 
 \hypertarget{classm3g_1_1VertexArray_5c2359d08265a9f8605316789c40ece4}{
 void \textbf{convert} (int component\_\-size)}
 \label{classm3g_1_1VertexArray_5c2359d08265a9f8605316789c40ece4}
@@ -59,14 +66,6 @@ unsigned int \hyperlink{classm3g_1_1VertexArray_3e28ae5596cde78a980de02005a136f2
 virtual std::ostream \& \hyperlink{classm3g_1_1VertexArray_6fea17fa1532df3794f8cb39cb4f911f}{print} (std::ostream \&out) const 
 \item 
 std::ostream \& \hyperlink{classm3g_1_1VertexArray_85d61f1cdd10b3b5126cdb20291ae276}{print\_\-raw\_\-data} (std::ostream \&out) const 
-\end{CompactItemize}
-\subsection*{フレンド}
-\begin{CompactItemize}
-\item 
-\hypertarget{classm3g_1_1VertexArray_9ef9a3db41cb54690169922706e1d3c5}{
-class \textbf{VertexBuffer}}
-\label{classm3g_1_1VertexArray_9ef9a3db41cb54690169922706e1d3c5}
-
 \end{CompactItemize}
 
 
@@ -100,7 +99,14 @@ class \textbf{VertexBuffer}}
 
 このオブジェクトの複製の作成. 
 
-\hyperlink{classm3g_1_1Object3D_a25110dac934f867b83b73ad4741a0f4}{Object3D}を再定義しています。\hypertarget{classm3g_1_1VertexArray_79b1ffd7586fe23fb5e31661e4d296e3}{
+\hyperlink{classm3g_1_1Object3D_a25110dac934f867b83b73ad4741a0f4}{Object3D}を再定義しています。\hypertarget{classm3g_1_1VertexArray_1adedf59e0c6a047242a3914ca52b929}{
+\index{m3g::VertexArray@{m3g::VertexArray}!get@{get}}
+\index{get@{get}!m3g::VertexArray@{m3g::VertexArray}}
+\subsubsection[{get}]{\setlength{\rightskip}{0pt plus 5cm}void get (int {\em first\_\-vertex}, \/  int {\em num\_\-vertices}, \/  float {\em scale}, \/  float $\ast$ {\em bias}, \/  float $\ast$ {\em values}) const}}
+\label{classm3g_1_1VertexArray_1adedf59e0c6a047242a3914ca52b929}
+
+
+頂点データをscale,biasをかけた32bit浮動小数点で取得. \hypertarget{classm3g_1_1VertexArray_79b1ffd7586fe23fb5e31661e4d296e3}{
 \index{m3g::VertexArray@{m3g::VertexArray}!get@{get}}
 \index{get@{get}!m3g::VertexArray@{m3g::VertexArray}}
 \subsubsection[{get}]{\setlength{\rightskip}{0pt plus 5cm}void get (int {\em first\_\-vertex}, \/  int {\em num\_\-vertices}, \/  float $\ast$ {\em values}) const}}

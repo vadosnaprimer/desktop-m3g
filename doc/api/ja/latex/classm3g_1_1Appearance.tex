@@ -27,6 +27,8 @@ virtual \hyperlink{classm3g_1_1Appearance}{Appearance} $\ast$ \hyperlink{classm3
 \item 
 int \hyperlink{classm3g_1_1Appearance_df831e0e0ebf9d7e997150e497e6a6cf}{getLayer} () const 
 \item 
+int \hyperlink{classm3g_1_1Appearance_0843200b0a6a79f7753380e833a1af0c}{getLayer2} () const 
+\item 
 \hyperlink{classm3g_1_1Material}{Material} $\ast$ \hyperlink{classm3g_1_1Appearance_a412c7074ed5d51f6b8b6fd89275c405}{getMaterial} () const 
 \item 
 \hyperlink{classm3g_1_1PolygonMode}{PolygonMode} $\ast$ \hyperlink{classm3g_1_1Appearance_dd3ddcefcd18339150d281b155602886}{getPolygonMode} () const 
@@ -46,19 +48,13 @@ void \hyperlink{classm3g_1_1Appearance_cc21fac7868e2ad37e689ac642db1aae}{setPoly
 void \hyperlink{classm3g_1_1Appearance_493e54b1c7ab839b9e76b28e0629cf6a}{setTexture} (int index, \hyperlink{classm3g_1_1Texture2D}{Texture2D} $\ast$texture)
 \item 
 virtual std::ostream \& \hyperlink{classm3g_1_1Appearance_6fea17fa1532df3794f8cb39cb4f911f}{print} (std::ostream \&out) const 
+\item 
+virtual void \hyperlink{classm3g_1_1Appearance_8babc8a79b78615da51161e94029eea9}{render} (\hyperlink{structm3g_1_1RenderState}{RenderState} \&state) const 
 \end{CompactItemize}
-\subsection*{フレンド}
+\subsection*{Static Public メソッド}
 \begin{CompactItemize}
 \item 
-\hypertarget{classm3g_1_1Appearance_a41a130f156b145bffb3f4b5172c4c93}{
-class \textbf{Mesh}}
-\label{classm3g_1_1Appearance_a41a130f156b145bffb3f4b5172c4c93}
-
-\item 
-\hypertarget{classm3g_1_1Appearance_639cf38c41878a4f0fc8d24c010c96de}{
-class \textbf{Sprite3D}}
-\label{classm3g_1_1Appearance_639cf38c41878a4f0fc8d24c010c96de}
-
+static void \hyperlink{classm3g_1_1Appearance_443a7a301f77f625335ecc06d13bad06}{renderX} ()
 \end{CompactItemize}
 
 
@@ -80,7 +76,7 @@ Appearanceオブジェクトの作成. \hypertarget{classm3g_1_1Appearance_c05c9
 \label{classm3g_1_1Appearance_c05c93d7a0f286cb9471b6c667ffeee1}
 
 
-このAppearanceクラスのデストラクタ. 
+このオブジェクトを破壊するデストラクタ. 
 
 \subsection{関数}
 \hypertarget{classm3g_1_1Appearance_8aad1ceab4c2a03609c8a42324ce484d}{
@@ -122,7 +118,14 @@ Appearanceオブジェクトの作成. \hypertarget{classm3g_1_1Appearance_c05c9
 \label{classm3g_1_1Appearance_df831e0e0ebf9d7e997150e497e6a6cf}
 
 
-このアピアランスのレンダリングレイヤーの取得. \hypertarget{classm3g_1_1Appearance_a412c7074ed5d51f6b8b6fd89275c405}{
+このアピアランスのレンダリングレイヤーの取得. \hypertarget{classm3g_1_1Appearance_0843200b0a6a79f7753380e833a1af0c}{
+\index{m3g::Appearance@{m3g::Appearance}!getLayer2@{getLayer2}}
+\index{getLayer2@{getLayer2}!m3g::Appearance@{m3g::Appearance}}
+\subsubsection[{getLayer2}]{\setlength{\rightskip}{0pt plus 5cm}int getLayer2 () const}}
+\label{classm3g_1_1Appearance_0843200b0a6a79f7753380e833a1af0c}
+
+
+このアピアランスの透明度を考慮したレンダリングレイヤーの取得。内部使用専用. \hypertarget{classm3g_1_1Appearance_a412c7074ed5d51f6b8b6fd89275c405}{
 \index{m3g::Appearance@{m3g::Appearance}!getMaterial@{getMaterial}}
 \index{getMaterial@{getMaterial}!m3g::Appearance@{m3g::Appearance}}
 \subsubsection[{getMaterial}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Material} $\ast$ getMaterial () const}}
@@ -152,7 +155,25 @@ Appearanceオブジェクトの作成. \hypertarget{classm3g_1_1Appearance_c05c9
 
 このAppearanceクラスの情報を表示する。デバッグ用. 
 
-\hyperlink{classm3g_1_1Object3D_6fea17fa1532df3794f8cb39cb4f911f}{Object3D}を再定義しています。\hypertarget{classm3g_1_1Appearance_8f9514f1c01268fff95b7c31f3a194b6}{
+\hyperlink{classm3g_1_1Object3D_6fea17fa1532df3794f8cb39cb4f911f}{Object3D}を再定義しています。\hypertarget{classm3g_1_1Appearance_8babc8a79b78615da51161e94029eea9}{
+\index{m3g::Appearance@{m3g::Appearance}!render@{render}}
+\index{render@{render}!m3g::Appearance@{m3g::Appearance}}
+\subsubsection[{render}]{\setlength{\rightskip}{0pt plus 5cm}void render ({\bf RenderState} \& {\em state}) const\hspace{0.3cm}{\tt  \mbox{[}virtual\mbox{]}}}}
+\label{classm3g_1_1Appearance_8babc8a79b78615da51161e94029eea9}
+
+
+このノードをレンダリングする内部使用の関数.
+
+Note: \hyperlink{classm3g_1_1Appearance}{Appearance} should be rendered only at second rendering pass(pass=2). In other cases, do nothing. 
+
+\hyperlink{classm3g_1_1Object3D_8babc8a79b78615da51161e94029eea9}{Object3D}を再定義しています。\hypertarget{classm3g_1_1Appearance_443a7a301f77f625335ecc06d13bad06}{
+\index{m3g::Appearance@{m3g::Appearance}!renderX@{renderX}}
+\index{renderX@{renderX}!m3g::Appearance@{m3g::Appearance}}
+\subsubsection[{renderX}]{\setlength{\rightskip}{0pt plus 5cm}void renderX ()\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{classm3g_1_1Appearance_443a7a301f77f625335ecc06d13bad06}
+
+
+このノードをレンダリングする内部使用の関数. \hypertarget{classm3g_1_1Appearance_8f9514f1c01268fff95b7c31f3a194b6}{
 \index{m3g::Appearance@{m3g::Appearance}!setCompositingMode@{setCompositingMode}}
 \index{setCompositingMode@{setCompositingMode}!m3g::Appearance@{m3g::Appearance}}
 \subsubsection[{setCompositingMode}]{\setlength{\rightskip}{0pt plus 5cm}void setCompositingMode ({\bf CompositingMode} $\ast$ {\em compositing\_\-mode})}}

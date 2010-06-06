@@ -13,7 +13,6 @@ namespace m3g {
      */
     class Fog : public Object3D
     {
-        friend class Appearance;  // for findByType
 
         /**
          * @~English   Near and far distance of linear fog.

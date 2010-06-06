@@ -27,67 +27,68 @@
 <a name="l00007"></a>00007 
 <a name="l00008"></a>00008 <span class="keyword">namespace </span>m3g {
 <a name="l00009"></a>00009 
-<a name="l00014"></a><a class="code" href="classm3g_1_1AnimationController.html">00014</a>   <span class="keyword">class </span><a class="code" href="classm3g_1_1AnimationController.html">AnimationController</a> : <span class="keyword">public</span> <a class="code" href="classm3g_1_1Object3D.html">Object3D</a>
-<a name="l00015"></a>00015   {
-<a name="l00016"></a>00016   <span class="keyword">public</span>:
-<a name="l00017"></a>00017 
-<a name="l00022"></a><a class="code" href="structm3g_1_1AnimationController_1_1ActiveInterval.html">00022</a>     <span class="keyword">struct </span><a class="code" href="structm3g_1_1AnimationController_1_1ActiveInterval.html">ActiveInterval</a>
-<a name="l00023"></a>00023     {
-<a name="l00024"></a>00024       <a class="code" href="structm3g_1_1AnimationController_1_1ActiveInterval.html">ActiveInterval</a> (<span class="keywordtype">float</span> start_, <span class="keywordtype">float</span> end_) : start(start_), end(end_) {};
-<a name="l00025"></a>00025       <span class="keywordtype">float</span> start;
-<a name="l00026"></a>00026       <span class="keywordtype">float</span> end;
-<a name="l00027"></a>00027     };
+<a name="l00014"></a><a class="code" href="classm3g_1_1AnimationController.html">00014</a>     <span class="keyword">class </span><a class="code" href="classm3g_1_1AnimationController.html">AnimationController</a> : <span class="keyword">public</span> <a class="code" href="classm3g_1_1Object3D.html">Object3D</a>
+<a name="l00015"></a>00015     {
+<a name="l00016"></a>00016 
+<a name="l00021"></a>00021         <span class="keyword">struct </span>ActiveInterval
+<a name="l00022"></a>00022         {
+<a name="l00023"></a>00023             ActiveInterval (<span class="keywordtype">float</span> start_, <span class="keywordtype">float</span> end_) : start(start_), end(end_) {};
+<a name="l00024"></a>00024             <span class="keywordtype">float</span> start;
+<a name="l00025"></a>00025             <span class="keywordtype">float</span> end;
+<a name="l00026"></a>00026         };
+<a name="l00027"></a>00027 
 <a name="l00028"></a>00028 
-<a name="l00033"></a>00033     <a class="code" href="classm3g_1_1AnimationController.html#f2e8cb2c6c916983d0f87140c7b0c98e">AnimationController</a> ();
-<a name="l00034"></a>00034 
-<a name="l00039"></a>00039     <span class="keyword">virtual</span> <a class="code" href="classm3g_1_1AnimationController.html#346849d0f82278f30dda9f35f80e9dbe">~AnimationController</a> ();
-<a name="l00040"></a>00040 
+<a name="l00029"></a>00029     <span class="keyword">public</span>:
+<a name="l00034"></a>00034         <a class="code" href="classm3g_1_1AnimationController.html#f2e8cb2c6c916983d0f87140c7b0c98e">AnimationController</a> ();
+<a name="l00035"></a>00035 
+<a name="l00040"></a>00040         <span class="keyword">virtual</span> <a class="code" href="classm3g_1_1AnimationController.html#346849d0f82278f30dda9f35f80e9dbe">~AnimationController</a> ();
 <a name="l00041"></a>00041 
-<a name="l00046"></a>00046     <span class="keyword">virtual</span> <a class="code" href="classm3g_1_1AnimationController.html">AnimationController</a>* <a class="code" href="classm3g_1_1AnimationController.html#aab6521891038ced0961ecb78611646e">duplicate</a> () <span class="keyword">const</span>;
-<a name="l00047"></a>00047 
-<a name="l00052"></a>00052     <span class="keywordtype">int</span>   <a class="code" href="classm3g_1_1AnimationController.html#7caa95c7ed5a03844abe328feaae4911">getActiveIntervalEnd</a> () <span class="keyword">const</span>;
-<a name="l00053"></a>00053 
-<a name="l00058"></a>00058     <span class="keywordtype">int</span>   <a class="code" href="classm3g_1_1AnimationController.html#c66e837ae4152477eabdfcbe7fb21adb">getActiveIntervalStart</a> () <span class="keyword">const</span>;
-<a name="l00059"></a>00059 
-<a name="l00064"></a>00064     <span class="keywordtype">float</span> <a class="code" href="classm3g_1_1AnimationController.html#dfdea73153cb34c26979575efda149e2">getPosition</a> (<span class="keywordtype">int</span> world_time) <span class="keyword">const</span>;
-<a name="l00065"></a>00065 
-<a name="l00070"></a>00070     <span class="keywordtype">int</span>   <a class="code" href="classm3g_1_1AnimationController.html#103e1bd81eba2cc90f31e7fdc4f3c601">getRefWorldTime</a> () <span class="keyword">const</span>;
-<a name="l00071"></a>00071 
-<a name="l00076"></a>00076     <span class="keywordtype">float</span> <a class="code" href="classm3g_1_1AnimationController.html#4ab87c5df7c3eadd17b318a426773fcb">getSpeed</a> () <span class="keyword">const</span>;
-<a name="l00077"></a>00077 
-<a name="l00082"></a>00082     <span class="keywordtype">float</span> <a class="code" href="classm3g_1_1AnimationController.html#a17d38dafd3d75c59f0609f037fbe5ae">getWeight</a> () <span class="keyword">const</span>;
-<a name="l00083"></a>00083 
-<a name="l00088"></a>00088     <span class="keywordtype">void</span>  <a class="code" href="classm3g_1_1AnimationController.html#a4cba877288d7a188477e0a756fd2f58">setActiveInterval</a> (<span class="keywordtype">int</span> start, <span class="keywordtype">int</span> end);
-<a name="l00089"></a>00089 
-<a name="l00094"></a>00094     <span class="keywordtype">void</span>  <a class="code" href="classm3g_1_1AnimationController.html#da0d7a404b2a75ee182ca6351cf673d5">setPosition</a> (<span class="keywordtype">float</span> sequence_time, <span class="keywordtype">int</span> world_time);
-<a name="l00095"></a>00095 
-<a name="l00100"></a>00100     <span class="keywordtype">void</span>  <a class="code" href="classm3g_1_1AnimationController.html#b32791d1a51df9ac8028792a841d06a6">setSpeed</a> (<span class="keywordtype">float</span> speed, <span class="keywordtype">int</span> world_time);
-<a name="l00101"></a>00101 
-<a name="l00106"></a>00106     <span class="keywordtype">void</span>  <a class="code" href="classm3g_1_1AnimationController.html#8859df4d5a61714012bf9e1240189aed">setWeight</a> (<span class="keywordtype">float</span> weight);
-<a name="l00107"></a>00107 
-<a name="l00112"></a>00112     <span class="comment">//  isActive (int world_time) const の方が良かった</span>
-<a name="l00113"></a>00113     <span class="keywordtype">bool</span> <a class="code" href="classm3g_1_1AnimationController.html#8db30a5f125f5b22a1cde9e41d93c2f0">isActiveInterval</a> (<span class="keywordtype">int</span> world_time) <span class="keyword">const</span>;
-<a name="l00114"></a>00114 
-<a name="l00119"></a>00119     <span class="keyword">virtual</span> std::ostream&amp; <a class="code" href="classm3g_1_1AnimationController.html#6fea17fa1532df3794f8cb39cb4f911f">print</a> (std::ostream&amp; out) <span class="keyword">const</span>;
-<a name="l00120"></a>00120 
+<a name="l00042"></a>00042 
+<a name="l00047"></a>00047         <span class="keyword">virtual</span> <a class="code" href="classm3g_1_1AnimationController.html">AnimationController</a>* <a class="code" href="classm3g_1_1AnimationController.html#aab6521891038ced0961ecb78611646e">duplicate</a> () <span class="keyword">const</span>;
+<a name="l00048"></a>00048 
+<a name="l00053"></a>00053         <span class="keywordtype">int</span>   <a class="code" href="classm3g_1_1AnimationController.html#7caa95c7ed5a03844abe328feaae4911">getActiveIntervalEnd</a> () <span class="keyword">const</span>;
+<a name="l00054"></a>00054 
+<a name="l00059"></a>00059         <span class="keywordtype">int</span>   <a class="code" href="classm3g_1_1AnimationController.html#c66e837ae4152477eabdfcbe7fb21adb">getActiveIntervalStart</a> () <span class="keyword">const</span>;
+<a name="l00060"></a>00060 
+<a name="l00065"></a>00065         <span class="keywordtype">float</span> <a class="code" href="classm3g_1_1AnimationController.html#dfdea73153cb34c26979575efda149e2">getPosition</a> (<span class="keywordtype">int</span> world_time) <span class="keyword">const</span>;
+<a name="l00066"></a>00066 
+<a name="l00071"></a>00071         <span class="keywordtype">int</span>   <a class="code" href="classm3g_1_1AnimationController.html#103e1bd81eba2cc90f31e7fdc4f3c601">getRefWorldTime</a> () <span class="keyword">const</span>;
+<a name="l00072"></a>00072 
+<a name="l00077"></a>00077         <span class="keywordtype">float</span> <a class="code" href="classm3g_1_1AnimationController.html#4ab87c5df7c3eadd17b318a426773fcb">getSpeed</a> () <span class="keyword">const</span>;
+<a name="l00078"></a>00078 
+<a name="l00083"></a>00083         <span class="keywordtype">float</span> <a class="code" href="classm3g_1_1AnimationController.html#a17d38dafd3d75c59f0609f037fbe5ae">getWeight</a> () <span class="keyword">const</span>;
+<a name="l00084"></a>00084 
+<a name="l00089"></a>00089         <span class="keywordtype">void</span>  <a class="code" href="classm3g_1_1AnimationController.html#a4cba877288d7a188477e0a756fd2f58">setActiveInterval</a> (<span class="keywordtype">int</span> start, <span class="keywordtype">int</span> end);
+<a name="l00090"></a>00090 
+<a name="l00095"></a>00095         <span class="keywordtype">void</span>  <a class="code" href="classm3g_1_1AnimationController.html#da0d7a404b2a75ee182ca6351cf673d5">setPosition</a> (<span class="keywordtype">float</span> sequence_time, <span class="keywordtype">int</span> world_time);
+<a name="l00096"></a>00096 
+<a name="l00101"></a>00101         <span class="keywordtype">void</span>  <a class="code" href="classm3g_1_1AnimationController.html#b32791d1a51df9ac8028792a841d06a6">setSpeed</a> (<span class="keywordtype">float</span> speed, <span class="keywordtype">int</span> world_time);
+<a name="l00102"></a>00102 
+<a name="l00107"></a>00107         <span class="keywordtype">void</span>  <a class="code" href="classm3g_1_1AnimationController.html#8859df4d5a61714012bf9e1240189aed">setWeight</a> (<span class="keywordtype">float</span> weight);
+<a name="l00108"></a>00108 
+<a name="l00113"></a>00113         <span class="comment">//  isActive (int world_time) const の方が良かった</span>
+<a name="l00114"></a>00114         <span class="keywordtype">bool</span> <a class="code" href="classm3g_1_1AnimationController.html#8db30a5f125f5b22a1cde9e41d93c2f0">isActiveInterval</a> (<span class="keywordtype">int</span> world_time) <span class="keyword">const</span>;
+<a name="l00115"></a>00115 
+<a name="l00120"></a>00120         <span class="keyword">virtual</span> std::ostream&amp; <a class="code" href="classm3g_1_1AnimationController.html#6fea17fa1532df3794f8cb39cb4f911f">print</a> (std::ostream&amp; out) <span class="keyword">const</span>;
 <a name="l00121"></a>00121 
-<a name="l00122"></a>00122   <span class="keyword">private</span>:
-<a name="l00123"></a>00123     <a class="code" href="structm3g_1_1AnimationController_1_1ActiveInterval.html">ActiveInterval</a> active_interval;
-<a name="l00124"></a>00124     <span class="keywordtype">float</span>          blending_weight;
-<a name="l00125"></a>00125     <span class="keywordtype">float</span>          speed;
-<a name="l00126"></a>00126     <span class="keywordtype">float</span>          refference_world_time;
-<a name="l00127"></a>00127     <span class="keywordtype">float</span>          refference_sequence_time;
-<a name="l00128"></a>00128   };
-<a name="l00129"></a>00129 
+<a name="l00122"></a>00122 
+<a name="l00123"></a>00123     <span class="keyword">private</span>:
+<a name="l00124"></a>00124         ActiveInterval active_interval;
+<a name="l00125"></a>00125         <span class="keywordtype">float</span>          blending_weight;
+<a name="l00126"></a>00126         <span class="keywordtype">float</span>          speed;
+<a name="l00127"></a>00127         <span class="keywordtype">float</span>          refference_world_time;
+<a name="l00128"></a>00128         <span class="keywordtype">float</span>          refference_sequence_time;
+<a name="l00129"></a>00129     };
 <a name="l00130"></a>00130 
-<a name="l00131"></a>00131 } <span class="comment">// namespace m3g</span>
-<a name="l00132"></a>00132 
-<a name="l00133"></a>00133 std::ostream&amp; operator&lt;&lt; (std::ostream&amp; out, <span class="keyword">const</span> <a class="code" href="classm3g_1_1AnimationController.html">m3g::AnimationController</a>&amp; a);
-<a name="l00134"></a>00134 
+<a name="l00131"></a>00131 
+<a name="l00132"></a>00132 } <span class="comment">// namespace m3g</span>
+<a name="l00133"></a>00133 
+<a name="l00134"></a>00134 std::ostream&amp; operator&lt;&lt; (std::ostream&amp; out, <span class="keyword">const</span> <a class="code" href="classm3g_1_1AnimationController.html">m3g::AnimationController</a>&amp; a);
 <a name="l00135"></a>00135 
-<a name="l00136"></a>00136 <span class="preprocessor">#endif</span>
+<a name="l00136"></a>00136 
+<a name="l00137"></a>00137 <span class="preprocessor">#endif</span>
 </pre></div></div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Mon May 10 08:47:29 2010 by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Sun Jun 6 11:22:40 2010 by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.8 </small></address>
 </body>

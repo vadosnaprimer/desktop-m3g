@@ -33,6 +33,7 @@ CompositingModeに対する継承グラフ</div>
 <p><center><img src="classm3g_1_1CompositingMode.png" usemap="#CompositingMode_map" border="0" alt=""></center>
 <map name="CompositingMode_map">
 <area href="classm3g_1_1Object3D.html" alt="Object3D" shape="rect" coords="0,56,112,80">
+<area href="classm3g_1_1Object.html" alt="Object" shape="rect" coords="0,0,112,24">
 </map>
 </div>
 
@@ -40,7 +41,7 @@ CompositingModeに対する継承グラフ</div>
 <a href="classm3g_1_1CompositingMode-members.html">すべてのメンバ一覧</a><table border="0" cellpadding="0" cellspacing="0">
 <tr><td></td></tr>
 <tr><td colspan="2"><br><h2>構成</h2></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="structm3g_1_1CompositingMode_1_1DepthOffset.html">DepthOffset</a></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><b>DepthOffset</b></td></tr>
 
 <tr><td colspan="2"><br><h2>Public メソッド</h2></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1CompositingMode.html#5abfd1a798f1327aac4b92f55d4ecc0c">CompositingMode</a> ()</td></tr>
@@ -83,6 +84,9 @@ CompositingModeに対する継承グラフ</div>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1CompositingMode.html#8babc8a79b78615da51161e94029eea9">render</a> (<a class="el" href="structm3g_1_1RenderState.html">RenderState</a> &amp;state) const </td></tr>
 
+<tr><td colspan="2"><br><h2>Static Public メソッド</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">static void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1CompositingMode.html#443a7a301f77f625335ecc06d13bad06">renderX</a> ()</td></tr>
+
 <tr><td colspan="2"><br><h2>Static Public 変数</h2></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">static const int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1CompositingMode.html#417581fcde4067111f47320edb2aa378">ALPHA</a> = 64</td></tr>
 
@@ -93,10 +97,6 @@ CompositingModeに対する継承グラフ</div>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">static const int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1CompositingMode.html#cb426684e42a5ae425989c65fbb7dbc4">MODULATE_X2</a> = 67</td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">static const int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1CompositingMode.html#47a00ac5a59817a48db06fb2a538883c">REPLACE</a> = 68</td></tr>
-
-<tr><td colspan="2"><br><h2>フレンド</h2></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="afa5201a494f65c37039281d9b63a2a9"></a><!-- doxytag: member="m3g::CompositingMode::Appearance" ref="afa5201a494f65c37039281d9b63a2a9" args="" -->
-class&nbsp;</td><td class="memItemRight" valign="bottom"><b>Appearance</b></td></tr>
 
 </table>
 <hr><a name="_details"></a><h2>説明</h2>
@@ -358,6 +358,25 @@ Note: <a class="el" href="classm3g_1_1CompositingMode.html">CompositingMode</a> 
 
 </div>
 </div><p>
+<a class="anchor" name="443a7a301f77f625335ecc06d13bad06"></a><!-- doxytag: member="m3g::CompositingMode::renderX" ref="443a7a301f77f625335ecc06d13bad06" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void renderX           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [static]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+このオブジェクトをレンダリングする内部使用の関数. 
+</div>
+</div><p>
 <a class="anchor" name="6becafaefd18a2b8b1adeba491576837"></a><!-- doxytag: member="m3g::CompositingMode::setAlphaThreshold" ref="6becafaefd18a2b8b1adeba491576837" args="(float threshold)" -->
 <div class="memitem">
 <div class="memproto">
@@ -586,7 +605,7 @@ Note: <a class="el" href="classm3g_1_1CompositingMode.html">CompositingMode</a> 
 <hr>このクラスの説明は次のファイルから生成されました:<ul>
 <li>/work/workspace.desktop-m3g/src/<a class="el" href="CompositingMode_8hpp-source.html">CompositingMode.hpp</a><li>/work/workspace.desktop-m3g/src/CompositingMode.cpp</ul>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Mon May 10 08:47:25 2010に生成されました。&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Sun Jun 6 11:22:35 2010に生成されました。&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.8 </small></address>
 </body>

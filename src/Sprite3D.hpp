@@ -18,7 +18,6 @@ namespace m3g {
      */
     class Sprite3D : public Node
     {
-        friend class Group;   // for sort_by_layer
 
         /**
          * @~English  Structure of defining crop region, for inner use.
@@ -51,7 +50,7 @@ namespace m3g {
          * @~English  Creates a duplicate of this Object3D. 
          * @~Japanese このオブジェクトの複製の作成.
          */
-        Sprite3D* duplicate () const;
+        virtual Sprite3D* duplicate () const;
 
         /**
          * @~English  Adds the given AnimationTrack to this Object3D, 

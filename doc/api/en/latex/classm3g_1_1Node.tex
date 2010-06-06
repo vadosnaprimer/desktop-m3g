@@ -13,7 +13,7 @@ Inheritance diagram for Node::\begin{figure}[H]
 \subsection*{Classes}
 \begin{CompactItemize}
 \item 
-struct \hyperlink{structm3g_1_1Node_1_1Alignment}{Alignment}
+struct \textbf{Alignment}
 \end{CompactItemize}
 \subsection*{Public Member Functions}
 \begin{CompactItemize}
@@ -24,7 +24,7 @@ virtual \hyperlink{classm3g_1_1Node_6fa6bf60f34f1e3efb0e59333428c9c8}{$\sim$Node
 \item 
 virtual \hyperlink{classm3g_1_1Node}{Node} $\ast$ \hyperlink{classm3g_1_1Node_0b9f7531a4b56d34f47aeb1fff0d37e0}{duplicate} () const 
 \item 
-void \hyperlink{classm3g_1_1Node_3db1b4be060fe3d4f3dbf9720ef85234}{align} (\hyperlink{classm3g_1_1Node}{Node} $\ast$reference)
+virtual void \hyperlink{classm3g_1_1Node_3db1b4be060fe3d4f3dbf9720ef85234}{align} (\hyperlink{classm3g_1_1Node}{Node} $\ast$reference)
 \item 
 virtual void \hyperlink{classm3g_1_1Node_415c0b110f95410ded9b85e5d99a496b}{addAnimationTrack} (\hyperlink{classm3g_1_1AnimationTrack}{AnimationTrack} $\ast$animation\_\-track)
 \item 
@@ -36,13 +36,27 @@ int \hyperlink{classm3g_1_1Node_e5bbf42b3d88193fda0b476e1b1da009}{getAlignmentTa
 \item 
 float \hyperlink{classm3g_1_1Node_bf7e8f9d9f530274aaf27e69910f8689}{getAlphaFactor} () const 
 \item 
+float \hyperlink{classm3g_1_1Node_f48a25661cb8a6f3559f7d5ffbc520b3}{getGlobalAlphaFactor} () const 
+\item 
 \hyperlink{classm3g_1_1Matrix}{Matrix} \hyperlink{classm3g_1_1Node_b50dd3f0331a71cf820bbd1edc894ef0}{getGlobalPose} () const 
 \item 
 \hyperlink{classm3g_1_1Node}{Node} $\ast$ \hyperlink{classm3g_1_1Node_ce26c2757f265bc6038e6818d2eb6ad9}{getParent} () const 
 \item 
+\hyperlink{classm3g_1_1Node}{Node} $\ast$ \hyperlink{classm3g_1_1Node_895a7a11e91762ed5aa2b849449d503a}{getGlobalParent} () const 
+\item 
 int \hyperlink{classm3g_1_1Node_a3c291c19cf805338fa4ad3c3deb663a}{getScope} () const 
 \item 
-bool \hyperlink{classm3g_1_1Node_206a2e95eb7db42e6880414f77858113}{getTransformTo} (\hyperlink{classm3g_1_1Node}{Node} $\ast$target, \hyperlink{classm3g_1_1Transform}{Transform} $\ast$transform) const 
+bool \hyperlink{classm3g_1_1Node_0dd162e8412d8589b27ee03d798189a6}{getTransformTo} (const \hyperlink{classm3g_1_1Node}{Node} $\ast$target, \hyperlink{classm3g_1_1Transform}{Transform} $\ast$transform) const 
+\item 
+\hypertarget{classm3g_1_1Node_20e38e50d93c9c01db4151475e2ffad2}{
+bool \textbf{isGlobalPickingEnabled} () const }
+\label{classm3g_1_1Node_20e38e50d93c9c01db4151475e2ffad2}
+
+\item 
+\hypertarget{classm3g_1_1Node_bc8778e9f401f29218887ee117bee9b1}{
+bool \textbf{isGlobalRenderingEnabled} () const }
+\label{classm3g_1_1Node_bc8778e9f401f29218887ee117bee9b1}
+
 \item 
 bool \hyperlink{classm3g_1_1Node_b3187e5056afa4a94af03e34125c86b1}{isPickingEnabled} () const 
 \item 
@@ -76,29 +90,6 @@ static const int \hyperlink{classm3g_1_1Node_dd4bccb7b9c652e726d58b06bd28dab2}{X
 static const int \hyperlink{classm3g_1_1Node_3248ff73b5411ab0a66a38c451c8b6fe}{Y\_\-AXIS} = 147
 \item 
 static const int \hyperlink{classm3g_1_1Node_a928e648c9ae9b4706937831f77f0c67}{Z\_\-AXIS} = 148
-\end{CompactItemize}
-\subsection*{Friends}
-\begin{CompactItemize}
-\item 
-\hypertarget{classm3g_1_1Node_2697825715974a353728f0d4d5658112}{
-class \textbf{Group}}
-\label{classm3g_1_1Node_2697825715974a353728f0d4d5658112}
-
-\item 
-\hypertarget{classm3g_1_1Node_7b4bcdf992c21ae83363f25df05b1d25}{
-class \textbf{World}}
-\label{classm3g_1_1Node_7b4bcdf992c21ae83363f25df05b1d25}
-
-\item 
-\hypertarget{classm3g_1_1Node_8174d4c629550c1ee279571250236ef4}{
-class \textbf{Graphics3D}}
-\label{classm3g_1_1Node_8174d4c629550c1ee279571250236ef4}
-
-\item 
-\hypertarget{classm3g_1_1Node_a41a130f156b145bffb3f4b5172c4c93}{
-class \textbf{Mesh}}
-\label{classm3g_1_1Node_a41a130f156b145bffb3f4b5172c4c93}
-
 \end{CompactItemize}
 
 
@@ -137,7 +128,7 @@ Reimplemented from \hyperlink{classm3g_1_1Transformable_415c0b110f95410ded9b85e5
 Reimplemented in \hyperlink{classm3g_1_1Camera_415c0b110f95410ded9b85e5d99a496b}{Camera}, \hyperlink{classm3g_1_1Light_415c0b110f95410ded9b85e5d99a496b}{Light}, \hyperlink{classm3g_1_1MorphingMesh_415c0b110f95410ded9b85e5d99a496b}{MorphingMesh}, and \hyperlink{classm3g_1_1Sprite3D_415c0b110f95410ded9b85e5d99a496b}{Sprite3D}.\hypertarget{classm3g_1_1Node_3db1b4be060fe3d4f3dbf9720ef85234}{
 \index{m3g::Node@{m3g::Node}!align@{align}}
 \index{align@{align}!m3g::Node@{m3g::Node}}
-\subsubsection[{align}]{\setlength{\rightskip}{0pt plus 5cm}void align ({\bf Node} $\ast$ {\em reference})}}
+\subsubsection[{align}]{\setlength{\rightskip}{0pt plus 5cm}void align ({\bf Node} $\ast$ {\em reference})\hspace{0.3cm}{\tt  \mbox{[}virtual\mbox{]}}}}
 \label{classm3g_1_1Node_3db1b4be060fe3d4f3dbf9720ef85234}
 
 
@@ -184,7 +175,21 @@ Returns tthe alignment target for the given axis. \hypertarget{classm3g_1_1Node_
 \label{classm3g_1_1Node_bf7e8f9d9f530274aaf27e69910f8689}
 
 
-Retrieves the alpha factor of this \hyperlink{classm3g_1_1Node}{Node}. \hypertarget{classm3g_1_1Node_b50dd3f0331a71cf820bbd1edc894ef0}{
+Retrieves the alpha factor of this \hyperlink{classm3g_1_1Node}{Node}. \hypertarget{classm3g_1_1Node_f48a25661cb8a6f3559f7d5ffbc520b3}{
+\index{m3g::Node@{m3g::Node}!getGlobalAlphaFactor@{getGlobalAlphaFactor}}
+\index{getGlobalAlphaFactor@{getGlobalAlphaFactor}!m3g::Node@{m3g::Node}}
+\subsubsection[{getGlobalAlphaFactor}]{\setlength{\rightskip}{0pt plus 5cm}float getGlobalAlphaFactor () const}}
+\label{classm3g_1_1Node_f48a25661cb8a6f3559f7d5ffbc520b3}
+
+
+Retrieves the alpha factor of this \hyperlink{classm3g_1_1Node}{Node} and all ancestors, not in M3G. \hypertarget{classm3g_1_1Node_895a7a11e91762ed5aa2b849449d503a}{
+\index{m3g::Node@{m3g::Node}!getGlobalParent@{getGlobalParent}}
+\index{getGlobalParent@{getGlobalParent}!m3g::Node@{m3g::Node}}
+\subsubsection[{getGlobalParent}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Node} $\ast$ getGlobalParent () const}}
+\label{classm3g_1_1Node_895a7a11e91762ed5aa2b849449d503a}
+
+
+Returns the top scene graph parent of this node. \hypertarget{classm3g_1_1Node_b50dd3f0331a71cf820bbd1edc894ef0}{
 \index{m3g::Node@{m3g::Node}!getGlobalPose@{getGlobalPose}}
 \index{getGlobalPose@{getGlobalPose}!m3g::Node@{m3g::Node}}
 \subsubsection[{getGlobalPose}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Matrix} getGlobalPose () const}}
@@ -205,11 +210,11 @@ Returns the scene graph parent of this node. \hypertarget{classm3g_1_1Node_a3c29
 \label{classm3g_1_1Node_a3c291c19cf805338fa4ad3c3deb663a}
 
 
-Retrieves the scope of this \hyperlink{classm3g_1_1Node}{Node}. \hypertarget{classm3g_1_1Node_206a2e95eb7db42e6880414f77858113}{
+Retrieves the scope of this \hyperlink{classm3g_1_1Node}{Node}. \hypertarget{classm3g_1_1Node_0dd162e8412d8589b27ee03d798189a6}{
 \index{m3g::Node@{m3g::Node}!getTransformTo@{getTransformTo}}
 \index{getTransformTo@{getTransformTo}!m3g::Node@{m3g::Node}}
-\subsubsection[{getTransformTo}]{\setlength{\rightskip}{0pt plus 5cm}bool getTransformTo ({\bf Node} $\ast$ {\em target}, \/  {\bf Transform} $\ast$ {\em transform}) const}}
-\label{classm3g_1_1Node_206a2e95eb7db42e6880414f77858113}
+\subsubsection[{getTransformTo}]{\setlength{\rightskip}{0pt plus 5cm}bool getTransformTo (const {\bf Node} $\ast$ {\em target}, \/  {\bf Transform} $\ast$ {\em transform}) const}}
+\label{classm3g_1_1Node_0dd162e8412d8589b27ee03d798189a6}
 
 
 Gets the composite transfformation from this node to the given node. \hypertarget{classm3g_1_1Node_b3187e5056afa4a94af03e34125c86b1}{

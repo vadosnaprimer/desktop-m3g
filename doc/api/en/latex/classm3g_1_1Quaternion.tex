@@ -13,6 +13,8 @@
 \item 
 \hyperlink{classm3g_1_1Quaternion_6e9a147677b9ffd583c59e9d06c3d938}{$\sim$Quaternion} ()
 \item 
+\hyperlink{classm3g_1_1Quaternion}{Quaternion} \hyperlink{classm3g_1_1Quaternion_c544c21c80182fc0a7f2c9dbe5f42a0a}{inv} () const 
+\item 
 void \hyperlink{classm3g_1_1Quaternion_382e6ad7e6721b121e510959e1011be3}{setIdentity} ()
 \item 
 void \hyperlink{classm3g_1_1Quaternion_47affd1a10b589811fc4828c1a2e0c6d}{setZero} ()
@@ -70,7 +72,9 @@ Construct this object as unit quaternion. \hypertarget{classm3g_1_1Quaternion_7a
 \label{classm3g_1_1Quaternion_7a06a28b864e525f73a1bb0eb3e9274e}
 
 
-Construct this object by angle-axis form, no need to be unit vector. \hypertarget{classm3g_1_1Quaternion_6e9a147677b9ffd583c59e9d06c3d938}{
+Construct this object by angle-axis form, no need to be unit vector.
+
+注意：回転軸は正規化されている必要はない。ただしangle!=0なら(0,0,0)以外でなければならない 念のためangle=NANの時はエラーにはならず単位クォータニオンになる。 \hypertarget{classm3g_1_1Quaternion_6e9a147677b9ffd583c59e9d06c3d938}{
 \index{m3g::Quaternion@{m3g::Quaternion}!$\sim$Quaternion@{$\sim$Quaternion}}
 \index{$\sim$Quaternion@{$\sim$Quaternion}!m3g::Quaternion@{m3g::Quaternion}}
 \subsubsection[{$\sim$Quaternion}]{\setlength{\rightskip}{0pt plus 5cm}$\sim${\bf Quaternion} ()}}
@@ -89,14 +93,21 @@ Destruct this object.
 
 Retriev this as angle-axis form.
 
-(補足) 回転角度が0の場合はangle=0,axis=(x,y,z)が返る. \hypertarget{classm3g_1_1Quaternion_b4393f1928cea2a3baadbf9acdd99de2}{
+(補足) 回転角度が0の場合はangle=0,axis=(x,y,z)が返る. 単位クォータニオンの場合は0,(0,0,0)が返る。 (メモ) M3Gライブラリは回転としてangle=0,axis=0,0,0を正しく扱えなければならない。 この入力値は「正しい」。 \hypertarget{classm3g_1_1Quaternion_b4393f1928cea2a3baadbf9acdd99de2}{
 \index{m3g::Quaternion@{m3g::Quaternion}!getLength@{getLength}}
 \index{getLength@{getLength}!m3g::Quaternion@{m3g::Quaternion}}
 \subsubsection[{getLength}]{\setlength{\rightskip}{0pt plus 5cm}float getLength () const}}
 \label{classm3g_1_1Quaternion_b4393f1928cea2a3baadbf9acdd99de2}
 
 
-Rtrieve lenght of this quaternion. \hypertarget{classm3g_1_1Quaternion_c9cc178bcc449e08499113c35feb2a2b}{
+Rtrieve lenght of this quaternion. \hypertarget{classm3g_1_1Quaternion_c544c21c80182fc0a7f2c9dbe5f42a0a}{
+\index{m3g::Quaternion@{m3g::Quaternion}!inv@{inv}}
+\index{inv@{inv}!m3g::Quaternion@{m3g::Quaternion}}
+\subsubsection[{inv}]{\setlength{\rightskip}{0pt plus 5cm}{\bf m3g::Quaternion} inv () const}}
+\label{classm3g_1_1Quaternion_c544c21c80182fc0a7f2c9dbe5f42a0a}
+
+
+Return inverse of this quaternion \hypertarget{classm3g_1_1Quaternion_c9cc178bcc449e08499113c35feb2a2b}{
 \index{m3g::Quaternion@{m3g::Quaternion}!normalize@{normalize}}
 \index{normalize@{normalize}!m3g::Quaternion@{m3g::Quaternion}}
 \subsubsection[{normalize}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Quaternion} \& normalize ()}}
@@ -117,7 +128,9 @@ Print out information of this object, for debug only. \hypertarget{classm3g_1_1Q
 \label{classm3g_1_1Quaternion_0712dc357557a30ac0da0a9d4cdd278c}
 
 
-set quaternion, to be normalized. \hypertarget{classm3g_1_1Quaternion_382e6ad7e6721b121e510959e1011be3}{
+set quaternion in quaternion form.
+
+セットするクォータニオン係数の長さが１である必要はない。 (メモ：logの計算で1以外のクォータニオンも使用する。内部で自動的に正規化は出来ない） \hypertarget{classm3g_1_1Quaternion_382e6ad7e6721b121e510959e1011be3}{
 \index{m3g::Quaternion@{m3g::Quaternion}!setIdentity@{setIdentity}}
 \index{setIdentity@{setIdentity}!m3g::Quaternion@{m3g::Quaternion}}
 \subsubsection[{setIdentity}]{\setlength{\rightskip}{0pt plus 5cm}void setIdentity ()}}

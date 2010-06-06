@@ -33,6 +33,7 @@ Backgroundに対する継承グラフ</div>
 <p><center><img src="classm3g_1_1Background.png" usemap="#Background_map" border="0" alt=""></center>
 <map name="Background_map">
 <area href="classm3g_1_1Object3D.html" alt="Object3D" shape="rect" coords="0,56,80,80">
+<area href="classm3g_1_1Object.html" alt="Object" shape="rect" coords="0,0,80,24">
 </map>
 </div>
 
@@ -40,9 +41,9 @@ Backgroundに対する継承グラフ</div>
 <a href="classm3g_1_1Background-members.html">すべてのメンバ一覧</a><table border="0" cellpadding="0" cellspacing="0">
 <tr><td></td></tr>
 <tr><td colspan="2"><br><h2>構成</h2></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="structm3g_1_1Background_1_1CropRect.html">CropRect</a></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><b>CropRect</b></td></tr>
 
-<tr><td class="memItemLeft" nowrap align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="structm3g_1_1Background_1_1ImageMode.html">ImageMode</a></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><b>ImageMode</b></td></tr>
 
 <tr><td colspan="2"><br><h2>Public メソッド</h2></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Background.html#2bbc220bb63956558a8603a7909c2bbd">Background</a> ()</td></tr>
@@ -89,14 +90,15 @@ Backgroundに対する継承グラフ</div>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">virtual std::ostream &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Background.html#6fea17fa1532df3794f8cb39cb4f911f">print</a> (std::ostream &amp;out) const </td></tr>
 
+<tr><td class="memItemLeft" nowrap align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Background.html#8babc8a79b78615da51161e94029eea9">render</a> (<a class="el" href="structm3g_1_1RenderState.html">RenderState</a> &amp;state) const </td></tr>
+
+<tr><td colspan="2"><br><h2>Static Public メソッド</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">static void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Background.html#443a7a301f77f625335ecc06d13bad06">renderX</a> ()</td></tr>
+
 <tr><td colspan="2"><br><h2>Static Public 変数</h2></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">static const int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Background.html#ee380e01b33e589c24984e4c4c1c6501">BORDER</a> = 32</td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">static const int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Background.html#a466d02b3d88f856854d0a0955be32e8">REPEAT</a> = 33</td></tr>
-
-<tr><td colspan="2"><br><h2>フレンド</h2></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="7b4bcdf992c21ae83363f25df05b1d25"></a><!-- doxytag: member="m3g::Background::World" ref="7b4bcdf992c21ae83363f25df05b1d25" args="" -->
-class&nbsp;</td><td class="memItemRight" valign="bottom"><b>World</b></td></tr>
 
 </table>
 <hr><a name="_details"></a><h2>説明</h2>
@@ -417,6 +419,48 @@ Backgroundオブジェクトの作成.
 
 </div>
 </div><p>
+<a class="anchor" name="8babc8a79b78615da51161e94029eea9"></a><!-- doxytag: member="m3g::Background::render" ref="8babc8a79b78615da51161e94029eea9" args="(RenderState &amp;state) const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void render           </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structm3g_1_1RenderState.html">RenderState</a> &amp;&nbsp;</td>
+          <td class="paramname"> <em>state</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const<code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+このBackgroundをレンダリングする内部使用の関数.<p>
+Note: <a class="el" href="classm3g_1_1Background.html">Background</a> should be rendered only at 0th rendering pass(pass=0). In other cases, do nothing. 
+<p><a class="el" href="classm3g_1_1Object3D.html#8babc8a79b78615da51161e94029eea9">Object3D</a>を再定義しています。</p>
+
+</div>
+</div><p>
+<a class="anchor" name="443a7a301f77f625335ecc06d13bad06"></a><!-- doxytag: member="m3g::Background::renderX" ref="443a7a301f77f625335ecc06d13bad06" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void renderX           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [static]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+このオブジェクトをレンダリングする内部使用の関数. 
+</div>
+</div><p>
 <a class="anchor" name="38439e862c59a31b90e57c18669061ae"></a><!-- doxytag: member="m3g::Background::setColor" ref="38439e862c59a31b90e57c18669061ae" args="(int argb)" -->
 <div class="memitem">
 <div class="memproto">
@@ -601,7 +645,7 @@ Backgroundオブジェクトの作成.
 <hr>このクラスの説明は次のファイルから生成されました:<ul>
 <li>/work/workspace.desktop-m3g/src/<a class="el" href="Background_8hpp-source.html">Background.hpp</a><li>/work/workspace.desktop-m3g/src/Background.cpp</ul>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Mon May 10 08:47:24 2010に生成されました。&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Sun Jun 6 11:22:35 2010に生成されました。&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.8 </small></address>
 </body>

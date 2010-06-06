@@ -54,7 +54,7 @@ namespace m3g {
          * @~English  Creates a duplicate of this Object3D. 
          * @~Japanese このオブジェクトの複製の作成.
          */
-        SkinnedMesh* duplicate () const;
+        virtual SkinnedMesh* duplicate () const;
 
         virtual int animate (int world_time);
 

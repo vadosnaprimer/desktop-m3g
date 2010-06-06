@@ -28,51 +28,55 @@
 <a name="l00008"></a>00008 
 <a name="l00009"></a>00009 <span class="keyword">namespace </span>m3g {
 <a name="l00010"></a>00010 
-<a name="l00011"></a>00011   <span class="keyword">class </span>RayIntersection;
-<a name="l00012"></a>00012 
+<a name="l00011"></a>00011     <span class="keyword">class </span>RayIntersection;
+<a name="l00012"></a>00012     <span class="keyword">class </span>Camera;
 <a name="l00013"></a>00013 
-<a name="l00018"></a>00018   <span class="keyword">class </span>Group : <span class="keyword">public</span> Node
-<a name="l00019"></a>00019   {
-<a name="l00020"></a>00020     <span class="keyword">friend</span> <span class="keyword">class </span>World;  <span class="comment">// for printf</span>
-<a name="l00021"></a>00021 
-<a name="l00022"></a>00022   <span class="keyword">public</span>:
-<a name="l00027"></a>00027     Group ();
-<a name="l00028"></a>00028 
-<a name="l00033"></a>00033     <span class="keyword">virtual</span> ~Group ();
-<a name="l00034"></a>00034 
-<a name="l00039"></a>00039     <span class="keyword">virtual</span> Group* duplicate () <span class="keyword">const</span>;
-<a name="l00040"></a>00040 
-<a name="l00045"></a>00045     <span class="keywordtype">void</span> addChild (Node* child);
-<a name="l00046"></a>00046 
-<a name="l00051"></a>00051     <span class="keyword">virtual</span> <span class="keywordtype">int</span> animate (<span class="keywordtype">int</span> world_time);
-<a name="l00052"></a>00052 
-<a name="l00057"></a>00057     <a class="code" href="classm3g_1_1Node.html#0d313fac56abd7ebe58a17f1530b879e">Node</a>* getChild (<span class="keywordtype">int</span> index) <span class="keyword">const</span>;
-<a name="l00058"></a>00058 
-<a name="l00063"></a>00063     <span class="keywordtype">int</span> getChildCount () <span class="keyword">const</span>;
-<a name="l00064"></a>00064 
-<a name="l00070"></a>00070     <span class="keywordtype">bool</span> pick (<span class="keywordtype">int</span> scope, <span class="keywordtype">float</span> ox, <span class="keywordtype">float</span> oy, <span class="keywordtype">float</span> oz, <span class="keywordtype">float</span> dx, <span class="keywordtype">float</span> dy, <span class="keywordtype">float</span> dz, RayIntersection* ri) <span class="keyword">const</span>;
-<a name="l00071"></a>00071 
-<a name="l00076"></a>00076     <span class="keywordtype">void</span> removeChild (Node* child);
-<a name="l00077"></a>00077 
-<a name="l00082"></a>00082     <span class="keyword">virtual</span> std::ostream&amp; print (std::ostream&amp; out) <span class="keyword">const</span>;
+<a name="l00018"></a>00018     <span class="keyword">class </span>Group : <span class="keyword">public</span> Node
+<a name="l00019"></a>00019     {
+<a name="l00020"></a>00020 
+<a name="l00021"></a>00021     <span class="keyword">public</span>:
+<a name="l00026"></a>00026         Group ();
+<a name="l00027"></a>00027 
+<a name="l00032"></a>00032         <span class="keyword">virtual</span> ~Group ();
+<a name="l00033"></a>00033 
+<a name="l00037"></a>00037         <span class="keyword">virtual</span> <span class="keywordtype">void</span> align (Node* reference);
+<a name="l00038"></a>00038 
+<a name="l00043"></a>00043         <span class="keyword">virtual</span> Group* duplicate () <span class="keyword">const</span>;
+<a name="l00044"></a>00044 
+<a name="l00049"></a>00049         <span class="keywordtype">void</span> addChild (Node* child);
+<a name="l00050"></a>00050 
+<a name="l00055"></a>00055         <span class="keyword">virtual</span> <span class="keywordtype">int</span> animate (<span class="keywordtype">int</span> world_time);
+<a name="l00056"></a>00056 
+<a name="l00061"></a>00061         <a class="code" href="classm3g_1_1Node.html#0d313fac56abd7ebe58a17f1530b879e">Node</a>* getChild (<span class="keywordtype">int</span> index) <span class="keyword">const</span>;
+<a name="l00062"></a>00062 
+<a name="l00067"></a>00067         <span class="keywordtype">int</span> getChildCount () <span class="keyword">const</span>;
+<a name="l00068"></a>00068 
+<a name="l00074"></a>00074         <span class="keywordtype">bool</span> pick (<span class="keywordtype">int</span> scope, <span class="keywordtype">float</span> x, <span class="keywordtype">float</span> y, <span class="keyword">const</span> Camera* camera, RayIntersection* ri) <span class="keyword">const</span>;
+<a name="l00075"></a>00075 
+<a name="l00081"></a>00081         <span class="keywordtype">bool</span> pick (<span class="keywordtype">int</span> scope, <span class="keywordtype">float</span> ox, <span class="keywordtype">float</span> oy, <span class="keywordtype">float</span> oz, <span class="keywordtype">float</span> dx, <span class="keywordtype">float</span> dy, <span class="keywordtype">float</span> dz, RayIntersection* ri) <span class="keyword">const</span>;
+<a name="l00082"></a>00082 
 <a name="l00083"></a>00083 
-<a name="l00088"></a>00088     <span class="keyword">virtual</span> <span class="keywordtype">void</span> render (RenderState&amp; state) <span class="keyword">const</span>;
-<a name="l00089"></a>00089   
-<a name="l00090"></a>00090 
-<a name="l00091"></a>00091   <span class="keyword">private</span>:
-<a name="l00092"></a>00092     std::vector&lt;Node*&gt; children;
-<a name="l00093"></a>00093   };
-<a name="l00094"></a>00094 
-<a name="l00095"></a>00095 } <span class="comment">// namespace m3g {</span>
-<a name="l00096"></a>00096 
-<a name="l00097"></a>00097 std::ostream&amp; operator&lt;&lt; (std::ostream&amp; out, <span class="keyword">const</span> m3g::Group&amp; g);
-<a name="l00098"></a>00098 
-<a name="l00099"></a>00099 
-<a name="l00100"></a>00100 
-<a name="l00101"></a>00101 
-<a name="l00102"></a>00102 <span class="preprocessor">#endif</span>
+<a name="l00088"></a>00088         <span class="keywordtype">void</span> removeChild (Node* child);
+<a name="l00089"></a>00089 
+<a name="l00094"></a>00094         <span class="keyword">virtual</span> std::ostream&amp; print (std::ostream&amp; out) <span class="keyword">const</span>;
+<a name="l00095"></a>00095 
+<a name="l00100"></a>00100         <span class="keyword">virtual</span> <span class="keywordtype">void</span> render (RenderState&amp; state) <span class="keyword">const</span>;
+<a name="l00101"></a>00101   
+<a name="l00102"></a>00102 
+<a name="l00103"></a>00103     <span class="keyword">protected</span>:
+<a name="l00104"></a>00104         std::vector&lt;Node*&gt; children;
+<a name="l00105"></a>00105     };
+<a name="l00106"></a>00106 
+<a name="l00107"></a>00107 } <span class="comment">// namespace m3g {</span>
+<a name="l00108"></a>00108 
+<a name="l00109"></a>00109 std::ostream&amp; operator&lt;&lt; (std::ostream&amp; out, <span class="keyword">const</span> m3g::Group&amp; g);
+<a name="l00110"></a>00110 
+<a name="l00111"></a>00111 
+<a name="l00112"></a>00112 
+<a name="l00113"></a>00113 
+<a name="l00114"></a>00114 <span class="preprocessor">#endif</span>
 </pre></div></div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Mon May 10 08:47:29 2010 by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Sun Jun 6 11:22:40 2010 by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.8 </small></address>
 </body>

@@ -33,6 +33,7 @@ Inheritance diagram for Image2D:</div>
 <p><center><img src="classm3g_1_1Image2D.png" usemap="#Image2D_map" border="0" alt=""></center>
 <map name="Image2D_map">
 <area href="classm3g_1_1Object3D.html" alt="Object3D" shape="rect" coords="0,56,65,80">
+<area href="classm3g_1_1Object.html" alt="Object" shape="rect" coords="0,0,65,24">
 </map>
 </div>
 
@@ -60,11 +61,13 @@ Inheritance diagram for Image2D:</div>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Image2D.html#fe9ef1abefb9e92b38687e27c9004bdc">set</a> (int x, int y, int width, int height, void *image)</td></tr>
 
-<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Image2D.html#32ee5b2bcc9c7bf69b925413eeccb4bf">write_ppm</a> (const char *file_name) const </td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Image2D.html#8957959000d658fd8a3cff474f7ee7e8">writePNG</a> (const char *name) const </td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">virtual std::ostream &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Image2D.html#6fea17fa1532df3794f8cb39cb4f911f">print</a> (std::ostream &amp;out) const </td></tr>
 
-<tr><td class="memItemLeft" nowrap align="right" valign="top">GLenum&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Image2D.html#7923da2fe82fee768ec9937a693e843c">getOpenGLFormat</a> () const </td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Image2D.html#8babc8a79b78615da51161e94029eea9">render</a> (<a class="el" href="structm3g_1_1RenderState.html">RenderState</a> &amp;state) const </td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">unsigned int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Image2D.html#3e28ae5596cde78a980de02005a136f2">getOpenGLFormat</a> () const </td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">void *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Image2D.html#b837b1bdda59947a6d818c448965c502">getOpenGLData</a> () const </td></tr>
 
@@ -78,16 +81,6 @@ Inheritance diagram for Image2D:</div>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">static const int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Image2D.html#5f237f1b0f2ce6351e9e4a494b8dc759">RGB</a> = 99</td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">static const int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Image2D.html#0aaf9f2f4c064633c6d2888ec2c39e92">RGBA</a> = 100</td></tr>
-
-<tr><td colspan="2"><br><h2>Friends</h2></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="a70951a0328ba29f64176f16b3ea47d8"></a><!-- doxytag: member="m3g::Image2D::Texture2D" ref="a70951a0328ba29f64176f16b3ea47d8" args="" -->
-class&nbsp;</td><td class="memItemRight" valign="bottom"><b>Texture2D</b></td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="d70dac188b152e81b4323bb274bee959"></a><!-- doxytag: member="m3g::Image2D::Background" ref="d70dac188b152e81b4323bb274bee959" args="" -->
-class&nbsp;</td><td class="memItemRight" valign="bottom"><b>Background</b></td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="639cf38c41878a4f0fc8d24c010c96de"></a><!-- doxytag: member="m3g::Image2D::Sprite3D" ref="639cf38c41878a4f0fc8d24c010c96de" args="" -->
-class&nbsp;</td><td class="memItemRight" valign="bottom"><b>Sprite3D</b></td></tr>
 
 </table>
 <hr><a name="_details"></a><h2>Detailed Description</h2>
@@ -313,12 +306,12 @@ Gets the hieght of this <a class="el" href="classm3g_1_1Image2D.html">Image2D</a
 Return pointer to raw data, for inner use. 
 </div>
 </div><p>
-<a class="anchor" name="7923da2fe82fee768ec9937a693e843c"></a><!-- doxytag: member="m3g::Image2D::getOpenGLFormat" ref="7923da2fe82fee768ec9937a693e843c" args="() const " -->
+<a class="anchor" name="3e28ae5596cde78a980de02005a136f2"></a><!-- doxytag: member="m3g::Image2D::getOpenGLFormat" ref="3e28ae5596cde78a980de02005a136f2" args="() const " -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">GLenum getOpenGLFormat           </td>
+          <td class="memname">unsigned int getOpenGLFormat           </td>
           <td>(</td>
           <td class="paramname">          </td>
           <td>&nbsp;)&nbsp;</td>
@@ -392,6 +385,29 @@ Print out information of this class, for only debug.
 
 </div>
 </div><p>
+<a class="anchor" name="8babc8a79b78615da51161e94029eea9"></a><!-- doxytag: member="m3g::Image2D::render" ref="8babc8a79b78615da51161e94029eea9" args="(RenderState &amp;state) const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void render           </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structm3g_1_1RenderState.html">RenderState</a> &amp;&nbsp;</td>
+          <td class="paramname"> <em>state</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const<code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Render this object, for inner use.<p>
+現在のフレームバッファーからこのImag2Dへコピーする. 
+<p>Reimplemented from <a class="el" href="classm3g_1_1Object3D.html#8babc8a79b78615da51161e94029eea9">Object3D</a>.</p>
+
+</div>
+</div><p>
 <a class="anchor" name="fe9ef1abefb9e92b38687e27c9004bdc"></a><!-- doxytag: member="m3g::Image2D::set" ref="fe9ef1abefb9e92b38687e27c9004bdc" args="(int x, int y, int width, int height, void *image)" -->
 <div class="memitem">
 <div class="memproto">
@@ -439,12 +455,12 @@ Print out information of this class, for only debug.
 Updates a rectangular area of this <a class="el" href="classm3g_1_1Image2D.html">Image2D</a> by copying pixels from a byte array. 
 </div>
 </div><p>
-<a class="anchor" name="32ee5b2bcc9c7bf69b925413eeccb4bf"></a><!-- doxytag: member="m3g::Image2D::write_ppm" ref="32ee5b2bcc9c7bf69b925413eeccb4bf" args="(const char *file_name) const " -->
+<a class="anchor" name="8957959000d658fd8a3cff474f7ee7e8"></a><!-- doxytag: member="m3g::Image2D::writePNG" ref="8957959000d658fd8a3cff474f7ee7e8" args="(const char *name) const " -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void write_ppm           </td>
+          <td class="memname">void writePNG           </td>
           <td>(</td>
           <td class="paramtype">const char *&nbsp;</td>
           <td class="paramname"> <em>name</em>          </td>
@@ -456,8 +472,8 @@ Updates a rectangular area of this <a class="el" href="classm3g_1_1Image2D.html"
 <div class="memdoc">
 
 <p>
-Write image as ppm file(alpha component is ignored), for only debug .<p>
-注意：OpenGLは左下が(0,0)、ppmは左上が(0,0) 
+Write image as png file, not in M3G.<p>
+注意：OpenGLは左下が(0,0) 
 </div>
 </div><p>
 <hr><h2>Member Data Documentation</h2>
@@ -539,7 +555,7 @@ A constructor parameter specifying that this <a class="el" href="classm3g_1_1Ima
 <hr>The documentation for this class was generated from the following files:<ul>
 <li>/work/workspace.desktop-m3g/src/<a class="el" href="Image2D_8hpp-source.html">Image2D.hpp</a><li>/work/workspace.desktop-m3g/src/Image2D.cpp</ul>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Mon May 10 08:47:31 2010 by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Sun Jun 6 11:22:42 2010 by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.8 </small></address>
 </body>

@@ -34,6 +34,7 @@ Nodeに対する継承グラフ</div>
 <map name="Node_map">
 <area href="classm3g_1_1Transformable.html" alt="Transformable" shape="rect" coords="214,112,311,136">
 <area href="classm3g_1_1Object3D.html" alt="Object3D" shape="rect" coords="214,56,311,80">
+<area href="classm3g_1_1Object.html" alt="Object" shape="rect" coords="214,0,311,24">
 <area href="classm3g_1_1Camera.html" alt="Camera" shape="rect" coords="0,224,97,248">
 <area href="classm3g_1_1Group.html" alt="Group" shape="rect" coords="107,224,204,248">
 <area href="classm3g_1_1Light.html" alt="Light" shape="rect" coords="214,224,311,248">
@@ -49,7 +50,7 @@ Nodeに対する継承グラフ</div>
 <a href="classm3g_1_1Node-members.html">すべてのメンバ一覧</a><table border="0" cellpadding="0" cellspacing="0">
 <tr><td></td></tr>
 <tr><td colspan="2"><br><h2>構成</h2></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="structm3g_1_1Node_1_1Alignment.html">Alignment</a></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><b>Alignment</b></td></tr>
 
 <tr><td colspan="2"><br><h2>Public メソッド</h2></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Node.html#0d313fac56abd7ebe58a17f1530b879e">Node</a> ()</td></tr>
@@ -58,7 +59,7 @@ Nodeに対する継承グラフ</div>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">virtual <a class="el" href="classm3g_1_1Node.html">Node</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Node.html#0b9f7531a4b56d34f47aeb1fff0d37e0">duplicate</a> () const </td></tr>
 
-<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Node.html#3db1b4be060fe3d4f3dbf9720ef85234">align</a> (<a class="el" href="classm3g_1_1Node.html">Node</a> *reference)</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Node.html#3db1b4be060fe3d4f3dbf9720ef85234">align</a> (<a class="el" href="classm3g_1_1Node.html">Node</a> *reference)</td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Node.html#415c0b110f95410ded9b85e5d99a496b">addAnimationTrack</a> (<a class="el" href="classm3g_1_1AnimationTrack.html">AnimationTrack</a> *animation_track)</td></tr>
 
@@ -70,13 +71,23 @@ Nodeに対する継承グラフ</div>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">float&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Node.html#bf7e8f9d9f530274aaf27e69910f8689">getAlphaFactor</a> () const </td></tr>
 
+<tr><td class="memItemLeft" nowrap align="right" valign="top">float&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Node.html#f48a25661cb8a6f3559f7d5ffbc520b3">getGlobalAlphaFactor</a> () const </td></tr>
+
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="el" href="classm3g_1_1Matrix.html">Matrix</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Node.html#b50dd3f0331a71cf820bbd1edc894ef0">getGlobalPose</a> () const </td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="el" href="classm3g_1_1Node.html">Node</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Node.html#ce26c2757f265bc6038e6818d2eb6ad9">getParent</a> () const </td></tr>
 
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="el" href="classm3g_1_1Node.html">Node</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Node.html#895a7a11e91762ed5aa2b849449d503a">getGlobalParent</a> () const </td></tr>
+
 <tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Node.html#a3c291c19cf805338fa4ad3c3deb663a">getScope</a> () const </td></tr>
 
-<tr><td class="memItemLeft" nowrap align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Node.html#206a2e95eb7db42e6880414f77858113">getTransformTo</a> (<a class="el" href="classm3g_1_1Node.html">Node</a> *target, <a class="el" href="classm3g_1_1Transform.html">Transform</a> *transform) const </td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Node.html#0dd162e8412d8589b27ee03d798189a6">getTransformTo</a> (const <a class="el" href="classm3g_1_1Node.html">Node</a> *target, <a class="el" href="classm3g_1_1Transform.html">Transform</a> *transform) const </td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="20e38e50d93c9c01db4151475e2ffad2"></a><!-- doxytag: member="m3g::Node::isGlobalPickingEnabled" ref="20e38e50d93c9c01db4151475e2ffad2" args="() const " -->
+bool&nbsp;</td><td class="memItemRight" valign="bottom"><b>isGlobalPickingEnabled</b> () const </td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="bc8778e9f401f29218887ee117bee9b1"></a><!-- doxytag: member="m3g::Node::isGlobalRenderingEnabled" ref="bc8778e9f401f29218887ee117bee9b1" args="() const " -->
+bool&nbsp;</td><td class="memItemRight" valign="bottom"><b>isGlobalRenderingEnabled</b> () const </td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Node.html#b3187e5056afa4a94af03e34125c86b1">isPickingEnabled</a> () const </td></tr>
 
@@ -108,19 +119,6 @@ Nodeに対する継承グラフ</div>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">static const int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Node.html#3248ff73b5411ab0a66a38c451c8b6fe">Y_AXIS</a> = 147</td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">static const int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Node.html#a928e648c9ae9b4706937831f77f0c67">Z_AXIS</a> = 148</td></tr>
-
-<tr><td colspan="2"><br><h2>フレンド</h2></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="2697825715974a353728f0d4d5658112"></a><!-- doxytag: member="m3g::Node::Group" ref="2697825715974a353728f0d4d5658112" args="" -->
-class&nbsp;</td><td class="memItemRight" valign="bottom"><b>Group</b></td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="7b4bcdf992c21ae83363f25df05b1d25"></a><!-- doxytag: member="m3g::Node::World" ref="7b4bcdf992c21ae83363f25df05b1d25" args="" -->
-class&nbsp;</td><td class="memItemRight" valign="bottom"><b>World</b></td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="8174d4c629550c1ee279571250236ef4"></a><!-- doxytag: member="m3g::Node::Graphics3D" ref="8174d4c629550c1ee279571250236ef4" args="" -->
-class&nbsp;</td><td class="memItemRight" valign="bottom"><b>Graphics3D</b></td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="a41a130f156b145bffb3f4b5172c4c93"></a><!-- doxytag: member="m3g::Node::Mesh" ref="a41a130f156b145bffb3f4b5172c4c93" args="" -->
-class&nbsp;</td><td class="memItemRight" valign="bottom"><b>Mesh</b></td></tr>
 
 </table>
 <hr><a name="_details"></a><h2>説明</h2>
@@ -198,7 +196,7 @@ Nodeオブジェクトを作成するコンストラクタ.
           <td class="paramtype"><a class="el" href="classm3g_1_1Node.html">Node</a> *&nbsp;</td>
           <td class="paramname"> <em>reference</em>          </td>
           <td>&nbsp;)&nbsp;</td>
-          <td></td>
+          <td><code> [virtual]</code></td>
         </tr>
       </table>
 </div>
@@ -206,6 +204,8 @@ Nodeオブジェクトを作成するコンストラクタ.
 
 <p>
 このノードと子孫ノードにアライメントを適応する. 
+<p><a class="el" href="classm3g_1_1Group.html#3db1b4be060fe3d4f3dbf9720ef85234">Group</a>で再定義されています。</p>
+
 </div>
 </div><p>
 <a class="anchor" name="8aad1ceab4c2a03609c8a42324ce484d"></a><!-- doxytag: member="m3g::Node::animate" ref="8aad1ceab4c2a03609c8a42324ce484d" args="(int world_time)" -->
@@ -314,6 +314,44 @@ Nodeオブジェクトを作成するコンストラクタ.
 このノードのα値の取得. 
 </div>
 </div><p>
+<a class="anchor" name="f48a25661cb8a6f3559f7d5ffbc520b3"></a><!-- doxytag: member="m3g::Node::getGlobalAlphaFactor" ref="f48a25661cb8a6f3559f7d5ffbc520b3" args="() const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float getGlobalAlphaFactor           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+このノードと先祖のα値を全て乗算した値の取得, M3G未定義. 
+</div>
+</div><p>
+<a class="anchor" name="895a7a11e91762ed5aa2b849449d503a"></a><!-- doxytag: member="m3g::Node::getGlobalParent" ref="895a7a11e91762ed5aa2b849449d503a" args="() const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classm3g_1_1Node.html">Node</a> * getGlobalParent           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+このノードの一番上の親ノードの取得. 
+</div>
+</div><p>
 <a class="anchor" name="b50dd3f0331a71cf820bbd1edc894ef0"></a><!-- doxytag: member="m3g::Node::getGlobalPose" ref="b50dd3f0331a71cf820bbd1edc894ef0" args="() const " -->
 <div class="memitem">
 <div class="memproto">
@@ -371,14 +409,14 @@ Nodeオブジェクトを作成するコンストラクタ.
 このノードのスコープの取得. 
 </div>
 </div><p>
-<a class="anchor" name="206a2e95eb7db42e6880414f77858113"></a><!-- doxytag: member="m3g::Node::getTransformTo" ref="206a2e95eb7db42e6880414f77858113" args="(Node *target, Transform *transform) const " -->
+<a class="anchor" name="0dd162e8412d8589b27ee03d798189a6"></a><!-- doxytag: member="m3g::Node::getTransformTo" ref="0dd162e8412d8589b27ee03d798189a6" args="(const Node *target, Transform *transform) const " -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">bool getTransformTo           </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classm3g_1_1Node.html">Node</a> *&nbsp;</td>
+          <td class="paramtype">const <a class="el" href="classm3g_1_1Node.html">Node</a> *&nbsp;</td>
           <td class="paramname"> <em>target</em>, </td>
         </tr>
         <tr>
@@ -707,7 +745,7 @@ Note: <a class="el" href="classm3g_1_1Node.html">Node</a> should be rendered via
 <hr>このクラスの説明は次のファイルから生成されました:<ul>
 <li>/work/workspace.desktop-m3g/src/<a class="el" href="Node_8hpp-source.html">Node.hpp</a><li>/work/workspace.desktop-m3g/src/Node.cpp</ul>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Mon May 10 08:47:27 2010に生成されました。&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Sun Jun 6 11:22:37 2010に生成されました。&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.8 </small></address>
 </body>

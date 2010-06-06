@@ -34,6 +34,7 @@ Texture2Dに対する継承グラフ</div>
 <map name="Texture2D_map">
 <area href="classm3g_1_1Transformable.html" alt="Transformable" shape="rect" coords="0,112,93,136">
 <area href="classm3g_1_1Object3D.html" alt="Object3D" shape="rect" coords="0,56,93,80">
+<area href="classm3g_1_1Object.html" alt="Object" shape="rect" coords="0,0,93,24">
 </map>
 </div>
 
@@ -50,7 +51,7 @@ Texture2Dに対する継承グラフ</div>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">virtual&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Texture2D.html#060332aea614a81a914cd2e55f1794df">~Texture2D</a> ()</td></tr>
 
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="el" href="classm3g_1_1Texture2D.html">Texture2D</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Texture2D.html#f4b50abcea8e4a6d6981c779d5009c05">duplicate</a> () const </td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">virtual <a class="el" href="classm3g_1_1Texture2D.html">Texture2D</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Texture2D.html#f4b50abcea8e4a6d6981c779d5009c05">duplicate</a> () const </td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">virtual int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Texture2D.html#8aad1ceab4c2a03609c8a42324ce484d">animate</a> (int world_time)</td></tr>
 
@@ -84,6 +85,9 @@ Texture2Dに対する継承グラフ</div>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Texture2D.html#8babc8a79b78615da51161e94029eea9">render</a> (<a class="el" href="structm3g_1_1RenderState.html">RenderState</a> &amp;state) const </td></tr>
 
+<tr><td colspan="2"><br><h2>Static Public メソッド</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">static void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Texture2D.html#443a7a301f77f625335ecc06d13bad06">renderX</a> ()</td></tr>
+
 <tr><td colspan="2"><br><h2>Static Public 変数</h2></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">static const int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Texture2D.html#d1924d32385b5353ad11ecd8b1ec0ad5">FILTER_BASE_LEVEL</a> = 208</td></tr>
 
@@ -104,10 +108,6 @@ Texture2Dに対する継承グラフ</div>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">static const int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Texture2D.html#e36d8facf5b60eb6c59888121731c438">WRAP_CLAMP</a> = 240</td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">static const int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Texture2D.html#b37ff061b9fb272284c4c389deec9266">WRAP_REPEAT</a> = 241</td></tr>
-
-<tr><td colspan="2"><br><h2>フレンド</h2></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="afa5201a494f65c37039281d9b63a2a9"></a><!-- doxytag: member="m3g::Texture2D::Appearance" ref="afa5201a494f65c37039281d9b63a2a9" args="" -->
-class&nbsp;</td><td class="memItemRight" valign="bottom"><b>Appearance</b></td></tr>
 
 </table>
 <hr><a name="_details"></a><h2>説明</h2>
@@ -395,6 +395,25 @@ Note: <a class="el" href="classm3g_1_1Texture2D.html">Texture2D</a> should be re
 
 </div>
 </div><p>
+<a class="anchor" name="443a7a301f77f625335ecc06d13bad06"></a><!-- doxytag: member="m3g::Texture2D::renderX" ref="443a7a301f77f625335ecc06d13bad06" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void renderX           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [static]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+デフォルトでレンダリングする内部使用の関数. 
+</div>
+</div><p>
 <a class="anchor" name="b5a6333203f443fb1f66ea2e39d4de1b"></a><!-- doxytag: member="m3g::Texture2D::setBlendColor" ref="b5a6333203f443fb1f66ea2e39d4de1b" args="(int rgb)" -->
 <div class="memitem">
 <div class="memproto">
@@ -667,7 +686,7 @@ S,Tテクスチャー座標のラッピングモードの設定.
 <hr>このクラスの説明は次のファイルから生成されました:<ul>
 <li>/work/workspace.desktop-m3g/src/<a class="el" href="Texture2D_8hpp-source.html">Texture2D.hpp</a><li>/work/workspace.desktop-m3g/src/Texture2D.cpp</ul>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Mon May 10 08:47:28 2010に生成されました。&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Sun Jun 6 11:22:38 2010に生成されました。&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.8 </small></address>
 </body>

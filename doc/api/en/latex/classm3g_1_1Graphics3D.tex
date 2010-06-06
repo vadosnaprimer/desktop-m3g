@@ -13,22 +13,22 @@ Inheritance diagram for Graphics3D::\begin{figure}[H]
 \subsection*{Classes}
 \begin{CompactItemize}
 \item 
-struct \textbf{DepthRange}
-\item 
-struct \hyperlink{structm3g_1_1Graphics3D_1_1Viewport}{Viewport}
+struct \textbf{Viewport}
 \end{CompactItemize}
 \subsection*{Public Member Functions}
 \begin{CompactItemize}
 \item 
 \hyperlink{classm3g_1_1Graphics3D_9b9347476fc10e57b31694ac8a628511}{$\sim$Graphics3D} ()
 \item 
-int \hyperlink{classm3g_1_1Graphics3D_e210cacb72c8540df86a6674e3c2dc4f}{addLight} (\hyperlink{classm3g_1_1Light}{Light} $\ast$light, \hyperlink{classm3g_1_1Transform}{Transform} \&transform)
+int \hyperlink{classm3g_1_1Graphics3D_0a8acc61618bad17053cb62131819b92}{addLight} (\hyperlink{classm3g_1_1Light}{Light} $\ast$light, const \hyperlink{classm3g_1_1Transform}{Transform} \&transform)
 \item 
-void \hyperlink{classm3g_1_1Graphics3D_2173e179f4b2d7130cde46a48794ee66}{bindTarget} (\hyperlink{classm3g_1_1Graphics}{Graphics} $\ast$g, bool depth\_\-buffer\_\-enabled=true, int hints=0)
+void \hyperlink{classm3g_1_1Graphics3D_d34fb1ab11f2e25b98b93affd71dcc05}{bindTarget} (void $\ast$target, bool depth\_\-buffer\_\-enabled=true, int hints=0)
+\item 
+void \hyperlink{classm3g_1_1Graphics3D_b775163cbe39d177e255011e381cd9f8}{bindTarget} (\hyperlink{classm3g_1_1Image2D}{Image2D} $\ast$target, bool depth\_\-buffer\_\-enabled=true, int hints=0)
 \item 
 void \hyperlink{classm3g_1_1Graphics3D_21c4a68a53cfbe0a7cec05d5a56682bf}{clear} (\hyperlink{classm3g_1_1Background}{Background} $\ast$background)
 \item 
-\hyperlink{classm3g_1_1Camera}{Camera} $\ast$ \hyperlink{classm3g_1_1Graphics3D_570b81f426d1b2b5e8794cffb33422c6}{getCamera} (const \hyperlink{classm3g_1_1Transform}{Transform} \&transform)
+\hyperlink{classm3g_1_1Camera}{Camera} $\ast$ \hyperlink{classm3g_1_1Graphics3D_1c6ba79e9112caef92e1a149a308b613}{getCamera} (\hyperlink{classm3g_1_1Transform}{Transform} $\ast$transform)
 \item 
 float \hyperlink{classm3g_1_1Graphics3D_c8c185b99073215202d2e35723f5c470}{getDepthRangeFar} () const 
 \item 
@@ -36,11 +36,11 @@ float \hyperlink{classm3g_1_1Graphics3D_60bc116f673bf2782de2df3eebfb2c92}{getDep
 \item 
 int \hyperlink{classm3g_1_1Graphics3D_5837234a23dc5f46d3adec17f521b58e}{getHints} () const 
 \item 
-\hyperlink{classm3g_1_1Light}{Light} $\ast$ \hyperlink{classm3g_1_1Graphics3D_04272e584440c89fb4cb449003a84e7d}{getLight} (int index, const \hyperlink{classm3g_1_1Transform}{Transform} \&transform) const 
+\hyperlink{classm3g_1_1Light}{Light} $\ast$ \hyperlink{classm3g_1_1Graphics3D_02e7b19ae5c0342b11f2cbf9a4df4d77}{getLight} (int index, \hyperlink{classm3g_1_1Transform}{Transform} $\ast$transform) const 
 \item 
 int \hyperlink{classm3g_1_1Graphics3D_7a08cfeb48d76ad5d8859a1fc0c77d98}{getLightCount} () const 
 \item 
-std::vector$<$ Property $\ast$ $>$ \hyperlink{classm3g_1_1Graphics3D_d87d3f8145ea47e2b736c6c3525dad5c}{getProperties} () const 
+std::map$<$ const char $\ast$, int $>$ \hyperlink{classm3g_1_1Graphics3D_2ea2a069c4b10555d50a193a44e63996}{getProperties} () const 
 \item 
 void $\ast$ \hyperlink{classm3g_1_1Graphics3D_02d0033930c8e68f4d7ebd43abe7980a}{getTarget} () const 
 \item 
@@ -54,13 +54,11 @@ int \hyperlink{classm3g_1_1Graphics3D_c21665afbf94a8f0153e099833c2b61a}{getViewp
 \item 
 bool \hyperlink{classm3g_1_1Graphics3D_7f17c6781152840d42e756c27b0fb8c8}{isDepthBufferEnabled} () const 
 \item 
-void \hyperlink{classm3g_1_1Graphics3D_3ffaaf0d0f1e97a07c7f30c9b5a5dd32}{releaseTarget} () const 
+void \hyperlink{classm3g_1_1Graphics3D_1491a435e97a20d5325339359a719cc5}{releaseTarget} ()
 \item 
-void \hyperlink{classm3g_1_1Graphics3D_9c9ca78b3ce4cc358783a1a2701b9d85}{render} (\hyperlink{classm3g_1_1Node}{Node} $\ast$node, \hyperlink{classm3g_1_1Transform}{Transform} $\ast$transform) const 
+void \hyperlink{classm3g_1_1Graphics3D_8f7b52c44e84e6ccbbb639d1b5b80466}{render} (\hyperlink{classm3g_1_1Node}{Node} $\ast$node, const \hyperlink{classm3g_1_1Transform}{Transform} \&transform) const 
 \item 
-void \hyperlink{classm3g_1_1Graphics3D_dc32291b31d6d3a32037eb9f727f73c0}{render} (\hyperlink{classm3g_1_1VertexBuffer}{VertexBuffer} $\ast$vertices, \hyperlink{classm3g_1_1IndexBuffer}{IndexBuffer} $\ast$triangles, \hyperlink{classm3g_1_1Appearance}{Appearance} $\ast$apperance, \hyperlink{classm3g_1_1Transform}{Transform} \&transform) const 
-\item 
-void \hyperlink{classm3g_1_1Graphics3D_9179d0d886a57cd3234b34f1b59dfc3c}{render} (\hyperlink{classm3g_1_1VertexBuffer}{VertexBuffer} $\ast$vertices, \hyperlink{classm3g_1_1IndexBuffer}{IndexBuffer} $\ast$triangles, \hyperlink{classm3g_1_1Appearance}{Appearance} $\ast$apperance, \hyperlink{classm3g_1_1Transform}{Transform} \&transform, int scope) const 
+void \hyperlink{classm3g_1_1Graphics3D_c809eea19f3eaff279628081fc90cf36}{render} (\hyperlink{classm3g_1_1VertexBuffer}{VertexBuffer} $\ast$vertices, \hyperlink{classm3g_1_1IndexBuffer}{IndexBuffer} $\ast$triangles, \hyperlink{classm3g_1_1Appearance}{Appearance} $\ast$apperance, \hyperlink{classm3g_1_1Transform}{Transform} \&transform, int scope=-1) const 
 \item 
 void \hyperlink{classm3g_1_1Graphics3D_8ef004c92d601203b8c697d441e7713f}{render} (\hyperlink{classm3g_1_1World}{World} $\ast$world) const 
 \item 
@@ -80,34 +78,6 @@ std::ostream \& \hyperlink{classm3g_1_1Graphics3D_6fea17fa1532df3794f8cb39cb4f91
 \begin{CompactItemize}
 \item 
 static \hyperlink{classm3g_1_1Graphics3D}{Graphics3D} $\ast$ \hyperlink{classm3g_1_1Graphics3D_da6d71754bfe755dd8204a9332e9ed47}{getInstance} ()
-\end{CompactItemize}
-\subsection*{Public Attributes}
-\begin{CompactItemize}
-\item 
-\hypertarget{classm3g_1_1Graphics3D_6a0b80dfc7341ce8102a7cb1688aff0a}{
-\hyperlink{structm3g_1_1Graphics3D_1_1Viewport}{Viewport} \textbf{viewport}}
-\label{classm3g_1_1Graphics3D_6a0b80dfc7341ce8102a7cb1688aff0a}
-
-\item 
-\hypertarget{classm3g_1_1Graphics3D_12e48d234a9d97ae438019a4c44b989c}{
-bool \textbf{depth\_\-buffer\_\-enable}}
-\label{classm3g_1_1Graphics3D_12e48d234a9d97ae438019a4c44b989c}
-
-\item 
-\hypertarget{classm3g_1_1Graphics3D_b557fee5e49a2c2bcdf8803d25b464fb}{
-int \textbf{hints}}
-\label{classm3g_1_1Graphics3D_b557fee5e49a2c2bcdf8803d25b464fb}
-
-\item 
-\hypertarget{classm3g_1_1Graphics3D_c4e9c4de7572c6bdf18ecbba4ff8f97c}{
-std::vector$<$ Property $\ast$ $>$ \textbf{properties}}
-\label{classm3g_1_1Graphics3D_c4e9c4de7572c6bdf18ecbba4ff8f97c}
-
-\item 
-\hypertarget{classm3g_1_1Graphics3D_ac5360336501ffd544f72821c2f3fd3e}{
-DepthRange \textbf{depth\_\-range}}
-\label{classm3g_1_1Graphics3D_ac5360336501ffd544f72821c2f3fd3e}
-
 \end{CompactItemize}
 \subsection*{Static Public Attributes}
 \begin{CompactItemize}
@@ -131,6 +101,21 @@ static const int \textbf{OVERWRITE} = 1$<$$<$4}
 static const int \textbf{TRUE\_\-COLOR} = 1$<$$<$3}
 \label{classm3g_1_1Graphics3D_bbd22a6baea672f895d5ef32e2438ec6}
 
+\item 
+\hypertarget{classm3g_1_1Graphics3D_6b0cb63f7c2814ea8c1938d1b9c50cfa}{
+static const int \textbf{TARGET\_\-NONE} = 0}
+\label{classm3g_1_1Graphics3D_6b0cb63f7c2814ea8c1938d1b9c50cfa}
+
+\item 
+\hypertarget{classm3g_1_1Graphics3D_84569f5576be7f299b00c6de2ba775d0}{
+static const int \textbf{TARGET\_\-DEFAULT} = 1}
+\label{classm3g_1_1Graphics3D_84569f5576be7f299b00c6de2ba775d0}
+
+\item 
+\hypertarget{classm3g_1_1Graphics3D_75fa6b63c910b61d5d3ec8c419d75ec2}{
+static const int \textbf{TARGET\_\-IMAGE2D} = 2}
+\label{classm3g_1_1Graphics3D_75fa6b63c910b61d5d3ec8c419d75ec2}
+
 \end{CompactItemize}
 
 
@@ -148,32 +133,39 @@ A singleton 3D graphics context that can be bound to a rendering target.
 Destruct this object. 
 
 \subsection{Member Function Documentation}
-\hypertarget{classm3g_1_1Graphics3D_e210cacb72c8540df86a6674e3c2dc4f}{
+\hypertarget{classm3g_1_1Graphics3D_0a8acc61618bad17053cb62131819b92}{
 \index{m3g::Graphics3D@{m3g::Graphics3D}!addLight@{addLight}}
 \index{addLight@{addLight}!m3g::Graphics3D@{m3g::Graphics3D}}
-\subsubsection[{addLight}]{\setlength{\rightskip}{0pt plus 5cm}int addLight ({\bf Light} $\ast$ {\em light}, \/  {\bf Transform} \& {\em transform})}}
-\label{classm3g_1_1Graphics3D_e210cacb72c8540df86a6674e3c2dc4f}
+\subsubsection[{addLight}]{\setlength{\rightskip}{0pt plus 5cm}int addLight ({\bf Light} $\ast$ {\em light}, \/  const {\bf Transform} \& {\em transform})}}
+\label{classm3g_1_1Graphics3D_0a8acc61618bad17053cb62131819b92}
 
 
-Binds a \hyperlink{classm3g_1_1Light}{Light} to use in subsequent immediate mode rendering. \hypertarget{classm3g_1_1Graphics3D_2173e179f4b2d7130cde46a48794ee66}{
+Binds a \hyperlink{classm3g_1_1Light}{Light} to use in subsequent immediate mode rendering. \hypertarget{classm3g_1_1Graphics3D_b775163cbe39d177e255011e381cd9f8}{
 \index{m3g::Graphics3D@{m3g::Graphics3D}!bindTarget@{bindTarget}}
 \index{bindTarget@{bindTarget}!m3g::Graphics3D@{m3g::Graphics3D}}
-\subsubsection[{bindTarget}]{\setlength{\rightskip}{0pt plus 5cm}void bindTarget ({\bf Graphics} $\ast$ {\em g}, \/  bool {\em depth\_\-buffer\_\-enabled} = {\tt true}, \/  int {\em hints} = {\tt 0})}}
-\label{classm3g_1_1Graphics3D_2173e179f4b2d7130cde46a48794ee66}
+\subsubsection[{bindTarget}]{\setlength{\rightskip}{0pt plus 5cm}void bindTarget ({\bf Image2D} $\ast$ {\em target}, \/  bool {\em depth\_\-buffer\_\-enabled} = {\tt true}, \/  int {\em hints} = {\tt 0})}}
+\label{classm3g_1_1Graphics3D_b775163cbe39d177e255011e381cd9f8}
 
 
-Binds the given \hyperlink{classm3g_1_1Graphics}{Graphics} or mutable Image 2D as the rendring ttarget of this \hyperlink{classm3g_1_1Graphics3D}{Graphics3D}. \hypertarget{classm3g_1_1Graphics3D_21c4a68a53cfbe0a7cec05d5a56682bf}{
+Binds mutable Image 2D as the rendring ttarget of this \hyperlink{classm3g_1_1Graphics3D}{Graphics3D}. \hypertarget{classm3g_1_1Graphics3D_d34fb1ab11f2e25b98b93affd71dcc05}{
+\index{m3g::Graphics3D@{m3g::Graphics3D}!bindTarget@{bindTarget}}
+\index{bindTarget@{bindTarget}!m3g::Graphics3D@{m3g::Graphics3D}}
+\subsubsection[{bindTarget}]{\setlength{\rightskip}{0pt plus 5cm}void bindTarget (void $\ast$ {\em target}, \/  bool {\em depth\_\-buffer\_\-enabled} = {\tt true}, \/  int {\em hints} = {\tt 0})}}
+\label{classm3g_1_1Graphics3D_d34fb1ab11f2e25b98b93affd71dcc05}
+
+
+Binds the defualt (frame buffer) as the rendring ttarget of this \hyperlink{classm3g_1_1Graphics3D}{Graphics3D}. \hypertarget{classm3g_1_1Graphics3D_21c4a68a53cfbe0a7cec05d5a56682bf}{
 \index{m3g::Graphics3D@{m3g::Graphics3D}!clear@{clear}}
 \index{clear@{clear}!m3g::Graphics3D@{m3g::Graphics3D}}
 \subsubsection[{clear}]{\setlength{\rightskip}{0pt plus 5cm}void clear ({\bf Background} $\ast$ {\em background})}}
 \label{classm3g_1_1Graphics3D_21c4a68a53cfbe0a7cec05d5a56682bf}
 
 
-Clears the viewport as specified in the given \hyperlink{classm3g_1_1Background}{Background} object. \hypertarget{classm3g_1_1Graphics3D_570b81f426d1b2b5e8794cffb33422c6}{
+Clears the viewport as specified in the given \hyperlink{classm3g_1_1Background}{Background} object. \hypertarget{classm3g_1_1Graphics3D_1c6ba79e9112caef92e1a149a308b613}{
 \index{m3g::Graphics3D@{m3g::Graphics3D}!getCamera@{getCamera}}
 \index{getCamera@{getCamera}!m3g::Graphics3D@{m3g::Graphics3D}}
-\subsubsection[{getCamera}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Camera} $\ast$ getCamera (const {\bf Transform} \& {\em transform})}}
-\label{classm3g_1_1Graphics3D_570b81f426d1b2b5e8794cffb33422c6}
+\subsubsection[{getCamera}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Camera} $\ast$ getCamera ({\bf Transform} $\ast$ {\em transform})}}
+\label{classm3g_1_1Graphics3D_1c6ba79e9112caef92e1a149a308b613}
 
 
 Returns the current camera. \hypertarget{classm3g_1_1Graphics3D_c8c185b99073215202d2e35723f5c470}{
@@ -204,11 +196,11 @@ Returns the rendering hints given for the current rendering target. \hypertarget
 \label{classm3g_1_1Graphics3D_da6d71754bfe755dd8204a9332e9ed47}
 
 
-Retrieves the singleton \hyperlink{classm3g_1_1Graphics3D}{Graphics3D} instance that is associated with this application. \hypertarget{classm3g_1_1Graphics3D_04272e584440c89fb4cb449003a84e7d}{
+Retrieves the singleton \hyperlink{classm3g_1_1Graphics3D}{Graphics3D} instance that is associated with this application. \hypertarget{classm3g_1_1Graphics3D_02e7b19ae5c0342b11f2cbf9a4df4d77}{
 \index{m3g::Graphics3D@{m3g::Graphics3D}!getLight@{getLight}}
 \index{getLight@{getLight}!m3g::Graphics3D@{m3g::Graphics3D}}
-\subsubsection[{getLight}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Light} $\ast$ getLight (int {\em index}, \/  const {\bf Transform} \& {\em transform}) const}}
-\label{classm3g_1_1Graphics3D_04272e584440c89fb4cb449003a84e7d}
+\subsubsection[{getLight}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Light} $\ast$ getLight (int {\em index}, \/  {\bf Transform} $\ast$ {\em transform}) const}}
+\label{classm3g_1_1Graphics3D_02e7b19ae5c0342b11f2cbf9a4df4d77}
 
 
 Returns a light int he current light array. \hypertarget{classm3g_1_1Graphics3D_7a08cfeb48d76ad5d8859a1fc0c77d98}{
@@ -218,11 +210,11 @@ Returns a light int he current light array. \hypertarget{classm3g_1_1Graphics3D_
 \label{classm3g_1_1Graphics3D_7a08cfeb48d76ad5d8859a1fc0c77d98}
 
 
-Returns the size of the current light array. \hypertarget{classm3g_1_1Graphics3D_d87d3f8145ea47e2b736c6c3525dad5c}{
+Returns the size of the current light array. \hypertarget{classm3g_1_1Graphics3D_2ea2a069c4b10555d50a193a44e63996}{
 \index{m3g::Graphics3D@{m3g::Graphics3D}!getProperties@{getProperties}}
 \index{getProperties@{getProperties}!m3g::Graphics3D@{m3g::Graphics3D}}
-\subsubsection[{getProperties}]{\setlength{\rightskip}{0pt plus 5cm}std::vector$<$ Property $\ast$ $>$ getProperties () const}}
-\label{classm3g_1_1Graphics3D_d87d3f8145ea47e2b736c6c3525dad5c}
+\subsubsection[{getProperties}]{\setlength{\rightskip}{0pt plus 5cm}std::map$<$ const char $\ast$, int $>$ getProperties () const}}
+\label{classm3g_1_1Graphics3D_2ea2a069c4b10555d50a193a44e63996}
 
 
 Retrieves implementation specific peoperties. \hypertarget{classm3g_1_1Graphics3D_02d0033930c8e68f4d7ebd43abe7980a}{
@@ -274,11 +266,13 @@ Queries whether depth buffering is enalbed for the current rendering target. \hy
 \label{classm3g_1_1Graphics3D_6fea17fa1532df3794f8cb39cb4f911f}
 
 
-Print out information of this object, for debug only. \hypertarget{classm3g_1_1Graphics3D_3ffaaf0d0f1e97a07c7f30c9b5a5dd32}{
+Print out information of this object, for debug only. 
+
+Reimplemented from \hyperlink{classm3g_1_1Object_6fea17fa1532df3794f8cb39cb4f911f}{Object}.\hypertarget{classm3g_1_1Graphics3D_1491a435e97a20d5325339359a719cc5}{
 \index{m3g::Graphics3D@{m3g::Graphics3D}!releaseTarget@{releaseTarget}}
 \index{releaseTarget@{releaseTarget}!m3g::Graphics3D@{m3g::Graphics3D}}
-\subsubsection[{releaseTarget}]{\setlength{\rightskip}{0pt plus 5cm}void releaseTarget () const}}
-\label{classm3g_1_1Graphics3D_3ffaaf0d0f1e97a07c7f30c9b5a5dd32}
+\subsubsection[{releaseTarget}]{\setlength{\rightskip}{0pt plus 5cm}void releaseTarget ()}}
+\label{classm3g_1_1Graphics3D_1491a435e97a20d5325339359a719cc5}
 
 
 Flushes the renderd 3D image to the currently bound target and then releases the target. \hypertarget{classm3g_1_1Graphics3D_8ef004c92d601203b8c697d441e7713f}{
@@ -288,25 +282,18 @@ Flushes the renderd 3D image to the currently bound target and then releases the
 \label{classm3g_1_1Graphics3D_8ef004c92d601203b8c697d441e7713f}
 
 
-Rnders a image of world as viewd by the active camera of that \hyperlink{classm3g_1_1World}{World}. \hypertarget{classm3g_1_1Graphics3D_9179d0d886a57cd3234b34f1b59dfc3c}{
+Rnders a image of world as viewd by the active camera of that \hyperlink{classm3g_1_1World}{World}. \hypertarget{classm3g_1_1Graphics3D_c809eea19f3eaff279628081fc90cf36}{
 \index{m3g::Graphics3D@{m3g::Graphics3D}!render@{render}}
 \index{render@{render}!m3g::Graphics3D@{m3g::Graphics3D}}
-\subsubsection[{render}]{\setlength{\rightskip}{0pt plus 5cm}void render ({\bf VertexBuffer} $\ast$ {\em vertices}, \/  {\bf IndexBuffer} $\ast$ {\em triangles}, \/  {\bf Appearance} $\ast$ {\em apperance}, \/  {\bf Transform} \& {\em transform}, \/  int {\em scope}) const}}
-\label{classm3g_1_1Graphics3D_9179d0d886a57cd3234b34f1b59dfc3c}
+\subsubsection[{render}]{\setlength{\rightskip}{0pt plus 5cm}void render ({\bf VertexBuffer} $\ast$ {\em vertices}, \/  {\bf IndexBuffer} $\ast$ {\em triangles}, \/  {\bf Appearance} $\ast$ {\em apperance}, \/  {\bf Transform} \& {\em transform}, \/  int {\em scope} = {\tt -1}) const}}
+\label{classm3g_1_1Graphics3D_c809eea19f3eaff279628081fc90cf36}
 
 
-Renders \hypertarget{classm3g_1_1Graphics3D_dc32291b31d6d3a32037eb9f727f73c0}{
+Renders \hypertarget{classm3g_1_1Graphics3D_8f7b52c44e84e6ccbbb639d1b5b80466}{
 \index{m3g::Graphics3D@{m3g::Graphics3D}!render@{render}}
 \index{render@{render}!m3g::Graphics3D@{m3g::Graphics3D}}
-\subsubsection[{render}]{\setlength{\rightskip}{0pt plus 5cm}void render ({\bf VertexBuffer} $\ast$ {\em vertices}, \/  {\bf IndexBuffer} $\ast$ {\em triangles}, \/  {\bf Appearance} $\ast$ {\em apperance}, \/  {\bf Transform} \& {\em transform}) const}}
-\label{classm3g_1_1Graphics3D_dc32291b31d6d3a32037eb9f727f73c0}
-
-
-Renders the given submesh with the given transformation from local coordinates to world coordinates. \hypertarget{classm3g_1_1Graphics3D_9c9ca78b3ce4cc358783a1a2701b9d85}{
-\index{m3g::Graphics3D@{m3g::Graphics3D}!render@{render}}
-\index{render@{render}!m3g::Graphics3D@{m3g::Graphics3D}}
-\subsubsection[{render}]{\setlength{\rightskip}{0pt plus 5cm}void render ({\bf Node} $\ast$ {\em node}, \/  {\bf Transform} $\ast$ {\em transform}) const}}
-\label{classm3g_1_1Graphics3D_9c9ca78b3ce4cc358783a1a2701b9d85}
+\subsubsection[{render}]{\setlength{\rightskip}{0pt plus 5cm}void render ({\bf Node} $\ast$ {\em node}, \/  const {\bf Transform} \& {\em transform}) const}}
+\label{classm3g_1_1Graphics3D_8f7b52c44e84e6ccbbb639d1b5b80466}
 
 
 Renders the given \hyperlink{classm3g_1_1Sprite3D}{Sprite3D}, \hyperlink{classm3g_1_1Mesh}{Mesh}, or Group node with the given transformation from local coordinates to world coordinates. \hypertarget{classm3g_1_1Graphics3D_b8821ec231e8ebd939ae0feaaf138542}{

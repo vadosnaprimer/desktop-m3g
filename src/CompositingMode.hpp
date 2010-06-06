@@ -13,8 +13,6 @@ namespace m3g {
      */
     class CompositingMode : public Object3D
     {
-        friend class Appearance;  // for findByType
-
 
         /**
          * @~English  Structure of depth offset, for inner use.

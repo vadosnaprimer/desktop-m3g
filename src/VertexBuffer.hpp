@@ -19,7 +19,6 @@ namespace m3g {
      */
     class VertexBuffer : public Object3D
     {
-        friend class Mesh;  // for render
 
     public:
         /**
@@ -38,7 +37,7 @@ namespace m3g {
          * @~English  Creates a duplicate of this Object3D. 
          * @~Japanese このオブジェクトの複製の作成.
          */
-        VertexBuffer* duplicate () const;
+        virtual VertexBuffer* duplicate () const;
 
         virtual int animate (int world_time);
 

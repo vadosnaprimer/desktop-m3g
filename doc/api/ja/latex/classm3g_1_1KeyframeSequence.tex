@@ -13,7 +13,7 @@ KeyframeSequenceに対する継承グラフ:\begin{figure}[H]
 \subsection*{構成}
 \begin{CompactItemize}
 \item 
-struct \hyperlink{structm3g_1_1KeyframeSequence_1_1ValidRange}{ValidRange}
+struct \textbf{ValidRange}
 \end{CompactItemize}
 \subsection*{Public メソッド}
 \begin{CompactItemize}
@@ -50,7 +50,7 @@ void \hyperlink{classm3g_1_1KeyframeSequence_b5a824131cef547816366141afe0339a}{s
 \item 
 virtual std::ostream \& \hyperlink{classm3g_1_1KeyframeSequence_6fea17fa1532df3794f8cb39cb4f911f}{print} (std::ostream \&out) const 
 \item 
-void \hyperlink{classm3g_1_1KeyframeSequence_e172563df4ce29c6fa9bca679e9bba7c}{getFrame} (int local\_\-time, float $\ast$value) const 
+void \hyperlink{classm3g_1_1KeyframeSequence_89be810f096d4f4f6028ca556c7f5f05}{getFrame} (int sequence\_\-time, float $\ast$value) const 
 \end{CompactItemize}
 \subsection*{Static Public 変数}
 \begin{CompactItemize}
@@ -115,14 +115,14 @@ static const int \hyperlink{classm3g_1_1KeyframeSequence_07dc1c0bf7f480095150d1b
 \label{classm3g_1_1KeyframeSequence_995a5ca5c8c3c993ef167f67cbb5fabe}
 
 
-このシーケンスの持続期間の取得. \hypertarget{classm3g_1_1KeyframeSequence_e172563df4ce29c6fa9bca679e9bba7c}{
+このシーケンスの持続期間の取得. \hypertarget{classm3g_1_1KeyframeSequence_89be810f096d4f4f6028ca556c7f5f05}{
 \index{m3g::KeyframeSequence@{m3g::KeyframeSequence}!getFrame@{getFrame}}
 \index{getFrame@{getFrame}!m3g::KeyframeSequence@{m3g::KeyframeSequence}}
-\subsubsection[{getFrame}]{\setlength{\rightskip}{0pt plus 5cm}void getFrame (int {\em local\_\-time}, \/  float $\ast$ {\em value}) const}}
-\label{classm3g_1_1KeyframeSequence_e172563df4ce29c6fa9bca679e9bba7c}
+\subsubsection[{getFrame}]{\setlength{\rightskip}{0pt plus 5cm}void getFrame (int {\em sequence\_\-time}, \/  float $\ast$ {\em value}) const}}
+\label{classm3g_1_1KeyframeSequence_89be810f096d4f4f6028ca556c7f5f05}
 
 
-指定された時刻のフレームを取得する内部使用の関数. \hypertarget{classm3g_1_1KeyframeSequence_0d46321e7f46e037508cce88cdf6a487}{
+指定されたシーケンス時間のフレームを取得する内部使用の関数. \hypertarget{classm3g_1_1KeyframeSequence_0d46321e7f46e037508cce88cdf6a487}{
 \index{m3g::KeyframeSequence@{m3g::KeyframeSequence}!getInterpolationType@{getInterpolationType}}
 \index{getInterpolationType@{getInterpolationType}!m3g::KeyframeSequence@{m3g::KeyframeSequence}}
 \subsubsection[{getInterpolationType}]{\setlength{\rightskip}{0pt plus 5cm}int getInterpolationType () const}}

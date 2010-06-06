@@ -18,7 +18,6 @@ namespace m3g {
      */
     class VertexArray : public Object3D
     {
-        friend class VertexBuffer;
 
     public:
         /**
@@ -37,7 +36,7 @@ namespace m3g {
          * @~English  Creates a duplicate of this Object3D. 
          * @~Japanese このオブジェクトの複製の作成.
          */
-        VertexArray* duplicate () const;
+        virtual VertexArray* duplicate () const;
 
         /**
          * @~English  Returns a range of 8-bit vertex attributes. 

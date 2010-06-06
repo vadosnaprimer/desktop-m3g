@@ -32,6 +32,7 @@ Inheritance diagram for Transform:</div>
 
 <p><center><img src="classm3g_1_1Transform.png" usemap="#Transform_map" border="0" alt=""></center>
 <map name="Transform_map">
+<area href="classm3g_1_1Object.html" alt="Object" shape="rect" coords="0,0,69,24">
 </map>
 </div>
 
@@ -46,6 +47,8 @@ Inheritance diagram for Transform:</div>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Transform.html#8e627263611a76aad02c9e0b89287c68">~Transform</a> ()</td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Transform.html#f78faf7dcc06f53604ad08965babb7b3">get</a> (float *matrix) const </td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="el" href="classm3g_1_1Matrix.html">Matrix</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Transform.html#3ab68d9aa9eafd77e47631467de93f6f">getMatrix</a> () const </td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Transform.html#7fa1616cc61c19a5efcc863c950f7f30">invert</a> ()</td></tr>
 
@@ -63,11 +66,19 @@ Inheritance diagram for Transform:</div>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Transform.html#8926ff19517a76de8f938025e9d3163d">set</a> (const <a class="el" href="classm3g_1_1Transform.html">Transform</a> &amp;transform)</td></tr>
 
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Transform.html#18ea3e0bff5da78a203fa770a5cfee97">set</a> (const <a class="el" href="classm3g_1_1Matrix.html">Matrix</a> &amp;matrix)</td></tr>
+
 <tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Transform.html#382e6ad7e6721b121e510959e1011be3">setIdentity</a> ()</td></tr>
 
-<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Transform.html#0b85978885624f651df63da4137692df">transform</a> (float *vectors) const </td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Transform.html#441599a6e846a344be78571668406619">transform</a> (int vector_num, float *vectors) const </td></tr>
 
-<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Transform.html#557e326db393b8a1ce23455978af32dc">transform</a> (<a class="el" href="classm3g_1_1VertexArray.html">VertexArray</a> *in, float *out, bool w) const </td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Transform.html#930167bb932a1c26c160fa1eece500d3">transform</a> (const <a class="el" href="classm3g_1_1VertexArray.html">VertexArray</a> *in, float *out, bool w) const </td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="46832c09c309a900fdab65b15bb5e8a7"></a><!-- doxytag: member="m3g::Transform::transform" ref="46832c09c309a900fdab65b15bb5e8a7" args="(const Vector &amp;vector) const " -->
+<a class="el" href="classm3g_1_1Vector.html">Vector</a>&nbsp;</td><td class="memItemRight" valign="bottom"><b>transform</b> (const <a class="el" href="classm3g_1_1Vector.html">Vector</a> &amp;vector) const </td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="a8e4316680257437453501e30518a418"></a><!-- doxytag: member="m3g::Transform::transform3x3" ref="a8e4316680257437453501e30518a418" args="(const Vector &amp;vector) const " -->
+<a class="el" href="classm3g_1_1Vector.html">Vector</a>&nbsp;</td><td class="memItemRight" valign="bottom"><b>transform3x3</b> (const <a class="el" href="classm3g_1_1Vector.html">Vector</a> &amp;vector) const </td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Transform.html#f3a99ffb20127be48232d12260e934dc">transpose</a> ()</td></tr>
 
@@ -153,6 +164,25 @@ Destructs this object.
 
 <p>
 Retrieves the contents of this tarnsformation as a 16-element float array. 
+</div>
+</div><p>
+<a class="anchor" name="3ab68d9aa9eafd77e47631467de93f6f"></a><!-- doxytag: member="m3g::Transform::getMatrix" ref="3ab68d9aa9eafd77e47631467de93f6f" args="() const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classm3g_1_1Matrix.html">Matrix</a> getMatrix           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+M3G非標準. 
 </div>
 </div><p>
 <a class="anchor" name="7fa1616cc61c19a5efcc863c950f7f30"></a><!-- doxytag: member="m3g::Transform::invert" ref="7fa1616cc61c19a5efcc863c950f7f30" args="()" -->
@@ -364,6 +394,28 @@ Multiplies this transformation from the right by the given translation matrix.
 
 <p>
 Print out information of this object, for only debug. 
+<p>Reimplemented from <a class="el" href="classm3g_1_1Object.html#6fea17fa1532df3794f8cb39cb4f911f">Object</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="18ea3e0bff5da78a203fa770a5cfee97"></a><!-- doxytag: member="m3g::Transform::set" ref="18ea3e0bff5da78a203fa770a5cfee97" args="(const Matrix &amp;matrix)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void set           </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classm3g_1_1Matrix.html">Matrix</a> &amp;&nbsp;</td>
+          <td class="paramname"> <em>matrix</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+M3G非標準. 
 </div>
 </div><p>
 <a class="anchor" name="8926ff19517a76de8f938025e9d3163d"></a><!-- doxytag: member="m3g::Transform::set" ref="8926ff19517a76de8f938025e9d3163d" args="(const Transform &amp;transform)" -->
@@ -425,14 +477,14 @@ Sets this transformation by copying from the given 16-element float array.
 Replaces this transformation with the 4x4 identity matrix. 
 </div>
 </div><p>
-<a class="anchor" name="557e326db393b8a1ce23455978af32dc"></a><!-- doxytag: member="m3g::Transform::transform" ref="557e326db393b8a1ce23455978af32dc" args="(VertexArray *in, float *out, bool w) const " -->
+<a class="anchor" name="930167bb932a1c26c160fa1eece500d3"></a><!-- doxytag: member="m3g::Transform::transform" ref="930167bb932a1c26c160fa1eece500d3" args="(const VertexArray *in, float *out, bool w) const " -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">void transform           </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classm3g_1_1VertexArray.html">VertexArray</a> *&nbsp;</td>
+          <td class="paramtype">const <a class="el" href="classm3g_1_1VertexArray.html">VertexArray</a> *&nbsp;</td>
           <td class="paramname"> <em>in</em>, </td>
         </tr>
         <tr>
@@ -460,17 +512,26 @@ Replaces this transformation with the 4x4 identity matrix.
 Multiplies the elements of the given <a class="el" href="classm3g_1_1VertexArray.html">VertexArray</a> with this matrix, storeing the transformed values in a flloat array. 
 </div>
 </div><p>
-<a class="anchor" name="0b85978885624f651df63da4137692df"></a><!-- doxytag: member="m3g::Transform::transform" ref="0b85978885624f651df63da4137692df" args="(float *vectors) const " -->
+<a class="anchor" name="441599a6e846a344be78571668406619"></a><!-- doxytag: member="m3g::Transform::transform" ref="441599a6e846a344be78571668406619" args="(int vector_num, float *vectors) const " -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">void transform           </td>
           <td>(</td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>vector_num</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
           <td class="paramtype">float *&nbsp;</td>
-          <td class="paramname"> <em>vectors</em>          </td>
-          <td>&nbsp;)&nbsp;</td>
-          <td> const</td>
+          <td class="paramname"> <em>vectors</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td> const</td>
         </tr>
       </table>
 </div>
@@ -502,7 +563,7 @@ Transpose this matrix.
 <hr>The documentation for this class was generated from the following files:<ul>
 <li>/work/workspace.desktop-m3g/src/<a class="el" href="Transform_8hpp-source.html">Transform.hpp</a><li>/work/workspace.desktop-m3g/src/Transform.cpp</ul>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Mon May 10 08:47:33 2010 by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Sun Jun 6 11:22:45 2010 by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.8 </small></address>
 </body>

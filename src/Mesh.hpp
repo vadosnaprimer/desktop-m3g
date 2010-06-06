@@ -48,7 +48,7 @@ namespace m3g {
          * @~English  Creates a duplicate of this Object3D. 
          * @~Japanese このオブジェクトの複製の作成.
          */
-        Mesh* duplicate () const;
+        virtual Mesh* duplicate () const;
 
         /**
          * @~English  Updates all animated properties in this Object3D and all Object3Ds that are reachable from this Object3D.

@@ -12,7 +12,6 @@ namespace m3g {
      */
     class PolygonMode : public Object3D
     {
-        friend class Appearance;  // for findByType
 
     public:
         /**
@@ -156,7 +155,6 @@ namespace m3g {
          */
         virtual void render (RenderState& state) const;
 
-    private:
         /**
          * @~English   Render default, for inner use.
          * @~Japanese  デフォルトでレンダリングする内部使用の関数.

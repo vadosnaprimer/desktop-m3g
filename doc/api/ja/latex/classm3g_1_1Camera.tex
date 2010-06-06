@@ -36,6 +36,8 @@ void \hyperlink{classm3g_1_1Camera_ca92a48ebe3424deac8e54c27550189d}{setPerspect
 virtual std::ostream \& \hyperlink{classm3g_1_1Camera_6fea17fa1532df3794f8cb39cb4f911f}{print} (std::ostream \&out) const 
 \item 
 void \hyperlink{classm3g_1_1Camera_0006b18ae0e27a031d533e987b9756a8}{lookAt} (float from\_\-x, float from\_\-y, float from\_\-z, float to\_\-x, float to\_\-y, float to\_\-z, float up\_\-x, float up\_\-y, float up\_\-z)
+\item 
+virtual void \hyperlink{classm3g_1_1Camera_8babc8a79b78615da51161e94029eea9}{render} (\hyperlink{structm3g_1_1RenderState}{RenderState} \&state) const 
 \end{CompactItemize}
 \subsection*{Static Public 変数}
 \begin{CompactItemize}
@@ -45,24 +47,6 @@ static const int \hyperlink{classm3g_1_1Camera_48a4e153c97a1f4890558a77dfe02ca4}
 static const int \hyperlink{classm3g_1_1Camera_d9630da0e9505afbb107c86229aa2f08}{PARALLEL} = 49
 \item 
 static const int \hyperlink{classm3g_1_1Camera_e62e72bde93e7d7ceb482e7a8c40dcf5}{PERSPECTIVE} = 50
-\end{CompactItemize}
-\subsection*{Protected メソッド}
-\begin{CompactItemize}
-\item 
-virtual void \hyperlink{classm3g_1_1Camera_8babc8a79b78615da51161e94029eea9}{render} (\hyperlink{structm3g_1_1RenderState}{RenderState} \&state) const 
-\end{CompactItemize}
-\subsection*{フレンド}
-\begin{CompactItemize}
-\item 
-\hypertarget{classm3g_1_1Camera_8174d4c629550c1ee279571250236ef4}{
-class \textbf{Graphics3D}}
-\label{classm3g_1_1Camera_8174d4c629550c1ee279571250236ef4}
-
-\item 
-\hypertarget{classm3g_1_1Camera_7b4bcdf992c21ae83363f25df05b1d25}{
-class \textbf{World}}
-\label{classm3g_1_1Camera_7b4bcdf992c21ae83363f25df05b1d25}
-
 \end{CompactItemize}
 
 
@@ -147,7 +131,7 @@ glutのlookat()関数と同じ。M3G比標準の関数. \hypertarget{classm3g_1_
 \hyperlink{classm3g_1_1Node_6fea17fa1532df3794f8cb39cb4f911f}{Node}を再定義しています。\hypertarget{classm3g_1_1Camera_8babc8a79b78615da51161e94029eea9}{
 \index{m3g::Camera@{m3g::Camera}!render@{render}}
 \index{render@{render}!m3g::Camera@{m3g::Camera}}
-\subsubsection[{render}]{\setlength{\rightskip}{0pt plus 5cm}void render ({\bf RenderState} \& {\em state}) const\hspace{0.3cm}{\tt  \mbox{[}protected, virtual\mbox{]}}}}
+\subsubsection[{render}]{\setlength{\rightskip}{0pt plus 5cm}void render ({\bf RenderState} \& {\em state}) const\hspace{0.3cm}{\tt  \mbox{[}virtual\mbox{]}}}}
 \label{classm3g_1_1Camera_8babc8a79b78615da51161e94029eea9}
 
 

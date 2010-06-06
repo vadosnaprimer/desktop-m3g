@@ -16,10 +16,6 @@ namespace m3g {
      */
     class Node : public Transformable
     {
-        friend class Group;      // for ???
-        friend class World;      // for ???
-        friend class Graphics3D; // for render
-        friend class Mesh;       // for node
 
         /**
          * @~English  Structure of aliment property, for inner use.

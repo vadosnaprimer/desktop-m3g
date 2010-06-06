@@ -14,7 +14,7 @@ namespace m3g {
      */
     class IndexBuffer : public Object3D
     {
-        friend class Mesh; // for render
+
 
     public:
         /**
@@ -69,7 +69,6 @@ namespace m3g {
          */
         virtual std::ostream& print (std::ostream& out) const;
 
-    protected:
 
         /**
          * @~English  Redner this object, for inner use.

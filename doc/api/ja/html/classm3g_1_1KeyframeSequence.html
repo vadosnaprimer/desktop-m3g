@@ -33,6 +33,7 @@ KeyframeSequenceに対する継承グラフ</div>
 <p><center><img src="classm3g_1_1KeyframeSequence.png" usemap="#KeyframeSequence_map" border="0" alt=""></center>
 <map name="KeyframeSequence_map">
 <area href="classm3g_1_1Object3D.html" alt="Object3D" shape="rect" coords="0,56,122,80">
+<area href="classm3g_1_1Object.html" alt="Object" shape="rect" coords="0,0,122,24">
 </map>
 </div>
 
@@ -40,7 +41,7 @@ KeyframeSequenceに対する継承グラフ</div>
 <a href="classm3g_1_1KeyframeSequence-members.html">すべてのメンバ一覧</a><table border="0" cellpadding="0" cellspacing="0">
 <tr><td></td></tr>
 <tr><td colspan="2"><br><h2>構成</h2></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="structm3g_1_1KeyframeSequence_1_1ValidRange.html">ValidRange</a></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><b>ValidRange</b></td></tr>
 
 <tr><td colspan="2"><br><h2>Public メソッド</h2></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1KeyframeSequence.html#f48cc8113ad7300d72840b18529aaf0e">KeyframeSequence</a> (int num_keyframes, int num_components, int interpolation)</td></tr>
@@ -75,7 +76,7 @@ KeyframeSequenceに対する継承グラフ</div>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">virtual std::ostream &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1KeyframeSequence.html#6fea17fa1532df3794f8cb39cb4f911f">print</a> (std::ostream &amp;out) const </td></tr>
 
-<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1KeyframeSequence.html#e172563df4ce29c6fa9bca679e9bba7c">getFrame</a> (int local_time, float *value) const </td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1KeyframeSequence.html#89be810f096d4f4f6028ca556c7f5f05">getFrame</a> (int sequence_time, float *value) const </td></tr>
 
 <tr><td colspan="2"><br><h2>Static Public 変数</h2></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">static const int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1KeyframeSequence.html#b45ff833865ae8962be27923995f91a3">CONSTANT</a> = 192</td></tr>
@@ -209,7 +210,7 @@ KeyframeSequenceに対する継承グラフ</div>
 このシーケンスの持続期間の取得. 
 </div>
 </div><p>
-<a class="anchor" name="e172563df4ce29c6fa9bca679e9bba7c"></a><!-- doxytag: member="m3g::KeyframeSequence::getFrame" ref="e172563df4ce29c6fa9bca679e9bba7c" args="(int local_time, float *value) const " -->
+<a class="anchor" name="89be810f096d4f4f6028ca556c7f5f05"></a><!-- doxytag: member="m3g::KeyframeSequence::getFrame" ref="89be810f096d4f4f6028ca556c7f5f05" args="(int sequence_time, float *value) const " -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -217,7 +218,7 @@ KeyframeSequenceに対する継承グラフ</div>
           <td class="memname">void getFrame           </td>
           <td>(</td>
           <td class="paramtype">int&nbsp;</td>
-          <td class="paramname"> <em>local_time</em>, </td>
+          <td class="paramname"> <em>sequence_time</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -235,7 +236,7 @@ KeyframeSequenceに対する継承グラフ</div>
 <div class="memdoc">
 
 <p>
-指定された時刻のフレームを取得する内部使用の関数. 
+指定されたシーケンス時間のフレームを取得する内部使用の関数. 
 </div>
 </div><p>
 <a class="anchor" name="0d46321e7f46e037508cce88cdf6a487"></a><!-- doxytag: member="m3g::KeyframeSequence::getInterpolationType" ref="0d46321e7f46e037508cce88cdf6a487" args="() const " -->
@@ -597,7 +598,7 @@ LOOPリピートモードを表す定数
 <hr>このクラスの説明は次のファイルから生成されました:<ul>
 <li>/work/workspace.desktop-m3g/src/<a class="el" href="KeyframeSequence_8hpp-source.html">KeyframeSequence.hpp</a><li>/work/workspace.desktop-m3g/src/KeyframeSequence.cpp</ul>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Mon May 10 08:47:26 2010に生成されました。&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Sun Jun 6 11:22:36 2010に生成されました。&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.8 </small></address>
 </body>

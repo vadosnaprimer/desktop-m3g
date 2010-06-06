@@ -158,7 +158,7 @@ int Camera:: getProjection (float* params) const
 int Camera:: getProjection (Transform* transform) const
 {
     if (transform) {
-        transform->set (proj_trans);
+        transform->set (projection);
     }
     return type;
 }
@@ -166,7 +166,7 @@ int Camera:: getProjection (Transform* transform) const
 void Camera:: setGeneric (const Transform& transform)
 {
     type = GENERIC;
-    proj_trans.set (transform);
+    projection.set (transform);
 
     // ここで逆行列が計算できる事をチェックするべき？
 }
@@ -190,7 +190,7 @@ void Camera:: setParallel (float height_, float aspect_ratio_, float near_, floa
     far          = far_;
 
     Matrix proj = make_parallel_projection_matrix (fovy, aspect_ratio, near, far);
-    proj_trans.set (proj);
+    projection.set (proj);
 }
 
 void Camera:: setPerspective (float fovy_, float aspect_ratio_, float near_, float far_)
@@ -212,7 +212,7 @@ void Camera:: setPerspective (float fovy_, float aspect_ratio_, float near_, flo
     far          = far_;
 
     Matrix proj = make_perspective_projection_matrix (fovy, aspect_ratio, near, far);
-    proj_trans.set (proj);
+    projection.set (proj);
 }
 
 /**
@@ -226,19 +226,15 @@ void Camera:: render (RenderState& state) const
     }
 
     //cout << "Camera: render, " << *this << "\n";
-    Matrix mat;
 
     glMatrixMode(GL_PROJECTION);
-    Matrix projection = proj_trans.getMatrix().transpose();
-    //proj_trans.get (&mat);
-    //mat.transpose();
-    glMultMatrixf (projection.m);
+
+    Matrix proj = projection.getMatrix().transpose();
+    glMultMatrixf (proj.m);
 
     glMatrixMode (GL_MODELVIEW);
     Matrix model_view = getGlobalPose().invert().transpose();
-    //mat = getGlobalPose ();
-    //mat.invert ();
-    //mat.transpose ();
+
     glMultMatrixf (model_view.m);
 
     //    gluLookAt (0, 0, 5, // from

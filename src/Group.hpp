@@ -17,7 +17,6 @@ namespace m3g {
      */
     class Group : public Node
     {
-        friend class World;  // for printf
 
     public:
         /**
@@ -101,7 +100,7 @@ namespace m3g {
         virtual void render (RenderState& state) const;
   
 
-    private:
+    protected:
         std::vector<Node*> children;
     };
 

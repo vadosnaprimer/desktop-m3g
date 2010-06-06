@@ -37,6 +37,8 @@
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Quaternion.html#6e9a147677b9ffd583c59e9d06c3d938">~Quaternion</a> ()</td></tr>
 
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="el" href="classm3g_1_1Quaternion.html">Quaternion</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Quaternion.html#c544c21c80182fc0a7f2c9dbe5f42a0a">inv</a> () const </td></tr>
+
 <tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Quaternion.html#382e6ad7e6721b121e510959e1011be3">setIdentity</a> ()</td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Quaternion.html#47affd1a10b589811fc4828c1a2e0c6d">setZero</a> ()</td></tr>
@@ -124,7 +126,8 @@ Construct this object as unit quaternion.
 <div class="memdoc">
 
 <p>
-Construct this object by angle-axis form, no need to be unit vector. 
+Construct this object by angle-axis form, no need to be unit vector.<p>
+注意：回転軸は正規化されている必要はない。ただしangle!=0なら(0,0,0)以外でなければならない 念のためangle=NANの時はエラーにはならず単位クォータニオンになる。 
 </div>
 </div><p>
 <a class="anchor" name="6e9a147677b9ffd583c59e9d06c3d938"></a><!-- doxytag: member="m3g::Quaternion::~Quaternion" ref="6e9a147677b9ffd583c59e9d06c3d938" args="()" -->
@@ -165,7 +168,7 @@ Destruct this object.
 
 <p>
 Retriev this as angle-axis form.<p>
-(補足) 回転角度が0の場合はangle=0,axis=(x,y,z)が返る. 
+(補足) 回転角度が0の場合はangle=0,axis=(x,y,z)が返る. 単位クォータニオンの場合は0,(0,0,0)が返る。 (メモ) M3Gライブラリは回転としてangle=0,axis=0,0,0を正しく扱えなければならない。 この入力値は「正しい」。 
 </div>
 </div><p>
 <a class="anchor" name="b4393f1928cea2a3baadbf9acdd99de2"></a><!-- doxytag: member="m3g::Quaternion::getLength" ref="b4393f1928cea2a3baadbf9acdd99de2" args="() const " -->
@@ -185,6 +188,25 @@ Retriev this as angle-axis form.<p>
 
 <p>
 Rtrieve lenght of this quaternion. 
+</div>
+</div><p>
+<a class="anchor" name="c544c21c80182fc0a7f2c9dbe5f42a0a"></a><!-- doxytag: member="m3g::Quaternion::inv" ref="c544c21c80182fc0a7f2c9dbe5f42a0a" args="() const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classm3g_1_1Quaternion.html">m3g::Quaternion</a> inv           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Return inverse of this quaternion 
 </div>
 </div><p>
 <a class="anchor" name="c9cc178bcc449e08499113c35feb2a2b"></a><!-- doxytag: member="m3g::Quaternion::normalize" ref="c9cc178bcc449e08499113c35feb2a2b" args="()" -->
@@ -264,7 +286,8 @@ Print out information of this object, for debug only.
 <div class="memdoc">
 
 <p>
-set quaternion, to be normalized. 
+set quaternion in quaternion form.<p>
+セットするクォータニオン係数の長さが１である必要はない。 (メモ：logの計算で1以外のクォータニオンも使用する。内部で自動的に正規化は出来ない） 
 </div>
 </div><p>
 <a class="anchor" name="382e6ad7e6721b121e510959e1011be3"></a><!-- doxytag: member="m3g::Quaternion::setIdentity" ref="382e6ad7e6721b121e510959e1011be3" args="()" -->
@@ -308,7 +331,7 @@ make all components to zero.
 <hr>The documentation for this class was generated from the following files:<ul>
 <li>/work/workspace.desktop-m3g/src/<a class="el" href="Quaternion_8hpp-source.html">Quaternion.hpp</a><li>/work/workspace.desktop-m3g/src/Quaternion.cpp</ul>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Mon May 10 08:47:33 2010 by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Sun Jun 6 11:22:44 2010 by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.8 </small></address>
 </body>

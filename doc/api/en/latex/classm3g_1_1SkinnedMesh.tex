@@ -19,7 +19,7 @@ Inheritance diagram for SkinnedMesh::\begin{figure}[H]
 \item 
 virtual \hyperlink{classm3g_1_1SkinnedMesh_c73da5b5c5f8f14fc241328b4b78928c}{$\sim$SkinnedMesh} ()
 \item 
-\hyperlink{classm3g_1_1SkinnedMesh}{SkinnedMesh} $\ast$ \hyperlink{classm3g_1_1SkinnedMesh_d3f422cf7656b73687d789094c7eae42}{duplicate} () const 
+virtual \hyperlink{classm3g_1_1SkinnedMesh}{SkinnedMesh} $\ast$ \hyperlink{classm3g_1_1SkinnedMesh_d3f422cf7656b73687d789094c7eae42}{duplicate} () const 
 \item 
 virtual int \hyperlink{classm3g_1_1SkinnedMesh_8aad1ceab4c2a03609c8a42324ce484d}{animate} (int world\_\-time)
 \item 
@@ -30,6 +30,8 @@ void \hyperlink{classm3g_1_1SkinnedMesh_e6c2fed8109053ded845e49f5c3b0c73}{getBon
 int \hyperlink{classm3g_1_1SkinnedMesh_84ec0935b92b7ccc0aed7e66c4eac78f}{getBoneVertices} (\hyperlink{classm3g_1_1Node}{Node} $\ast$bone, int $\ast$vertex\_\-indices, float $\ast$weights) const 
 \item 
 Group $\ast$ \hyperlink{classm3g_1_1SkinnedMesh_ce7d69c2b600f6f01a46214db28e6f92}{getSkeleton} () const 
+\item 
+virtual bool \hyperlink{classm3g_1_1SkinnedMesh_dc812d8230f94f0b6b8e4fecdb802a16}{intersect} (const \hyperlink{classm3g_1_1Vector}{Vector} \&org, const \hyperlink{classm3g_1_1Vector}{Vector} \&dir, \hyperlink{classm3g_1_1RayIntersection}{RayIntersection} $\ast$ri) const 
 \item 
 virtual std::ostream \& \hyperlink{classm3g_1_1SkinnedMesh_6fea17fa1532df3794f8cb39cb4f911f}{print} (std::ostream \&out) const 
 \item 
@@ -44,11 +46,13 @@ A scene graph node that represents a skeletally animated polygon mesh.
 \hypertarget{classm3g_1_1SkinnedMesh_277419d6851b0e305f66a46095269915}{
 \index{m3g::SkinnedMesh@{m3g::SkinnedMesh}!SkinnedMesh@{SkinnedMesh}}
 \index{SkinnedMesh@{SkinnedMesh}!m3g::SkinnedMesh@{m3g::SkinnedMesh}}
-\subsubsection[{SkinnedMesh}]{\setlength{\rightskip}{0pt plus 5cm}{\bf SkinnedMesh} ({\bf VertexBuffer} $\ast$ {\em vertices}, \/  int {\em num\_\-submesh}, \/  {\bf IndexBuffer} $\ast$$\ast$ {\em submeshes}, \/  {\bf Appearance} $\ast$$\ast$ {\em apperarances}, \/  Group $\ast$ {\em skeleton})}}
+\subsubsection[{SkinnedMesh}]{\setlength{\rightskip}{0pt plus 5cm}{\bf SkinnedMesh} ({\bf VertexBuffer} $\ast$ {\em vertices}, \/  int {\em num\_\-submesh}, \/  {\bf IndexBuffer} $\ast$$\ast$ {\em submeshes}, \/  {\bf Appearance} $\ast$$\ast$ {\em appearances\_\-}, \/  Group $\ast$ {\em skeleton\_\-})}}
 \label{classm3g_1_1SkinnedMesh_277419d6851b0e305f66a46095269915}
 
 
-Constructs a new \hyperlink{classm3g_1_1SkinnedMesh}{SkinnedMesh} witdh the given vertices, submeshes and skeleton. \hypertarget{classm3g_1_1SkinnedMesh_094bf88089897beeb8b8776e3bbb299d}{
+Constructs a new \hyperlink{classm3g_1_1SkinnedMesh}{SkinnedMesh} witdh the given vertices, submeshes and skeleton.
+
+メモ：skeletonのparentをthisにするべき？ それをすると現状では動かない。 \hypertarget{classm3g_1_1SkinnedMesh_094bf88089897beeb8b8776e3bbb299d}{
 \index{m3g::SkinnedMesh@{m3g::SkinnedMesh}!SkinnedMesh@{SkinnedMesh}}
 \index{SkinnedMesh@{SkinnedMesh}!m3g::SkinnedMesh@{m3g::SkinnedMesh}}
 \subsubsection[{SkinnedMesh}]{\setlength{\rightskip}{0pt plus 5cm}{\bf SkinnedMesh} ({\bf VertexBuffer} $\ast$ {\em vertices}, \/  {\bf IndexBuffer} $\ast$ {\em submeshes}, \/  {\bf Appearance} $\ast$ {\em apperarances}, \/  Group $\ast$ {\em skeleton})}}
@@ -111,7 +115,16 @@ Returns the number of vertices influenced by the given bone, filling in the vert
 \label{classm3g_1_1SkinnedMesh_ce7d69c2b600f6f01a46214db28e6f92}
 
 
-Returns the skeleton Group of this \hyperlink{classm3g_1_1SkinnedMesh}{SkinnedMesh}. \hypertarget{classm3g_1_1SkinnedMesh_6fea17fa1532df3794f8cb39cb4f911f}{
+Returns the skeleton Group of this \hyperlink{classm3g_1_1SkinnedMesh}{SkinnedMesh}. \hypertarget{classm3g_1_1SkinnedMesh_dc812d8230f94f0b6b8e4fecdb802a16}{
+\index{m3g::SkinnedMesh@{m3g::SkinnedMesh}!intersect@{intersect}}
+\index{intersect@{intersect}!m3g::SkinnedMesh@{m3g::SkinnedMesh}}
+\subsubsection[{intersect}]{\setlength{\rightskip}{0pt plus 5cm}bool intersect (const {\bf Vector} \& {\em org}, \/  const {\bf Vector} \& {\em dir}, \/  {\bf RayIntersection} $\ast$ {\em ri}) const\hspace{0.3cm}{\tt  \mbox{[}virtual\mbox{]}}}}
+\label{classm3g_1_1SkinnedMesh_dc812d8230f94f0b6b8e4fecdb802a16}
+
+
+座標は全てこのメッシュのローカル座標系で指定する. 
+
+Reimplemented from \hyperlink{classm3g_1_1Mesh_dc812d8230f94f0b6b8e4fecdb802a16}{Mesh}.\hypertarget{classm3g_1_1SkinnedMesh_6fea17fa1532df3794f8cb39cb4f911f}{
 \index{m3g::SkinnedMesh@{m3g::SkinnedMesh}!print@{print}}
 \index{print@{print}!m3g::SkinnedMesh@{m3g::SkinnedMesh}}
 \subsubsection[{print}]{\setlength{\rightskip}{0pt plus 5cm}std::ostream \& print (std::ostream \& {\em out}) const\hspace{0.3cm}{\tt  \mbox{[}virtual\mbox{]}}}}

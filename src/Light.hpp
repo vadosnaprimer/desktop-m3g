@@ -12,8 +12,6 @@ namespace m3g {
      */
     class Light : public Node
     {
-        friend class Graphics3D;  // for render
-        friend class World;       // for resetGLIndex
 
         /**
          * @~English  Attenuation parameters, for inner use.
@@ -75,7 +73,7 @@ namespace m3g {
          * @~English  Creates a duplicate of this Object3D. 
          * @~Japanese このオブジェクトの複製の作成.
          */
-        Light* duplicate () const;
+        virtual Light* duplicate () const;
 
         /**
          * @~English  Adds the given AnimationTrack to this Object3D, 

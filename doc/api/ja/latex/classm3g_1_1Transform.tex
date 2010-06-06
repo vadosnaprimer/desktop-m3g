@@ -21,6 +21,8 @@ Transformに対する継承グラフ:\begin{figure}[H]
 \item 
 void \hyperlink{classm3g_1_1Transform_f78faf7dcc06f53604ad08965babb7b3}{get} (float $\ast$matrix) const 
 \item 
+\hyperlink{classm3g_1_1Matrix}{Matrix} \hyperlink{classm3g_1_1Transform_3ab68d9aa9eafd77e47631467de93f6f}{getMatrix} () const 
+\item 
 void \hyperlink{classm3g_1_1Transform_7fa1616cc61c19a5efcc863c950f7f30}{invert} ()
 \item 
 void \hyperlink{classm3g_1_1Transform_ad6083d90dbecc7e5bb39d5062723a0d}{postMultiply} (const \hyperlink{classm3g_1_1Transform}{Transform} \&transform)
@@ -37,11 +39,23 @@ void \hyperlink{classm3g_1_1Transform_d1a2203142a848286c80d66c8c7fa37d}{set} (co
 \item 
 void \hyperlink{classm3g_1_1Transform_8926ff19517a76de8f938025e9d3163d}{set} (const \hyperlink{classm3g_1_1Transform}{Transform} \&transform)
 \item 
+void \hyperlink{classm3g_1_1Transform_18ea3e0bff5da78a203fa770a5cfee97}{set} (const \hyperlink{classm3g_1_1Matrix}{Matrix} \&matrix)
+\item 
 void \hyperlink{classm3g_1_1Transform_382e6ad7e6721b121e510959e1011be3}{setIdentity} ()
 \item 
-void \hyperlink{classm3g_1_1Transform_0b85978885624f651df63da4137692df}{transform} (float $\ast$vectors) const 
+void \hyperlink{classm3g_1_1Transform_441599a6e846a344be78571668406619}{transform} (int vector\_\-num, float $\ast$vectors) const 
 \item 
-void \hyperlink{classm3g_1_1Transform_557e326db393b8a1ce23455978af32dc}{transform} (\hyperlink{classm3g_1_1VertexArray}{VertexArray} $\ast$in, float $\ast$out, bool w) const 
+void \hyperlink{classm3g_1_1Transform_930167bb932a1c26c160fa1eece500d3}{transform} (const \hyperlink{classm3g_1_1VertexArray}{VertexArray} $\ast$in, float $\ast$out, bool w) const 
+\item 
+\hypertarget{classm3g_1_1Transform_46832c09c309a900fdab65b15bb5e8a7}{
+\hyperlink{classm3g_1_1Vector}{Vector} \textbf{transform} (const \hyperlink{classm3g_1_1Vector}{Vector} \&vector) const }
+\label{classm3g_1_1Transform_46832c09c309a900fdab65b15bb5e8a7}
+
+\item 
+\hypertarget{classm3g_1_1Transform_a8e4316680257437453501e30518a418}{
+\hyperlink{classm3g_1_1Vector}{Vector} \textbf{transform3x3} (const \hyperlink{classm3g_1_1Vector}{Vector} \&vector) const }
+\label{classm3g_1_1Transform_a8e4316680257437453501e30518a418}
+
 \item 
 void \hyperlink{classm3g_1_1Transform_f3a99ffb20127be48232d12260e934dc}{transpose} ()
 \item 
@@ -84,7 +98,14 @@ virtual std::ostream \& \hyperlink{classm3g_1_1Transform_6fea17fa1532df3794f8cb3
 \label{classm3g_1_1Transform_f78faf7dcc06f53604ad08965babb7b3}
 
 
-この変換を16個のfloatの配列として取り出す. \hypertarget{classm3g_1_1Transform_7fa1616cc61c19a5efcc863c950f7f30}{
+この変換を16個のfloatの配列として取り出す. \hypertarget{classm3g_1_1Transform_3ab68d9aa9eafd77e47631467de93f6f}{
+\index{m3g::Transform@{m3g::Transform}!getMatrix@{getMatrix}}
+\index{getMatrix@{getMatrix}!m3g::Transform@{m3g::Transform}}
+\subsubsection[{getMatrix}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Matrix} getMatrix () const}}
+\label{classm3g_1_1Transform_3ab68d9aa9eafd77e47631467de93f6f}
+
+
+M3G非標準. \hypertarget{classm3g_1_1Transform_7fa1616cc61c19a5efcc863c950f7f30}{
 \index{m3g::Transform@{m3g::Transform}!invert@{invert}}
 \index{invert@{invert}!m3g::Transform@{m3g::Transform}}
 \subsubsection[{invert}]{\setlength{\rightskip}{0pt plus 5cm}void invert ()}}
@@ -133,7 +154,16 @@ virtual std::ostream \& \hyperlink{classm3g_1_1Transform_6fea17fa1532df3794f8cb3
 \label{classm3g_1_1Transform_6fea17fa1532df3794f8cb39cb4f911f}
 
 
-このTransformクラスの情報を表示する。デバッグ用. \hypertarget{classm3g_1_1Transform_8926ff19517a76de8f938025e9d3163d}{
+このTransformクラスの情報を表示する。デバッグ用. 
+
+\hyperlink{classm3g_1_1Object_6fea17fa1532df3794f8cb39cb4f911f}{Object}を再定義しています。\hypertarget{classm3g_1_1Transform_18ea3e0bff5da78a203fa770a5cfee97}{
+\index{m3g::Transform@{m3g::Transform}!set@{set}}
+\index{set@{set}!m3g::Transform@{m3g::Transform}}
+\subsubsection[{set}]{\setlength{\rightskip}{0pt plus 5cm}void set (const {\bf Matrix} \& {\em matrix})}}
+\label{classm3g_1_1Transform_18ea3e0bff5da78a203fa770a5cfee97}
+
+
+M3G非標準. \hypertarget{classm3g_1_1Transform_8926ff19517a76de8f938025e9d3163d}{
 \index{m3g::Transform@{m3g::Transform}!set@{set}}
 \index{set@{set}!m3g::Transform@{m3g::Transform}}
 \subsubsection[{set}]{\setlength{\rightskip}{0pt plus 5cm}void set (const {\bf Transform} \& {\em transform})}}
@@ -154,18 +184,18 @@ virtual std::ostream \& \hyperlink{classm3g_1_1Transform_6fea17fa1532df3794f8cb3
 \label{classm3g_1_1Transform_382e6ad7e6721b121e510959e1011be3}
 
 
-この変換を4x4の単位行列に設定する. \hypertarget{classm3g_1_1Transform_557e326db393b8a1ce23455978af32dc}{
+この変換を4x4の単位行列に設定する. \hypertarget{classm3g_1_1Transform_930167bb932a1c26c160fa1eece500d3}{
 \index{m3g::Transform@{m3g::Transform}!transform@{transform}}
 \index{transform@{transform}!m3g::Transform@{m3g::Transform}}
-\subsubsection[{transform}]{\setlength{\rightskip}{0pt plus 5cm}void transform ({\bf VertexArray} $\ast$ {\em in}, \/  float $\ast$ {\em out}, \/  bool {\em w}) const}}
-\label{classm3g_1_1Transform_557e326db393b8a1ce23455978af32dc}
+\subsubsection[{transform}]{\setlength{\rightskip}{0pt plus 5cm}void transform (const {\bf VertexArray} $\ast$ {\em in}, \/  float $\ast$ {\em out}, \/  bool {\em w}) const}}
+\label{classm3g_1_1Transform_930167bb932a1c26c160fa1eece500d3}
 
 
-指定されたVertexArrayの要素にこの変換行列を乗算する。 結果はfloatの配列として収納する. \hypertarget{classm3g_1_1Transform_0b85978885624f651df63da4137692df}{
+指定されたVertexArrayの要素にこの変換行列を乗算する。 結果はfloatの配列として収納する. \hypertarget{classm3g_1_1Transform_441599a6e846a344be78571668406619}{
 \index{m3g::Transform@{m3g::Transform}!transform@{transform}}
 \index{transform@{transform}!m3g::Transform@{m3g::Transform}}
-\subsubsection[{transform}]{\setlength{\rightskip}{0pt plus 5cm}void transform (float $\ast$ {\em vectors}) const}}
-\label{classm3g_1_1Transform_0b85978885624f651df63da4137692df}
+\subsubsection[{transform}]{\setlength{\rightskip}{0pt plus 5cm}void transform (int {\em vector\_\-num}, \/  float $\ast$ {\em vectors}) const}}
+\label{classm3g_1_1Transform_441599a6e846a344be78571668406619}
 
 
 指定された4要素のfloatのベクトルにこの変換行列を乗算する. \hypertarget{classm3g_1_1Transform_f3a99ffb20127be48232d12260e934dc}{

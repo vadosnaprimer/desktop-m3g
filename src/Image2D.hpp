@@ -14,9 +14,6 @@ namespace m3g {
      */
     class Image2D : public Object3D
     {
-        friend class Texture2D;
-        friend class Background;  // for getImage
-        friend class Sprite3D;   // for getImage
 
     public:
         /**

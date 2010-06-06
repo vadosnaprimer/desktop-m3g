@@ -18,7 +18,6 @@ namespace m3g {
      */
     class World : public Group
     {
-        friend class Graphics3D;
 
     public:
         /**
@@ -37,7 +36,7 @@ namespace m3g {
          * @~English  Creates a duplicate of this Object3D. 
          * @~Japanese このオブジェクトの複製の作成.
          */
-        World* duplicate () const;
+        virtual World* duplicate () const;
 
         /**
          * @~English  Updates all animated properties in this Object3D and all Object3Ds that are reachable from this Object3D.

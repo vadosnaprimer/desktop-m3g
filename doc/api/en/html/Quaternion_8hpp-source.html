@@ -25,56 +25,76 @@
 <a name="l00005"></a>00005 
 <a name="l00006"></a>00006 <span class="keyword">namespace </span>m3g {
 <a name="l00007"></a>00007 
-<a name="l00012"></a><a class="code" href="classm3g_1_1Quaternion.html">00012</a> <span class="keyword">class </span><a class="code" href="classm3g_1_1Quaternion.html">Quaternion</a>
-<a name="l00013"></a>00013 {
-<a name="l00014"></a>00014 <span class="keyword">public</span>:
-<a name="l00015"></a>00015 
-<a name="l00020"></a>00020   <a class="code" href="classm3g_1_1Quaternion.html#65ed15cc19af958b5933b5c522f10e66">Quaternion</a> (); 
-<a name="l00021"></a>00021 
-<a name="l00027"></a>00027   <a class="code" href="classm3g_1_1Quaternion.html#65ed15cc19af958b5933b5c522f10e66">Quaternion</a> (<span class="keywordtype">float</span> angle, <span class="keywordtype">float</span> ax, <span class="keywordtype">float</span> ay, <span class="keywordtype">float</span> az);
-<a name="l00028"></a>00028 
-<a name="l00029"></a>00029 
-<a name="l00034"></a>00034   <a class="code" href="classm3g_1_1Quaternion.html#6e9a147677b9ffd583c59e9d06c3d938">~Quaternion</a> ();
-<a name="l00035"></a>00035 
-<a name="l00040"></a>00040   <span class="keywordtype">void</span> <a class="code" href="classm3g_1_1Quaternion.html#382e6ad7e6721b121e510959e1011be3">setIdentity</a> ();
-<a name="l00041"></a>00041 
-<a name="l00046"></a>00046   <span class="keywordtype">void</span> <a class="code" href="classm3g_1_1Quaternion.html#47affd1a10b589811fc4828c1a2e0c6d">setZero</a> ();
-<a name="l00047"></a>00047 
-<a name="l00052"></a>00052   <a class="code" href="classm3g_1_1Quaternion.html">Quaternion</a>&amp; <a class="code" href="classm3g_1_1Quaternion.html#c9cc178bcc449e08499113c35feb2a2b">normalize</a> ();
-<a name="l00053"></a>00053 
-<a name="l00058"></a>00058   <span class="keywordtype">void</span> <span class="keyword">set</span> (<span class="keywordtype">float</span> qx, <span class="keywordtype">float</span> qy, <span class="keywordtype">float</span> qz, <span class="keywordtype">float</span> qw);
-<a name="l00059"></a>00059 
-<a name="l00064"></a>00064   <span class="keywordtype">void</span> <a class="code" href="classm3g_1_1Quaternion.html#3049675269aef6bb333d8f83fdf6eed7">getAngleAxis</a> (<span class="keywordtype">float</span>* angle_axis) <span class="keyword">const</span>;
-<a name="l00065"></a>00065 
-<a name="l00070"></a>00070   <span class="keywordtype">float</span> <a class="code" href="classm3g_1_1Quaternion.html#b4393f1928cea2a3baadbf9acdd99de2">getLength</a> () <span class="keyword">const</span>;
-<a name="l00071"></a>00071 
-<a name="l00076"></a>00076   std::ostream&amp; <a class="code" href="classm3g_1_1Quaternion.html#6fea17fa1532df3794f8cb39cb4f911f">print</a> (std::ostream&amp; out) <span class="keyword">const</span>;
-<a name="l00077"></a>00077 
-<a name="l00078"></a>00078 <span class="keyword">public</span>:
-<a name="l00079"></a>00079   <span class="keywordtype">float</span> x;   <span class="comment">//&lt; vector component i of Quaternion</span>
-<a name="l00080"></a>00080   <span class="keywordtype">float</span> y;   <span class="comment">//&lt; vector component j of Quaternion</span>
-<a name="l00081"></a>00081   <span class="keywordtype">float</span> z;   <span class="comment">//&lt; vector component k of Quaternion</span>
-<a name="l00082"></a>00082   <span class="keywordtype">float</span> w;   <span class="comment">//&lt; scaler component of Quaternion</span>
-<a name="l00083"></a>00083 };
-<a name="l00084"></a>00084 
-<a name="l00085"></a>00085 
-<a name="l00090"></a>00090   <a class="code" href="classm3g_1_1Quaternion.html">m3g::Quaternion</a> slerp (<span class="keyword">const</span> <a class="code" href="classm3g_1_1Quaternion.html">m3g::Quaternion</a>&amp; q0, <span class="keyword">const</span> <a class="code" href="classm3g_1_1Quaternion.html">m3g::Quaternion</a>&amp; q1, <span class="keywordtype">float</span> alpha);
-<a name="l00091"></a>00091 
-<a name="l00092"></a>00092 
+<a name="l00008"></a>00008     <span class="keyword">class </span>Matrix;
+<a name="l00009"></a>00009 
+<a name="l00014"></a><a class="code" href="classm3g_1_1Quaternion.html">00014</a>     <span class="keyword">class </span><a class="code" href="classm3g_1_1Quaternion.html">Quaternion</a>
+<a name="l00015"></a>00015     {
+<a name="l00016"></a>00016     <span class="keyword">public</span>:
+<a name="l00017"></a>00017 
+<a name="l00022"></a>00022         <a class="code" href="classm3g_1_1Quaternion.html#65ed15cc19af958b5933b5c522f10e66">Quaternion</a> (); 
+<a name="l00023"></a>00023 
+<a name="l00029"></a>00029         <a class="code" href="classm3g_1_1Quaternion.html#65ed15cc19af958b5933b5c522f10e66">Quaternion</a> (<span class="keywordtype">float</span> angle, <span class="keywordtype">float</span> ax, <span class="keywordtype">float</span> ay, <span class="keywordtype">float</span> az);
+<a name="l00030"></a>00030 
+<a name="l00031"></a>00031 
+<a name="l00036"></a>00036         <a class="code" href="classm3g_1_1Quaternion.html#6e9a147677b9ffd583c59e9d06c3d938">~Quaternion</a> ();
+<a name="l00037"></a>00037 
+<a name="l00038"></a>00038         
+<a name="l00043"></a>00043         <a class="code" href="classm3g_1_1Quaternion.html">Quaternion</a> <a class="code" href="classm3g_1_1Quaternion.html#c544c21c80182fc0a7f2c9dbe5f42a0a">inv</a> () <span class="keyword">const</span>;
+<a name="l00044"></a>00044 
+<a name="l00049"></a>00049         <span class="keywordtype">void</span> <a class="code" href="classm3g_1_1Quaternion.html#382e6ad7e6721b121e510959e1011be3">setIdentity</a> ();
+<a name="l00050"></a>00050 
+<a name="l00055"></a>00055         <span class="keywordtype">void</span> <a class="code" href="classm3g_1_1Quaternion.html#47affd1a10b589811fc4828c1a2e0c6d">setZero</a> ();
+<a name="l00056"></a>00056 
+<a name="l00061"></a>00061         <a class="code" href="classm3g_1_1Quaternion.html">Quaternion</a>&amp; <a class="code" href="classm3g_1_1Quaternion.html#c9cc178bcc449e08499113c35feb2a2b">normalize</a> ();
+<a name="l00062"></a>00062 
+<a name="l00067"></a>00067         <span class="keywordtype">void</span> <span class="keyword">set</span> (<span class="keywordtype">float</span> qx, <span class="keywordtype">float</span> qy, <span class="keywordtype">float</span> qz, <span class="keywordtype">float</span> qw);
+<a name="l00068"></a>00068 
+<a name="l00073"></a>00073         <span class="keywordtype">void</span> <a class="code" href="classm3g_1_1Quaternion.html#3049675269aef6bb333d8f83fdf6eed7">getAngleAxis</a> (<span class="keywordtype">float</span>* angle_axis) <span class="keyword">const</span>;
+<a name="l00074"></a>00074 
+<a name="l00079"></a>00079         <span class="keywordtype">float</span> <a class="code" href="classm3g_1_1Quaternion.html#b4393f1928cea2a3baadbf9acdd99de2">getLength</a> () <span class="keyword">const</span>;
+<a name="l00080"></a>00080 
+<a name="l00085"></a>00085         std::ostream&amp; <a class="code" href="classm3g_1_1Quaternion.html#6fea17fa1532df3794f8cb39cb4f911f">print</a> (std::ostream&amp; out) <span class="keyword">const</span>;
+<a name="l00086"></a>00086 
+<a name="l00087"></a>00087     <span class="keyword">public</span>:
+<a name="l00088"></a>00088         <span class="keywordtype">float</span> x;   <span class="comment">//&lt; vector component i of Quaternion</span>
+<a name="l00089"></a>00089         <span class="keywordtype">float</span> y;   <span class="comment">//&lt; vector component j of Quaternion</span>
+<a name="l00090"></a>00090         <span class="keywordtype">float</span> z;   <span class="comment">//&lt; vector component k of Quaternion</span>
+<a name="l00091"></a>00091         <span class="keywordtype">float</span> w;   <span class="comment">//&lt; scaler component   of Quaternion</span>
+<a name="l00092"></a>00092     };
 <a name="l00093"></a>00093 
-<a name="l00094"></a>00094 } <span class="comment">// namespace m3g {</span>
-<a name="l00095"></a>00095 
-<a name="l00096"></a>00096 
-<a name="l00097"></a>00097 
-<a name="l00098"></a>00098 <a class="code" href="classm3g_1_1Quaternion.html">m3g::Quaternion</a> operator* (<span class="keywordtype">float</span> f, <span class="keyword">const</span> <a class="code" href="classm3g_1_1Quaternion.html">m3g::Quaternion</a>&amp; q);
-<a name="l00099"></a>00099 <a class="code" href="classm3g_1_1Quaternion.html">m3g::Quaternion</a> operator* (<span class="keyword">const</span> <a class="code" href="classm3g_1_1Quaternion.html">m3g::Quaternion</a>&amp; p, <span class="keywordtype">float</span> f);
-<a name="l00100"></a>00100 <a class="code" href="classm3g_1_1Quaternion.html">m3g::Quaternion</a> operator* (<span class="keyword">const</span> <a class="code" href="classm3g_1_1Quaternion.html">m3g::Quaternion</a>&amp; q1, <span class="keyword">const</span> <a class="code" href="classm3g_1_1Quaternion.html">m3g::Quaternion</a>&amp; q2);
-<a name="l00101"></a>00101 <a class="code" href="classm3g_1_1Quaternion.html">m3g::Quaternion</a> operator+ (<span class="keyword">const</span> <a class="code" href="classm3g_1_1Quaternion.html">m3g::Quaternion</a>&amp; q1, <span class="keyword">const</span> <a class="code" href="classm3g_1_1Quaternion.html">m3g::Quaternion</a>&amp; q2);
-<a name="l00102"></a>00102 std::ostream&amp; operator&lt;&lt; (std::ostream&amp; out, <span class="keyword">const</span> <a class="code" href="classm3g_1_1Quaternion.html">m3g::Quaternion</a>&amp; q);
-<a name="l00103"></a>00103 
-<a name="l00104"></a>00104 <span class="preprocessor">#endif</span>
+<a name="l00094"></a>00094 
+<a name="l00099"></a>00099     <a class="code" href="classm3g_1_1Quaternion.html">m3g::Quaternion</a> slerp (<span class="keyword">const</span> <a class="code" href="classm3g_1_1Quaternion.html">m3g::Quaternion</a>&amp; q0, <span class="keyword">const</span> <a class="code" href="classm3g_1_1Quaternion.html">m3g::Quaternion</a>&amp; q1, <span class="keywordtype">float</span> alpha);
+<a name="l00100"></a>00100 
+<a name="l00105"></a>00105     <a class="code" href="classm3g_1_1Quaternion.html">m3g::Quaternion</a> squad (<span class="keyword">const</span> <a class="code" href="classm3g_1_1Quaternion.html">m3g::Quaternion</a>&amp; q0,
+<a name="l00106"></a>00106                            <span class="keyword">const</span> <a class="code" href="classm3g_1_1Quaternion.html">m3g::Quaternion</a>&amp; q1,
+<a name="l00107"></a>00107                            <span class="keyword">const</span> <a class="code" href="classm3g_1_1Quaternion.html">m3g::Quaternion</a>&amp; q2,
+<a name="l00108"></a>00108                            <span class="keyword">const</span> <a class="code" href="classm3g_1_1Quaternion.html">m3g::Quaternion</a>&amp; q3,
+<a name="l00109"></a>00109                            <span class="keywordtype">float</span> t0, <span class="keywordtype">float</span> t1, <span class="keywordtype">float</span> t2, <span class="keywordtype">float</span> t3, <span class="keywordtype">float</span> alpha);
+<a name="l00110"></a>00110 
+<a name="l00115"></a>00115     <a class="code" href="classm3g_1_1Quaternion.html">m3g::Quaternion</a> log (<span class="keyword">const</span> <a class="code" href="classm3g_1_1Quaternion.html">m3g::Quaternion</a>&amp; q);
+<a name="l00116"></a>00116 
+<a name="l00121"></a>00121     <a class="code" href="classm3g_1_1Quaternion.html">m3g::Quaternion</a> exp (<span class="keyword">const</span> <a class="code" href="classm3g_1_1Quaternion.html">m3g::Quaternion</a>&amp; q);
+<a name="l00122"></a>00122 
+<a name="l00127"></a>00127     <a class="code" href="classm3g_1_1Quaternion.html">m3g::Quaternion</a> matrix2quat (<span class="keyword">const</span> <a class="code" href="classm3g_1_1Matrix.html">m3g::Matrix</a>&amp; m);
+<a name="l00128"></a>00128     
+<a name="l00129"></a>00129 
+<a name="l00130"></a>00130 } <span class="comment">// namespace m3g {</span>
+<a name="l00131"></a>00131 
+<a name="l00132"></a>00132 
+<a name="l00133"></a>00133 
+<a name="l00134"></a>00134 <a class="code" href="classm3g_1_1Quaternion.html">m3g::Quaternion</a> operator* (<span class="keywordtype">float</span> f, <span class="keyword">const</span> <a class="code" href="classm3g_1_1Quaternion.html">m3g::Quaternion</a>&amp; q);
+<a name="l00135"></a>00135 <a class="code" href="classm3g_1_1Quaternion.html">m3g::Quaternion</a> operator* (<span class="keyword">const</span> <a class="code" href="classm3g_1_1Quaternion.html">m3g::Quaternion</a>&amp; p, <span class="keywordtype">float</span> f);
+<a name="l00136"></a>00136 <a class="code" href="classm3g_1_1Quaternion.html">m3g::Quaternion</a> operator* (<span class="keyword">const</span> <a class="code" href="classm3g_1_1Quaternion.html">m3g::Quaternion</a>&amp; q1, <span class="keyword">const</span> <a class="code" href="classm3g_1_1Quaternion.html">m3g::Quaternion</a>&amp; q2);
+<a name="l00137"></a>00137 <a class="code" href="classm3g_1_1Quaternion.html">m3g::Quaternion</a> operator+ (<span class="keyword">const</span> <a class="code" href="classm3g_1_1Quaternion.html">m3g::Quaternion</a>&amp; q1, <span class="keyword">const</span> <a class="code" href="classm3g_1_1Quaternion.html">m3g::Quaternion</a>&amp; q2);
+<a name="l00138"></a>00138 <a class="code" href="classm3g_1_1Quaternion.html">m3g::Quaternion</a> operator- (<span class="keyword">const</span> <a class="code" href="classm3g_1_1Quaternion.html">m3g::Quaternion</a>&amp; q1, <span class="keyword">const</span> <a class="code" href="classm3g_1_1Quaternion.html">m3g::Quaternion</a>&amp; q2);
+<a name="l00139"></a>00139 
+<a name="l00140"></a>00140 
+<a name="l00141"></a>00141 
+<a name="l00142"></a>00142 std::ostream&amp; operator&lt;&lt; (std::ostream&amp; out, <span class="keyword">const</span> <a class="code" href="classm3g_1_1Quaternion.html">m3g::Quaternion</a>&amp; q);
+<a name="l00143"></a>00143 
+<a name="l00144"></a>00144 <span class="preprocessor">#endif</span>
 </pre></div></div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Mon May 10 08:47:29 2010 by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Sun Jun 6 11:22:40 2010 by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.8 </small></address>
 </body>

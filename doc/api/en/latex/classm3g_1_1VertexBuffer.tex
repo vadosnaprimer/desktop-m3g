@@ -17,17 +17,17 @@ Inheritance diagram for VertexBuffer::\begin{figure}[H]
 \item 
 virtual \hyperlink{classm3g_1_1VertexBuffer_0e5e1dbdc4295ff9aa1e15e0ce3624af}{$\sim$VertexBuffer} ()
 \item 
-\hyperlink{classm3g_1_1VertexBuffer}{VertexBuffer} $\ast$ \hyperlink{classm3g_1_1VertexBuffer_d069984e7455bfe074cab9497b47cadf}{duplicate} () const 
+virtual \hyperlink{classm3g_1_1VertexBuffer}{VertexBuffer} $\ast$ \hyperlink{classm3g_1_1VertexBuffer_d069984e7455bfe074cab9497b47cadf}{duplicate} () const 
 \item 
 virtual int \hyperlink{classm3g_1_1VertexBuffer_8aad1ceab4c2a03609c8a42324ce484d}{animate} (int world\_\-time)
 \item 
 virtual void \hyperlink{classm3g_1_1VertexBuffer_415c0b110f95410ded9b85e5d99a496b}{addAnimationTrack} (\hyperlink{classm3g_1_1AnimationTrack}{AnimationTrack} $\ast$animation\_\-track)
 \item 
-\hyperlink{classm3g_1_1VertexArray}{VertexArray} $\ast$ \hyperlink{classm3g_1_1VertexBuffer_e3bdc8503242a6d278230352d03e5893}{getColors} () const 
+\hyperlink{classm3g_1_1VertexArray}{VertexArray} $\ast$ \hyperlink{classm3g_1_1VertexBuffer_4dccaed4e53ba187f502fc0409a2b21d}{getColors} (float $\ast$scale\_\-bias=0) const 
 \item 
 int \hyperlink{classm3g_1_1VertexBuffer_4e33b93a98ce0632d51e7ae775ae5b1e}{getDefaultColor} () const 
 \item 
-\hyperlink{classm3g_1_1VertexArray}{VertexArray} $\ast$ \hyperlink{classm3g_1_1VertexBuffer_0f4341d1215ff8f4efeaa40a21327c0c}{getNormals} () const 
+\hyperlink{classm3g_1_1VertexArray}{VertexArray} $\ast$ \hyperlink{classm3g_1_1VertexBuffer_0db610ea320a7dc7f711acefbd848604}{getNormals} (float $\ast$scale\_\-bias=0) const 
 \item 
 \hyperlink{classm3g_1_1VertexArray}{VertexArray} $\ast$ \hyperlink{classm3g_1_1VertexBuffer_5ca059361f9f834dd00b5d595bf3df0b}{getPositions} (float $\ast$scale\_\-bias) const 
 \item 
@@ -46,14 +46,6 @@ void \hyperlink{classm3g_1_1VertexBuffer_9fd3dd3f78138d654d18863e4f1329f4}{setTe
 virtual std::ostream \& \hyperlink{classm3g_1_1VertexBuffer_6fea17fa1532df3794f8cb39cb4f911f}{print} (std::ostream \&out) const 
 \item 
 virtual void \hyperlink{classm3g_1_1VertexBuffer_8babc8a79b78615da51161e94029eea9}{render} (\hyperlink{structm3g_1_1RenderState}{RenderState} \&state) const 
-\end{CompactItemize}
-\subsection*{Friends}
-\begin{CompactItemize}
-\item 
-\hypertarget{classm3g_1_1VertexBuffer_a41a130f156b145bffb3f4b5172c4c93}{
-class \textbf{Mesh}}
-\label{classm3g_1_1VertexBuffer_a41a130f156b145bffb3f4b5172c4c93}
-
 \end{CompactItemize}
 
 
@@ -105,11 +97,11 @@ Reimplemented from \hyperlink{classm3g_1_1Object3D_8aad1ceab4c2a03609c8a42324ce4
 
 Creates a duplicate of this \hyperlink{classm3g_1_1Object3D}{Object3D}. 
 
-Reimplemented from \hyperlink{classm3g_1_1Object3D_a25110dac934f867b83b73ad4741a0f4}{Object3D}.\hypertarget{classm3g_1_1VertexBuffer_e3bdc8503242a6d278230352d03e5893}{
+Reimplemented from \hyperlink{classm3g_1_1Object3D_a25110dac934f867b83b73ad4741a0f4}{Object3D}.\hypertarget{classm3g_1_1VertexBuffer_4dccaed4e53ba187f502fc0409a2b21d}{
 \index{m3g::VertexBuffer@{m3g::VertexBuffer}!getColors@{getColors}}
 \index{getColors@{getColors}!m3g::VertexBuffer@{m3g::VertexBuffer}}
-\subsubsection[{getColors}]{\setlength{\rightskip}{0pt plus 5cm}{\bf VertexArray} $\ast$ getColors () const}}
-\label{classm3g_1_1VertexBuffer_e3bdc8503242a6d278230352d03e5893}
+\subsubsection[{getColors}]{\setlength{\rightskip}{0pt plus 5cm}{\bf VertexArray} $\ast$ getColors (float $\ast$ {\em scale\_\-bias} = {\tt 0}) const}}
+\label{classm3g_1_1VertexBuffer_4dccaed4e53ba187f502fc0409a2b21d}
 
 
 Gets the current color array. \hypertarget{classm3g_1_1VertexBuffer_4e33b93a98ce0632d51e7ae775ae5b1e}{
@@ -119,11 +111,11 @@ Gets the current color array. \hypertarget{classm3g_1_1VertexBuffer_4e33b93a98ce
 \label{classm3g_1_1VertexBuffer_4e33b93a98ce0632d51e7ae775ae5b1e}
 
 
-Retrieves the default color of this \hyperlink{classm3g_1_1VertexBuffer}{VertexBuffer}. \hypertarget{classm3g_1_1VertexBuffer_0f4341d1215ff8f4efeaa40a21327c0c}{
+Retrieves the default color of this \hyperlink{classm3g_1_1VertexBuffer}{VertexBuffer}. \hypertarget{classm3g_1_1VertexBuffer_0db610ea320a7dc7f711acefbd848604}{
 \index{m3g::VertexBuffer@{m3g::VertexBuffer}!getNormals@{getNormals}}
 \index{getNormals@{getNormals}!m3g::VertexBuffer@{m3g::VertexBuffer}}
-\subsubsection[{getNormals}]{\setlength{\rightskip}{0pt plus 5cm}{\bf VertexArray} $\ast$ getNormals () const}}
-\label{classm3g_1_1VertexBuffer_0f4341d1215ff8f4efeaa40a21327c0c}
+\subsubsection[{getNormals}]{\setlength{\rightskip}{0pt plus 5cm}{\bf VertexArray} $\ast$ getNormals (float $\ast$ {\em scale\_\-bias} = {\tt 0}) const}}
+\label{classm3g_1_1VertexBuffer_0db610ea320a7dc7f711acefbd848604}
 
 
 Gets the current normal vector array. \hypertarget{classm3g_1_1VertexBuffer_5ca059361f9f834dd00b5d595bf3df0b}{

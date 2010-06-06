@@ -279,10 +279,10 @@ void Group:: render (RenderState& state) const
 std::ostream& Group:: print (std::ostream& out) const
 {
     out << "Group: " << children.size() << " nodes";
-    //for (int i = 0; i < (int)children.size(); i++) {
-    //  out << "  [" << i << "] : ";
-    //  children[i]->print(out);
-    //}
+    for (int i = 0; i < (int)children.size(); i++) {
+        out << "  [" << i << "] : ";
+        children[i]->print(out);
+    }
     return out;
 }
 

@@ -22,8 +22,6 @@ namespace m3g {
 
     class Appearance : public Object3D
     {
-        friend class Mesh;     // for render
-        friend class Sprite3D; // for render
 
     public:
         /** 
@@ -142,6 +140,10 @@ namespace m3g {
         virtual void render (RenderState& state) const;
 
 
+        /**
+         * @~English  Render this object, inner use only.
+         * @~Japanese このノードをレンダリングする内部使用の関数.
+         */
         static void renderX ();
 
     private:

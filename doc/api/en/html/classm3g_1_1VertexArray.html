@@ -33,6 +33,7 @@ Inheritance diagram for VertexArray:</div>
 <p><center><img src="classm3g_1_1VertexArray.png" usemap="#VertexArray_map" border="0" alt=""></center>
 <map name="VertexArray_map">
 <area href="classm3g_1_1Object3D.html" alt="Object3D" shape="rect" coords="0,56,82,80">
+<area href="classm3g_1_1Object.html" alt="Object" shape="rect" coords="0,0,82,24">
 </map>
 </div>
 
@@ -44,13 +45,15 @@ Inheritance diagram for VertexArray:</div>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">virtual&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1VertexArray.html#267fa63cb2f4216729437dc826415911">~VertexArray</a> ()</td></tr>
 
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="el" href="classm3g_1_1VertexArray.html">VertexArray</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1VertexArray.html#f0dc6a5510bf837ef48129f344d666a8">duplicate</a> () const </td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">virtual <a class="el" href="classm3g_1_1VertexArray.html">VertexArray</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1VertexArray.html#f0dc6a5510bf837ef48129f344d666a8">duplicate</a> () const </td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1VertexArray.html#9d1b801a7c196a07553a5ef4a5473573">get</a> (int first_vertex, int num_vertices, char *values) const </td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1VertexArray.html#575822f60d7b5e74ed51e94851123038">get</a> (int first_vertex, int num_vertices, short *values) const </td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1VertexArray.html#79b1ffd7586fe23fb5e31661e4d296e3">get</a> (int first_vertex, int num_vertices, float *values) const </td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1VertexArray.html#1adedf59e0c6a047242a3914ca52b929">get</a> (int first_vertex, int num_vertices, float scale, float *bias, float *values) const </td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1VertexArray.html#7016f51d2788e78fdd736efd040f5e5e">getComponentCount</a> () const </td></tr>
 
@@ -70,6 +73,9 @@ void&nbsp;</td><td class="memItemRight" valign="bottom"><b>setMorphing</b> (cons
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="fcfcc1258ce0be7d0322d2e00809e1ea"></a><!-- doxytag: member="m3g::VertexArray::setSkinning" ref="fcfcc1258ce0be7d0322d2e00809e1ea" args="(const VertexArray *base_positions, const std::vector&lt; std::vector&lt; BoneIndex &gt; &gt; &amp;bone_indices, const std::vector&lt; Matrix &gt; &amp;matrix_palette)" -->
 void&nbsp;</td><td class="memItemRight" valign="bottom"><b>setSkinning</b> (const <a class="el" href="classm3g_1_1VertexArray.html">VertexArray</a> *base_positions, const std::vector&lt; std::vector&lt; <a class="el" href="structm3g_1_1BoneIndex.html">BoneIndex</a> &gt; &gt; &amp;bone_indices, const std::vector&lt; <a class="el" href="classm3g_1_1Matrix.html">Matrix</a> &gt; &amp;matrix_palette)</td></tr>
 
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="f5518d17b77d25b05dc0b943b30a2fc0"></a><!-- doxytag: member="m3g::VertexArray::updateOpenGLData" ref="f5518d17b77d25b05dc0b943b30a2fc0" args="(const void *value) const " -->
+void&nbsp;</td><td class="memItemRight" valign="bottom"><b>updateOpenGLData</b> (const void *value) const </td></tr>
+
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="5c2359d08265a9f8605316789c40ece4"></a><!-- doxytag: member="m3g::VertexArray::convert" ref="5c2359d08265a9f8605316789c40ece4" args="(int component_size)" -->
 void&nbsp;</td><td class="memItemRight" valign="bottom"><b>convert</b> (int component_size)</td></tr>
 
@@ -80,10 +86,6 @@ void&nbsp;</td><td class="memItemRight" valign="bottom"><b>convert</b> (int comp
 <tr><td class="memItemLeft" nowrap align="right" valign="top">virtual std::ostream &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1VertexArray.html#6fea17fa1532df3794f8cb39cb4f911f">print</a> (std::ostream &amp;out) const </td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">std::ostream &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1VertexArray.html#85d61f1cdd10b3b5126cdb20291ae276">print_raw_data</a> (std::ostream &amp;out) const </td></tr>
-
-<tr><td colspan="2"><br><h2>Friends</h2></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="9ef9a3db41cb54690169922706e1d3c5"></a><!-- doxytag: member="m3g::VertexArray::VertexBuffer" ref="9ef9a3db41cb54690169922706e1d3c5" args="" -->
-class&nbsp;</td><td class="memItemRight" valign="bottom"><b>VertexBuffer</b></td></tr>
 
 </table>
 <hr><a name="_details"></a><h2>Detailed Description</h2>
@@ -162,6 +164,53 @@ Destructs this object.
 Creates a duplicate of this <a class="el" href="classm3g_1_1Object3D.html">Object3D</a>. 
 <p>Reimplemented from <a class="el" href="classm3g_1_1Object3D.html#a25110dac934f867b83b73ad4741a0f4">Object3D</a>.</p>
 
+</div>
+</div><p>
+<a class="anchor" name="1adedf59e0c6a047242a3914ca52b929"></a><!-- doxytag: member="m3g::VertexArray::get" ref="1adedf59e0c6a047242a3914ca52b929" args="(int first_vertex, int num_vertices, float scale, float *bias, float *values) const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void get           </td>
+          <td>(</td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>first_vertex</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>num_vertices</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&nbsp;</td>
+          <td class="paramname"> <em>scale</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float *&nbsp;</td>
+          <td class="paramname"> <em>bias</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float *&nbsp;</td>
+          <td class="paramname"> <em>values</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td> const</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Returns a range of 32-bit float vertex attributes. 
 </div>
 </div><p>
 <a class="anchor" name="79b1ffd7586fe23fb5e31661e4d296e3"></a><!-- doxytag: member="m3g::VertexArray::get" ref="79b1ffd7586fe23fb5e31661e4d296e3" args="(int first_vertex, int num_vertices, float *values) const " -->
@@ -514,7 +563,7 @@ Copies in an array of 8-bit vertex attributes.
 <hr>The documentation for this class was generated from the following files:<ul>
 <li>/work/workspace.desktop-m3g/src/<a class="el" href="VertexArray_8hpp-source.html">VertexArray.hpp</a><li>/work/workspace.desktop-m3g/src/VertexArray.cpp</ul>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Mon May 10 08:47:34 2010 by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Sun Jun 6 11:22:46 2010 by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.8 </small></address>
 </body>
