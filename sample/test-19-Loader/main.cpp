@@ -91,8 +91,10 @@ int main (int argc, char** argv)
     glutInitDisplayMode(GLUT_RGBA | GLUT_DEPTH | GLUT_DOUBLE);
     glutCreateWindow(argv[0]);
 
-    objs = Loader::load ("simple.m3g");
-    //objs = Loader::load ("test.m3g");
+    Loader* loader = new Loader;
+
+    //objs = loader->load ("simple.m3g");
+    objs = Loader::load ("test.m3g");
 
     for (int i = 0; i < (int)objs.size(); i++) {
         wld = dynamic_cast<World*>(objs[i]);
@@ -103,12 +105,7 @@ int main (int argc, char** argv)
     }
     assert (wld != 0);
 
-    for (int i = 0; i < (int)objs.size(); i++) {
-        Node* node = dynamic_cast<Node*>(objs[i]);
-        if (node) {
-            node->setAlphaFactor(1);
-        }
-        //cout << *objs[i] << "\n";
+    for (int i = objs.size()-1; i >= 0; i--) {
     }
 
 

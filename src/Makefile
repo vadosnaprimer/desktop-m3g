@@ -2,9 +2,10 @@ SRCS = $(wildcard *.cpp)
 OBJS = $(SRCS:.cpp=.o)
 TARGET = libm3g.so
 CXX = g++
-CXXFLAGS = -Wall -g -shared -fPIC -Wno-deprecated -fno-strict-aliasing
+CXXFLAGS = -Wall -g -shared -fPIC -Wno-deprecated -fno-strict-aliasing \
+            -I../lib
 LD = g++
-LDFLAGS = -shared -lGL -lGLU -lpng -ljpeg
+LDFLAGS = -shared -lGL -lGLU -lpng -ljpeg -L../lib
 LIBS = 
 
 

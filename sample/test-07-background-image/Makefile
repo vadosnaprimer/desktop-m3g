@@ -2,10 +2,10 @@ SRCS = $(wildcard *.cpp)
 OBJS = $(SRCS:.cpp=.o)
 TARGET = a.out
 CXX = g++
-CXXFLAGS = -Wall -g -Wno-deprecated -I../../src
+CXXFLAGS = -Wall -g -Wno-deprecated -I../../src -I../../lib
 LD = g++
-LDFLAGS = -L../../src
-LIBS = -lm3g  -lglut -lGL -lpng -lz
+LDFLAGS = -L../../src -L../../lib
+LIBS = -lm3g -lM3GReaderWriter -lglut -lGL -lpng -lz
 
 
 all: $(OBJS)

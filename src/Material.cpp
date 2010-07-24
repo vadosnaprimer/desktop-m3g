@@ -258,6 +258,7 @@ void Material:: render (RenderState& state) const
 
     // Diffuse color is used as 'Color' too.
     glColor4fv (diffuse_rgba);
+    //cout << "diffuse_rgba = " << hex << diffuse_rgba[0] << ", " << diffuse_rgba[1] << ", " << diffuse_rgba[2] << ", " << diffuse_rgba[3] << dec << "\n";
 
     GLfloat specular_rgb[4] = {((specular_color & 0x00ff0000) >> 16) / 255.f,
                                ((specular_color & 0x0000ff00) >> 8 ) / 255.f,

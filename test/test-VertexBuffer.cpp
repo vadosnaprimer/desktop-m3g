@@ -99,3 +99,4 @@ TEST (VertexBuffer_duplicate)
     delete vbuf0;
     delete vbuf1;
 }
+

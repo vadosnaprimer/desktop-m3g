@@ -44,12 +44,6 @@ Graphics3D:: Graphics3D () :
 
 Graphics3D:: ~Graphics3D ()
 {
-    if (Loader::file_info.authoring_field) {
-        delete [] Loader::file_info.authoring_field;
-    }
-    if (Loader::file_info.authoring_field) {
-        delete [] Loader::file_info.external_refference_uri;
-    }
 }  
 
 int Graphics3D:: addLight (Light* light, const Transform& transform)

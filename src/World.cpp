@@ -152,12 +152,12 @@ std::ostream& World::print (std::ostream& out) const
     else 
         out << "  active camera = NOT FOUND\n";
     if (background)
-        out << "  background    = " << *background;
+        out << "  background    = " << *background << "\n";
     else 
         out << "  background    = NOT FOUND\n";
     for (int i = 0; i < (int)children.size(); i++) {
         out << "  [" << i << "] : ";
-        children[i]->print(out);
+        children[i]->print(out) << "\n";
     }
 
     return out;

@@ -1,152 +1,156 @@
+#include "m3g.hpp"
+#include "MemoryReader.hpp"
 #include <iostream>
 #include <fstream>
-#include <strstream>
-#include <zlib.h>
+#include <algorithm>
 #include <cstring>
-#include <map>
 #include <png.h>
-#include <jpeglib.h>
-#include "m3g.hpp"
-#include "Loader.hpp"
-#include "Exception.hpp"
 using namespace std;
 using namespace m3g;
-#include <stdlib.h>
 
-std::istrstream* Loader::iss = 0;
-std::vector<Object3D*> Loader::objs;
-Loader::FileInfo Loader::file_info;
+// M3G(JSR184) identifier
+const unsigned char m3g_sig[12] = {0xab,0x4a,0x53,0x52,0x31,0x38,0x34,0xbb,0x0d,0x0a,0x1a,0x0a};
+const unsigned char png_sig[8]  = {0x89,0x50,0x4e,0x47,0x0d,0x0a,0x1a,0x0a};
+const unsigned char jpg_sig[11] = {0xff,0xd8,0xff,0xe0,0x00,0x10,0x4a,0x46,0x49,0x46,0x00};
 
-const char m3g_signature[12]  = {0xAB,0x4A,0x53,0x52,0x31,0x38,0x34,0xBB,0x0D,0x0A,0x1A,0x0A};
-const char png_signature[8]   = {0x89,0x50,0x4e,0x47,0x0d,0x0a,0x1a,0x0a};
-const char jpeg_signature[11] = {0xff,0xd8,0xff,0xe0,0x00,0x10,0x4a,0x46,0x49,0x46,0x00};
 
-Loader:: Loader () 
+Loader:: Loader () : reader(0)
 {
 }
 
 Loader:: ~Loader ()
 {
+    delete reader;
 }
 
-void Loader:: load_m3g ()
+
+std::vector<Object3D*> Loader:: load (int length, const char* p, int offset)
 {
-    if (!getM3GSignature()) {
-        throw IOException (__FILE__, __func__, "This is not M3G format.");
+    if (p == NULL) {
+        throw NullPointerException (__FILE__, __func__, "Memory pointer is Null.");
+    }
+    if (length <= 0) {
+        throw IllegalArgumentException (__FILE__, __func__, "Length is invalid, len=%d.", length);
+    }
+    if (offset < 0 || offset >= length) {
+        throw IllegalArgumentException (__FILE__, __func__, "Offset is invalid, offset=%d, len=%d.", offset, length);
     }
 
-    while (1) {
-        // section
-        //cout << "----------start section--------------\n";
-        int start_of_section = (int)iss->tellg();
+    p      += offset;
+    length -= offset;
+   
+    Loader* loader = new Loader;
+    vector<Object3D*> objs;
 
-        char         compression_scheme   = getByte();
-        unsigned int total_section_length = getUInt32 ();
-        unsigned int uncompressed_length  = getUInt32 ();
-        //cout << "compression_scheme = "   << (int)compression_scheme << "\n";
-        //cout << "total_section_length = " << total_section_length << "\n";
-        //cout << "uncompressed_length = "  << uncompressed_length << "\n";
-
-        if (iss->eof())
-            break;
-        if (compression_scheme != 0 && compression_scheme != 1) {
-        }
-
-        char* uncompressed_objects = new char[uncompressed_length];
-        switch (compression_scheme) {
-        case 0: read_raw (uncompressed_objects,
-                          total_section_length-13); break;
-        case 1: read_zlib (uncompressed_objects, 
-                           uncompressed_length,
-                           total_section_length-13); break;
-        default: 
-            throw IOException (__FILE__, __func__, "Compression scheme is invalid, scheme=%d.", compression_scheme);
-        }
-        istrstream* tmp = iss;
-        iss = new istrstream (uncompressed_objects, uncompressed_length);
-
-        while (1) {
-
-            int          start_of_object = (int)iss->tellg();
-            char         object_type     = getByte ();
-            unsigned int length          = getUInt32 ();
-
-            if (iss->eof())
-                break;
-
-            //cout << "object type = " << objtype_to_string(object_type) << "(" << (int)obje
-
-            switch (object_type) {
-            case OBJTYPE_HEADER_OBJECT       : parseHeader()             ; break;
-            case OBJTYPE_ANIMATION_CONTROLLER: parseAnimationController(); break;
-            case OBJTYPE_ANIMATION_TRACK     : parseAnimationTrack ()    ; break;
-            case OBJTYPE_APPEARANCE          : parseAppearance ()        ; break;
-            case OBJTYPE_BACKGROUND          : parseBackground ()        ; break;
-            case OBJTYPE_CAMERA              : parseCamera ()            ; break;
-            case OBJTYPE_COMPOSITING_MODE    : parseCompositingMode ()   ; break;
-            case OBJTYPE_FOG                 : parseFog ()               ; break;
-            case OBJTYPE_GROUP               : parseGroup ()             ; break;
-            case OBJTYPE_IMAGE2D             : parseImage2D ()           ; break;
-            case OBJTYPE_KEYFRAME_SEQUENCE   : parseKeyframeSequence ()  ; break;
-            case OBJTYPE_LIGHT               : parseLight ()             ; break;
-            case OBJTYPE_MATERIAL            : parseMaterial ()          ; break;
-            case OBJTYPE_MESH                : parseMesh ()              ; break;
-            case OBJTYPE_MORPHING_MESH       : parseMorphingMesh ()      ; break;
-            case OBJTYPE_POLYGON_MODE        : parsePolygonMode ()       ; break;
-            case OBJTYPE_SKINNED_MESH        : parseSkinnedMesh ()       ; break;
-            case OBJTYPE_SPRITE3D            : parseSprite3D ()          ; break;
-            case OBJTYPE_TEXTURE2D           : parseTexture2D ()         ; break;
-            case OBJTYPE_TRIANGLE_STRIP_ARRAY: parseTriangleStripArray (); break;
-            case OBJTYPE_VERTEX_ARRAY        : parseVertexArray ()       ; break;
-            case OBJTYPE_VERTEX_BUFFER       : parseVertexBuffer ()      ; break;
-            case OBJTYPE_WORLD               : parseWorld ()             ; break;
-            default: 
-                throw IOException (__FILE__, __func__, "Object type is invalid, type=%d.", object_type);
-                //cout << "Unknown obj type = " << object_type << " is ignored.\n";
-                //iss->seekg (length, ios_base::cur);
-            }
-
-            int end_of_object = (int)iss->tellg();
-            if (end_of_object - start_of_object != (int)length+5) {
-                throw IOException (__FILE__, __func__, "Object length is invalid. %d != %d.", end_of_object - start_of_object, length+5);
-            }
-        }
-
-        delete iss;
-        iss = tmp;
-
-        unsigned int file_checksum    = getUInt32();
-        unsigned int memory_checksum  = adler32 ((const unsigned char*)iss->str()+start_of_section, total_section_length-4);
-        if (memory_checksum != file_checksum) {
-            throw IOException (__FILE__, __func__, "Checksum is invalid. file=0x%x, mem=0x%x.", file_checksum, memory_checksum);
-        }
-
-    }
-
-    std::vector<Object3D*>::iterator it;
-    for (it = objs.begin(); it != objs.end(); ) {
-        if (*it == NULL)
-            it = objs.erase (it);
-        else
-            it++;
-    }
-
+    if (memcmp (p, m3g_sig, sizeof(m3g_sig)) == 0)
+        objs = loader->load_m3g (p, length);
+    else if (memcmp (p, png_sig, sizeof(png_sig)) == 0)
+        objs = loader->load_png (p, length);
+    else if (memcmp (p, jpg_sig, 4) == 0 && memcmp (p+6, jpg_sig+6, 5) == 0)
+        objs = loader->load_jpg (p, length);
+    else
+        throw IOException (__FILE__, __func__, "File signature is unknwon.");
+    
+    delete loader;
+    return objs;
 }
 
-void Loader:: load_png ()
+std::vector<Object3D*> Loader:: load (const char* file_name)
+{
+    if (!file_name) {
+        throw NullPointerException (__FILE__, __func__, "Name is Null.");
+    }
+
+    ifstream ifs (file_name);
+    if (!ifs) {
+        throw IOException (__FILE__, __func__, "Can't open the file, name=%s.", file_name);
+    }
+
+    ifs.seekg (0, std::ios::end);
+    int size = ifs.tellg ();
+    ifs.seekg (0, std::ios::beg);
+
+    char* buf = new char[size];
+    ifs.read (buf, size);
+
+    vector<Object3D*> objs = load (size, buf, 0);
+
+    delete [] buf;
+    return objs;
+}
+
+
+std::vector<Object3D*> Loader:: load_m3g (const char* p, int size)
+{
+    // object indexは1から始まるので
+    objs.push_back (0);
+
+    int          object_type;
+    unsigned int object_index;
+    
+    reader = new M3GReader (p, size);
+
+    // M3G-ID
+    reader->readID ();
+
+    // Section 1 has Header object only.
+    reader->startSection ();
+    reader->startObject  (&object_type, &object_index);
+    parseHeader ();
+    reader->endObject    ();
+    reader->endSection   ();
+
+
+    // Section 2～
+    while (reader->startSection ()) {
+        while (reader->startObject  (&object_type, &object_index)) {
+            cout << "Loader:: object_type = " << object_type << "\n";
+            switch (object_type) {
+            case M3G_TYPE_HEADER              : parseHeader ()             ; break;
+            case M3G_TYPE_ANIMATION_CONTROLLER: parseAnimationController (); break;
+            case M3G_TYPE_ANIMATION_TRACK     : parseAnimationTrack ()     ; break;
+            case M3G_TYPE_APPEARANCE          : parseAppearance ()         ; break;
+            case M3G_TYPE_BACKGROUND          : parseBackground ()         ; break;
+            case M3G_TYPE_CAMERA              : parseCamera ()             ; break;
+            case M3G_TYPE_COMPOSITING_MODE    : parseCompositingMode ()    ; break;
+            case M3G_TYPE_FOG                 : parseFog ()                ; break;
+            case M3G_TYPE_POLYGON_MODE        : parsePolygonMode ()        ; break;
+            case M3G_TYPE_GROUP               : parseGroup ()              ; break;
+            case M3G_TYPE_IMAGE2D             : parseImage2D ()            ; break;
+            case M3G_TYPE_TRIANGLE_STRIP_ARRAY: parseTriangleStripArray () ; break;
+            case M3G_TYPE_LIGHT               : parseLight ()              ; break;
+            case M3G_TYPE_MATERIAL            : parseMaterial ()           ; break;
+            case M3G_TYPE_MESH                : parseMesh ()               ; break;
+            case M3G_TYPE_MORPHING_MESH       : parseMorphingMesh ()       ; break;
+            case M3G_TYPE_SKINNED_MESH        : parseSkinnedMesh ()        ; break;
+            case M3G_TYPE_TEXTURE2D           : parseTexture2D ()          ; break;
+            case M3G_TYPE_SPRITE3D            : parseSprite3D ()           ; break;
+            case M3G_TYPE_KEYFRAME_SEQUENCE   : parseKeyframeSequence ()   ; break;
+            case M3G_TYPE_VERTEX_ARRAY        : parseVertexArray ()        ; break;
+            case M3G_TYPE_VERTEX_BUFFER       : parseVertexBuffer ()       ; break;
+            case M3G_TYPE_WORLD               : parseWorld ()              ; break;
+            case M3G_TYPE_EXTERNAL_REFERENCE  : parseExternalReference ()  ; break;
+            default: {
+            }
+            }
+            reader->endObject ();
+        }
+        reader->endSection ();
+    }    
+
+    objs.erase (remove(objs.begin(), objs.end(), (Object3D*)0), objs.end());
+
+    return objs;
+}
+
+
+std::vector<Object3D*> Loader:: load_png (const char* file_ptr, int file_size)
 {
     png_structp png_ptr;
     png_infop   info_ptr;
 
-    int pos = iss->tellg();
-    int end = iss->seekg(0, ios::end).tellg();
-    iss->seekg(pos); 
-
-    FILE* fp = fmemopen (iss->str(), end-pos, "rb");
-    if (fp == NULL) {
-        throw IOException (__FILE__, __func__, "Can't open memory.");
-    }
-
+    MemoryReader* my_mem_reader = new MemoryReader (file_ptr, file_size);
+    
     png_ptr = png_create_read_struct (PNG_LIBPNG_VER_STRING, 0, 0, 0);
     if (!png_ptr) {
         throw IOException (__FILE__, __func__, "Can't create png struct.");
@@ -162,8 +166,8 @@ void Loader:: load_png ()
         throw IOException (__FILE__, __func__, "Error at libpng.");
     }
 
-    png_init_io (png_ptr, fp);
-	
+    png_set_read_fn (png_ptr, my_mem_reader, my_png_read_func);
+
     png_read_png (png_ptr, info_ptr, PNG_TRANSFORM_IDENTITY, png_voidp_NULL);
   
     //  cout << "Loader: width       = " << info_ptr->width << "\n";
@@ -195,1275 +199,856 @@ void Loader:: load_png ()
 
     png_destroy_read_struct (&png_ptr, &info_ptr, png_infopp_NULL);
     delete [] pixels;
-    fclose (fp);
 
+    delete my_mem_reader;
     objs.push_back (img);
-}
-
-void Loader:: load_jpeg ()
-{
-#include <jpeglib.h>
-    struct jpeg_decompress_struct cinfo;
-    struct jpeg_error_mgr         jerr;
-    cinfo.err = jpeg_std_error (&jerr);
-    jpeg_create_decompress (&cinfo);
-
-    int pos = iss->tellg();
-    int end = iss->seekg(0, ios::end).tellg();
-    iss->seekg(pos); 
-
-    FILE* fp = fmemopen (iss->str(), end-pos, "rb");
-    if (fp == NULL) {
-        throw IOException (__FILE__, __func__, "Can't open memory.");
-    }
-
-    jpeg_stdio_src (&cinfo, fp);
-
-    jpeg_read_header (&cinfo, TRUE);
-    jpeg_start_decompress (&cinfo);
-
-    int width            = cinfo.output_width;
-    int height           = cinfo.output_height;
-    int color_components = cinfo.out_color_components;
-
-    cout << "width  = " << width  << "\n";
-    cout << "height = " << height << "\n";
-    cout << "color components = " << cinfo.out_color_components << "\n";
-    cout << "color space = " << cinfo.out_color_space << "\n";
-
-
-    unsigned char*  pixels  = new unsigned char  [height*width*color_components];
-    unsigned char** row_ptr = new unsigned char* [height];
-    for (int y = 0; y < height; y++) {
-        row_ptr[y] = pixels + width*color_components*(height-1 - y);
-    }
-
-    while (cinfo.output_scanline < cinfo.output_height) {
-        jpeg_read_scanlines (&cinfo,
-                             &row_ptr[cinfo.output_scanline],
-                             cinfo.output_height - cinfo.output_scanline);
-    }
-
-    jpeg_finish_decompress (&cinfo);
-    jpeg_destroy_decompress (&cinfo);
-    
-    int format;
-    switch (cinfo.out_color_space) {
-    case JCS_GRAYSCALE : format = Image2D::LUMINANCE; break;
-    case JCS_RGB       : format = Image2D::RGB;       break;
-    default: throw IOException (__FILE__, __func__, "Unknwon jpeg format=%d.", cinfo.out_color_space);
-    }
-
-    Image2D*   img = new Image2D (format, width, height, pixels);
-    img->writePNG ("a.png");
-
-    delete [] row_ptr;
-    delete [] pixels;
-    fclose (fp);
-
-    objs.push_back (img);
-
-
-}
-
-
-std::vector<Object3D*> Loader:: load (int length, const char* data, int offset)
-{
-    if (data == NULL) {
-        throw NullPointerException (__FILE__, __func__, "Data is NULL.");
-    }
-    if (length <= 0) {
-        throw IllegalArgumentException (__FILE__, __func__, "length is invalid, len=%d.", length);
-    }
-    if (offset < 0 || offset >= length) {
-        throw IndexOutOfBoundsException (__FILE__, __func__, "Offset is invalid, %d in [0, ).", offset, length);
-    }
-
-    objs.clear();
-
-    iss = new istrstream ((char*)data+offset, length-offset);
-    if (iss == 0) {
-        throw IOException (__FILE__, __func__, "Can't load from memory 0x%p.", data);
-    }
-
-    if (isM3GSignature())
-        load_m3g ();
-    else if (isPngSignature())
-        load_png ();
-    else if (isJpegSignature())
-        load_jpeg ();
-    else
-        throw IOException (__FILE__, __func__, "This is not M3G format or png. ");
-
-    delete iss;
 
     return objs;
 }
 
-
-std::vector<Object3D*> Loader:: load (const char* name)
+std::vector<Object3D*> Loader:: load_jpg (const char* p, int size)
 {
-    ifstream ifs (name);
-    if (!ifs) {
-        throw IOException (__FILE__, __func__, "Can't open file, name=%s.", name);
-    }
-    int size = ifs.seekg(0, ios::end).tellg();
-    ifs.seekg(0, ios::beg); 
-    char* buf = new char[size];
-    ifs.read (buf, size);
-
-    load (size, buf, 0);
-
-    delete [] buf;
-
     return objs;
-}
-
-bool Loader:: isM3GSignature ()
-{
-    unsigned int pos = iss->tellg ();
-    bool         yes = getM3GSignature ();
-    iss->seekg (pos);
-    return yes;
-}
-
-bool Loader:: isPngSignature ()
-{
-    unsigned int pos = iss->tellg ();
-    bool         yes = getPngSignature ();
-    iss->seekg (pos);
-    return yes;
-}
-
-bool Loader:: isJpegSignature()
-{
-    unsigned int pos = iss->tellg ();
-    bool         yes = getJpegSignature ();
-    iss->seekg (pos);
-    return yes;
-}
-
-bool Loader:: getBoolean ()
-{
-    bool buf;
-    iss->read ((char*)&buf, 1);
-    return buf;
-}
-
-char Loader:: getByte ()
-{
-    char buf;
-    iss->read ((char*)&buf, 1);
-    return buf;
-}
-
-short Loader:: getInt16 ()
-{
-    short buf;
-    iss->read ((char*)&buf, 2);
-    return buf;
-}
-
-unsigned short Loader:: getUInt16 ()
-{
-    unsigned short buf;
-    iss->read ((char*)&buf, 2);
-    return buf;
-}
-
-int Loader:: getInt32 ()
-{
-    int buf;
-    iss->read ((char*)&buf, 4);
-    return buf;
-}
-
-unsigned int Loader:: getUInt32 ()
-{
-    unsigned int buf;
-    iss->read ((char*)&buf, 4);
-    return buf;
-}
-
-float        Loader:: getFloat32 ()
-{
-    float buf;
-    iss->read ((char*)&buf, 4);
-    return buf;
-}
-
-const char* Loader:: getString ()
-{
-    char* buf = new char[256];
-    iss->getline (buf, 256, '\0');
-    return buf;
-}
-
-unsigned int Loader:: getObjectIndex ()
-{
-    unsigned int buf;
-    iss->read ((char*)&buf, 4);
-    return buf;
-}
-
-int          Loader:: getColorRGBA ()
-{
-    unsigned char r,g,b,a;
-    iss->read ((char*)&r, 1);
-    iss->read ((char*)&g, 1);
-    iss->read ((char*)&b, 1);
-    iss->read ((char*)&a, 1);
-    return (a << 24) | (r << 16) | (g << 8) | (b << 0);
-}
-
-int          Loader:: getColorRGB ()
-{
-    unsigned char r,g,b;
-    iss->read ((char*)&r, 1);
-    iss->read ((char*)&g, 1);
-    iss->read ((char*)&b, 1);
-    return (r << 16) | (g << 8) | (b << 0);
-}
-
-bool Loader:: getM3GSignature ()
-{
-    char sig[12];
-    iss->read ((char*)sig, 12);
-    return (memcmp (sig, m3g_signature, 12) == 0) ? true : false;
-}
-
-bool Loader:: getPngSignature ()
-{
-    char sig[8];
-    iss->read ((char*)sig, 8);
-    return (memcmp (sig, png_signature, 8) == 0) ? true : false;
-}
-
-bool Loader:: getJpegSignature ()
-{
-    char sig[11];
-    iss->read ((char*)sig, 11);
-    // メモ：5,6バイト目はサイズなのでチェックしたら駄目
-    return (memcmp (sig, jpeg_signature, 4) == 0 &&
-            memcmp (sig+6, jpeg_signature+6, 5) == 0) ? true : false;
-}
-
-char* Loader:: getByteArray (int n)
-{
-    char* p = new char[n];
-    iss->read ((char*)p, n);
-    return p;
-}
-
-
-short* Loader:: getInt16Array (int n)
-{
-    short* p = new short[n];
-    iss->read ((char*)p, n*2);
-    return p;
-}
-
-unsigned short* Loader:: getUInt16Array (int n)
-{
-    unsigned short* p = new unsigned short[n];
-    iss->read ((char*)p, n*2);
-    return p;
-}
-
-
-unsigned int* Loader:: getUInt32Array (int n)
-{
-    unsigned int* p = new unsigned int[n];
-    iss->read ((char*)p, n*4);
-    return p;
-}
-
-float* Loader:: getFloat32Array (int n)
-{
-    float* p = new float[n];
-    iss->read ((char*)p, n*4);
-    return p;
-}
-
-unsigned int Loader:: adler32 (const unsigned char* data, int len)
-{
-    unsigned int a = 1, b = 0;
-    while (len > 0) {
-        int tlen = len > 5550 ? 5550 : len;
-        len -= tlen;
-        do {
-            a += *data++;
-            b += a;
-        } while (--tlen);
-        a %= 65521;
-        b %= 65521;
-    }
-    return (b << 16) | a;
-}
-
-void Loader:: read_raw (char* buf, int length)
-{
-    iss->read (buf, length);
-}
-
-void Loader:: read_zlib (char* uncomporessed_buf, int uncomporessed_buf_length, int compressed_length)
-{
-    char* compressed_buf = new char[compressed_length];
-    iss->read (compressed_buf, compressed_length);
-
-    int ret;
-    int uncomporessed_length = uncomporessed_buf_length;
-    ret = uncompress ((Bytef*)uncomporessed_buf, (uLongf*)&uncomporessed_length,
-                      (const Bytef*)compressed_buf, (uLong)compressed_length);
-    if (ret != Z_OK) {
-        throw IOException (__FILE__, __func__, "Decode error(zlib), err=%d.", ret);
-    }
-    if (uncomporessed_length != uncomporessed_buf_length) {
-        throw IOException (__FILE__, __func__, "Decode error(zlib), %d != %d.", uncomporessed_length, uncomporessed_buf_length);
-    }
-
-    delete [] compressed_buf;
 }
 
 
 void Loader:: parseHeader ()
 {
-    char         version_major            = getByte();
-    char         version_minor            = getByte();
-    bool         has_external_refference  = getBoolean();
-    unsigned int total_file_size          = getUInt32 ();
-    unsigned int approximate_content_size = getUInt32 ();
-    const char*  authoring_field          = getString ();
-
-    file_info.version_major            = version_major;
-    file_info.version_minor            = version_minor;
-    file_info.has_external_refference  = has_external_refference;
-    file_info.total_file_size          = total_file_size;
-    file_info.approximate_content_size = approximate_content_size;
-    file_info.authoring_field          = authoring_field;
-
-    //cout << "M3G Header ---\n";
-    //cout << "  version_major = "            << (int)version_major       << "\n";
-    //cout << "  version_minor = "            << (int)version_minor       << "\n";
-    //cout << "  has_external_refference  = " << has_external_refference  << "\n";
-    //cout << "  total_file_size          = " << total_file_size          << "\n";
-    //cout << "  approximate_content_size = " << approximate_content_size << "\n";
-    //cout << "  authoring_field          = " << authoring_field          << "\n";
-
-    if (has_external_refference) {
-        throw NotImplementedException (__FILE__, __func__, "Has_external_reference is not implemented.");
-    }
-
-    // delete authoring_field;
-
-    // 注意1：index 0はダミー
-    // 注意2：Header objectもオブジェクトに含む
-    objs.clear ();
-    objs.reserve (16);
-    objs.push_back ((Object3D*)0);  // for dummy
-    objs.push_back ((Object3D*)0);  // for header
+    M3GHeaderStruct header;
+    reader->readHeader   (&header);
+    
+    objs.push_back (0);
 }
 
-void Loader:: parseExref ()
-{
-    const char* uri = getString();
-    file_info.external_refference_uri = uri;
-    //cout << "uri = " << uri << "\n";
-}
 
 void Loader:: parseAnimationController ()
 {
-    AnimationController* ctr = new AnimationController;
-    parseObject3D (ctr);
+    M3GObject3DStruct               obj;
+    M3GAnimationControllerStruct    ac;
+    reader->readObject3D            (&obj);
+    reader->readAnimationController (&ac);
+            
+    AnimationController* anim_ctr = new AnimationController ();
+    setObject3D            (anim_ctr, obj);
+    setAnimationController (anim_ctr, ac);
 
-    float speed                   = getFloat32 ();
-    float weight                  = getFloat32 (); 
-    int   active_interval_start   = getInt32 ();
-    int   active_interval_end     = getInt32 ();
-    float reference_sequence_time = getFloat32 ();
-    int   reference_world_time    = getInt32 ();
-
-    ctr->setSpeed (speed, reference_world_time);
-    ctr->setWeight (weight);
-    ctr->setActiveInterval (active_interval_start, active_interval_end);
-    ctr->setPosition (reference_sequence_time, reference_world_time);
-
-    //ctr->AnimationController:: print (cout);
-
-    objs.push_back (ctr);
+    objs.push_back (anim_ctr);
 }
 
 void Loader:: parseAnimationTrack ()
 {
-    Object3D* obj = new Object3D;
-    parseObject3D (obj);
+    M3GObject3DStruct          obj;
+    M3GAnimationTrackStruct    atrack;
+    reader->readObject3D       (&obj);
+    reader->readAnimationTrack (&atrack);
+            
+    KeyframeSequence* key_seq  = dynamic_cast<KeyframeSequence*>(objs[atrack.keyframe_sequence_index]);
+    unsigned int      property = atrack.property_id;
 
-    unsigned int keyframe_sequence_index    = getUInt32();
-    unsigned int animation_controller_index = getUInt32();
-    unsigned int property_id = getInt32();
- 
-   
-    KeyframeSequence* kseq = dynamic_cast<KeyframeSequence*>(objs.at(keyframe_sequence_index));
-    AnimationTrack*   track = new AnimationTrack (kseq, property_id);
+    AnimationTrack* anim_track = new AnimationTrack (key_seq, property);
+    setObject3D       (anim_track, obj);
+    setAnimationTrack (anim_track, atrack);
 
-    if (animation_controller_index > 0) {
-        AnimationController* ctr = dynamic_cast<AnimationController*>(objs.at(animation_controller_index));
-        track->setController (ctr);
-    }
-
-    //track->AnimationTrack:: print (cout);
-
-    objs.push_back (track);
+    objs.push_back (anim_track);
 }
 
 void Loader:: parseAppearance ()
 {
-    Appearance* app = new Appearance;
-    parseObject3D (app);
-
-    char         layer                  = getByte ();
-    unsigned int compositing_mode_index = getUInt32 ();
-    unsigned int fog_index              = getUInt32 ();
-    unsigned int polygon_mode_index     = getUInt32 ();
-    unsigned int material_index         = getUInt32 ();
-
-    app->setLayer (layer);
-
-    if (compositing_mode_index > 0) {
-        CompositingMode* cmode = dynamic_cast<CompositingMode*>(objs.at(compositing_mode_index));
-        app->setCompositingMode (cmode);
-    }
-    if (fog_index > 0) {
-        Fog* fog = dynamic_cast<Fog*>(objs.at(fog_index));
-        app->setFog (fog);
-    }
-    if (polygon_mode_index > 0) {
-        PolygonMode* pmode = dynamic_cast<PolygonMode*>(objs.at(polygon_mode_index));
-        app->setPolygonMode (pmode);
-    }
-    if (material_index > 0) {
-        Material* mat = dynamic_cast<Material*>(objs.at(material_index));
-        app->setMaterial (mat);
-    }
-
-    unsigned int textures_count = getUInt32 ();
-    for (int i = 0; i < (int)textures_count; i++) {
-        unsigned int texture_index = getUInt32 ();
-        Texture2D* tex = dynamic_cast<Texture2D*>(objs.at(texture_index));
-        app->setTexture (i, tex);
-    }
-
-    //app->Appearance:: print (cout);
+    M3GObject3DStruct      obj;
+    M3GAppearanceStruct    ap;
+    reader->readObject3D   (&obj);
+    reader->readAppearance (&ap);
+            
+    Appearance* app = new Appearance ();
+    setObject3D   (app, obj);
+    setAppearance (app, ap);
 
     objs.push_back (app);
 }
 
 void Loader:: parseBackground ()
 {
-    Background* bg = new Background;
-    parseObject3D (bg);
-
-    int          background_color        = getColorRGBA ();
-    unsigned int background_image_index  = getUInt32 ();
-    char         background_image_mode_x = getByte ();
-    char         background_image_mode_y = getByte ();
-    int          crop_x                  = getInt32 ();
-    int          crop_y                  = getInt32 ();
-    int          crop_width              = getInt32 ();
-    int          crop_height             = getInt32 ();
-    bool         depth_clear_enabled     = getBoolean ();
-    bool         color_clear_enabled     = getBoolean ();
-
-    bg->setColor (background_color);
-    if (background_image_index > 0) {
-        Image2D* img = dynamic_cast<Image2D*>(objs.at(background_image_index));
-        bg->setImage (img);
-    }
-    bg->setImageMode (background_image_mode_x, background_image_mode_y);
-    bg->setCrop (crop_x, crop_y, crop_width, crop_height);
-    bg->setDepthClearEnable (depth_clear_enabled);
-    bg->setColorClearEnable (color_clear_enabled);
-   
-    //bg->Background:: print (cout);
+    M3GObject3DStruct      obj;
+    M3GBackgroundStruct    bgrnd;
+    reader->readObject3D   (&obj);
+    reader->readBackground (&bgrnd);
+            
+    Background* bg = new Background ();
+    setObject3D   (bg, obj);
+    setBackground (bg, bgrnd);
 
     objs.push_back (bg);
 }
 
 void Loader:: parseCamera ()
 {
-    Camera* cam = new Camera;
-    parseNode (cam);
-   
-    char projection_type = getByte();
-    if (projection_type == Camera::GENERIC) {
-        float matrix[16];
-        for (int i = 0; i < 16; i++)
-            matrix[i] = getFloat32 ();
-        Transform trns;
-        trns.set (matrix);
-        cam->setGeneric (trns);
-    } else {
-        float fovy         = getFloat32 ();
-        float aspect_ratio = getFloat32 ();
-        float near         = getFloat32 ();
-        float far          = getFloat32 ();
-        cam->setPerspective (fovy, aspect_ratio, near, far);
-    }
-
-    //cam->print (cout);
+    M3GObject3DStruct         obj;
+    M3GTransformableStruct    tra;
+    M3GNodeStruct             node;
+    M3GCameraStruct           cmr;
+    reader->readObject3D      (&obj);
+    reader->readTransformable (&tra);
+    reader->readNode          (&node);
+    reader->readCamera        (&cmr);
+            
+    Camera* cam = new Camera ();
+    setObject3D      (cam, obj);
+    setTransformable (cam, tra);
+    setNode          (cam, node);
+    setCamera        (cam, cmr);
 
     objs.push_back (cam);
 }
 
 void Loader:: parseCompositingMode ()
 {
-    CompositingMode* cmode = new CompositingMode;
-    parseObject3D (cmode);
-
-    bool  depth_test_enabled  = getBoolean ();
-    bool  depth_write_enabled = getBoolean ();
-    bool  color_write_enabled = getBoolean ();
-    bool  alpha_write_enabled = getBoolean ();
-    char  blending            = getByte ();
-    char  alpha_threshold     = getByte ();
-    float depth_offset_factor = getFloat32 ();
-    float depth_offset_units  = getFloat32 ();
-
-    cmode->setDepthTestEnable (depth_test_enabled);
-    cmode->setDepthWriteEnable (depth_write_enabled);
-    cmode->setColorWriteEnable (color_write_enabled);
-    cmode->setAlphaWriteEnable (alpha_write_enabled);
-    cmode->setBlending (blending);
-    cmode->setAlphaThreshold (alpha_threshold);
-    cmode->setDepthOffset (depth_offset_factor, depth_offset_units);
+    M3GObject3DStruct           obj;
+    M3GCompositingModeStruct    cmp;
+    reader->readObject3D        (&obj);
+    reader->readCompositingMode (&cmp);
+            
+    CompositingMode* cmode = new CompositingMode ();
+    setObject3D        (cmode, obj);
+    setCompositingMode (cmode, cmp);
 
     objs.push_back (cmode);
 }
 
 void Loader:: parseFog ()
 {
-    Fog* fog = new Fog;
-    parseObject3D (fog);
-
-    int  color = getColorRGB ();
-    char mode  = getByte ();
-
-    fog->setColor (color);
-
-    if (mode == Fog::EXPONENTIAL) {
-        float density = getFloat32 ();
-        fog->setDensity (density);
-    } else {
-        float near = getFloat32 ();
-        float far  = getFloat32 ();
-        fog->setLinear (near, far);
-    }
+    M3GObject3DStruct    obj;
+    M3GFogStruct         fg;
+    reader->readObject3D (&obj);
+    reader->readFog      (&fg);
+            
+    Fog* fog = new Fog ();
+    setObject3D (fog, obj);
+    setFog      (fog, fg);
 
     objs.push_back (fog);
 }
 
-void Loader:: parseGroup ()
-{
-    Group* grp = new Group;
-    parseGroup (grp);
-
-    objs.push_back (grp);
-}
-
-void Loader:: parseGroup (Group* grp)
-{
-    parseNode (grp);
-
-    unsigned int children_count = getUInt32 ();
-    for (int i = 0; i < (int)children_count; i++) {
-        unsigned int children_index = getUInt32 ();
-        if (children_index > 0) {
-            Node* node = dynamic_cast<Node*>(objs.at(children_index));
-            grp->addChild (node);
-        }
-
-    }
-
-    //grp->Group:: print (cout);
-}
-
-void Loader:: parseImage2D ()
-{
-    Object3D* obj = new Object3D;
-    parseObject3D (obj);
-
-    Image2D* img = 0;
-
-    char format         = getByte ();
-    bool is_mutable     = getBoolean ();
-    unsigned int width  = getUInt32 ();
-    unsigned int height = getUInt32 ();
-    if (!is_mutable) {
-        unsigned int palette_count = getUInt32 ();
-        if (palette_count == 0) {
-            unsigned int pixel_count = getUInt32 ();
-            char*        pixels      = getByteArray(pixel_count);
-            img = new Image2D (format, width, height, pixels);
-            delete [] pixels;
-        } else {
-            char*          palette       = getByteArray (palette_count);
-            unsigned int   pixel_count   = getUInt32 ();
-            unsigned char* palette_index = (unsigned char*)getByteArray (pixel_count);
-            int            bpp           = format_to_bpp (format);
-            char*          pixels        = new char[pixel_count*bpp];
-            for (int i = 0; i < (int)pixel_count; i++) {
-                memcpy (&pixels[i*bpp], &palette[palette_index[i]*bpp], bpp);
-            }
-            img = new Image2D (format, width, height, pixels);
-            delete [] palette;
-            delete [] palette_index;
-            delete [] pixels;
-        }
-    }
-
-    // img->print (cout);
-
-    objs.push_back (img);
-}
-
-void Loader:: parseIndexBuffer (IndexBuffer* ibuf)
-{
-    parseObject3D (ibuf);
-    // nothing to do.
-}
-
-void Loader:: parseKeyframeSequence ()
-{
-    Object3D* obj = new Object3D;
-    parseObject3D (obj);
-
-    KeyframeSequence* kseq = 0;
-
-    unsigned char interpolation     = getByte ();
-    unsigned char repeat_mode       = getByte ();
-    unsigned char encoding          = getByte ();
-    unsigned int  duration          = getUInt32 ();
-    unsigned int  valid_range_first = getUInt32 ();
-    unsigned int  valid_range_last  = getUInt32 ();
-    unsigned int  component_count   = getUInt32 ();
-    unsigned int  keyframe_count    = getUInt32 ();
-
-    kseq = new KeyframeSequence (keyframe_count, component_count, interpolation);
-
-    switch (encoding) {
-    case 0: {
-        for (int i = 0; i < (int)keyframe_count; i++) {
-            unsigned int time  = getUInt32 ();
-            float*       value = getFloat32Array (component_count);
-            kseq->setKeyframe (i, time, value);
-            delete [] value;
-        }
-        break;
-    }
-    case 1: {
-        float* bias  = getFloat32Array (component_count);
-        float* scale = getFloat32Array (component_count);
-        for (int i = 0; i < (int)keyframe_count; i++) {
-            unsigned int   time           = getUInt32 ();
-            unsigned char* encoded_values = (unsigned char*)getByteArray (component_count);
-            float* values = new float[component_count];
-            for (int j = 0; j < (int)component_count; j++) {
-                values[j] = encoded_values[j]*scale[j]/255.f + bias[j];
-            }
-            kseq->setKeyframe (i, time, values);
-            delete [] encoded_values;
-            delete [] values;
-        }
-        delete [] bias;
-        delete [] scale;
-        break;
-    }
-    case 2: {
-        float* bias  = getFloat32Array (component_count);
-        float* scale = getFloat32Array (component_count);
-        for (int i = 0; i < (int)keyframe_count; i++) {
-            unsigned int    time           = getUInt32 ();
-            unsigned short* encoded_values = (unsigned short*)getInt16Array (component_count);
-            float* values = new float[component_count];
-            for (int j = 0; j < (int)component_count; j++) {
-                values[j] = encoded_values[j]*scale[j]/65535.f + bias[j];
-            }
-            kseq->setKeyframe (i, time, values);
-            delete encoded_values;
-            delete values;
-        }
-        delete [] bias;
-        delete [] scale;
-        break;
-    }
-    default: {
-        throw IOException (__FILE__, __func__, "Encoding is invalid, enc=%d.", encoding);
-    }
-    }
-
-    kseq->setRepeatMode (repeat_mode);
-    kseq->setDuration (duration);
-    kseq->setValidRange (valid_range_first, valid_range_last);
-  
-    //kseq->KeyframeSequence:: print (cout);
-
-    objs.push_back (kseq);
-}
-
-void Loader:: parseLight ()
-{
-    Light* lig = new Light;
-    parseNode (lig);
-
-    float attenuation_constant  = getFloat32 ();
-    float attenuation_linear    = getFloat32 ();
-    float attenuation_quadratic = getFloat32 ();
-    int   color                 = getColorRGB ();
-    unsigned char mode          = getByte ();
-    float intensity             = getFloat32 ();
-    float spot_angle            = getFloat32 ();
-    float spot_exponent         = getFloat32 ();
-
-    lig->setAttenuation (attenuation_constant, attenuation_linear, attenuation_quadratic);
-    lig->setColor (color);
-    lig->setMode (mode);
-    lig->setIntensity (intensity);
-    lig->setSpotAngle (spot_angle);
-    lig->setSpotExponent (spot_exponent);
-
-    //lig->Light:: print (cout);
-
-    objs.push_back (lig);
-}
-
-void Loader:: parseMaterial ()
-{
-    Material* mat = new Material;
-    parseObject3D (mat);
-
-    int   ambient_color  = getColorRGB();
-    int   diffuse_color  = getColorRGBA();
-    int   emissive_color = getColorRGB();
-    int   specular_color = getColorRGB();
-    float shininess      = getFloat32();
-    bool  vertex_color_tracking_enabled = getBoolean();
-
-    mat->setColor (Material::AMBIENT, ambient_color);
-    mat->setColor (Material::DIFFUSE, diffuse_color);
-    mat->setColor (Material::EMISSIVE, emissive_color);
-    mat->setColor (Material::SPECULAR, specular_color);
-    mat->setShininess (shininess);
-    mat->setVertexColorTrackingEnable (vertex_color_tracking_enabled);
-
-    //mat->Material:: print (cout);
-
-    objs.push_back (mat);
-}
-
-
-void Loader:: parseMesh ()
-{
-    VertexBuffer* vbuf = new VertexBuffer;
-    IndexBuffer*  ibuf = new IndexBuffer;
-    Appearance*   app  = new Appearance; 
-
-    Mesh* mesh         = new Mesh (vbuf, ibuf, app);
-    parseMesh (mesh);
-
-    delete vbuf;
-    delete ibuf;
-    delete app;
-
-    objs.push_back (mesh);
-}
-
-void Loader:: parseMesh (Mesh* mesh)
-{
-    Node* base_node = new Node;
-    parseNode (base_node);
-
-    unsigned int vertex_buffer_index = getUInt32 ();
-    unsigned int submesh_count       = getUInt32 ();
-
-    VertexBuffer*  vbuf    = dynamic_cast<VertexBuffer*>(objs.at(vertex_buffer_index));
-    IndexBuffer**  indices = new IndexBuffer* [submesh_count];
-    Appearance**   appears = new Appearance* [submesh_count];
-    for (int i = 0; i < (int)submesh_count; i++) {
-        unsigned int index_buffer_index = getUInt32();
-        unsigned int appearance_index   = getUInt32();
-     
-        indices[i] = dynamic_cast<IndexBuffer*>(objs.at(index_buffer_index));
-        appears[i] = dynamic_cast<Appearance*>(objs.at(appearance_index));
-    }
-
-    Mesh* base_mesh = new Mesh (vbuf, submesh_count, indices, appears);
-
-    *mesh        = *base_mesh;
-    *(Node*)mesh = *base_node;
-
-
-    delete base_node;
-    delete base_mesh;
-    delete [] indices;
-    delete [] appears;
-
-    //mesh->Mesh:: print (cout) << "\n";
-}
-
-void Loader:: parseMorphingMesh ()
-{
-    VertexBuffer* vbuf = new VertexBuffer;
-    IndexBuffer*  ibuf = new IndexBuffer;
-    Appearance*   app  = new Appearance; 
-
-    Mesh* base_mesh = new Mesh (vbuf, ibuf, app);
-    parseMesh (base_mesh);
-
-    delete vbuf;
-    delete ibuf;
-    delete app;
-
-    vbuf                        = base_mesh->getVertexBuffer ();
-    int           submesh_count = base_mesh->getSubmeshCount ();
-    IndexBuffer** indices       = new IndexBuffer* [submesh_count];
-    Appearance**  appears       = new Appearance* [submesh_count];
-    for (int i = 0; i < submesh_count; i++) {
-        indices[i] = base_mesh->getIndexBuffer (i);
-        appears[i] = base_mesh->getAppearance (i);
-    }
-
-    unsigned int   morph_target_count = getUInt32();
-    VertexBuffer** morph_targets      = new VertexBuffer* [morph_target_count];
-    float*         initial_weights    = new float [morph_target_count];
-
-    for (int i = 0; i < (int)morph_target_count; i++) {
-        unsigned int morph_target_index = getUInt32();
-        morph_targets[i]   = 0;
-        initial_weights[i] = 0;
-        if (morph_target_index > 0) {
-            morph_targets[i]   = dynamic_cast<VertexBuffer*>(objs.at(morph_target_index));
-            initial_weights[i] = getFloat32();
-        }
-    }
-
-    MorphingMesh* mesh = new MorphingMesh (vbuf,
-                                           morph_target_count,
-                                           morph_targets,
-                                           submesh_count,
-                                           indices,
-                                           appears);
-    *(Node*)mesh = *(Node*)base_mesh;
-
-    mesh->setWeights (morph_target_count, initial_weights);
-
-    delete base_mesh;
-    delete [] morph_targets;
-    delete [] initial_weights;
-    delete [] indices;
-    delete [] appears;
-
-    //mesh->MorhpingMesh:: print (cout);
-
-    objs.push_back (mesh);
-}
-
-
- 
-void Loader:: parseNode (Node* node)
-{
-    parseTransformable (node);
-
-    bool         enable_rendering = getBoolean();
-    bool         enable_picking   = getBoolean();
-    char         alpha_factor     = getByte ();
-    unsigned int scope            = getUInt32();
-    bool         has_alignment    = getBoolean();
-    if (has_alignment) {
-        char z_target                  = getByte();
-        char y_target                  = getByte();
-        unsigned int z_reference_index = getUInt32();
-        unsigned int y_reference_index = getUInt32();
-
-        Node* z_ref = dynamic_cast<Node*>(objs.at(z_reference_index));
-        Node* y_ref = dynamic_cast<Node*>(objs.at(y_reference_index));
-        node->setAlignment (z_ref, z_target, y_ref, y_target);
-    }
-    node->setAlphaFactor ((alpha_factor+128)/255.f);
-    node->setPickingEnable (enable_picking);
-    node->setRenderingEnable (enable_rendering);
-    node->setScope (scope);
-
-    //node->Node::print (cout);
-}
-
-void Loader:: parseObject3D (Object3D* obj)
-{
-    unsigned int user_id                = getUInt32(); 
-
-    obj->setUserID (user_id);
-
-    unsigned int animation_tracks_count = getUInt32();
-    for (int i = 0; i < (int)animation_tracks_count; i++) {
-        unsigned int animation_track_index = getUInt32();
-        if (animation_track_index > 0) {
-            AnimationTrack* track = dynamic_cast<AnimationTrack*>(objs.at(animation_track_index));
-            obj->addAnimationTrack (track);
-        }
-    }
-    unsigned int user_parameter_count = getUInt32();
-    if ((int)user_parameter_count > 0) {
-        map<unsigned int, char*>* user_object = new map<unsigned int, char*>();
-        for (int i = 0; i < (int)user_parameter_count; i++) {
-            unsigned int parameter_id          = getUInt32();
-            unsigned int parameter_value_count = getUInt32();
-            char*        parameter_value       = getByteArray (parameter_value_count);
-            user_object->insert (map<unsigned int, char*>::value_type(parameter_id, parameter_value));
-        }
-        obj->setUserObject (user_object);
-    }
-   
-    //obj->Object3D::print (cout);
-}
-
 void Loader:: parsePolygonMode ()
 {
-    PolygonMode* pmode = new PolygonMode;
-    parseObject3D (pmode);
-
-    unsigned char  culling  = getByte();
-    unsigned char  shading  = getByte();
-    unsigned char  winding  = getByte();
-    bool two_sided_lighting_enabled     = getBoolean();
-    bool local_camera_lighting_enabled  = getBoolean();
-    bool perspective_correction_enabled = getBoolean();
-
-    pmode->setCulling (culling);
-    pmode->setShading (shading);
-    pmode->setWinding (winding);
-    pmode->setTwoSidedLightingEnable (two_sided_lighting_enabled);
-    pmode->setLocalCameraLightingEnable (local_camera_lighting_enabled);
-    pmode->setPerspectiveCorrectionEnable (perspective_correction_enabled);
-
-    //pmode->PolygonMode:: print (cout);
+    M3GObject3DStruct            obj;
+    M3GPolygonModeStruct         pm;
+    reader->readObject3D         (&obj);
+    reader->readPolygonMode      (&pm);
+            
+    PolygonMode* pmode = new PolygonMode ();
+    setObject3D    (pmode, obj);
+    setPolygonMode (pmode, pm);
 
     objs.push_back (pmode);
 }
 
-void Loader:: parseSkinnedMesh ()
+void Loader:: parseGroup ()
 {
-    VertexBuffer* vbuf = new VertexBuffer;
-    IndexBuffer*  ibuf = new IndexBuffer;
-    Appearance*   app  = new Appearance; 
+    M3GObject3DStruct         obj;
+    M3GTransformableStruct    tra;
+    M3GNodeStruct             node;
+    M3GGroupStruct            group;
+    reader->readObject3D      (&obj);
+    reader->readTransformable (&tra);
+    reader->readNode          (&node);
+    reader->readGroup         (&group);
+    
+    Group* grp = new Group ();
+    setObject3D      (grp, obj);
+    setTransformable (grp, tra);
+    setNode          (grp, node);
+    setGroup         (grp, group);
 
-    Mesh* base_mesh = new Mesh (vbuf, ibuf, app);
-    parseMesh (base_mesh);
-
-    delete vbuf;
-    delete ibuf;
-    delete app;
-
-    vbuf                        = base_mesh->getVertexBuffer ();
-    int           submesh_count = base_mesh->getSubmeshCount ();
-    IndexBuffer** indices       = new IndexBuffer* [submesh_count];
-    Appearance**  appears       = new Appearance* [submesh_count];
-    for (int i = 0; i < submesh_count; i++) {
-        indices[i] = base_mesh->getIndexBuffer (i);
-        appears[i] = base_mesh->getAppearance (i);
-    }
-
-    unsigned int skeleton_index = getUInt32();
-    Group*       skeleton       = dynamic_cast<Group*>(objs.at(skeleton_index));
-
-
-    SkinnedMesh* mesh = new SkinnedMesh (vbuf, submesh_count, indices, appears, skeleton);
-    *(Node*)mesh = *(Node*)base_mesh;
-
-    unsigned int transform_reference_count = getUInt32();
-    for (int i = 0; i < (int)transform_reference_count; i++) {
-        unsigned int transfrom_node_index = getUInt32();
-        unsigned int first_vertex         = getUInt32();
-        unsigned int vertex_count         = getUInt32();
-        int          weight               = getInt32();
-        Node* node = dynamic_cast<Node*>(objs.at(transfrom_node_index));
-        mesh->addTransform (node, weight, first_vertex, vertex_count);
-    }
-
-    delete base_mesh;
-    delete [] indices;
-    delete [] appears;
-
-    //mesh->SkinnedMesh:: print (cout);
-
-    objs.push_back (mesh);
+    objs.push_back (grp);
 }
 
-void Loader:: parseSprite3D ()
+void Loader:: parseImage2D ()
 {
-    Node* node = new Node;
-    parseNode (node);
+    M3GObject3DStruct        obj;
+    M3GImage2DStruct         image;
+    reader->readObject3D     (&obj);
+    reader->readImage2D      (&image);
+    
+    int format = image.format;
+    int width  = image.width;
+    int height = image.height;
+    char* pixels = image.pixels;
 
-    unsigned int image_index      = getUInt32();
-    unsigned int appearance_index = getUInt32();
-    bool         is_scaled        = getBoolean();
-    int          crop_x           = getInt32();
-    int          crop_y           = getInt32();
-    int          crop_width       = getInt32();
-    int          crop_height      = getInt32();
+    Image2D* img = new Image2D (format, width, height, pixels);
+    img->writePNG ("image2.png");
+    setObject3D (img, obj);
+    setImage2D  (img, image);
 
-    Image2D*    img = dynamic_cast<Image2D*>(objs.at(image_index));
-    Appearance* app = dynamic_cast<Appearance*>(objs.at(appearance_index));
-    Sprite3D*   spr = new Sprite3D (is_scaled, img, app);
-
-    *(Node*)spr = *node;
-    spr->setCrop (crop_x, crop_y, crop_width, crop_height);
-
-    //spr->Sprite3D:: print (cout);
-
-    objs.push_back (spr);
+    objs.push_back (img);
 }
-
-void Loader:: parseTexture2D ()
-{
-    Transformable* trns = new Transformable;
-    parseTransformable (trns);
-
-    unsigned int image_index   = getUInt32();
-    int  blend_color           = getColorRGB();
-    unsigned char blending     = getByte ();
-    unsigned char wrapping_s   = getByte ();
-    unsigned char wrapping_t   = getByte ();
-    unsigned char level_filter = getByte ();
-    unsigned char image_filter = getByte ();
-
-    Image2D*   img = dynamic_cast<Image2D*>(objs.at(image_index));
-    Texture2D* tex = new Texture2D (img);
-
-    *(Transformable*)tex = *trns;
-    tex->setBlendColor (blend_color);
-    tex->setBlending (blending);
-    tex->setWrapping (wrapping_s, wrapping_t);
-    tex->setFiltering (level_filter, image_filter);
-   
-    //tex->Texture2D:: print (cout);
-   
-    objs.push_back (tex);
-}
-
-void Loader:: parseTransformable (Transformable* trans)
-{
-    parseObject3D (trans);
-
-    bool has_component_transform = getBoolean();
-    if (has_component_transform) {
-        float tx    = getFloat32();
-        float ty    = getFloat32();
-        float tz    = getFloat32();
-        float sx    = getFloat32();
-        float sy    = getFloat32();
-        float sz    = getFloat32();
-        float angle = getFloat32();
-        float ax    = getFloat32();
-        float ay    = getFloat32();
-        float az    = getFloat32();
-        trans->setTranslation (tx, ty, tz);
-        trans->setScale       (sx, sy, sz);
-        trans->setOrientation (angle, ax, ay, az);
-    }
-    bool has_general_transform = getBoolean();
-    if (has_general_transform) {
-        float matrix[16];
-        for (int i = 0; i < 16; i++)
-            matrix[i] = getFloat32();
-        Transform tra;
-        tra.set (matrix);
-        trans->setTransform (tra);
-    }
-
-    //trans->Transformable::print (cout);
-}
- 
 
 void Loader:: parseTriangleStripArray ()
 {
-    IndexBuffer* ibuf = new IndexBuffer;
-    parseIndexBuffer (ibuf);
+    M3GObject3DStruct              obj;
+    M3GIndexBufferStruct           ibuf;
+    M3GTriangleStripArrayStruct    tri_strip;
+    reader->readObject3D           (&obj);
+    reader->readIndexBuffer        (&ibuf);
+    reader->readTriangleStripArray (&tri_strip);
+    
+    int  start_index = tri_strip.start_index;
+    int* indices    = (int*)tri_strip.indices;
+    int  num_strips = tri_strip.strip_lengths_count;
+    int* strips     = (int*)tri_strip.strip_lengths;
 
-    unsigned int        start_index;
-    unsigned int        indices_count;
-    int*                indices;
+    cout << "start_index = " << start_index << "\n";
+    cout << "indices = 0x" << indices << "\n";
+
     TriangleStripArray* tris;
+    if (indices)
+        tris = new TriangleStripArray (indices, num_strips, strips);
+    else
+        tris = new TriangleStripArray (start_index, num_strips, strips);        
 
-    unsigned char encoding = getByte();
-    switch (encoding) {
-    case 0:
-        start_index = getUInt32();
-        break;
-    case 1:
-        start_index = getByte();
-        break;
-    case 2:
-        start_index = getUInt16();
-        break;
-    case 128:
-        indices_count = getUInt32();
-        indices       = new int [indices_count];
-        for (int i = 0; i < (int)indices_count; i++) 
-            indices[i] = getUInt32();
-        break;
-    case 129:
-        indices_count = getUInt32();
-        indices       = new int [indices_count];
-        for (int i = 0; i < (int)indices_count; i++)
-            indices[i] = getByte();
-        break;
-    case 130:
-        indices_count = getUInt32();
-        indices       = new int [indices_count];
-        for (int i = 0; i < (int)indices_count; i++)
-            indices[i] = getUInt16();
-        break;
-    default:
-        throw IOException (__FILE__, __func__, "Encoding is invalid, enc=%d.", encoding);
-    }
-
-    unsigned int strips_len = getUInt32();
-    int*         strips     = (int*)getUInt32Array(strips_len);
-    //cout << "encoding = " << (int)encoding << "\n";
-    //cout << "1<<7 = " << 1<<7 << "\n";
-
-    if (encoding & (1<<7)) {
-        tris = new TriangleStripArray (indices, strips_len, strips);
-        //cout << "A\n";
-    }
-    else {
-        tris = new TriangleStripArray (start_index, strips_len, strips);
-        //cout << "B\n";
-    }
-   
-    *(IndexBuffer*)tris = *ibuf;
-
-    //tris->TriangleStripArray:: print(cout);
+    setObject3D           (tris, obj);
+    setIndexBuffer        (tris, ibuf);
+    setTriangleStripArray (tris, tri_strip);
 
     objs.push_back (tris);
 }
 
-void Loader:: parseVertexArray ()
+void Loader:: parseLight ()
 {
-    Object3D* obj = new Object3D;
-    parseObject3D (obj);
+    M3GObject3DStruct         obj;
+    M3GTransformableStruct    tra;
+    M3GNodeStruct             node;
+    M3GLightStruct            light;
+    reader->readObject3D      (&obj);
+    reader->readTransformable (&tra);
+    reader->readNode          (&node);
+    reader->readLight         (&light);
+            
+    Light* lgh = new Light ();
+    setObject3D      (lgh, obj);
+    setTransformable (lgh, tra);
+    setNode          (lgh, node);
+    setLight         (lgh, light);
 
-    char component_size         = getByte();
-    char component_count        = getByte();
-    char encoding               = getByte();
-    unsigned short vertex_count = getUInt16();
+    objs.push_back (lgh);
+}
 
-    VertexArray* varr = new VertexArray (vertex_count, component_count, component_size);
-    *(Object3D*)varr = *obj;
-   
-    if (component_size == 1) {
-        char* vertex_values = getByteArray(vertex_count*component_count);
-        if (encoding) {
-            for (int i = component_count; i < vertex_count*component_count; i++)
-                vertex_values[i] += vertex_values[i-component_count];
-        }
-        varr->set (0, vertex_count, vertex_values);
-        delete [] vertex_values;
-    } else if (component_size == 2) {
-        short* vertex_values = getInt16Array (vertex_count*component_count);
-        if (encoding) {
-            for (int i = component_count; i < vertex_count*component_count; i++)
-                vertex_values[i] += vertex_values[i-component_count];
-        }
-        varr->set (0, vertex_count, vertex_values);
-        delete [] vertex_values;
-    } else {
-        throw IOException (__FILE__, __func__, "Component size is invalid, size=%d.", component_size);
+void Loader:: parseMaterial ()
+{
+    M3GObject3DStruct        obj;
+    M3GMaterialStruct        material;
+    reader->readObject3D     (&obj);
+    reader->readMaterial     (&material);
+            
+    Material* mat = new Material ();
+    setObject3D (mat, obj);
+    setMaterial (mat, material);
+
+    objs.push_back (mat);
+}
+
+void Loader:: parseMesh ()
+{
+    M3GObject3DStruct         obj;
+    M3GTransformableStruct    tra;
+    M3GNodeStruct             node;
+    M3GMeshStruct             msh;
+    reader->readObject3D      (&obj);
+    reader->readTransformable (&tra);
+    reader->readNode          (&node);
+    reader->readMesh          (&msh);
+    
+    VertexBuffer*        vertices    = dynamic_cast<VertexBuffer*>(objs[msh.vertex_buffer_index]);
+    int                  num_submesh = msh.submesh_count;
+    vector<IndexBuffer*> submeshs    (num_submesh);
+    vector<Appearance*>  appearances (num_submesh);
+    for (int i = 0; i < num_submesh; i++) {
+        submeshs[i] = dynamic_cast<IndexBuffer*>(objs[msh.index_buffer_index[i]]);
+    }
+    for (int i = 0; i < num_submesh; i++) {
+        appearances[i] = dynamic_cast<Appearance*>(objs[msh.appearance_index[i]]);
     }
 
-    //varr->VertexArray:: print (cout);
+    Mesh* mesh = new Mesh (vertices, num_submesh, &submeshs[0], &appearances[0]);
+    setObject3D      (mesh, obj);
+    setTransformable (mesh, tra);
+    setNode          (mesh, node);
+    setMesh          (mesh, msh);
 
-    objs.push_back (varr);
+    objs.push_back (mesh);
+}
+
+void Loader:: parseMorphingMesh ()
+{
+    M3GObject3DStruct         obj;
+    M3GTransformableStruct    tra;
+    M3GNodeStruct             node;
+    M3GMeshStruct             msh;
+    M3GMorphingMeshStruct     morph_msh;
+    reader->readObject3D      (&obj);
+    reader->readTransformable (&tra);
+    reader->readNode          (&node);
+    reader->readMesh          (&msh);
+    reader->readMorphingMesh  (&morph_msh);
+            
+    VertexBuffer*         vertices    = dynamic_cast<VertexBuffer*>(objs[msh.vertex_buffer_index]);
+    int                   num_submesh = msh.submesh_count;
+    vector<IndexBuffer*>  submeshs    (num_submesh);
+    vector<Appearance*>   appearances (num_submesh);
+    for (int i = 0; i < num_submesh; i++) {
+        submeshs[i] = dynamic_cast<IndexBuffer*>(objs[msh.index_buffer_index[i]]);
+    }
+    for (int i = 0; i < num_submesh; i++) {
+        appearances[i] = dynamic_cast<Appearance*>(objs[msh.appearance_index[i]]);
+    }
+    int                   num_target  = morph_msh.morph_target_count;
+    vector<VertexBuffer*> targets (num_target);
+    for (int i = 0; i < num_target; i++) { 
+            targets[i] = dynamic_cast<VertexBuffer*>(objs[morph_msh.morph_target_index[i]]);
+         }
+    
+    MorphingMesh* mesh = new MorphingMesh (vertices, num_target, &targets[0], num_submesh, &submeshs[0], &appearances[0]);
+    setObject3D      (mesh, obj);
+    setTransformable (mesh, tra);
+    setNode          (mesh, node);
+    setMesh          (mesh, msh);
+    setMorphingMesh  (mesh, morph_msh);
+
+    objs.push_back (mesh);
+}
+
+void Loader:: parseSkinnedMesh ()
+{
+    M3GObject3DStruct         obj;
+    M3GTransformableStruct    tra;
+    M3GNodeStruct             node;
+    M3GMeshStruct             msh;
+    M3GSkinnedMeshStruct      skin_msh;
+    reader->readObject3D      (&obj);
+    reader->readTransformable (&tra);
+    reader->readNode          (&node);
+    reader->readMesh          (&msh);
+    reader->readSkinnedMesh   (&skin_msh);
+
+    VertexBuffer*        vertices    = dynamic_cast<VertexBuffer*>(objs[msh.vertex_buffer_index]);
+    int                  num_submesh = msh.submesh_count;
+    vector<IndexBuffer*> submeshs    (num_submesh);
+    vector<Appearance*>  appearances (num_submesh);
+    Group*               skeleton    = dynamic_cast<Group*>(objs[skin_msh.skeleton_index]);
+
+    for (int i = 0; i < num_submesh; i++) {
+        submeshs[i] = dynamic_cast<IndexBuffer*>(objs[msh.index_buffer_index[i]]);
+    }
+    for (int i = 0; i < num_submesh; i++) {
+        appearances[i] = dynamic_cast<Appearance*>(objs[msh.appearance_index[i]]);
+    }
+    
+    SkinnedMesh* mesh = new SkinnedMesh (vertices, num_submesh, &submeshs[0], &appearances[0], skeleton);
+    setObject3D      (mesh, obj);
+    setTransformable (mesh, tra);
+    setNode          (mesh, node);
+    setMesh          (mesh, msh);
+    setSkinnedMesh   (mesh, skin_msh);
+
+    objs.push_back (mesh);
+}
+
+void Loader:: parseTexture2D ()
+{
+    M3GObject3DStruct         obj;
+    M3GTransformableStruct    tra;
+    M3GTexture2DStruct        texture;
+    reader->readObject3D      (&obj);
+    reader->readTransformable (&tra);
+    reader->readTexture2D     (&texture);
+    
+    Image2D* image = dynamic_cast<Image2D*>(objs[texture.image_index]);
+
+    Texture2D* tex = new Texture2D (image);
+    setObject3D     (tex, obj);
+    setTransformable (tex, tra);
+    setTexture2D    (tex, texture);
+
+    objs.push_back (tex);
+}
+
+void Loader:: parseSprite3D ()
+{
+    M3GObject3DStruct         obj;
+    M3GTransformableStruct    tra;
+    M3GSprite3DStruct         sprite;
+    reader->readObject3D      (&obj);
+    reader->readTransformable (&tra);
+    reader->readSprite3D      (&sprite);
+            
+    bool        scaled = sprite.is_scaled;
+    Image2D*    img    = dynamic_cast<Image2D*>(objs[sprite.image_index]);
+    Appearance* app    = dynamic_cast<Appearance*>(objs[sprite.appearance_index]);
+
+    Sprite3D* spr = new Sprite3D (scaled, img, app);
+    setObject3D     (spr, obj);
+    setTransformable (spr, tra);
+    setSprite3D     (spr, sprite);
+
+    objs.push_back (spr);
+}
+
+void Loader:: parseKeyframeSequence ()
+{
+    M3GObject3DStruct            obj;
+    M3GKeyframeSequenceStruct    keyframe_sequence;
+    reader->readObject3D         (&obj);
+    reader->readKeyframeSequence (&keyframe_sequence);
+
+    int num_keyframes  = keyframe_sequence.keyframe_count;
+    int num_components = keyframe_sequence.component_count;
+    int interpolation  = keyframe_sequence.interpolation;
+
+    KeyframeSequence* key_seq = new KeyframeSequence (num_keyframes, num_components, interpolation);
+    setObject3D         (key_seq, obj);
+    setKeyframeSequence (key_seq, keyframe_sequence);
+
+    objs.push_back (key_seq);
+}
+
+void Loader:: parseVertexArray ()
+{
+    M3GObject3DStruct       obj;
+    M3GVertexArrayStruct    varray;
+    reader->readObject3D    (&obj);
+    reader->readVertexArray (&varray);
+            
+    int num_vertices   = varray.vertex_count;
+    int num_components = varray.component_count;
+    int component_size = varray.component_size;
+
+    VertexArray* varry = new VertexArray (num_vertices, num_components, component_size);
+    setObject3D    (varry, obj);
+    setVertexArray (varry, varray);
+
+    objs.push_back (varry);
 }
 
 void Loader:: parseVertexBuffer ()
 {
-    VertexBuffer* vbuf = new VertexBuffer;
-    parseObject3D(vbuf);
-
-    int          default_color   = getColorRGBA();
-    unsigned int positions_index = getUInt32();
-    float        bias[3]         = {getFloat32(), getFloat32(), getFloat32()};
-    float        scale           = getFloat32();
-    unsigned int normals_index   = getUInt32();
-    unsigned int colors_index    = getUInt32();
-   
-    //cout << "positions_index = " << positions_index << "\n";
-    //cout << "normals_index = " << normals_index << "\n";
-    //cout << "colors_index = " << colors_index << "\n";
-
-    vbuf->setDefaultColor (default_color);
-    if (positions_index > 0) {
-        VertexArray* positions = dynamic_cast<VertexArray*>(objs.at(positions_index));
-        if (positions->getComponentType() == 1) {
-            // Desktop-M3GではOpenGLを使うためGL_BYTE型は受けつけないので
-            positions->convert (2);
-        }
-        vbuf->setPositions (positions, scale, bias);
-    }
-    if (normals_index > 0) {
-        VertexArray* normals = dynamic_cast<VertexArray*>(objs.at(normals_index));
-        vbuf->setNormals (normals);
-    }
-    if (colors_index > 0) {
-        VertexArray* colors = dynamic_cast<VertexArray*>(objs.at(colors_index));
-        vbuf->setColors (colors);
-    }
-
-    unsigned int tex_coord_array_count = getUInt32();
-    for (int i = 0; i < (int)tex_coord_array_count; i++) {
-        unsigned int tex_coords_index = getUInt32();
-        float        bias[3]          = {getFloat32(), getFloat32(), getFloat32()};
-        float        scale            = getFloat32();
-        if (tex_coords_index > 0) {
-            //cout << "scale = " << scale << "\n";
-            //cout << "bias = " << bias[0] << "," << bias[1] << ", " << bias[2] << "\n";
-            VertexArray* tex_coords = dynamic_cast<VertexArray*>(objs.at(tex_coords_index));
-            if (tex_coords->getComponentType() == 1) {
-                // Desktop-M3GではOpenGLを使うためGL_BYTE型は受けつけないので
-                tex_coords->convert (2);
-            }
-            vbuf->setTexCoords (i, tex_coords, scale, bias);
-        }
-    }
-   
-    //vbuf->VertexBuffer:: print (cout);
+    M3GObject3DStruct       obj;
+    M3GVertexBufferStruct   vbuffer;
+    reader->readObject3D    (&obj);
+    reader->readVertexBuffer (&vbuffer);
+            
+    VertexBuffer* vbuf = new VertexBuffer ();
+    setObject3D     (vbuf, obj);
+    setVertexBuffer (vbuf, vbuffer);
 
     objs.push_back (vbuf);
 }
 
 void Loader:: parseWorld ()
 {
-    World* wld = new World;
-    parseGroup (wld);
+    M3GObject3DStruct         obj;
+    M3GTransformableStruct    tra;
+    M3GNodeStruct             node;
+    M3GGroupStruct            grp;
+    M3GWorldStruct            world;
+    reader->readObject3D      (&obj);
+    reader->readTransformable (&tra);
+    reader->readNode          (&node);
+    reader->readGroup         (&grp);
+    reader->readWorld         (&world);
 
-    unsigned int active_camera_index = getUInt32();
-    unsigned int background_index    = getUInt32();
-
-    //cout << "camera_index = " << active_camera_index << "\n";
-    //cout << "background_index = " << background_index << "\n";
-
-    if (active_camera_index > 0) {
-        Camera*     cam = dynamic_cast<Camera*>(objs.at(active_camera_index));
-        wld->setActiveCamera (cam);
-    }
-
-    if (background_index > 0) {
-        Background* bg  = dynamic_cast<Background*>(objs.at(background_index));
-        wld->setBackground (bg);
-    }
-
-    //wld->World:: print (cout);
+    World* wld = new World ();
+    setObject3D      (wld, obj);
+    setTransformable (wld, tra);
+    setNode          (wld, node);
+    setGroup         (wld, grp);
+    setWorld         (wld, world);
 
     objs.push_back (wld);
 }
 
+void Loader:: parseExternalReference ()
+{
+    M3GExternalReferenceStruct ext;
+    reader->readExternalReference (&ext);
+    
+    throw NotImplementedException (__FILE__, __func__, "External reference is not implemented. ignore this.");
+}
+
+
+void Loader:: setObject3D (Object3D* obj, const M3GObject3DStruct& object) const
+{
+    int user_id = object.user_id;
+    int anim_track_count = object.animation_tracks_count;
+    int user_parameter_count = object.user_parameter_count;
+
+    obj->setUserID (user_id);
+    for (int i = 0; i < anim_track_count; i++) {
+        AnimationTrack* anim_track = dynamic_cast<AnimationTrack*>(objs[object.animation_tracks_index[i]]);
+        obj->addAnimationTrack (anim_track);
+    }
+    if (user_parameter_count > 0) {
+        map<unsigned int, char*>* user_object = new map<unsigned int, char*>();
+        for (int i = 0; i < user_parameter_count; i++) {
+            user_object->insert (map<unsigned int, char*>::value_type(object.parameter_id[i], object.parameter_value[i]));
+        }
+        obj->setUserObject (user_object);
+    }
+}
+
+void Loader:: setAppearance (Appearance* app, const M3GAppearanceStruct& appearance) const
+{
+    int              layer = appearance.layer;
+    CompositingMode* cmode = dynamic_cast<CompositingMode*>(objs[appearance.compositing_mode_index]);
+    PolygonMode*     pmode = dynamic_cast<PolygonMode*>(objs[appearance.polygon_mode_index]);
+    Material*        mat   = dynamic_cast<Material*>(objs[appearance.material_index]);
+    int              textures_count = appearance.textures_count;
+    app->setLayer (layer);
+    app->setCompositingMode (cmode);
+    app->setPolygonMode (pmode);
+    app->setMaterial (mat);
+    for (int i = 0; i < textures_count; i++) {
+        Texture2D* tex = dynamic_cast<Texture2D*>(objs[appearance.textures_index[i]]);
+        app->setTexture (i, tex);
+    }
+}
+
+
+void Loader:: setAnimationController (AnimationController* anim_ctr, const M3GAnimationControllerStruct& ac) const
+{
+    anim_ctr->setActiveInterval (ac.active_interval_start, ac.active_interval_end);
+    anim_ctr->setPosition       (ac.reference_sequence_time, ac.reference_world_time);
+    anim_ctr->setSpeed          (ac.speed, ac.reference_world_time);
+    anim_ctr->setWeight         (ac.weight);
+}
+
+void Loader:: setAnimationTrack (AnimationTrack* anim_track, const M3GAnimationTrackStruct& at) const
+{
+    AnimationController* anim_ctr = dynamic_cast<AnimationController*>(objs[at.animation_controller_index]);
+    anim_track->setController (anim_ctr);
+}
+
+void Loader:: setBackground (Background* bg, const M3GBackgroundStruct& bgr) const
+{
+    int    argb   = bgr.background_color;
+    Image2D* img  = dynamic_cast<Image2D*>(objs[bgr.background_image_index]);
+    int    mode_x = bgr.background_image_mode_x;
+    int    mode_y = bgr.background_image_mode_y;
+    int    crop_x = bgr.crop_x;
+    int    crop_y = bgr.crop_y;
+    int    width  = bgr.crop_width;
+    int    height = bgr.crop_height;
+    bool   depth_clear_enable = bgr.depth_clear_enabled;
+    bool   color_clear_enable = bgr.color_clear_enabled;
+
+    bg->setColor            (argb);
+    bg->setColorClearEnable (color_clear_enable);
+    bg->setCrop             (crop_x, crop_y, width, height);
+    bg->setDepthClearEnable (depth_clear_enable);
+    bg->setImage            (img);
+    bg->setImageMode        (mode_x, mode_y);
+}
+
+void Loader:: setCamera (Camera* cam, const M3GCameraStruct& cmr) const
+{
+    int       projection_type = cmr.projection_type;
+    float     fovy            = cmr.fovy;
+    float     aspect_ratio    = cmr.aspect_ratio;
+    float     near            = cmr.near;
+    float     far             = cmr.far;
+    Transform tra;
+    tra.set (cmr.matrix);
+
+    switch (projection_type) {
+    case Camera::GENERIC    : cam->setGeneric (tra)                              ; break;
+    case Camera::PARALLEL   : cam->setParallel (fovy, aspect_ratio, near, far)   ; break;
+    case Camera::PERSPECTIVE: cam->setPerspective (fovy, aspect_ratio, near, far); break;
+    default: throw IOException (__FILE__, __func__, "Projection type of camera is illegal, proj=%d", projection_type);
+    }
+}
+
+void Loader:: setCompositingMode (CompositingMode* cmode, const M3GCompositingModeStruct& comp_mode) const
+{
+    bool  depth_test_enable  = comp_mode.depth_test_enabled;
+    bool  depth_write_enable = comp_mode.depth_write_enabled;
+    bool  color_write_enable = comp_mode.color_write_enabled;
+    bool  alpha_write_enable = comp_mode.alpha_write_enabled;
+    int   blending           = comp_mode.blending;
+    float alpha_threshold    = comp_mode.alpha_threshold / 255.f;
+    float factor             = comp_mode.depth_offset_factor;
+    float units              = comp_mode.depth_offset_units;
+
+    cmode->setAlphaThreshold   (alpha_threshold);
+    cmode->setAlphaWriteEnable (alpha_write_enable);
+    cmode->setBlending         (blending);
+    cmode->setColorWriteEnable (color_write_enable);
+    cmode->setDepthOffset      (factor, units);
+    cmode->setDepthTestEnable  (depth_test_enable);
+    cmode->setDepthWriteEnable (depth_write_enable);
+}
+
+void Loader:: setFog (Fog* fog, const M3GFogStruct& fg) const
+{
+    int   rgb     = fg.color;
+    int   mode    = fg.mode;
+    float density = fg.density;
+    float near    = fg.near;
+    float far     = fg.far;
+
+    fog->setColor   (rgb);
+    fog->setMode    (mode);
+    switch (mode) {
+    case Fog::EXPONENTIAL: fog->setDensity (density)  ; break;
+    case Fog::LINEAR     : fog->setLinear  (near, far); break;
+    default: throw IOException (__FILE__, __func__, "Mode of fog is invalid, mode=%d.", mode);
+    }
+}
+
+void Loader:: setGroup (Group* grp, const M3GGroupStruct& group) const
+{
+    int child_count = group.children_index_count;
+    for (int i = 0; i < child_count; i++) {
+        Node* node = dynamic_cast<Node*>(objs[group.children_index[i]]);
+        grp->addChild (node);
+    }
+}
+
+void Loader:: setImage2D (Image2D* img, const M3GImage2DStruct& image) const
+{
+    // nothing to do
+}
+
+void Loader:: setIndexBuffer (IndexBuffer* ibuf, const M3GIndexBufferStruct& index_buffer) const
+{
+    // nothing to do
+}
+
+void Loader:: setKeyframeSequence (KeyframeSequence* key_seq, const M3GKeyframeSequenceStruct& ks) const
+{
+    int duration = ks.duration;
+    int mode    = ks.repeat_mode;
+    int first   = ks.valid_range_first;
+    int last    = ks.valid_range_last;
+    int keyframe_count = ks.keyframe_count;
+
+    key_seq->setDuration  (duration);
+    key_seq->setRepeatMode (mode);
+    key_seq->setValidRange (first, last);
+    for (int i = 0; i < keyframe_count; i++) {
+        int    time  = ks.time[i];
+        float* value = ks.vector_value[i];
+        key_seq->setKeyframe (i, time, value);
+    }
+}
+
+void Loader:: setLight (Light* lgh, const M3GLightStruct& light) const
+{
+    float constant  = light.attenuation_constant;
+    float linear    = light.attenuation_linear;
+    float quadratic = light.attenuation_quadratic;
+    int   rgb       = light.color;
+    int   mode      = light.mode;
+    float intensity = light.intensity;
+    float angle     = light.spot_angle;
+    float exponent  = light.spot_exponent;
+
+    lgh->setAttenuation  (constant, linear, quadratic);
+    lgh->setColor        (rgb);
+    lgh->setIntensity    (intensity);
+    lgh->setMode         (mode);
+    if (mode == Light::SPOT) {
+        lgh->setSpotAngle    (angle);
+        lgh->setSpotExponent (exponent);
+    }
+}
+
+void Loader:: setMaterial (Material* mat, const M3GMaterialStruct& material) const
+{
+    int ambient_color  = material.ambient_color;
+    int diffuse_color  = material.diffuse_color;  // argb
+    int emissive_color = material.emissive_color;
+    int specular_color = material.specular_color;
+    float shininess    = material.shininess;
+    bool vertex_color_tracking_enable = material.vertex_color_tracking_enabled;
+    
+    mat->setColor     (Material::DIFFUSE,  diffuse_color);
+    mat->setColor     (Material::AMBIENT,  ambient_color);
+    mat->setColor     (Material::EMISSIVE, emissive_color);
+    mat->setColor     (Material::SPECULAR, specular_color);
+    mat->setShininess (shininess);
+    mat->setVertexColorTrackingEnable (vertex_color_tracking_enable);
+}
+
+void Loader:: setMesh (Mesh* mesh, const M3GMeshStruct& msh) const
+{
+    // nothing to do
+}
+
+void Loader:: setMorphingMesh (MorphingMesh* mesh, const M3GMorphingMeshStruct& msh) const
+{
+    int    target_count = msh.morph_target_count;
+    float* weights      = msh.initial_weight;
+    mesh->setWeights (target_count, weights);
+}
+
+void Loader:: setNode (Node* node, const M3GNodeStruct& nod) const
+{
+    bool  rendering_enable = nod.enable_rendering;
+    bool  picking_enable   = nod.enable_picking;
+    float alpha_factor     = nod.alpha_factor / 255.f;
+    int   scope            = nod.scope;
+    bool  has_alignment    = nod.has_alignment;
+
+    node->setAlphaFactor     (alpha_factor);
+    node->setPickingEnable   (picking_enable);
+    node->setRenderingEnable (rendering_enable);
+    node->setScope           (scope);
+    if (has_alignment) {
+        int   z_target = nod.z_target;
+        int   y_target = nod.y_target;
+        Node* z_ref    = dynamic_cast<Node*>(objs[nod.z_reference_index]);
+        Node* y_ref    = dynamic_cast<Node*>(objs[nod.y_reference_index]);
+        node->setAlignment (z_ref, z_target, y_ref, y_target);
+    }
+
+}
+
+void Loader:: setPolygonMode (PolygonMode* pmode, const M3GPolygonModeStruct& poly_mode) const
+{
+    int  culling_mode                  = poly_mode.culling;
+    int  shading_mode                  = poly_mode.shading;
+    int  winding_mode                  = poly_mode.winding;
+    bool two_sided_lighting_enable     = poly_mode.two_sided_lighting_enabled;
+    bool local_camera_lighting_enable  = poly_mode.local_camera_lighting_enabled;
+    bool perspective_correction_enable = poly_mode.perspective_correction_enabled;
+
+    pmode->setCulling                     (culling_mode);
+    pmode->setLocalCameraLightingEnable   (local_camera_lighting_enable);
+    pmode->setPerspectiveCorrectionEnable (perspective_correction_enable);
+    pmode->setShading                     (shading_mode);
+    pmode->setTwoSidedLightingEnable      (two_sided_lighting_enable);
+    pmode->setWinding                     (winding_mode);
+}
+
+void Loader:: setSkinnedMesh (SkinnedMesh* mesh, const M3GSkinnedMeshStruct& msh) const
+{
+    // nothing to do
+}
+
+void Loader:: setSprite3D (Sprite3D* spr, const M3GSprite3DStruct& sprite) const
+{
+    int crop_x = sprite.crop_x;
+    int crop_y = sprite.crop_y;
+    int width  = sprite.crop_width;
+    int height = sprite.crop_height;
+
+    spr->setCrop (crop_x, crop_y, width, height);
+}
+
+
+void Loader:: setTexture2D (Texture2D* tex, const M3GTexture2DStruct& texture) const
+{
+    int rgb          = texture.blend_color;
+    int blend_func   = texture.blending;
+    int wrap_s       = texture.wrapping_s;
+    int wrap_t       = texture.wrapping_t;
+    int level_filter = texture.level_filter;
+    int image_filter = texture.image_filter;
+
+    tex->setBlendColor (rgb);
+    tex->setBlending   (blend_func);
+    tex->setFiltering  (level_filter, image_filter);
+    tex->setWrapping   (wrap_s, wrap_t);
+}
+
+void Loader:: setTransformable (Transformable* trans, const M3GTransformableStruct& transformable) const
+{
+    float tx    = transformable.translation[0];
+    float ty    = transformable.translation[1];
+    float tz    = transformable.translation[2];
+    float sx    = transformable.scale[0];
+    float sy    = transformable.scale[1];
+    float sz    = transformable.scale[2];
+    float angle = transformable.orientation_angle;
+    float ax    = transformable.orientation_axis[0];
+    float ay    = transformable.orientation_axis[1];
+    float az    = transformable.orientation_axis[2];
+    float has_component_transform = transformable.has_component_transform;
+    float has_general_transform   = transformable.has_general_transform;
+    Transform tra;
+    tra.set (transformable.transform);
+
+    if (has_component_transform) {
+        trans->setTranslation (tx, ty, tz);
+        trans->setOrientation (angle, ax, ay, az);
+        trans->setScale       (sx, sy, sz);
+    }
+    if (has_general_transform) {
+        trans->setTransform (tra);
+    }
+
+}
+
+void Loader:: setTriangleStripArray (TriangleStripArray*  tris, const M3GTriangleStripArrayStruct&  tri_strip) const
+{
+    // nothing to do
+}
+
+void Loader:: setVertexArray (VertexArray* varry, const M3GVertexArrayStruct& varray) const
+{
+    int     component_size   = varray.component_size;
+    int     vertex_count     = varray.vertex_count;
+    char**  char_components  = varray.char_components;
+    short** short_components = varray.short_components;
+    float** float_components = varray.float_components;
+    for (int i = 0; i < vertex_count; i++) {
+        switch (component_size) {
+        case 1: varry->set (i, 1, char_components[i]) ; break;
+        case 2: varry->set (i, 1, short_components[i]); break;
+        case 4: varry->set (i, 1, float_components[i]); break;
+        }
+    }
+}
+
+void Loader:: setVertexBuffer (VertexBuffer* vbuf, const M3GVertexBufferStruct& vbuffer) const
+{
+    int          default_color    = vbuffer.default_color;
+    float        position_scale   = vbuffer.position_scale;
+    float        position_bias[3] = {vbuffer.position_bias[0], vbuffer.position_bias[1], vbuffer.position_bias[2]};
+    VertexArray* colors           = dynamic_cast<VertexArray*>(objs[vbuffer.colors_index]);
+    VertexArray* normals          = dynamic_cast<VertexArray*>(objs[vbuffer.normals_index]);
+    VertexArray* positions        = dynamic_cast<VertexArray*>(objs[vbuffer.positions_index]);
+    int          texcoord_count   = vbuffer.texcoord_array_count;
+
+
+    if (positions) {
+        // OpenGL(Desktop-M3G)は1バイト型の座標値に対応していないので
+        if (positions->getComponentType() == 1)
+            positions->convert (2);
+        vbuf->setPositions    (positions, position_scale, position_bias);
+    }
+    if (normals) {
+        vbuf->setNormals      (normals);
+    }
+    if (colors) {
+        vbuf->setColors       (colors);
+    }
+    vbuf->setDefaultColor (default_color);
+    for (int i = 0; i < texcoord_count; i++) {
+        VertexArray* tex_coords        = dynamic_cast<VertexArray*>(objs[vbuffer.texcoords_index[i]]);
+        float        texcoord_scale    = vbuffer.texcoord_scale[i];
+        float        texcoord_bias[3]  = {vbuffer.texcoord_bias[i][0], vbuffer.texcoord_bias[i][1], vbuffer.texcoord_bias[i][2]};
+        if (tex_coords->getComponentType() == 1)
+            tex_coords->convert (2);
+        vbuf->setTexCoords (i, tex_coords, texcoord_scale, texcoord_bias);
+    }
+}
+
+void Loader:: setWorld (World* wld, const M3GWorldStruct& world) const
+{
+    Camera*     cam = dynamic_cast<Camera*>(objs[world.active_camera_index]);
+    Background* bg  = dynamic_cast<Background*>(objs[world.background_index]);
+
+    if (cam)
+        wld->setActiveCamera (cam);
+    if (bg)
+        wld->setBackground   (bg);
+}
