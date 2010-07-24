@@ -396,9 +396,6 @@ void Loader:: parseTriangleStripArray ()
     int  num_strips = tri_strip.strip_lengths_count;
     int* strips     = (int*)tri_strip.strip_lengths;
 
-    cout << "start_index = " << start_index << "\n";
-    cout << "indices = 0x" << indices << "\n";
-
     TriangleStripArray* tris;
     if (indices)
         tris = new TriangleStripArray (indices, num_strips, strips);
@@ -930,7 +927,14 @@ void Loader:: setPolygonMode (PolygonMode* pmode, const M3GPolygonModeStruct& po
 
 void Loader:: setSkinnedMesh (SkinnedMesh* mesh, const M3GSkinnedMeshStruct& msh) const
 {
-    // nothing to do
+    int transform_reference_count = msh.transform_reference_count;
+    for (int i = 0; i < transform_reference_count; i++) {
+        Node* node         = dynamic_cast<Node*>(objs[msh.transform_node_index[i]]);
+        int   weight       = msh.weight[i];
+        int   first_vertex = msh.first_vertex[i];
+        int   num_vertices = msh.vertex_count[i];
+        mesh->addTransform (node, weight, first_vertex, num_vertices);
+    }
 }
 
 void Loader:: setSprite3D (Sprite3D* spr, const M3GSprite3DStruct& sprite) const

@@ -1,5 +1,9 @@
 
 
+2010/08/xx  ver 0.3.1
+   - replace Loader.cpp by new version which uses libM3GReaderWriter.
+
+
 2010/06/06  ver 0.3.0
    - Yes, I implemented all 30 classes defined by M3G-1.1 (JSR-184)
        - Some features are still buggy or untested.
