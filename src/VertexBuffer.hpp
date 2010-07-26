@@ -39,6 +39,12 @@ namespace m3g {
          */
         virtual VertexBuffer* duplicate () const;
 
+        /**
+         * @~English  Copy this Object3D to specified Object3D, not defined by M3G. 
+         * @~Japanese このオブジェクトのデータを引数で指定されたオブジェクトにコピーするM3G非標準の関数.
+         */
+        void copy (VertexBuffer* vbuf) const;
+
         virtual int animate (int world_time);
 
         virtual void addAnimationTrack (AnimationTrack* animation_track);
@@ -117,6 +123,9 @@ namespace m3g {
          */
         virtual void render (RenderState& state) const;
 
+    private:
+        VertexBuffer (const VertexBuffer& vbuf);
+        VertexBuffer& operator= (const VertexBuffer& vbuf);
 
     private:
         VertexArray* positions;

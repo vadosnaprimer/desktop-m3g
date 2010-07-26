@@ -75,6 +75,12 @@ namespace m3g {
         virtual Image2D* duplicate () const;
 
         /**
+         * @~English  Copy this Object3D to specified Object3D, not defined by M3G. 
+         * @~Japanese このオブジェクトのデータを引数で指定されたオブジェクトにコピーするM3G非標準の関数.
+         */
+        void copy (Image2D* img) const;
+
+        /**
          * @~English  Gets the internal format of this Image2D.
          * @~Japanese このImage2Dクラスの内部フォーマットを取得.
          */
@@ -135,6 +141,9 @@ namespace m3g {
          */
         void* getOpenGLData () const;
 
+    private:
+        Image2D (const Image2D& img);
+        Image2D& operator= (const Image2D& img);
 
     private:
         int   format;

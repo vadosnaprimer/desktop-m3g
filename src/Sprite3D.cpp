@@ -44,20 +44,44 @@ Sprite3D:: Sprite3D (bool scaled_, Image2D* image_, Appearance* appearance_) :
     }
 
     setImage (image);
-
 }
 
 Sprite3D:: ~Sprite3D ()
+{
+    if (texobj > 0)  {
+        glDeleteTextures (1, &texobj);
+    }
+}
+
+Sprite3D:: Sprite3D () : scaled(false), image(0), appearance(0), crop(0,0,0,0), texobj(0)
 {
 }
 
 Sprite3D* Sprite3D:: duplicate () const
 {
-    Sprite3D* spr = new Sprite3D (*this);
-    Node* node = Node::duplicate();
-    *(Node*)spr = *node;
-    // TODO: texobjの作り直し
+    Sprite3D* spr = new Sprite3D;
+    this->Object3D     :: copy (spr);
+    this->Transformable:: copy (spr);
+    this->Node         :: copy (spr);
+    this->Sprite3D     :: copy (spr);
     return spr;
+}
+
+void Sprite3D:: copy (Sprite3D* spr) const
+{
+    if (spr == NULL) {
+        throw NullPointerException (__FILE__, __func__, "Sprite3D is NULL.");
+    }
+    glGenTextures   (1, &spr->texobj);
+    int err = glGetError ();
+    if (err != GL_NO_ERROR) {
+        throw OpenGLException (__FILE__, __func__, "Can't make texture object, err=%d.", err);
+    }
+
+    spr->scaled     = scaled;
+    spr->appearance = appearance;
+    spr->setImage (image);
+    spr->crop       = crop;
 }
 
 

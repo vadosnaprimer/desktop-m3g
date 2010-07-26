@@ -53,6 +53,12 @@ namespace m3g {
         virtual Sprite3D* duplicate () const;
 
         /**
+         * @~English  Copy this Object3D to specified Object3D, not defined by M3G. 
+         * @~Japanese このオブジェクトのデータを引数で指定されたオブジェクトにコピーするM3G非標準の関数.
+         */
+        void copy (Sprite3D* spr) const;
+
+        /**
          * @~English  Adds the given AnimationTrack to this Object3D, 
          *            potentially changing the order and indices of the previously added tracks.
          * @~Japanese このObject3Dに指定されたアニメーショントラックを追加する。
@@ -190,6 +196,10 @@ namespace m3g {
          */
         Vector getTexCoord1 () const;
 
+    private:
+        Sprite3D ();
+        Sprite3D (const Sprite3D& spr);
+        Sprite3D& operator= (const Sprite3D& spr);
 
     private:
         bool        scaled;

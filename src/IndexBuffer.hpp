@@ -36,6 +36,12 @@ namespace m3g {
         virtual IndexBuffer* duplicate () const;
 
         /**
+         * @~English  Copy this Object3D to specified Object3D, not defined by M3G. 
+         * @~Japanese このオブジェクトのデータを引数で指定されたオブジェクトにコピーするM3G非標準の関数.
+         */
+        void copy (IndexBuffer* ibuf) const;
+
+        /**
          *
          */
         virtual int getFaceCount () const;
@@ -78,7 +84,8 @@ namespace m3g {
 
 
     private:
-
+        IndexBuffer (const IndexBuffer& ibuf);
+        IndexBuffer& operator= (const IndexBuffer& ibuf);
     };
 
 

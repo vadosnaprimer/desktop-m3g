@@ -164,6 +164,12 @@ namespace m3g {
         virtual AnimationTrack* duplicate () const;
 
         /**
+         * @~English  Copy this Object3D to specified Object3D, not defined by M3G. 
+         * @~Japanese このオブジェクトのデータを引数で指定されたオブジェクトにコピーするM3G非標準の関数.
+         */
+        void copy (AnimationTrack* anim_track) const;
+
+        /**
          * @~English  Retrieves the animation controller used for 
          *            controllling this animation track.
          * @~Japanese このアニメーショントラックを制御するアニメーションコントローラーを取得する.
@@ -195,6 +201,9 @@ namespace m3g {
          */
         virtual std::ostream& print (std::ostream& out) const;
 
+    private:
+        AnimationTrack (const AnimationTrack& anim_track);
+        AnimationTrack& operator= (const AnimationTrack& anim_track);
 
     private:
         int                  property;

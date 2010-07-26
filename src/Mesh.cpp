@@ -31,20 +31,44 @@ Mesh:: Mesh (VertexBuffer* vertices_, int num_submesh,
         throw NullPointerException (__FILE__, __func__, "Appearances is NULL.");
     }
 
+    initialize (vertices_, num_submesh, submeshes, appearances_);
+}
+
+Mesh:: Mesh (VertexBuffer* vertices_, IndexBuffer* submesh, Appearance* appearance_)
+{
+    if (vertices_ == NULL) {
+        throw NullPointerException (__FILE__, __func__, "VertexBuffer is NULL.");
+    }
+    if (submesh == NULL) {
+        throw NullPointerException (__FILE__, __func__, "IndexBuffer is NULL.");
+    }
+    if (appearance_ == NULL) {
+        throw NullPointerException (__FILE__, __func__, "Appearance is NULL.");
+    }
+
+    initialize (vertices_, 1, &submesh, &appearance_);
+}
+
+Mesh:: Mesh () : vertices(0)
+{
+}
+
+void Mesh:: initialize (VertexBuffer* vertices_, int num_submesh, IndexBuffer** submeshes, Appearance** appearances_)
+{
     vertices = vertices_;
+
+    // 1行でかける
     indices.reserve (num_submesh);
     for (int i = 0; i < num_submesh; i++ ) {
         indices.push_back (*submeshes++);
     }
+
+    // 1行でかける
     appearances.reserve (num_submesh);
     for (int i = 0; i < num_submesh; i++ ) {
         appearances.push_back (*appearances_++);
     }
-}
 
-Mesh:: Mesh (VertexBuffer* vertices, IndexBuffer* submesh, Appearance* appearance)
-{
-    *this = Mesh (vertices, 1, &submesh, &appearance);
 }
 
 Mesh:: ~Mesh ()
@@ -53,13 +77,23 @@ Mesh:: ~Mesh ()
 
 Mesh* Mesh:: duplicate () const
 {
-    Mesh* mesh = new Mesh (*this);
-    Node* node = Node::duplicate();
-    *(Node*)mesh = *node;
-    delete node;
+    Mesh* mesh = new Mesh;
+    this->Object3D     :: copy (mesh);
+    this->Node         :: copy (mesh);
+    this->Transformable:: copy (mesh);
+    this->Mesh         :: copy (mesh);
     return mesh;
 }
 
+void Mesh:: copy (Mesh* mesh) const
+{
+    if (mesh == NULL) {
+        throw NullPointerException (__FILE__, __func__, "Mesh is NULL.");
+    }
+    mesh->vertices    = vertices;
+    mesh->indices     = indices;
+    mesh->appearances = appearances;
+}
 
 int Mesh:: animate (int world_time)
 {

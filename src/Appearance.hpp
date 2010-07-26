@@ -49,6 +49,12 @@ namespace m3g {
         virtual Appearance* duplicate () const;
 
         /**
+         * @~English  Copy this Object3D to specified Object3D, not defined by M3G. 
+         * @~Japanese このオブジェクトのデータを引数で指定されたオブジェクトにコピーするM3G非標準の関数.
+         */
+        void copy (Appearance* app) const;
+
+        /**
          * @~English  Returns the current CompostingMode for this Appearance.
          * @~Japanese このアピアランスのCompositingModeの取得.
          */
@@ -145,6 +151,10 @@ namespace m3g {
          * @~Japanese このノードをレンダリングする内部使用の関数.
          */
         static void renderX ();
+
+    private:
+        Appearance (const Appearance& app);
+        Appearance& operator= (const Appearance& app);
 
     private:
         int                     layer;

@@ -16,10 +16,8 @@ namespace m3g {
      */
     class Loader : public Object
     {
-    public:
 
-        Loader ();
-        ~Loader ();
+    public:
 
         /**
          * @~English  Deserializes Object3D instances form the given byte array.
@@ -35,6 +33,10 @@ namespace m3g {
 
 
     private:
+
+        Loader ();
+
+        ~Loader ();
 
         std::vector<Object3D*> load_m3g (const char* p, int size);
 

@@ -59,6 +59,12 @@ namespace m3g {
         virtual Transformable* duplicate () const;
 
         /**
+         * @~English  Copy this Object3D to specified Object3D, not defined by M3G. 
+         * @~Japanese このオブジェクトのデータを引数で指定されたオブジェクトにコピーするM3G非標準の関数.
+         */
+        void copy (Transformable* trans) const;
+
+        /**
          * @~English  Adds the given AnimationTrack to this Object3D, 
          *            potentially changing the order and indices of the previously added tracks.
          * @~Japanese このObject3Dに指定されたアニメーショントラックを追加する。
@@ -156,12 +162,15 @@ namespace m3g {
          */
         virtual std::ostream& print (std::ostream& out) const;
 
-    protected:
         /**
          * @~English  Render this object, for inner use.
          * @~Japanese このTransformableをレンダリングする内部使用の関数.
          */
         virtual void render (RenderState& state) const;
+
+    private:
+        Transformable (const Transformable& trans);
+        Transformable& operator= (const Transformable& trans);
 
     private:
         Scale       scaling;

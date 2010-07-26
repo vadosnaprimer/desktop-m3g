@@ -29,11 +29,22 @@ Node:: ~Node ()
 
 Node* Node:: duplicate () const
 {
-    // 注意：Nodeクラスを継承する全てのクラスはduplicate()する時に
-    // この関数を呼ばなければならない。
-    Node* node = new Node (*this);
-    node->parent = NULL;
+    Node* node = new Node;
+    this->Object3D     :: copy (node);
+    this->Transformable:: copy (node);
+    this->Node         :: copy (node);
     return node;
+}
+
+void Node:: copy (Node* node) const
+{
+    node->parent           = NULL;
+    node->rendering_enable = rendering_enable;
+    node->picking_enable   = picking_enable;
+    node->alpha_factor     = alpha_factor;
+    node->scope            = scope;
+    node->z_alignment      = z_alignment;
+    node->y_alignment      = y_alignment;
 }
 
 void Node:: addAnimationTrack (AnimationTrack* animation_track)

@@ -36,9 +36,25 @@ Background:: ~Background ()
 
 Background* Background:: duplicate () const
 {
-    // texobjの作り直しが必要な気がする
-    return new Background (*this);
+    Background* bg = new Background;
+    this->Object3D  :: copy (bg);
+    this->Background:: copy (bg);
+    return bg;
 }
+
+void Background:: copy (Background* bg) const
+{
+    if (bg == NULL) {
+        throw NullPointerException (__FILE__, __func__, "Background is NULL.");
+    }
+    bg->color_clear_enable = color_clear_enable;
+    bg->depth_clear_enable = depth_clear_enable;
+    bg->color              = color;
+    bg->mode               = mode;
+    bg->setImage (image);
+    bg->crop               = crop;
+}
+
 
 void Background:: addAnimationTrack (AnimationTrack* animation_track)
 {

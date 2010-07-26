@@ -28,7 +28,23 @@ Appearance:: ~Appearance ()
 
 Appearance* Appearance:: duplicate () const
 {
-  return new Appearance (*this);
+    Appearance* app = new Appearance;
+    this->Object3D  :: copy (app);
+    this->Appearance:: copy (app);
+    return app;
+}
+
+void Appearance:: copy (Appearance* app) const
+{
+    if (app == NULL) {
+        throw NullPointerException (__FILE__, __func__, "Appearance is NULL.");
+    }
+    app->layer            = layer;
+    app->polygon_mode     = polygon_mode;
+    app->compositing_mode = compositing_mode;
+    app->material         = material;
+    app->textures         = textures;
+    app->fog              = fog;
 }
 
 int Appearance:: animate (int world_time)

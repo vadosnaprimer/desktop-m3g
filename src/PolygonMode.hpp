@@ -71,6 +71,12 @@ namespace m3g {
         virtual PolygonMode* duplicate () const;
 
         /**
+         * @~English  Copy this Object3D to specified Object3D, not defined by M3G. 
+         * @~Japanese このオブジェクトのデータを引数で指定されたオブジェクトにコピーするM3G非標準の関数.
+         */
+        void copy (PolygonMode* pmode) const;
+
+        /**
          * @~English  Retrieves the current poygon culling mode.
          * @~Japanese カレントのポリゴンのカリングモードの取得.
          */
@@ -160,6 +166,10 @@ namespace m3g {
          * @~Japanese  デフォルトでレンダリングする内部使用の関数.
          */
         static void renderX ();
+
+    private:
+        PolygonMode (const PolygonMode& pmode);
+        PolygonMode& operator= (const PolygonMode& pmode);
 
     private:
         int  culling;

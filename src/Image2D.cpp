@@ -59,14 +59,22 @@ Image2D:: ~Image2D ()
 
 Image2D* Image2D:: duplicate () const
 {
-    int bpp  = format_to_bpp (format);
-    int size = height*width*bpp;
-
-    Image2D* img = new Image2D (*this);
-    img->image   = new char [size];
-    memcpy (img->image, this->image, size);
-
+    Image2D* img;
+    if (immutable)
+        img = new Image2D (format, width, height, image);
+    else
+        img = new Image2D (format, width, height);
+    img->Object3D:: copy (img);
+    img->Image2D :: copy (img);
     return img;
+}
+
+void Image2D:: copy (Image2D* img) const
+{
+    if (img == NULL) {
+        throw NullPointerException (__FILE__, __func__, "Image is NULL.");
+    }
+    // すべてコンストラクタで設定済み
 }
 
 int Image2D:: getFormat () const

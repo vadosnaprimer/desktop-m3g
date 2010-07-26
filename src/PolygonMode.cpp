@@ -26,7 +26,23 @@ PolygonMode:: ~PolygonMode ()
 
 PolygonMode* PolygonMode:: duplicate () const
 {
-    return new PolygonMode (*this);
+    PolygonMode* pmode = new PolygonMode;
+    this->Object3D   :: copy (pmode);
+    this->PolygonMode:: copy (pmode);
+    return pmode;
+}
+
+void PolygonMode:: copy (PolygonMode* pmode) const
+{
+    if (pmode == NULL) {
+        throw NullPointerException (__FILE__, __func__, "PolyMode is NULL.");
+    }
+    pmode->culling                = culling;
+    pmode->winding                = winding;
+    pmode->shading                = shading;
+    pmode->two_sided_lighting     = two_sided_lighting;
+    pmode->local_camera_lighting  = local_camera_lighting;
+    pmode->perspective_correction = perspective_correction;
 }
 
 int PolygonMode:: getCulling () const

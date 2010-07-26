@@ -109,6 +109,14 @@ namespace m3g {
          */
         virtual Texture2D* duplicate () const;
 
+        /**
+         * @~English  Copy this Object3D to specified Object3D, not defined by M3G. 
+         * @~Japanese このオブジェクトのデータを引数で指定されたオブジェクトにコピーするM3G非標準の関数.
+         */
+        void copy (Texture2D* tex) const;
+
+
+
         virtual int animate (int world_time);
 
         virtual void addAnimationTrack (AnimationTrack* animation_track);
@@ -206,6 +214,10 @@ namespace m3g {
          */
         static void renderX ();
 
+    private:
+        Texture2D ();
+        Texture2D (const Texture2D& img);
+        Texture2D& operator= (const Texture2D& img);
 
     private:
         Image2D* image;

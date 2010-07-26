@@ -54,6 +54,12 @@ namespace m3g {
         virtual Camera* duplicate () const;
 
         /**
+         * @~English  Copy this Object3D to specified Object3D, not defined by M3G. 
+         * @~Japanese このオブジェクトのデータを引数で指定されたオブジェクトにコピーするM3G非標準の関数.
+         */
+        void copy (Camera* cam) const;
+
+        /**
          * @~English  Adds the given AnimationTrack to this Object3D, 
          *            potentially chaing the order and indices of the previously added tracks.
          * @~Japanese アニメーショントラックの追加。
@@ -118,6 +124,9 @@ namespace m3g {
          */
         virtual void render (RenderState& state) const;
 
+    private:
+        Camera (const Camera& cam);
+        Camera& operator= (const Camera& cam);
 
     private:
         int   type;

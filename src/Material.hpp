@@ -56,6 +56,12 @@ namespace m3g {
         virtual Material* duplicate () const;
 
         /**
+         * @~English  Copy this Object3D to specified Object3D, not defined by M3G. 
+         * @~Japanese このオブジェクトのデータを引数で指定されたオブジェクトにコピーするM3G非標準の関数.
+         */
+        void copy (Material* mat) const;
+
+        /**
          * @~English  
          * @~Japanese 
          */
@@ -122,6 +128,10 @@ namespace m3g {
          * @~Japanese このオブジェクトをレンダリングする内部使用の関数.
          */
         static void renderX ();
+
+    private:
+        Material (const Material& mat);
+        Material& operator= (const Material& mat);
 
     private:
         bool  vertex_color_tracking;

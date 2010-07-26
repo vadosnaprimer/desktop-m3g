@@ -42,6 +42,12 @@ namespace m3g {
          */
         virtual Group* duplicate () const;
 
+        /**
+         * @~English  Copy this Object3D to specified Object3D, not defined by M3G. 
+         * @~Japanese このオブジェクトのデータを引数で指定されたオブジェクトにコピーするM3G非標準の関数.
+         */
+        void copy (Group* grp) const;
+
         /** 
          * @~Enslish  Adds the given node to this Group, potentially changing the order and indices of the previously added children.
          * @~Japanese 指定されたノードを追加する。以前に追加されていた子ノードの順番とインデックスは変更される可能性がある.
@@ -98,7 +104,10 @@ namespace m3g {
          * @~Japanese このGroupをレンダリングする内部使用の関数.
          */
         virtual void render (RenderState& state) const;
-  
+
+    private:
+        Group (const Group& grp);
+        Group& operator= (const Group& grp);
 
     protected:
         std::vector<Node*> children;

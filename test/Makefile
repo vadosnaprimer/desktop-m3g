@@ -1,5 +1,5 @@
 SRCS = $(wildcard *.cpp)
-#SRCS = test-RayIntersect.cpp test-main.cpp	
+#SRCS = test-Appearance.cpp test-main.cpp	
 OBJS = $(SRCS:.cpp=.o)
 TARGET = a.out
 CXX = g++

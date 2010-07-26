@@ -76,6 +76,12 @@ namespace m3g {
         virtual Light* duplicate () const;
 
         /**
+         * @~English  Copy this Object3D to specified Object3D, not defined by M3G. 
+         * @~Japanese このオブジェクトのデータを引数で指定されたオブジェクトにコピーするM3G非標準の関数.
+         */
+        void copy (Light* lgh) const;
+
+        /**
          * @~English  Adds the given AnimationTrack to this Object3D, 
          * @~Japanese アニメーショントラックの追加。
          *            既存のトラックの順番とインデックスは変更されるかもしれない.
@@ -185,7 +191,11 @@ namespace m3g {
          */
         virtual void render (RenderState& state) const;
 
-    public:
+    private:
+        Light (const Light& lgh);
+        Light& operator= (const Light& lgh);
+
+    private:
         int         mode;
         int         color;
         int         intensity;

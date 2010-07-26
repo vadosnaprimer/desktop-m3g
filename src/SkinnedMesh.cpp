@@ -15,12 +15,13 @@
 using namespace std;
 using namespace m3g;
 
+
 /**
  * メモ：skeletonのparentをthisにするべき？
  *       それをすると現状では動かない。
  */
-SkinnedMesh:: SkinnedMesh (VertexBuffer* vertices, int num_submesh,
-                           IndexBuffer** submeshes, Appearance** appearances_,
+SkinnedMesh:: SkinnedMesh (VertexBuffer* vertices, 
+                           int num_submesh, IndexBuffer** submeshes, Appearance** appearances_,
                            Group* skeleton_) :
     Mesh (vertices, num_submesh, submeshes, appearances_),
     skeleton(0), skinned_vertices(0)
@@ -30,13 +31,28 @@ SkinnedMesh:: SkinnedMesh (VertexBuffer* vertices, int num_submesh,
     }
 
     skeleton = skeleton_;
-    //skeleton->setParent (this);
 
+    initialize ();
+}
+
+SkinnedMesh:: SkinnedMesh (VertexBuffer* vertices, 
+                           IndexBuffer* submesh, Appearance* appearance, 
+                           Group* skeleton_) :
+    Mesh (vertices, submesh, appearance),
+    skeleton(0), skinned_vertices(0)
+{
+    if (vertices->getPositions(0) == NULL) {
+        throw NullPointerException (__FILE__, __func__, "Vertices has no positions.");
+    }
+
+    skeleton = skeleton_;
+    
+    initialize ();
+}
+
+void SkinnedMesh:: initialize ()
+{
     skinned_vertices = vertices->duplicate ();
-
-    // 注意：スキン変形後のpositionsとnormalsを保存するために新しくnewし直す。
-    // VertexBufferをduplicate()しただけでは同じインスタンスを指している。
-    // positionsは内部float型でデータを保持しないと精度・有効範囲が足りない。
 
     float scale_bias[4];
     VertexArray* bind_positions = vertices->getPositions(scale_bias);
@@ -51,7 +67,6 @@ SkinnedMesh:: SkinnedMesh (VertexBuffer* vertices, int num_submesh,
         skinned_vertices->setNormals (skinned_normals);
     }
 
-
     int vertex_count = bind_positions->getVertexCount();
     bone_indices.reserve(vertex_count);
     for (int v = 0; v < vertex_count; v++) {
@@ -60,30 +75,36 @@ SkinnedMesh:: SkinnedMesh (VertexBuffer* vertices, int num_submesh,
     bind_poses.clear();
 }
 
-SkinnedMesh:: SkinnedMesh (VertexBuffer* vertices, 
-                           IndexBuffer* submeshes, 
-                           Appearance* appearances_, 
-                           Group* skeleton_) :
-    Mesh (vertices, submeshes, appearances_),
-    skeleton(0), skinned_vertices(0)
-{
-    *this = SkinnedMesh (vertices, 1, &submeshes, &appearances_, skeleton_);
-}
-
 SkinnedMesh:: ~SkinnedMesh ()
 {
 }
 
+
 SkinnedMesh* SkinnedMesh:: duplicate () const
 {
-    SkinnedMesh* skinned_mesh = new SkinnedMesh (*this);
-    Mesh* mesh = Mesh::duplicate();
-    *(Mesh*)skinned_mesh = *mesh;
-    delete mesh;
-    skinned_mesh->skeleton = this->skeleton->duplicate();
-    // メモ:skinned_verticesはduplicate()しなくて良いんだよな？
-    return skinned_mesh;
+    Group* skl = skeleton->duplicate ();
+    SkinnedMesh* mesh     = new SkinnedMesh (vertices, indices.size(), (IndexBuffer**)&indices[0], (Appearance**)&appearances[0], skl);
+    mesh->Object3D     :: copy (mesh);
+    mesh->Transformable:: copy (mesh);
+    mesh->Node         :: copy (mesh);
+    mesh->Mesh         :: copy (mesh);
+    mesh->SkinnedMesh  :: copy (mesh);
+    return mesh;
 }
+
+void SkinnedMesh:: copy (SkinnedMesh* mesh) const
+{
+    // skeletonとskinned_verticesはコンストラクタで処理済み
+    mesh->bone_indices = bone_indices;
+    mesh->bind_poses   = bind_poses;
+    for (int i = 0; i < (int)bind_poses.size(); i++) {
+        // ここでboneの付け替え
+        // どうやって????
+    }
+
+    throw NotImplementedException (__FILE__, __func__, "Duplicate of SkinneMesh is not implemented.");
+}
+
 
 int SkinnedMesh:: animate (int world_time)
 {
@@ -276,15 +297,15 @@ bool SkinnedMesh:: intersect (const Vector& org, const Vector& dir, RayIntersect
 {
     bool hit;
     VertexBuffer* tmp = vertices;
-#if 1
+
     (const_cast<SkinnedMesh*>(this))->vertices = skinned_vertices;
     hit = Mesh::intersect (org, dir, ri);
     (const_cast<SkinnedMesh*>(this))->vertices = tmp;
     if (hit) {
         return true;
     }
-#endif
-#if 1
+
+
     //cout << "org_mesh = " << org << "\n";
     //cout << "dir_mesh = " << dir << "\n";
     Transform trans;
@@ -311,7 +332,6 @@ bool SkinnedMesh:: intersect (const Vector& org, const Vector& dir, RayIntersect
         ri->transformRay (trans);
     }
 
-#endif
 
     return hit;
 }

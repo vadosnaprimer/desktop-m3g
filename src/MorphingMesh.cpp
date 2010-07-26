@@ -11,6 +11,7 @@
 #include <iostream>
 using namespace std;
 using namespace m3g;
+#include <cstdlib>
     
 MorphingMesh:: MorphingMesh (VertexBuffer* base, int num_target, VertexBuffer** targets,
                              int num_submesh, IndexBuffer** submeshes, Appearance** appearances) :
@@ -30,50 +31,74 @@ MorphingMesh:: MorphingMesh (VertexBuffer* base, int num_target, VertexBuffer** 
     if (base->getPositions(0) == NULL) {
         throw NullPointerException (__FILE__, __func__, "Base vertices has no positions.");
     }
-
-    morphed_vertices = base->duplicate ();
   
-    // 注意：モーフィング変形後のpositions,normals,colorsを保存するために新しくnewし直す。
-    // VertexBufferをduplicate()しただけでは同じインスタンスを指している。
+    initialize (num_target, targets);
+}
+
+MorphingMesh:: MorphingMesh (VertexBuffer* base, int num_target, VertexBuffer** targets, IndexBuffer* submesh, Appearance* appearance) :
+    Mesh (base, submesh, appearance)
+{
+    if (num_target < 0) {
+        throw IllegalArgumentException (__FILE__, __func__, "Number of target is invalid, num=%d.", num_target);
+    }
+    if (targets == NULL) {
+        throw NullPointerException (__FILE__, __func__, "Morph targets are NULL.");
+    }
+    for (int i = 0; i < num_target; i++) {
+        if (targets[i] == NULL) {
+            throw NullPointerException (__FILE__, __func__, " Target vertices is NULL, index=%d.", i);
+        }
+    }
+    if (base->getPositions(0) == NULL) {
+        throw NullPointerException (__FILE__, __func__, "Base vertices has no positions.");
+    }
+
+    initialize (num_target, targets);
+}
+
+// 注意：
+// VertexBufferをduplicate()しただけではその下のVertexArrayは同じのを指している。
+// モーフィング変形後のpositions,normals,colorsを保存するために、それらもduplicateする。
+void MorphingMesh:: initialize (int num_target, VertexBuffer** targets)
+{
+    morphed_vertices = vertices->duplicate ();
 
     float        scale_bias[4];
-    VertexArray* base_positions = base->getPositions (scale_bias);
+    VertexArray* base_positions = vertices->getPositions (scale_bias);
     if (base_positions) {
         VertexArray* morphed_positions = base_positions->duplicate();
         morphed_vertices->setPositions (morphed_positions, scale_bias[0], &scale_bias[1]);
     }
    
-    VertexArray* base_normals = base->getNormals ();
+    VertexArray* base_normals = vertices->getNormals ();
     if (base_normals) {
         VertexArray* morphed_normals = base_normals->duplicate ();
         morphed_vertices->setNormals (morphed_normals);
     }
 
-    VertexArray* base_colors = base->getColors ();
+    VertexArray* base_colors = vertices->getColors ();
     if (base_colors) {
         VertexArray* morphed_colors = base_colors->duplicate ();
         morphed_vertices->setColors (morphed_colors);
     }
-
 
     morph_targets.reserve (num_target);
     for (int i = 0; i < num_target; i++) {
         VertexBuffer* vbuf = *targets++;
         morph_targets.push_back (vbuf);
     }
-  
+    // メモ：1行でかける
+    // morph_targes.assign (targtes, targets+num_target);
 
     morph_weights.reserve (num_target);
     for (int i = 0; i < num_target; i++) {
         morph_weights.push_back (0);
     }
+    // メモ：1行でかける
+    //morph_weights.assign (num_target, 0);
+
 }
 
-MorphingMesh:: MorphingMesh (VertexBuffer* base, int num_target, VertexBuffer** targets, IndexBuffer* submesh, Appearance* appearance) :
-    Mesh (base, submesh, appearance)
-{
-    *this = MorphingMesh (base, num_target, targets, 1, &submesh, &appearance);
-}
 
 MorphingMesh:: ~MorphingMesh ()
 {
@@ -81,11 +106,20 @@ MorphingMesh:: ~MorphingMesh ()
 
 MorphingMesh* MorphingMesh:: duplicate () const
 {
-    MorphingMesh* morphing_mesh = new MorphingMesh (*this);
-    Mesh* mesh = Mesh::duplicate();
-    *(Mesh*)morphing_mesh = *mesh;
-    delete mesh;
-    return morphing_mesh;
+    MorphingMesh* mesh = new MorphingMesh (vertices, morph_targets.size(), (VertexBuffer**)&morph_targets[0],
+                                           indices.size(), (IndexBuffer**)&indices[0], (Appearance**)&appearances[0]);
+    this->Object3D     :: copy (mesh);
+    this->Node         :: copy (mesh);
+    this->Transformable:: copy (mesh);
+    this->Mesh         :: copy (mesh);
+    this->MorphingMesh :: copy (mesh);
+    return mesh;
+}
+
+void MorphingMesh:: copy (MorphingMesh* mesh) const
+{
+    // morhped_verticesとmorph_targetsはコンストラクタでコピー済み
+    mesh->morph_weights    = morph_weights;
 }
 
 

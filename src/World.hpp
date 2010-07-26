@@ -39,6 +39,12 @@ namespace m3g {
         virtual World* duplicate () const;
 
         /**
+         * @~English  Copy this Object3D to specified Object3D, not defined by M3G. 
+         * @~Japanese このオブジェクトのデータを引数で指定されたオブジェクトにコピーするM3G非標準の関数.
+         */
+        void copy (World* wld) const;
+
+        /**
          * @~English  Updates all animated properties in this Object3D and all Object3Ds that are reachable from this Object3D.
          * @~Japanese このObject3D自身とここから到達できるObject3Dのアニメーテッドプロパティを更新する.
          */
@@ -79,6 +85,10 @@ namespace m3g {
          * @~Japanese このノードをレンダリングする内部使用の関数.
          */
         virtual void render (RenderState& state) const;
+
+    private:
+        World (const World& wld);
+        World& operator= (const World& wld);
 
     private:
         Background* background;

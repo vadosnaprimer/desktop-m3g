@@ -29,8 +29,19 @@ int Object3D:: animate (int world_time)
 
 Object3D* Object3D:: duplicate () const
 {
-    return new Object3D (*this);
+    Object3D* obj = new Object3D;
+    obj->Object3D:: copy (obj);
+    return obj;
 }
+
+void Object3D:: copy (Object3D* obj) const
+{
+    obj->user_id     = user_id;
+    obj->user_object = user_object;
+    obj->anim_tracks = anim_tracks;
+}
+
+
 
 Object3D* Object3D:: find (int target_user_id) const
 {

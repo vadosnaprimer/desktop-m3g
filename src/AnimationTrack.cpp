@@ -82,7 +82,20 @@ AnimationTrack:: ~AnimationTrack ()
 
 AnimationTrack* AnimationTrack:: duplicate () const
 {
-  return new AnimationTrack (*this);
+    AnimationTrack* anim_track = new AnimationTrack (keyframe_sequence, property);
+    this->Object3D      :: copy (anim_track);
+    this->AnimationTrack:: copy (anim_track);
+    return anim_track;
+}
+
+void AnimationTrack:: copy (AnimationTrack* anim_track) const
+{
+    if (anim_track == NULL) {
+        throw NullPointerException (__FILE__, __func__, "AnimationTrack is NUll.");
+    }
+    anim_track->property             = property;
+    anim_track->keyframe_sequence    = keyframe_sequence;
+    anim_track->animation_controller = animation_controller;
 }
 
 AnimationController* AnimationTrack:: getController () const

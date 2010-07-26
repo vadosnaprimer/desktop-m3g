@@ -58,6 +58,12 @@ namespace m3g {
         virtual Fog* duplicate () const;
 
         /**
+         * @~English  Copy this Object3D to specified Object3D, not defined by M3G. 
+         * @~Japanese このオブジェクトのデータを引数で指定されたオブジェクトにコピーするM3G非標準の関数.
+         */
+        void copy (Fog* fog) const;
+
+        /**
          * @~English  
          * @~Japanese アニメーショントラックの追加。
          *            既存のトラックの順番とインデックスは変更されるかもしれない.
@@ -142,11 +148,14 @@ namespace m3g {
          */
         static void renderX ();
 
+    private:
+        Fog (const Fog& fog);
+        Fog& operator= (const Fog& fog);
 
     private:
-        int   mode;
-        float density;  // この2つ順番逆 
-        int   color;    // この2つ順番逆 
+        int      mode;
+        int      color;
+        float    density;
         Distance distance;
     };
 

@@ -55,6 +55,12 @@ namespace m3g {
         virtual Object3D* duplicate () const;
 
         /**
+         * @~English  Copy this Object3D to specified Object3D, not defined by M3G. 
+         * @~Japanese このオブジェクトのデータを引数で指定されたオブジェクトにコピーするM3G非標準の関数.
+         */
+        void copy (Object3D* obj) const;
+
+        /**
          * @~English  Retrieves an object that has the given uer ID and is reachable from this object.
          * @~Japanese このオブジェクトと到達できるオブジェクトから指定のユーザーIDのオブジェクトを見つける.
          */
@@ -126,8 +132,9 @@ namespace m3g {
          */
         virtual void render (RenderState& state) const;
 
-
-
+    private:
+        Object3D (const Object3D& obj);
+        Object3D& operator= (const Object3D& obj);
 
     private:
         int   user_id;

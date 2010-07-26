@@ -53,6 +53,12 @@ namespace m3g {
         virtual MorphingMesh* duplicate () const;
 
         /**
+         * @~English  Copy this Object3D to specified Object3D, not defined by M3G. 
+         * @~Japanese このオブジェクトのデータを引数で指定されたオブジェクトにコピーするM3G非標準の関数.
+         */
+        void copy (MorphingMesh* mesh) const;
+
+        /**
          * @~English  Updates all animated properties in this Object3D and all Object3Ds that are reachable from this Object3D.
          * @~Japanese このObject3D自身とここから到達できるObject3Dのアニメーテッドプロパティを更新する.
          */
@@ -102,9 +108,23 @@ namespace m3g {
         virtual void render (RenderState& state) const;
 
     private:
+
+        /**
+         * @~English  Morph skin, inner use.
+         * @~Japanese スキンを変形させる内部仕様の関数
+         */
         void updateMorphedVertices ();
 
-    public:
+    private:
+        /**
+         * @~Japanesse  共通初期化処理.
+         */
+        void initialize (int num_target, VertexBuffer** targets);
+
+        MorphingMesh (const MorphingMesh& mesh);
+        MorphingMesh& operator= (const MorphingMesh& mesh);
+
+    private:
 
         VertexBuffer*              morphed_vertices;
         std::vector<VertexBuffer*> morph_targets;

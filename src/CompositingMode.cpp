@@ -27,7 +27,24 @@ CompositingMode:: ~CompositingMode ()
 
 CompositingMode* CompositingMode:: duplicate () const
 {
-  return new CompositingMode (*this);
+    CompositingMode* cmode = new CompositingMode;
+    this->Object3D       :: copy (cmode);
+    this->CompositingMode:: copy (cmode);
+    return cmode;
+}
+
+void CompositingMode:: copy (CompositingMode* cmode) const
+{
+    if (cmode == NULL) {
+        throw NullPointerException (__FILE__, __func__, "CompositingMode is NULL.");
+    }
+    cmode->blending_mode   = blending_mode;
+    cmode->alpha_threshold = alpha_threshold;
+    cmode->depth_offset    = depth_offset;
+    cmode->depth_test      = depth_test;
+    cmode->depth_write     = depth_write;
+    cmode->color_write     = color_write;
+    cmode->alpha_write     = alpha_write;
 }
 
 float CompositingMode:: getAlphaThreshold () const

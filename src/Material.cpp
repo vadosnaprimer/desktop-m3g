@@ -24,7 +24,23 @@ Material:: ~Material ()
 
 Material* Material:: duplicate () const
 {
-    return new Material (*this);
+    Material* mat = new Material;
+    this->Object3D:: copy (mat);
+    this->Material:: copy (mat);
+    return mat;
+}
+
+void Material:: copy (Material* mat) const
+{
+    if (mat == NULL) {
+        throw NullPointerException (__FILE__, __func__, "Material is NULL.");
+    }
+    mat->vertex_color_tracking = vertex_color_tracking;
+    mat->ambient_color         = ambient_color;
+    mat->diffuse_color         = diffuse_color;
+    mat->emissive_color        = emissive_color;
+    mat->specular_color        = specular_color;
+    mat->shininess             = shininess;
 }
 
 void Material:: addAnimationTrack (AnimationTrack* animation_track)

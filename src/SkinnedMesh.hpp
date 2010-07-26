@@ -56,6 +56,13 @@ namespace m3g {
          */
         virtual SkinnedMesh* duplicate () const;
 
+        /**
+         * @~English  Copy this Object3D to specified Object3D, not defined by M3G. 
+         * @~Japanese このオブジェクトのデータを引数で指定されたオブジェクトにコピーするM3G非標準の関数.
+         */
+        void copy (SkinnedMesh* mesh) const;
+
+
         virtual int animate (int world_time);
 
         /**
@@ -119,6 +126,14 @@ namespace m3g {
     
         void updateSkinnedVertices ();
 
+    private:
+        /**
+         * @~Japanese  共通初期化処理.
+         */
+        void initialize ();
+
+        SkinnedMesh (const SkinnedMesh& mesh);
+        SkinnedMesh& operator= (const SkinnedMesh& mesh);
 
     private:
         Group*        skeleton;

@@ -45,24 +45,35 @@ KeyframeSequence:: KeyframeSequence (int num_keyframes, int num_components, int 
 KeyframeSequence:: ~KeyframeSequence ()
 {
     for (int i = 0; i < (int)keyframes.size(); i++) {
-        delete keyframes[i].value;
+        delete [] keyframes[i].value;
     }
 }
 
 KeyframeSequence* KeyframeSequence:: duplicate () const
 {
-    KeyframeSequence* kseq = new KeyframeSequence (*this);
-    for (int i = 0; i < (int)keyframes.size(); i++) {
-        if (this->keyframes[i].value) {
-            kseq->keyframes[i].value = new float [component_count];
-            memcpy (kseq->keyframes[i].value, 
-                    this->keyframes[i].value,
-                    sizeof(float)*component_count);
-        }
-    }
-    return kseq;
+    KeyframeSequence* key_seq = new KeyframeSequence (keyframe_count, component_count, interp_type);
+    this->Object3D        :: copy (key_seq);
+    this->KeyframeSequence:: copy (key_seq);
+    return key_seq;
 }
 
+void KeyframeSequence:: copy (KeyframeSequence* key_seq) const
+{
+    if (key_seq == NULL) {
+        throw NullPointerException (__FILE__, __func__, "KeyframeSequence is NULL.");
+    }
+    // interp_type, keyframes, keyframe_count, component_count
+    // はコンストラクタで設定済み
+    key_seq->repeat_mode     = repeat_mode;
+    key_seq->duration        = duration;
+    key_seq->valid_range     = valid_range;
+    for (int i = 0; i < keyframe_count; i++) {
+        key_seq->keyframes[i].time = keyframes[i].time;
+        memcpy (key_seq->keyframes[i].value,
+                keyframes[i].value,
+                sizeof(float)*component_count);
+    }
+}
 
 int KeyframeSequence:: getComponentCount () const
 {

@@ -74,6 +74,12 @@ namespace m3g {
         virtual Node* duplicate () const;
 
         /**
+         * @~English  Copy this Object3D to specified Object3D, not defined by M3G. 
+         * @~Japanese このオブジェクトのデータを引数で指定されたオブジェクトにコピーするM3G非標準の関数.
+         */
+        void copy (Node* node) const;
+
+        /**
          * @~English   Applies alignments to this Node and its descendants.
          * @~Japanese このノードと子孫ノードにアライメントを適応する.
          */
@@ -218,6 +224,10 @@ namespace m3g {
          * @~Japanese このNodeをレンダリングする内部使用の関数.
          */
         virtual void render (RenderState& state) const;
+
+    private:
+        Node (const Node& node);
+        Node& operator= (const Node& node);
 
     private:
         Node*     parent;

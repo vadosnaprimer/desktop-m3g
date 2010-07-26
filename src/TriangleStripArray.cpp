@@ -84,17 +84,22 @@ TriangleStripArray:: ~TriangleStripArray ()
 
 TriangleStripArray* TriangleStripArray:: duplicate () const
 {
-    int index_count = getIndexCount();
-
-    TriangleStripArray* tris = new TriangleStripArray (*this);
-    tris->indices            = new int [index_count];
-    memcpy (tris->indices, this->indices, sizeof(int)*index_count);
-    // 現状ではOpenGLのバッファーオブジェクトを共通で使用するのでコメントアウト
-    //glGenBuffers (1, &tris->ibuf);
-    //glBindBuffer (GL_ELEMENT_ARRAY_BUFFER, tris->ibuf); 
-    //glBufferData (GL_ELEMENT_ARRAY_BUFFER, sizeof(int)*index_count, tris->indices, GL_STATIC_DRAW);
+    TriangleStripArray* tris = new TriangleStripArray (indices, strips.size(), (int*)&strips[0]);
+    tris->Object3D          :: copy (tris);
+    tris->IndexBuffer       :: copy (tris);
+    tris->TriangleStripArray:: copy (tris);
     return tris;
 }
+
+void TriangleStripArray:: copy (TriangleStripArray* tris) const
+{
+    if (tris == NULL) {
+        throw NullPointerException (__FILE__, __func__, "TriangleStripArray is NULL.");
+    }
+    tris->indices = indices;
+    tris->strips  = strips;
+}
+
 
 int TriangleStripArray:: getFaceCount () const
 {

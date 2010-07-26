@@ -104,7 +104,7 @@ std::vector<Object3D*> Loader:: load_m3g (const char* p, int size)
     // Section 2～
     while (reader->startSection ()) {
         while (reader->startObject  (&object_type, &object_index)) {
-            cout << "Loader:: object_type = " << object_type << "\n";
+            //cout << "Loader:: object_type = " << object_type << "\n";
             switch (object_type) {
             case M3G_TYPE_HEADER              : parseHeader ()             ; break;
             case M3G_TYPE_ANIMATION_CONTROLLER: parseAnimationController (); break;

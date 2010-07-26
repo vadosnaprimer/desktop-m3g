@@ -6,6 +6,7 @@
 #include "TriangleStripArray.hpp"
 #include "Appearance.hpp"
 #include "Group.hpp"
+#include "Exception.hpp"
 using namespace std;
 using namespace m3g;
 
@@ -207,9 +208,23 @@ TEST (SkinnedMesh_duplicate)
     SkinnedMesh* mesh1  = mesh0->duplicate();
 
     CHECK (mesh0->getSkeleton() != mesh1->getSkeleton());
-    CHECK_EQUAL (mesh0->getBoneVertices(bone0,0,0), mesh1->getBoneVertices(bone0,0,0));
-    CHECK_EQUAL (mesh0->getBoneVertices(bone1,0,0), mesh1->getBoneVertices(bone1,0,0));
-    CHECK_EQUAL (mesh0->getBoneVertices(bone2,0,0), mesh1->getBoneVertices(bone2,0,0));
 
+    // 注意: mesh1はduplicateされたボーンを持つので、
+    // 古い方のボーンでgetBoneVertices()すると例外を発生するのが正しい。
+    CHECK_THROW (mesh1->getBoneVertices (bone0,0,0), IllegalArgumentException);
+    CHECK_THROW (mesh1->getBoneVertices (bone1,0,0), IllegalArgumentException);
+    CHECK_THROW (mesh1->getBoneVertices (bone2,0,0), IllegalArgumentException);
+
+    // bone0が影響を持つ頂点は6つ
+    int   vertex_indices0[6], vertex_indices1[6];
+    float weights0[6], weights1[6];
+    
+    mesh0->getBoneVertices (bone0, vertex_indices0, weights0);
+    mesh1->getBoneVertices (mesh1->getSkeleton(), vertex_indices1, weights1);
+
+    // ルート・ボーンしかチェックしてないけどまず大丈夫だろう。
+    CHECK_ARRAY_EQUAL (vertex_indices0, vertex_indices1, 6);
+    CHECK_ARRAY_EQUAL (weights0, weights1, 6);
+    
 }
 

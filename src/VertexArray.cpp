@@ -49,21 +49,37 @@ VertexArray:: ~VertexArray ()
     }
 }
 
+VertexArray:: VertexArray () :
+    component_count(0),
+    component_size(0),
+    vertex_count(0),
+    char_values(0), vbo(0)
+{
+}
+
 VertexArray* VertexArray:: duplicate () const
 {
-    VertexArray* varry = new VertexArray (*this);
-    Object3D* obj      = Object3D::duplicate();
-    *(Object3D*)varry  = *obj;
-
-    int size           = vertex_count * component_count * component_size;
-    varry->char_values = new char[size];
-    memcpy (varry->char_values, this->char_values, size);
-
-    glGenBuffers (1, &varry->vbo);
-    glBindBuffer (GL_ARRAY_BUFFER, varry->vbo);
-    glBufferData (GL_ARRAY_BUFFER, size, varry->char_values, GL_STATIC_DRAW);
+    VertexArray* varry = new VertexArray (vertex_count, component_count, component_size);
+    this->Object3D   :: copy (varry);
+    this->VertexArray:: copy (varry);
     return varry;
 }
+
+void VertexArray:: copy (VertexArray* varry) const
+{
+    if (varry->component_count != component_count ||
+        varry->component_size  != component_size ||
+        varry->vertex_count    != vertex_count) {
+        throw IllegalArgumentException (__FILE__, __func__, "VertexArray size is invalid.\n");
+    }
+    
+    switch (component_size) {
+    case 1: varry->set (0, vertex_count, char_values); break;
+    case 2: varry->set (0, vertex_count, short_values); break;
+    case 4: varry->set (0, vertex_count, float_values); break;
+    }
+}
+
 
 void VertexArray:: get (int first_vertex, int num_vertices, char* values) const
 {

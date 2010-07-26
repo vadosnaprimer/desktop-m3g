@@ -14,7 +14,7 @@ const int Fog:: EXPONENTIAL;
 const int Fog:: LINEAR;
 
 Fog:: Fog () : 
-  mode(LINEAR), density(1), color(0), distance(0,1)
+    mode(LINEAR), color(0), density(1), distance(0,1)
 {
 }
 
@@ -24,7 +24,18 @@ Fog:: ~Fog ()
 
 Fog* Fog:: duplicate () const
 {
-  return new Fog (*this);
+    Fog* fog = new Fog;
+    this->Object3D:: copy (fog);
+    this->Fog     :: copy (fog);
+    return fog;
+}
+
+void Fog:: copy (Fog* fog) const
+{
+    fog->mode     = mode;
+    fog->color    = color;
+    fog->density  = density;
+    fog->distance = distance;
 }
 
 void Fog:: addAnimationTrack (AnimationTrack* animation_track)

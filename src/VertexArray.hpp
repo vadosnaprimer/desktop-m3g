@@ -39,6 +39,12 @@ namespace m3g {
         virtual VertexArray* duplicate () const;
 
         /**
+         * @~English  Copy this Object3D to specified Object3D, not defined by M3G. 
+         * @~Japanese このオブジェクトのデータを引数で指定されたオブジェクトにコピーするM3G非標準の関数.
+         */
+        void copy (VertexArray* varry) const;
+
+        /**
          * @~English  Returns a range of 8-bit vertex attributes. 
          * @~Japanese 8bitレンジの頂点データの取得.
          */
@@ -136,6 +142,10 @@ namespace m3g {
          */
         std::ostream& print_raw_data (std::ostream& out) const;
 
+    private:
+        VertexArray ();
+        VertexArray (const VertexArray& varry);
+        VertexArray& operator= (const VertexArray& varry);
 
     private:
         int   component_count;

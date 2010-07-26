@@ -52,20 +52,43 @@ Texture2D:: Texture2D (Image2D* img) :
 Texture2D:: ~Texture2D ()
 {
     if (texobj > 0) {
-        glDeleteTextures(1, &texobj);
+        glDeleteTextures (1, &texobj);
     }
+}
+
+Texture2D:: Texture2D () :
+    image(0), wrapping(WRAP_REPEAT, WRAP_REPEAT),
+    filter(FILTER_BASE_LEVEL, FILTER_NEAREST),
+    blending_mode(FUNC_MODULATE), blend_color(0x00000000),
+    texobj(0)
+{
 }
 
 Texture2D* Texture2D:: duplicate () const
 {
-    Texture2D* tex  = new Texture2D (*this);
-    Transformable* trns = Transformable::duplicate ();
-    *(Transformable*)tex = *trns;
-    // 現状ではOpenGLのテクスチャーオブジェクトを共通で使用するのでコメントアウト
-    //glGenTextures (1, &tex->texobj);
-    //tex->setImage (image);
+    Texture2D* tex  = new Texture2D;
+    this->Object3D     :: copy (tex);
+    this->Transformable:: copy (tex);
+    this->Texture2D    :: copy (tex);
     return tex;
 }
+
+void Texture2D:: copy (Texture2D* tex) const
+{
+    tex->wrapping      = wrapping;
+    tex->filter        = filter;
+    tex->blending_mode = blending_mode;
+    tex->blend_color   = blend_color;
+
+    glGenTextures   (1, &tex->texobj);
+    int err = glGetError ();
+    if (err != GL_NO_ERROR) {
+        throw OpenGLException (__FILE__, __func__, "Can't make texture object, err=%d.", err);
+    }
+    tex->setImage (image);
+
+}
+
 
 
 void Texture2D:: addAnimationTrack (AnimationTrack* animation_track)

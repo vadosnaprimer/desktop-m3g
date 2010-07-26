@@ -16,7 +16,14 @@ IndexBuffer:: ~IndexBuffer ()
 
 IndexBuffer* IndexBuffer:: duplicate () const
 {
-    return new IndexBuffer (*this);
+    IndexBuffer* ibuf = new IndexBuffer;
+    ibuf->Object3D   :: copy (ibuf);
+    ibuf->IndexBuffer:: copy (ibuf);
+    return ibuf;
+}
+
+void IndexBuffer:: copy (IndexBuffer* ibuf) const
+{
 }
 
 

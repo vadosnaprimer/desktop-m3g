@@ -47,6 +47,12 @@ namespace m3g {
         virtual AnimationController* duplicate () const;
 
         /**
+         * @~English  Copy this Object3D to specified Object3D, not defined by M3G. 
+         * @~Japanese このオブジェクトのデータを引数で指定されたオブジェクトにコピーするM3G非標準の関数.
+         */
+        void copy (AnimationController* anim_ctr) const;
+
+        /**
          * @~English  Retrieve the ending time of the current active interval of this animation controller, in the world time units.
          * @~Japanese このアニメーションコントローラーのアクティブ期間の終了時刻を返す。単位はワールド時間.
          */
@@ -119,6 +125,9 @@ namespace m3g {
          */
         virtual std::ostream& print (std::ostream& out) const;
 
+    private:
+        AnimationController (const AnimationController& anim_ctr);
+        AnimationController& operator= (const AnimationController& anim_ctr);
 
     private:
         ActiveInterval active_interval;

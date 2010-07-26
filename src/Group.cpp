@@ -25,18 +25,25 @@ Group:: ~Group ()
 
 Group* Group:: duplicate () const
 {
-    Group* grp  = new Group (*this);
-    Node*  node = Node::duplicate();
-    *(Node*)grp = *node;
-    delete node;
+    Group* grp = new Group;
+    this->Object3D      :: copy (grp);
+    this->Transformable :: copy (grp);
+    this->Node          :: copy (grp);
+    this->Group         :: copy (grp);
+    return grp;
+}
 
+void Group:: copy (Group* grp) const
+{
+    if (grp == NULL) {
+        throw NullPointerException (__FILE__, __func__, "Group is NULL.");
+    }
+    grp->children.resize (this->children.size());
     for (int i = 0; i < (int)children.size(); i++) {
         grp->children[i] = this->children[i]->duplicate();
         grp->children[i]->setParent (grp);
     }
-    return grp;
 }
-
 
 void Group:: addChild (Node* child)
 {

@@ -24,9 +24,9 @@ TEST (AnimationTrack_set_variables)
     AnimationTrack* track      = new AnimationTrack   (keyframe, AnimationTrack::COLOR);
     track->setController (controller);
 
-    CHECK_EQUAL ((AnimationController*)controller,    track->getController());
-    CHECK_EQUAL (keyframe,                   track->getKeyframeSequence());
-    CHECK_EQUAL (AnimationTrack::COLOR, track->getTargetProperty());
+    CHECK_EQUAL ((AnimationController*)controller, track->getController());
+    CHECK_EQUAL (keyframe,                         track->getKeyframeSequence());
+    CHECK_EQUAL (AnimationTrack::COLOR,            track->getTargetProperty());
 
     delete keyframe;
 }
@@ -39,9 +39,9 @@ TEST (AnimationTrack_duplicate)
     track0->setController (controller);
 
     AnimationTrack* track1 = track0->duplicate();
-    CHECK_EQUAL (track0->getController(), track1->getController());
+    CHECK_EQUAL (track0->getController(),       track1->getController());
     CHECK_EQUAL (track0->getKeyframeSequence(), track1->getKeyframeSequence());
-    CHECK_EQUAL (track0->getTargetProperty(), track1->getTargetProperty());
+    CHECK_EQUAL (track0->getTargetProperty(),   track1->getTargetProperty());
 }
 
 
