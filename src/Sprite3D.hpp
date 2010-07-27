@@ -197,7 +197,6 @@ namespace m3g {
         Vector getTexCoord1 () const;
 
     private:
-        Sprite3D ();
         Sprite3D (const Sprite3D& spr);
         Sprite3D& operator= (const Sprite3D& spr);
 

@@ -666,15 +666,20 @@ void Loader:: parseExternalReference ()
 {
     M3GExternalReferenceStruct ext;
     reader->readExternalReference (&ext);
-    
-    throw NotImplementedException (__FILE__, __func__, "External reference is not implemented. ignore this.");
+
+    if (ext.uri) {
+        vector<Object3D*> ext_objs = Loader:: load (ext.uri);
+        if ((int)ext_objs.size() == 0)
+            throw IOException (__FILE__, __func__, "ExternalReference has no M3G objects.");
+        objs.push_back (ext_objs[0]);
+    }
 }
 
 
 void Loader:: setObject3D (Object3D* obj, const M3GObject3DStruct& object) const
 {
-    int user_id = object.user_id;
-    int anim_track_count = object.animation_tracks_count;
+    int user_id              = object.user_id;
+    int anim_track_count     = object.animation_tracks_count;
     int user_parameter_count = object.user_parameter_count;
 
     obj->setUserID (user_id);

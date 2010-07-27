@@ -40,12 +40,12 @@ void Camera:: copy (Camera* cam) const
     if (cam == NULL) {
         throw NullPointerException (__FILE__, __func__, "Camera is NULL.");
     }
-    cam->type         = this->type;
-    cam->fovy         = this->fovy;
-    cam->aspect_ratio = this->aspect_ratio;
-    cam->near         = this->near;
-    cam->far          = this->far;
-    cam->projection   = this->projection;
+    cam->type         = type;
+    cam->fovy         = fovy;
+    cam->aspect_ratio = aspect_ratio;
+    cam->near         = near;
+    cam->far          = far;
+    cam->projection   = projection;
 }
 
 void Camera:: addAnimationTrack (AnimationTrack* animation_track)

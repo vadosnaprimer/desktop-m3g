@@ -56,17 +56,10 @@ Texture2D:: ~Texture2D ()
     }
 }
 
-Texture2D:: Texture2D () :
-    image(0), wrapping(WRAP_REPEAT, WRAP_REPEAT),
-    filter(FILTER_BASE_LEVEL, FILTER_NEAREST),
-    blending_mode(FUNC_MODULATE), blend_color(0x00000000),
-    texobj(0)
-{
-}
 
 Texture2D* Texture2D:: duplicate () const
 {
-    Texture2D* tex  = new Texture2D;
+    Texture2D* tex  = new Texture2D (image);
     this->Object3D     :: copy (tex);
     this->Transformable:: copy (tex);
     this->Texture2D    :: copy (tex);
@@ -75,18 +68,13 @@ Texture2D* Texture2D:: duplicate () const
 
 void Texture2D:: copy (Texture2D* tex) const
 {
+    if (tex == NULL) {
+        throw NullPointerException (__FILE__, __func__, "Texture2D is NULL.");
+    }
     tex->wrapping      = wrapping;
     tex->filter        = filter;
     tex->blending_mode = blending_mode;
     tex->blend_color   = blend_color;
-
-    glGenTextures   (1, &tex->texobj);
-    int err = glGetError ();
-    if (err != GL_NO_ERROR) {
-        throw OpenGLException (__FILE__, __func__, "Can't make texture object, err=%d.", err);
-    }
-    tex->setImage (image);
-
 }
 
 

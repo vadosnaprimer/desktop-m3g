@@ -18,13 +18,13 @@ namespace m3g {
          * @~English  Constructs a triangle strip array with explicit indices.
          * @~Japanese 明示的なインデックスで指定したトライアングルストリップ配列の作成
          */
-        TriangleStripArray (int* indices, int num_strips, int* strips);
+        TriangleStripArray (const int* indices, int num_strips, const int* strips);
 
         /**
          * @~English  Constructs a triangle strip array with implicit indices.
          * @~Japanese 暗黙的にインデックスで指定したトライアングルストリップ配列の作成
          */
-        TriangleStripArray (int first_index, int num_strips, int* strips);
+        TriangleStripArray (int first_index, int num_strips, const int* strips);
 
 
         /**
@@ -95,7 +95,7 @@ namespace m3g {
         int*             indices;
         std::vector<int> strips;
 
-        unsigned int ibuf;
+        unsigned int     ibuf;
     };
   
 

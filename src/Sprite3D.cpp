@@ -53,13 +53,9 @@ Sprite3D:: ~Sprite3D ()
     }
 }
 
-Sprite3D:: Sprite3D () : scaled(false), image(0), appearance(0), crop(0,0,0,0), texobj(0)
-{
-}
-
 Sprite3D* Sprite3D:: duplicate () const
 {
-    Sprite3D* spr = new Sprite3D;
+    Sprite3D* spr = new Sprite3D (scaled, image, appearance);
     this->Object3D     :: copy (spr);
     this->Transformable:: copy (spr);
     this->Node         :: copy (spr);
@@ -72,15 +68,7 @@ void Sprite3D:: copy (Sprite3D* spr) const
     if (spr == NULL) {
         throw NullPointerException (__FILE__, __func__, "Sprite3D is NULL.");
     }
-    glGenTextures   (1, &spr->texobj);
-    int err = glGetError ();
-    if (err != GL_NO_ERROR) {
-        throw OpenGLException (__FILE__, __func__, "Can't make texture object, err=%d.", err);
-    }
-
-    spr->scaled     = scaled;
-    spr->appearance = appearance;
-    spr->setImage (image);
+    // scaled, image, appearanceはコンストラクタで設定済み
     spr->crop       = crop;
 }
 

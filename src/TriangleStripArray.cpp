@@ -10,7 +10,7 @@ using namespace std;
 using namespace m3g;
 
 
-TriangleStripArray:: TriangleStripArray (int* indices_, int num_strips, int* strip_array) :
+TriangleStripArray:: TriangleStripArray (const int* indices_, int num_strips, const int* strip_array) :
     indices(0), ibuf(0)
 {
     if (indices_ == NULL) {
@@ -42,7 +42,7 @@ TriangleStripArray:: TriangleStripArray (int* indices_, int num_strips, int* str
 }
 
 
-TriangleStripArray:: TriangleStripArray (int first_index, int num_strips, int* strip_array)  :
+TriangleStripArray:: TriangleStripArray (int first_index, int num_strips, const int* strip_array)  :
     indices(0)
 {
     if (strip_array == NULL) {

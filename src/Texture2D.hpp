@@ -215,7 +215,6 @@ namespace m3g {
         static void renderX ();
 
     private:
-        Texture2D ();
         Texture2D (const Texture2D& img);
         Texture2D& operator= (const Texture2D& img);
 

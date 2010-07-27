@@ -49,9 +49,9 @@ Mesh:: Mesh (VertexBuffer* vertices_, IndexBuffer* submesh, Appearance* appearan
     initialize (vertices_, 1, &submesh, &appearance_);
 }
 
-Mesh:: Mesh () : vertices(0)
-{
-}
+//Mesh:: Mesh () : vertices(0)
+//{
+//}
 
 void Mesh:: initialize (VertexBuffer* vertices_, int num_submesh, IndexBuffer** submeshes, Appearance** appearances_)
 {
@@ -77,7 +77,7 @@ Mesh:: ~Mesh ()
 
 Mesh* Mesh:: duplicate () const
 {
-    Mesh* mesh = new Mesh;
+    Mesh* mesh = new Mesh (vertices, indices.size(), (IndexBuffer**)&indices[0], (Appearance**)&appearances[0]);
     this->Object3D     :: copy (mesh);
     this->Node         :: copy (mesh);
     this->Transformable:: copy (mesh);
@@ -90,9 +90,7 @@ void Mesh:: copy (Mesh* mesh) const
     if (mesh == NULL) {
         throw NullPointerException (__FILE__, __func__, "Mesh is NULL.");
     }
-    mesh->vertices    = vertices;
-    mesh->indices     = indices;
-    mesh->appearances = appearances;
+    // vertices, indices, appearancesはコンストラクタで設定済み
 }
 
 int Mesh:: animate (int world_time)

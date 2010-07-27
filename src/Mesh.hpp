@@ -111,10 +111,6 @@ namespace m3g {
          */
         virtual void render (RenderState& state) const;
 
-//    protected:
-    private:
-        Mesh ();
-
     private:
         /**
          * @~Japanese  共通初期化処理
