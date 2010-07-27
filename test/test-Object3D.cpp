@@ -7,32 +7,27 @@ using namespace std;
 using namespace m3g;
 
 
-// Not implemented, 
-
 TEST (Object3D_defautlt_variables)
 {
     Object3D* obj = new Object3D;
 
     CHECK_EQUAL (0, obj->getAnimationTrackCount());
     //CHECK_EQUAL (0, obj->getReferences(0,0));
-    CHECK_EQUAL (0, obj->getUserID());
-    //CHECK_EQUAL ((void*)0, obj->getUserObject());
+    CHECK_EQUAL (0       , obj->getUserID());
+    CHECK_EQUAL ((void*)0, obj->getUserObject());
 
     delete obj;
 }
 
 TEST (Object3D_set_variables)
 {
-    /*
       Object3D* obj = new Object3D;
-      char buf[16] = {0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15};
 
       obj->setUserID (100);
-      obj->setUserObject ("test", buf);
+      obj->setUserObject ((void*)0x1234);
 
-      CHECK_EQUAL (100, obj->getUserID());
-      CHECK_EQUAL ((void*)buf, obj->getUserObject());
-    */
+      CHECK_EQUAL (100          , obj->getUserID());
+      CHECK_EQUAL ((void*)0x1234, obj->getUserObject());
 }
 
 TEST (Object3D_animation_track) 
@@ -62,9 +57,17 @@ TEST (Object3D_find)
 
 TEST (Object3D_duplicate)
 {
+    KeyframeSequence* key_seq    = new KeyframeSequence (10, 3, KeyframeSequence::LINEAR);
+    AnimationTrack*   anim_track = new AnimationTrack   (key_seq, AnimationTrack::COLOR);
+    
     Object3D* obj0 = new Object3D;
+    obj0->setUserID     (0x87654321);
+    obj0->setUserObject ((void*)0x12345678);
+    obj0->addAnimationTrack (anim_track);
+
     Object3D* obj1 = obj0->duplicate();
   
-    CHECK_EQUAL (obj0->getUserID(), obj1->getUserID());
-    // 後でgetUserObject()のテストも追加
+    CHECK_EQUAL (0x87654321, obj1->getUserID());
+    CHECK_EQUAL ((void*)0x12345678, obj1->getUserObject());
+    CHECK_EQUAL (anim_track, obj1->getAnimationTrack(0));
 }

@@ -35,34 +35,15 @@ test-AnimationController.o: /usr/include/unittest++/TestList.h
 test-AnimationController.o: /usr/include/unittest++/TestSuite.h
 test-AnimationController.o: /usr/include/unittest++/TestResults.h
 test-AnimationController.o: /usr/include/unittest++/TestMacros.h
-test-AnimationController.o: /usr/include/unittest++/Posix/SignalTranslator.h
-test-AnimationController.o: /usr/include/setjmp.h /usr/include/features.h
-test-AnimationController.o: /usr/include/sys/cdefs.h
-test-AnimationController.o: /usr/include/bits/wordsize.h
-test-AnimationController.o: /usr/include/gnu/stubs.h
-test-AnimationController.o: /usr/include/gnu/stubs-64.h
-test-AnimationController.o: /usr/include/bits/setjmp.h
-test-AnimationController.o: /usr/include/bits/sigset.h /usr/include/signal.h
-test-AnimationController.o: /usr/include/bits/types.h
-test-AnimationController.o: /usr/include/bits/typesizes.h
-test-AnimationController.o: /usr/include/bits/signum.h /usr/include/time.h
-test-AnimationController.o: /usr/include/bits/siginfo.h
-test-AnimationController.o: /usr/include/bits/sigaction.h
-test-AnimationController.o: /usr/include/bits/sigcontext.h
-test-AnimationController.o: /usr/include/bits/sigstack.h
-test-AnimationController.o: /usr/include/bits/pthreadtypes.h
-test-AnimationController.o: /usr/include/bits/sigthread.h
-test-AnimationController.o: /usr/include/unittest++/CheckMacros.h
-test-AnimationController.o: /usr/include/unittest++/Checks.h
+test-AnimationController.o: /usr/include/unittest++/ExecuteTest.h
 test-AnimationController.o: /usr/include/unittest++/MemoryOutStream.h
 test-AnimationController.o: /usr/include/unittest++/AssertException.h
+test-AnimationController.o: /usr/include/unittest++/CurrentTest.h
+test-AnimationController.o: /usr/include/unittest++/CheckMacros.h
+test-AnimationController.o: /usr/include/unittest++/Checks.h
 test-AnimationController.o: /usr/include/unittest++/TestRunner.h
 test-AnimationController.o: /usr/include/unittest++/TimeConstraint.h
 test-AnimationController.o: /usr/include/unittest++/TimeHelpers.h
-test-AnimationController.o: /usr/include/unittest++/Posix/TimeHelpers.h
-test-AnimationController.o: /usr/include/sys/time.h /usr/include/bits/time.h
-test-AnimationController.o: /usr/include/sys/select.h
-test-AnimationController.o: /usr/include/bits/select.h
 test-AnimationController.o: ../src/AnimationTrack.hpp ../src/Object3D.hpp
 test-AnimationController.o: ../src/m3gdef.hpp ../src/m3ginternal.hpp
 test-AnimationController.o: ../src/Object.hpp ../src/AnimationController.hpp
@@ -75,30 +56,15 @@ test-AnimationTrack.o: /usr/include/unittest++/TestList.h
 test-AnimationTrack.o: /usr/include/unittest++/TestSuite.h
 test-AnimationTrack.o: /usr/include/unittest++/TestResults.h
 test-AnimationTrack.o: /usr/include/unittest++/TestMacros.h
-test-AnimationTrack.o: /usr/include/unittest++/Posix/SignalTranslator.h
-test-AnimationTrack.o: /usr/include/setjmp.h /usr/include/features.h
-test-AnimationTrack.o: /usr/include/sys/cdefs.h /usr/include/bits/wordsize.h
-test-AnimationTrack.o: /usr/include/gnu/stubs.h /usr/include/gnu/stubs-64.h
-test-AnimationTrack.o: /usr/include/bits/setjmp.h /usr/include/bits/sigset.h
-test-AnimationTrack.o: /usr/include/signal.h /usr/include/bits/types.h
-test-AnimationTrack.o: /usr/include/bits/typesizes.h
-test-AnimationTrack.o: /usr/include/bits/signum.h /usr/include/time.h
-test-AnimationTrack.o: /usr/include/bits/siginfo.h
-test-AnimationTrack.o: /usr/include/bits/sigaction.h
-test-AnimationTrack.o: /usr/include/bits/sigcontext.h
-test-AnimationTrack.o: /usr/include/bits/sigstack.h
-test-AnimationTrack.o: /usr/include/bits/pthreadtypes.h
-test-AnimationTrack.o: /usr/include/bits/sigthread.h
-test-AnimationTrack.o: /usr/include/unittest++/CheckMacros.h
-test-AnimationTrack.o: /usr/include/unittest++/Checks.h
+test-AnimationTrack.o: /usr/include/unittest++/ExecuteTest.h
 test-AnimationTrack.o: /usr/include/unittest++/MemoryOutStream.h
 test-AnimationTrack.o: /usr/include/unittest++/AssertException.h
+test-AnimationTrack.o: /usr/include/unittest++/CurrentTest.h
+test-AnimationTrack.o: /usr/include/unittest++/CheckMacros.h
+test-AnimationTrack.o: /usr/include/unittest++/Checks.h
 test-AnimationTrack.o: /usr/include/unittest++/TestRunner.h
 test-AnimationTrack.o: /usr/include/unittest++/TimeConstraint.h
 test-AnimationTrack.o: /usr/include/unittest++/TimeHelpers.h
-test-AnimationTrack.o: /usr/include/unittest++/Posix/TimeHelpers.h
-test-AnimationTrack.o: /usr/include/sys/time.h /usr/include/bits/time.h
-test-AnimationTrack.o: /usr/include/sys/select.h /usr/include/bits/select.h
 test-AnimationTrack.o: ../src/AnimationTrack.hpp ../src/Object3D.hpp
 test-AnimationTrack.o: ../src/m3gdef.hpp ../src/m3ginternal.hpp
 test-AnimationTrack.o: ../src/Object.hpp ../src/AnimationController.hpp
@@ -111,29 +77,15 @@ test-Appearance.o: /usr/include/unittest++/TestList.h
 test-Appearance.o: /usr/include/unittest++/TestSuite.h
 test-Appearance.o: /usr/include/unittest++/TestResults.h
 test-Appearance.o: /usr/include/unittest++/TestMacros.h
-test-Appearance.o: /usr/include/unittest++/Posix/SignalTranslator.h
-test-Appearance.o: /usr/include/setjmp.h /usr/include/features.h
-test-Appearance.o: /usr/include/sys/cdefs.h /usr/include/bits/wordsize.h
-test-Appearance.o: /usr/include/gnu/stubs.h /usr/include/gnu/stubs-64.h
-test-Appearance.o: /usr/include/bits/setjmp.h /usr/include/bits/sigset.h
-test-Appearance.o: /usr/include/signal.h /usr/include/bits/types.h
-test-Appearance.o: /usr/include/bits/typesizes.h /usr/include/bits/signum.h
-test-Appearance.o: /usr/include/time.h /usr/include/bits/siginfo.h
-test-Appearance.o: /usr/include/bits/sigaction.h
-test-Appearance.o: /usr/include/bits/sigcontext.h
-test-Appearance.o: /usr/include/bits/sigstack.h
-test-Appearance.o: /usr/include/bits/pthreadtypes.h
-test-Appearance.o: /usr/include/bits/sigthread.h
-test-Appearance.o: /usr/include/unittest++/CheckMacros.h
-test-Appearance.o: /usr/include/unittest++/Checks.h
+test-Appearance.o: /usr/include/unittest++/ExecuteTest.h
 test-Appearance.o: /usr/include/unittest++/MemoryOutStream.h
 test-Appearance.o: /usr/include/unittest++/AssertException.h
+test-Appearance.o: /usr/include/unittest++/CurrentTest.h
+test-Appearance.o: /usr/include/unittest++/CheckMacros.h
+test-Appearance.o: /usr/include/unittest++/Checks.h
 test-Appearance.o: /usr/include/unittest++/TestRunner.h
 test-Appearance.o: /usr/include/unittest++/TimeConstraint.h
 test-Appearance.o: /usr/include/unittest++/TimeHelpers.h
-test-Appearance.o: /usr/include/unittest++/Posix/TimeHelpers.h
-test-Appearance.o: /usr/include/sys/time.h /usr/include/bits/time.h
-test-Appearance.o: /usr/include/sys/select.h /usr/include/bits/select.h
 test-Appearance.o: ../src/Appearance.hpp ../src/Object3D.hpp
 test-Appearance.o: ../src/m3gdef.hpp ../src/m3ginternal.hpp ../src/Object.hpp
 test-Appearance.o: ../src/PolygonMode.hpp ../src/CompositingMode.hpp
@@ -149,29 +101,15 @@ test-Background.o: /usr/include/unittest++/TestList.h
 test-Background.o: /usr/include/unittest++/TestSuite.h
 test-Background.o: /usr/include/unittest++/TestResults.h
 test-Background.o: /usr/include/unittest++/TestMacros.h
-test-Background.o: /usr/include/unittest++/Posix/SignalTranslator.h
-test-Background.o: /usr/include/setjmp.h /usr/include/features.h
-test-Background.o: /usr/include/sys/cdefs.h /usr/include/bits/wordsize.h
-test-Background.o: /usr/include/gnu/stubs.h /usr/include/gnu/stubs-64.h
-test-Background.o: /usr/include/bits/setjmp.h /usr/include/bits/sigset.h
-test-Background.o: /usr/include/signal.h /usr/include/bits/types.h
-test-Background.o: /usr/include/bits/typesizes.h /usr/include/bits/signum.h
-test-Background.o: /usr/include/time.h /usr/include/bits/siginfo.h
-test-Background.o: /usr/include/bits/sigaction.h
-test-Background.o: /usr/include/bits/sigcontext.h
-test-Background.o: /usr/include/bits/sigstack.h
-test-Background.o: /usr/include/bits/pthreadtypes.h
-test-Background.o: /usr/include/bits/sigthread.h
-test-Background.o: /usr/include/unittest++/CheckMacros.h
-test-Background.o: /usr/include/unittest++/Checks.h
+test-Background.o: /usr/include/unittest++/ExecuteTest.h
 test-Background.o: /usr/include/unittest++/MemoryOutStream.h
 test-Background.o: /usr/include/unittest++/AssertException.h
+test-Background.o: /usr/include/unittest++/CurrentTest.h
+test-Background.o: /usr/include/unittest++/CheckMacros.h
+test-Background.o: /usr/include/unittest++/Checks.h
 test-Background.o: /usr/include/unittest++/TestRunner.h
 test-Background.o: /usr/include/unittest++/TimeConstraint.h
 test-Background.o: /usr/include/unittest++/TimeHelpers.h
-test-Background.o: /usr/include/unittest++/Posix/TimeHelpers.h
-test-Background.o: /usr/include/sys/time.h /usr/include/bits/time.h
-test-Background.o: /usr/include/sys/select.h /usr/include/bits/select.h
 test-Background.o: ../src/Background.hpp ../src/Object3D.hpp
 test-Background.o: ../src/m3gdef.hpp ../src/m3ginternal.hpp ../src/Object.hpp
 test-Background.o: ../src/Image2D.hpp
@@ -183,31 +121,19 @@ test-Camera.o: /usr/include/unittest++/TestList.h
 test-Camera.o: /usr/include/unittest++/TestSuite.h
 test-Camera.o: /usr/include/unittest++/TestResults.h
 test-Camera.o: /usr/include/unittest++/TestMacros.h
-test-Camera.o: /usr/include/unittest++/Posix/SignalTranslator.h
-test-Camera.o: /usr/include/setjmp.h /usr/include/features.h
-test-Camera.o: /usr/include/sys/cdefs.h /usr/include/bits/wordsize.h
-test-Camera.o: /usr/include/gnu/stubs.h /usr/include/gnu/stubs-64.h
-test-Camera.o: /usr/include/bits/setjmp.h /usr/include/bits/sigset.h
-test-Camera.o: /usr/include/signal.h /usr/include/bits/types.h
-test-Camera.o: /usr/include/bits/typesizes.h /usr/include/bits/signum.h
-test-Camera.o: /usr/include/time.h /usr/include/bits/siginfo.h
-test-Camera.o: /usr/include/bits/sigaction.h /usr/include/bits/sigcontext.h
-test-Camera.o: /usr/include/bits/sigstack.h /usr/include/bits/pthreadtypes.h
-test-Camera.o: /usr/include/bits/sigthread.h
-test-Camera.o: /usr/include/unittest++/CheckMacros.h
-test-Camera.o: /usr/include/unittest++/Checks.h
+test-Camera.o: /usr/include/unittest++/ExecuteTest.h
 test-Camera.o: /usr/include/unittest++/MemoryOutStream.h
 test-Camera.o: /usr/include/unittest++/AssertException.h
+test-Camera.o: /usr/include/unittest++/CurrentTest.h
+test-Camera.o: /usr/include/unittest++/CheckMacros.h
+test-Camera.o: /usr/include/unittest++/Checks.h
 test-Camera.o: /usr/include/unittest++/TestRunner.h
 test-Camera.o: /usr/include/unittest++/TimeConstraint.h
-test-Camera.o: /usr/include/unittest++/TimeHelpers.h
-test-Camera.o: /usr/include/unittest++/Posix/TimeHelpers.h
-test-Camera.o: /usr/include/sys/time.h /usr/include/bits/time.h
-test-Camera.o: /usr/include/sys/select.h /usr/include/bits/select.h
-test-Camera.o: ../src/Camera.hpp ../src/Node.hpp ../src/Transformable.hpp
-test-Camera.o: ../src/Object3D.hpp ../src/m3gdef.hpp ../src/m3ginternal.hpp
-test-Camera.o: ../src/Object.hpp ../src/Quaternion.hpp ../src/Transform.hpp
-test-Camera.o: ../src/Matrix.hpp ../src/Group.hpp
+test-Camera.o: /usr/include/unittest++/TimeHelpers.h ../src/Camera.hpp
+test-Camera.o: ../src/Node.hpp ../src/Transformable.hpp ../src/Object3D.hpp
+test-Camera.o: ../src/m3gdef.hpp ../src/m3ginternal.hpp ../src/Object.hpp
+test-Camera.o: ../src/Quaternion.hpp ../src/Transform.hpp ../src/Matrix.hpp
+test-Camera.o: ../src/Group.hpp
 test-CompositingMode.o: /usr/include/unittest++/UnitTest++.h
 test-CompositingMode.o: /usr/include/unittest++/Config.h
 test-CompositingMode.o: /usr/include/unittest++/Test.h
@@ -216,30 +142,15 @@ test-CompositingMode.o: /usr/include/unittest++/TestList.h
 test-CompositingMode.o: /usr/include/unittest++/TestSuite.h
 test-CompositingMode.o: /usr/include/unittest++/TestResults.h
 test-CompositingMode.o: /usr/include/unittest++/TestMacros.h
-test-CompositingMode.o: /usr/include/unittest++/Posix/SignalTranslator.h
-test-CompositingMode.o: /usr/include/setjmp.h /usr/include/features.h
-test-CompositingMode.o: /usr/include/sys/cdefs.h /usr/include/bits/wordsize.h
-test-CompositingMode.o: /usr/include/gnu/stubs.h /usr/include/gnu/stubs-64.h
-test-CompositingMode.o: /usr/include/bits/setjmp.h /usr/include/bits/sigset.h
-test-CompositingMode.o: /usr/include/signal.h /usr/include/bits/types.h
-test-CompositingMode.o: /usr/include/bits/typesizes.h
-test-CompositingMode.o: /usr/include/bits/signum.h /usr/include/time.h
-test-CompositingMode.o: /usr/include/bits/siginfo.h
-test-CompositingMode.o: /usr/include/bits/sigaction.h
-test-CompositingMode.o: /usr/include/bits/sigcontext.h
-test-CompositingMode.o: /usr/include/bits/sigstack.h
-test-CompositingMode.o: /usr/include/bits/pthreadtypes.h
-test-CompositingMode.o: /usr/include/bits/sigthread.h
-test-CompositingMode.o: /usr/include/unittest++/CheckMacros.h
-test-CompositingMode.o: /usr/include/unittest++/Checks.h
+test-CompositingMode.o: /usr/include/unittest++/ExecuteTest.h
 test-CompositingMode.o: /usr/include/unittest++/MemoryOutStream.h
 test-CompositingMode.o: /usr/include/unittest++/AssertException.h
+test-CompositingMode.o: /usr/include/unittest++/CurrentTest.h
+test-CompositingMode.o: /usr/include/unittest++/CheckMacros.h
+test-CompositingMode.o: /usr/include/unittest++/Checks.h
 test-CompositingMode.o: /usr/include/unittest++/TestRunner.h
 test-CompositingMode.o: /usr/include/unittest++/TimeConstraint.h
 test-CompositingMode.o: /usr/include/unittest++/TimeHelpers.h
-test-CompositingMode.o: /usr/include/unittest++/Posix/TimeHelpers.h
-test-CompositingMode.o: /usr/include/sys/time.h /usr/include/bits/time.h
-test-CompositingMode.o: /usr/include/sys/select.h /usr/include/bits/select.h
 test-CompositingMode.o: ../src/CompositingMode.hpp ../src/Object3D.hpp
 test-CompositingMode.o: ../src/m3gdef.hpp ../src/m3ginternal.hpp
 test-CompositingMode.o: ../src/Object.hpp
@@ -251,29 +162,15 @@ test-Exception.o: /usr/include/unittest++/TestList.h
 test-Exception.o: /usr/include/unittest++/TestSuite.h
 test-Exception.o: /usr/include/unittest++/TestResults.h
 test-Exception.o: /usr/include/unittest++/TestMacros.h
-test-Exception.o: /usr/include/unittest++/Posix/SignalTranslator.h
-test-Exception.o: /usr/include/setjmp.h /usr/include/features.h
-test-Exception.o: /usr/include/sys/cdefs.h /usr/include/bits/wordsize.h
-test-Exception.o: /usr/include/gnu/stubs.h /usr/include/gnu/stubs-64.h
-test-Exception.o: /usr/include/bits/setjmp.h /usr/include/bits/sigset.h
-test-Exception.o: /usr/include/signal.h /usr/include/bits/types.h
-test-Exception.o: /usr/include/bits/typesizes.h /usr/include/bits/signum.h
-test-Exception.o: /usr/include/time.h /usr/include/bits/siginfo.h
-test-Exception.o: /usr/include/bits/sigaction.h
-test-Exception.o: /usr/include/bits/sigcontext.h /usr/include/bits/sigstack.h
-test-Exception.o: /usr/include/bits/pthreadtypes.h
-test-Exception.o: /usr/include/bits/sigthread.h
-test-Exception.o: /usr/include/unittest++/CheckMacros.h
-test-Exception.o: /usr/include/unittest++/Checks.h
+test-Exception.o: /usr/include/unittest++/ExecuteTest.h
 test-Exception.o: /usr/include/unittest++/MemoryOutStream.h
 test-Exception.o: /usr/include/unittest++/AssertException.h
+test-Exception.o: /usr/include/unittest++/CurrentTest.h
+test-Exception.o: /usr/include/unittest++/CheckMacros.h
+test-Exception.o: /usr/include/unittest++/Checks.h
 test-Exception.o: /usr/include/unittest++/TestRunner.h
 test-Exception.o: /usr/include/unittest++/TimeConstraint.h
-test-Exception.o: /usr/include/unittest++/TimeHelpers.h
-test-Exception.o: /usr/include/unittest++/Posix/TimeHelpers.h
-test-Exception.o: /usr/include/sys/time.h /usr/include/bits/time.h
-test-Exception.o: /usr/include/sys/select.h /usr/include/bits/select.h
-test-Exception.o: ../src/Exception.hpp
+test-Exception.o: /usr/include/unittest++/TimeHelpers.h ../src/Exception.hpp
 test-Fog.o: /usr/include/unittest++/UnitTest++.h
 test-Fog.o: /usr/include/unittest++/Config.h /usr/include/unittest++/Test.h
 test-Fog.o: /usr/include/unittest++/TestDetails.h
@@ -281,29 +178,17 @@ test-Fog.o: /usr/include/unittest++/TestList.h
 test-Fog.o: /usr/include/unittest++/TestSuite.h
 test-Fog.o: /usr/include/unittest++/TestResults.h
 test-Fog.o: /usr/include/unittest++/TestMacros.h
-test-Fog.o: /usr/include/unittest++/Posix/SignalTranslator.h
-test-Fog.o: /usr/include/setjmp.h /usr/include/features.h
-test-Fog.o: /usr/include/sys/cdefs.h /usr/include/bits/wordsize.h
-test-Fog.o: /usr/include/gnu/stubs.h /usr/include/gnu/stubs-64.h
-test-Fog.o: /usr/include/bits/setjmp.h /usr/include/bits/sigset.h
-test-Fog.o: /usr/include/signal.h /usr/include/bits/types.h
-test-Fog.o: /usr/include/bits/typesizes.h /usr/include/bits/signum.h
-test-Fog.o: /usr/include/time.h /usr/include/bits/siginfo.h
-test-Fog.o: /usr/include/bits/sigaction.h /usr/include/bits/sigcontext.h
-test-Fog.o: /usr/include/bits/sigstack.h /usr/include/bits/pthreadtypes.h
-test-Fog.o: /usr/include/bits/sigthread.h
-test-Fog.o: /usr/include/unittest++/CheckMacros.h
-test-Fog.o: /usr/include/unittest++/Checks.h
+test-Fog.o: /usr/include/unittest++/ExecuteTest.h
 test-Fog.o: /usr/include/unittest++/MemoryOutStream.h
 test-Fog.o: /usr/include/unittest++/AssertException.h
+test-Fog.o: /usr/include/unittest++/CurrentTest.h
+test-Fog.o: /usr/include/unittest++/CheckMacros.h
+test-Fog.o: /usr/include/unittest++/Checks.h
 test-Fog.o: /usr/include/unittest++/TestRunner.h
 test-Fog.o: /usr/include/unittest++/TimeConstraint.h
-test-Fog.o: /usr/include/unittest++/TimeHelpers.h
-test-Fog.o: /usr/include/unittest++/Posix/TimeHelpers.h
-test-Fog.o: /usr/include/sys/time.h /usr/include/bits/time.h
-test-Fog.o: /usr/include/sys/select.h /usr/include/bits/select.h
-test-Fog.o: ../src/Fog.hpp ../src/Object3D.hpp ../src/m3gdef.hpp
-test-Fog.o: ../src/m3ginternal.hpp ../src/Object.hpp
+test-Fog.o: /usr/include/unittest++/TimeHelpers.h ../src/Fog.hpp
+test-Fog.o: ../src/Object3D.hpp ../src/m3gdef.hpp ../src/m3ginternal.hpp
+test-Fog.o: ../src/Object.hpp
 test-Group.o: /usr/include/unittest++/UnitTest++.h
 test-Group.o: /usr/include/unittest++/Config.h /usr/include/unittest++/Test.h
 test-Group.o: /usr/include/unittest++/TestDetails.h
@@ -311,31 +196,18 @@ test-Group.o: /usr/include/unittest++/TestList.h
 test-Group.o: /usr/include/unittest++/TestSuite.h
 test-Group.o: /usr/include/unittest++/TestResults.h
 test-Group.o: /usr/include/unittest++/TestMacros.h
-test-Group.o: /usr/include/unittest++/Posix/SignalTranslator.h
-test-Group.o: /usr/include/setjmp.h /usr/include/features.h
-test-Group.o: /usr/include/sys/cdefs.h /usr/include/bits/wordsize.h
-test-Group.o: /usr/include/gnu/stubs.h /usr/include/gnu/stubs-64.h
-test-Group.o: /usr/include/bits/setjmp.h /usr/include/bits/sigset.h
-test-Group.o: /usr/include/signal.h /usr/include/bits/types.h
-test-Group.o: /usr/include/bits/typesizes.h /usr/include/bits/signum.h
-test-Group.o: /usr/include/time.h /usr/include/bits/siginfo.h
-test-Group.o: /usr/include/bits/sigaction.h /usr/include/bits/sigcontext.h
-test-Group.o: /usr/include/bits/sigstack.h /usr/include/bits/pthreadtypes.h
-test-Group.o: /usr/include/bits/sigthread.h
-test-Group.o: /usr/include/unittest++/CheckMacros.h
-test-Group.o: /usr/include/unittest++/Checks.h
+test-Group.o: /usr/include/unittest++/ExecuteTest.h
 test-Group.o: /usr/include/unittest++/MemoryOutStream.h
 test-Group.o: /usr/include/unittest++/AssertException.h
+test-Group.o: /usr/include/unittest++/CurrentTest.h
+test-Group.o: /usr/include/unittest++/CheckMacros.h
+test-Group.o: /usr/include/unittest++/Checks.h
 test-Group.o: /usr/include/unittest++/TestRunner.h
 test-Group.o: /usr/include/unittest++/TimeConstraint.h
-test-Group.o: /usr/include/unittest++/TimeHelpers.h
-test-Group.o: /usr/include/unittest++/Posix/TimeHelpers.h
-test-Group.o: /usr/include/sys/time.h /usr/include/bits/time.h
-test-Group.o: /usr/include/sys/select.h /usr/include/bits/select.h
-test-Group.o: ../src/Group.hpp ../src/Node.hpp ../src/Transformable.hpp
-test-Group.o: ../src/Object3D.hpp ../src/m3gdef.hpp ../src/m3ginternal.hpp
-test-Group.o: ../src/Object.hpp ../src/Quaternion.hpp ../src/Transform.hpp
-test-Group.o: ../src/Matrix.hpp
+test-Group.o: /usr/include/unittest++/TimeHelpers.h ../src/Group.hpp
+test-Group.o: ../src/Node.hpp ../src/Transformable.hpp ../src/Object3D.hpp
+test-Group.o: ../src/m3gdef.hpp ../src/m3ginternal.hpp ../src/Object.hpp
+test-Group.o: ../src/Quaternion.hpp ../src/Transform.hpp ../src/Matrix.hpp
 test-Image2D.o: /usr/include/unittest++/UnitTest++.h
 test-Image2D.o: /usr/include/unittest++/Config.h
 test-Image2D.o: /usr/include/unittest++/Test.h
@@ -344,30 +216,34 @@ test-Image2D.o: /usr/include/unittest++/TestList.h
 test-Image2D.o: /usr/include/unittest++/TestSuite.h
 test-Image2D.o: /usr/include/unittest++/TestResults.h
 test-Image2D.o: /usr/include/unittest++/TestMacros.h
-test-Image2D.o: /usr/include/unittest++/Posix/SignalTranslator.h
-test-Image2D.o: /usr/include/setjmp.h /usr/include/features.h
-test-Image2D.o: /usr/include/sys/cdefs.h /usr/include/bits/wordsize.h
-test-Image2D.o: /usr/include/gnu/stubs.h /usr/include/gnu/stubs-64.h
-test-Image2D.o: /usr/include/bits/setjmp.h /usr/include/bits/sigset.h
-test-Image2D.o: /usr/include/signal.h /usr/include/bits/types.h
-test-Image2D.o: /usr/include/bits/typesizes.h /usr/include/bits/signum.h
-test-Image2D.o: /usr/include/time.h /usr/include/bits/siginfo.h
-test-Image2D.o: /usr/include/bits/sigaction.h /usr/include/bits/sigcontext.h
-test-Image2D.o: /usr/include/bits/sigstack.h /usr/include/bits/pthreadtypes.h
-test-Image2D.o: /usr/include/bits/sigthread.h
-test-Image2D.o: /usr/include/unittest++/CheckMacros.h
-test-Image2D.o: /usr/include/unittest++/Checks.h
+test-Image2D.o: /usr/include/unittest++/ExecuteTest.h
 test-Image2D.o: /usr/include/unittest++/MemoryOutStream.h
 test-Image2D.o: /usr/include/unittest++/AssertException.h
+test-Image2D.o: /usr/include/unittest++/CurrentTest.h
+test-Image2D.o: /usr/include/unittest++/CheckMacros.h
+test-Image2D.o: /usr/include/unittest++/Checks.h
 test-Image2D.o: /usr/include/unittest++/TestRunner.h
 test-Image2D.o: /usr/include/unittest++/TimeConstraint.h
-test-Image2D.o: /usr/include/unittest++/TimeHelpers.h
-test-Image2D.o: /usr/include/unittest++/Posix/TimeHelpers.h
-test-Image2D.o: /usr/include/sys/time.h /usr/include/bits/time.h
-test-Image2D.o: /usr/include/sys/select.h /usr/include/bits/select.h
-test-Image2D.o: ../src/Image2D.hpp ../src/Object3D.hpp ../src/m3gdef.hpp
-test-Image2D.o: ../src/m3ginternal.hpp ../src/Object.hpp ../src/Exception.hpp
-test-Image2D.o: ../src/Loader.hpp
+test-Image2D.o: /usr/include/unittest++/TimeHelpers.h ../src/Image2D.hpp
+test-Image2D.o: ../src/Object3D.hpp ../src/m3gdef.hpp ../src/m3ginternal.hpp
+test-Image2D.o: ../src/Object.hpp ../src/Exception.hpp ../src/Loader.hpp
+test-Image2D.o: ../lib/M3GReader.hpp ../lib/InMemoryStream.hpp
+test-Image2D.o: ../lib/M3GStruct.hpp ../src/m3g.hpp ../src/Graphics3D.hpp
+test-Image2D.o: ../src/AnimationController.hpp ../src/AnimationTrack.hpp
+test-Image2D.o: ../src/Appearance.hpp ../src/Background.hpp
+test-Image2D.o: ../src/CompositingMode.hpp ../src/Fog.hpp
+test-Image2D.o: ../src/IndexBuffer.hpp ../src/TriangleStripArray.hpp
+test-Image2D.o: ../src/KeyframeSequence.hpp ../src/Keyframe.hpp
+test-Image2D.o: ../src/Material.hpp ../src/PolygonMode.hpp
+test-Image2D.o: ../src/Transformable.hpp ../src/Quaternion.hpp
+test-Image2D.o: ../src/Transform.hpp ../src/Matrix.hpp ../src/Node.hpp
+test-Image2D.o: ../src/Camera.hpp ../src/Group.hpp ../src/World.hpp
+test-Image2D.o: ../src/Light.hpp ../src/Mesh.hpp ../src/MorphingMesh.hpp
+test-Image2D.o: ../src/SkinnedMesh.hpp ../src/BoneIndex.hpp
+test-Image2D.o: ../src/Sprite3D.hpp ../src/Texture2D.hpp
+test-Image2D.o: ../src/VertexArray.hpp ../src/VertexBuffer.hpp
+test-Image2D.o: ../src/RayIntersection.hpp ../src/Vector.hpp
+test-Image2D.o: ../src/RenderState.hpp
 test-Intersect.o: /usr/include/unittest++/UnitTest++.h
 test-Intersect.o: /usr/include/unittest++/Config.h
 test-Intersect.o: /usr/include/unittest++/Test.h
@@ -376,29 +252,16 @@ test-Intersect.o: /usr/include/unittest++/TestList.h
 test-Intersect.o: /usr/include/unittest++/TestSuite.h
 test-Intersect.o: /usr/include/unittest++/TestResults.h
 test-Intersect.o: /usr/include/unittest++/TestMacros.h
-test-Intersect.o: /usr/include/unittest++/Posix/SignalTranslator.h
-test-Intersect.o: /usr/include/setjmp.h /usr/include/features.h
-test-Intersect.o: /usr/include/sys/cdefs.h /usr/include/bits/wordsize.h
-test-Intersect.o: /usr/include/gnu/stubs.h /usr/include/gnu/stubs-64.h
-test-Intersect.o: /usr/include/bits/setjmp.h /usr/include/bits/sigset.h
-test-Intersect.o: /usr/include/signal.h /usr/include/bits/types.h
-test-Intersect.o: /usr/include/bits/typesizes.h /usr/include/bits/signum.h
-test-Intersect.o: /usr/include/time.h /usr/include/bits/siginfo.h
-test-Intersect.o: /usr/include/bits/sigaction.h
-test-Intersect.o: /usr/include/bits/sigcontext.h /usr/include/bits/sigstack.h
-test-Intersect.o: /usr/include/bits/pthreadtypes.h
-test-Intersect.o: /usr/include/bits/sigthread.h
-test-Intersect.o: /usr/include/unittest++/CheckMacros.h
-test-Intersect.o: /usr/include/unittest++/Checks.h
+test-Intersect.o: /usr/include/unittest++/ExecuteTest.h
 test-Intersect.o: /usr/include/unittest++/MemoryOutStream.h
 test-Intersect.o: /usr/include/unittest++/AssertException.h
+test-Intersect.o: /usr/include/unittest++/CurrentTest.h
+test-Intersect.o: /usr/include/unittest++/CheckMacros.h
+test-Intersect.o: /usr/include/unittest++/Checks.h
 test-Intersect.o: /usr/include/unittest++/TestRunner.h
 test-Intersect.o: /usr/include/unittest++/TimeConstraint.h
-test-Intersect.o: /usr/include/unittest++/TimeHelpers.h
-test-Intersect.o: /usr/include/unittest++/Posix/TimeHelpers.h
-test-Intersect.o: /usr/include/sys/time.h /usr/include/bits/time.h
-test-Intersect.o: /usr/include/sys/select.h /usr/include/bits/select.h
-test-Intersect.o: ../src/Intersect.hpp ../src/Vector.hpp
+test-Intersect.o: /usr/include/unittest++/TimeHelpers.h ../src/Intersect.hpp
+test-Intersect.o: ../src/Vector.hpp
 test-Keyframe.o: /usr/include/unittest++/UnitTest++.h
 test-Keyframe.o: /usr/include/unittest++/Config.h
 test-Keyframe.o: /usr/include/unittest++/Test.h
@@ -407,29 +270,16 @@ test-Keyframe.o: /usr/include/unittest++/TestList.h
 test-Keyframe.o: /usr/include/unittest++/TestSuite.h
 test-Keyframe.o: /usr/include/unittest++/TestResults.h
 test-Keyframe.o: /usr/include/unittest++/TestMacros.h
-test-Keyframe.o: /usr/include/unittest++/Posix/SignalTranslator.h
-test-Keyframe.o: /usr/include/setjmp.h /usr/include/features.h
-test-Keyframe.o: /usr/include/sys/cdefs.h /usr/include/bits/wordsize.h
-test-Keyframe.o: /usr/include/gnu/stubs.h /usr/include/gnu/stubs-64.h
-test-Keyframe.o: /usr/include/bits/setjmp.h /usr/include/bits/sigset.h
-test-Keyframe.o: /usr/include/signal.h /usr/include/bits/types.h
-test-Keyframe.o: /usr/include/bits/typesizes.h /usr/include/bits/signum.h
-test-Keyframe.o: /usr/include/time.h /usr/include/bits/siginfo.h
-test-Keyframe.o: /usr/include/bits/sigaction.h /usr/include/bits/sigcontext.h
-test-Keyframe.o: /usr/include/bits/sigstack.h
-test-Keyframe.o: /usr/include/bits/pthreadtypes.h
-test-Keyframe.o: /usr/include/bits/sigthread.h
-test-Keyframe.o: /usr/include/unittest++/CheckMacros.h
-test-Keyframe.o: /usr/include/unittest++/Checks.h
+test-Keyframe.o: /usr/include/unittest++/ExecuteTest.h
 test-Keyframe.o: /usr/include/unittest++/MemoryOutStream.h
 test-Keyframe.o: /usr/include/unittest++/AssertException.h
+test-Keyframe.o: /usr/include/unittest++/CurrentTest.h
+test-Keyframe.o: /usr/include/unittest++/CheckMacros.h
+test-Keyframe.o: /usr/include/unittest++/Checks.h
 test-Keyframe.o: /usr/include/unittest++/TestRunner.h
 test-Keyframe.o: /usr/include/unittest++/TimeConstraint.h
-test-Keyframe.o: /usr/include/unittest++/TimeHelpers.h
-test-Keyframe.o: /usr/include/unittest++/Posix/TimeHelpers.h
-test-Keyframe.o: /usr/include/sys/time.h /usr/include/bits/time.h
-test-Keyframe.o: /usr/include/sys/select.h /usr/include/bits/select.h
-test-Keyframe.o: ../src/Keyframe.hpp ../src/Quaternion.hpp
+test-Keyframe.o: /usr/include/unittest++/TimeHelpers.h ../src/Keyframe.hpp
+test-Keyframe.o: ../src/Quaternion.hpp
 test-KeyframeSequence.o: /usr/include/unittest++/UnitTest++.h
 test-KeyframeSequence.o: /usr/include/unittest++/Config.h
 test-KeyframeSequence.o: /usr/include/unittest++/Test.h
@@ -438,32 +288,15 @@ test-KeyframeSequence.o: /usr/include/unittest++/TestList.h
 test-KeyframeSequence.o: /usr/include/unittest++/TestSuite.h
 test-KeyframeSequence.o: /usr/include/unittest++/TestResults.h
 test-KeyframeSequence.o: /usr/include/unittest++/TestMacros.h
-test-KeyframeSequence.o: /usr/include/unittest++/Posix/SignalTranslator.h
-test-KeyframeSequence.o: /usr/include/setjmp.h /usr/include/features.h
-test-KeyframeSequence.o: /usr/include/sys/cdefs.h
-test-KeyframeSequence.o: /usr/include/bits/wordsize.h
-test-KeyframeSequence.o: /usr/include/gnu/stubs.h /usr/include/gnu/stubs-64.h
-test-KeyframeSequence.o: /usr/include/bits/setjmp.h
-test-KeyframeSequence.o: /usr/include/bits/sigset.h /usr/include/signal.h
-test-KeyframeSequence.o: /usr/include/bits/types.h
-test-KeyframeSequence.o: /usr/include/bits/typesizes.h
-test-KeyframeSequence.o: /usr/include/bits/signum.h /usr/include/time.h
-test-KeyframeSequence.o: /usr/include/bits/siginfo.h
-test-KeyframeSequence.o: /usr/include/bits/sigaction.h
-test-KeyframeSequence.o: /usr/include/bits/sigcontext.h
-test-KeyframeSequence.o: /usr/include/bits/sigstack.h
-test-KeyframeSequence.o: /usr/include/bits/pthreadtypes.h
-test-KeyframeSequence.o: /usr/include/bits/sigthread.h
-test-KeyframeSequence.o: /usr/include/unittest++/CheckMacros.h
-test-KeyframeSequence.o: /usr/include/unittest++/Checks.h
+test-KeyframeSequence.o: /usr/include/unittest++/ExecuteTest.h
 test-KeyframeSequence.o: /usr/include/unittest++/MemoryOutStream.h
 test-KeyframeSequence.o: /usr/include/unittest++/AssertException.h
+test-KeyframeSequence.o: /usr/include/unittest++/CurrentTest.h
+test-KeyframeSequence.o: /usr/include/unittest++/CheckMacros.h
+test-KeyframeSequence.o: /usr/include/unittest++/Checks.h
 test-KeyframeSequence.o: /usr/include/unittest++/TestRunner.h
 test-KeyframeSequence.o: /usr/include/unittest++/TimeConstraint.h
 test-KeyframeSequence.o: /usr/include/unittest++/TimeHelpers.h
-test-KeyframeSequence.o: /usr/include/unittest++/Posix/TimeHelpers.h
-test-KeyframeSequence.o: /usr/include/sys/time.h /usr/include/bits/time.h
-test-KeyframeSequence.o: /usr/include/sys/select.h /usr/include/bits/select.h
 test-KeyframeSequence.o: ../src/KeyframeSequence.hpp ../src/Object3D.hpp
 test-KeyframeSequence.o: ../src/m3gdef.hpp ../src/m3ginternal.hpp
 test-KeyframeSequence.o: ../src/Object.hpp ../src/Keyframe.hpp
@@ -474,31 +307,18 @@ test-Light.o: /usr/include/unittest++/TestList.h
 test-Light.o: /usr/include/unittest++/TestSuite.h
 test-Light.o: /usr/include/unittest++/TestResults.h
 test-Light.o: /usr/include/unittest++/TestMacros.h
-test-Light.o: /usr/include/unittest++/Posix/SignalTranslator.h
-test-Light.o: /usr/include/setjmp.h /usr/include/features.h
-test-Light.o: /usr/include/sys/cdefs.h /usr/include/bits/wordsize.h
-test-Light.o: /usr/include/gnu/stubs.h /usr/include/gnu/stubs-64.h
-test-Light.o: /usr/include/bits/setjmp.h /usr/include/bits/sigset.h
-test-Light.o: /usr/include/signal.h /usr/include/bits/types.h
-test-Light.o: /usr/include/bits/typesizes.h /usr/include/bits/signum.h
-test-Light.o: /usr/include/time.h /usr/include/bits/siginfo.h
-test-Light.o: /usr/include/bits/sigaction.h /usr/include/bits/sigcontext.h
-test-Light.o: /usr/include/bits/sigstack.h /usr/include/bits/pthreadtypes.h
-test-Light.o: /usr/include/bits/sigthread.h
-test-Light.o: /usr/include/unittest++/CheckMacros.h
-test-Light.o: /usr/include/unittest++/Checks.h
+test-Light.o: /usr/include/unittest++/ExecuteTest.h
 test-Light.o: /usr/include/unittest++/MemoryOutStream.h
 test-Light.o: /usr/include/unittest++/AssertException.h
+test-Light.o: /usr/include/unittest++/CurrentTest.h
+test-Light.o: /usr/include/unittest++/CheckMacros.h
+test-Light.o: /usr/include/unittest++/Checks.h
 test-Light.o: /usr/include/unittest++/TestRunner.h
 test-Light.o: /usr/include/unittest++/TimeConstraint.h
-test-Light.o: /usr/include/unittest++/TimeHelpers.h
-test-Light.o: /usr/include/unittest++/Posix/TimeHelpers.h
-test-Light.o: /usr/include/sys/time.h /usr/include/bits/time.h
-test-Light.o: /usr/include/sys/select.h /usr/include/bits/select.h
-test-Light.o: ../src/Light.hpp ../src/Node.hpp ../src/Transformable.hpp
-test-Light.o: ../src/Object3D.hpp ../src/m3gdef.hpp ../src/m3ginternal.hpp
-test-Light.o: ../src/Object.hpp ../src/Quaternion.hpp ../src/Transform.hpp
-test-Light.o: ../src/Matrix.hpp
+test-Light.o: /usr/include/unittest++/TimeHelpers.h ../src/Light.hpp
+test-Light.o: ../src/Node.hpp ../src/Transformable.hpp ../src/Object3D.hpp
+test-Light.o: ../src/m3gdef.hpp ../src/m3ginternal.hpp ../src/Object.hpp
+test-Light.o: ../src/Quaternion.hpp ../src/Transform.hpp ../src/Matrix.hpp
 test-Loader.o: /usr/include/unittest++/UnitTest++.h
 test-Loader.o: /usr/include/unittest++/Config.h
 test-Loader.o: /usr/include/unittest++/Test.h
@@ -507,28 +327,33 @@ test-Loader.o: /usr/include/unittest++/TestList.h
 test-Loader.o: /usr/include/unittest++/TestSuite.h
 test-Loader.o: /usr/include/unittest++/TestResults.h
 test-Loader.o: /usr/include/unittest++/TestMacros.h
-test-Loader.o: /usr/include/unittest++/Posix/SignalTranslator.h
-test-Loader.o: /usr/include/setjmp.h /usr/include/features.h
-test-Loader.o: /usr/include/sys/cdefs.h /usr/include/bits/wordsize.h
-test-Loader.o: /usr/include/gnu/stubs.h /usr/include/gnu/stubs-64.h
-test-Loader.o: /usr/include/bits/setjmp.h /usr/include/bits/sigset.h
-test-Loader.o: /usr/include/signal.h /usr/include/bits/types.h
-test-Loader.o: /usr/include/bits/typesizes.h /usr/include/bits/signum.h
-test-Loader.o: /usr/include/time.h /usr/include/bits/siginfo.h
-test-Loader.o: /usr/include/bits/sigaction.h /usr/include/bits/sigcontext.h
-test-Loader.o: /usr/include/bits/sigstack.h /usr/include/bits/pthreadtypes.h
-test-Loader.o: /usr/include/bits/sigthread.h
-test-Loader.o: /usr/include/unittest++/CheckMacros.h
-test-Loader.o: /usr/include/unittest++/Checks.h
+test-Loader.o: /usr/include/unittest++/ExecuteTest.h
 test-Loader.o: /usr/include/unittest++/MemoryOutStream.h
 test-Loader.o: /usr/include/unittest++/AssertException.h
+test-Loader.o: /usr/include/unittest++/CurrentTest.h
+test-Loader.o: /usr/include/unittest++/CheckMacros.h
+test-Loader.o: /usr/include/unittest++/Checks.h
 test-Loader.o: /usr/include/unittest++/TestRunner.h
 test-Loader.o: /usr/include/unittest++/TimeConstraint.h
-test-Loader.o: /usr/include/unittest++/TimeHelpers.h
-test-Loader.o: /usr/include/unittest++/Posix/TimeHelpers.h
-test-Loader.o: /usr/include/sys/time.h /usr/include/bits/time.h
-test-Loader.o: /usr/include/sys/select.h /usr/include/bits/select.h
-test-Loader.o: ../src/Loader.hpp ../src/Object.hpp
+test-Loader.o: /usr/include/unittest++/TimeHelpers.h ../src/Loader.hpp
+test-Loader.o: ../src/Object.hpp ../lib/M3GReader.hpp
+test-Loader.o: ../lib/InMemoryStream.hpp ../lib/M3GStruct.hpp ../src/m3g.hpp
+test-Loader.o: ../src/m3gdef.hpp ../src/Graphics3D.hpp ../src/Object3D.hpp
+test-Loader.o: ../src/m3ginternal.hpp ../src/AnimationController.hpp
+test-Loader.o: ../src/AnimationTrack.hpp ../src/Appearance.hpp
+test-Loader.o: ../src/Background.hpp ../src/CompositingMode.hpp
+test-Loader.o: ../src/Fog.hpp ../src/Image2D.hpp ../src/IndexBuffer.hpp
+test-Loader.o: ../src/TriangleStripArray.hpp ../src/KeyframeSequence.hpp
+test-Loader.o: ../src/Keyframe.hpp ../src/Material.hpp ../src/PolygonMode.hpp
+test-Loader.o: ../src/Transformable.hpp ../src/Quaternion.hpp
+test-Loader.o: ../src/Transform.hpp ../src/Matrix.hpp ../src/Node.hpp
+test-Loader.o: ../src/Camera.hpp ../src/Group.hpp ../src/World.hpp
+test-Loader.o: ../src/Light.hpp ../src/Mesh.hpp ../src/MorphingMesh.hpp
+test-Loader.o: ../src/SkinnedMesh.hpp ../src/BoneIndex.hpp
+test-Loader.o: ../src/Sprite3D.hpp ../src/Texture2D.hpp
+test-Loader.o: ../src/VertexArray.hpp ../src/VertexBuffer.hpp
+test-Loader.o: ../src/RayIntersection.hpp ../src/Vector.hpp
+test-Loader.o: ../src/Exception.hpp ../src/RenderState.hpp
 test-Material.o: /usr/include/unittest++/UnitTest++.h
 test-Material.o: /usr/include/unittest++/Config.h
 test-Material.o: /usr/include/unittest++/Test.h
@@ -537,30 +362,17 @@ test-Material.o: /usr/include/unittest++/TestList.h
 test-Material.o: /usr/include/unittest++/TestSuite.h
 test-Material.o: /usr/include/unittest++/TestResults.h
 test-Material.o: /usr/include/unittest++/TestMacros.h
-test-Material.o: /usr/include/unittest++/Posix/SignalTranslator.h
-test-Material.o: /usr/include/setjmp.h /usr/include/features.h
-test-Material.o: /usr/include/sys/cdefs.h /usr/include/bits/wordsize.h
-test-Material.o: /usr/include/gnu/stubs.h /usr/include/gnu/stubs-64.h
-test-Material.o: /usr/include/bits/setjmp.h /usr/include/bits/sigset.h
-test-Material.o: /usr/include/signal.h /usr/include/bits/types.h
-test-Material.o: /usr/include/bits/typesizes.h /usr/include/bits/signum.h
-test-Material.o: /usr/include/time.h /usr/include/bits/siginfo.h
-test-Material.o: /usr/include/bits/sigaction.h /usr/include/bits/sigcontext.h
-test-Material.o: /usr/include/bits/sigstack.h
-test-Material.o: /usr/include/bits/pthreadtypes.h
-test-Material.o: /usr/include/bits/sigthread.h
-test-Material.o: /usr/include/unittest++/CheckMacros.h
-test-Material.o: /usr/include/unittest++/Checks.h
+test-Material.o: /usr/include/unittest++/ExecuteTest.h
 test-Material.o: /usr/include/unittest++/MemoryOutStream.h
 test-Material.o: /usr/include/unittest++/AssertException.h
+test-Material.o: /usr/include/unittest++/CurrentTest.h
+test-Material.o: /usr/include/unittest++/CheckMacros.h
+test-Material.o: /usr/include/unittest++/Checks.h
 test-Material.o: /usr/include/unittest++/TestRunner.h
 test-Material.o: /usr/include/unittest++/TimeConstraint.h
-test-Material.o: /usr/include/unittest++/TimeHelpers.h
-test-Material.o: /usr/include/unittest++/Posix/TimeHelpers.h
-test-Material.o: /usr/include/sys/time.h /usr/include/bits/time.h
-test-Material.o: /usr/include/sys/select.h /usr/include/bits/select.h
-test-Material.o: ../src/Material.hpp ../src/Object3D.hpp ../src/m3gdef.hpp
-test-Material.o: ../src/m3ginternal.hpp ../src/Object.hpp
+test-Material.o: /usr/include/unittest++/TimeHelpers.h ../src/Material.hpp
+test-Material.o: ../src/Object3D.hpp ../src/m3gdef.hpp ../src/m3ginternal.hpp
+test-Material.o: ../src/Object.hpp
 test-Matrix.o: /usr/include/unittest++/UnitTest++.h
 test-Matrix.o: /usr/include/unittest++/Config.h
 test-Matrix.o: /usr/include/unittest++/Test.h
@@ -569,28 +381,54 @@ test-Matrix.o: /usr/include/unittest++/TestList.h
 test-Matrix.o: /usr/include/unittest++/TestSuite.h
 test-Matrix.o: /usr/include/unittest++/TestResults.h
 test-Matrix.o: /usr/include/unittest++/TestMacros.h
-test-Matrix.o: /usr/include/unittest++/Posix/SignalTranslator.h
-test-Matrix.o: /usr/include/setjmp.h /usr/include/features.h
-test-Matrix.o: /usr/include/sys/cdefs.h /usr/include/bits/wordsize.h
-test-Matrix.o: /usr/include/gnu/stubs.h /usr/include/gnu/stubs-64.h
-test-Matrix.o: /usr/include/bits/setjmp.h /usr/include/bits/sigset.h
-test-Matrix.o: /usr/include/signal.h /usr/include/bits/types.h
-test-Matrix.o: /usr/include/bits/typesizes.h /usr/include/bits/signum.h
-test-Matrix.o: /usr/include/time.h /usr/include/bits/siginfo.h
-test-Matrix.o: /usr/include/bits/sigaction.h /usr/include/bits/sigcontext.h
-test-Matrix.o: /usr/include/bits/sigstack.h /usr/include/bits/pthreadtypes.h
-test-Matrix.o: /usr/include/bits/sigthread.h
-test-Matrix.o: /usr/include/unittest++/CheckMacros.h
-test-Matrix.o: /usr/include/unittest++/Checks.h
+test-Matrix.o: /usr/include/unittest++/ExecuteTest.h
 test-Matrix.o: /usr/include/unittest++/MemoryOutStream.h
 test-Matrix.o: /usr/include/unittest++/AssertException.h
+test-Matrix.o: /usr/include/unittest++/CurrentTest.h
+test-Matrix.o: /usr/include/unittest++/CheckMacros.h
+test-Matrix.o: /usr/include/unittest++/Checks.h
 test-Matrix.o: /usr/include/unittest++/TestRunner.h
 test-Matrix.o: /usr/include/unittest++/TimeConstraint.h
-test-Matrix.o: /usr/include/unittest++/TimeHelpers.h
-test-Matrix.o: /usr/include/unittest++/Posix/TimeHelpers.h
-test-Matrix.o: /usr/include/sys/time.h /usr/include/bits/time.h
-test-Matrix.o: /usr/include/sys/select.h /usr/include/bits/select.h
-test-Matrix.o: ../src/Matrix.hpp ../src/Vector.hpp
+test-Matrix.o: /usr/include/unittest++/TimeHelpers.h ../src/Matrix.hpp
+test-Matrix.o: ../src/Vector.hpp
+test-MemoryReader.o: ../src/MemoryReader.hpp /usr/include/png.h
+test-MemoryReader.o: /usr/include/zlib.h /usr/include/zconf.h
+test-MemoryReader.o: /usr/include/zlibdefs.h /usr/include/sys/types.h
+test-MemoryReader.o: /usr/include/features.h /usr/include/bits/predefs.h
+test-MemoryReader.o: /usr/include/sys/cdefs.h /usr/include/bits/wordsize.h
+test-MemoryReader.o: /usr/include/gnu/stubs.h /usr/include/gnu/stubs-64.h
+test-MemoryReader.o: /usr/include/bits/types.h /usr/include/bits/typesizes.h
+test-MemoryReader.o: /usr/include/time.h /usr/include/endian.h
+test-MemoryReader.o: /usr/include/bits/endian.h /usr/include/bits/byteswap.h
+test-MemoryReader.o: /usr/include/sys/select.h /usr/include/bits/select.h
+test-MemoryReader.o: /usr/include/bits/sigset.h /usr/include/bits/time.h
+test-MemoryReader.o: /usr/include/sys/sysmacros.h
+test-MemoryReader.o: /usr/include/bits/pthreadtypes.h /usr/include/unistd.h
+test-MemoryReader.o: /usr/include/bits/posix_opt.h
+test-MemoryReader.o: /usr/include/bits/confname.h /usr/include/getopt.h
+test-MemoryReader.o: /usr/include/pngconf.h /usr/include/stdio.h
+test-MemoryReader.o: /usr/include/libio.h /usr/include/_G_config.h
+test-MemoryReader.o: /usr/include/wchar.h /usr/include/bits/stdio_lim.h
+test-MemoryReader.o: /usr/include/bits/sys_errlist.h /usr/include/setjmp.h
+test-MemoryReader.o: /usr/include/bits/setjmp.h /usr/include/string.h
+test-MemoryReader.o: /usr/include/xlocale.h
+test-MemoryReader.o: /usr/include/unittest++/UnitTest++.h
+test-MemoryReader.o: /usr/include/unittest++/Config.h
+test-MemoryReader.o: /usr/include/unittest++/Test.h
+test-MemoryReader.o: /usr/include/unittest++/TestDetails.h
+test-MemoryReader.o: /usr/include/unittest++/TestList.h
+test-MemoryReader.o: /usr/include/unittest++/TestSuite.h
+test-MemoryReader.o: /usr/include/unittest++/TestResults.h
+test-MemoryReader.o: /usr/include/unittest++/TestMacros.h
+test-MemoryReader.o: /usr/include/unittest++/ExecuteTest.h
+test-MemoryReader.o: /usr/include/unittest++/MemoryOutStream.h
+test-MemoryReader.o: /usr/include/unittest++/AssertException.h
+test-MemoryReader.o: /usr/include/unittest++/CurrentTest.h
+test-MemoryReader.o: /usr/include/unittest++/CheckMacros.h
+test-MemoryReader.o: /usr/include/unittest++/Checks.h
+test-MemoryReader.o: /usr/include/unittest++/TestRunner.h
+test-MemoryReader.o: /usr/include/unittest++/TimeConstraint.h
+test-MemoryReader.o: /usr/include/unittest++/TimeHelpers.h
 test-Mesh.o: /usr/include/unittest++/UnitTest++.h
 test-Mesh.o: /usr/include/unittest++/Config.h /usr/include/unittest++/Test.h
 test-Mesh.o: /usr/include/unittest++/TestDetails.h
@@ -598,31 +436,19 @@ test-Mesh.o: /usr/include/unittest++/TestList.h
 test-Mesh.o: /usr/include/unittest++/TestSuite.h
 test-Mesh.o: /usr/include/unittest++/TestResults.h
 test-Mesh.o: /usr/include/unittest++/TestMacros.h
-test-Mesh.o: /usr/include/unittest++/Posix/SignalTranslator.h
-test-Mesh.o: /usr/include/setjmp.h /usr/include/features.h
-test-Mesh.o: /usr/include/sys/cdefs.h /usr/include/bits/wordsize.h
-test-Mesh.o: /usr/include/gnu/stubs.h /usr/include/gnu/stubs-64.h
-test-Mesh.o: /usr/include/bits/setjmp.h /usr/include/bits/sigset.h
-test-Mesh.o: /usr/include/signal.h /usr/include/bits/types.h
-test-Mesh.o: /usr/include/bits/typesizes.h /usr/include/bits/signum.h
-test-Mesh.o: /usr/include/time.h /usr/include/bits/siginfo.h
-test-Mesh.o: /usr/include/bits/sigaction.h /usr/include/bits/sigcontext.h
-test-Mesh.o: /usr/include/bits/sigstack.h /usr/include/bits/pthreadtypes.h
-test-Mesh.o: /usr/include/bits/sigthread.h
-test-Mesh.o: /usr/include/unittest++/CheckMacros.h
-test-Mesh.o: /usr/include/unittest++/Checks.h
+test-Mesh.o: /usr/include/unittest++/ExecuteTest.h
 test-Mesh.o: /usr/include/unittest++/MemoryOutStream.h
 test-Mesh.o: /usr/include/unittest++/AssertException.h
+test-Mesh.o: /usr/include/unittest++/CurrentTest.h
+test-Mesh.o: /usr/include/unittest++/CheckMacros.h
+test-Mesh.o: /usr/include/unittest++/Checks.h
 test-Mesh.o: /usr/include/unittest++/TestRunner.h
 test-Mesh.o: /usr/include/unittest++/TimeConstraint.h
-test-Mesh.o: /usr/include/unittest++/TimeHelpers.h
-test-Mesh.o: /usr/include/unittest++/Posix/TimeHelpers.h
-test-Mesh.o: /usr/include/sys/time.h /usr/include/bits/time.h
-test-Mesh.o: /usr/include/sys/select.h /usr/include/bits/select.h
-test-Mesh.o: ../src/Mesh.hpp ../src/Node.hpp ../src/Transformable.hpp
-test-Mesh.o: ../src/Object3D.hpp ../src/m3gdef.hpp ../src/m3ginternal.hpp
-test-Mesh.o: ../src/Object.hpp ../src/Quaternion.hpp ../src/Transform.hpp
-test-Mesh.o: ../src/Matrix.hpp ../src/VertexArray.hpp ../src/VertexBuffer.hpp
+test-Mesh.o: /usr/include/unittest++/TimeHelpers.h ../src/Mesh.hpp
+test-Mesh.o: ../src/Node.hpp ../src/Transformable.hpp ../src/Object3D.hpp
+test-Mesh.o: ../src/m3gdef.hpp ../src/m3ginternal.hpp ../src/Object.hpp
+test-Mesh.o: ../src/Quaternion.hpp ../src/Transform.hpp ../src/Matrix.hpp
+test-Mesh.o: ../src/VertexArray.hpp ../src/VertexBuffer.hpp
 test-Mesh.o: ../src/TriangleStripArray.hpp ../src/IndexBuffer.hpp
 test-Mesh.o: ../src/Appearance.hpp ../src/RayIntersection.hpp
 test-Mesh.o: ../src/Vector.hpp
@@ -634,29 +460,15 @@ test-MorphingMesh.o: /usr/include/unittest++/TestList.h
 test-MorphingMesh.o: /usr/include/unittest++/TestSuite.h
 test-MorphingMesh.o: /usr/include/unittest++/TestResults.h
 test-MorphingMesh.o: /usr/include/unittest++/TestMacros.h
-test-MorphingMesh.o: /usr/include/unittest++/Posix/SignalTranslator.h
-test-MorphingMesh.o: /usr/include/setjmp.h /usr/include/features.h
-test-MorphingMesh.o: /usr/include/sys/cdefs.h /usr/include/bits/wordsize.h
-test-MorphingMesh.o: /usr/include/gnu/stubs.h /usr/include/gnu/stubs-64.h
-test-MorphingMesh.o: /usr/include/bits/setjmp.h /usr/include/bits/sigset.h
-test-MorphingMesh.o: /usr/include/signal.h /usr/include/bits/types.h
-test-MorphingMesh.o: /usr/include/bits/typesizes.h /usr/include/bits/signum.h
-test-MorphingMesh.o: /usr/include/time.h /usr/include/bits/siginfo.h
-test-MorphingMesh.o: /usr/include/bits/sigaction.h
-test-MorphingMesh.o: /usr/include/bits/sigcontext.h
-test-MorphingMesh.o: /usr/include/bits/sigstack.h
-test-MorphingMesh.o: /usr/include/bits/pthreadtypes.h
-test-MorphingMesh.o: /usr/include/bits/sigthread.h
-test-MorphingMesh.o: /usr/include/unittest++/CheckMacros.h
-test-MorphingMesh.o: /usr/include/unittest++/Checks.h
+test-MorphingMesh.o: /usr/include/unittest++/ExecuteTest.h
 test-MorphingMesh.o: /usr/include/unittest++/MemoryOutStream.h
 test-MorphingMesh.o: /usr/include/unittest++/AssertException.h
+test-MorphingMesh.o: /usr/include/unittest++/CurrentTest.h
+test-MorphingMesh.o: /usr/include/unittest++/CheckMacros.h
+test-MorphingMesh.o: /usr/include/unittest++/Checks.h
 test-MorphingMesh.o: /usr/include/unittest++/TestRunner.h
 test-MorphingMesh.o: /usr/include/unittest++/TimeConstraint.h
 test-MorphingMesh.o: /usr/include/unittest++/TimeHelpers.h
-test-MorphingMesh.o: /usr/include/unittest++/Posix/TimeHelpers.h
-test-MorphingMesh.o: /usr/include/sys/time.h /usr/include/bits/time.h
-test-MorphingMesh.o: /usr/include/sys/select.h /usr/include/bits/select.h
 test-MorphingMesh.o: ../src/MorphingMesh.hpp ../src/Mesh.hpp ../src/Node.hpp
 test-MorphingMesh.o: ../src/Transformable.hpp ../src/Object3D.hpp
 test-MorphingMesh.o: ../src/m3gdef.hpp ../src/m3ginternal.hpp
@@ -672,31 +484,19 @@ test-Node.o: /usr/include/unittest++/TestList.h
 test-Node.o: /usr/include/unittest++/TestSuite.h
 test-Node.o: /usr/include/unittest++/TestResults.h
 test-Node.o: /usr/include/unittest++/TestMacros.h
-test-Node.o: /usr/include/unittest++/Posix/SignalTranslator.h
-test-Node.o: /usr/include/setjmp.h /usr/include/features.h
-test-Node.o: /usr/include/sys/cdefs.h /usr/include/bits/wordsize.h
-test-Node.o: /usr/include/gnu/stubs.h /usr/include/gnu/stubs-64.h
-test-Node.o: /usr/include/bits/setjmp.h /usr/include/bits/sigset.h
-test-Node.o: /usr/include/signal.h /usr/include/bits/types.h
-test-Node.o: /usr/include/bits/typesizes.h /usr/include/bits/signum.h
-test-Node.o: /usr/include/time.h /usr/include/bits/siginfo.h
-test-Node.o: /usr/include/bits/sigaction.h /usr/include/bits/sigcontext.h
-test-Node.o: /usr/include/bits/sigstack.h /usr/include/bits/pthreadtypes.h
-test-Node.o: /usr/include/bits/sigthread.h
-test-Node.o: /usr/include/unittest++/CheckMacros.h
-test-Node.o: /usr/include/unittest++/Checks.h
+test-Node.o: /usr/include/unittest++/ExecuteTest.h
 test-Node.o: /usr/include/unittest++/MemoryOutStream.h
 test-Node.o: /usr/include/unittest++/AssertException.h
+test-Node.o: /usr/include/unittest++/CurrentTest.h
+test-Node.o: /usr/include/unittest++/CheckMacros.h
+test-Node.o: /usr/include/unittest++/Checks.h
 test-Node.o: /usr/include/unittest++/TestRunner.h
 test-Node.o: /usr/include/unittest++/TimeConstraint.h
-test-Node.o: /usr/include/unittest++/TimeHelpers.h
-test-Node.o: /usr/include/unittest++/Posix/TimeHelpers.h
-test-Node.o: /usr/include/sys/time.h /usr/include/bits/time.h
-test-Node.o: /usr/include/sys/select.h /usr/include/bits/select.h
-test-Node.o: ../src/Node.hpp ../src/Transformable.hpp ../src/Object3D.hpp
-test-Node.o: ../src/m3gdef.hpp ../src/m3ginternal.hpp ../src/Object.hpp
-test-Node.o: ../src/Quaternion.hpp ../src/Transform.hpp ../src/Matrix.hpp
-test-Node.o: ../src/Group.hpp ../src/World.hpp
+test-Node.o: /usr/include/unittest++/TimeHelpers.h ../src/Node.hpp
+test-Node.o: ../src/Transformable.hpp ../src/Object3D.hpp ../src/m3gdef.hpp
+test-Node.o: ../src/m3ginternal.hpp ../src/Object.hpp ../src/Quaternion.hpp
+test-Node.o: ../src/Transform.hpp ../src/Matrix.hpp ../src/Group.hpp
+test-Node.o: ../src/World.hpp
 test-Object.o: /usr/include/unittest++/UnitTest++.h
 test-Object.o: /usr/include/unittest++/Config.h
 test-Object.o: /usr/include/unittest++/Test.h
@@ -705,28 +505,15 @@ test-Object.o: /usr/include/unittest++/TestList.h
 test-Object.o: /usr/include/unittest++/TestSuite.h
 test-Object.o: /usr/include/unittest++/TestResults.h
 test-Object.o: /usr/include/unittest++/TestMacros.h
-test-Object.o: /usr/include/unittest++/Posix/SignalTranslator.h
-test-Object.o: /usr/include/setjmp.h /usr/include/features.h
-test-Object.o: /usr/include/sys/cdefs.h /usr/include/bits/wordsize.h
-test-Object.o: /usr/include/gnu/stubs.h /usr/include/gnu/stubs-64.h
-test-Object.o: /usr/include/bits/setjmp.h /usr/include/bits/sigset.h
-test-Object.o: /usr/include/signal.h /usr/include/bits/types.h
-test-Object.o: /usr/include/bits/typesizes.h /usr/include/bits/signum.h
-test-Object.o: /usr/include/time.h /usr/include/bits/siginfo.h
-test-Object.o: /usr/include/bits/sigaction.h /usr/include/bits/sigcontext.h
-test-Object.o: /usr/include/bits/sigstack.h /usr/include/bits/pthreadtypes.h
-test-Object.o: /usr/include/bits/sigthread.h
-test-Object.o: /usr/include/unittest++/CheckMacros.h
-test-Object.o: /usr/include/unittest++/Checks.h
+test-Object.o: /usr/include/unittest++/ExecuteTest.h
 test-Object.o: /usr/include/unittest++/MemoryOutStream.h
 test-Object.o: /usr/include/unittest++/AssertException.h
+test-Object.o: /usr/include/unittest++/CurrentTest.h
+test-Object.o: /usr/include/unittest++/CheckMacros.h
+test-Object.o: /usr/include/unittest++/Checks.h
 test-Object.o: /usr/include/unittest++/TestRunner.h
 test-Object.o: /usr/include/unittest++/TimeConstraint.h
-test-Object.o: /usr/include/unittest++/TimeHelpers.h
-test-Object.o: /usr/include/unittest++/Posix/TimeHelpers.h
-test-Object.o: /usr/include/sys/time.h /usr/include/bits/time.h
-test-Object.o: /usr/include/sys/select.h /usr/include/bits/select.h
-test-Object.o: ../src/Object.hpp
+test-Object.o: /usr/include/unittest++/TimeHelpers.h ../src/Object.hpp
 test-Object3D.o: /usr/include/unittest++/UnitTest++.h
 test-Object3D.o: /usr/include/unittest++/Config.h
 test-Object3D.o: /usr/include/unittest++/Test.h
@@ -735,31 +522,18 @@ test-Object3D.o: /usr/include/unittest++/TestList.h
 test-Object3D.o: /usr/include/unittest++/TestSuite.h
 test-Object3D.o: /usr/include/unittest++/TestResults.h
 test-Object3D.o: /usr/include/unittest++/TestMacros.h
-test-Object3D.o: /usr/include/unittest++/Posix/SignalTranslator.h
-test-Object3D.o: /usr/include/setjmp.h /usr/include/features.h
-test-Object3D.o: /usr/include/sys/cdefs.h /usr/include/bits/wordsize.h
-test-Object3D.o: /usr/include/gnu/stubs.h /usr/include/gnu/stubs-64.h
-test-Object3D.o: /usr/include/bits/setjmp.h /usr/include/bits/sigset.h
-test-Object3D.o: /usr/include/signal.h /usr/include/bits/types.h
-test-Object3D.o: /usr/include/bits/typesizes.h /usr/include/bits/signum.h
-test-Object3D.o: /usr/include/time.h /usr/include/bits/siginfo.h
-test-Object3D.o: /usr/include/bits/sigaction.h /usr/include/bits/sigcontext.h
-test-Object3D.o: /usr/include/bits/sigstack.h
-test-Object3D.o: /usr/include/bits/pthreadtypes.h
-test-Object3D.o: /usr/include/bits/sigthread.h
-test-Object3D.o: /usr/include/unittest++/CheckMacros.h
-test-Object3D.o: /usr/include/unittest++/Checks.h
+test-Object3D.o: /usr/include/unittest++/ExecuteTest.h
 test-Object3D.o: /usr/include/unittest++/MemoryOutStream.h
 test-Object3D.o: /usr/include/unittest++/AssertException.h
+test-Object3D.o: /usr/include/unittest++/CurrentTest.h
+test-Object3D.o: /usr/include/unittest++/CheckMacros.h
+test-Object3D.o: /usr/include/unittest++/Checks.h
 test-Object3D.o: /usr/include/unittest++/TestRunner.h
 test-Object3D.o: /usr/include/unittest++/TimeConstraint.h
-test-Object3D.o: /usr/include/unittest++/TimeHelpers.h
-test-Object3D.o: /usr/include/unittest++/Posix/TimeHelpers.h
-test-Object3D.o: /usr/include/sys/time.h /usr/include/bits/time.h
-test-Object3D.o: /usr/include/sys/select.h /usr/include/bits/select.h
-test-Object3D.o: ../src/Object3D.hpp ../src/m3gdef.hpp ../src/m3ginternal.hpp
-test-Object3D.o: ../src/Object.hpp ../src/AnimationTrack.hpp
-test-Object3D.o: ../src/KeyframeSequence.hpp ../src/Keyframe.hpp
+test-Object3D.o: /usr/include/unittest++/TimeHelpers.h ../src/Object3D.hpp
+test-Object3D.o: ../src/m3gdef.hpp ../src/m3ginternal.hpp ../src/Object.hpp
+test-Object3D.o: ../src/AnimationTrack.hpp ../src/KeyframeSequence.hpp
+test-Object3D.o: ../src/Keyframe.hpp
 test-PolygonMode.o: /usr/include/unittest++/UnitTest++.h
 test-PolygonMode.o: /usr/include/unittest++/Config.h
 test-PolygonMode.o: /usr/include/unittest++/Test.h
@@ -768,29 +542,15 @@ test-PolygonMode.o: /usr/include/unittest++/TestList.h
 test-PolygonMode.o: /usr/include/unittest++/TestSuite.h
 test-PolygonMode.o: /usr/include/unittest++/TestResults.h
 test-PolygonMode.o: /usr/include/unittest++/TestMacros.h
-test-PolygonMode.o: /usr/include/unittest++/Posix/SignalTranslator.h
-test-PolygonMode.o: /usr/include/setjmp.h /usr/include/features.h
-test-PolygonMode.o: /usr/include/sys/cdefs.h /usr/include/bits/wordsize.h
-test-PolygonMode.o: /usr/include/gnu/stubs.h /usr/include/gnu/stubs-64.h
-test-PolygonMode.o: /usr/include/bits/setjmp.h /usr/include/bits/sigset.h
-test-PolygonMode.o: /usr/include/signal.h /usr/include/bits/types.h
-test-PolygonMode.o: /usr/include/bits/typesizes.h /usr/include/bits/signum.h
-test-PolygonMode.o: /usr/include/time.h /usr/include/bits/siginfo.h
-test-PolygonMode.o: /usr/include/bits/sigaction.h
-test-PolygonMode.o: /usr/include/bits/sigcontext.h
-test-PolygonMode.o: /usr/include/bits/sigstack.h
-test-PolygonMode.o: /usr/include/bits/pthreadtypes.h
-test-PolygonMode.o: /usr/include/bits/sigthread.h
-test-PolygonMode.o: /usr/include/unittest++/CheckMacros.h
-test-PolygonMode.o: /usr/include/unittest++/Checks.h
+test-PolygonMode.o: /usr/include/unittest++/ExecuteTest.h
 test-PolygonMode.o: /usr/include/unittest++/MemoryOutStream.h
 test-PolygonMode.o: /usr/include/unittest++/AssertException.h
+test-PolygonMode.o: /usr/include/unittest++/CurrentTest.h
+test-PolygonMode.o: /usr/include/unittest++/CheckMacros.h
+test-PolygonMode.o: /usr/include/unittest++/Checks.h
 test-PolygonMode.o: /usr/include/unittest++/TestRunner.h
 test-PolygonMode.o: /usr/include/unittest++/TimeConstraint.h
 test-PolygonMode.o: /usr/include/unittest++/TimeHelpers.h
-test-PolygonMode.o: /usr/include/unittest++/Posix/TimeHelpers.h
-test-PolygonMode.o: /usr/include/sys/time.h /usr/include/bits/time.h
-test-PolygonMode.o: /usr/include/sys/select.h /usr/include/bits/select.h
 test-PolygonMode.o: ../src/PolygonMode.hpp ../src/Object3D.hpp
 test-PolygonMode.o: ../src/m3gdef.hpp ../src/m3ginternal.hpp
 test-PolygonMode.o: ../src/Object.hpp
@@ -802,29 +562,15 @@ test-Quaternion.o: /usr/include/unittest++/TestList.h
 test-Quaternion.o: /usr/include/unittest++/TestSuite.h
 test-Quaternion.o: /usr/include/unittest++/TestResults.h
 test-Quaternion.o: /usr/include/unittest++/TestMacros.h
-test-Quaternion.o: /usr/include/unittest++/Posix/SignalTranslator.h
-test-Quaternion.o: /usr/include/setjmp.h /usr/include/features.h
-test-Quaternion.o: /usr/include/sys/cdefs.h /usr/include/bits/wordsize.h
-test-Quaternion.o: /usr/include/gnu/stubs.h /usr/include/gnu/stubs-64.h
-test-Quaternion.o: /usr/include/bits/setjmp.h /usr/include/bits/sigset.h
-test-Quaternion.o: /usr/include/signal.h /usr/include/bits/types.h
-test-Quaternion.o: /usr/include/bits/typesizes.h /usr/include/bits/signum.h
-test-Quaternion.o: /usr/include/time.h /usr/include/bits/siginfo.h
-test-Quaternion.o: /usr/include/bits/sigaction.h
-test-Quaternion.o: /usr/include/bits/sigcontext.h
-test-Quaternion.o: /usr/include/bits/sigstack.h
-test-Quaternion.o: /usr/include/bits/pthreadtypes.h
-test-Quaternion.o: /usr/include/bits/sigthread.h
-test-Quaternion.o: /usr/include/unittest++/CheckMacros.h
-test-Quaternion.o: /usr/include/unittest++/Checks.h
+test-Quaternion.o: /usr/include/unittest++/ExecuteTest.h
 test-Quaternion.o: /usr/include/unittest++/MemoryOutStream.h
 test-Quaternion.o: /usr/include/unittest++/AssertException.h
+test-Quaternion.o: /usr/include/unittest++/CurrentTest.h
+test-Quaternion.o: /usr/include/unittest++/CheckMacros.h
+test-Quaternion.o: /usr/include/unittest++/Checks.h
 test-Quaternion.o: /usr/include/unittest++/TestRunner.h
 test-Quaternion.o: /usr/include/unittest++/TimeConstraint.h
 test-Quaternion.o: /usr/include/unittest++/TimeHelpers.h
-test-Quaternion.o: /usr/include/unittest++/Posix/TimeHelpers.h
-test-Quaternion.o: /usr/include/sys/time.h /usr/include/bits/time.h
-test-Quaternion.o: /usr/include/sys/select.h /usr/include/bits/select.h
 test-Quaternion.o: ../src/Quaternion.hpp ../src/Matrix.hpp ../src/Vector.hpp
 test-RayIntersect.o: /usr/include/unittest++/UnitTest++.h
 test-RayIntersect.o: /usr/include/unittest++/Config.h
@@ -834,29 +580,15 @@ test-RayIntersect.o: /usr/include/unittest++/TestList.h
 test-RayIntersect.o: /usr/include/unittest++/TestSuite.h
 test-RayIntersect.o: /usr/include/unittest++/TestResults.h
 test-RayIntersect.o: /usr/include/unittest++/TestMacros.h
-test-RayIntersect.o: /usr/include/unittest++/Posix/SignalTranslator.h
-test-RayIntersect.o: /usr/include/setjmp.h /usr/include/features.h
-test-RayIntersect.o: /usr/include/sys/cdefs.h /usr/include/bits/wordsize.h
-test-RayIntersect.o: /usr/include/gnu/stubs.h /usr/include/gnu/stubs-64.h
-test-RayIntersect.o: /usr/include/bits/setjmp.h /usr/include/bits/sigset.h
-test-RayIntersect.o: /usr/include/signal.h /usr/include/bits/types.h
-test-RayIntersect.o: /usr/include/bits/typesizes.h /usr/include/bits/signum.h
-test-RayIntersect.o: /usr/include/time.h /usr/include/bits/siginfo.h
-test-RayIntersect.o: /usr/include/bits/sigaction.h
-test-RayIntersect.o: /usr/include/bits/sigcontext.h
-test-RayIntersect.o: /usr/include/bits/sigstack.h
-test-RayIntersect.o: /usr/include/bits/pthreadtypes.h
-test-RayIntersect.o: /usr/include/bits/sigthread.h
-test-RayIntersect.o: /usr/include/unittest++/CheckMacros.h
-test-RayIntersect.o: /usr/include/unittest++/Checks.h
+test-RayIntersect.o: /usr/include/unittest++/ExecuteTest.h
 test-RayIntersect.o: /usr/include/unittest++/MemoryOutStream.h
 test-RayIntersect.o: /usr/include/unittest++/AssertException.h
+test-RayIntersect.o: /usr/include/unittest++/CurrentTest.h
+test-RayIntersect.o: /usr/include/unittest++/CheckMacros.h
+test-RayIntersect.o: /usr/include/unittest++/Checks.h
 test-RayIntersect.o: /usr/include/unittest++/TestRunner.h
 test-RayIntersect.o: /usr/include/unittest++/TimeConstraint.h
 test-RayIntersect.o: /usr/include/unittest++/TimeHelpers.h
-test-RayIntersect.o: /usr/include/unittest++/Posix/TimeHelpers.h
-test-RayIntersect.o: /usr/include/sys/time.h /usr/include/bits/time.h
-test-RayIntersect.o: /usr/include/sys/select.h /usr/include/bits/select.h
 test-RayIntersect.o: ../src/Intersect.hpp ../src/VertexArray.hpp
 test-RayIntersect.o: ../src/Object3D.hpp ../src/m3gdef.hpp
 test-RayIntersect.o: ../src/m3ginternal.hpp ../src/Object.hpp
@@ -874,29 +606,15 @@ test-SkinnedMesh.o: /usr/include/unittest++/TestList.h
 test-SkinnedMesh.o: /usr/include/unittest++/TestSuite.h
 test-SkinnedMesh.o: /usr/include/unittest++/TestResults.h
 test-SkinnedMesh.o: /usr/include/unittest++/TestMacros.h
-test-SkinnedMesh.o: /usr/include/unittest++/Posix/SignalTranslator.h
-test-SkinnedMesh.o: /usr/include/setjmp.h /usr/include/features.h
-test-SkinnedMesh.o: /usr/include/sys/cdefs.h /usr/include/bits/wordsize.h
-test-SkinnedMesh.o: /usr/include/gnu/stubs.h /usr/include/gnu/stubs-64.h
-test-SkinnedMesh.o: /usr/include/bits/setjmp.h /usr/include/bits/sigset.h
-test-SkinnedMesh.o: /usr/include/signal.h /usr/include/bits/types.h
-test-SkinnedMesh.o: /usr/include/bits/typesizes.h /usr/include/bits/signum.h
-test-SkinnedMesh.o: /usr/include/time.h /usr/include/bits/siginfo.h
-test-SkinnedMesh.o: /usr/include/bits/sigaction.h
-test-SkinnedMesh.o: /usr/include/bits/sigcontext.h
-test-SkinnedMesh.o: /usr/include/bits/sigstack.h
-test-SkinnedMesh.o: /usr/include/bits/pthreadtypes.h
-test-SkinnedMesh.o: /usr/include/bits/sigthread.h
-test-SkinnedMesh.o: /usr/include/unittest++/CheckMacros.h
-test-SkinnedMesh.o: /usr/include/unittest++/Checks.h
+test-SkinnedMesh.o: /usr/include/unittest++/ExecuteTest.h
 test-SkinnedMesh.o: /usr/include/unittest++/MemoryOutStream.h
 test-SkinnedMesh.o: /usr/include/unittest++/AssertException.h
+test-SkinnedMesh.o: /usr/include/unittest++/CurrentTest.h
+test-SkinnedMesh.o: /usr/include/unittest++/CheckMacros.h
+test-SkinnedMesh.o: /usr/include/unittest++/Checks.h
 test-SkinnedMesh.o: /usr/include/unittest++/TestRunner.h
 test-SkinnedMesh.o: /usr/include/unittest++/TimeConstraint.h
 test-SkinnedMesh.o: /usr/include/unittest++/TimeHelpers.h
-test-SkinnedMesh.o: /usr/include/unittest++/Posix/TimeHelpers.h
-test-SkinnedMesh.o: /usr/include/sys/time.h /usr/include/bits/time.h
-test-SkinnedMesh.o: /usr/include/sys/select.h /usr/include/bits/select.h
 test-SkinnedMesh.o: ../src/SkinnedMesh.hpp ../src/Mesh.hpp ../src/Node.hpp
 test-SkinnedMesh.o: ../src/Transformable.hpp ../src/Object3D.hpp
 test-SkinnedMesh.o: ../src/m3gdef.hpp ../src/m3ginternal.hpp
@@ -905,7 +623,7 @@ test-SkinnedMesh.o: ../src/Transform.hpp ../src/Matrix.hpp
 test-SkinnedMesh.o: ../src/BoneIndex.hpp ../src/VertexArray.hpp
 test-SkinnedMesh.o: ../src/VertexBuffer.hpp ../src/TriangleStripArray.hpp
 test-SkinnedMesh.o: ../src/IndexBuffer.hpp ../src/Appearance.hpp
-test-SkinnedMesh.o: ../src/Group.hpp
+test-SkinnedMesh.o: ../src/Group.hpp ../src/Exception.hpp
 test-Sprite3D.o: /usr/include/unittest++/UnitTest++.h
 test-Sprite3D.o: /usr/include/unittest++/Config.h
 test-Sprite3D.o: /usr/include/unittest++/Test.h
@@ -914,32 +632,19 @@ test-Sprite3D.o: /usr/include/unittest++/TestList.h
 test-Sprite3D.o: /usr/include/unittest++/TestSuite.h
 test-Sprite3D.o: /usr/include/unittest++/TestResults.h
 test-Sprite3D.o: /usr/include/unittest++/TestMacros.h
-test-Sprite3D.o: /usr/include/unittest++/Posix/SignalTranslator.h
-test-Sprite3D.o: /usr/include/setjmp.h /usr/include/features.h
-test-Sprite3D.o: /usr/include/sys/cdefs.h /usr/include/bits/wordsize.h
-test-Sprite3D.o: /usr/include/gnu/stubs.h /usr/include/gnu/stubs-64.h
-test-Sprite3D.o: /usr/include/bits/setjmp.h /usr/include/bits/sigset.h
-test-Sprite3D.o: /usr/include/signal.h /usr/include/bits/types.h
-test-Sprite3D.o: /usr/include/bits/typesizes.h /usr/include/bits/signum.h
-test-Sprite3D.o: /usr/include/time.h /usr/include/bits/siginfo.h
-test-Sprite3D.o: /usr/include/bits/sigaction.h /usr/include/bits/sigcontext.h
-test-Sprite3D.o: /usr/include/bits/sigstack.h
-test-Sprite3D.o: /usr/include/bits/pthreadtypes.h
-test-Sprite3D.o: /usr/include/bits/sigthread.h
-test-Sprite3D.o: /usr/include/unittest++/CheckMacros.h
-test-Sprite3D.o: /usr/include/unittest++/Checks.h
+test-Sprite3D.o: /usr/include/unittest++/ExecuteTest.h
 test-Sprite3D.o: /usr/include/unittest++/MemoryOutStream.h
 test-Sprite3D.o: /usr/include/unittest++/AssertException.h
+test-Sprite3D.o: /usr/include/unittest++/CurrentTest.h
+test-Sprite3D.o: /usr/include/unittest++/CheckMacros.h
+test-Sprite3D.o: /usr/include/unittest++/Checks.h
 test-Sprite3D.o: /usr/include/unittest++/TestRunner.h
 test-Sprite3D.o: /usr/include/unittest++/TimeConstraint.h
-test-Sprite3D.o: /usr/include/unittest++/TimeHelpers.h
-test-Sprite3D.o: /usr/include/unittest++/Posix/TimeHelpers.h
-test-Sprite3D.o: /usr/include/sys/time.h /usr/include/bits/time.h
-test-Sprite3D.o: /usr/include/sys/select.h /usr/include/bits/select.h
-test-Sprite3D.o: ../src/Sprite3D.hpp ../src/Node.hpp ../src/Transformable.hpp
-test-Sprite3D.o: ../src/Object3D.hpp ../src/m3gdef.hpp ../src/m3ginternal.hpp
-test-Sprite3D.o: ../src/Object.hpp ../src/Quaternion.hpp ../src/Transform.hpp
-test-Sprite3D.o: ../src/Matrix.hpp ../src/Image2D.hpp ../src/Appearance.hpp
+test-Sprite3D.o: /usr/include/unittest++/TimeHelpers.h ../src/Sprite3D.hpp
+test-Sprite3D.o: ../src/Node.hpp ../src/Transformable.hpp ../src/Object3D.hpp
+test-Sprite3D.o: ../src/m3gdef.hpp ../src/m3ginternal.hpp ../src/Object.hpp
+test-Sprite3D.o: ../src/Quaternion.hpp ../src/Transform.hpp ../src/Matrix.hpp
+test-Sprite3D.o: ../src/Image2D.hpp ../src/Appearance.hpp
 test-Texture2D.o: /usr/include/unittest++/UnitTest++.h
 test-Texture2D.o: /usr/include/unittest++/Config.h
 test-Texture2D.o: /usr/include/unittest++/Test.h
@@ -948,31 +653,17 @@ test-Texture2D.o: /usr/include/unittest++/TestList.h
 test-Texture2D.o: /usr/include/unittest++/TestSuite.h
 test-Texture2D.o: /usr/include/unittest++/TestResults.h
 test-Texture2D.o: /usr/include/unittest++/TestMacros.h
-test-Texture2D.o: /usr/include/unittest++/Posix/SignalTranslator.h
-test-Texture2D.o: /usr/include/setjmp.h /usr/include/features.h
-test-Texture2D.o: /usr/include/sys/cdefs.h /usr/include/bits/wordsize.h
-test-Texture2D.o: /usr/include/gnu/stubs.h /usr/include/gnu/stubs-64.h
-test-Texture2D.o: /usr/include/bits/setjmp.h /usr/include/bits/sigset.h
-test-Texture2D.o: /usr/include/signal.h /usr/include/bits/types.h
-test-Texture2D.o: /usr/include/bits/typesizes.h /usr/include/bits/signum.h
-test-Texture2D.o: /usr/include/time.h /usr/include/bits/siginfo.h
-test-Texture2D.o: /usr/include/bits/sigaction.h
-test-Texture2D.o: /usr/include/bits/sigcontext.h /usr/include/bits/sigstack.h
-test-Texture2D.o: /usr/include/bits/pthreadtypes.h
-test-Texture2D.o: /usr/include/bits/sigthread.h
-test-Texture2D.o: /usr/include/unittest++/CheckMacros.h
-test-Texture2D.o: /usr/include/unittest++/Checks.h
+test-Texture2D.o: /usr/include/unittest++/ExecuteTest.h
 test-Texture2D.o: /usr/include/unittest++/MemoryOutStream.h
 test-Texture2D.o: /usr/include/unittest++/AssertException.h
+test-Texture2D.o: /usr/include/unittest++/CurrentTest.h
+test-Texture2D.o: /usr/include/unittest++/CheckMacros.h
+test-Texture2D.o: /usr/include/unittest++/Checks.h
 test-Texture2D.o: /usr/include/unittest++/TestRunner.h
 test-Texture2D.o: /usr/include/unittest++/TimeConstraint.h
-test-Texture2D.o: /usr/include/unittest++/TimeHelpers.h
-test-Texture2D.o: /usr/include/unittest++/Posix/TimeHelpers.h
-test-Texture2D.o: /usr/include/sys/time.h /usr/include/bits/time.h
-test-Texture2D.o: /usr/include/sys/select.h /usr/include/bits/select.h
-test-Texture2D.o: ../src/Texture2D.hpp ../src/Transformable.hpp
-test-Texture2D.o: ../src/Object3D.hpp ../src/m3gdef.hpp
-test-Texture2D.o: ../src/m3ginternal.hpp ../src/Object.hpp
+test-Texture2D.o: /usr/include/unittest++/TimeHelpers.h ../src/Texture2D.hpp
+test-Texture2D.o: ../src/Transformable.hpp ../src/Object3D.hpp
+test-Texture2D.o: ../src/m3gdef.hpp ../src/m3ginternal.hpp ../src/Object.hpp
 test-Texture2D.o: ../src/Quaternion.hpp ../src/Transform.hpp
 test-Texture2D.o: ../src/Matrix.hpp ../src/Image2D.hpp
 test-Transform.o: /usr/include/unittest++/UnitTest++.h
@@ -983,32 +674,19 @@ test-Transform.o: /usr/include/unittest++/TestList.h
 test-Transform.o: /usr/include/unittest++/TestSuite.h
 test-Transform.o: /usr/include/unittest++/TestResults.h
 test-Transform.o: /usr/include/unittest++/TestMacros.h
-test-Transform.o: /usr/include/unittest++/Posix/SignalTranslator.h
-test-Transform.o: /usr/include/setjmp.h /usr/include/features.h
-test-Transform.o: /usr/include/sys/cdefs.h /usr/include/bits/wordsize.h
-test-Transform.o: /usr/include/gnu/stubs.h /usr/include/gnu/stubs-64.h
-test-Transform.o: /usr/include/bits/setjmp.h /usr/include/bits/sigset.h
-test-Transform.o: /usr/include/signal.h /usr/include/bits/types.h
-test-Transform.o: /usr/include/bits/typesizes.h /usr/include/bits/signum.h
-test-Transform.o: /usr/include/time.h /usr/include/bits/siginfo.h
-test-Transform.o: /usr/include/bits/sigaction.h
-test-Transform.o: /usr/include/bits/sigcontext.h /usr/include/bits/sigstack.h
-test-Transform.o: /usr/include/bits/pthreadtypes.h
-test-Transform.o: /usr/include/bits/sigthread.h
-test-Transform.o: /usr/include/unittest++/CheckMacros.h
-test-Transform.o: /usr/include/unittest++/Checks.h
+test-Transform.o: /usr/include/unittest++/ExecuteTest.h
 test-Transform.o: /usr/include/unittest++/MemoryOutStream.h
 test-Transform.o: /usr/include/unittest++/AssertException.h
+test-Transform.o: /usr/include/unittest++/CurrentTest.h
+test-Transform.o: /usr/include/unittest++/CheckMacros.h
+test-Transform.o: /usr/include/unittest++/Checks.h
 test-Transform.o: /usr/include/unittest++/TestRunner.h
 test-Transform.o: /usr/include/unittest++/TimeConstraint.h
-test-Transform.o: /usr/include/unittest++/TimeHelpers.h
-test-Transform.o: /usr/include/unittest++/Posix/TimeHelpers.h
-test-Transform.o: /usr/include/sys/time.h /usr/include/bits/time.h
-test-Transform.o: /usr/include/sys/select.h /usr/include/bits/select.h
-test-Transform.o: ../src/Transform.hpp ../src/Matrix.hpp ../src/Object.hpp
-test-Transform.o: ../src/VertexArray.hpp ../src/Object3D.hpp
-test-Transform.o: ../src/m3gdef.hpp ../src/m3ginternal.hpp
-test-Transform.o: ../src/Quaternion.hpp ../src/Vector.hpp
+test-Transform.o: /usr/include/unittest++/TimeHelpers.h ../src/Transform.hpp
+test-Transform.o: ../src/Matrix.hpp ../src/Object.hpp ../src/VertexArray.hpp
+test-Transform.o: ../src/Object3D.hpp ../src/m3gdef.hpp
+test-Transform.o: ../src/m3ginternal.hpp ../src/Quaternion.hpp
+test-Transform.o: ../src/Vector.hpp
 test-Transformable.o: /usr/include/unittest++/UnitTest++.h
 test-Transformable.o: /usr/include/unittest++/Config.h
 test-Transformable.o: /usr/include/unittest++/Test.h
@@ -1017,30 +695,15 @@ test-Transformable.o: /usr/include/unittest++/TestList.h
 test-Transformable.o: /usr/include/unittest++/TestSuite.h
 test-Transformable.o: /usr/include/unittest++/TestResults.h
 test-Transformable.o: /usr/include/unittest++/TestMacros.h
-test-Transformable.o: /usr/include/unittest++/Posix/SignalTranslator.h
-test-Transformable.o: /usr/include/setjmp.h /usr/include/features.h
-test-Transformable.o: /usr/include/sys/cdefs.h /usr/include/bits/wordsize.h
-test-Transformable.o: /usr/include/gnu/stubs.h /usr/include/gnu/stubs-64.h
-test-Transformable.o: /usr/include/bits/setjmp.h /usr/include/bits/sigset.h
-test-Transformable.o: /usr/include/signal.h /usr/include/bits/types.h
-test-Transformable.o: /usr/include/bits/typesizes.h
-test-Transformable.o: /usr/include/bits/signum.h /usr/include/time.h
-test-Transformable.o: /usr/include/bits/siginfo.h
-test-Transformable.o: /usr/include/bits/sigaction.h
-test-Transformable.o: /usr/include/bits/sigcontext.h
-test-Transformable.o: /usr/include/bits/sigstack.h
-test-Transformable.o: /usr/include/bits/pthreadtypes.h
-test-Transformable.o: /usr/include/bits/sigthread.h
-test-Transformable.o: /usr/include/unittest++/CheckMacros.h
-test-Transformable.o: /usr/include/unittest++/Checks.h
+test-Transformable.o: /usr/include/unittest++/ExecuteTest.h
 test-Transformable.o: /usr/include/unittest++/MemoryOutStream.h
 test-Transformable.o: /usr/include/unittest++/AssertException.h
+test-Transformable.o: /usr/include/unittest++/CurrentTest.h
+test-Transformable.o: /usr/include/unittest++/CheckMacros.h
+test-Transformable.o: /usr/include/unittest++/Checks.h
 test-Transformable.o: /usr/include/unittest++/TestRunner.h
 test-Transformable.o: /usr/include/unittest++/TimeConstraint.h
 test-Transformable.o: /usr/include/unittest++/TimeHelpers.h
-test-Transformable.o: /usr/include/unittest++/Posix/TimeHelpers.h
-test-Transformable.o: /usr/include/sys/time.h /usr/include/bits/time.h
-test-Transformable.o: /usr/include/sys/select.h /usr/include/bits/select.h
 test-Transformable.o: ../src/Transformable.hpp ../src/Object3D.hpp
 test-Transformable.o: ../src/m3gdef.hpp ../src/m3ginternal.hpp
 test-Transformable.o: ../src/Object.hpp ../src/Quaternion.hpp
@@ -1053,34 +716,15 @@ test-TriangleStripArray.o: /usr/include/unittest++/TestList.h
 test-TriangleStripArray.o: /usr/include/unittest++/TestSuite.h
 test-TriangleStripArray.o: /usr/include/unittest++/TestResults.h
 test-TriangleStripArray.o: /usr/include/unittest++/TestMacros.h
-test-TriangleStripArray.o: /usr/include/unittest++/Posix/SignalTranslator.h
-test-TriangleStripArray.o: /usr/include/setjmp.h /usr/include/features.h
-test-TriangleStripArray.o: /usr/include/sys/cdefs.h
-test-TriangleStripArray.o: /usr/include/bits/wordsize.h
-test-TriangleStripArray.o: /usr/include/gnu/stubs.h
-test-TriangleStripArray.o: /usr/include/gnu/stubs-64.h
-test-TriangleStripArray.o: /usr/include/bits/setjmp.h
-test-TriangleStripArray.o: /usr/include/bits/sigset.h /usr/include/signal.h
-test-TriangleStripArray.o: /usr/include/bits/types.h
-test-TriangleStripArray.o: /usr/include/bits/typesizes.h
-test-TriangleStripArray.o: /usr/include/bits/signum.h /usr/include/time.h
-test-TriangleStripArray.o: /usr/include/bits/siginfo.h
-test-TriangleStripArray.o: /usr/include/bits/sigaction.h
-test-TriangleStripArray.o: /usr/include/bits/sigcontext.h
-test-TriangleStripArray.o: /usr/include/bits/sigstack.h
-test-TriangleStripArray.o: /usr/include/bits/pthreadtypes.h
-test-TriangleStripArray.o: /usr/include/bits/sigthread.h
-test-TriangleStripArray.o: /usr/include/unittest++/CheckMacros.h
-test-TriangleStripArray.o: /usr/include/unittest++/Checks.h
+test-TriangleStripArray.o: /usr/include/unittest++/ExecuteTest.h
 test-TriangleStripArray.o: /usr/include/unittest++/MemoryOutStream.h
 test-TriangleStripArray.o: /usr/include/unittest++/AssertException.h
+test-TriangleStripArray.o: /usr/include/unittest++/CurrentTest.h
+test-TriangleStripArray.o: /usr/include/unittest++/CheckMacros.h
+test-TriangleStripArray.o: /usr/include/unittest++/Checks.h
 test-TriangleStripArray.o: /usr/include/unittest++/TestRunner.h
 test-TriangleStripArray.o: /usr/include/unittest++/TimeConstraint.h
 test-TriangleStripArray.o: /usr/include/unittest++/TimeHelpers.h
-test-TriangleStripArray.o: /usr/include/unittest++/Posix/TimeHelpers.h
-test-TriangleStripArray.o: /usr/include/sys/time.h /usr/include/bits/time.h
-test-TriangleStripArray.o: /usr/include/sys/select.h
-test-TriangleStripArray.o: /usr/include/bits/select.h
 test-TriangleStripArray.o: ../src/TriangleStripArray.hpp
 test-TriangleStripArray.o: ../src/IndexBuffer.hpp ../src/Object3D.hpp
 test-TriangleStripArray.o: ../src/m3gdef.hpp ../src/m3ginternal.hpp
@@ -1093,28 +737,15 @@ test-Vector.o: /usr/include/unittest++/TestList.h
 test-Vector.o: /usr/include/unittest++/TestSuite.h
 test-Vector.o: /usr/include/unittest++/TestResults.h
 test-Vector.o: /usr/include/unittest++/TestMacros.h
-test-Vector.o: /usr/include/unittest++/Posix/SignalTranslator.h
-test-Vector.o: /usr/include/setjmp.h /usr/include/features.h
-test-Vector.o: /usr/include/sys/cdefs.h /usr/include/bits/wordsize.h
-test-Vector.o: /usr/include/gnu/stubs.h /usr/include/gnu/stubs-64.h
-test-Vector.o: /usr/include/bits/setjmp.h /usr/include/bits/sigset.h
-test-Vector.o: /usr/include/signal.h /usr/include/bits/types.h
-test-Vector.o: /usr/include/bits/typesizes.h /usr/include/bits/signum.h
-test-Vector.o: /usr/include/time.h /usr/include/bits/siginfo.h
-test-Vector.o: /usr/include/bits/sigaction.h /usr/include/bits/sigcontext.h
-test-Vector.o: /usr/include/bits/sigstack.h /usr/include/bits/pthreadtypes.h
-test-Vector.o: /usr/include/bits/sigthread.h
-test-Vector.o: /usr/include/unittest++/CheckMacros.h
-test-Vector.o: /usr/include/unittest++/Checks.h
+test-Vector.o: /usr/include/unittest++/ExecuteTest.h
 test-Vector.o: /usr/include/unittest++/MemoryOutStream.h
 test-Vector.o: /usr/include/unittest++/AssertException.h
+test-Vector.o: /usr/include/unittest++/CurrentTest.h
+test-Vector.o: /usr/include/unittest++/CheckMacros.h
+test-Vector.o: /usr/include/unittest++/Checks.h
 test-Vector.o: /usr/include/unittest++/TestRunner.h
 test-Vector.o: /usr/include/unittest++/TimeConstraint.h
-test-Vector.o: /usr/include/unittest++/TimeHelpers.h
-test-Vector.o: /usr/include/unittest++/Posix/TimeHelpers.h
-test-Vector.o: /usr/include/sys/time.h /usr/include/bits/time.h
-test-Vector.o: /usr/include/sys/select.h /usr/include/bits/select.h
-test-Vector.o: ../src/Vector.hpp
+test-Vector.o: /usr/include/unittest++/TimeHelpers.h ../src/Vector.hpp
 test-VertexArray.o: /usr/include/unittest++/UnitTest++.h
 test-VertexArray.o: /usr/include/unittest++/Config.h
 test-VertexArray.o: /usr/include/unittest++/Test.h
@@ -1123,33 +754,23 @@ test-VertexArray.o: /usr/include/unittest++/TestList.h
 test-VertexArray.o: /usr/include/unittest++/TestSuite.h
 test-VertexArray.o: /usr/include/unittest++/TestResults.h
 test-VertexArray.o: /usr/include/unittest++/TestMacros.h
-test-VertexArray.o: /usr/include/unittest++/Posix/SignalTranslator.h
-test-VertexArray.o: /usr/include/setjmp.h /usr/include/features.h
-test-VertexArray.o: /usr/include/sys/cdefs.h /usr/include/bits/wordsize.h
-test-VertexArray.o: /usr/include/gnu/stubs.h /usr/include/gnu/stubs-64.h
-test-VertexArray.o: /usr/include/bits/setjmp.h /usr/include/bits/sigset.h
-test-VertexArray.o: /usr/include/signal.h /usr/include/bits/types.h
-test-VertexArray.o: /usr/include/bits/typesizes.h /usr/include/bits/signum.h
-test-VertexArray.o: /usr/include/time.h /usr/include/bits/siginfo.h
-test-VertexArray.o: /usr/include/bits/sigaction.h
-test-VertexArray.o: /usr/include/bits/sigcontext.h
-test-VertexArray.o: /usr/include/bits/sigstack.h
-test-VertexArray.o: /usr/include/bits/pthreadtypes.h
-test-VertexArray.o: /usr/include/bits/sigthread.h
-test-VertexArray.o: /usr/include/unittest++/CheckMacros.h
-test-VertexArray.o: /usr/include/unittest++/Checks.h
+test-VertexArray.o: /usr/include/unittest++/ExecuteTest.h
 test-VertexArray.o: /usr/include/unittest++/MemoryOutStream.h
 test-VertexArray.o: /usr/include/unittest++/AssertException.h
+test-VertexArray.o: /usr/include/unittest++/CurrentTest.h
+test-VertexArray.o: /usr/include/unittest++/CheckMacros.h
+test-VertexArray.o: /usr/include/unittest++/Checks.h
 test-VertexArray.o: /usr/include/unittest++/TestRunner.h
 test-VertexArray.o: /usr/include/unittest++/TimeConstraint.h
 test-VertexArray.o: /usr/include/unittest++/TimeHelpers.h
-test-VertexArray.o: /usr/include/unittest++/Posix/TimeHelpers.h
-test-VertexArray.o: /usr/include/sys/time.h /usr/include/bits/time.h
-test-VertexArray.o: /usr/include/sys/select.h /usr/include/bits/select.h
 test-VertexArray.o: /usr/include/GL/gl.h /usr/include/GL/glext.h
-test-VertexArray.o: ../src/VertexArray.hpp ../src/Object3D.hpp
-test-VertexArray.o: ../src/m3gdef.hpp ../src/m3ginternal.hpp
-test-VertexArray.o: ../src/Object.hpp
+test-VertexArray.o: /usr/include/inttypes.h /usr/include/features.h
+test-VertexArray.o: /usr/include/bits/predefs.h /usr/include/sys/cdefs.h
+test-VertexArray.o: /usr/include/bits/wordsize.h /usr/include/gnu/stubs.h
+test-VertexArray.o: /usr/include/gnu/stubs-64.h /usr/include/stdint.h
+test-VertexArray.o: /usr/include/bits/wchar.h ../src/VertexArray.hpp
+test-VertexArray.o: ../src/Object3D.hpp ../src/m3gdef.hpp
+test-VertexArray.o: ../src/m3ginternal.hpp ../src/Object.hpp
 test-VertexBuffer.o: /usr/include/unittest++/UnitTest++.h
 test-VertexBuffer.o: /usr/include/unittest++/Config.h
 test-VertexBuffer.o: /usr/include/unittest++/Test.h
@@ -1158,29 +779,15 @@ test-VertexBuffer.o: /usr/include/unittest++/TestList.h
 test-VertexBuffer.o: /usr/include/unittest++/TestSuite.h
 test-VertexBuffer.o: /usr/include/unittest++/TestResults.h
 test-VertexBuffer.o: /usr/include/unittest++/TestMacros.h
-test-VertexBuffer.o: /usr/include/unittest++/Posix/SignalTranslator.h
-test-VertexBuffer.o: /usr/include/setjmp.h /usr/include/features.h
-test-VertexBuffer.o: /usr/include/sys/cdefs.h /usr/include/bits/wordsize.h
-test-VertexBuffer.o: /usr/include/gnu/stubs.h /usr/include/gnu/stubs-64.h
-test-VertexBuffer.o: /usr/include/bits/setjmp.h /usr/include/bits/sigset.h
-test-VertexBuffer.o: /usr/include/signal.h /usr/include/bits/types.h
-test-VertexBuffer.o: /usr/include/bits/typesizes.h /usr/include/bits/signum.h
-test-VertexBuffer.o: /usr/include/time.h /usr/include/bits/siginfo.h
-test-VertexBuffer.o: /usr/include/bits/sigaction.h
-test-VertexBuffer.o: /usr/include/bits/sigcontext.h
-test-VertexBuffer.o: /usr/include/bits/sigstack.h
-test-VertexBuffer.o: /usr/include/bits/pthreadtypes.h
-test-VertexBuffer.o: /usr/include/bits/sigthread.h
-test-VertexBuffer.o: /usr/include/unittest++/CheckMacros.h
-test-VertexBuffer.o: /usr/include/unittest++/Checks.h
+test-VertexBuffer.o: /usr/include/unittest++/ExecuteTest.h
 test-VertexBuffer.o: /usr/include/unittest++/MemoryOutStream.h
 test-VertexBuffer.o: /usr/include/unittest++/AssertException.h
+test-VertexBuffer.o: /usr/include/unittest++/CurrentTest.h
+test-VertexBuffer.o: /usr/include/unittest++/CheckMacros.h
+test-VertexBuffer.o: /usr/include/unittest++/Checks.h
 test-VertexBuffer.o: /usr/include/unittest++/TestRunner.h
 test-VertexBuffer.o: /usr/include/unittest++/TimeConstraint.h
 test-VertexBuffer.o: /usr/include/unittest++/TimeHelpers.h
-test-VertexBuffer.o: /usr/include/unittest++/Posix/TimeHelpers.h
-test-VertexBuffer.o: /usr/include/sys/time.h /usr/include/bits/time.h
-test-VertexBuffer.o: /usr/include/sys/select.h /usr/include/bits/select.h
 test-VertexBuffer.o: ../src/VertexBuffer.hpp ../src/Object3D.hpp
 test-VertexBuffer.o: ../src/m3gdef.hpp ../src/m3ginternal.hpp
 test-VertexBuffer.o: ../src/Object.hpp ../src/VertexArray.hpp
@@ -1191,32 +798,20 @@ test-World.o: /usr/include/unittest++/TestList.h
 test-World.o: /usr/include/unittest++/TestSuite.h
 test-World.o: /usr/include/unittest++/TestResults.h
 test-World.o: /usr/include/unittest++/TestMacros.h
-test-World.o: /usr/include/unittest++/Posix/SignalTranslator.h
-test-World.o: /usr/include/setjmp.h /usr/include/features.h
-test-World.o: /usr/include/sys/cdefs.h /usr/include/bits/wordsize.h
-test-World.o: /usr/include/gnu/stubs.h /usr/include/gnu/stubs-64.h
-test-World.o: /usr/include/bits/setjmp.h /usr/include/bits/sigset.h
-test-World.o: /usr/include/signal.h /usr/include/bits/types.h
-test-World.o: /usr/include/bits/typesizes.h /usr/include/bits/signum.h
-test-World.o: /usr/include/time.h /usr/include/bits/siginfo.h
-test-World.o: /usr/include/bits/sigaction.h /usr/include/bits/sigcontext.h
-test-World.o: /usr/include/bits/sigstack.h /usr/include/bits/pthreadtypes.h
-test-World.o: /usr/include/bits/sigthread.h
-test-World.o: /usr/include/unittest++/CheckMacros.h
-test-World.o: /usr/include/unittest++/Checks.h
+test-World.o: /usr/include/unittest++/ExecuteTest.h
 test-World.o: /usr/include/unittest++/MemoryOutStream.h
 test-World.o: /usr/include/unittest++/AssertException.h
+test-World.o: /usr/include/unittest++/CurrentTest.h
+test-World.o: /usr/include/unittest++/CheckMacros.h
+test-World.o: /usr/include/unittest++/Checks.h
 test-World.o: /usr/include/unittest++/TestRunner.h
 test-World.o: /usr/include/unittest++/TimeConstraint.h
-test-World.o: /usr/include/unittest++/TimeHelpers.h
-test-World.o: /usr/include/unittest++/Posix/TimeHelpers.h
-test-World.o: /usr/include/sys/time.h /usr/include/bits/time.h
-test-World.o: /usr/include/sys/select.h /usr/include/bits/select.h
-test-World.o: ../src/World.hpp ../src/Group.hpp ../src/Node.hpp
-test-World.o: ../src/Transformable.hpp ../src/Object3D.hpp ../src/m3gdef.hpp
-test-World.o: ../src/m3ginternal.hpp ../src/Object.hpp ../src/Quaternion.hpp
-test-World.o: ../src/Transform.hpp ../src/Matrix.hpp ../src/Camera.hpp
-test-World.o: ../src/Background.hpp ../src/Light.hpp
+test-World.o: /usr/include/unittest++/TimeHelpers.h ../src/World.hpp
+test-World.o: ../src/Group.hpp ../src/Node.hpp ../src/Transformable.hpp
+test-World.o: ../src/Object3D.hpp ../src/m3gdef.hpp ../src/m3ginternal.hpp
+test-World.o: ../src/Object.hpp ../src/Quaternion.hpp ../src/Transform.hpp
+test-World.o: ../src/Matrix.hpp ../src/Camera.hpp ../src/Background.hpp
+test-World.o: ../src/Light.hpp
 test-main.o: /usr/include/unittest++/UnitTest++.h
 test-main.o: /usr/include/unittest++/Config.h /usr/include/unittest++/Test.h
 test-main.o: /usr/include/unittest++/TestDetails.h
@@ -1224,27 +819,26 @@ test-main.o: /usr/include/unittest++/TestList.h
 test-main.o: /usr/include/unittest++/TestSuite.h
 test-main.o: /usr/include/unittest++/TestResults.h
 test-main.o: /usr/include/unittest++/TestMacros.h
-test-main.o: /usr/include/unittest++/Posix/SignalTranslator.h
-test-main.o: /usr/include/setjmp.h /usr/include/features.h
-test-main.o: /usr/include/sys/cdefs.h /usr/include/bits/wordsize.h
-test-main.o: /usr/include/gnu/stubs.h /usr/include/gnu/stubs-64.h
-test-main.o: /usr/include/bits/setjmp.h /usr/include/bits/sigset.h
-test-main.o: /usr/include/signal.h /usr/include/bits/types.h
-test-main.o: /usr/include/bits/typesizes.h /usr/include/bits/signum.h
-test-main.o: /usr/include/time.h /usr/include/bits/siginfo.h
-test-main.o: /usr/include/bits/sigaction.h /usr/include/bits/sigcontext.h
-test-main.o: /usr/include/bits/sigstack.h /usr/include/bits/pthreadtypes.h
-test-main.o: /usr/include/bits/sigthread.h
-test-main.o: /usr/include/unittest++/CheckMacros.h
-test-main.o: /usr/include/unittest++/Checks.h
+test-main.o: /usr/include/unittest++/ExecuteTest.h
 test-main.o: /usr/include/unittest++/MemoryOutStream.h
 test-main.o: /usr/include/unittest++/AssertException.h
+test-main.o: /usr/include/unittest++/CurrentTest.h
+test-main.o: /usr/include/unittest++/CheckMacros.h
+test-main.o: /usr/include/unittest++/Checks.h
 test-main.o: /usr/include/unittest++/TestRunner.h
 test-main.o: /usr/include/unittest++/TimeConstraint.h
-test-main.o: /usr/include/unittest++/TimeHelpers.h
-test-main.o: /usr/include/unittest++/Posix/TimeHelpers.h
-test-main.o: /usr/include/sys/time.h /usr/include/bits/time.h
-test-main.o: /usr/include/sys/select.h /usr/include/bits/select.h
-test-main.o: /usr/include/GL/glut.h /usr/include/GL/freeglut_std.h
-test-main.o: /usr/include/GL/gl.h /usr/include/GL/glext.h
-test-main.o: /usr/include/GL/glu.h
+test-main.o: /usr/include/unittest++/TimeHelpers.h /usr/include/GL/glut.h
+test-main.o: /usr/include/GL/freeglut_std.h /usr/include/GL/gl.h
+test-main.o: /usr/include/GL/glext.h /usr/include/inttypes.h
+test-main.o: /usr/include/features.h /usr/include/bits/predefs.h
+test-main.o: /usr/include/sys/cdefs.h /usr/include/bits/wordsize.h
+test-main.o: /usr/include/gnu/stubs.h /usr/include/gnu/stubs-64.h
+test-main.o: /usr/include/stdint.h /usr/include/bits/wchar.h
+test-main.o: /usr/include/GL/glu.h /usr/include/stdlib.h
+test-main.o: /usr/include/sys/types.h /usr/include/bits/types.h
+test-main.o: /usr/include/bits/typesizes.h /usr/include/time.h
+test-main.o: /usr/include/endian.h /usr/include/bits/endian.h
+test-main.o: /usr/include/bits/byteswap.h /usr/include/sys/select.h
+test-main.o: /usr/include/bits/select.h /usr/include/bits/sigset.h
+test-main.o: /usr/include/bits/time.h /usr/include/sys/sysmacros.h
+test-main.o: /usr/include/bits/pthreadtypes.h /usr/include/alloca.h

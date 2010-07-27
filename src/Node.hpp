@@ -225,6 +225,13 @@ namespace m3g {
          */
         virtual void render (RenderState& state) const;
 
+
+        /**
+         * @~English   Retrieve duplicated node from this node, for inner use.
+         * @~Japanese  このノードから複製されたNodeを取得する内部仕様の関数.
+         */
+        Node* getDuplicatedNode () const;
+
     private:
         Node (const Node& node);
         Node& operator= (const Node& node);
@@ -238,6 +245,7 @@ namespace m3g {
         Alignment z_alignment;
         Alignment y_alignment;
 
+        Node* duplicated;
     };
 
 } // namespace m3g {

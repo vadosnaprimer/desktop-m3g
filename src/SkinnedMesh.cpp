@@ -82,13 +82,13 @@ SkinnedMesh:: ~SkinnedMesh ()
 
 SkinnedMesh* SkinnedMesh:: duplicate () const
 {
-    Group* skl = skeleton->duplicate ();
-    SkinnedMesh* mesh     = new SkinnedMesh (vertices, indices.size(), (IndexBuffer**)&indices[0], (Appearance**)&appearances[0], skl);
-    mesh->Object3D     :: copy (mesh);
-    mesh->Transformable:: copy (mesh);
-    mesh->Node         :: copy (mesh);
-    mesh->Mesh         :: copy (mesh);
-    mesh->SkinnedMesh  :: copy (mesh);
+    Group*       skl  = skeleton->duplicate ();
+    SkinnedMesh* mesh = new SkinnedMesh (vertices, indices.size(), (IndexBuffer**)&indices[0], (Appearance**)&appearances[0], skl);
+    this->Object3D     :: copy (mesh);
+    this->Transformable:: copy (mesh);
+    this->Node         :: copy (mesh);
+    this->Mesh         :: copy (mesh);
+    this->SkinnedMesh  :: copy (mesh);
     return mesh;
 }
 
@@ -98,11 +98,8 @@ void SkinnedMesh:: copy (SkinnedMesh* mesh) const
     mesh->bone_indices = bone_indices;
     mesh->bind_poses   = bind_poses;
     for (int i = 0; i < (int)bind_poses.size(); i++) {
-        // ここでboneの付け替え
-        // どうやって????
+        mesh->bind_poses[i].bone = bind_poses[i].bone->getDuplicatedNode();
     }
-
-    throw NotImplementedException (__FILE__, __func__, "Duplicate of SkinneMesh is not implemented.");
 }
 
 

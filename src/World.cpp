@@ -23,7 +23,7 @@ World:: ~World ()
 
 World* World:: duplicate () const
 {
-    World* wld   = new World ;
+    World* wld   = new World;
     this->Object3D     :: copy (wld);
     this->Transformable:: copy (wld);
     this->Node         :: copy (wld);
@@ -34,14 +34,8 @@ World* World:: duplicate () const
 
 void World:: copy (World* wld) const
 {
-    wld->background = background->duplicate ();
-    wld->camera     = NULL;
-    for (int i = 0; i < (int)children.size(); i++) {
-        if (children[i] == camera) {
-            wld->camera = dynamic_cast<Camera*>(wld->children[i]);
-            break;
-        }
-    }
+    wld->background = (background == NULL) ? NULL : background->duplicate ();
+    wld->camera     = (camera     == NULL) ? NULL : dynamic_cast<Camera*>(camera->getDuplicatedNode());
 }
 
 int World:: animate (int world_time)

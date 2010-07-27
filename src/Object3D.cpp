@@ -30,7 +30,7 @@ int Object3D:: animate (int world_time)
 Object3D* Object3D:: duplicate () const
 {
     Object3D* obj = new Object3D;
-    obj->Object3D:: copy (obj);
+    this->Object3D:: copy (obj);
     return obj;
 }
 

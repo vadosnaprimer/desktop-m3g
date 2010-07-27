@@ -19,7 +19,8 @@ const int Node:: Z_AXIS;
 Node:: Node () : 
     parent(0), rendering_enable(true), picking_enable(true),
     alpha_factor(1), scope(-1),
-    z_alignment(NONE, 0), y_alignment(NONE, 0)
+    z_alignment(NONE, 0), y_alignment(NONE, 0),
+    duplicated(0)
 {
 }
 
@@ -45,6 +46,8 @@ void Node:: copy (Node* node) const
     node->scope            = scope;
     node->z_alignment      = z_alignment;
     node->y_alignment      = y_alignment;
+
+    const_cast<Node*>(this)->duplicated       = node;
 }
 
 void Node:: addAnimationTrack (AnimationTrack* animation_track)
@@ -426,6 +429,11 @@ void Node:: render (RenderState& state) const
     Transformable::render (state);
   
     state.alpha = getGlobalAlphaFactor();
+}
+
+Node* Node:: getDuplicatedNode () const
+{
+    return duplicated;
 }
 
 std::ostream& Node:: print (std::ostream& out) const
