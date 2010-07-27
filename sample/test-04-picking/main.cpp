@@ -103,9 +103,9 @@ void keyboard (unsigned char key, int x, int y)
 
 int main (int argc, char** argv)
 {
-    glutInit(&argc, argv);
-    glutInitDisplayMode(GLUT_RGBA|GLUT_DOUBLE);
-    glutCreateWindow(argv[0]);
+    glutInit (&argc, argv);
+    glutInitDisplayMode (GLUT_RGBA | GLUT_DOUBLE | GLUT_DEPTH);
+    glutCreateWindow (argv[0]);
     
     VertexArray* positions         = new VertexArray (4, 3, 2);
     short        position_values[] = {1,-1,0, 1,1,0, -1,-1,0, -1,1,0};
