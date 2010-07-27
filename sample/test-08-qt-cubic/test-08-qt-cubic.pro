@@ -5,7 +5,7 @@
 TEMPLATE = app
 TARGET = a.out
 DEPENDPATH += .
-INCLUDEPATH += . ../../src ../../lib
+INCLUDEPATH += . ../../src
 
 
 # Input
@@ -19,4 +19,4 @@ QMAKE_FLAGS +=  -Wno-deprecated
 
 
 # 
-LIBS +=  -L../../src -L../../lib -lm3g -lM3GReaderWriter -lQtOpenGL -lz
+LIBS +=  -L../../src -lm3g -lQtOpenGL -lz

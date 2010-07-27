@@ -6,7 +6,7 @@ CXX = g++
 CXXFLAGS = -Wall -g -Wno-deprecated -I../src -I../lib
 LD = g++
 LDFLAGS = -L../src -L../lib
-LIBS =  -lm3g -lM3GReaderWriter -lUnitTest++ -lglut -lGL -lz
+LIBS =  -lm3g  -lUnitTest++ -lglut -lGL -lz
 
 all: $(OBJS)
 	$(LD)  $(LDFLAGS) $^ $(LIBS) -o $(TARGET)
@@ -227,8 +227,8 @@ test-Image2D.o: /usr/include/unittest++/TimeConstraint.h
 test-Image2D.o: /usr/include/unittest++/TimeHelpers.h ../src/Image2D.hpp
 test-Image2D.o: ../src/Object3D.hpp ../src/m3gdef.hpp ../src/m3ginternal.hpp
 test-Image2D.o: ../src/Object.hpp ../src/Exception.hpp ../src/Loader.hpp
-test-Image2D.o: ../lib/M3GReader.hpp ../lib/InMemoryStream.hpp
-test-Image2D.o: ../lib/M3GStruct.hpp ../src/m3g.hpp ../src/Graphics3D.hpp
+test-Image2D.o: ../src/M3GReader.hpp ../src/InMemoryStream.hpp
+test-Image2D.o: ../src/M3GStruct.hpp ../src/m3g.hpp ../src/Graphics3D.hpp
 test-Image2D.o: ../src/AnimationController.hpp ../src/AnimationTrack.hpp
 test-Image2D.o: ../src/Appearance.hpp ../src/Background.hpp
 test-Image2D.o: ../src/CompositingMode.hpp ../src/Fog.hpp
@@ -336,8 +336,8 @@ test-Loader.o: /usr/include/unittest++/Checks.h
 test-Loader.o: /usr/include/unittest++/TestRunner.h
 test-Loader.o: /usr/include/unittest++/TimeConstraint.h
 test-Loader.o: /usr/include/unittest++/TimeHelpers.h ../src/Loader.hpp
-test-Loader.o: ../src/Object.hpp ../lib/M3GReader.hpp
-test-Loader.o: ../lib/InMemoryStream.hpp ../lib/M3GStruct.hpp ../src/m3g.hpp
+test-Loader.o: ../src/Object.hpp ../src/M3GReader.hpp
+test-Loader.o: ../src/InMemoryStream.hpp ../src/M3GStruct.hpp ../src/m3g.hpp
 test-Loader.o: ../src/m3gdef.hpp ../src/Graphics3D.hpp ../src/Object3D.hpp
 test-Loader.o: ../src/m3ginternal.hpp ../src/AnimationController.hpp
 test-Loader.o: ../src/AnimationTrack.hpp ../src/Appearance.hpp

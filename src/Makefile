@@ -2,10 +2,9 @@ SRCS = $(wildcard *.cpp)
 OBJS = $(SRCS:.cpp=.o)
 TARGET = libm3g.so
 CXX = g++
-CXXFLAGS = -Wall -g -shared -fPIC -fno-strict-aliasing \
-            -I../lib
+CXXFLAGS = -Wall -g -shared -fPIC -fno-strict-aliasing
 LD = g++
-LDFLAGS = -shared -lGL -lGLU -lpng -ljpeg -L../lib
+LDFLAGS = -shared -L. -lGL -lGLU -lpng -ljpeg -Wl,-whole-archive -lM3GReaderWriter -Wl,-no-whole-archive
 LIBS = 
 
 
@@ -25,14 +24,14 @@ depend:
 	makedepend -- $(CXXFLAGS) -- $(SRCS)
 
 clean:
-	rm -rf *.o *.so *.a *~ 
+	rm -rf *.o *.so *~ 
 	@echo done.
 
 
 # DO NOT DELETE
 
 AnimationController.o: AnimationController.hpp Object3D.hpp m3gdef.hpp
-AnimationController.o: m3ginternal.hpp Object.hpp
+AnimationController.o: m3ginternal.hpp Object.hpp Exception.hpp
 AnimationTrack.o: AnimationTrack.hpp Object3D.hpp m3gdef.hpp m3ginternal.hpp
 AnimationTrack.o: Object.hpp KeyframeSequence.hpp Keyframe.hpp
 AnimationTrack.o: AnimationController.hpp Exception.hpp
@@ -91,11 +90,10 @@ Graphics3D.o: /usr/include/gnu/stubs-64.h /usr/include/stdint.h
 Graphics3D.o: /usr/include/bits/wchar.h /usr/include/GL/glu.h Graphics3D.hpp
 Graphics3D.o: Object.hpp World.hpp Group.hpp Node.hpp Transformable.hpp
 Graphics3D.o: Object3D.hpp m3gdef.hpp m3ginternal.hpp Quaternion.hpp
-Graphics3D.o: Transform.hpp Matrix.hpp Image2D.hpp Loader.hpp
-Graphics3D.o: ../lib/M3GReader.hpp ../lib/InMemoryStream.hpp
-Graphics3D.o: ../lib/M3GStruct.hpp m3g.hpp AnimationController.hpp
-Graphics3D.o: AnimationTrack.hpp Appearance.hpp Background.hpp
-Graphics3D.o: CompositingMode.hpp Fog.hpp IndexBuffer.hpp
+Graphics3D.o: Transform.hpp Matrix.hpp Image2D.hpp Loader.hpp M3GReader.hpp
+Graphics3D.o: InMemoryStream.hpp M3GStruct.hpp m3g.hpp
+Graphics3D.o: AnimationController.hpp AnimationTrack.hpp Appearance.hpp
+Graphics3D.o: Background.hpp CompositingMode.hpp Fog.hpp IndexBuffer.hpp
 Graphics3D.o: TriangleStripArray.hpp KeyframeSequence.hpp Keyframe.hpp
 Graphics3D.o: Material.hpp PolygonMode.hpp Camera.hpp Light.hpp Mesh.hpp
 Graphics3D.o: MorphingMesh.hpp SkinnedMesh.hpp BoneIndex.hpp Sprite3D.hpp
@@ -158,23 +156,22 @@ Loader.o: Transformable.hpp Quaternion.hpp Transform.hpp Matrix.hpp Node.hpp
 Loader.o: Camera.hpp Group.hpp World.hpp Light.hpp Mesh.hpp MorphingMesh.hpp
 Loader.o: SkinnedMesh.hpp BoneIndex.hpp Sprite3D.hpp Texture2D.hpp
 Loader.o: VertexArray.hpp VertexBuffer.hpp RayIntersection.hpp Vector.hpp
-Loader.o: Loader.hpp ../lib/M3GReader.hpp ../lib/InMemoryStream.hpp
-Loader.o: ../lib/M3GStruct.hpp Exception.hpp RenderState.hpp MemoryReader.hpp
-Loader.o: /usr/include/png.h /usr/include/zlib.h /usr/include/zconf.h
-Loader.o: /usr/include/zlibdefs.h /usr/include/sys/types.h
-Loader.o: /usr/include/features.h /usr/include/bits/predefs.h
-Loader.o: /usr/include/sys/cdefs.h /usr/include/bits/wordsize.h
-Loader.o: /usr/include/gnu/stubs.h /usr/include/gnu/stubs-64.h
-Loader.o: /usr/include/bits/types.h /usr/include/bits/typesizes.h
-Loader.o: /usr/include/time.h /usr/include/endian.h
-Loader.o: /usr/include/bits/endian.h /usr/include/bits/byteswap.h
-Loader.o: /usr/include/sys/select.h /usr/include/bits/select.h
-Loader.o: /usr/include/bits/sigset.h /usr/include/bits/time.h
-Loader.o: /usr/include/sys/sysmacros.h /usr/include/bits/pthreadtypes.h
-Loader.o: /usr/include/unistd.h /usr/include/bits/posix_opt.h
-Loader.o: /usr/include/bits/confname.h /usr/include/getopt.h
-Loader.o: /usr/include/pngconf.h /usr/include/stdio.h /usr/include/libio.h
-Loader.o: /usr/include/_G_config.h /usr/include/wchar.h
+Loader.o: Loader.hpp M3GReader.hpp InMemoryStream.hpp M3GStruct.hpp
+Loader.o: Exception.hpp RenderState.hpp MemoryReader.hpp /usr/include/png.h
+Loader.o: /usr/include/zlib.h /usr/include/zconf.h /usr/include/zlibdefs.h
+Loader.o: /usr/include/sys/types.h /usr/include/features.h
+Loader.o: /usr/include/bits/predefs.h /usr/include/sys/cdefs.h
+Loader.o: /usr/include/bits/wordsize.h /usr/include/gnu/stubs.h
+Loader.o: /usr/include/gnu/stubs-64.h /usr/include/bits/types.h
+Loader.o: /usr/include/bits/typesizes.h /usr/include/time.h
+Loader.o: /usr/include/endian.h /usr/include/bits/endian.h
+Loader.o: /usr/include/bits/byteswap.h /usr/include/sys/select.h
+Loader.o: /usr/include/bits/select.h /usr/include/bits/sigset.h
+Loader.o: /usr/include/bits/time.h /usr/include/sys/sysmacros.h
+Loader.o: /usr/include/bits/pthreadtypes.h /usr/include/unistd.h
+Loader.o: /usr/include/bits/posix_opt.h /usr/include/bits/confname.h
+Loader.o: /usr/include/getopt.h /usr/include/pngconf.h /usr/include/stdio.h
+Loader.o: /usr/include/libio.h /usr/include/_G_config.h /usr/include/wchar.h
 Loader.o: /usr/include/bits/stdio_lim.h /usr/include/bits/sys_errlist.h
 Loader.o: /usr/include/setjmp.h /usr/include/bits/setjmp.h
 Loader.o: /usr/include/string.h /usr/include/xlocale.h

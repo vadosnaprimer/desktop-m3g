@@ -91,8 +91,6 @@ int main (int argc, char** argv)
     glutInitDisplayMode(GLUT_RGBA | GLUT_DEPTH | GLUT_DOUBLE);
     glutCreateWindow(argv[0]);
 
-    Loader* loader = new Loader;
-
     //objs = loader->load ("simple.m3g");
     objs = Loader::load ("test.m3g");
 
