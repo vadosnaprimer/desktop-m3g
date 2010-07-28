@@ -41,7 +41,19 @@ main.o: ../../src/SkinnedMesh.hpp ../../src/BoneIndex.hpp
 main.o: ../../src/Sprite3D.hpp ../../src/Texture2D.hpp
 main.o: ../../src/VertexArray.hpp ../../src/VertexBuffer.hpp
 main.o: ../../src/RayIntersection.hpp ../../src/Vector.hpp
-main.o: ../../src/Loader.hpp ../../src/Exception.hpp
-main.o: ../../src/RenderState.hpp data.hpp /usr/include/GL/glut.h
-main.o: /usr/include/GL/freeglut_std.h /usr/include/GL/gl.h
-main.o: /usr/include/GL/glext.h /usr/include/GL/glu.h
+main.o: ../../src/Loader.hpp ../../src/M3GReader.hpp
+main.o: ../../src/InMemoryStream.hpp ../../src/M3GStruct.hpp
+main.o: ../../src/Exception.hpp ../../src/RenderState.hpp
+main.o: /usr/include/GL/glut.h /usr/include/GL/freeglut_std.h
+main.o: /usr/include/GL/gl.h /usr/include/GL/glext.h /usr/include/inttypes.h
+main.o: /usr/include/features.h /usr/include/bits/predefs.h
+main.o: /usr/include/sys/cdefs.h /usr/include/bits/wordsize.h
+main.o: /usr/include/gnu/stubs.h /usr/include/gnu/stubs-64.h
+main.o: /usr/include/stdint.h /usr/include/bits/wchar.h /usr/include/GL/glu.h
+main.o: /usr/include/stdlib.h /usr/include/sys/types.h
+main.o: /usr/include/bits/types.h /usr/include/bits/typesizes.h
+main.o: /usr/include/time.h /usr/include/endian.h /usr/include/bits/endian.h
+main.o: /usr/include/bits/byteswap.h /usr/include/sys/select.h
+main.o: /usr/include/bits/select.h /usr/include/bits/sigset.h
+main.o: /usr/include/bits/time.h /usr/include/sys/sysmacros.h
+main.o: /usr/include/bits/pthreadtypes.h /usr/include/alloca.h

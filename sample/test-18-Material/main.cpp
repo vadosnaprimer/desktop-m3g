@@ -93,11 +93,11 @@ int main (int argc, char** argv)
   animation_light_color->setController (controller);
 
 
-  VertexArray* positions = new VertexArray (800, 3, 2);
-  positions->set (0, 800, position_values);
+  VertexArray* positions = new VertexArray (840, 3, 2);
+  positions->set (0, 840, position_values);
 
-  VertexArray* normals = new VertexArray (800, 3, 1);
-  normals->set (0, 800, normal_values);
+  VertexArray* normals = new VertexArray (840, 3, 1);
+  normals->set (0, 840, normal_values);
 
   float scale   = 1;
   float bias[3] = {0,0,0};
