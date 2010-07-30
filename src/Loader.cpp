@@ -809,7 +809,9 @@ void Loader:: setGroup (Group* grp, const M3GGroupStruct& group) const
     int child_count = group.children_index_count;
     for (int i = 0; i < child_count; i++) {
         Node* node = dynamic_cast<Node*>(objs[group.children_index[i]]);
-        grp->addChild (node);
+        if (node) {
+            grp->addChild (node);
+        }
     }
 }
 
@@ -826,9 +828,9 @@ void Loader:: setIndexBuffer (IndexBuffer* ibuf, const M3GIndexBufferStruct& ind
 void Loader:: setKeyframeSequence (KeyframeSequence* key_seq, const M3GKeyframeSequenceStruct& ks) const
 {
     int duration = ks.duration;
-    int mode    = ks.repeat_mode;
-    int first   = ks.valid_range_first;
-    int last    = ks.valid_range_last;
+    int mode     = ks.repeat_mode;
+    int first    = ks.valid_range_first;
+    int last     = ks.valid_range_last;
     int keyframe_count = ks.keyframe_count;
 
     key_seq->setDuration  (duration);
