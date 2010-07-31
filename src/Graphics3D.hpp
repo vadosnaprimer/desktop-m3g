@@ -67,11 +67,6 @@ namespace m3g {
         static const int TRUE_COLOR  = 1<<3;
 
 
-        static const int TARGET_NONE    = 0;
-        static const int TARGET_DEFAULT = 1;
-        static const int TARGET_IMAGE2D = 2;
-
-
         /**
          * @~English  Destruct this object.
          * @~Japanese このオブジェクトを削除するデストラクタ.
@@ -89,12 +84,6 @@ namespace m3g {
          * @~Japanese レンダーターゲットとしてデフォルト（フレームバッファー）をバインドする.
          */
         void bindTarget (void* target, bool depth_buffer_enabled=true, int hints=0);
-
-        /**
-         * @~English  Binds mutable Image 2D as the rendring ttarget of this Graphics3D.
-         * @~Japanese レンダーターゲットとしてImage2Dをバインドする.
-         */
-        void bindTarget (Image2D* target, bool depth_buffer_enabled=true, int hints=0);
 
         /**
          * @~English  Clears the viewport as specified in the given Background object.
@@ -263,11 +252,6 @@ namespace m3g {
         int      hints;
         std::map<const char*, int> properties;
 
-        int target;
-        union {
-            void*    fb;
-            Image2D* img;
-        };
     };
 
 } // namespace m3g {

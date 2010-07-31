@@ -16,14 +16,9 @@ const int Graphics3D:: DITHER;
 const int Graphics3D:: OVERWRITE;
 const int Graphics3D:: TRUE_COLOR;
 
-const int Graphics3D:: TARGET_NONE;
-const int Graphics3D:: TARGET_DEFAULT;
-const int Graphics3D:: TARGET_IMAGE2D;
-
 
 Graphics3D:: Graphics3D () : 
-    viewport(0,0,0,0), depth_buffer_enable(true), hints(0),
-    target(TARGET_DEFAULT)
+    viewport(0,0,0,0), depth_buffer_enable(true), hints(0)
 {
     // プロパティは決めうち
     properties.insert (map<const char*, int>::value_type("supportAntialiasing"         , 1));
@@ -56,43 +51,9 @@ void Graphics3D:: initOpenGL ()
 {
 }
 
-void Graphics3D:: bindTarget (void* target_fb, bool depth_buffer_enable_, int hints_)
+void Graphics3D:: bindTarget (void* target, bool depth_buffer_enable, int hint)
 {
-    if (target_fb != NULL) {
-        throw IllegalArgumentException (__FILE__, __func__, "Bind target is invalid, t=%p.", target_fb);
-    }
-    if (target != TARGET_DEFAULT) {
-        throw IllegalArgumentException (__FILE__, __func__, "Graphics3D already has render target, t=%p.", target);
-    }
-
-    target              = TARGET_DEFAULT;
-    fb                  = 0;
-    depth_buffer_enable = depth_buffer_enable_;
-    hints               = hints_;
-
-}
-
-void Graphics3D:: bindTarget (Image2D* target_img, bool depth_buffer_enable_, int hints_)
-{
-    if (target_img == NULL) {
-        throw IllegalArgumentException (__FILE__, __func__, "Bind target is Null.");
-    }
-    if (target != TARGET_DEFAULT) {
-        throw IllegalArgumentException (__FILE__, __func__, "Graphics3D already has render target, t=%p.", target);
-    }
-    if (!target_img->isMutable()) {
-        throw IllegalArgumentException (__FILE__, __func__, "Target image must be mutable.");
-    }
-    int format = target_img->getFormat();
-    if (format != Image2D::RGB && format != Image2D::RGBA) {
-        throw IllegalArgumentException (__FILE__, __func__, "Image2D format must be RGB or RGBA, format=%d.", format);
-    }
-
-    target              = TARGET_IMAGE2D;
-    img                 = target_img;
-    depth_buffer_enable = depth_buffer_enable_;
-    hints               = hints_;
-
+    throw NotImplementedException (__FILE__, __func__, "Sorry, bindTarget() is not implemented.");
 }
 
 void Graphics3D:: clear (Background* bg)
@@ -148,11 +109,7 @@ std::map<const char*, int> Graphics3D:: getProperties () const
 
 void* Graphics3D:: getTarget () const
 {
-    switch (target) {
-    case TARGET_DEFAULT: return fb;
-    case TARGET_IMAGE2D: return img;
-    default: throw InternalException (__FILE__, __func__, "Unknwon render target, t=%d.", target);
-    }
+    throw NotImplementedException (__FILE__, __func__, "Sorry, getTarget() is not implemented.");
 }
 
 int Graphics3D:: getViewportHeight () const
@@ -182,8 +139,7 @@ bool Graphics3D:: isDepthBufferEnabled () const
 
 void Graphics3D:: releaseTarget ()
 {
-    target = TARGET_DEFAULT;
-    glFinish ();
+    throw NotImplementedException (__FILE__, __func__, "Sorry, releaseTarget() is not implemented.");
 }
 
 void Graphics3D:: render (Node* node, const Transform& transform) const
@@ -200,9 +156,6 @@ void Graphics3D:: render (World* wld) const
 {
     if (wld == NULL) {
         throw NullPointerException (__FILE__, __func__, "World is NULL.");
-    }
-    if (target == TARGET_NONE) {
-        throw IllegalStateException (__FILE__, __func__, "Render target is not set.");
     }
     Camera* cam = wld->getActiveCamera();
     if (cam == NULL) {
@@ -244,10 +197,6 @@ void Graphics3D:: render (World* wld) const
         wld->render (state);
     }
 
-
-    if (target == TARGET_IMAGE2D) {
-        img->render (state);
-    }
 }
 
 void Graphics3D:: resetLights ()
@@ -280,24 +229,12 @@ void Graphics3D:: setViewport (int x, int y, int width, int height)
     glViewport (viewport.x, viewport.y, viewport.width, viewport.height);
 }
 
-static 
-const char* target_to_string (int target)
-{
-    switch (target) {
-    case Graphics3D::TARGET_NONE   : return "None"; break;
-    case Graphics3D::TARGET_DEFAULT: return "Default(FrameBuffer)"; break;
-    case Graphics3D::TARGET_IMAGE2D: return "Image2D"; break;
-    default: throw IllegalStateException (__FILE__, __func__, "Target is unknown, t=%d.", target);
-    }
-}
 
 std::ostream& Graphics3D:: print (std::ostream& out) const
 {
     out << "Grapphics3D: ";
     out << "  depth_buffer_enable=" << depth_buffer_enable;
     out << ", hints="  << hints;
-    out << ", target=" << target_to_string(target);
-
     return out;
 }
 
