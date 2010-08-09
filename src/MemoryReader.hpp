@@ -23,7 +23,7 @@ private:
     int         size;
 };
 
-void my_png_read_func (png_structp png_ptr, png_bytep data, png_uint_32 length);
+void my_png_read_func (png_structp png_ptr, png_bytep data, png_size_t length);
 
 
 #endif

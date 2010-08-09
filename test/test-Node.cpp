@@ -7,6 +7,7 @@ using namespace std;
 using namespace m3g;
 
 
+
 TEST (Node_default_variables)
 {
     Node* node = new Node;
@@ -65,11 +66,11 @@ TEST (Node_duplicate)
 {
     // TODO : 現在アライメントのチェックはしていない
 
-    Node* node0 = new Node;
-    Node* zref = new Node;
-    Node* yref = new Node;
+    Node* node0  = new Node;
+    Node* zref   = new Node;
+    Node* yref   = new Node;
     Node* parent = new Node;
-    Group* grp = new Group;
+    Group* grp   = new Group;
 
     node0->setAlignment (zref, Node::ORIGIN, yref, Node::ORIGIN);
     node0->setAlphaFactor (0.5);
@@ -202,7 +203,6 @@ TEST (Node_alignment)
     node->align (0);
 
     //cout << "node = " << node->Transformable::print (cout) << "\n";
-
 }
 
 TEST (Node_is_global_enabled_flag)

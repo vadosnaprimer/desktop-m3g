@@ -124,7 +124,7 @@ Vector& Vector:: divided_by_w ()
 
 float m3g::dot (const Vector& p, const Vector& q)
 {
-    if (p.w != 1 || q.w != 1) {
+    if (fabsf(p.w-1) > M3G_EPSILON || fabsf(q.w-1) > M3G_EPSILON) {
         throw ArithmeticException (__FILE__, __func__, "Dot, but w is not 1. p.w=%f, q.w=%f.", p.w, q.w);
     }
     return p.x*q.x+p.y*q.y+p.z*q.z;

@@ -6,7 +6,7 @@ using namespace std;
 /**
  * png_set_read_fn() に渡すカスタムリーダー関数
  */
-void my_png_read_func (png_structp png_ptr, png_bytep data, png_uint_32 length)
+void my_png_read_func (png_structp png_ptr, png_bytep data, png_size_t length)
 {
     MemoryReader* reader = (MemoryReader*)png_get_io_ptr (png_ptr);
     int byte = reader->read ((char*)data, length);
