@@ -13,6 +13,7 @@ std::vector<Object3D*> objs;
 World* wld = 0;
 int file_index = 1;
 
+
 void display(void)
 {
     Graphics3D* g3d = Graphics3D::getInstance();
@@ -51,9 +52,18 @@ void quit ()
     exit (0);
 }
 
+
 int world_time = 0;
 
-static void keyboard(unsigned char key, int x, int y)
+void idle ()
+{
+    world_time = (world_time + 10) % 5000;
+    wld->animate (world_time);
+    cout << "main: time = " << world_time << "\n";
+    glutPostRedisplay();
+}
+
+void keyboard(unsigned char key, int x, int y)
 {
     switch (key) {
     case 'q':
@@ -61,7 +71,7 @@ static void keyboard(unsigned char key, int x, int y)
         break;
     case ' ':
         wld->animate (world_time);
-        world_time += 33;
+        world_time += 10;
         cout << "main: time = " << world_time << "\n";
         break;
     default:
@@ -115,6 +125,7 @@ int main (int argc, char** argv)
     bg->setColor (0xff3f7fff);
 
     glutKeyboardFunc(keyboard);
+    glutIdleFunc (idle);
     glutMouseFunc(mouse);
     glutDisplayFunc(display);
     glutReshapeFunc(resize);
