@@ -96,3 +96,28 @@ TEST (Mesh_duplicate)
     delete mesh1;
 }
 
+static int count = 0;
+static void func (void* p)
+{
+    count++;
+}
+
+TEST (Mesh_mark)
+{
+    VertexBuffer* vbuf = new VertexBuffer;
+    int indices[] = {0,1,2};
+    int strips[] = {3};
+    TriangleStripArray* tris = new TriangleStripArray (indices, 1, strips);
+    Appearance* app = new Appearance;
+    Mesh* mesh = new Mesh (vbuf, tris, app);
+
+    mesh->mark (func);
+
+    CHECK_EQUAL (4, count);
+
+    delete vbuf;
+    delete tris;
+    delete app;
+    delete mesh;
+}
+
