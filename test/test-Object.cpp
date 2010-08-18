@@ -20,3 +20,18 @@ TEST (Object_set_variables)
 
 }
 
+static void* ptr = 0;
+static void func (void* p)
+{
+    ptr = p;
+}
+
+TEST (Object_mark)
+{
+    void* entity = (void*)0x12345678;
+    Object* obj = new Object;
+    obj->setExportedEntity (entity);
+    obj->mark (func);
+    
+    CHECK_EQUAL (entity, ptr);
+}

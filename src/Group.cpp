@@ -33,6 +33,17 @@ Group* Group:: duplicate () const
     return grp;
 }
 
+void Group:: mark (void(*func)(void*)) const
+{
+    if (func == NULL)
+        return;
+
+    Object::mark (func);
+    for (int i = 0; i < (int)children.size(); i++) {
+        children[i]->mark (func);
+    }
+}
+
 void Group:: copy (Group* grp) const
 {
     if (grp == NULL) {

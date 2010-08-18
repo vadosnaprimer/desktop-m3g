@@ -64,4 +64,29 @@ TEST (World_duplicate)
     delete wld1;
 }
 
+static int count = 0;
+static void func (void* entity)
+{
+    count++;
+}
+
+TEST (World_mark)
+{
+    Background* bg   = new Background;
+    Camera*     cam  = new Camera;
+    World*      wld  = new World;
+
+    wld->addChild (cam);
+    wld->setActiveCamera (cam);
+    wld->setBackground (bg);
+
+    wld->mark (func);
+
+    CHECK_EQUAL (3, count);
+
+    delete bg;
+    delete cam;
+    delete wld;
+}
+
 

@@ -92,6 +92,22 @@ SkinnedMesh* SkinnedMesh:: duplicate () const
     return mesh;
 }
 
+void SkinnedMesh:: mark (void(*func)(void*)) const
+{
+    if (func == NULL)
+        return;
+
+    Mesh::mark (func);
+    if (skeleton) {
+        skeleton->mark (func);
+    }
+    if (skinned_vertices) {
+        skinned_vertices->mark (func);
+    }
+}
+
+
+
 void SkinnedMesh:: copy (SkinnedMesh* mesh) const
 {
     // skeletonとskinned_verticesはコンストラクタで処理済み

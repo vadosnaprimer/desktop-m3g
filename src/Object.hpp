@@ -37,7 +37,13 @@ namespace m3g {
          * @~Enslish   set mark of this object referenced by external library.
          * @~Japanese  外部ライブラリからこのオブジェクトを参照するのに必要なデータをセットする.
          */
-        void setExportedEntity (void* exported_entity);
+        void setExportedEntity (void* entity);
+
+        /**
+         * @~Enslish   mark this for Garbage Collect.
+         * @~Japanese  GCコレクター用のマークを行う.
+         */
+        virtual void mark (void(*func)(void*)) const;
 
         /**
          * @~English  Print out information of this class, for debug only.

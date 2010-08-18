@@ -66,6 +66,17 @@ Texture2D* Texture2D:: duplicate () const
     return tex;
 }
 
+void Texture2D:: mark (void(*func)(void*)) const
+{
+    if (func == NULL) 
+        return;
+
+    Object:: mark (func);
+    if (image) {
+        image->mark (func);
+    }
+}
+
 void Texture2D:: copy (Texture2D* tex) const
 {
     if (tex == NULL) {

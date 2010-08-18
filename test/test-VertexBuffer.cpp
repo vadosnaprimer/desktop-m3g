@@ -100,3 +100,34 @@ TEST (VertexBuffer_duplicate)
     delete vbuf1;
 }
 
+static int count = 0;
+static void func (void* p)
+{
+    count++;
+}
+
+TEST (VertexBuffer_mark)
+{
+    VertexBuffer* vbuf    = new VertexBuffer;
+    VertexArray* colors    = new VertexArray (1, 3, 1);
+    VertexArray* normals   = new VertexArray (1, 3, 2);
+    VertexArray* positions = new VertexArray (1, 3, 2);
+    VertexArray* texcoords = new VertexArray (1, 2, 2);
+    float scale   = 1;
+    float bias[3] = {0,0,0};
+
+    vbuf->setColors (colors);
+    vbuf->setNormals (normals);
+    vbuf->setPositions (positions, scale, bias);
+    vbuf->setTexCoords (1, texcoords, scale, bias);
+
+    vbuf->mark (func);
+
+    CHECK_EQUAL (5, count);
+
+    delete vbuf;
+    delete colors;
+    delete normals;
+    delete positions;
+    delete texcoords;
+}

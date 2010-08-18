@@ -42,6 +42,8 @@ namespace m3g {
          */
         virtual Group* duplicate () const;
 
+        virtual void mark (void(*func)(void*)) const;
+
         /**
          * @~English  Copy this Object3D to specified Object3D, not defined by M3G. 
          * @~Japanese このオブジェクトのデータを引数で指定されたオブジェクトにコピーするM3G非標準の関数.

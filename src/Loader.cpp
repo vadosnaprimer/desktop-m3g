@@ -1063,3 +1063,4 @@ void Loader:: setWorld (World* wld, const M3GWorldStruct& world) const
     if (bg)
         wld->setBackground   (bg);
 }
+

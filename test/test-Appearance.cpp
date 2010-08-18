@@ -105,3 +105,38 @@ TEST (Appearance_duplicate)
     delete app1;
 
 }
+
+static int count = 0;
+static void func (void* p)
+{
+    count++;
+}
+
+TEST (Appearance_mark)
+{
+    Appearance*  app   = new Appearance;
+    CompositingMode* cmode = new CompositingMode;
+    Fog*         fog   = new Fog;
+    Material*    mat   = new Material;
+    PolygonMode* pmode = new PolygonMode;
+    Image2D*     img   = new Image2D (Image2D::RGBA, 64, 64);
+    Texture2D*   tex   = new Texture2D (img);
+
+    app->setCompositingMode (cmode);
+    app->setFog (fog);
+    app->setMaterial (mat);
+    app->setPolygonMode (pmode);
+    app->setTexture (0, tex);
+
+    app->mark (func);
+
+    CHECK_EQUAL (7, count);
+
+    delete app;
+    delete cmode;
+    delete fog;
+    delete mat;
+    delete pmode;
+    delete img;
+    delete tex;
+}

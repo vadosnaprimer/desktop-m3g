@@ -63,6 +63,20 @@ Sprite3D* Sprite3D:: duplicate () const
     return spr;
 }
 
+void Sprite3D:: mark (void(*func)(void*)) const
+{
+    if (func == NULL)
+        return;
+
+    Object::mark (func);
+    if (image) {
+        image->mark (func);
+    }
+    if (appearance) {
+        appearance->mark (func);
+    }
+}
+
 void Sprite3D:: copy (Sprite3D* spr) const
 {
     if (spr == NULL) {

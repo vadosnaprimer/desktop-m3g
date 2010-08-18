@@ -228,3 +228,8 @@ TEST (SkinnedMesh_duplicate)
     
 }
 
+TEST (SkinnedMesh_mark)
+{
+    // マーク関数がskeletonの方にも行っているかのテスト
+    // 後で実装する
+}

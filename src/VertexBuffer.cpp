@@ -39,6 +39,28 @@ VertexBuffer* VertexBuffer:: duplicate () const
     return vbuf;
 }
 
+void VertexBuffer:: mark (void(*func)(void*)) const
+{
+    if (func == NULL)
+        return;
+
+    Object::mark (func);
+    if (positions) {
+        positions->mark (func);
+    }
+    if (normals) {
+        normals->mark (func);
+    }
+    if (colors) {
+        colors->mark (func);
+    }
+    for (int i = 0; i < MAX_TEXTURE_UNITS; i++) {
+        if (tex_coords[i]) {
+            tex_coords[i]->mark (func);
+        }
+    }
+}
+
 void VertexBuffer:: copy (VertexBuffer* vbuf) const
 {
     vbuf->positions = positions;
@@ -408,7 +430,6 @@ void VertexBuffer:: render (RenderState& state) const
             node_alpha = state.alpha;
         }
 
-        //cout << "VertexBuffer: send vertex color array\n";
         // 注意：頂点カラーを使うかどうかはMaterial::render()で決定される。
         // ここではデータをGPUに送るだけでdisableにしておく。
         int component_count = colors->getComponentCount();
@@ -420,7 +441,6 @@ void VertexBuffer:: render (RenderState& state) const
         state.vertex_color_buffer_ready = true;
         state.default_vertex_color      = 0xffffffff;
     } else {
-        //cout << "VertexBuffer: send vertex color data, default color\n";
         glDisableClientState (GL_COLOR_ARRAY);
         state.vertex_color_buffer_ready = false;
         state.default_vertex_color      = default_color;
@@ -463,7 +483,6 @@ void VertexBuffer:: render (RenderState& state) const
     }
   
     glMatrixMode (GL_MODELVIEW);
-
 }
 
 std::ostream& VertexBuffer:: print (std::ostream& out) const
