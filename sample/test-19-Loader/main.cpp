@@ -17,20 +17,7 @@ int file_index = 1;
 void display(void)
 {
     Graphics3D* g3d = Graphics3D::getInstance();
-
-    //char name[256];
-    //sprintf (name, "%03d.png", file_index++);
-    //int width  = glutGet (GLUT_WINDOW_WIDTH);
-    //int height = glutGet (GLUT_WINDOW_HEIGHT);
-    //Image2D* img = new Image2D (Image2D::RGBA, width, height);
-    //g3d->bindTarget (img);
-
     g3d->render (wld);
-
-    //g3d->releaseTarget ();
-    //img->writePNG (name);
-    //delete img;
-
     glutSwapBuffers();
 }
 
@@ -57,7 +44,7 @@ int world_time = 0;
 
 void idle ()
 {
-    world_time = (world_time + 10) % 5000;
+    world_time = (world_time + 100) % 5000;
     wld->animate (world_time);
     cout << "main: time = " << world_time << "\n";
     glutPostRedisplay();
@@ -112,9 +99,6 @@ int main (int argc, char** argv)
         }
     }
     assert (wld != 0);
-
-    for (int i = objs.size()-1; i >= 0; i--) {
-    }
 
 
     Background* bg = wld->getBackground ();
