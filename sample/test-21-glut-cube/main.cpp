@@ -55,16 +55,17 @@ void mouse (int button, int state, int x, int y)
 
 void idle ()
 {
-    mesh->postRotate (1, 0,1,0);
+    mesh->postRotate (0.5, 0,1,0);
 
     glutPostRedisplay();
 }
 
 int main (int argc, char** argv)
 {
-    glutInit(&argc, argv);
-    glutInitDisplayMode(GLUT_RGB | GLUT_DEPTH | GLUT_DOUBLE);
-    glutCreateWindow(argv[0]);
+    glutInit (&argc, argv);
+    glutInitWindowSize (512, 512);
+    glutInitDisplayMode (GLUT_RGB | GLUT_DEPTH | GLUT_DOUBLE);
+    glutCreateWindow (argv[0]);
 
     short        position_values[] =  { 1,-1,1,  1,1,1,  -1,-1,1,  -1,1,1,
                                         -1,-1,-1,  -1,1,-1,  1,-1,-1,  1,1,-1,
@@ -90,7 +91,7 @@ int main (int argc, char** argv)
     TriangleStripArray* tris = new TriangleStripArray (indices, 6, strips);
 
 
-    Image2D*    img = dynamic_cast<Image2D*>(Loader::load("yumemi.png")[0]);
+    Image2D*    img = dynamic_cast<Image2D*>(Loader::load("kingyo.png")[0]);
     Texture2D*  tex = new Texture2D (img);
     Appearance* app = new Appearance;
     app->setTexture (0, tex);
