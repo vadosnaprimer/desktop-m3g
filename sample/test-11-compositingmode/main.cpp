@@ -89,7 +89,7 @@ int main (int argc, char** argv)
     animation_track->setController (controller);
 
     VertexArray* positions         = new VertexArray (4, 3, 2);
-    short        position_values[] = {1,-1,0, 1,1,0, -1,-1,0, -1,1};
+    short        position_values[] = {1,-1,0, 1,1,0, -1,-1,0, -1,1,0};
     positions->set (0, 4, position_values);
 
     float scale   = 1;
