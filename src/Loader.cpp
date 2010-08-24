@@ -375,7 +375,6 @@ void Loader:: parseImage2D ()
     char* pixels = image.pixels;
 
     Image2D* img = new Image2D (format, width, height, pixels);
-    img->writePNG ("image2.png");
     setObject3D (img, obj);
     setImage2D  (img, image);
 
