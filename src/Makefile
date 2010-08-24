@@ -39,7 +39,7 @@ Appearance.o: m3g-gl.hpp /usr/include/GL/gl.h /usr/include/GL/glext.h
 Appearance.o: /usr/include/inttypes.h /usr/include/features.h
 Appearance.o: /usr/include/bits/predefs.h /usr/include/sys/cdefs.h
 Appearance.o: /usr/include/bits/wordsize.h /usr/include/gnu/stubs.h
-Appearance.o: /usr/include/gnu/stubs-64.h /usr/include/stdint.h
+Appearance.o: /usr/include/gnu/stubs-32.h /usr/include/stdint.h
 Appearance.o: /usr/include/bits/wchar.h /usr/include/GL/glu.h Appearance.hpp
 Appearance.o: Object3D.hpp m3gdef.hpp m3ginternal.hpp Object.hpp
 Appearance.o: CompositingMode.hpp Fog.hpp Material.hpp PolygonMode.hpp
@@ -49,7 +49,7 @@ Background.o: m3g-gl.hpp /usr/include/GL/gl.h /usr/include/GL/glext.h
 Background.o: /usr/include/inttypes.h /usr/include/features.h
 Background.o: /usr/include/bits/predefs.h /usr/include/sys/cdefs.h
 Background.o: /usr/include/bits/wordsize.h /usr/include/gnu/stubs.h
-Background.o: /usr/include/gnu/stubs-64.h /usr/include/stdint.h
+Background.o: /usr/include/gnu/stubs-32.h /usr/include/stdint.h
 Background.o: /usr/include/bits/wchar.h /usr/include/GL/glu.h Background.hpp
 Background.o: Object3D.hpp m3gdef.hpp m3ginternal.hpp Object.hpp Image2D.hpp
 Background.o: Exception.hpp AnimationTrack.hpp AnimationController.hpp
@@ -58,7 +58,7 @@ Camera.o: m3g-gl.hpp /usr/include/GL/gl.h /usr/include/GL/glext.h
 Camera.o: /usr/include/inttypes.h /usr/include/features.h
 Camera.o: /usr/include/bits/predefs.h /usr/include/sys/cdefs.h
 Camera.o: /usr/include/bits/wordsize.h /usr/include/gnu/stubs.h
-Camera.o: /usr/include/gnu/stubs-64.h /usr/include/stdint.h
+Camera.o: /usr/include/gnu/stubs-32.h /usr/include/stdint.h
 Camera.o: /usr/include/bits/wchar.h /usr/include/GL/glu.h Camera.hpp Node.hpp
 Camera.o: Transformable.hpp Object3D.hpp m3gdef.hpp m3ginternal.hpp
 Camera.o: Object.hpp Quaternion.hpp Transform.hpp Matrix.hpp Vector.hpp
@@ -68,7 +68,7 @@ CompositingMode.o: m3g-gl.hpp /usr/include/GL/gl.h /usr/include/GL/glext.h
 CompositingMode.o: /usr/include/inttypes.h /usr/include/features.h
 CompositingMode.o: /usr/include/bits/predefs.h /usr/include/sys/cdefs.h
 CompositingMode.o: /usr/include/bits/wordsize.h /usr/include/gnu/stubs.h
-CompositingMode.o: /usr/include/gnu/stubs-64.h /usr/include/stdint.h
+CompositingMode.o: /usr/include/gnu/stubs-32.h /usr/include/stdint.h
 CompositingMode.o: /usr/include/bits/wchar.h /usr/include/GL/glu.h
 CompositingMode.o: CompositingMode.hpp Object3D.hpp m3gdef.hpp
 CompositingMode.o: m3ginternal.hpp Object.hpp Exception.hpp RenderState.hpp
@@ -77,7 +77,7 @@ Fog.o: m3g-gl.hpp /usr/include/GL/gl.h /usr/include/GL/glext.h
 Fog.o: /usr/include/inttypes.h /usr/include/features.h
 Fog.o: /usr/include/bits/predefs.h /usr/include/sys/cdefs.h
 Fog.o: /usr/include/bits/wordsize.h /usr/include/gnu/stubs.h
-Fog.o: /usr/include/gnu/stubs-64.h /usr/include/stdint.h
+Fog.o: /usr/include/gnu/stubs-32.h /usr/include/stdint.h
 Fog.o: /usr/include/bits/wchar.h /usr/include/GL/glu.h Fog.hpp Object3D.hpp
 Fog.o: m3gdef.hpp m3ginternal.hpp Object.hpp Exception.hpp AnimationTrack.hpp
 Fog.o: AnimationController.hpp KeyframeSequence.hpp Keyframe.hpp
@@ -86,7 +86,7 @@ Graphics3D.o: m3g-gl.hpp /usr/include/GL/gl.h /usr/include/GL/glext.h
 Graphics3D.o: /usr/include/inttypes.h /usr/include/features.h
 Graphics3D.o: /usr/include/bits/predefs.h /usr/include/sys/cdefs.h
 Graphics3D.o: /usr/include/bits/wordsize.h /usr/include/gnu/stubs.h
-Graphics3D.o: /usr/include/gnu/stubs-64.h /usr/include/stdint.h
+Graphics3D.o: /usr/include/gnu/stubs-32.h /usr/include/stdint.h
 Graphics3D.o: /usr/include/bits/wchar.h /usr/include/GL/glu.h Graphics3D.hpp
 Graphics3D.o: Object.hpp World.hpp Group.hpp Node.hpp Transformable.hpp
 Graphics3D.o: Object3D.hpp m3gdef.hpp m3ginternal.hpp Quaternion.hpp
@@ -103,7 +103,7 @@ Group.o: m3g-gl.hpp /usr/include/GL/gl.h /usr/include/GL/glext.h
 Group.o: /usr/include/inttypes.h /usr/include/features.h
 Group.o: /usr/include/bits/predefs.h /usr/include/sys/cdefs.h
 Group.o: /usr/include/bits/wordsize.h /usr/include/gnu/stubs.h
-Group.o: /usr/include/gnu/stubs-64.h /usr/include/stdint.h
+Group.o: /usr/include/gnu/stubs-32.h /usr/include/stdint.h
 Group.o: /usr/include/bits/wchar.h /usr/include/GL/glu.h Group.hpp Node.hpp
 Group.o: Transformable.hpp Object3D.hpp m3gdef.hpp m3ginternal.hpp Object.hpp
 Group.o: Quaternion.hpp Transform.hpp Matrix.hpp RayIntersection.hpp
@@ -112,7 +112,7 @@ Image2D.o: m3g-gl.hpp /usr/include/GL/gl.h /usr/include/GL/glext.h
 Image2D.o: /usr/include/inttypes.h /usr/include/features.h
 Image2D.o: /usr/include/bits/predefs.h /usr/include/sys/cdefs.h
 Image2D.o: /usr/include/bits/wordsize.h /usr/include/gnu/stubs.h
-Image2D.o: /usr/include/gnu/stubs-64.h /usr/include/stdint.h
+Image2D.o: /usr/include/gnu/stubs-32.h /usr/include/stdint.h
 Image2D.o: /usr/include/bits/wchar.h /usr/include/GL/glu.h Image2D.hpp
 Image2D.o: Object3D.hpp m3gdef.hpp m3ginternal.hpp Object.hpp Exception.hpp
 Image2D.o: RenderState.hpp /usr/include/png.h /usr/include/zlib.h
@@ -141,7 +141,7 @@ Light.o: m3g-gl.hpp /usr/include/GL/gl.h /usr/include/GL/glext.h
 Light.o: /usr/include/inttypes.h /usr/include/features.h
 Light.o: /usr/include/bits/predefs.h /usr/include/sys/cdefs.h
 Light.o: /usr/include/bits/wordsize.h /usr/include/gnu/stubs.h
-Light.o: /usr/include/gnu/stubs-64.h /usr/include/stdint.h
+Light.o: /usr/include/gnu/stubs-32.h /usr/include/stdint.h
 Light.o: /usr/include/bits/wchar.h /usr/include/GL/glu.h Light.hpp Node.hpp
 Light.o: Transformable.hpp Object3D.hpp m3gdef.hpp m3ginternal.hpp Object.hpp
 Light.o: Quaternion.hpp Transform.hpp Matrix.hpp Exception.hpp
@@ -162,7 +162,7 @@ Loader.o: /usr/include/zlib.h /usr/include/zconf.h /usr/include/zlibdefs.h
 Loader.o: /usr/include/sys/types.h /usr/include/features.h
 Loader.o: /usr/include/bits/predefs.h /usr/include/sys/cdefs.h
 Loader.o: /usr/include/bits/wordsize.h /usr/include/gnu/stubs.h
-Loader.o: /usr/include/gnu/stubs-64.h /usr/include/bits/types.h
+Loader.o: /usr/include/gnu/stubs-32.h /usr/include/bits/types.h
 Loader.o: /usr/include/bits/typesizes.h /usr/include/time.h
 Loader.o: /usr/include/endian.h /usr/include/bits/endian.h
 Loader.o: /usr/include/bits/byteswap.h /usr/include/sys/select.h
@@ -179,7 +179,7 @@ Material.o: m3g-gl.hpp /usr/include/GL/gl.h /usr/include/GL/glext.h
 Material.o: /usr/include/inttypes.h /usr/include/features.h
 Material.o: /usr/include/bits/predefs.h /usr/include/sys/cdefs.h
 Material.o: /usr/include/bits/wordsize.h /usr/include/gnu/stubs.h
-Material.o: /usr/include/gnu/stubs-64.h /usr/include/stdint.h
+Material.o: /usr/include/gnu/stubs-32.h /usr/include/stdint.h
 Material.o: /usr/include/bits/wchar.h /usr/include/GL/glu.h Material.hpp
 Material.o: Object3D.hpp m3gdef.hpp m3ginternal.hpp Object.hpp Exception.hpp
 Material.o: AnimationTrack.hpp AnimationController.hpp KeyframeSequence.hpp
@@ -190,7 +190,7 @@ MemoryReader.o: /usr/include/zconf.h /usr/include/zlibdefs.h
 MemoryReader.o: /usr/include/sys/types.h /usr/include/features.h
 MemoryReader.o: /usr/include/bits/predefs.h /usr/include/sys/cdefs.h
 MemoryReader.o: /usr/include/bits/wordsize.h /usr/include/gnu/stubs.h
-MemoryReader.o: /usr/include/gnu/stubs-64.h /usr/include/bits/types.h
+MemoryReader.o: /usr/include/gnu/stubs-32.h /usr/include/bits/types.h
 MemoryReader.o: /usr/include/bits/typesizes.h /usr/include/time.h
 MemoryReader.o: /usr/include/endian.h /usr/include/bits/endian.h
 MemoryReader.o: /usr/include/bits/byteswap.h /usr/include/sys/select.h
@@ -226,7 +226,7 @@ PolygonMode.o: m3g-gl.hpp /usr/include/GL/gl.h /usr/include/GL/glext.h
 PolygonMode.o: /usr/include/inttypes.h /usr/include/features.h
 PolygonMode.o: /usr/include/bits/predefs.h /usr/include/sys/cdefs.h
 PolygonMode.o: /usr/include/bits/wordsize.h /usr/include/gnu/stubs.h
-PolygonMode.o: /usr/include/gnu/stubs-64.h /usr/include/stdint.h
+PolygonMode.o: /usr/include/gnu/stubs-32.h /usr/include/stdint.h
 PolygonMode.o: /usr/include/bits/wchar.h /usr/include/GL/glu.h
 PolygonMode.o: PolygonMode.hpp Object3D.hpp m3gdef.hpp m3ginternal.hpp
 PolygonMode.o: Object.hpp Exception.hpp RenderState.hpp
@@ -240,7 +240,7 @@ SkinnedMesh.o: m3g-gl.hpp /usr/include/GL/gl.h /usr/include/GL/glext.h
 SkinnedMesh.o: /usr/include/inttypes.h /usr/include/features.h
 SkinnedMesh.o: /usr/include/bits/predefs.h /usr/include/sys/cdefs.h
 SkinnedMesh.o: /usr/include/bits/wordsize.h /usr/include/gnu/stubs.h
-SkinnedMesh.o: /usr/include/gnu/stubs-64.h /usr/include/stdint.h
+SkinnedMesh.o: /usr/include/gnu/stubs-32.h /usr/include/stdint.h
 SkinnedMesh.o: /usr/include/bits/wchar.h /usr/include/GL/glu.h
 SkinnedMesh.o: SkinnedMesh.hpp Mesh.hpp Node.hpp Transformable.hpp
 SkinnedMesh.o: Object3D.hpp m3gdef.hpp m3ginternal.hpp Object.hpp
@@ -251,7 +251,7 @@ Sprite3D.o: m3g-gl.hpp /usr/include/GL/gl.h /usr/include/GL/glext.h
 Sprite3D.o: /usr/include/inttypes.h /usr/include/features.h
 Sprite3D.o: /usr/include/bits/predefs.h /usr/include/sys/cdefs.h
 Sprite3D.o: /usr/include/bits/wordsize.h /usr/include/gnu/stubs.h
-Sprite3D.o: /usr/include/gnu/stubs-64.h /usr/include/stdint.h
+Sprite3D.o: /usr/include/gnu/stubs-32.h /usr/include/stdint.h
 Sprite3D.o: /usr/include/bits/wchar.h /usr/include/GL/glu.h Sprite3D.hpp
 Sprite3D.o: Node.hpp Transformable.hpp Object3D.hpp m3gdef.hpp
 Sprite3D.o: m3ginternal.hpp Object.hpp Quaternion.hpp Transform.hpp
@@ -264,7 +264,7 @@ Texture2D.o: m3g-gl.hpp /usr/include/GL/gl.h /usr/include/GL/glext.h
 Texture2D.o: /usr/include/inttypes.h /usr/include/features.h
 Texture2D.o: /usr/include/bits/predefs.h /usr/include/sys/cdefs.h
 Texture2D.o: /usr/include/bits/wordsize.h /usr/include/gnu/stubs.h
-Texture2D.o: /usr/include/gnu/stubs-64.h /usr/include/stdint.h
+Texture2D.o: /usr/include/gnu/stubs-32.h /usr/include/stdint.h
 Texture2D.o: /usr/include/bits/wchar.h /usr/include/GL/glu.h Texture2D.hpp
 Texture2D.o: Transformable.hpp Object3D.hpp m3gdef.hpp m3ginternal.hpp
 Texture2D.o: Object.hpp Quaternion.hpp Transform.hpp Matrix.hpp Image2D.hpp
@@ -277,7 +277,7 @@ Transformable.o: m3g-gl.hpp /usr/include/GL/gl.h /usr/include/GL/glext.h
 Transformable.o: /usr/include/inttypes.h /usr/include/features.h
 Transformable.o: /usr/include/bits/predefs.h /usr/include/sys/cdefs.h
 Transformable.o: /usr/include/bits/wordsize.h /usr/include/gnu/stubs.h
-Transformable.o: /usr/include/gnu/stubs-64.h /usr/include/stdint.h
+Transformable.o: /usr/include/gnu/stubs-32.h /usr/include/stdint.h
 Transformable.o: /usr/include/bits/wchar.h /usr/include/GL/glu.h
 Transformable.o: Transformable.hpp Object3D.hpp m3gdef.hpp m3ginternal.hpp
 Transformable.o: Object.hpp Quaternion.hpp Transform.hpp Matrix.hpp
@@ -287,7 +287,7 @@ TriangleStripArray.o: m3g-gl.hpp /usr/include/GL/gl.h /usr/include/GL/glext.h
 TriangleStripArray.o: /usr/include/inttypes.h /usr/include/features.h
 TriangleStripArray.o: /usr/include/bits/predefs.h /usr/include/sys/cdefs.h
 TriangleStripArray.o: /usr/include/bits/wordsize.h /usr/include/gnu/stubs.h
-TriangleStripArray.o: /usr/include/gnu/stubs-64.h /usr/include/stdint.h
+TriangleStripArray.o: /usr/include/gnu/stubs-32.h /usr/include/stdint.h
 TriangleStripArray.o: /usr/include/bits/wchar.h /usr/include/GL/glu.h
 TriangleStripArray.o: TriangleStripArray.hpp IndexBuffer.hpp Object3D.hpp
 TriangleStripArray.o: m3gdef.hpp m3ginternal.hpp Object.hpp Exception.hpp
@@ -297,7 +297,7 @@ VertexArray.o: m3g-gl.hpp /usr/include/GL/gl.h /usr/include/GL/glext.h
 VertexArray.o: /usr/include/inttypes.h /usr/include/features.h
 VertexArray.o: /usr/include/bits/predefs.h /usr/include/sys/cdefs.h
 VertexArray.o: /usr/include/bits/wordsize.h /usr/include/gnu/stubs.h
-VertexArray.o: /usr/include/gnu/stubs-64.h /usr/include/stdint.h
+VertexArray.o: /usr/include/gnu/stubs-32.h /usr/include/stdint.h
 VertexArray.o: /usr/include/bits/wchar.h /usr/include/GL/glu.h
 VertexArray.o: VertexArray.hpp Object3D.hpp m3gdef.hpp m3ginternal.hpp
 VertexArray.o: Object.hpp Exception.hpp Vector.hpp BoneIndex.hpp Matrix.hpp
@@ -305,7 +305,7 @@ VertexBuffer.o: m3g-gl.hpp /usr/include/GL/gl.h /usr/include/GL/glext.h
 VertexBuffer.o: /usr/include/inttypes.h /usr/include/features.h
 VertexBuffer.o: /usr/include/bits/predefs.h /usr/include/sys/cdefs.h
 VertexBuffer.o: /usr/include/bits/wordsize.h /usr/include/gnu/stubs.h
-VertexBuffer.o: /usr/include/gnu/stubs-64.h /usr/include/stdint.h
+VertexBuffer.o: /usr/include/gnu/stubs-32.h /usr/include/stdint.h
 VertexBuffer.o: /usr/include/bits/wchar.h /usr/include/GL/glu.h
 VertexBuffer.o: VertexBuffer.hpp Object3D.hpp m3gdef.hpp m3ginternal.hpp
 VertexBuffer.o: Object.hpp VertexArray.hpp AnimationTrack.hpp

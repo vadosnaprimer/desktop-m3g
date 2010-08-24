@@ -41,11 +41,15 @@ void quit ()
 
 
 int world_time = 0;
+bool stopped = false;
 
 void idle ()
 {
-    world_time = (world_time + 100) % 5000;
-    wld->animate (world_time);
+    if (stopped)
+        return;
+    world_time = (world_time + 50) % 6000;
+    if (world_time < 5000)
+        wld->animate (world_time);
     cout << "main: time = " << world_time << "\n";
     glutPostRedisplay();
 }
@@ -57,9 +61,7 @@ void keyboard(unsigned char key, int x, int y)
         quit();
         break;
     case ' ':
-        wld->animate (world_time);
-        world_time += 10;
-        cout << "main: time = " << world_time << "\n";
+        stopped = !stopped;
         break;
     default:
         break;

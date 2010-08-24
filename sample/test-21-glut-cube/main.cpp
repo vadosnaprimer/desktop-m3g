@@ -63,7 +63,7 @@ void idle ()
 int main (int argc, char** argv)
 {
     glutInit (&argc, argv);
-    glutInitWindowSize (512, 512);
+    //glutInitWindowSize (512, 512);
     glutInitDisplayMode (GLUT_RGB | GLUT_DEPTH | GLUT_DOUBLE);
     glutCreateWindow (argv[0]);
 
