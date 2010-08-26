@@ -47,7 +47,7 @@ void keyboard(unsigned char key, int x, int y)
     glutPostRedisplay();
 }
 
-
+n
 int main (int argc, char** argv)
 {
     glutInit(&argc, argv);
@@ -78,7 +78,6 @@ int main (int argc, char** argv)
     int indices[] = {0,1,2, 2,1,3};
 
     TriangleStripArray* tris = new TriangleStripArray (indices, 2, strips);
-
 
 
     Image2D*   img0 = dynamic_cast<Image2D*>(Loader::load ("yumemi.png")[0]);

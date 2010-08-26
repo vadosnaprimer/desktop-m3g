@@ -17,7 +17,6 @@ void display(void)
     Graphics3D* g3d = Graphics3D::getInstance();
     g3d->render (wld);
     glutSwapBuffers();
-
 }
 
 

@@ -86,6 +86,9 @@ int main (int argc, char** argv)
   Quaternion q0 ( 45, 0,0,1);
   Quaternion q1 (-45 , 0,0,1);
   Quaternion q2 ( 45, 0,0,1);
+  cout << "q0 = " << q0 << "\n";
+  cout << "q1 = " << q1 << "\n";
+  cout << "q2 = " << q2 << "\n";
   KeyframeSequence* keyframe_sequence = new KeyframeSequence (3, 4, KeyframeSequence::SLERP);
   float keyframe_orientation[3][4]= {{q0.x, q0.y, q0.z, q0.w},
                                      {q1.x, q1.y, q1.z, q1.w},

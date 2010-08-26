@@ -4,7 +4,7 @@ TARGET = libm3g.so
 CXX = g++
 CXXFLAGS = -Wall -g -shared -fPIC -fno-strict-aliasing
 LD = g++
-LDFLAGS = -shared -L. -lGL -lGLU -lpng -ljpeg -Wl,-whole-archive -lM3GReaderWriter -Wl,-no-whole-archive
+LDFLAGS = -shared -L. -lGL -lGLU -lpng -ljpeg
 LIBS = 
 
 

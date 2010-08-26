@@ -2,6 +2,7 @@
 
 2010/08/xx  ver 0.3.1
    - replace Loader.cpp by new version which uses libM3GReaderWriter.
+   - include source of libM3GReaderWriter.
    - exclude ruby-m3g as independent project.
    - verify to work under 32bit environment.
    - add mark() for ruby-m3g

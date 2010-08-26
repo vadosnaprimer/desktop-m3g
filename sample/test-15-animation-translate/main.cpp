@@ -71,6 +71,9 @@ int main (int argc, char** argv)
   Quaternion q0 (0, 0,1,0);
   Quaternion q1 (180, 0,1,0);
   Quaternion q2 (360, 0,1,0);
+  cout << "q0 = " << q0 << "\n";
+  cout << "q1 = " << q1 << "\n";
+  cout << "q2 = " << q2 << "\n";
   KeyframeSequence* keyframe_mesh_translate = new KeyframeSequence (4, 3, KeyframeSequence::LINEAR);
   KeyframeSequence* keyframe_mesh_orientation = new KeyframeSequence (3, 4, KeyframeSequence::SLERP);
   float frame_mesh_translate[3][3]= {{0,0,0},
