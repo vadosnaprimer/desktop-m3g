@@ -47,7 +47,7 @@ void idle ()
 {
     if (stopped)
         return;
-    world_time = (world_time + 50) % 6000;
+    world_time = (world_time + 80) % 6000;
     if (world_time < 5000)
         wld->animate (world_time);
     cout << "main: time = " << world_time << "\n";
@@ -88,6 +88,7 @@ int main (int argc, char** argv)
 {
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_RGBA | GLUT_DEPTH | GLUT_DOUBLE);
+    glutInitWindowSize (512,512);
     glutCreateWindow(argv[0]);
 
     //objs = loader->load ("simple.m3g");

@@ -396,7 +396,7 @@ test-MemoryReader.o: /usr/include/zlib.h /usr/include/zconf.h
 test-MemoryReader.o: /usr/include/zlibdefs.h /usr/include/sys/types.h
 test-MemoryReader.o: /usr/include/features.h /usr/include/bits/predefs.h
 test-MemoryReader.o: /usr/include/sys/cdefs.h /usr/include/bits/wordsize.h
-test-MemoryReader.o: /usr/include/gnu/stubs.h /usr/include/gnu/stubs-64.h
+test-MemoryReader.o: /usr/include/gnu/stubs.h /usr/include/gnu/stubs-32.h
 test-MemoryReader.o: /usr/include/bits/types.h /usr/include/bits/typesizes.h
 test-MemoryReader.o: /usr/include/time.h /usr/include/endian.h
 test-MemoryReader.o: /usr/include/bits/endian.h /usr/include/bits/byteswap.h
@@ -767,7 +767,7 @@ test-VertexArray.o: /usr/include/GL/gl.h /usr/include/GL/glext.h
 test-VertexArray.o: /usr/include/inttypes.h /usr/include/features.h
 test-VertexArray.o: /usr/include/bits/predefs.h /usr/include/sys/cdefs.h
 test-VertexArray.o: /usr/include/bits/wordsize.h /usr/include/gnu/stubs.h
-test-VertexArray.o: /usr/include/gnu/stubs-64.h /usr/include/stdint.h
+test-VertexArray.o: /usr/include/gnu/stubs-32.h /usr/include/stdint.h
 test-VertexArray.o: /usr/include/bits/wchar.h ../src/VertexArray.hpp
 test-VertexArray.o: ../src/Object3D.hpp ../src/m3gdef.hpp
 test-VertexArray.o: ../src/m3ginternal.hpp ../src/Object.hpp
@@ -832,7 +832,7 @@ test-main.o: /usr/include/GL/freeglut_std.h /usr/include/GL/gl.h
 test-main.o: /usr/include/GL/glext.h /usr/include/inttypes.h
 test-main.o: /usr/include/features.h /usr/include/bits/predefs.h
 test-main.o: /usr/include/sys/cdefs.h /usr/include/bits/wordsize.h
-test-main.o: /usr/include/gnu/stubs.h /usr/include/gnu/stubs-64.h
+test-main.o: /usr/include/gnu/stubs.h /usr/include/gnu/stubs-32.h
 test-main.o: /usr/include/stdint.h /usr/include/bits/wchar.h
 test-main.o: /usr/include/GL/glu.h /usr/include/stdlib.h
 test-main.o: /usr/include/sys/types.h /usr/include/bits/types.h
