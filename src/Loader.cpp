@@ -162,13 +162,13 @@ std::vector<Object3D*> Loader:: load_png (const char* file_ptr, int file_size)
     }
   
     if (setjmp (png_jmpbuf (png_ptr))) {
-        png_destroy_read_struct (&png_ptr, &info_ptr, png_infopp_NULL);
+        png_destroy_read_struct (&png_ptr, &info_ptr, NULL);
         throw IOException (__FILE__, __func__, "Error at libpng.");
     }
 
     png_set_read_fn (png_ptr, my_mem_reader, my_png_read_func);
 
-    png_read_png (png_ptr, info_ptr, PNG_TRANSFORM_IDENTITY, png_voidp_NULL);
+    png_read_png (png_ptr, info_ptr, PNG_TRANSFORM_IDENTITY, NULL);
   
     //  cout << "Loader: width       = " << info_ptr->width << "\n";
     //  cout << "Loader: height      = " << info_ptr->height << "\n";
@@ -197,7 +197,7 @@ std::vector<Object3D*> Loader:: load_png (const char* file_ptr, int file_size)
 
     Image2D*   img = new Image2D   (format, info_ptr->width, info_ptr->height, pixels);
 
-    png_destroy_read_struct (&png_ptr, &info_ptr, png_infopp_NULL);
+    png_destroy_read_struct (&png_ptr, &info_ptr, NULL);
     delete [] pixels;
 
     delete my_mem_reader;
