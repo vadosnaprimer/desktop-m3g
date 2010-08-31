@@ -7,35 +7,25 @@ Brief description
     Desktop-M3G is free C++ implmentation of M3G-1.1 (JSR-184) API.
     It is distributed under MIT liscence.
     Current version of Desktop-M3G is only for Linux.
-    I recommend Ubuntu 9.04. It's same as My PC.
+    I recommend Ubuntu 10.04. It's same as My PC.
 
   = Requirement =
     - OpenGL 1.5 or higher
     - libpng, libjpeg, libz
-
-    Desktop-M3G does not have any Window creation or OpenGL context.
+    Desktop-M3G does not have any method for creating a window or OpenGL context.
     You need glut or any other library (SDL, Qt, ...)
 
-  = Wat is ruby-m3g? =
-    It's ruby binder of Desktop-M3G.
-    You can use Desktop-M3G from Ruby!
-    If you are not interesting in ruby, ignore this.
 
 -------------------------------------------
 Make & Install
 -------------------------------------------
 
-
   = libm3g =
     1. change to src directroy.
-    2. make
-    3. make install
-
-  = ruby-m3g = 
-    1. change to src/ruby-m3g/directory.
-    2. ruby extconf.rb
-    3. make
-    4. make site-install
+    2. make depend
+    3. make 
+    4. make install
+       - libm3g.so and header files are copyed to under /usr/local 
 
 
 -------------------------------------------
@@ -44,15 +34,17 @@ Test & Samples
   = UnitTest =
     You need UnitTest++(http://unittest-cpp.sourceforge.net/).
     1. change to test
-    2. make
-    3. ./a.out
+    2. make depend
+    3. make 
+    4. ./a.ou
 
   = Samples =
     You can find about 20 samples at samples directory.
     These are good entry points learning how to use Desktop-M3G.
     1. change to sample/test-xxx
-    2. make
-    3. ./a.out
+    2. make depend
+    3. make
+    4. ./a.out
 
 
 -------------------------------------------
