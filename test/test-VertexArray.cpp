@@ -3,6 +3,7 @@
 #include <cstring>
 #include <GL/gl.h>
 #include "VertexArray.hpp"
+#include "BoneIndex.hpp"
 using namespace std;
 using namespace m3g;
 
@@ -317,4 +318,6 @@ TEST (VertexArray_get_scale_bias_float)
 }
 
 
-
+/**
+ * スキニング関係は test-Skinning.cpp に分離した
+ */

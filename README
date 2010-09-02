@@ -6,7 +6,7 @@ Brief description
   = What is Desktop-M3G? =
     Desktop-M3G is free C++ implmentation of M3G-1.1 (JSR-184) API.
     It is distributed under MIT liscence.
-    Current version of Desktop-M3G is only for Linux.
+    Current version of Desktop-M3G works on only Linux.
     I recommend Ubuntu 10.04. It's same as My PC.
 
   = Requirement =
@@ -21,7 +21,7 @@ Make & Install
 -------------------------------------------
 
   = libm3g =
-    1. change to src directroy.
+    1. move to src directory
     2. make depend
     3. make 
     4. make install
@@ -33,15 +33,15 @@ Test & Samples
 -------------------------------------------
   = UnitTest =
     You need UnitTest++(http://unittest-cpp.sourceforge.net/).
-    1. change to test
+    1. move to test directory
     2. make depend
     3. make 
-    4. ./a.ou
+    4. ./a.out
 
   = Samples =
     You can find about 20 samples at samples directory.
     These are good entry points learning how to use Desktop-M3G.
-    1. change to sample/test-xxx
+    1. move to sample/test-xxx directory
     2. make depend
     3. make
     4. ./a.out

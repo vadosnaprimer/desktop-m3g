@@ -488,10 +488,12 @@ void VertexBuffer:: render (RenderState& state) const
 std::ostream& VertexBuffer:: print (std::ostream& out) const
 {
     out << "VertexBuffer: ";
-    if (positions)
-        out << "  positions = " << *positions;
-    else
+    if (positions) {
+        out << "  positions = " << *positions << ",scale=" << positions_scale;
+        out <<",bias=" << positions_bias[0] << "," << positions_bias[1] << "," << positions_bias[2];
+    } else {
         out << "  positions = NOT FOUND";
+    }
     if (normals)
         out << ", normals = " << *normals;
     else

@@ -15,6 +15,12 @@
 using namespace std;
 using namespace m3g;
 
+/**
+ * メモ: スキニング済みの頂点座標(skinned_positions)は必ずfloat型に変換して持つ。
+ *       これは静止した状態でchar型,short型の有効範囲をすべて使いきっているモデルデータが
+ *       アニメーションした結果有効範囲外に飛び出すのを防止するためである。
+ */
+
 
 /**
  * メモ：skeletonのparentをthisにするべき？
@@ -58,6 +64,7 @@ void SkinnedMesh:: initialize ()
     VertexArray* bind_positions = vertices->getPositions(scale_bias);
     if (bind_positions) {
         VertexArray* skinned_positions = bind_positions->duplicate ();
+        skinned_positions->convert (4);
         skinned_vertices->setPositions (skinned_positions, scale_bias[0], &scale_bias[1]);
     }
 

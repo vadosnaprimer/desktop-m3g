@@ -339,37 +339,42 @@ void VertexArray:: setMorphing (const VertexArray* base,
     }
 
 
-    int size = vertex_count * component_count * component_size;
-    memcpy (char_values, base->char_values, size);
-
-    //cout << "targets.size() = " << targets.size() << "\n";
-    //for (int t = 0; t < (int)targets.size(); t++) {
-    //  cout << t << " : target = " << targets[t] << ", weights = " << weights[t] << "\n";
-    //}
-
-    for (int t = 0; t < (int)targets.size(); t++) {
-        if (targets[t]) {
-            for (int v = 0; v < vertex_count; v++) {
-                switch (component_size) {
-                case 1:
-                    char_values[v*3  ] += weights[t] * (targets[t]->char_values[v*3  ] - base->char_values[v*3  ]);
-                    char_values[v*3+1] += weights[t] * (targets[t]->char_values[v*3+1] - base->char_values[v*3+1]);
-                    char_values[v*3+2] += weights[t] * (targets[t]->char_values[v*3+2] - base->char_values[v*3+2]);
-                    break;
-                case 2:
-                    short_values[v*3  ] += weights[t] * (targets[t]->short_values[v*3  ] - base->short_values[v*3  ]);
-                    short_values[v*3+1] += weights[t] * (targets[t]->short_values[v*3+1] - base->short_values[v*3+1]);
-                    short_values[v*3+2] += weights[t] * (targets[t]->short_values[v*3+2] - base->short_values[v*3+2]);
-                    break;
-                case 4:
-                    float_values[v*3  ] += weights[t] * (targets[t]->float_values[v*3  ] - base->float_values[v*3  ]);
-                    float_values[v*3+1] += weights[t] * (targets[t]->float_values[v*3+1] - base->float_values[v*3+1]);
-                    float_values[v*3+2] += weights[t] * (targets[t]->float_values[v*3+2] - base->float_values[v*3+2]);
-                    break;
-                }
-            }  // バーテックスループ
+    for (int v = 0; v < vertex_count; v++) {
+        Vector v0, v2;
+        switch (base->component_size) {
+        case 1: v2 = v0 = Vector (base->char_values[v*3  ],
+                                  base->char_values[v*3+1],
+                                  base->char_values[v*3+2]); break;
+        case 2: v2 = v0 = Vector (base->short_values[v*3  ],
+                                  base->short_values[v*3+1],
+                                  base->short_values[v*3+2]); break;
+        case 4: v2 = v0 = Vector (base->float_values[v*3  ],
+                                  base->float_values[v*3+1],
+                                  base->float_values[v*3+2]); break;
         }
-    }  // ターゲットループ
+        for (int t = 0; t < (int)targets.size(); t++) {
+            Vector v1;
+            switch (targets[t]->component_size) {
+            case 1: v1 = Vector (targets[t]->char_values[v*3  ],
+                                 targets[t]->char_values[v*3+1],
+                                 targets[t]->char_values[v*3+2]); break;
+            case 2: v1 = Vector (targets[t]->short_values[v*3  ],
+                                 targets[t]->short_values[v*3+1],
+                                 targets[t]->short_values[v*3+2]); break;
+            case 4: v1 = Vector (targets[t]->float_values[v*3  ],
+                                 targets[t]->float_values[v*3+1],
+                                 targets[t]->float_values[v*3+2]); break;
+            }
+            v2 += weights[t] * (v1 - v0);
+        }
+        for (int i = 0; i < 3; i++) {
+            switch (component_size) {
+            case 1: char_values  [v*3+i] = v2[i]; break;
+            case 2: short_values [v*3+i] = v2[i]; break;
+            case 4: float_values [v*3+i] = v2[i]; break;
+            }
+        }
+    }  // バーテックスループ
 
     glBindBuffer    (GL_ARRAY_BUFFER, vbo);
     glBufferSubData (GL_ARRAY_BUFFER,
@@ -397,7 +402,7 @@ void VertexArray:: setSkinning (const VertexArray* base_positions,
 
     for (int v = 0; v < vertex_count; v++) {
         Vector v0;
-        switch (component_size) {
+        switch (base_positions->component_size) {
         case 1: v0 = Vector(base_positions->char_values [v*3  ],
                             base_positions->char_values [v*3+1],
                             base_positions->char_values [v*3+2]); break;
@@ -407,7 +412,7 @@ void VertexArray:: setSkinning (const VertexArray* base_positions,
         case 4: v0 = Vector(base_positions->float_values[v*3  ],
                             base_positions->float_values[v*3+1],
                             base_positions->float_values[v*3+2]); break;
-        default: throw IllegalStateException (__FILE__, __func__, "Component type is invalid, size=%d.", component_size);
+        default: throw IllegalStateException (__FILE__, __func__, "Component size is invalid, size=%d.", base_positions->component_size);
         }
         Vector v1         = Vector(0,0,0);
         float  weight     = 0;
@@ -420,13 +425,11 @@ void VertexArray:: setSkinning (const VertexArray* base_positions,
             v1 += matrix_palette[i] * v0 * (bone_indices[v][b].weight/weight);
         }
         if (weight > 0) {
-            float vector_values[3];
-            v1.get (vector_values);
             for (int i = 0; i < 3; i++) {
                 switch (component_size) {
-                case 1: char_values [v*3+i] = vector_values[i]; break;
-                case 2: short_values[v*3+i] = vector_values[i]; break;
-                case 4: float_values[v*3+i] = vector_values[i]; break;
+                case 1: char_values [v*3+i] = v1[i]; break;
+                case 2: short_values[v*3+i] = v1[i]; break;
+                case 4: float_values[v*3+i] = v1[i]; break;
                 }
             }
         }
@@ -467,6 +470,9 @@ void VertexArray:: updateOpenGLData (const void* values) const
 
 void VertexArray:: convert (int to)
 {
+    if (component_size == to)
+        return;
+
     int from = component_size;
     int num  = vertex_count * component_count;
     union {
