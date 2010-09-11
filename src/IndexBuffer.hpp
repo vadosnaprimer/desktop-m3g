@@ -66,15 +66,20 @@ namespace m3g {
          * @~English  Retrieves vertex indices for the rendering primitives stored in this buffer.
          * @~Japanese このバッファーに収納されているインデックスを取得.
          */
-        virtual void getIndices (int* indices);
+        virtual void getIndices (int* indices) const;
 
 
         /**
          * @~English  Print out information of this object, for only debug.
-         * @~Japanese このImage2Dクラスの情報を表示する。デバッグ用.
+         * @~Japanese このIndexBufferクラスの情報を表示する。デバッグ用.
          */
         virtual std::ostream& print (std::ostream& out) const;
 
+        /**
+         * @~English  Print out raw data of this object, for debug only.
+         * @~Japanese このIndexBufferクラスの保持しているデータを表示する。デバッグ用.
+         */
+        virtual std::ostream& print_raw_data (std::ostream& out) const;
 
         /**
          * @~English  Redner this object, for inner use.

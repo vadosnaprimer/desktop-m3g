@@ -54,7 +54,7 @@ int IndexBuffer:: getIndexCount () const
     return 0;
 }
 
-void IndexBuffer:: getIndices (int*)
+void IndexBuffer:: getIndices (int*) const
 {
 }
 
@@ -70,6 +70,12 @@ void IndexBuffer:: render (RenderState& state) const
 std::ostream& IndexBuffer:: print (std::ostream& out) const
 {
     out << "IndexBuffer: ";
+    return out;
+}
+
+std::ostream& IndexBuffer:: print_raw_data (std::ostream& out) const
+{
+    print (out) << "\n";
     return out;
 }
 

@@ -71,7 +71,7 @@ namespace m3g {
          * @~English  Retrieves vertex indices for the rendering primitives stored in this buffer.
          * @~Japanese このバッファーに収納されているインデックスを取得する.
          */
-        virtual void getIndices (int* indices);
+        virtual void getIndices (int* indices) const;
 
         /**
          * @~English  Print out information of this object, for debug only.
@@ -79,6 +79,7 @@ namespace m3g {
          */
         virtual std::ostream& print (std::ostream& out) const;
 
+        virtual std::ostream& print_raw_data (std::ostream& out) const;
 
         /**
          * @~English  Render this object, for inner use.

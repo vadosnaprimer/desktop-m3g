@@ -145,7 +145,7 @@ int TriangleStripArray:: getIndexCount () const
     return accumulate (strips.begin(), strips.end(), 0);
 }
 
-void TriangleStripArray:: getIndices (int* indices_)
+void TriangleStripArray:: getIndices (int* indices_) const
 {
     if (indices_ == NULL) {
         throw NullPointerException (__FILE__, __func__, "Indices is NULL.");
@@ -190,6 +190,21 @@ std::ostream& TriangleStripArray:: print (std::ostream& out) const
         out << strips[i] << " ";
     }
     out << "]";
+    return out;
+}
+
+std::ostream& TriangleStripArray:: print_raw_data (std::ostream& out) const
+{
+    print (out) << "\n";
+    int offset = 0;
+    for (int i = 0; i < (int)strips.size(); i++) {
+        out << " " << i << " (" << strips[i] << ") : ";
+        for (int j = 0; j < strips[i]; j++) {
+            cout << indices[offset] << ",";
+            offset++;
+        }
+        cout << "\n";
+    }
     return out;
 }
 
