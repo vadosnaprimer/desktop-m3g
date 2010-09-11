@@ -548,7 +548,7 @@ void M3GReader:: readTriangleStripArray (M3GTriangleStripArrayStruct* tris)
         int count = tris->indices_count;
         tris->indices = new unsigned int [count];
         for (int i = 0; i < count; i++) {
-            tris->indices[i] = getByte ();
+            tris->indices[i] = getUByte ();
         }
         break;
     }
