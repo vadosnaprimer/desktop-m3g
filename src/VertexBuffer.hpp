@@ -83,6 +83,13 @@ namespace m3g {
         VertexArray* getTexCoords (int index, float* scale_bias) const;
 
         /**
+         * @~English  Retrieves the current number of vertices in this VertexBuffer.
+         * @~Japanese このVertexBufferクラスが保持する頂点数を取得する.
+         */
+        int getVertexCount () const;
+        
+
+        /**
          * @~English  Sets the per-vertex color for this VertexBuffer.
          * @~Japanese このVertexBufferに頂点カラーを設定する.
          */

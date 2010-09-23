@@ -229,6 +229,17 @@ VertexArray* VertexBuffer:: getTexCoords (int index, float* scale_bias) const
     return tex_coords[index];
 }
 
+int VertexBuffer:: getVertexCount () const
+{
+    if (positions != NULL) {
+        return positions->getVertexCount ();
+    } else {
+        return 0;
+    }
+    
+}
+
+
 /**
  * x:[0,255] --> y:[0,1]
  */
