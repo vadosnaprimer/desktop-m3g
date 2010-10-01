@@ -64,13 +64,21 @@ int main (int argc, char** argv)
     glutInitDisplayMode(GLUT_RGBA | GLUT_DEPTH | GLUT_DOUBLE);
     glutCreateWindow(argv[0]);
 
-    Quaternion q0 ( 45, 0,0,1);
-    Quaternion q1 (-45 , 0,0,1);
-    Quaternion q2 ( 45, 0,0,1);
+    //       x,y,z, w                 or angle, axis(x,y,z)
+    //q0 = [ 0,0,0.382683, 0.92388    or 45 ,0,0,1 ]
+    //q1 = [ -0,-0,-0.382683, 0.92388 or 45 ,-0,-0,-1 ]
+    //q2 = [ 0,0,0.382683, 0.92388    or 45 ,0,0,1 ]
+
+    //Quaternion q0 ( 45, 0,0,1);
+    //Quaternion q1 (-45 , 0,0,1);
+    //Quaternion q2 ( 45, 0,0,1);
+    //cout << "q0 = " << q0 << "\n";
+    //cout << "q1 = " << q1 << "\n";
+    //cout << "q2 = " << q2 << "\n";
     KeyframeSequence* keyframe_sequence = new KeyframeSequence (3, 4, KeyframeSequence::SLERP);
-    float keyframe_orientation[3][4]= {{q0.x, q0.y, q0.z, q0.w},
-                                       {q1.x, q1.y, q1.z, q1.w},
-                                       {q2.x, q2.y, q2.z, q2.w}};
+    float keyframe_orientation[3][4]= {{0,0, 0.382683, 0.92388},
+                                       {0,0,-0.382683, 0.92388},
+                                       {0,0, 0.382683, 0.92388}};
     keyframe_sequence->setKeyframe   (0, 0,   keyframe_orientation[0]);
     keyframe_sequence->setKeyframe   (1, 100, keyframe_orientation[1]);
     keyframe_sequence->setKeyframe   (2, 200, keyframe_orientation[2]);
