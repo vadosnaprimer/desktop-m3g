@@ -12,7 +12,7 @@ using namespace std;
 using namespace m3g;
 
 RayIntersection:: RayIntersection () :
-    ray(Vector(0,0,0),Vector(0,0,0),0), node(0), u(0), v(0), submesh_index(0),
+    ray(Vector(0,0,0),Vector(0,0,1),0), node(0), u(0), v(0), submesh_index(0),
     normal(0)
 {
     tex_coord.reserve (MAX_TEXTURE_UNITS);
@@ -26,7 +26,7 @@ RayIntersection:: RayIntersection (Node* node_,
                                    float u_, float v_,
                                    int vertex_num, int* vertex_indices,
                                    int submesh_index_) :
-    ray(Vector(0,0,0),Vector(0,0,0),0), node(0), u(0), v(0), submesh_index(0),
+    ray(Vector(0,0,0),Vector(0,0,1),0), node(0), u(0), v(0), submesh_index(0),
     normal(0)
 {
     ray.org = org;
