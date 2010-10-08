@@ -62,6 +62,10 @@ Image2D:: Image2D (int format_, int width_, int height_, unsigned char* pixels, 
     if (width <= 0 || height <= 0) {
         throw IllegalArgumentException (__FILE__, __func__, "Width or height is invalid, width=%f, height=%f.", width, height);
     }
+    if (format != Image2D::ALPHA && format != Image2D::LUMINANCE && format != Image2D::LUMINANCE_ALPHA &&
+        format != Image2D::RGB   && format != Image2D::RGBA) {
+        throw IllegalArgumentException (__FILE__, __func__, "Format is invalid, format=%d", format);
+    }
 
     int bpp = format_to_bpp (format);
     image   = new char [height*width*bpp];
@@ -122,7 +126,7 @@ bool Image2D:: isMutable () const
     return !immutable;
 }
 
-void Image2D:: set (int px, int py, int wid, int hei, void* image_)
+void Image2D:: set (int px, int py, int wid, int hei, void* pixels)
 {
     if (immutable) {
         throw IllegalStateException (__FILE__, __func__, "This image is immutable.");
@@ -133,14 +137,14 @@ void Image2D:: set (int px, int py, int wid, int hei, void* image_)
     if (wid < 0 || wid > width || hei < 0 || hei > height) {
         throw IllegalArgumentException (__FILE__, __func__, "Size(width,height) is invalid, width=%d, height=%d.", wid, hei);
     }
-    if (image == NULL) {
+    if (pixels == NULL) {
         throw NullPointerException (__FILE__, __func__, "Image is NULL.");
     }
 
     int bpp = format_to_bpp (format);
 
     for (int y = py; y < py+hei; y++) {
-        memcpy (image + y*width*bpp + px*bpp, (char*)image_ + (y-py)*wid*bpp, wid*bpp);
+        memcpy (image + y*width*bpp + px*bpp, (char*)pixels + (y-py)*wid*bpp, wid*bpp);
     }
 
 }
@@ -192,7 +196,7 @@ void Image2D:: writePNG (const char* name) const
     case LUMINANCE_ALPHA: info_ptr->color_type = PNG_COLOR_TYPE_GRAY_ALPHA; break;
     case RGB            : info_ptr->color_type = PNG_COLOR_TYPE_RGB       ; break;
     case RGBA           : info_ptr->color_type = PNG_COLOR_TYPE_RGB_ALPHA ; break;
-    default: throw InternalException (__FILE__, __func__, "Unknwon format=%d.", format);
+    default: throw InternalException (__FILE__, __func__, "Unknown format=%d.", format);
     }
     info_ptr->interlace_type   = PNG_INTERLACE_NONE;
     info_ptr->compression_type = PNG_COMPRESSION_TYPE_DEFAULT;
