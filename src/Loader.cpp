@@ -168,21 +168,12 @@ std::vector<Object3D*> Loader:: load_png (const char* file_ptr, int file_size)
     }
 
     png_set_read_fn (png_ptr, my_mem_reader, my_png_read_func);
-
     png_read_png (png_ptr, info_ptr, PNG_TRANSFORM_EXPAND, NULL);
   
-    //  cout << "Loader: width       = " << info_ptr->width << "\n";
-    //  cout << "Loader: height      = " << info_ptr->height << "\n";
-    //  cout << "Loader: bit_depth   = " << (int)info_ptr->bit_depth << "\n";
-    //  cout << "Loader: pixel_depth = " << (int)info_ptr->pixel_depth << "\n";
-    //  cout << "Loader: channels    = " << (int)info_ptr->channels << "\n";
-    //  cout << "Loader: color_type  = " << (int)info_ptr->color_type << "\n";
-    
-    png_byte** row_pointers = png_get_rows(png_ptr, info_ptr);
-
-    int            size   = info_ptr->width * info_ptr->height * info_ptr->channels;
-    unsigned char* pixels = new unsigned char [size];
-    unsigned char* p      = pixels;
+    png_byte**     row_pointers = png_get_rows(png_ptr, info_ptr);
+    int            size         = info_ptr->width * info_ptr->height * info_ptr->channels;
+    unsigned char* pixels       = new unsigned char [size];
+    unsigned char* p            = pixels;
     for (int y = (int)info_ptr->height-1; y >= 0; y--) {
         memcpy (p, row_pointers[y], info_ptr->width * info_ptr->channels);
         p += info_ptr->width * info_ptr->channels;
@@ -372,12 +363,19 @@ void Loader:: parseImage2D ()
     reader->readObject3D     (&obj);
     reader->readImage2D      (&image);
     
-    int format = image.format;
-    int width  = image.width;
-    int height = image.height;
-    char* pixels = image.pixels;
+    int   format        = image.format;
+    int   width         = image.width;
+    int   height        = image.height;
+    int   palette_count = image.palette_count;
+    unsigned char* palette = image.palette;
+    unsigned char* pixels  = image.pixels;
 
-    Image2D* img = new Image2D (format, width, height, pixels);
+    Image2D* img;
+    if (palette_count > 0) {
+        img = new Image2D (format, width, height, pixels, palette);
+    } else {
+        img = new Image2D (format, width, height, pixels);
+    }
     setObject3D (img, obj);
     setImage2D  (img, image);
 

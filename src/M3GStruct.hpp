@@ -184,9 +184,9 @@ struct M3GImage2DStruct
     unsigned int   width;
     unsigned int   height;
     unsigned int   palette_count;
-    char*          palette;
+    unsigned char* palette;
     unsigned int   pixels_count;
-    char*          pixels;
+    unsigned char* pixels;
 };
 std::ostream& operator<< (std::ostream& out, const M3GImage2DStruct& img);
 int format_to_bpp (int format);

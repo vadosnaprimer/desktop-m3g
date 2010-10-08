@@ -25,8 +25,8 @@ TEST (Loader_load_png)
     CHECK_EQUAL (32          , img1->getWidth());
     CHECK_EQUAL (32          , img1->getHeight());
 
-    img1->writePNG ("output.png");
-    Image2D* img2 = dynamic_cast<Image2D*>(Loader::load ("output.png")[0]);
+    img1->writePNG ("output-indexed.png");
+    Image2D* img2 = dynamic_cast<Image2D*>(Loader::load ("output-indexed.png")[0]);
 
     CHECK (img2 != NULL);
     CHECK_EQUAL (Image2D::RGB, img2->getFormat());

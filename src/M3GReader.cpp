@@ -257,24 +257,10 @@ void M3GReader:: readImage2D (M3GImage2DStruct* image)
     image->height        = getUInt32  ();
 
     if (!image->is_mutable) {
-        int plt_count = image->palette_count = getUInt32  ();
-        if (plt_count) {
-            //cout << "plt_count = " << plt_count << "\n";
-            int bpp = format_to_bpp (image->format);
-            //cout << "bpp = " << bpp << "\n";
-            image->palette = getByteArray (plt_count);
-        
-            int pxl_count = image->pixels_count = getUInt32 ();
-            //cout << "pxl_count = " << pxl_count << "\n";
-            image->pixels = new char[pxl_count*bpp];
-            for (int i = 0; i < pxl_count; i++) {
-                int index = getUByte();
-                memcpy (&image->pixels[i*bpp], &image->palette[index*bpp], bpp);
-            }
-        } else {
-            int pxl_count = image->pixels_count = getUInt32 ();
-            image->pixels = getByteArray (pxl_count);
-        }
+        image->palette_count = getUInt32     ();
+        image->palette       = getUByteArray (image->palette_count);
+        image->pixels_count  = getUInt32     ();
+        image->pixels        = getUByteArray (image->pixels_count);
     }
 }
 
@@ -778,6 +764,13 @@ char*          M3GReader:: getByteArray (int size)
 {
     char* ret = new char[size];
     stream->read (ret, size);
+    return ret;
+}
+
+unsigned char* M3GReader:: getUByteArray (int size)
+{
+    unsigned char* ret = new unsigned char[size];
+    stream->read ((char*)ret, size);
     return ret;
 }
 

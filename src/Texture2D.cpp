@@ -244,8 +244,8 @@ void Texture2D:: setImage (Image2D* img)
 
     image = img;
 
-    int   format = image->getOpenGLFormat();
-    void* data   = image->getOpenGLData();
+    int   format = image->getOpenGLFormat ();
+    void* data   = image->getOpenGLPointer ();
 
     glBindTexture (GL_TEXTURE_2D, texobj);
     glPixelStorei (GL_UNPACK_ALIGNMENT, 1);

@@ -247,7 +247,7 @@ void Background:: setImage (Image2D* img)
     int   width  = image->getWidth ();
     int   height = image->getHeight ();
     int   format = image->getOpenGLFormat ();
-    void* data   = image->getOpenGLData ();
+    void* data   = image->getOpenGLPointer ();
 
     crop    = CropRect (0, 0, width, height);
 

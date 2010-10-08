@@ -293,7 +293,7 @@ void Sprite3D:: setImage (Image2D* img)
     crop.height = image->getHeight();
 
     int   format = image->getOpenGLFormat ();
-    void* data   = image->getOpenGLData ();
+    void* data   = image->getOpenGLPointer ();
 
     glBindTexture   (GL_TEXTURE_2D, texobj);
     glPixelStorei   (GL_UNPACK_ALIGNMENT, 1);

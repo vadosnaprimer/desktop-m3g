@@ -62,6 +62,7 @@ public:
     unsigned int    getRGB          ();
     unsigned int    getRGBA         ();
     char*           getByteArray    (int size);
+    unsigned char*  getUByteArray    (int size);
     unsigned short* getUInt16Array  (int size);
     float*          getFloat32Array (int size);
     char*           getString       ();

@@ -17,39 +17,63 @@ const int Image2D:: RGBA;
 
 
 Image2D:: Image2D (int format_, int width_, int height_) : 
-    format(format_), width(width_), height(height_),
-    image(0), immutable(false)
+    format(format_), width(width_), height(height_), image(0), immutable(false)
 {
     if (width <= 0 || height <= 0) {
         throw IllegalArgumentException (__FILE__, __func__, "Width or height is invalid, width=%f, height=%f.", width, height);
     }
-    int bpp = format_to_bpp (format);
+    if (format != Image2D::ALPHA && format != Image2D::LUMINANCE && format != Image2D::LUMINANCE_ALPHA &&
+        format != Image2D::RGB   && format != Image2D::RGBA) {
+        throw IllegalArgumentException (__FILE__, __func__, "Format is invalid, format=%d", format);
+    }
 
+    int bpp = format_to_bpp (format);
     image = new char [height*width*bpp];
+
     memset (image, 0, height*width*bpp);
 }
 
-Image2D:: Image2D (int format_, int width_, int height_, void* image_) : 
-    format(format_), width(width_), height(height_), 
-    image(0), immutable(true)
+Image2D:: Image2D (int format_, int width_, int height_, void* pixels) : 
+    format(format_), width(width_), height(height_), image(0), immutable(true)
 {
     if (width <= 0 || height <= 0) {
         throw IllegalArgumentException (__FILE__, __func__, "Width or height is invalid, width=%f, height=%f.", width, height);
     }
-    if (image_ == NULL) {
+    if (pixels == NULL) {
         throw NullPointerException (__FILE__, __func__, "Image is NULL.");
+    }
+    if (format != Image2D::ALPHA && format != Image2D::LUMINANCE && format != Image2D::LUMINANCE_ALPHA &&
+        format != Image2D::RGB   && format != Image2D::RGBA) {
+        throw IllegalArgumentException (__FILE__, __func__, "Format is invalid, format=%d", format);
     }
 
     int bpp  = format_to_bpp (format);
-
     image = new char [height*width*bpp];
-    memcpy (image, image_, height*width*bpp);
+
+    memcpy (image, pixels, height*width*bpp);
 }
 
-Image2D:: Image2D (int format_, int width_, int height_, void* image_, void* palette_) :
-    format(format_), width(width_), height(height_), immutable(true)
+Image2D:: Image2D (int format_, int width_, int height_, unsigned char* pixels, void* palette) :
+    format(format_), width(width_), height(height_), image(0), immutable(true)
 {
-    throw NotImplementedException (__FILE__, __func__, "Palleted image is not implemented. don't use this");
+    if (pixels == NULL || palette == NULL) {
+        throw NullPointerException (__FILE__, __func__, "Palette or index is NULL.");
+    }
+    if (width <= 0 || height <= 0) {
+        throw IllegalArgumentException (__FILE__, __func__, "Width or height is invalid, width=%f, height=%f.", width, height);
+    }
+
+    int bpp = format_to_bpp (format);
+    image   = new char [height*width*bpp];
+    
+    for (int y = 0; y < height; y++) {
+        for (int x = 0; x < width; x++) {
+            int index = pixels[y*width + x];
+            memcpy (image + (y*width + x)*bpp, (char*)palette + index*bpp, bpp);
+        }
+    }
+
+    
 }
 
 Image2D:: ~Image2D ()
@@ -132,7 +156,7 @@ void Image2D:: writePNG (const char* name) const
     }
 
     png_structp png_ptr;
-    png_infop info_ptr;
+    png_infop   info_ptr;
 	
     FILE* fp = fopen (name, "wb");
     if (!fp) {
@@ -196,18 +220,18 @@ unsigned int Image2D:: getOpenGLFormat () const
     case Image2D::LUMINANCE_ALPHA: return GL_LUMINANCE_ALPHA;
     case Image2D::RGB            : return GL_RGB;
     case Image2D::RGBA           : return GL_RGBA;
-    default: throw InternalException (__FILE__, __func__, "Image format is unknwon, format=%d.", format);
+    default: throw InternalException (__FILE__, __func__, "Image format is unknown, format=%d.", format);
     }
 
 }
 
-void* Image2D:: getOpenGLData () const
+void* Image2D:: getOpenGLPointer () const
 {
     return image;
 }
 
 /**
- * 現在のフレームバッファーからこのImag2Dへコピーする.
+ * (非公開) この関数は現在のフレームバッファーの内容をこのImag2Dへコピーする.
  */
 void Image2D:: render (RenderState& state) const
 {
@@ -225,7 +249,7 @@ int m3g::format_to_bpp (int format)
     case Image2D::LUMINANCE_ALPHA: return 2;
     case Image2D::RGB            : return 3;
     case Image2D::RGBA           : return 4;
-    default: throw InternalException (__FILE__, __func__, "Format is unknwon, format=%d.", format);
+    default: throw InternalException (__FILE__, __func__, "Format is unknown, format=%d.", format);
     }
 }
 
@@ -238,7 +262,7 @@ const char* format_to_string (int format)
     case Image2D::LUMINANCE_ALPHA: return "LUMINANCE_ALPHA";
     case Image2D::RGB            : return "RGB";
     case Image2D::RGBA           : return "RGBA";
-    default: return "Unknwon";
+    default: return "Unknown";
     }
 }
 

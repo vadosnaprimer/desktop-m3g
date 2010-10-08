@@ -54,13 +54,13 @@ namespace m3g {
          * @~Japanese バイト配列からピクセル値をコピーしての変更不可のImage2Dオブジェクトの作成.
          *            バイト順は例えばRGBAフォーマットならR,G,B,Aの順番で格納されていなければならない。
          */
-        Image2D (int format, int width, int height, void* image);
+        Image2D (int format, int width, int height, void* pixels);
 
         /**
          * @~English  Constructs an immutable Image2D by copying palette indices from a byte array, and the palette enttries from another byte array.
          * @~Japanese パレットの配列とそのパレットインデックスの配列から変更不可のImage2Dオブジェクトの作成.
          */
-        Image2D (int format, int width, int height, void* image, void* palette);
+        Image2D (int format, int width, int height, unsigned char* pixels, void* palette);
 
         /**
          * @~English  Destruct this object.
@@ -139,7 +139,7 @@ namespace m3g {
          * @~English  Return pointer to raw data, for inner use.
          * @~Japanese 内部データへのポインターを返すM3G未定義の関数.
          */
-        void* getOpenGLData () const;
+        void* getOpenGLPointer () const;
 
     private:
         Image2D (const Image2D& img);
