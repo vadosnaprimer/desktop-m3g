@@ -1,6 +1,7 @@
 
 2010/xx/xx  ver 0.3.2
    - fix loading indexed png
+   - change MAX_TEXTURE_UNITS = 4
 
 2010/08/31  ver 0.3.1
    - replace Loader.cpp by new version which uses libM3GReaderWriter.

@@ -1,9 +1,10 @@
 #ifndef __M3G_DEF_HPP__
 #define __M3G_DEF_HPP__
 
-const int MAX_TEXTURE_UNITS = 8;
+namespace m3g {
 
 
+const int MAX_TEXTURE_UNITS = 4;
 
 const int OBJTYPE_HEADER_OBJECT        = 0;
 const int OBJTYPE_ANIMATION_CONTROLLER = 1;
@@ -30,12 +31,16 @@ const int OBJTYPE_VERTEX_BUFFER        = 21;
 const int OBJTYPE_WORLD                = 22;
 const int OBJTYPE_EXTERNAL_REFERENCE   = 255;
 
-
+// これ使ってる?
 // These variables are not defined in M3G specification.
 // It is only for easy use.
 const int OBJTYPE_OBJECT3D      = -1;
 const int OBJTYPE_TRANSFORMABLE = -2;
 const int OBJTYPE_NODE          = -3;
 const int OBJTYPE_INDEX_BUFFER  = -4;
+
+
+} // namesapce m3g
+
 
 #endif
