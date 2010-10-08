@@ -141,7 +141,7 @@ int main (int argc, char** argv)
     wld->setBackground (bg);
     wld->addChild (mesh1);
     wld->addChild (mesh2);
-    wld->addChild (mesh3);
+    Wld->addChild (mesh3);
 
     cout << *wld << "\n";
 

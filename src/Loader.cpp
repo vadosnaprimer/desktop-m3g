@@ -131,6 +131,7 @@ std::vector<Object3D*> Loader:: load_m3g (const char* p, int size)
             case M3G_TYPE_WORLD               : parseWorld ()              ; break;
             case M3G_TYPE_EXTERNAL_REFERENCE  : parseExternalReference ()  ; break;
             default: {
+                throw IOException (__FILE__, __func__, "Unknwon objecte type = %d", object_type);
             }
             }
             reader->endObject ();
@@ -168,13 +169,14 @@ std::vector<Object3D*> Loader:: load_png (const char* file_ptr, int file_size)
 
     png_set_read_fn (png_ptr, my_mem_reader, my_png_read_func);
 
-    png_read_png (png_ptr, info_ptr, PNG_TRANSFORM_IDENTITY, NULL);
+    png_read_png (png_ptr, info_ptr, PNG_TRANSFORM_EXPAND, NULL);
   
     //  cout << "Loader: width       = " << info_ptr->width << "\n";
     //  cout << "Loader: height      = " << info_ptr->height << "\n";
     //  cout << "Loader: bit_depth   = " << (int)info_ptr->bit_depth << "\n";
     //  cout << "Loader: pixel_depth = " << (int)info_ptr->pixel_depth << "\n";
     //  cout << "Loader: channels    = " << (int)info_ptr->channels << "\n";
+    //  cout << "Loader: color_type  = " << (int)info_ptr->color_type << "\n";
     
     png_byte** row_pointers = png_get_rows(png_ptr, info_ptr);
 
@@ -190,9 +192,10 @@ std::vector<Object3D*> Loader:: load_png (const char* file_ptr, int file_size)
     switch (info_ptr->color_type) {
     case PNG_COLOR_TYPE_GRAY       : format = Image2D::LUMINANCE;       break;
     case PNG_COLOR_TYPE_GRAY_ALPHA : format = Image2D::LUMINANCE_ALPHA; break;
+    case PNG_COLOR_TYPE_PALETTE    : format = Image2D::RGB;             break;
     case PNG_COLOR_TYPE_RGB        : format = Image2D::RGB;             break;
     case PNG_COLOR_TYPE_RGB_ALPHA  : format = Image2D::RGBA;            break;
-    default: throw IOException (__FILE__, __func__, "Unknwon png format=%d.", info_ptr->color_type);
+    default: throw IOException (__FILE__, __func__, "Unknown png format=%d.", info_ptr->color_type);
     }
 
     Image2D*   img = new Image2D   (format, info_ptr->width, info_ptr->height, pixels);

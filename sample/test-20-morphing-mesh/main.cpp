@@ -106,7 +106,7 @@ int main (int argc, char** argv)
   target_vertices[1] = new VertexBuffer;
   target_vertices[1]->setPositions (target2_positions, scale, bias);
 
-  int strips[1] = {42};
+  int strips[1] = {4};
   TriangleStripArray* tris = new TriangleStripArray (0, 1, strips);
   Appearance* app = new Appearance;
 
