@@ -90,7 +90,7 @@ namespace m3g {
 
         /**
          * @~English  Retrieves the current polygon windign mode.
-         * @~Japanese ポリゴンのワインでぃんぐもーどの取得.
+         * @~Japanese ポリゴンのワインディングモードの取得.
          */
         int getWinding () const;
 

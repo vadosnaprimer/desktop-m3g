@@ -16,8 +16,8 @@ static
 const char* mode_to_string (int mode);
 
 CompositingMode:: CompositingMode () :
-  blending_mode(REPLACE), alpha_threshold(0), depth_offset(0,0),
-  depth_test(true), depth_write(true), color_write(true), alpha_write(true)
+    blending_mode(REPLACE), alpha_threshold(0), depth_offset(0,0),
+    depth_test(true), depth_write(true), color_write(true), alpha_write(true)
 {
 }
 
@@ -90,44 +90,44 @@ bool CompositingMode:: isDepthWriteEnabled () const
 
 void CompositingMode:: setAlphaThreshold (float threashold)
 {
-  if (threashold < 0 || threashold > 1) {
-    throw IllegalArgumentException (__FILE__, __func__, "Alpha threashold is invalid, th=%f.", threashold);
-  }
+    if (threashold < 0 || threashold > 1) {
+        throw IllegalArgumentException (__FILE__, __func__, "Alpha threashold is invalid, th=%f.", threashold);
+    }
 
-  alpha_threshold = threashold;
+    alpha_threshold = threashold;
 }
 
 void CompositingMode:: setAlphaWriteEnable (bool enable)
 {
-  alpha_write = enable;
+    alpha_write = enable;
 }
 
 void CompositingMode:: setBlending (int mode)
 {
-  if (mode < ALPHA || mode > REPLACE) {
-    throw IllegalArgumentException (__FILE__, __func__, "Blending mode is invalid, mode=%d.", mode);
-  }
-  blending_mode = mode;
+    if (mode < ALPHA || mode > REPLACE) {
+        throw IllegalArgumentException (__FILE__, __func__, "Blending mode is invalid, mode=%d.", mode);
+    }
+    blending_mode = mode;
 }
 
 void CompositingMode:: setColorWriteEnable (bool enable)
 {
-  color_write = enable;
+    color_write = enable;
 }
 
 void CompositingMode:: setDepthOffset (float factor, float units)
 {
-  depth_offset = DepthOffset(factor, units);
+    depth_offset = DepthOffset(factor, units);
 }
 
 void CompositingMode:: setDepthTestEnable (bool enable)
 {
-  depth_test = enable;
+    depth_test = enable;
 }
 
 void CompositingMode:: setDepthWriteEnable (bool enable)
 {
-  depth_write = enable;
+    depth_write = enable;
 }
 
 /**
@@ -136,60 +136,60 @@ void CompositingMode:: setDepthWriteEnable (bool enable)
  */
 void CompositingMode:: render (RenderState& state) const
 {
-  if (state.pass != 2) {
-    return;
-  }
-  if (this == NULL) {
-    renderX ();
-    return;
-  }
+    if (state.pass != 2) {
+        return;
+    }
+    if (this == NULL) {
+        renderX ();
+        return;
+    }
 
-  //cout << "CompositingMode: render\n";
+    //cout << "CompositingMode: render\n";
 
-  switch (depth_test) {
-  case true  : glDepthFunc (GL_LESS); break;
-  case false : glDepthFunc (GL_ALWAYS);
-  }
+    switch (depth_test) {
+    case true  : glDepthFunc (GL_LESS); break;
+    case false : glDepthFunc (GL_ALWAYS);
+    }
 
-  glDepthMask (depth_write);
-  glColorMask (color_write, color_write, color_write, alpha_write);
+    glDepthMask (depth_write);
+    glColorMask (color_write, color_write, color_write, alpha_write);
 
-  glEnable (GL_BLEND);
-  switch (blending_mode) {
-  case REPLACE    : glBlendFunc (GL_ONE, GL_ZERO)           ; break;
-  case ALPHA_ADD  : glBlendFunc (GL_SRC_ALPHA, GL_ONE)      ; break;
-  case ALPHA      : glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA) ; break;
-  case MODULATE   : glBlendFunc (GL_DST_COLOR, GL_ZERO)     ; break;
-  case MODULATE_X2: glBlendFunc (GL_DST_COLOR, GL_SRC_COLOR); break;
-  default: throw InternalException (__FILE__, __func__, "Blending mode is invalid, mode=%d.", blending_mode);
-  }
+    glEnable (GL_BLEND);
+    switch (blending_mode) {
+    case REPLACE    : glBlendFunc (GL_ONE, GL_ZERO)           ; break;
+    case ALPHA_ADD  : glBlendFunc (GL_SRC_ALPHA, GL_ONE)      ; break;
+    case ALPHA      : glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA) ; break;
+    case MODULATE   : glBlendFunc (GL_DST_COLOR, GL_ZERO)     ; break;
+    case MODULATE_X2: glBlendFunc (GL_DST_COLOR, GL_SRC_COLOR); break;
+    default: throw InternalException (__FILE__, __func__, "Blending mode is invalid, mode=%d.", blending_mode);
+    }
 
-  // TODO: 完全にdisableにするのではなく0にした方が
-  // ドライバーレベルで高速化してくれそう
-  if (alpha_threshold > 0) {
-    glEnable    (GL_ALPHA_TEST);
-    glAlphaFunc (GL_GEQUAL, alpha_threshold);      
-  } else {
-    glDisable (GL_ALPHA_TEST);
-  }
+    // TODO: 完全にdisableにするのではなく0にした方が
+    // ドライバーレベルで高速化してくれそう
+    if (alpha_threshold > 0) {
+        glEnable    (GL_ALPHA_TEST);
+        glAlphaFunc (GL_GEQUAL, alpha_threshold);      
+    } else {
+        glDisable (GL_ALPHA_TEST);
+    }
 
-  if (depth_offset.factor || depth_offset.units) {
-    glEnable (GL_POLYGON_OFFSET_FILL);
-    glPolygonOffset (depth_offset.factor, depth_offset.units);
-  } else {
-    glDisable (GL_POLYGON_OFFSET_FILL);
-  }
+    if (depth_offset.factor || depth_offset.units) {
+        glEnable (GL_POLYGON_OFFSET_FILL);
+        glPolygonOffset (depth_offset.factor, depth_offset.units);
+    } else {
+        glDisable (GL_POLYGON_OFFSET_FILL);
+    }
 
 }
 
 void CompositingMode:: renderX ()
 {
-  glDepthFunc (GL_LESS);
-  glDepthMask (GL_TRUE);
-  glColorMask (GL_TRUE, GL_TRUE, GL_TRUE, GL_TRUE);
-  glBlendFunc (GL_ONE, GL_ZERO);
-  glDisable   (GL_ALPHA_TEST);
-  glDisable   (GL_POLYGON_OFFSET_FILL);
+    glDepthFunc (GL_LESS);
+    glDepthMask (GL_TRUE);
+    glColorMask (GL_TRUE, GL_TRUE, GL_TRUE, GL_TRUE);
+    glBlendFunc (GL_ONE, GL_ZERO);
+    glDisable   (GL_ALPHA_TEST);
+    glDisable   (GL_POLYGON_OFFSET_FILL);
 }
 
 
@@ -197,31 +197,31 @@ void CompositingMode:: renderX ()
 static
 const char* mode_to_string (int mode)
 {
-  switch (mode) {
-  case CompositingMode::ALPHA      : return "ALPHA";
-  case CompositingMode::ALPHA_ADD  : return "ALPHA_ADD";
-  case CompositingMode::MODULATE   : return "MODULATE";
-  case CompositingMode::MODULATE_X2: return "MODULATE_X2";
-  case CompositingMode::REPLACE    : return "REPLACE";
-  default: return "Unknwon";
-  }
+    switch (mode) {
+    case CompositingMode::ALPHA      : return "ALPHA";
+    case CompositingMode::ALPHA_ADD  : return "ALPHA_ADD";
+    case CompositingMode::MODULATE   : return "MODULATE";
+    case CompositingMode::MODULATE_X2: return "MODULATE_X2";
+    case CompositingMode::REPLACE    : return "REPLACE";
+    default: return "Unknwon";
+    }
 }
 
 std::ostream& CompositingMode:: print (std::ostream& out) const
 {
-  out << "CompositingMode: ";
-  out << "  blending_mode="    << mode_to_string(blending_mode);
-  out << ", alpha_threashold=" << alpha_threshold;
-  out << ", depth_offset="     << depth_offset.units << "," << depth_offset.factor;
-  out << ", depth_test="       << depth_test;
-  out << ", depth_write="      << depth_write;
-  out << ", color_write="      << color_write;
-  out << ", alpha_write="      << alpha_write;
-  return out;
+    out << "CompositingMode: ";
+    out << "  blending_mode="    << mode_to_string(blending_mode);
+    out << ", alpha_threashold=" << alpha_threshold;
+    out << ", depth_offset="     << depth_offset.units << "," << depth_offset.factor;
+    out << ", depth_test="       << depth_test;
+    out << ", depth_write="      << depth_write;
+    out << ", color_write="      << color_write;
+    out << ", alpha_write="      << alpha_write;
+    return out;
 }
 
 std::ostream& operator<< (std::ostream& out, const CompositingMode& cm)
 {
-  return cm.print(out);
+    return cm.print(out);
 }
 

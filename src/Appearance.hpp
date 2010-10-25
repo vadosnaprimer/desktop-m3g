@@ -16,8 +16,8 @@ namespace m3g {
 
 
     /**
-     * set of component objects that define the rendering attributes of a Mesh or Sprite3D.
-     * MeshやSprite3Dのレンダリング属性を定義するコンポーネントオブジェクトの集合.
+     * @~English  set of component objects that define the rendering attributes of a Mesh or Sprite3D.
+     * @~Japanese MeshやSprite3Dのレンダリング属性を定義するコンポーネントオブジェクトの集合.
      */
 
     class Appearance : public Object3D
@@ -81,8 +81,8 @@ namespace m3g {
         int getLayer2 () const;
 
         /**
-         * @~English  
-         * @~Japanese このアピアランスのMaterialの取得
+         * @~English  Returns the current Material for this Appearance.
+         * @~Japanese このアピアランスのMaterialの取得.
          */
         Material* getMaterial () const;
 
@@ -93,7 +93,7 @@ namespace m3g {
         PolygonMode* getPolygonMode () const;
 
         /**
-         * @~English  
+         * @~English  Retrieves the current texture image and its attributes for the given texturing unit.
          * @~Japanese 指定されたテクスチャーユニットのテクスチャーイメージとその属性値の取得.
          */
         Texture2D* getTexture (int index) const;
@@ -117,7 +117,7 @@ namespace m3g {
         void setLayer (int layer);
 
         /**
-         * @~English  
+         * @~English  Sets the Material to use when lighting this Appearance.
          * @~Japanese このアピアランスのMaterialの設定.
          */
         void setMaterial (Material* material);
@@ -126,7 +126,7 @@ namespace m3g {
          * @~English  Sets the PolygonMode to use for this Appearance.
          * @~Japanese このアピアランスのPolygonModeの設定
          */
-        void setPolygonMode (PolygonMode* polygonMode);
+        void setPolygonMode (PolygonMode* polygon_mode);
 
         /**
          * @~English  Sets the texture image and its attributes for the given textureing unit.
