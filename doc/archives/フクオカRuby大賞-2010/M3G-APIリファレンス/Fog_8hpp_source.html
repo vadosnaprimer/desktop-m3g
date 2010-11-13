@@ -1,0 +1,108 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<title>/work/workspace.desktop-m3g/src/Fog.hpp ソースファイル</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<!-- 作成： Doxygen 1.6.3 -->
+<div class="navigation" id="top">
+  <div class="tabs">
+    <ul>
+      <li><a href="index.html"><span>メインページ</span></a></li>
+      <li><a href="annotated.html"><span>クラス</span></a></li>
+      <li class="current"><a href="files.html"><span>ファイル</span></a></li>
+    </ul>
+  </div>
+  <div class="tabs">
+    <ul>
+      <li><a href="files.html"><span>ファイル一覧</span></a></li>
+    </ul>
+  </div>
+<h1>/work/workspace.desktop-m3g/src/Fog.hpp</h1><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 
+<a name="l00002"></a>00002 <span class="preprocessor">#ifndef __FOG_HPP__</span>
+<a name="l00003"></a>00003 <span class="preprocessor"></span><span class="preprocessor">#define __FOG_HPP__</span>
+<a name="l00004"></a>00004 <span class="preprocessor"></span>
+<a name="l00005"></a>00005 <span class="preprocessor">#include &lt;iostream&gt;</span>
+<a name="l00006"></a>00006 <span class="preprocessor">#include &quot;Object3D.hpp&quot;</span>
+<a name="l00007"></a>00007 
+<a name="l00008"></a>00008 <span class="keyword">namespace </span>m3g {
+<a name="l00009"></a>00009 
+<a name="l00014"></a><a class="code" href="classm3g_1_1Fog.html">00014</a>     <span class="keyword">class </span><a class="code" href="classm3g_1_1Fog.html">Fog</a> : <span class="keyword">public</span> <a class="code" href="classm3g_1_1Object3D.html">Object3D</a>
+<a name="l00015"></a>00015     {
+<a name="l00016"></a>00016 
+<a name="l00021"></a>00021         <span class="keyword">struct </span>Distance {
+<a name="l00022"></a>00022             Distance (<span class="keywordtype">float</span> n, <span class="keywordtype">float</span> f) : near(n), far(f) {};
+<a name="l00023"></a>00023             <span class="keywordtype">float</span> near;
+<a name="l00024"></a>00024             <span class="keywordtype">float</span> far;
+<a name="l00025"></a>00025         };
+<a name="l00026"></a>00026     
+<a name="l00027"></a>00027 
+<a name="l00028"></a>00028     <span class="keyword">public</span>:
+<a name="l00029"></a>00029 
+<a name="l00034"></a><a class="code" href="classm3g_1_1Fog.html#a86b391da2e58c0448712a10f6609a62c">00034</a>         <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code" href="classm3g_1_1Fog.html#a86b391da2e58c0448712a10f6609a62c">EXPONENTIAL</a> = 80;
+<a name="l00039"></a><a class="code" href="classm3g_1_1Fog.html#a23ccf193c67257f1be26417041cecb31">00039</a>         <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code" href="classm3g_1_1Fog.html#a23ccf193c67257f1be26417041cecb31">LINEAR</a>      = 81;
+<a name="l00040"></a>00040 
+<a name="l00041"></a>00041     <span class="keyword">public</span>:
+<a name="l00046"></a>00046         <a class="code" href="classm3g_1_1Fog.html#a232ea9c5f5824d924fa185401fbfb234">Fog</a> ();
+<a name="l00047"></a>00047 
+<a name="l00052"></a>00052         <span class="keyword">virtual</span> <a class="code" href="classm3g_1_1Fog.html#ac13d77e65284ed8f7480c8f83ed9780f">~Fog</a> ();
+<a name="l00053"></a>00053 
+<a name="l00058"></a>00058         <span class="keyword">virtual</span> <a class="code" href="classm3g_1_1Fog.html">Fog</a>* <a class="code" href="classm3g_1_1Fog.html#ad46dc959a547ee3a804fc871b83c0bbf">duplicate</a> () <span class="keyword">const</span>;
+<a name="l00059"></a>00059 
+<a name="l00064"></a>00064         <span class="keywordtype">void</span> <a class="code" href="classm3g_1_1Fog.html#a1c95b689dc13d518f87be584475e56e3">copy</a> (<a class="code" href="classm3g_1_1Fog.html">Fog</a>* fog) <span class="keyword">const</span>;
+<a name="l00065"></a>00065 
+<a name="l00071"></a>00071         <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classm3g_1_1Fog.html#a415c0b110f95410ded9b85e5d99a496b">addAnimationTrack</a> (<a class="code" href="classm3g_1_1AnimationTrack.html">AnimationTrack</a>* animation_track);
+<a name="l00072"></a>00072 
+<a name="l00077"></a>00077         <span class="keyword">virtual</span> <span class="keywordtype">int</span> <a class="code" href="classm3g_1_1Fog.html#a8aad1ceab4c2a03609c8a42324ce484d">animate</a> (<span class="keywordtype">int</span> world_time);
+<a name="l00078"></a>00078 
+<a name="l00083"></a>00083         <span class="keywordtype">int</span> <a class="code" href="classm3g_1_1Fog.html#a4cfa1931c265ec3412fe3f6408a1b4f5">getColor</a> () <span class="keyword">const</span>;
+<a name="l00084"></a>00084 
+<a name="l00089"></a>00089         <span class="keywordtype">float</span> <a class="code" href="classm3g_1_1Fog.html#a31deef556a6aa5e519d3c79bd9c383c0">getDensity</a> () <span class="keyword">const</span>;
+<a name="l00090"></a>00090 
+<a name="l00095"></a>00095         <span class="keywordtype">float</span> <a class="code" href="classm3g_1_1Fog.html#a90df17252a921929fce6a5e92aed4021">getFarDistance</a> () <span class="keyword">const</span>;
+<a name="l00096"></a>00096 
+<a name="l00101"></a>00101         <span class="keywordtype">int</span> <a class="code" href="classm3g_1_1Fog.html#ad4ce4524e4751fe5e3cfb8c270347d54">getMode</a> () <span class="keyword">const</span>;
+<a name="l00102"></a>00102 
+<a name="l00107"></a>00107         <span class="keywordtype">float</span> <a class="code" href="classm3g_1_1Fog.html#acd7a642e43bf99b0e1c5c24d3c6424a2">getNearDistance</a> () <span class="keyword">const</span>;
+<a name="l00108"></a>00108 
+<a name="l00113"></a>00113         <span class="keywordtype">void</span> <a class="code" href="classm3g_1_1Fog.html#ab1f5cc0f5cc6bbbd716a526c61f1081d">setColor</a> (<span class="keywordtype">int</span> rgb);
+<a name="l00114"></a>00114 
+<a name="l00119"></a>00119         <span class="keywordtype">void</span> <a class="code" href="classm3g_1_1Fog.html#a0ceeda25e326e99d6e971e980a00bd49">setDensity</a> (<span class="keywordtype">float</span> density);
+<a name="l00120"></a>00120 
+<a name="l00125"></a>00125         <span class="keywordtype">void</span> <a class="code" href="classm3g_1_1Fog.html#aa46fd556865ae7f1c683c3741b68c168">setLinear</a> (<span class="keywordtype">float</span> near, <span class="keywordtype">float</span> far);
+<a name="l00126"></a>00126 
+<a name="l00131"></a>00131         <span class="keywordtype">void</span> <a class="code" href="classm3g_1_1Fog.html#a9f407b18ba6235cb96fa95611c1ea3a4">setMode</a> (<span class="keywordtype">int</span> mode);
+<a name="l00132"></a>00132 
+<a name="l00137"></a>00137         <span class="keyword">virtual</span> std::ostream&amp; <a class="code" href="classm3g_1_1Fog.html#a6fea17fa1532df3794f8cb39cb4f911f">print</a> (std::ostream&amp; out) <span class="keyword">const</span>;
+<a name="l00138"></a>00138 
+<a name="l00143"></a>00143         <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classm3g_1_1Fog.html#a8babc8a79b78615da51161e94029eea9">render</a> (<a class="code" href="structm3g_1_1RenderState.html">RenderState</a>&amp; state) <span class="keyword">const</span>;
+<a name="l00144"></a>00144 
+<a name="l00149"></a>00149         <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="classm3g_1_1Fog.html#a443a7a301f77f625335ecc06d13bad06">renderX</a> ();
+<a name="l00150"></a>00150 
+<a name="l00151"></a>00151     <span class="keyword">private</span>:
+<a name="l00152"></a>00152         <a class="code" href="classm3g_1_1Fog.html#a232ea9c5f5824d924fa185401fbfb234">Fog</a> (<span class="keyword">const</span> <a class="code" href="classm3g_1_1Fog.html">Fog</a>&amp; fog);
+<a name="l00153"></a>00153         <a class="code" href="classm3g_1_1Fog.html">Fog</a>&amp; operator= (<span class="keyword">const</span> <a class="code" href="classm3g_1_1Fog.html">Fog</a>&amp; fog);
+<a name="l00154"></a>00154 
+<a name="l00155"></a>00155     <span class="keyword">private</span>:
+<a name="l00156"></a>00156         <span class="keywordtype">int</span>      mode;
+<a name="l00157"></a>00157         <span class="keywordtype">int</span>      color;
+<a name="l00158"></a>00158         <span class="keywordtype">float</span>    density;
+<a name="l00159"></a>00159         Distance distance;
+<a name="l00160"></a>00160     };
+<a name="l00161"></a>00161 
+<a name="l00162"></a>00162 
+<a name="l00163"></a>00163 } <span class="comment">// namespace m3g {</span>
+<a name="l00164"></a>00164 
+<a name="l00165"></a>00165 std::ostream&amp; operator&lt;&lt; (std::ostream&amp; out, <span class="keyword">const</span> <a class="code" href="classm3g_1_1Fog.html">m3g::Fog</a>&amp; f);
+<a name="l00166"></a>00166 
+<a name="l00167"></a>00167 
+<a name="l00168"></a>00168 <span class="preprocessor">#endif</span>
+</pre></div></div>
+<hr class="footer"/><address style="text-align: right;"><small>Sat Nov 13 11:43:10 2010に生成されました。&nbsp;
+<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
+</body>
+</html>

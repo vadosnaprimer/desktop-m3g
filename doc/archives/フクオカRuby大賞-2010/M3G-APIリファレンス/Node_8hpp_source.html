@@ -1,0 +1,148 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<title>/work/workspace.desktop-m3g/src/Node.hpp ソースファイル</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<!-- 作成： Doxygen 1.6.3 -->
+<div class="navigation" id="top">
+  <div class="tabs">
+    <ul>
+      <li><a href="index.html"><span>メインページ</span></a></li>
+      <li><a href="annotated.html"><span>クラス</span></a></li>
+      <li class="current"><a href="files.html"><span>ファイル</span></a></li>
+    </ul>
+  </div>
+  <div class="tabs">
+    <ul>
+      <li><a href="files.html"><span>ファイル一覧</span></a></li>
+    </ul>
+  </div>
+<h1>/work/workspace.desktop-m3g/src/Node.hpp</h1><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="preprocessor">#ifndef __NODE_HPP__</span>
+<a name="l00002"></a>00002 <span class="preprocessor"></span><span class="preprocessor">#define __NODE_HPP__</span>
+<a name="l00003"></a>00003 <span class="preprocessor"></span>
+<a name="l00004"></a>00004 <span class="preprocessor">#include &quot;Transformable.hpp&quot;</span>
+<a name="l00005"></a>00005 <span class="preprocessor">#include &quot;m3ginternal.hpp&quot;</span>
+<a name="l00006"></a>00006 <span class="preprocessor">#include &lt;iosfwd&gt;</span>
+<a name="l00007"></a>00007 
+<a name="l00008"></a>00008 <span class="keyword">namespace </span>m3g {
+<a name="l00009"></a>00009 
+<a name="l00010"></a>00010     <span class="keyword">class </span>Transform;
+<a name="l00011"></a>00011     <span class="keyword">class </span>Matrix;
+<a name="l00012"></a>00012 
+<a name="l00017"></a><a class="code" href="classm3g_1_1Node.html">00017</a>     <span class="keyword">class </span><a class="code" href="classm3g_1_1Node.html">Node</a> : <span class="keyword">public</span> <a class="code" href="classm3g_1_1Transformable.html">Transformable</a>
+<a name="l00018"></a>00018     {
+<a name="l00019"></a>00019 
+<a name="l00024"></a>00024         <span class="keyword">struct </span>Alignment {
+<a name="l00025"></a>00025             Alignment (<span class="keywordtype">int</span> t, <a class="code" href="classm3g_1_1Node.html">Node</a>* r) : target(t), reference(r) {};
+<a name="l00026"></a>00026             <span class="keywordtype">int</span>   target;
+<a name="l00027"></a>00027             <a class="code" href="classm3g_1_1Node.html">Node</a>* reference;
+<a name="l00028"></a>00028         };
+<a name="l00029"></a>00029 
+<a name="l00030"></a>00030     <span class="keyword">public</span>:
+<a name="l00031"></a>00031 
+<a name="l00036"></a><a class="code" href="classm3g_1_1Node.html#a7b20f1b443e093d5ec5e990e73b47232">00036</a>         <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code" href="classm3g_1_1Node.html#a7b20f1b443e093d5ec5e990e73b47232">NONE</a>   = 144;
+<a name="l00041"></a><a class="code" href="classm3g_1_1Node.html#a1b0d56eb173868ff472a6fd296c5bb6c">00041</a>         <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code" href="classm3g_1_1Node.html#a1b0d56eb173868ff472a6fd296c5bb6c">ORIGIN</a> = 145;
+<a name="l00046"></a><a class="code" href="classm3g_1_1Node.html#add4bccb7b9c652e726d58b06bd28dab2">00046</a>         <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code" href="classm3g_1_1Node.html#add4bccb7b9c652e726d58b06bd28dab2">X_AXIS</a> = 146;
+<a name="l00051"></a><a class="code" href="classm3g_1_1Node.html#a3248ff73b5411ab0a66a38c451c8b6fe">00051</a>         <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code" href="classm3g_1_1Node.html#a3248ff73b5411ab0a66a38c451c8b6fe">Y_AXIS</a> = 147;
+<a name="l00056"></a><a class="code" href="classm3g_1_1Node.html#aa928e648c9ae9b4706937831f77f0c67">00056</a>         <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code" href="classm3g_1_1Node.html#aa928e648c9ae9b4706937831f77f0c67">Z_AXIS</a> = 148;
+<a name="l00057"></a>00057 
+<a name="l00062"></a>00062         <a class="code" href="classm3g_1_1Node.html#a0d313fac56abd7ebe58a17f1530b879e">Node</a> ();
+<a name="l00063"></a>00063 
+<a name="l00068"></a>00068         <span class="keyword">virtual</span> <a class="code" href="classm3g_1_1Node.html#a6fa6bf60f34f1e3efb0e59333428c9c8">~Node</a> ();
+<a name="l00069"></a>00069 
+<a name="l00074"></a>00074         <span class="keyword">virtual</span> <a class="code" href="classm3g_1_1Node.html">Node</a>* <a class="code" href="classm3g_1_1Node.html#a0b9f7531a4b56d34f47aeb1fff0d37e0">duplicate</a> () <span class="keyword">const</span>;
+<a name="l00075"></a>00075 
+<a name="l00080"></a>00080         <span class="keywordtype">void</span> <a class="code" href="classm3g_1_1Node.html#a9388dfa8c6f7a0b7cb0fa73f1fcee871">copy</a> (<a class="code" href="classm3g_1_1Node.html">Node</a>* node) <span class="keyword">const</span>;
+<a name="l00081"></a>00081 
+<a name="l00086"></a>00086         <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classm3g_1_1Node.html#a3db1b4be060fe3d4f3dbf9720ef85234">align</a> (<a class="code" href="classm3g_1_1Node.html">Node</a>* reference);
+<a name="l00087"></a>00087 
+<a name="l00094"></a>00094         <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classm3g_1_1Node.html#a415c0b110f95410ded9b85e5d99a496b">addAnimationTrack</a> (<a class="code" href="classm3g_1_1AnimationTrack.html">AnimationTrack</a>* animation_track);
+<a name="l00095"></a>00095 
+<a name="l00100"></a>00100         <span class="keyword">virtual</span> <span class="keywordtype">int</span> <a class="code" href="classm3g_1_1Node.html#a8aad1ceab4c2a03609c8a42324ce484d">animate</a> (<span class="keywordtype">int</span> world_time);
+<a name="l00101"></a>00101 
+<a name="l00102"></a>00102 
+<a name="l00103"></a>00103 
+<a name="l00108"></a>00108         <a class="code" href="classm3g_1_1Node.html">Node</a>* <a class="code" href="classm3g_1_1Node.html#aca338390bd2dee287fe6f5cbc4e094e1">getAlignmentReference</a> (<span class="keywordtype">int</span> axis) <span class="keyword">const</span>;
+<a name="l00109"></a>00109 
+<a name="l00114"></a>00114         <span class="keywordtype">int</span> <a class="code" href="classm3g_1_1Node.html#ae5bbf42b3d88193fda0b476e1b1da009">getAlignmentTarget</a> (<span class="keywordtype">int</span> axis) <span class="keyword">const</span>;
+<a name="l00115"></a>00115 
+<a name="l00120"></a>00120         <span class="keywordtype">float</span> <a class="code" href="classm3g_1_1Node.html#abf7e8f9d9f530274aaf27e69910f8689">getAlphaFactor</a> () <span class="keyword">const</span>;
+<a name="l00121"></a>00121 
+<a name="l00126"></a>00126         <span class="keywordtype">float</span> <a class="code" href="classm3g_1_1Node.html#af48a25661cb8a6f3559f7d5ffbc520b3">getGlobalAlphaFactor</a> () <span class="keyword">const</span>;
+<a name="l00127"></a>00127 
+<a name="l00132"></a>00132         <a class="code" href="classm3g_1_1Matrix.html">Matrix</a> <a class="code" href="classm3g_1_1Node.html#ab50dd3f0331a71cf820bbd1edc894ef0">getGlobalPose</a> () <span class="keyword">const</span>;
+<a name="l00133"></a>00133 
+<a name="l00138"></a>00138         <a class="code" href="classm3g_1_1Node.html">Node</a>* <a class="code" href="classm3g_1_1Node.html#ace26c2757f265bc6038e6818d2eb6ad9">getParent</a> () <span class="keyword">const</span>;
+<a name="l00139"></a>00139 
+<a name="l00144"></a>00144         <a class="code" href="classm3g_1_1Node.html">Node</a>* <a class="code" href="classm3g_1_1Node.html#a895a7a11e91762ed5aa2b849449d503a">getGlobalParent</a> () <span class="keyword">const</span>;
+<a name="l00145"></a>00145 
+<a name="l00146"></a>00146         
+<a name="l00147"></a>00147 
+<a name="l00152"></a>00152         <span class="keywordtype">int</span> <a class="code" href="classm3g_1_1Node.html#aa3c291c19cf805338fa4ad3c3deb663a">getScope</a> () <span class="keyword">const</span>;
+<a name="l00153"></a>00153 
+<a name="l00158"></a>00158         <span class="keywordtype">bool</span> <a class="code" href="classm3g_1_1Node.html#a0dd162e8412d8589b27ee03d798189a6">getTransformTo</a> (<span class="keyword">const</span> <a class="code" href="classm3g_1_1Node.html">Node</a>* target, <a class="code" href="classm3g_1_1Transform.html">Transform</a>* transform) <span class="keyword">const</span>;
+<a name="l00159"></a>00159 
+<a name="l00160"></a>00160  
+<a name="l00161"></a>00161        <span class="keywordtype">bool</span> isGlobalPickingEnabled () <span class="keyword">const</span>;
+<a name="l00162"></a>00162 
+<a name="l00163"></a>00163 
+<a name="l00164"></a>00164         <span class="keywordtype">bool</span> isGlobalRenderingEnabled () <span class="keyword">const</span>;
+<a name="l00165"></a>00165 
+<a name="l00170"></a>00170         <span class="keywordtype">bool</span> <a class="code" href="classm3g_1_1Node.html#ab3187e5056afa4a94af03e34125c86b1">isPickingEnabled</a> () <span class="keyword">const</span>;
+<a name="l00171"></a>00171 
+<a name="l00176"></a>00176         <span class="keywordtype">bool</span> <a class="code" href="classm3g_1_1Node.html#a95020b155afed9552cc55377b09b1e86">isRenderingEnabled</a> () <span class="keyword">const</span>;
+<a name="l00177"></a>00177 
+<a name="l00178"></a>00178 
+<a name="l00183"></a>00183         <span class="keywordtype">void</span> <a class="code" href="classm3g_1_1Node.html#add1627aba90e63c166ecd3d7463d735a">setAlignment</a> (<a class="code" href="classm3g_1_1Node.html">Node</a>* z_ref, <span class="keywordtype">int</span> z_target, <a class="code" href="classm3g_1_1Node.html">Node</a>* y_ref, <span class="keywordtype">int</span> y_target);
+<a name="l00184"></a>00184 
+<a name="l00185"></a>00185 
+<a name="l00190"></a>00190         <span class="keywordtype">void</span> <a class="code" href="classm3g_1_1Node.html#ab33c321ce240770e5eb64d0e20ea61cc">setAlphaFactor</a> (<span class="keywordtype">float</span> alpha_factor);
+<a name="l00191"></a>00191 
+<a name="l00196"></a>00196         <span class="keywordtype">void</span> <a class="code" href="classm3g_1_1Node.html#a4f9296202713ac56ccae72d5e0c21d96">setPickingEnable</a> (<span class="keywordtype">bool</span> enable);
+<a name="l00197"></a>00197 
+<a name="l00202"></a>00202         <span class="keywordtype">void</span> <a class="code" href="classm3g_1_1Node.html#a58981ef7aea1bf0e630bcc065b2987e9">setRenderingEnable</a> (<span class="keywordtype">bool</span> enable);
+<a name="l00203"></a>00203 
+<a name="l00208"></a>00208         <span class="keywordtype">void</span> <a class="code" href="classm3g_1_1Node.html#a55f324f307a01705b9094a73af4ecd68">setScope</a> (<span class="keywordtype">int</span> scope);
+<a name="l00209"></a>00209 
+<a name="l00214"></a>00214         <span class="keyword">virtual</span> std::ostream&amp; <a class="code" href="classm3g_1_1Node.html#a6fea17fa1532df3794f8cb39cb4f911f">print</a> (std::ostream&amp; out) <span class="keyword">const</span>;
+<a name="l00215"></a>00215 
+<a name="l00220"></a>00220         <span class="keywordtype">void</span> <a class="code" href="classm3g_1_1Node.html#a880ecc7c1c091f7607eeae12ed100a9a">setParent</a> (<a class="code" href="classm3g_1_1Node.html">Node</a>* node);
+<a name="l00221"></a>00221 
+<a name="l00226"></a>00226         <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classm3g_1_1Node.html#a8babc8a79b78615da51161e94029eea9">render</a> (<a class="code" href="structm3g_1_1RenderState.html">RenderState</a>&amp; state) <span class="keyword">const</span>;
+<a name="l00227"></a>00227 
+<a name="l00228"></a>00228 
+<a name="l00233"></a>00233         <a class="code" href="classm3g_1_1Node.html">Node</a>* <a class="code" href="classm3g_1_1Node.html#aae1e599a697895c5f2699856bed3ca8e">getDuplicatedNode</a> () <span class="keyword">const</span>;
+<a name="l00234"></a>00234 
+<a name="l00235"></a>00235     <span class="keyword">private</span>:
+<a name="l00236"></a>00236         <a class="code" href="classm3g_1_1Node.html#a0d313fac56abd7ebe58a17f1530b879e">Node</a> (<span class="keyword">const</span> <a class="code" href="classm3g_1_1Node.html">Node</a>&amp; node);
+<a name="l00237"></a>00237         <a class="code" href="classm3g_1_1Node.html">Node</a>&amp; operator= (<span class="keyword">const</span> <a class="code" href="classm3g_1_1Node.html">Node</a>&amp; node);
+<a name="l00238"></a>00238 
+<a name="l00239"></a>00239     <span class="keyword">private</span>:
+<a name="l00240"></a>00240         <a class="code" href="classm3g_1_1Node.html">Node</a>*     parent;
+<a name="l00241"></a>00241         <span class="keywordtype">bool</span>      rendering_enable;
+<a name="l00242"></a>00242         <span class="keywordtype">bool</span>      picking_enable;
+<a name="l00243"></a>00243         <span class="keywordtype">float</span>     alpha_factor;
+<a name="l00244"></a>00244         <span class="keywordtype">int</span>       scope;
+<a name="l00245"></a>00245         Alignment z_alignment;
+<a name="l00246"></a>00246         Alignment y_alignment;
+<a name="l00247"></a>00247 
+<a name="l00248"></a>00248         <a class="code" href="classm3g_1_1Node.html">Node</a>* duplicated;
+<a name="l00249"></a>00249     };
+<a name="l00250"></a>00250 
+<a name="l00251"></a>00251 } <span class="comment">// namespace m3g {</span>
+<a name="l00252"></a>00252 
+<a name="l00253"></a>00253 std::ostream&amp; operator&lt;&lt; (std::ostream&amp; out, <span class="keyword">const</span> <a class="code" href="classm3g_1_1Node.html">m3g::Node</a>&amp; n);
+<a name="l00254"></a>00254 
+<a name="l00255"></a>00255 
+<a name="l00256"></a>00256 
+<a name="l00257"></a>00257 <span class="preprocessor">#endif</span>
+</pre></div></div>
+<hr class="footer"/><address style="text-align: right;"><small>Sat Nov 13 11:43:11 2010に生成されました。&nbsp;
+<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
+</body>
+</html>

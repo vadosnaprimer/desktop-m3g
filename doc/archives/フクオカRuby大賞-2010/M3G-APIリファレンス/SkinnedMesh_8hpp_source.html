@@ -1,0 +1,121 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<title>/work/workspace.desktop-m3g/src/SkinnedMesh.hpp ソースファイル</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<!-- 作成： Doxygen 1.6.3 -->
+<div class="navigation" id="top">
+  <div class="tabs">
+    <ul>
+      <li><a href="index.html"><span>メインページ</span></a></li>
+      <li><a href="annotated.html"><span>クラス</span></a></li>
+      <li class="current"><a href="files.html"><span>ファイル</span></a></li>
+    </ul>
+  </div>
+  <div class="tabs">
+    <ul>
+      <li><a href="files.html"><span>ファイル一覧</span></a></li>
+    </ul>
+  </div>
+<h1>/work/workspace.desktop-m3g/src/SkinnedMesh.hpp</h1><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="preprocessor">#ifndef __SKINNED_MESH_HPP__</span>
+<a name="l00002"></a>00002 <span class="preprocessor"></span><span class="preprocessor">#define __SKINNED_MESH_HPP__</span>
+<a name="l00003"></a>00003 <span class="preprocessor"></span>
+<a name="l00004"></a>00004 <span class="preprocessor">#include &quot;Mesh.hpp&quot;</span>
+<a name="l00005"></a>00005 <span class="preprocessor">#include &lt;iosfwd&gt;</span>
+<a name="l00006"></a>00006 <span class="preprocessor">#include &lt;vector&gt;</span>
+<a name="l00007"></a>00007 
+<a name="l00008"></a>00008 <span class="preprocessor">#include &quot;BoneIndex.hpp&quot;</span>
+<a name="l00009"></a>00009 
+<a name="l00010"></a>00010 
+<a name="l00011"></a>00011 <span class="keyword">namespace </span>m3g {
+<a name="l00012"></a>00012 
+<a name="l00013"></a>00013     <span class="keyword">class </span>Group;
+<a name="l00014"></a>00014     <span class="keyword">class </span>VertexBuffer;
+<a name="l00015"></a>00015     <span class="keyword">class </span>IndexBuffer;
+<a name="l00016"></a>00016     <span class="keyword">class </span>RayIntersection;
+<a name="l00017"></a>00017     <span class="keyword">class </span>Vector;
+<a name="l00018"></a>00018   
+<a name="l00019"></a>00019 
+<a name="l00024"></a><a class="code" href="classm3g_1_1SkinnedMesh.html">00024</a>     <span class="keyword">class </span><a class="code" href="classm3g_1_1SkinnedMesh.html">SkinnedMesh</a> : <span class="keyword">public</span> <a class="code" href="classm3g_1_1Mesh.html">Mesh</a>
+<a name="l00025"></a>00025     {
+<a name="l00026"></a>00026     <span class="keyword">public</span>:
+<a name="l00027"></a>00027 
+<a name="l00032"></a>00032         <a class="code" href="classm3g_1_1SkinnedMesh.html#a277419d6851b0e305f66a46095269915">SkinnedMesh</a> (<a class="code" href="classm3g_1_1VertexBuffer.html">VertexBuffer</a>* vertices, 
+<a name="l00033"></a>00033                      <span class="keywordtype">int</span>           num_submesh,
+<a name="l00034"></a>00034                      <a class="code" href="classm3g_1_1IndexBuffer.html">IndexBuffer</a>** submeshes,
+<a name="l00035"></a>00035                      <a class="code" href="classm3g_1_1Appearance.html">Appearance</a>**  apperarances,
+<a name="l00036"></a>00036                      <a class="code" href="classm3g_1_1Group.html">Group</a>*        skeleton);
+<a name="l00037"></a>00037 
+<a name="l00042"></a>00042         <a class="code" href="classm3g_1_1SkinnedMesh.html#a277419d6851b0e305f66a46095269915">SkinnedMesh</a> (<a class="code" href="classm3g_1_1VertexBuffer.html">VertexBuffer</a>* vertices, 
+<a name="l00043"></a>00043                      <a class="code" href="classm3g_1_1IndexBuffer.html">IndexBuffer</a>*  submeshes, 
+<a name="l00044"></a>00044                      <a class="code" href="classm3g_1_1Appearance.html">Appearance</a>*   apperarances,
+<a name="l00045"></a>00045                      <a class="code" href="classm3g_1_1Group.html">Group</a>*        skeleton);
+<a name="l00046"></a>00046 
+<a name="l00051"></a>00051         <span class="keyword">virtual</span> <a class="code" href="classm3g_1_1SkinnedMesh.html#ac73da5b5c5f8f14fc241328b4b78928c">~SkinnedMesh</a> ();
+<a name="l00052"></a>00052 
+<a name="l00057"></a>00057         <span class="keyword">virtual</span> <a class="code" href="classm3g_1_1SkinnedMesh.html">SkinnedMesh</a>* <a class="code" href="classm3g_1_1SkinnedMesh.html#ad3f422cf7656b73687d789094c7eae42">duplicate</a> () <span class="keyword">const</span>;
+<a name="l00058"></a>00058 
+<a name="l00059"></a>00059         <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classm3g_1_1SkinnedMesh.html#a6c4f988c9613c0ddc0ad9d9ea6a59067">mark</a> (<span class="keywordtype">void</span>(*func)(<span class="keywordtype">void</span>*)) <span class="keyword">const</span>;
+<a name="l00060"></a>00060 
+<a name="l00065"></a>00065         <span class="keywordtype">void</span> <a class="code" href="classm3g_1_1SkinnedMesh.html#a4b74d7b25e98a9858df16c79ba1bb76f">copy</a> (<a class="code" href="classm3g_1_1SkinnedMesh.html">SkinnedMesh</a>* mesh) <span class="keyword">const</span>;
+<a name="l00066"></a>00066 
+<a name="l00067"></a>00067 
+<a name="l00068"></a>00068         <span class="keyword">virtual</span> <span class="keywordtype">int</span> <a class="code" href="classm3g_1_1SkinnedMesh.html#a8aad1ceab4c2a03609c8a42324ce484d">animate</a> (<span class="keywordtype">int</span> world_time);
+<a name="l00069"></a>00069 
+<a name="l00074"></a>00074         <span class="keywordtype">void</span> <a class="code" href="classm3g_1_1SkinnedMesh.html#a05077c4ee16f87ed4163f4d7a5f4f735">addTransform</a> (<a class="code" href="classm3g_1_1Node.html">Node</a>* bone, <span class="keywordtype">int</span> weight, <span class="keywordtype">int</span> first_vertex, <span class="keywordtype">int</span> num_vertices);
+<a name="l00075"></a>00075 
+<a name="l00080"></a>00080         <span class="keywordtype">void</span> <a class="code" href="classm3g_1_1SkinnedMesh.html#ae6c2fed8109053ded845e49f5c3b0c73">getBoneTransform</a> (<a class="code" href="classm3g_1_1Node.html">Node</a>* bone, <a class="code" href="classm3g_1_1Transform.html">Transform</a>* transform) <span class="keyword">const</span>;
+<a name="l00081"></a>00081 
+<a name="l00086"></a>00086         <span class="keywordtype">int</span> <a class="code" href="classm3g_1_1SkinnedMesh.html#a84ec0935b92b7ccc0aed7e66c4eac78f">getBoneVertices</a> (<a class="code" href="classm3g_1_1Node.html">Node</a>* bone, <span class="keywordtype">int</span>* vertex_indices, <span class="keywordtype">float</span>* weights) <span class="keyword">const</span>;
+<a name="l00087"></a>00087 
+<a name="l00092"></a>00092         <a class="code" href="classm3g_1_1Group.html">Group</a>* <a class="code" href="classm3g_1_1SkinnedMesh.html#ace7d69c2b600f6f01a46214db28e6f92">getSkeleton</a> () <span class="keyword">const</span>;
+<a name="l00093"></a>00093 
+<a name="l00094"></a>00094 
+<a name="l00098"></a>00098         <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="classm3g_1_1SkinnedMesh.html#adc812d8230f94f0b6b8e4fecdb802a16">intersect</a> (<span class="keyword">const</span> <a class="code" href="classm3g_1_1Vector.html">Vector</a>&amp; org, <span class="keyword">const</span> <a class="code" href="classm3g_1_1Vector.html">Vector</a>&amp; dir, <a class="code" href="classm3g_1_1RayIntersection.html">RayIntersection</a>* ri) <span class="keyword">const</span>;
+<a name="l00099"></a>00099 
+<a name="l00104"></a>00104         <span class="keyword">virtual</span> std::ostream&amp; <a class="code" href="classm3g_1_1SkinnedMesh.html#a6fea17fa1532df3794f8cb39cb4f911f">print</a> (std::ostream&amp; out) <span class="keyword">const</span>;
+<a name="l00105"></a>00105 
+<a name="l00106"></a>00106 
+<a name="l00111"></a>00111         <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classm3g_1_1SkinnedMesh.html#a8babc8a79b78615da51161e94029eea9">render</a> (<a class="code" href="structm3g_1_1RenderState.html">RenderState</a>&amp; state) <span class="keyword">const</span>;
+<a name="l00112"></a>00112 
+<a name="l00113"></a>00113 
+<a name="l00114"></a>00114     <span class="keyword">private</span>:
+<a name="l00115"></a>00115 
+<a name="l00120"></a>00120         <span class="keywordtype">int</span> addBoneIndex (<a class="code" href="classm3g_1_1Node.html">Node</a>* bone);
+<a name="l00121"></a>00121 
+<a name="l00126"></a>00126         <span class="keywordtype">int</span> getBoneIndex (<a class="code" href="classm3g_1_1Node.html">Node</a>* bone) <span class="keyword">const</span>;
+<a name="l00127"></a>00127 
+<a name="l00128"></a>00128     
+<a name="l00129"></a>00129         <span class="keywordtype">void</span> updateSkinnedVertices ();
+<a name="l00130"></a>00130 
+<a name="l00131"></a>00131     <span class="keyword">private</span>:
+<a name="l00135"></a>00135         <span class="keywordtype">void</span> initialize ();
+<a name="l00136"></a>00136 
+<a name="l00137"></a>00137         <a class="code" href="classm3g_1_1SkinnedMesh.html#a277419d6851b0e305f66a46095269915">SkinnedMesh</a> (<span class="keyword">const</span> <a class="code" href="classm3g_1_1SkinnedMesh.html">SkinnedMesh</a>&amp; mesh);
+<a name="l00138"></a>00138         <a class="code" href="classm3g_1_1SkinnedMesh.html">SkinnedMesh</a>&amp; operator= (<span class="keyword">const</span> <a class="code" href="classm3g_1_1SkinnedMesh.html">SkinnedMesh</a>&amp; mesh);
+<a name="l00139"></a>00139 
+<a name="l00140"></a>00140     <span class="keyword">private</span>:
+<a name="l00141"></a>00141         <a class="code" href="classm3g_1_1Group.html">Group</a>*        skeleton;
+<a name="l00142"></a>00142         <a class="code" href="classm3g_1_1VertexBuffer.html">VertexBuffer</a>* skinned_vertices;
+<a name="l00143"></a>00143 
+<a name="l00144"></a>00144         std::vector&lt;std::vector&lt;BoneIndex&gt; &gt; bone_indices;
+<a name="l00145"></a>00145         std::vector&lt;BindPose&gt;                bind_poses;
+<a name="l00146"></a>00146     };
+<a name="l00147"></a>00147 
+<a name="l00148"></a>00148 
+<a name="l00149"></a>00149 } <span class="comment">// namespace m3g {</span>
+<a name="l00150"></a>00150 
+<a name="l00151"></a>00151 std::ostream&amp; operator&lt;&lt; (std::ostream&amp; out, <span class="keyword">const</span> <a class="code" href="classm3g_1_1SkinnedMesh.html">m3g::SkinnedMesh</a>&amp; mesh);
+<a name="l00152"></a>00152 
+<a name="l00153"></a>00153 
+<a name="l00154"></a>00154 <span class="preprocessor">#endif</span>
+</pre></div></div>
+<hr class="footer"/><address style="text-align: right;"><small>Sat Nov 13 11:43:11 2010に生成されました。&nbsp;
+<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
+</body>
+</html>

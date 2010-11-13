@@ -1,0 +1,138 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<title>/work/workspace.desktop-m3g/src/Texture2D.hpp ソースファイル</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<!-- 作成： Doxygen 1.6.3 -->
+<div class="navigation" id="top">
+  <div class="tabs">
+    <ul>
+      <li><a href="index.html"><span>メインページ</span></a></li>
+      <li><a href="annotated.html"><span>クラス</span></a></li>
+      <li class="current"><a href="files.html"><span>ファイル</span></a></li>
+    </ul>
+  </div>
+  <div class="tabs">
+    <ul>
+      <li><a href="files.html"><span>ファイル一覧</span></a></li>
+    </ul>
+  </div>
+<h1>/work/workspace.desktop-m3g/src/Texture2D.hpp</h1><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="preprocessor">#ifndef __TEXTURE2D_HPP__</span>
+<a name="l00002"></a>00002 <span class="preprocessor"></span><span class="preprocessor">#define __TEXTURE2D_HPP__</span>
+<a name="l00003"></a>00003 <span class="preprocessor"></span>
+<a name="l00004"></a>00004 
+<a name="l00005"></a>00005 <span class="preprocessor">#include &quot;Transformable.hpp&quot;</span>
+<a name="l00006"></a>00006 <span class="preprocessor">#include &lt;iostream&gt;</span>
+<a name="l00007"></a>00007 
+<a name="l00008"></a>00008 <span class="keyword">namespace </span>m3g {
+<a name="l00009"></a>00009 
+<a name="l00010"></a>00010     <span class="keyword">class </span>Image2D;
+<a name="l00011"></a>00011 
+<a name="l00016"></a><a class="code" href="classm3g_1_1Texture2D.html">00016</a>     <span class="keyword">class </span><a class="code" href="classm3g_1_1Texture2D.html">Texture2D</a> : <span class="keyword">public</span> <a class="code" href="classm3g_1_1Transformable.html">Transformable</a>
+<a name="l00017"></a>00017     {
+<a name="l00018"></a>00018 
+<a name="l00023"></a>00023         <span class="keyword">struct </span>Wrapping {
+<a name="l00024"></a>00024             Wrapping(<span class="keywordtype">int</span> s_, <span class="keywordtype">int</span> t_) : s(s_), t(t_) {};
+<a name="l00025"></a>00025             <span class="keywordtype">int</span> s;
+<a name="l00026"></a>00026             <span class="keywordtype">int</span> t;
+<a name="l00027"></a>00027         };
+<a name="l00032"></a>00032         <span class="keyword">struct </span>Filter {
+<a name="l00033"></a>00033             Filter (<span class="keywordtype">int</span> l, <span class="keywordtype">int</span> i) : level(l), image(i) {};
+<a name="l00034"></a>00034             <span class="keywordtype">int</span> level;
+<a name="l00035"></a>00035             <span class="keywordtype">int</span> image;
+<a name="l00036"></a>00036         };
+<a name="l00037"></a>00037 
+<a name="l00038"></a>00038     <span class="keyword">public</span>:
+<a name="l00043"></a><a class="code" href="classm3g_1_1Texture2D.html#ad1924d32385b5353ad11ecd8b1ec0ad5">00043</a>         <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code" href="classm3g_1_1Texture2D.html#ad1924d32385b5353ad11ecd8b1ec0ad5">FILTER_BASE_LEVEL</a> = 208;
+<a name="l00048"></a><a class="code" href="classm3g_1_1Texture2D.html#a5f06003f50141919a3665d22f55602a8">00048</a>         <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code" href="classm3g_1_1Texture2D.html#a5f06003f50141919a3665d22f55602a8">FILTER_LINEAR</a>     = 209;
+<a name="l00053"></a><a class="code" href="classm3g_1_1Texture2D.html#a1ee2e06d6462fdafd5f17e63eddfb8fe">00053</a>         <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code" href="classm3g_1_1Texture2D.html#a1ee2e06d6462fdafd5f17e63eddfb8fe">FILTER_NEAREST</a>    = 210;
+<a name="l00058"></a><a class="code" href="classm3g_1_1Texture2D.html#a825ea3aff59f79958257ac557c802760">00058</a>         <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code" href="classm3g_1_1Texture2D.html#a825ea3aff59f79958257ac557c802760">FUNC_ADD</a>          = 224;
+<a name="l00065"></a><a class="code" href="classm3g_1_1Texture2D.html#a57e3e01014bbfd62b8665586fdd2ecb3">00065</a>         <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code" href="classm3g_1_1Texture2D.html#a57e3e01014bbfd62b8665586fdd2ecb3">FUNC_BLEND</a>        = 225;
+<a name="l00070"></a><a class="code" href="classm3g_1_1Texture2D.html#a235b942b18219513ca4a5a8c1a3171ac">00070</a>         <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code" href="classm3g_1_1Texture2D.html#a235b942b18219513ca4a5a8c1a3171ac">FUNC_DECAL</a>        = 226;
+<a name="l00075"></a><a class="code" href="classm3g_1_1Texture2D.html#a4482b0d4d6d1f64aaf33c3c5862de30e">00075</a>         <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code" href="classm3g_1_1Texture2D.html#a4482b0d4d6d1f64aaf33c3c5862de30e">FUNC_MODULATE</a>     = 227;
+<a name="l00080"></a><a class="code" href="classm3g_1_1Texture2D.html#a14f24332e168c5e210ddad47fb5cdd17">00080</a>         <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code" href="classm3g_1_1Texture2D.html#a14f24332e168c5e210ddad47fb5cdd17">FUNC_REPLACE</a>      = 228;
+<a name="l00085"></a><a class="code" href="classm3g_1_1Texture2D.html#ae36d8facf5b60eb6c59888121731c438">00085</a>         <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code" href="classm3g_1_1Texture2D.html#ae36d8facf5b60eb6c59888121731c438">WRAP_CLAMP</a>        = 240;
+<a name="l00090"></a><a class="code" href="classm3g_1_1Texture2D.html#ab37ff061b9fb272284c4c389deec9266">00090</a>         <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code" href="classm3g_1_1Texture2D.html#ab37ff061b9fb272284c4c389deec9266">WRAP_REPEAT</a>       = 241;
+<a name="l00091"></a>00091 
+<a name="l00092"></a>00092 
+<a name="l00093"></a>00093     <span class="keyword">public</span>:
+<a name="l00098"></a>00098         <a class="code" href="classm3g_1_1Texture2D.html#a7a8d6431e41022e29ac936afc5e97b8e">Texture2D</a> (<a class="code" href="classm3g_1_1Image2D.html">Image2D</a>* image);
+<a name="l00099"></a>00099 
+<a name="l00104"></a>00104         <span class="keyword">virtual</span> <a class="code" href="classm3g_1_1Texture2D.html#a060332aea614a81a914cd2e55f1794df">~Texture2D</a> ();
+<a name="l00105"></a>00105 
+<a name="l00110"></a>00110         <span class="keyword">virtual</span> <a class="code" href="classm3g_1_1Texture2D.html">Texture2D</a>* <a class="code" href="classm3g_1_1Texture2D.html#af4b50abcea8e4a6d6981c779d5009c05">duplicate</a> () <span class="keyword">const</span>;
+<a name="l00111"></a>00111 
+<a name="l00112"></a>00112         <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classm3g_1_1Texture2D.html#a6c4f988c9613c0ddc0ad9d9ea6a59067">mark</a> (<span class="keywordtype">void</span>(*func)(<span class="keywordtype">void</span>*)) <span class="keyword">const</span>;
+<a name="l00113"></a>00113 
+<a name="l00118"></a>00118         <span class="keywordtype">void</span> <a class="code" href="classm3g_1_1Texture2D.html#a2cbd201ce12b361d8a7663c1cc874b35">copy</a> (<a class="code" href="classm3g_1_1Texture2D.html">Texture2D</a>* tex) <span class="keyword">const</span>;
+<a name="l00119"></a>00119 
+<a name="l00120"></a>00120 
+<a name="l00121"></a>00121 
+<a name="l00122"></a>00122         <span class="keyword">virtual</span> <span class="keywordtype">int</span> <a class="code" href="classm3g_1_1Texture2D.html#a8aad1ceab4c2a03609c8a42324ce484d">animate</a> (<span class="keywordtype">int</span> world_time);
+<a name="l00123"></a>00123 
+<a name="l00124"></a>00124         <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classm3g_1_1Texture2D.html#a415c0b110f95410ded9b85e5d99a496b">addAnimationTrack</a> (<a class="code" href="classm3g_1_1AnimationTrack.html">AnimationTrack</a>* animation_track);
+<a name="l00125"></a>00125 
+<a name="l00126"></a>00126 
+<a name="l00127"></a>00127 
+<a name="l00132"></a>00132         <span class="keywordtype">int</span> <a class="code" href="classm3g_1_1Texture2D.html#ab7dc7b7bf2934448281894f2c1ef3638">getBlendColor</a> () <span class="keyword">const</span>;
+<a name="l00133"></a>00133 
+<a name="l00138"></a>00138         <span class="keywordtype">int</span> <a class="code" href="classm3g_1_1Texture2D.html#a078954de3d786bd11dc98b06f237bbbb">getBlending</a> () <span class="keyword">const</span>;
+<a name="l00139"></a>00139 
+<a name="l00144"></a>00144         <a class="code" href="classm3g_1_1Image2D.html">Image2D</a>* <a class="code" href="classm3g_1_1Texture2D.html#aa8c0193b0e7d47d4b5c9f60df24c44f5">getImage</a> () <span class="keyword">const</span>;
+<a name="l00145"></a>00145 
+<a name="l00146"></a>00146 
+<a name="l00151"></a>00151         <span class="keywordtype">int</span> <a class="code" href="classm3g_1_1Texture2D.html#a7b1e1ea0acc3d2096d346afdecc2ea5f">getImageFilter</a> () <span class="keyword">const</span>;
+<a name="l00152"></a>00152 
+<a name="l00157"></a>00157         <span class="keywordtype">int</span> <a class="code" href="classm3g_1_1Texture2D.html#a039f7813e846bedec1aaf4c413c15924">getLevelFilter</a> () <span class="keyword">const</span>;
+<a name="l00158"></a>00158 
+<a name="l00163"></a>00163         <span class="keywordtype">int</span> <a class="code" href="classm3g_1_1Texture2D.html#a6bdb583791178dc5002f4d0ae88293a9">getWrappingS</a> () <span class="keyword">const</span>;
+<a name="l00164"></a>00164 
+<a name="l00169"></a>00169         <span class="keywordtype">int</span> <a class="code" href="classm3g_1_1Texture2D.html#a58375e5e8ddde63dcf74f882d053ae3f">getWrappingT</a> () <span class="keyword">const</span>;
+<a name="l00170"></a>00170     
+<a name="l00175"></a>00175         <span class="keywordtype">void</span> <a class="code" href="classm3g_1_1Texture2D.html#ab5a6333203f443fb1f66ea2e39d4de1b">setBlendColor</a> (<span class="keywordtype">int</span> rgb);
+<a name="l00176"></a>00176 
+<a name="l00181"></a>00181         <span class="keywordtype">void</span> <a class="code" href="classm3g_1_1Texture2D.html#a189d98ce3e8ac7590be771944b3186d4">setBlending</a> (<span class="keywordtype">int</span> func);
+<a name="l00182"></a>00182 
+<a name="l00187"></a>00187         <span class="keywordtype">void</span> <a class="code" href="classm3g_1_1Texture2D.html#a857574b5c0f3e0ca9239bafb4008cae1">setFiltering</a> (<span class="keywordtype">int</span> level_filter, <span class="keywordtype">int</span> image_filter);
+<a name="l00188"></a>00188 
+<a name="l00193"></a>00193         <span class="keywordtype">void</span> <a class="code" href="classm3g_1_1Texture2D.html#a705b89b41cd1b38f664ed912be44baaa">setImage</a> (<a class="code" href="classm3g_1_1Image2D.html">Image2D</a>* image);
+<a name="l00194"></a>00194 
+<a name="l00199"></a>00199         <span class="keywordtype">void</span> <a class="code" href="classm3g_1_1Texture2D.html#ae676f34bd2f5ee1508ad1cb771702d8f">setWrapping</a> (<span class="keywordtype">int</span> wrap_s, <span class="keywordtype">int</span> wrap_t);
+<a name="l00200"></a>00200 
+<a name="l00205"></a>00205         <span class="keyword">virtual</span> std::ostream&amp; <a class="code" href="classm3g_1_1Texture2D.html#a6fea17fa1532df3794f8cb39cb4f911f">print</a> (std::ostream&amp; out) <span class="keyword">const</span>;
+<a name="l00206"></a>00206 
+<a name="l00211"></a>00211         <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classm3g_1_1Texture2D.html#a8babc8a79b78615da51161e94029eea9">render</a> (<a class="code" href="structm3g_1_1RenderState.html">RenderState</a>&amp; state) <span class="keyword">const</span>;
+<a name="l00212"></a>00212 
+<a name="l00217"></a>00217         <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="classm3g_1_1Texture2D.html#a443a7a301f77f625335ecc06d13bad06">renderX</a> ();
+<a name="l00218"></a>00218 
+<a name="l00219"></a>00219     <span class="keyword">private</span>:
+<a name="l00220"></a>00220         <a class="code" href="classm3g_1_1Texture2D.html#a7a8d6431e41022e29ac936afc5e97b8e">Texture2D</a> (<span class="keyword">const</span> <a class="code" href="classm3g_1_1Texture2D.html">Texture2D</a>&amp; img);
+<a name="l00221"></a>00221         <a class="code" href="classm3g_1_1Texture2D.html">Texture2D</a>&amp; operator= (<span class="keyword">const</span> <a class="code" href="classm3g_1_1Texture2D.html">Texture2D</a>&amp; img);
+<a name="l00222"></a>00222 
+<a name="l00223"></a>00223     <span class="keyword">private</span>:
+<a name="l00224"></a>00224         <a class="code" href="classm3g_1_1Image2D.html">Image2D</a>* image;
+<a name="l00225"></a>00225         Wrapping wrapping;
+<a name="l00226"></a>00226         Filter   filter;
+<a name="l00227"></a>00227         <span class="keywordtype">int</span>      blending_mode;
+<a name="l00228"></a>00228         <span class="keywordtype">int</span>      blend_color;
+<a name="l00229"></a>00229 
+<a name="l00230"></a>00230         <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> texobj;
+<a name="l00231"></a>00231     };
+<a name="l00232"></a>00232 
+<a name="l00233"></a>00233 } <span class="comment">// namespace m3g {</span>
+<a name="l00234"></a>00234 
+<a name="l00235"></a>00235 std::ostream&amp; operator&lt;&lt; (std::ostream&amp; out, <span class="keyword">const</span> <a class="code" href="classm3g_1_1Texture2D.html">m3g::Texture2D</a>&amp; tex);
+<a name="l00236"></a>00236 
+<a name="l00237"></a>00237 
+<a name="l00238"></a>00238 
+<a name="l00239"></a>00239 <span class="preprocessor">#endif</span>
+</pre></div></div>
+<hr class="footer"/><address style="text-align: right;"><small>Sat Nov 13 11:43:11 2010に生成されました。&nbsp;
+<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
+</body>
+</html>

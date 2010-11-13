@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<title>クラス InMemoryStream</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<!-- 作成： Doxygen 1.6.3 -->
+<div class="navigation" id="top">
+  <div class="tabs">
+    <ul>
+      <li><a href="index.html"><span>メインページ</span></a></li>
+      <li class="current"><a href="annotated.html"><span>クラス</span></a></li>
+      <li><a href="files.html"><span>ファイル</span></a></li>
+    </ul>
+  </div>
+  <div class="tabs">
+    <ul>
+      <li><a href="annotated.html"><span>構成</span></a></li>
+      <li><a href="hierarchy.html"><span>クラス階層</span></a></li>
+      <li><a href="functions.html"><span>構成メンバ</span></a></li>
+    </ul>
+  </div>
+</div>
+<div class="contents">
+<h1>クラス InMemoryStream</h1><!-- doxytag: class="InMemoryStream" -->
+<p><code>#include &lt;<a class="el" href="InMemoryStream_8hpp_source.html">InMemoryStream.hpp</a>&gt;</code></p>
+
+<p><a href="classInMemoryStream-members.html">すべてのメンバ一覧</a></p>
+<table border="0" cellpadding="0" cellspacing="0">
+<tr><td colspan="2"><h2>Public メソッド</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6cbff6f2d04be63627355fa7c6104b59"></a><!-- doxytag: member="InMemoryStream::InMemoryStream" ref="a6cbff6f2d04be63627355fa7c6104b59" args="(const char *file_name)" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>InMemoryStream</b> (const char *file_name)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8077de82952030fe63226d0d7f62a1e1"></a><!-- doxytag: member="InMemoryStream::InMemoryStream" ref="a8077de82952030fe63226d0d7f62a1e1" args="(const char *p, int size)" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>InMemoryStream</b> (const char *p, int size)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae78d9bfd6d6b3ea6f9ec3931bd586f24"></a><!-- doxytag: member="InMemoryStream::read" ref="ae78d9bfd6d6b3ea6f9ec3931bd586f24" args="(char *p, int size)" -->
+void&nbsp;</td><td class="memItemRight" valign="bottom"><b>read</b> (char *p, int size)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5afc847046ece58a5323641d2c70403b"></a><!-- doxytag: member="InMemoryStream::seekg" ref="a5afc847046ece58a5323641d2c70403b" args="(int pos)" -->
+void&nbsp;</td><td class="memItemRight" valign="bottom"><b>seekg</b> (int pos)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab8e4e3e2a7bf18888b71bdf9dda0770b"></a><!-- doxytag: member="InMemoryStream::size" ref="ab8e4e3e2a7bf18888b71bdf9dda0770b" args="() const " -->
+int&nbsp;</td><td class="memItemRight" valign="bottom"><b>size</b> () const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a49d605e765ffd90485a10d2bd7dd1b5e"></a><!-- doxytag: member="InMemoryStream::tellg" ref="a49d605e765ffd90485a10d2bd7dd1b5e" args="() const " -->
+unsigned int&nbsp;</td><td class="memItemRight" valign="bottom"><b>tellg</b> () const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac4bcdb9a2c4adf5c3d247a711a7142cc"></a><!-- doxytag: member="InMemoryStream::eof" ref="ac4bcdb9a2c4adf5c3d247a711a7142cc" args="() const " -->
+bool&nbsp;</td><td class="memItemRight" valign="bottom"><b>eof</b> () const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad013b28edd708d0e1f2d749a99885a0b"></a><!-- doxytag: member="InMemoryStream::erase" ref="ad013b28edd708d0e1f2d749a99885a0b" args="(int pos, int size)" -->
+void&nbsp;</td><td class="memItemRight" valign="bottom"><b>erase</b> (int pos, int size)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2ae8a0a1f70e97d4ec15d620bf30958a"></a><!-- doxytag: member="InMemoryStream::insert" ref="a2ae8a0a1f70e97d4ec15d620bf30958a" args="(int pos, const char *buf, int size)" -->
+void&nbsp;</td><td class="memItemRight" valign="bottom"><b>insert</b> (int pos, const char *buf, int size)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8af2354a13e25a02dc3b847cd8f13f34"></a><!-- doxytag: member="InMemoryStream::pointer" ref="a8af2354a13e25a02dc3b847cd8f13f34" args="() const " -->
+const char *&nbsp;</td><td class="memItemRight" valign="bottom"><b>pointer</b> () const </td></tr>
+</table>
+<hr/><a name="_details"></a><h2>説明</h2>
+<p>読み込み専用メモリストリームクラス. </p>
+<hr/>このクラスの説明は次のファイルから生成されました:<ul>
+<li>/work/workspace.desktop-m3g/src/<a class="el" href="InMemoryStream_8hpp_source.html">InMemoryStream.hpp</a></li>
+<li>/work/workspace.desktop-m3g/src/InMemoryStream.cpp</li>
+</ul>
+</div>
+<hr class="footer"/><address style="text-align: right;"><small>Sat Nov 13 11:43:11 2010に生成されました。&nbsp;
+<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
+</body>
+</html>
