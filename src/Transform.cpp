@@ -1,9 +1,9 @@
-#include "Transform.hpp"
-#include "Vector.hpp"
-#include "Exception.hpp"
-#include "Quaternion.hpp"
-#include "Vector.hpp"
-#include "VertexArray.hpp"
+#include "m3g/Transform.hpp"
+#include "m3g/Vector.hpp"
+#include "m3g/Exception.hpp"
+#include "m3g/Quaternion.hpp"
+#include "m3g/Vector.hpp"
+#include "m3g/VertexArray.hpp"
 #include <iostream>
 #include <cstring>
 #include <cmath>
@@ -101,9 +101,12 @@ void Transform:: set (const float* mat)
     matrix.set (mat);
 }
 
-void Transform:: set (const Transform& t)
+void Transform:: set (const Transform* t)
 {
-    matrix = t.matrix;
+    if (t == NULL) {
+        throw NullPointerException (__FILE__, __func__, "Transform is NULL.");
+    }
+    matrix = t->matrix;
 }
 
 void Transform:: set (const Matrix& mat)

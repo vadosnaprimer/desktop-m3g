@@ -1,12 +1,12 @@
-#include "World.hpp"
-#include "Camera.hpp"
-#include "Background.hpp"
-#include "Light.hpp"
+#include "m3g/World.hpp"
+#include "m3g/Camera.hpp"
+#include "m3g/Background.hpp"
+#include "m3g/Light.hpp"
 #include <iostream>
 #include <cmath>
 #include <algorithm>
-#include "Exception.hpp"
-#include "RenderState.hpp"
+#include "m3g/Exception.hpp"
+#include "m3g/RenderState.hpp"
 using namespace m3g;
 using namespace std;
 #include <iterator>

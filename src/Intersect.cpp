@@ -1,7 +1,7 @@
-#include "Intersect.hpp"
-#include "Vector.hpp"
-#include "Exception.hpp"
-#include "m3ginternal.hpp"
+#include "m3g/Intersect.hpp"
+#include "m3g/Vector.hpp"
+#include "m3g/Exception.hpp"
+#include "m3g/m3ginternal.hpp"
 #include <iostream>
 using namespace m3g;
 using namespace std;

@@ -1,13 +1,12 @@
-#include "RayIntersection.hpp"
-#include "Exception.hpp"
-#include "VertexBuffer.hpp"
-#include "VertexArray.hpp"
-#include "Mesh.hpp"
-#include "Sprite3D.hpp"
-#include "Node.hpp"
+#include "m3g/RayIntersection.hpp"
+#include "m3g/Exception.hpp"
+#include "m3g/VertexBuffer.hpp"
+#include "m3g/VertexArray.hpp"
+#include "m3g/Mesh.hpp"
+#include "m3g/Sprite3D.hpp"
+#include "m3g/Node.hpp"
 #include <iostream>
 #include <typeinfo>
-#include "Node.hpp"
 using namespace std;
 using namespace m3g;
 

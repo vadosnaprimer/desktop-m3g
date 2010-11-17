@@ -2,7 +2,7 @@
 #define __BACKGROUND_HPP__
 
 #include <iosfwd>
-#include "Object3D.hpp"
+#include "m3g/Object3D.hpp"
 
 
 namespace m3g {
@@ -109,7 +109,7 @@ namespace m3g {
         int getCropHeight () const;
 
         /** 
-         * @~English Gets the current cropping rectangle width within the source image. 
+         * @~English  Gets the current cropping rectangle width within the source image. 
          * @~Japanese カレントのソースイメージのクロップ領域の幅の取得
          */
         int getCropWidth () const;
@@ -140,12 +140,12 @@ namespace m3g {
 
         /**
          * @~English  Gets the current background image repeat mode for the Y dimensiton.
-         *  @~Japanese カレントのバックグラウンドイメージのY方向のリピートモードの取得.
+         * @~Japanese カレントのバックグラウンドイメージのY方向のリピートモードの取得.
          */
         int getImageModeY () const;
 
         /**
-         * @~English Queries whether color buffer clearing is enabled. 
+         * @~English  Queries whether color buffer clearing is enabled. 
          * @~Japanese カラーバッファーのクリアが有効かどうかの問い合わせ.
          */
         bool isColorClearEnabled () const;
@@ -172,7 +172,7 @@ namespace m3g {
          * @~English  Sets a cropping rectangle within the background image.
          * @~Japanese バックグラウンドイメージのクロップ領域の設定.
          */
-        void setCrop (int crop_x, int rop_y, int width, int height);
+        void setCrop (int crop_x, int rop_y, int crop_width, int crop_height);
 
         /**
          * @~English  Enables or disables depth buffer clearing.
@@ -187,26 +187,26 @@ namespace m3g {
         void setImage (Image2D* image);
 
         /**
-         * @~English  
+         * @~English  Sets the background iamge repeat mode for the X and Y directions.
          * @~Japanese 背景画像のX方向およびY方向のリピートモードの設定.
          */
         void setImageMode (int mode_x, int mode_y);
 
         /**
-         * @~English  
+         * @~English  Print out information of this object.
          * @~Japanese このBackgroundクラスの情報を表示する。デバッグ用.
          */
         virtual std::ostream& print (std::ostream& out) const;
 
         /**
-         * @~English  
+         * @~English  Render this object, for inner use.
          * @~Japanese このBackgroundをレンダリングする内部使用の関数.
          */
         virtual void render (RenderState& state) const;
 
         /**
-         * @~English  Render this object, for inner use.
-         * @~Japanese このオブジェクトをレンダリングする内部使用の関数.
+         * @~English  Render this object as default, for inner use.
+         * @~Japanese このオブジェクトをデフォルトでレンダリングする内部使用の関数.
          */
         static void renderX ();
 

@@ -1,8 +1,8 @@
 #include <iostream>
-#include "m3g-gl.hpp"
-#include "CompositingMode.hpp"
-#include "Exception.hpp"
-#include "RenderState.hpp"
+#include "m3g/m3g-gl.hpp"
+#include "m3g/CompositingMode.hpp"
+#include "m3g/Exception.hpp"
+#include "m3g/RenderState.hpp"
 using namespace m3g;
 using namespace std;
 
@@ -203,7 +203,7 @@ const char* mode_to_string (int mode)
     case CompositingMode::MODULATE   : return "MODULATE";
     case CompositingMode::MODULATE_X2: return "MODULATE_X2";
     case CompositingMode::REPLACE    : return "REPLACE";
-    default: return "Unknwon";
+    default: return "Unknown";
     }
 }
 

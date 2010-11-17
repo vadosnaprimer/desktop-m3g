@@ -1,8 +1,8 @@
 #ifndef __KEYFRAME_SEQUENCE_HPP__
 #define __KEYFRAME_SEQUENCE_HPP__
 
-#include "Object3D.hpp"
-#include "Keyframe.hpp"
+#include "m3g/Object3D.hpp"
+#include "m3g/Keyframe.hpp"
 #include <iosfwd>
 
 namespace m3g {
@@ -145,7 +145,7 @@ namespace m3g {
         void setDuration (int duration);
 
         /**
-         * @~English
+         * @~English  Sets the time position and value of the specified keyframe.
          * @~Japanese 指定されたindex番目のキーフレームのローカル時間と値を設定.
          */
         void setKeyframe (int index, int time, float* value);

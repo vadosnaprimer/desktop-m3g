@@ -1,14 +1,14 @@
 #include <iostream>
 #include <algorithm>
-#include "m3g-gl.hpp"
-#include "Group.hpp"
-#include "RayIntersection.hpp"
-#include "Exception.hpp"
-#include "World.hpp"
-#include "Vector.hpp"
-#include "Camera.hpp"
-#include "Mesh.hpp"
-#include "Sprite3D.hpp"
+#include "m3g/m3g-gl.hpp"
+#include "m3g/Group.hpp"
+#include "m3g/RayIntersection.hpp"
+#include "m3g/Exception.hpp"
+#include "m3g/World.hpp"
+#include "m3g/Vector.hpp"
+#include "m3g/Camera.hpp"
+#include "m3g/Mesh.hpp"
+#include "m3g/Sprite3D.hpp"
 using namespace m3g;
 using namespace std;
 
@@ -109,6 +109,28 @@ Node* Group:: getChild (int index) const
 int Group:: getChildCount () const
 {
     return children.size();
+}
+
+bool Group:: isDescendant (const Node* node) const
+{
+    if (node == NULL) {
+        throw NullPointerException (__FILE__, __func__, "Node is null.");
+    }
+    if (node == this) {
+        return true;
+    }
+
+    for (int i = 0; i < (int)children.size(); i++) {
+        if (children[i] == node) {
+            return true;
+        }
+        Group* grp = dynamic_cast<Group*>(children[i]);
+        if (grp && grp->isDescendant (node)) {
+            return true;
+        }
+    }
+
+    return false;
 }
 
 /**

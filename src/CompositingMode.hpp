@@ -3,7 +3,7 @@
 
 
 #include <iosfwd>
-#include "Object3D.hpp"
+#include "m3g/Object3D.hpp"
 
 namespace m3g {
 

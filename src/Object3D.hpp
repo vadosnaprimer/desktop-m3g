@@ -4,9 +4,9 @@
 
 #include <iosfwd>
 #include <vector>
-#include "m3gdef.hpp"
-#include "m3ginternal.hpp"
-#include "Object.hpp"
+#include "m3g/m3gdef.hpp"
+#include "m3g/m3ginternal.hpp"
+#include "m3g/Object.hpp"
 
 namespace m3g {
 
@@ -93,8 +93,7 @@ namespace m3g {
 
         /**
          * @~English  Rerieves the user object that is currently associated with this Object3D.
-         * @~Japanese このオブジェクトに現在関連づけられているユーザーオブジェクトを返す.
-         *            注意：本当はkey,valueのペアでなければならない。あとで修正する。
+         * @~Japanese このオブジェクトに現在関連づけられているユーザーオブジェクトを取得する.
          */
         void* getUserObject () const;
 

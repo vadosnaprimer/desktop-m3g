@@ -1,19 +1,19 @@
-#include "m3g-gl.hpp"
-#include "Sprite3D.hpp"
-#include "Appearance.hpp"
-#include "Image2D.hpp"
-#include "Exception.hpp"
-#include "Graphics3D.hpp"
-#include "Vector.hpp"
-#include "AnimationTrack.hpp"
-#include "AnimationController.hpp"
-#include "KeyframeSequence.hpp"
-#include "RenderState.hpp"
-#include "CompositingMode.hpp"
-#include "Fog.hpp"
-#include "Intersect.hpp"
-#include "RayIntersection.hpp"
-#include "Camera.hpp"
+#include "m3g/m3g-gl.hpp"
+#include "m3g/Sprite3D.hpp"
+#include "m3g/Appearance.hpp"
+#include "m3g/Image2D.hpp"
+#include "m3g/Exception.hpp"
+#include "m3g/Graphics3D.hpp"
+#include "m3g/Vector.hpp"
+#include "m3g/AnimationTrack.hpp"
+#include "m3g/AnimationController.hpp"
+#include "m3g/KeyframeSequence.hpp"
+#include "m3g/RenderState.hpp"
+#include "m3g/CompositingMode.hpp"
+#include "m3g/Fog.hpp"
+#include "m3g/Intersect.hpp"
+#include "m3g/RayIntersection.hpp"
+#include "m3g/Camera.hpp"
 #include <iostream>
 #include <cmath>
 using namespace std;
@@ -120,11 +120,7 @@ int Sprite3D:: animate (int world_time)
         AnimationTrack*      track      = getAnimationTrack (i);
         KeyframeSequence*    keyframe   = track->getKeyframeSequence();
         AnimationController* controller = track->getController();
-        if (controller == NULL) {
-            //cout << "Sprite3D: missing controller, this animation track is ignored.\n";
-            continue;
-        }
-        if (!controller->isActiveInterval(world_time)) {
+        if (!controller || !controller->isActive(world_time)) {
             continue;
         }
         float weight        = controller->getWeight ();
@@ -151,7 +147,7 @@ int Sprite3D:: animate (int world_time)
             //cout << "Sprite3D: crop --> " << crop.x << ", " << crop.y << ", " << crop.width << ", " << crop.height << "\n";
         }
         default: {
-            // Unknwon target should be ignored.
+            // Unknown target should be ignored.
             // animate() of Base class (of Derived class) retrieve it.
         }
         }
@@ -262,12 +258,12 @@ void Sprite3D:: setAppearance (Appearance* appearance_)
     appearance = appearance_;
 }
 
-void Sprite3D:: setCrop (int crop_x, int crop_y, int width, int height)
+void Sprite3D:: setCrop (int crop_x, int crop_y, int crop_width, int crop_height)
 {
     crop.x      = crop_x;
     crop.y      = crop_y;
-    crop.width  = width;
-    crop.height = height;
+    crop.width  = crop_width;
+    crop.height = crop_height;
 }
 
 

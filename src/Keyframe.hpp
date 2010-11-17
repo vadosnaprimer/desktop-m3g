@@ -9,7 +9,7 @@ namespace m3g {
 
     /**
      * @~Japanese キーフレーム情報を定義する内部使用構造体.
-     * time=-1は無効データを表す。
+     *            time=-1は無効データを表す。
      */
     class Keyframe
     {

@@ -1,17 +1,17 @@
-#include "m3g-gl.hpp"
-#include "SkinnedMesh.hpp"
-#include "VertexBuffer.hpp"
-#include "IndexBuffer.hpp"
-#include "VertexArray.hpp"
-#include "Matrix.hpp"
-#include "Vector.hpp"
-#include "Exception.hpp"
-#include "World.hpp"
+#include "m3g/m3g-gl.hpp"
+#include "m3g/SkinnedMesh.hpp"
+#include "m3g/VertexBuffer.hpp"
+#include "m3g/IndexBuffer.hpp"
+#include "m3g/VertexArray.hpp"
+#include "m3g/Matrix.hpp"
+#include "m3g/Vector.hpp"
+#include "m3g/Exception.hpp"
+#include "m3g/World.hpp"
 #include <iostream>
 #include <vector>
 #include <cassert>
-#include "Group.hpp"
-#include "RayIntersection.hpp"
+#include "m3g/Group.hpp"
+#include "m3g/RayIntersection.hpp"
 using namespace std;
 using namespace m3g;
 
@@ -218,8 +218,11 @@ void SkinnedMesh:: addTransform (Node* node, int weight, int first_vertex, int n
     if (node == NULL) {
         throw NullPointerException (__FILE__, __func__, "Bone node is NULL.");
     }
-    if (dynamic_cast<Group*>(node) == 0 && dynamic_cast<World*>(node) == 0) {
-        throw IllegalArgumentException (__FILE__, __func__, "Bone node must be Group or its descendant.");
+    if (dynamic_cast<Group*>(node) == NULL) {
+        throw IllegalArgumentException (__FILE__, __func__, "Bone node must be Group.");
+    }
+    if (!skeleton || !skeleton->isDescendant (node)) {
+        throw IllegalArgumentException (__FILE__, __func__, "Node is not descendant of this skeleton. node=%p", node);
     }
     if (weight <= 0) {
         throw IllegalArgumentException (__FILE__, __func__, "Bone weight must be positive integer, weight=%f.", weight);
@@ -234,12 +237,6 @@ void SkinnedMesh:: addTransform (Node* node, int weight, int first_vertex, int n
         throw IllegalArgumentException (__FILE__, __func__, "First vertex + number of vertices is invalid, first_vertex=%d, num_vertices=%d.", first_vertex, num_vertices);
     }
 
-    // void SkinnedMesh:: addTransform (Node* node, int weight, int first_vertex, int num_vertices)
-    //cout << "addTransform : \n";
-    //cout << "  node = "         << *node << "\n";
-    //cout << "  weight = "       << weight << "\n";
-    //cout << "  first_vertex = " << first_vertex << "\n";
-    //cout << "  num_vertices = " << num_vertices << "\n";
 
     // ボーンインデックスの決定
     int index = addBoneIndex (node);
@@ -325,23 +322,13 @@ bool SkinnedMesh:: intersect (const Vector& org, const Vector& dir, RayIntersect
         return true;
     }
 
-
-    //cout << "org_mesh = " << org << "\n";
-    //cout << "dir_mesh = " << dir << "\n";
     Transform trans;
     bool      pass;
     pass = getTransformTo (skeleton, &trans);
     skeleton->Transformable:: print (cout) << "\n";
-    //assert (pass == true);
-    // skeleton->setParent()していないので
-    // 現状はfalseが返り単位行列
 
-    //cout << "skeleton->parent = " << skeleton->getParent() << "\n";
-    //cout << "trans = " << trans << "\n";
     Vector org_skel = trans.transform (org).divided_by_w();
     Vector dir_skel = trans.transform3x3 (dir).divided_by_w().normalize();
-    //cout << "org_skel = " << org_skel << "\n";
-    //cout << "dir_skel = " << dir_skel << "\n";
 
     hit = skeleton->pick (-1, 
                           org_skel.x, org_skel.y, org_skel.z,

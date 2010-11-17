@@ -1,13 +1,13 @@
 #include <iostream>
 #include <cmath>
-#include "m3g-gl.hpp"
-#include "Graphics3D.hpp"
-#include "World.hpp"
-#include "Image2D.hpp"
-#include "Loader.hpp"
-#include "Camera.hpp"
-#include "RenderState.hpp"
-#include "Exception.hpp"
+#include "m3g/m3g-gl.hpp"
+#include "m3g/Graphics3D.hpp"
+#include "m3g/World.hpp"
+#include "m3g/Image2D.hpp"
+#include "m3g/Loader.hpp"
+#include "m3g/Camera.hpp"
+#include "m3g/RenderState.hpp"
+#include "m3g/Exception.hpp"
 using namespace m3g;
 using namespace std;
 
@@ -81,6 +81,7 @@ float Graphics3D:: getDepthRangeNear () const
 
 int Graphics3D:: getHints () const
 {
+    throw NotImplementedException (__FILE__, __func__, "hint is not implemented.");
     return hints;
 }
 
@@ -142,17 +143,17 @@ void Graphics3D:: releaseTarget ()
     throw NotImplementedException (__FILE__, __func__, "Sorry, releaseTarget() is not implemented.");
 }
 
-void Graphics3D:: render (Node* node, const Transform& transform) const
+void Graphics3D:: render (const Node* node, const Transform* transform) const
 {
     throw NotImplementedException (__FILE__, __func__, "Immediate mode is obsoleted, Please use retained mode.");
 }
 
-void Graphics3D:: render (VertexBuffer* vertices, IndexBuffer* submesh, Appearance* apperance, Transform& transform, int scope) const
+void Graphics3D:: render (const VertexBuffer* vertices, const IndexBuffer* submesh, const Appearance* apperance, const Transform* transform, int scope) const
 {
     throw NotImplementedException (__FILE__, __func__, "Immediate mode is obsoleted, Please use retained mode.");
 }
 
-void Graphics3D:: render (World* wld) const
+void Graphics3D:: render (const World* wld) const
 {
     if (wld == NULL) {
         throw NullPointerException (__FILE__, __func__, "World is NULL.");
@@ -221,6 +222,10 @@ void Graphics3D:: setLight (int index, Light* light, const Transform& transform)
 
 void Graphics3D:: setViewport (int x, int y, int width, int height)
 {
+    if (width <= 0 || height <= 0) {
+        throw IllegalArgumentException (__FILE__, __func__, "Size is invalid, w=%d, h=%d.", width, height);
+    }
+
     viewport.x      = x;
     viewport.y      = y;
     viewport.width  = width;

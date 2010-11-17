@@ -1,6 +1,6 @@
-#include "Keyframe.hpp"
-#include "Quaternion.hpp"
-#include "Exception.hpp"
+#include "m3g/Keyframe.hpp"
+#include "m3g/Quaternion.hpp"
+#include "m3g/Exception.hpp"
 #include <iostream>
 using namespace std;
 using namespace m3g;

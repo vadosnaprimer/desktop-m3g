@@ -1,7 +1,7 @@
 #ifndef __SPRITE3D_HPP__
 #define __SPRITE3D_HPP__
 
-#include "Node.hpp"
+#include "m3g/Node.hpp"
 #include <iosfwd>
 
 
@@ -132,7 +132,7 @@ namespace m3g {
          * @~English  Sets a cropping rectangle within the source image.
          * @~Japanese ソース画像のクロッピング矩形の設定.
          */
-        void setCrop (int crop_x, int crop_y, int width, int height);
+        void setCrop (int crop_x, int crop_y, int crop_width, int crop_height);
 
         /**
          * @~English  Sets the sprite image to display.

@@ -1,14 +1,14 @@
 #include <iostream>
-#include "m3g-gl.hpp"
-#include "Appearance.hpp"
-#include "CompositingMode.hpp"
-#include "Fog.hpp"
-#include "Material.hpp"
-#include "PolygonMode.hpp"
-#include "Texture2D.hpp"
-#include "CompositingMode.hpp"
-#include "Exception.hpp"
-#include "RenderState.hpp"
+#include "m3g/m3g-gl.hpp"
+#include "m3g/Appearance.hpp"
+#include "m3g/CompositingMode.hpp"
+#include "m3g/Fog.hpp"
+#include "m3g/Material.hpp"
+#include "m3g/PolygonMode.hpp"
+#include "m3g/Texture2D.hpp"
+#include "m3g/CompositingMode.hpp"
+#include "m3g/Exception.hpp"
+#include "m3g/RenderState.hpp"
 using namespace std;
 using namespace m3g;
 
@@ -160,7 +160,7 @@ void Appearance:: setFog (Fog* f)
 
 void Appearance:: setLayer (int layer_)
 {
-    if (layer_ < -63 || layer > 64) {
+    if (layer_ < -63 || layer_ > 64) {
         throw IllegalArgumentException (__FILE__, __func__, "Lyaer is invalid, layer=%d.", layer_);
     }
     layer = layer_;

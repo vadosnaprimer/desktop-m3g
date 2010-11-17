@@ -1,7 +1,7 @@
 #ifndef __IMAGE2D_HPP__
 #define __IMAGE2D_HPP__
 
-#include "Object3D.hpp"
+#include "m3g/Object3D.hpp"
 #include <iosfwd>
 
 namespace m3g {

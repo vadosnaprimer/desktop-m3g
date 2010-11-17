@@ -67,7 +67,7 @@ TEST (Transform_set_variables)
     CHECK_CLOSE (-0.0342942f, m[3][3], 0.00001);
 
     Transform trs2;
-    trs2.set (trs);
+    trs2.set (&trs);
     trs2.get ((float*)m);
     CHECK_CLOSE (-0.2952286f, m[0][0], 0.00001);
     CHECK_CLOSE ( 0.1580517f, m[1][0], 0.00001);

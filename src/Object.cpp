@@ -1,8 +1,8 @@
-#include "Object.hpp"
+#include "m3g/Object.hpp"
 #include <iostream>
 using namespace m3g;
 using namespace std;
-#include <typeinfo>
+//#include <typeinfo>
 
 Object:: Object () : exported_entity(0)
 {

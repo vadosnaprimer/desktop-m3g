@@ -2,7 +2,7 @@
 #define __CAMERA_HPP__
 
 #include <iosfwd>
-#include "Node.hpp"
+#include "m3g/Node.hpp"
 
 
 namespace m3g {
@@ -90,7 +90,7 @@ namespace m3g {
          * @~English  Sets the given x4 transformation as the current projcetion matrix.
          * @~Japanese 指定された4x4行列を透視変換行列として設定する.
          */
-        void setGeneric (const Transform& transorm);
+        void setGeneric (const Transform* transorm);
 
         /**
          * @~English  Constructs a parallel projection matrix and sets that as the current projcection matrix.

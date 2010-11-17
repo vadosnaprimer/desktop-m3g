@@ -25,7 +25,7 @@ namespace m3g {
          * @~English  Destruct this object.
          * @~Japanese このオブジェクトを破壊するデストラクタ.
          */
-        ~Object ();
+        virtual ~Object ();
 
         /**
          * @~Enslish   get mark of this object referenced by external library.

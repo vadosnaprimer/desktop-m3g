@@ -16,7 +16,7 @@ TEST (AnimationController_default_variables)
     CHECK_EQUAL (0, controller->getRefWorldTime());
     CHECK_EQUAL (1, controller->getSpeed());
     CHECK_EQUAL (1, controller->getWeight());
-    CHECK_EQUAL (true, controller->isActiveInterval(-1000));
+    CHECK_EQUAL (true, controller->isActive(-1000));
 }
 
 
@@ -29,13 +29,13 @@ TEST (AnimationController_set_variables)
     controller->setWeight (0.5);
     controller->setSpeed (1, 2000);
 
-    CHECK_EQUAL (true, controller->isActiveInterval(1000));
-    CHECK_EQUAL (false, controller->isActiveInterval(5000));
-    CHECK_EQUAL (1000, controller->getActiveIntervalStart());
-    CHECK_EQUAL (5000, controller->getActiveIntervalEnd());
-    CHECK_EQUAL (2000, controller->getRefWorldTime());
-    CHECK_EQUAL (1,    controller->getSpeed());
-    CHECK_EQUAL (0.5,  controller->getWeight());
+    CHECK_EQUAL (true,  controller->isActive(1000));
+    CHECK_EQUAL (false, controller->isActive(5000));
+    CHECK_EQUAL (1000,  controller->getActiveIntervalStart());
+    CHECK_EQUAL (5000,  controller->getActiveIntervalEnd());
+    CHECK_EQUAL (2000,  controller->getRefWorldTime());
+    CHECK_EQUAL (1,     controller->getSpeed());
+    CHECK_EQUAL (0.5,   controller->getWeight());
 
     CHECK_EQUAL (10, controller->getPosition(2000));
     CHECK_EQUAL (20, controller->getPosition(2010));
@@ -49,6 +49,9 @@ TEST (AnimationController_set_variables)
 
     CHECK_EQUAL (30, controller->getPosition(2010));
     CHECK_EQUAL (70, controller->getPosition(2020));
+
+    controller->setWeight (0);
+    CHECK_EQUAL (false, controller->isActive(1000));
 }
 
 TEST (AnimationController_duplicate)

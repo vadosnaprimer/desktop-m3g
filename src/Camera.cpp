@@ -1,14 +1,14 @@
 #include <iostream>
 #include <cmath>
-#include "m3g-gl.hpp"
-#include "Camera.hpp"
-#include "Vector.hpp"
-#include "Transform.hpp"
-#include "AnimationTrack.hpp"
-#include "AnimationController.hpp"
-#include "KeyframeSequence.hpp"
-#include "Exception.hpp"
-#include "RenderState.hpp"
+#include "m3g/m3g-gl.hpp"
+#include "m3g/Camera.hpp"
+#include "m3g/Vector.hpp"
+#include "m3g/Transform.hpp"
+#include "m3g/AnimationTrack.hpp"
+#include "m3g/AnimationController.hpp"
+#include "m3g/KeyframeSequence.hpp"
+#include "m3g/Exception.hpp"
+#include "m3g/RenderState.hpp"
 using namespace std;
 using namespace m3g;
 
@@ -17,7 +17,7 @@ const int Camera:: PARALLEL;
 const int Camera:: PERSPECTIVE;
 
 Camera:: Camera () :
-    type(GENERIC), fovy(0), aspect_ratio(0), near(0), far(0)
+    type(GENERIC), fovy(0), aspect_ratio(0), near(0), far(0), projection()
 {
 }
 
@@ -86,14 +86,10 @@ int Camera:: animate (int world_time)
         AnimationTrack*      track      = getAnimationTrack (i);
         KeyframeSequence*    keyframe   = track->getKeyframeSequence();
         AnimationController* controller = track->getController();
-        if (controller == NULL) {
-            //cout << "Camera: missing controller, this animation track is ignored.\n";
+        if (!controller || !controller->isActive(world_time)) {
             continue;
         }
-        if (!controller->isActiveInterval(world_time)) {
-            continue;
-        }
-        float weight     = controller->getWeight ();
+        float weight        = controller->getWeight ();
         float sequence_time = controller->getPosition (world_time);
     
         switch (track->getTargetProperty()) {
@@ -122,7 +118,7 @@ int Camera:: animate (int world_time)
             break;
         }
         default: {
-            // Unknwon target should be ignored.
+            // Unknown target should be ignored.
             // animate() of Base class (of Derived class) retrieve it.
         }
         }
@@ -172,12 +168,12 @@ int Camera:: getProjection (float* params) const
 int Camera:: getProjection (Transform* transform) const
 {
     if (transform) {
-        transform->set (projection);
+        transform->set (&projection);
     }
     return type;
 }
 
-void Camera:: setGeneric (const Transform& transform)
+void Camera:: setGeneric (const Transform* transform)
 {
     type = GENERIC;
     projection.set (transform);
@@ -277,7 +273,7 @@ void Camera:: lookAt  (float from_x, float from_y, float from_z,
     Transform trans;
     trans.set (m);   
 
-    setTransform (trans);
+    setTransform (&trans);
 }
 
 

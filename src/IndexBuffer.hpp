@@ -2,8 +2,8 @@
 #define __INDEX_BUFFER_HPP__
 
 
-#include "Object3D.hpp"
-#include "m3ginternal.hpp"
+#include "m3g/Object3D.hpp"
+#include "m3g/m3ginternal.hpp"
 #include <iosfwd>
 
 namespace m3g {
@@ -18,14 +18,14 @@ namespace m3g {
 
     public:
         /**
-         * @~English  Construct a new IndexBuffer Object.
+         * @~English  Construct a new IndexBuffer object.
          * @~Japanese 新しいIndexBufferオブジェクトを作成するコンストラクタ.
          */
         IndexBuffer ();
 
         /**
-         * @~English  このオブジェクトを削除するデストラクタ.
-         * @~Japanese デストラクタ.
+         * @~English  Destruct this object.
+         * @~Japanese このオブジェクトを削除するデストラクタ.
          */
         virtual ~IndexBuffer ();
 
@@ -42,23 +42,26 @@ namespace m3g {
         void copy (IndexBuffer* ibuf) const;
 
         /**
-         *
+         * @~English  Get a number of faces, not in M3G.
+         * @~Japanese この面数の合計を取得する, M3G非標準.
          */
         virtual int getFaceCount () const;
 
         /**
-         *
+         * @~English  Get a vertex number of 1 face, not in M3G.
+         * @~Japanese 1面あたりの頂点数を取得する, M3G非標準.
          */
         virtual int getFaceVertexCount () const;
 
         /**
-         *
+         * @~English  Get a vertex number of 1 face, not in M3G.
+         * @~Japanese 指定の面の頂点インデックスを取得する, M3G非標準.
          */
         virtual void getFaceVertexIndex (int face_index, int* vertex_indices) const;
 
         /**
          * @~English  Returns the number of indices in this buffer.
-         * @~Japanese このバッファーのインデックスの数を取得.
+         * @~Japanese このバッファーの頂点インデックスの総数を取得.
          */
         virtual int getIndexCount () const;
 

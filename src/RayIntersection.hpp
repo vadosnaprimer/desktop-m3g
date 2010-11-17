@@ -2,8 +2,8 @@
 #define __RAY_INTERSECTION_HPP__
 
 #include <iosfwd>
-#include "Object.hpp"
-#include "Vector.hpp"
+#include "m3g/Object.hpp"
+#include "m3g/Vector.hpp"
 
 #include <vector>
 
@@ -13,8 +13,8 @@ namespace m3g {
     class Transform;
 
     /**
-     * @~English A RayInersection objet is filled in by the pick methods in Group.
-     *           RayIntersection stores a reference to the intersected Mesh or Sprite3D and information about the intersection point. 
+     * @~English  A RayInersection objet is filled in by the pick methods in Group.
+     *            RayIntersection stores a reference to the intersected Mesh or Sprite3D and information about the intersection point. 
      * @~Japanese Groupのpick関数によって生成され、交差点の情報を収納するクラス.
      */
     class RayIntersection : public Object

@@ -1,6 +1,6 @@
-#include "Matrix.hpp"
-#include "Vector.hpp"
-#include "Exception.hpp"
+#include "m3g/Matrix.hpp"
+#include "m3g/Vector.hpp"
+#include "m3g/Exception.hpp"
 #include <iostream>
 #include <cstring>
 #include <cmath>

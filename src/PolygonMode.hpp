@@ -1,7 +1,7 @@
 #ifndef __POLYGON_MODE_HPP__
 #define __POLYGON_MODE_HPP__
 
-#include "Object3D.hpp"
+#include "m3g/Object3D.hpp"
 #include <iosfwd>
 
 namespace m3g {

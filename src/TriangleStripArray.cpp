@@ -1,7 +1,7 @@
-#include "m3g-gl.hpp"
-#include "TriangleStripArray.hpp"
-#include "Exception.hpp"
-#include "RenderState.hpp"
+#include "m3g/m3g-gl.hpp"
+#include "m3g/TriangleStripArray.hpp"
+#include "m3g/Exception.hpp"
+#include "m3g/RenderState.hpp"
 #include <iostream>
 #include <cstdlib>
 #include <numeric>

@@ -1,7 +1,7 @@
-#include "m3g-gl.hpp"
-#include "PolygonMode.hpp"
-#include "Exception.hpp"
-#include "RenderState.hpp"
+#include "m3g/m3g-gl.hpp"
+#include "m3g/PolygonMode.hpp"
+#include "m3g/Exception.hpp"
+#include "m3g/RenderState.hpp"
 #include <iostream>
 using namespace std;
 using namespace m3g;
@@ -181,7 +181,7 @@ const char* culling_to_string (int culling)
     case PolygonMode::CULL_FRONT: return "CULL_FRONT";
     case PolygonMode::CULL_BACK : return "CULL_BACK";
     case PolygonMode::CULL_NONE : return "CULL_NONE";
-    default: return "Unknwon";
+    default: return "Unknown";
     }
 }
 static
@@ -190,7 +190,7 @@ const char* winding_to_string (int winding)
     switch (winding) {
     case PolygonMode::WINDING_CCW: return "WINDING_CCW";
     case PolygonMode::WINDING_CW : return "WINDING_CW";
-    default: return "Unknwon";
+    default: return "Unknown";
     }
 }
 static
@@ -199,18 +199,18 @@ const char* shading_to_string (int shading)
     switch (shading) {
     case PolygonMode::SHADE_FLAT   : return "SHADE_FLAT";
     case PolygonMode::SHADE_SMOOTH : return "SHADE_SMOOTH";
-    default: return "Unknwon";
+    default: return "Unknown";
     }
 }
 
 std::ostream& PolygonMode:: print (std::ostream& out) const
 {
     out << "PolygonMode: ";
-    out << "  culling=" << culling_to_string(culling);
-    out << ", winding=" << winding_to_string(winding);
-    out << ", shading=" << shading_to_string(shading);
-    out << ", two_sided_lighting=" << two_sided_lighting;
-    out << ", local_camera_lighting=" << local_camera_lighting;
+    out << "  culling="                << culling_to_string(culling);
+    out << ", winding="                << winding_to_string(winding);
+    out << ", shading="                << shading_to_string(shading);
+    out << ", two_sided_lighting="     << two_sided_lighting;
+    out << ", local_camera_lighting="  << local_camera_lighting;
     out << ", perspective_correction=" << perspective_correction;
     return out;
 }

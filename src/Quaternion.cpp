@@ -1,8 +1,8 @@
-#include "Quaternion.hpp"
-#include "Exception.hpp"
-#include "m3ginternal.hpp"
-#include "Vector.hpp"
-#include "Matrix.hpp"
+#include "m3g/Quaternion.hpp"
+#include "m3g/Exception.hpp"
+#include "m3g/m3ginternal.hpp"
+#include "m3g/Vector.hpp"
+#include "m3g/Matrix.hpp"
 #include <iostream>
 #include <cmath>
 using namespace std;
@@ -21,7 +21,6 @@ Quaternion:: Quaternion () :
 Quaternion:: Quaternion (float angle, float ax, float ay, float az) :
     x(0), y(0), z(0), w(1)
 {
-    //cout << "ax = " << ax << ", ay = " << ay << ", az = " << az << "\n";
     if (angle < 0 || angle > 0) {
         Vector axis (ax, ay, az);
         axis.normalize ();
@@ -31,7 +30,6 @@ Quaternion:: Quaternion (float angle, float ax, float ay, float az) :
         y = axis.y * sinf (th/2.f);
         z = axis.z * sinf (th/2.f);
         w =          cosf (th/2.f);
-        //cout << "x = " << x << ", y = " << y << ", z = " << z << ", w = " << w << "\n";
     }
 }
 
@@ -106,7 +104,6 @@ void Quaternion:: getAngleAxis (float* angle_axis) const
         angle_axis[1] = x;
         angle_axis[2] = y;
         angle_axis[3] = z;
-        //cout << "NAN: " << x << ", " << y << ", " << z << ", " << w << ", th=" << th << "\n";
     }
 }
 
@@ -139,16 +136,11 @@ m3g::Quaternion m3g::squad (
     const m3g::Quaternion& q3,
     float t0, float t1, float t2, float t3, float s)
 {
-    //cout << "s = " << s << ", t = " << t0 << ", " << t1 << ", " << t2 << ", " << t3 << "\n";
-
     float f1 = 2*(t2-t1)/(t2-t0);
     float f2 = 2*(t2-t1)/(t3-t1);
-    //cout << "f1 = " << f1 << ", f2 = " << f2 << "\n";
     Quaternion a1 = q1 * exp( (f1*(log(q1.inv()*q2) + log(q0.inv()*q1))*0.5f - log(q1.inv()*q2))*0.5f );
     Quaternion b2 = q2 * exp( (log(q1.inv()*q2) - f2*(log(q2.inv()*q3) + log(q1.inv()*q2))*0.5f)*0.5f );
-    //cout << "a1 = " << a1 << "\n";
-    //cout << "b2 = " << b2 << "\n";
-    Quaternion q = slerp (slerp(q1,q2,s), slerp(a1,b2,s), 2*s*(1-s));
+    Quaternion q  = slerp (slerp(q1,q2,s), slerp(a1,b2,s), 2*s*(1-s));
     return q;
 }
 

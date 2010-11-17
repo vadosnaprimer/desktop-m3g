@@ -1,8 +1,8 @@
 #ifndef __APPEARANCE_HPP__
 #define __APPEARANCE_HPP__
 
-#include "Object3D.hpp"
-#include "m3gdef.hpp"
+#include "m3g/Object3D.hpp"
+#include "m3g/m3gdef.hpp"
 #include <iosfwd>
 #include <vector>
 

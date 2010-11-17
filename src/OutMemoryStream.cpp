@@ -1,4 +1,4 @@
-#include "OutMemoryStream.hpp"
+#include "m3g/OutMemoryStream.hpp"
 #include <iostream>
 #include <fstream>
 #include <cassert>

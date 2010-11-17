@@ -1,7 +1,7 @@
 #ifndef __TRIANGLE_STRIP_ARRAY_HPP__
 #define __TRIANGLE_STRIP_ARRAY_HPP__
 
-#include "IndexBuffer.hpp"
+#include "m3g/IndexBuffer.hpp"
 #include <iosfwd>
 
 namespace m3g {

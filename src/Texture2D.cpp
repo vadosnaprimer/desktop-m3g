@@ -1,12 +1,12 @@
-#include "m3g-gl.hpp"
-#include "Texture2D.hpp"
-#include "m3gdef.hpp"
-#include "Image2D.hpp"
-#include "Exception.hpp"
-#include "AnimationTrack.hpp"
-#include "AnimationController.hpp"
-#include "KeyframeSequence.hpp"
-#include "RenderState.hpp"
+#include "m3g/m3g-gl.hpp"
+#include "m3g/Texture2D.hpp"
+#include "m3g/m3gdef.hpp"
+#include "m3g/Image2D.hpp"
+#include "m3g/Exception.hpp"
+#include "m3g/AnimationTrack.hpp"
+#include "m3g/AnimationController.hpp"
+#include "m3g/KeyframeSequence.hpp"
+#include "m3g/RenderState.hpp"
 #include <iostream>
 using namespace std;
 using namespace m3g;
@@ -119,11 +119,7 @@ int Texture2D:: animate (int world_time)
         AnimationTrack*      track      = getAnimationTrack (i);
         KeyframeSequence*    keyframe   = track->getKeyframeSequence();
         AnimationController* controller = track->getController();
-        if (controller == NULL) {
-            //cout << "Texture2D: missing controller, this animation track is ignored.\n";
-            continue;
-        }
-        if (!controller->isActiveInterval(world_time)) {
+        if (!controller || !controller->isActive(world_time)) {
             continue;
         }
         float weight        = controller->getWeight ();
@@ -141,7 +137,7 @@ int Texture2D:: animate (int world_time)
             break;
         }
         default: {
-            // Unknwon target should be ignored.
+            // Unknown target should be ignored.
             // animate() of Base class (of Derived class) retrieve it.
         }
         }
@@ -155,10 +151,7 @@ int Texture2D:: animate (int world_time)
         blend_color = (blend_color & 0xff000000) | (r << 16) | (g << 8) | (b << 0);
     }
 
-    //cout << hex << "Texture2D: blend color = 0x" << blend_color << dec << "\n";
-
     return 0;
-
 }
 
 
@@ -204,7 +197,7 @@ void Texture2D:: setBlendColor (int rgb)
 
 void Texture2D:: setBlending (int func)
 {
-    if (func != FUNC_ADD && func != FUNC_BLEND && func != FUNC_DECAL &&
+    if (func != FUNC_ADD      && func != FUNC_BLEND   && func != FUNC_DECAL &&
         func != FUNC_MODULATE && func != FUNC_REPLACE) {
         throw IllegalArgumentException (__FILE__, __func__, "Blending function is invalid, func=%d.", func);
     }
@@ -228,8 +221,7 @@ void Texture2D:: setFiltering (int level_filter, int image_filter)
 void Texture2D:: setImage (Image2D* img)
 {
     if (img == NULL) {
-        image = NULL;
-        return;
+        throw NullPointerException (__FILE__, __func__, "Image is NULL.");
     }
 
     int width  = img->getWidth ();
@@ -239,7 +231,7 @@ void Texture2D:: setImage (Image2D* img)
         throw IllegalArgumentException (__FILE__, __func__, "Image size must be power of 2. w=%d,h=%d", width, height);
     }
     if (texobj == 0) {
-        throw OpenGLException (__FILE__, __func__, "Texture object is not ready.");
+        throw OpenGLException (__FILE__, __func__, "Texture objec is not ready.");
     }
 
     image = img;
@@ -287,13 +279,30 @@ void Texture2D:: render (RenderState& state) const
     // マトリックスパレットの設定
     Transformable:: render (state);
 
+    GLfloat color[4] = {((blend_color && 0x00ff0000) >> 16) / 255.f,
+                        ((blend_color && 0x0000ff00) >> 8 ) / 255.f,
+                        ((blend_color && 0x000000ff) >> 0 ) / 255.f,
+                        ((blend_color && 0xff000000) >> 24) / 255.f};
+
     switch (blending_mode) {
-    case FUNC_ADD     : glTexEnvi (GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_ADD)     ; break;
-    case FUNC_BLEND   : glTexEnvi (GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_BLEND)   ; break;
-    case FUNC_DECAL   : glTexEnvi (GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_DECAL)   ; break;
-    case FUNC_MODULATE: glTexEnvi (GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE); break;
-    case FUNC_REPLACE : glTexEnvi (GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE) ; break;
-    default: throw IllegalStateException (__FILE__, __func__, "Blending mode is invalid, mode=%d.", blending_mode);
+    case FUNC_ADD :
+        glTexEnvi (GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_ADD);
+        break;
+    case FUNC_BLEND :
+        glTexEnvi  (GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_BLEND);
+        glTexEnvfv (GL_TEXTURE_ENV, GL_TEXTURE_ENV_COLOR, color);
+        break;
+    case FUNC_DECAL :
+        glTexEnvi (GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_DECAL);
+        break;
+    case FUNC_MODULATE : 
+        glTexEnvi (GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
+        break;
+    case FUNC_REPLACE : 
+        glTexEnvi (GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
+        break;
+    default:
+        throw IllegalStateException (__FILE__, __func__, "Blending mode is invalid, mode=%d.", blending_mode);
     }
     
     if (filter.level != FILTER_BASE_LEVEL && filter.level != FILTER_NEAREST && filter.level != FILTER_LINEAR) {

@@ -1,5 +1,5 @@
-#include "IndexBuffer.hpp"
-#include "Exception.hpp"
+#include "m3g/IndexBuffer.hpp"
+#include "m3g/Exception.hpp"
 #include <iostream>
 #include <cstring>
 using namespace m3g;

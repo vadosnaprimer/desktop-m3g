@@ -1,7 +1,7 @@
 #ifndef __WORLD_HPP__
 #define __WORLD_HPP__
 
-#include "Group.hpp"
+#include "m3g/Group.hpp"
 #include <iosfwd>
 #include <vector>
 

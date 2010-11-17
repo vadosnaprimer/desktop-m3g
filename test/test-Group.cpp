@@ -11,19 +11,43 @@ TEST (Group_default_variables)
     Group* grp = new Group;
 
     CHECK_EQUAL (0, grp->getChildCount());
+
+    delete grp;
 }
 
 TEST (Group_set_variables)
 {
-    Group* grp = new Group;
-    Node* node = new Node;
+    Group* grp  = new Group;
+    Node*  node = new Node;
+
     grp->addChild (node);
     CHECK_EQUAL (1, grp->getChildCount());
     CHECK_EQUAL (node, grp->getChild(0));
+
     grp->removeChild (node);
     CHECK_EQUAL (0, grp->getChildCount());
+
     delete node;
     delete grp;
+}
+
+TEST (Group_isDesendant) 
+{
+    Group* skeleton = new Group;
+    Group* bone0 = new Group;
+    Group* bone1 = new Group;
+    Node*  node0 = new Node;
+    Node*  node1 = new Node;
+
+    skeleton->addChild (bone0);
+    bone0->addChild (bone1);
+    bone1->addChild (node0);
+
+    CHECK_EQUAL (true, skeleton->isDescendant(skeleton));
+    CHECK_EQUAL (true, skeleton->isDescendant(bone0));
+    CHECK_EQUAL (true, skeleton->isDescendant(bone1));
+    CHECK_EQUAL (true, skeleton->isDescendant(node0));
+    CHECK_EQUAL (false, skeleton->isDescendant(node1));
 }
 
 

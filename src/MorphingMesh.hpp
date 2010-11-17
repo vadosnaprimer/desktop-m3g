@@ -1,7 +1,7 @@
 #ifndef __MORPHING_MESH_HPP__
 #define __MORPHING_MESH_HPP__
 
-#include "Mesh.hpp"
+#include "m3g/Mesh.hpp"
 #include <iosfwd>
 
 
@@ -24,7 +24,7 @@ namespace m3g {
          * @~Japanese 指定されたベースメッシュとモーフターゲットを持つ新しいモーフィングメッシュを作成.
          */
         MorphingMesh (VertexBuffer*  base,
-                      int            num_target,
+                      int            num_targets,
                       VertexBuffer** targets,
                       int            num_submesh,
                       IndexBuffer**  submeshes,
@@ -35,7 +35,7 @@ namespace m3g {
          * @~Japanese 指定されたベースメッシュとモーフターゲットを持つ新しいモーフィングメッシュを作成.
          */
         MorphingMesh (VertexBuffer*  base, 
-                      int            num_target, 
+                      int            num_targets, 
                       VertexBuffer** targets,
                       IndexBuffer*   submesh,
                       Appearance*    appearance);
@@ -111,7 +111,7 @@ namespace m3g {
 
         /**
          * @~English  Morph skin, inner use.
-         * @~Japanese スキンを変形させる内部仕様の関数
+         * @~Japanese スキンを変形させる内部仕様の関数.
          */
         void updateMorphedVertices ();
 
@@ -119,7 +119,7 @@ namespace m3g {
         /**
          * @~Japanesse  共通初期化処理.
          */
-        void initialize (int num_target, VertexBuffer** targets);
+        void initialize (int num_targets, VertexBuffer** targets);
 
         MorphingMesh (const MorphingMesh& mesh);
         MorphingMesh& operator= (const MorphingMesh& mesh);

@@ -2,8 +2,8 @@
 #define __VERTEX_BUFFER_HPP__
 
 
-#include "Object3D.hpp"
-#include "m3gdef.hpp"
+#include "m3g/Object3D.hpp"
+#include "m3g/m3gdef.hpp"
 #include <iosfwd>
 
 namespace m3g {
@@ -111,7 +111,7 @@ namespace m3g {
          * @~English  Sets the vertex positions for this VertexBuffer.
          * @~Japanese このVertexBufferに頂点座標を設定する.
          */
-        void setPositions (VertexArray* positios, float scale, float* bias);
+        void setPositions (VertexArray* positions, float scale, float* bias);
 
         /**
          * @~English  Sets the texture coordinates for the specified textureing unit.

@@ -2,7 +2,7 @@
 #ifndef __BONE_INDEX_HPP__
 #define __BONE_INDEX_HPP__
 
-#include "Matrix.hpp"
+#include "m3g/Matrix.hpp"
 
 namespace m3g {
 

@@ -3,8 +3,8 @@
 #define __M3G_READER_HPP__
 
 #include <iosfwd>
-#include "InMemoryStream.hpp"
-#include "M3GStruct.hpp"
+#include "m3g/InMemoryStream.hpp"
+#include "m3g/M3GStruct.hpp"
 
 class M3GReader
 {

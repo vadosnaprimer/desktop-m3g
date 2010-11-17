@@ -1,11 +1,10 @@
 #ifndef __SKINNED_MESH_HPP__
 #define __SKINNED_MESH_HPP__
 
-#include "Mesh.hpp"
+#include "m3g/Mesh.hpp"
+#include "m3g/BoneIndex.hpp"
 #include <iosfwd>
 #include <vector>
-
-#include "BoneIndex.hpp"
 
 
 namespace m3g {

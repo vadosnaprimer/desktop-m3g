@@ -1,6 +1,6 @@
-#include "KeyframeSequence.hpp"
-#include "Exception.hpp"
-#include "Quaternion.hpp"
+#include "m3g/KeyframeSequence.hpp"
+#include "m3g/Exception.hpp"
+#include "m3g/Quaternion.hpp"
 #include <iostream>
 #include <cstring>
 using namespace std;
@@ -271,7 +271,7 @@ void KeyframeSequence:: getFrame (int sequence_time, float* value) const
         squad  (s, k0, k1, k2, k3, component_count, value);
         return;
     default:
-        throw InternalException (__FILE__, __func__, "Interpolation type is unknwon, type=%d.", interp_type);
+        throw InternalException (__FILE__, __func__, "Interpolation type is unknown, type=%d.", interp_type);
     }
 }
 
@@ -293,7 +293,7 @@ const char* interp_type_to_string (int interp)
     case KeyframeSequence::SPLINE: return "SPLINE";
     case KeyframeSequence::SQUAD:  return "SQUAD";
     case KeyframeSequence::STEP:   return "STEP";
-    default: return "Unknwon";
+    default: return "Unknown";
     }
 }
 

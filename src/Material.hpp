@@ -1,7 +1,7 @@
 #ifndef __MATERIAL_HPP__
 #define __MATERIAL_HPP__
 
-#include "Object3D.hpp"
+#include "m3g/Object3D.hpp"
 #include <iosfwd>
 
 namespace m3g {

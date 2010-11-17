@@ -1,10 +1,10 @@
-#include "Node.hpp"
-#include "Exception.hpp"
-#include "AnimationTrack.hpp"
-#include "AnimationController.hpp"
-#include "KeyframeSequence.hpp"
-#include "RenderState.hpp"
-#include "Vector.hpp"
+#include "m3g/Node.hpp"
+#include "m3g/Exception.hpp"
+#include "m3g/AnimationTrack.hpp"
+#include "m3g/AnimationController.hpp"
+#include "m3g/KeyframeSequence.hpp"
+#include "m3g/RenderState.hpp"
+#include "m3g/Vector.hpp"
 #include <iostream>
 #include <cmath>
 using namespace std;
@@ -71,7 +71,6 @@ void Node:: addAnimationTrack (AnimationTrack* animation_track)
 
 void Node:: align (Node* reference)
 {
-    //cout << "Node: align, z_target = " << z_alignment.target << ", y_target = " << y_alignment.target << "\n";
     Matrix Rz, Ry;
     Vector tz(0,0,1), ty(0,1,0);
 
@@ -81,49 +80,33 @@ void Node:: align (Node* reference)
         Node* z_reference = (z_alignment.reference != NULL) ? z_alignment.reference : reference;
         if (z_reference != NULL) {
             Transform t;
-            //cout << "z_reference's transform = " << z_reference->Transformable::print (cout) << "\n";
             z_reference->getCompositeTransform (&t);
             float m[16];
             t.get (m);
             tz = Vector(m[2], m[6], m[10]).normalize();
-            //cout << "tz = " << tz << "\n";
             Vector axis_z  = cross (Vector(0,0,1), tz);
-            //cout << "axis_z = " << axis_z << "\n";
             axis_z = (axis_z.length() > 0) ? axis_z.normalize() : Vector(0,1,0);
-            //cout << "dot = " << dot (Vector(0,0,1), tz) << "\n";
             float  angle_z = acosf (dot(Vector(0,0,1),tz)) * 360/(2*M_PI);
-            //cout << "angle_z = " << angle_z << "\n";
-            //cout << "axis_z  = " << axis_z << "\n";
             Rz.setRotate (angle_z, axis_z.x, axis_z.y, axis_z.z);
         }
 
         if (y_alignment.target == ORIGIN) {
 
-            //cout << "==================================in======================================\n";         
             Node* y_reference = (y_alignment.reference != NULL) ? y_alignment.reference : reference;
             if (y_reference != NULL) {
                 Transform t;
-                //cout << "\ny_reference's transform = " << y_reference->Transformable::print (cout) << "\n";
                 y_reference->getCompositeTransform (&t);
                 float m[16];
                 t.get (m);
-                //cout << "t = " << t << "\n";
                 ty = Vector(m[1], m[5], m[9]).normalize();
-                //cout << "ty = " << ty << "\n";
                 Vector ty2 = Rz.getInverse() * ty;
-                //cout << "ty2 = " << ty2 << "\n";
                 ty2[2] = 0;
-                //cout << "ty2 = " << ty2 << "\n";
                 ty2 = (ty2.length() > 0) ? ty2.normalize() : Vector(0,1,0);
-                //cout << "ty2 = " << ty2 << "\n";
                 Vector axis_y  = (ty2[0] > 0) ? tz*-1 : tz;
                 axis_y = (axis_y.length() > 0) ? axis_y.normalize() : tz;
                 float  angle_y = acosf(dot(Vector(0,1,0),ty2)) * 360/(2*M_PI);
-                //cout << "angle_y = " << angle_y << "\n";
-                //cout << "axis_y  = " << axis_y << "\n";
                 Ry.setRotate (angle_y, axis_y.x, axis_y.y, axis_y.z);
             }
-            //cout << "==================================out=====================================\n";
         }
 
     } else if (y_alignment.target == ORIGIN) {
@@ -131,31 +114,22 @@ void Node:: align (Node* reference)
         Node* y_reference = (y_alignment.reference != NULL) ? y_alignment.reference : reference;
         if (y_reference != NULL) {
             Transform t;
-            //cout << "y_reference's transform = " << y_reference->Transformable::print (cout) << "\n";
             y_reference->getCompositeTransform (&t);
             float m[16];
             t.get (m);
             ty = Vector(m[1], m[5], m[9]).normalize();
-            //cout << "ty = " << ty << "\n";
             Vector axis_y  = cross (Vector(0,1,0), ty);
-            //cout << "axis_y = " << axis_y << "\n";
             axis_y = (axis_y.length() > 0) ? axis_y.normalize() : Vector(0,0,1);
-            //cout << "axis_y = " << axis_y << "\n";
-            //cout << "dot = " << dot (Vector(0,1,0), ty) << "\n";
             float  angle_y = acosf (dot (Vector(0,1,0), ty)) * 360/(2*M_PI);
-            //cout << "angle_y = " << angle_y << "\n";
             Ry.setRotate (angle_y, axis_y.x, axis_y.y, axis_y.z);
         }
     }
 
 
     if (z_alignment.target == ORIGIN || y_alignment.target == ORIGIN) {
-        //cout << "A(matrix) = " << Ry*Rz << "\n";
         Quaternion A = matrix2quat (Ry*Rz);
-        //cout << "A(quaternion) = " << A << "\n";
         float angle_axis[4];
         A.getAngleAxis (angle_axis);
-        //cout << "angle=" << angle_axis[0] << ", axis=" << angle_axis[1] << ", " <<  angle_axis[2] << ", " <<  angle_axis[3] << "\n";
         setOrientation (angle_axis[0], angle_axis[1], angle_axis[2], angle_axis[3]);
     }
 
@@ -178,11 +152,7 @@ int Node:: animate (int world_time)
         AnimationTrack*      track      = getAnimationTrack (i);
         KeyframeSequence*    keyframe   = track->getKeyframeSequence();
         AnimationController* controller = track->getController();
-        if (controller == NULL) {
-            //cout << "Node: missing controller, this animation track is ignored.\n";
-            continue;
-        }
-        if (!controller->isActiveInterval(world_time)) {
+        if (!controller || !controller->isActive(world_time)) {
             continue;
         }
         float weight        = controller->getWeight ();
@@ -214,7 +184,7 @@ int Node:: animate (int world_time)
             break;
         }
         default: {
-            // Unknwon target should be ignored.
+            // Unknown target should be ignored.
             // animate() of Base class (of Derived class) retrieve it.
         }
         }
@@ -380,6 +350,17 @@ bool Node:: isRenderingEnabled () const
 
 void Node:: setAlignment (Node* z_reference, int z_target, Node* y_reference, int y_target)
 {
+    if (!(z_target == NONE || z_target == ORIGIN) ||
+        !(y_target == NONE || y_target == ORIGIN)) {
+        throw IllegalArgumentException (__FILE__, __func__, "Invalid target z_target=%d, y_target=%d.", z_target, y_target);
+    }
+    if ((z_reference == y_reference) && (z_target != NONE && y_target != NONE)) {
+        throw IllegalArgumentException (__FILE__, __func__, "Invalid reference z_reference=%p, y_reference=%p.", z_reference, y_reference);
+    }
+    if (z_reference == this || y_reference == this) {
+        throw IllegalArgumentException (__FILE__, __func__, "Reference is invalid, z_ref=%p, y_ref=%p, this=%p.", z_reference, y_reference, this);
+    }
+
     z_alignment.target    = z_target;
     z_alignment.reference = z_reference;
     y_alignment.target    = y_target;

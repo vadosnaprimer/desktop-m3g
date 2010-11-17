@@ -5,7 +5,7 @@
 #include <vector>
 #include <iosfwd>
 #include <map>
-#include "Object.hpp"
+#include "m3g/Object.hpp"
 
 namespace m3g {
 
@@ -47,21 +47,22 @@ namespace m3g {
 
 
         /**
+         * @~English  A parameter to bindTarget, specifying that antialiasing should be turned on.
          * @~Japanese bindTarget()で使用するアンチエイリアスを指定する定数.
          */
         static const int ANTIALIAS   = 1<<1;
         /**
-         *
+         * @~English  A parameter to bindTarget, specifying that dither should be turned on.
          * @~Japanese bindTarget()で使用するディザーリングを指定する定数.
          */
         static const int DITHER      = 1<<2;
         /**
-         *
+         * @~English  A parameter to bindTarget, specifying that existing contents of the rendering targte need not be preserved.
          * @~Japanese bindTarget()で使用するレンダリングターゲットの内容が書き換えられることを示す定数.
          */
         static const int OVERWRITE   = 1<<4;
         /**
-         *
+         * @~English  A parameter to bindTarget, specifying that true color rendering should be turned on.
          * @~Japanese bindTarget()で使用するを指定する定数.
          */
         static const int TRUE_COLOR  = 1<<3;
@@ -177,27 +178,27 @@ namespace m3g {
 
         /**
          * @~English  Flushes the renderd 3D image to the currently bound target and then releases the target.
-         * @~Japanese 現在バウンドされているターゲットをレンダリングし、ターゲットを解放する.
+         * @~Japanese 現在バインドされているターゲットをレンダリングし、ターゲットを解放する.
          */
         void releaseTarget ();
 
         /**
-         * @~English  Renders the given Sprite3D, Mesh, or Group node with the given transformation from local coordinates to world coordinates.
+         * @~English  Render the given Sprite3D, Mesh, or Group node with the given transformation from local coordinates to world coordinates.
          * @~Japanese 指定されたSprite3D,Mesh,Groupノードを指定された行列でローカル座用からワールド座標に変換してレンダリングする.
          */
-        void render (Node* node, const Transform& transform) const;
+        void render (const Node* node, const Transform* transform) const;
 
         /**
-         * @~English  Renders 
-         * @~Japanese 指定されたスコープのsubmeshを指定された行列でローカル座標からワールド座標に変換してレンダリングする.
+         * @~English  Render the iven submesh with the given transformation from local coordinates to world coordinates.
+         * @~Japanese 指定されたスコープのサブメッシュを指定された行列でローカル座標からワールド座標に変換してレンダリングする.
          */
-        void render (VertexBuffer* vertices, IndexBuffer* triangles, Appearance* apperance, Transform& transform, int scope=-1) const;
+        void render (const VertexBuffer* vertices, const IndexBuffer* triangles, const Appearance* apperance, const Transform* transform, int scope=-1) const;
 
         /**
          * @~English  Rnders a image of world as viewd by the active camera of that World.
          * @~Japanese ワールドのアクティブなカメラでワールドをレンダリングする.
          */
-        void render (World* world) const;
+        void render (const World* world) const;
 
         /**
          * @~English  Clears the array of current Lights.

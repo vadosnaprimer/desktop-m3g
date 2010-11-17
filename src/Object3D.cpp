@@ -1,6 +1,6 @@
-#include "Object3D.hpp"
-#include "AnimationTrack.hpp"
-#include "Exception.hpp"
+#include "m3g/Object3D.hpp"
+#include "m3g/AnimationTrack.hpp"
+#include "m3g/Exception.hpp"
 #include <iostream>
 using namespace std;
 using namespace m3g;

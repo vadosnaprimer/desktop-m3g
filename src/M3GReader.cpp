@@ -1,4 +1,4 @@
-#include "M3GReader.hpp"
+#include "m3g/M3GReader.hpp"
 #include <iostream>
 #include <fstream>
 #include <cstring>

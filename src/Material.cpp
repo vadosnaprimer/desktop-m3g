@@ -1,11 +1,11 @@
 #include <iostream>
-#include "m3g-gl.hpp"
-#include "Material.hpp"
-#include "Exception.hpp"
-#include "AnimationTrack.hpp"
-#include "AnimationController.hpp"
-#include "KeyframeSequence.hpp"
-#include "RenderState.hpp"
+#include "m3g/m3g-gl.hpp"
+#include "m3g/Material.hpp"
+#include "m3g/Exception.hpp"
+#include "m3g/AnimationTrack.hpp"
+#include "m3g/AnimationController.hpp"
+#include "m3g/KeyframeSequence.hpp"
+#include "m3g/RenderState.hpp"
 using namespace std;
 using namespace m3g;
 
@@ -84,14 +84,10 @@ int Material:: animate (int world_time)
         AnimationTrack*      track      = getAnimationTrack (i);
         KeyframeSequence*    keyframe   = track->getKeyframeSequence();
         AnimationController* controller = track->getController();
-        if (controller == NULL) {
-            //cout << "Material: missing controller, this animation track is ignored.\n";
+        if (!controller || !controller->isActive(world_time)) {
             continue;
         }
-        if (!controller->isActiveInterval(world_time)) {
-            continue;
-        }
-        float weight     = controller->getWeight ();
+        float weight        = controller->getWeight ();
         float sequence_time = controller->getPosition (world_time);
     
         switch (track->getTargetProperty()) {
@@ -152,7 +148,7 @@ int Material:: animate (int world_time)
             break;
         }
         default: {
-            // Unknwon target should be ignored.
+            // Unknown target should be ignored.
             // animate() of Base class handle it.
         }
         }
@@ -237,9 +233,12 @@ void Material:: setColor (int target, int argb)
   
 }
 
-void Material:: setShininess (float value)
+void Material:: setShininess (float shi)
 {
-    shininess = value;
+    if (shi < 0 || shi > 128) {
+        throw IllegalArgumentException (__FILE__, __func__, "shininess is invalid, sh=%f.", shi);
+    }
+    shininess = shi;
 }
 
 void Material:: setVertexColorTrackingEnable (bool enable)

@@ -1,4 +1,4 @@
-#include "MemoryReader.hpp"
+#include "m3g/MemoryReader.hpp"
 #include <istream>
 #include <cassert>
 using namespace std;

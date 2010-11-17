@@ -18,7 +18,7 @@ TEST (Transformable_set_variables)
     tra0.postRotate (90, 1,0,0);
     tra0.postScale  (1,2,3);
     tra0.postTranslate (-1,0,1);
-    trans->setTransform (tra0);
+    trans->setTransform (&tra0);
 
 
     float a[4];

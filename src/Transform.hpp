@@ -2,8 +2,8 @@
 #define __TRANSFORM_HPP__
 
 #include <iosfwd>
-#include "Matrix.hpp"
-#include "Object.hpp"
+#include "m3g/Matrix.hpp"
+#include "m3g/Object.hpp"
 
 namespace m3g {
 
@@ -94,7 +94,7 @@ namespace m3g {
          * @~English  Sets this transformation by copying the cvontents of the given Transform.
          * @~Japanese 指定されたTransformをコピーして変換を設定する.
          */
-        void set (const Transform& transform);
+        void set (const Transform* transform);
         
         
         /**

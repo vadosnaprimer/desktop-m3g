@@ -1,11 +1,11 @@
 #include <iostream>
-#include "m3g-gl.hpp"
-#include "Transformable.hpp"
-#include "Transform.hpp"
-#include "Exception.hpp"
-#include "AnimationTrack.hpp"
-#include "AnimationController.hpp"
-#include "KeyframeSequence.hpp"
+#include "m3g/m3g-gl.hpp"
+#include "m3g/Transformable.hpp"
+#include "m3g/Transform.hpp"
+#include "m3g/Exception.hpp"
+#include "m3g/AnimationTrack.hpp"
+#include "m3g/AnimationController.hpp"
+#include "m3g/KeyframeSequence.hpp"
 using namespace std;
 using namespace m3g;
 
@@ -71,27 +71,18 @@ int Transformable:: animate (int world_time)
         AnimationTrack*      track      = getAnimationTrack (i);
         KeyframeSequence*    keyframe   = track->getKeyframeSequence();
         AnimationController* controller = track->getController();
-        if (controller == NULL) {
-            //cout << "Transformable: missing controller, this animation track is ignored.\n";
+        if (!controller || !controller->isActive(world_time)) {
             continue;
         }
-        if (!controller->isActiveInterval(world_time)) {
-            //cout << "Transformable: not in active time.\n";
-            continue;
-        }
-        float weight     = controller->getWeight ();
+        float weight        = controller->getWeight ();
         float sequence_time = controller->getPosition (world_time);
     
         switch (track->getTargetProperty()) {
         case AnimationTrack:: ORIENTATION: {
             float value[4] = {0,0,0,0};  // Quaternion(x,y,z,w)
-            //cout << "Transformable: keyfram = " << *keyframe << "\n";
             keyframe->getFrame (sequence_time, value);
-            //keyframe->print (cout);
             Quaternion q;
-            //cout << "value = " << value[0] << ", " << value[1] << ", " << value[2] << ", " << value[3] << "\n";
             q.set (value[0], value[1], value[2], value[3]);
-            //cout << "q = " << q << "\n";
             new_orientation = new_orientation + q * weight;
             is_orientation_modefied = true;
             //cout << "Transformable: orientation --> " << new_orientation << "\n";
@@ -119,7 +110,7 @@ int Transformable:: animate (int world_time)
             break;
         }
         default: {
-            // Unknwon target should be ignored.
+            // Unknown target should be ignored.
             // animate() of Base class (of Derived class) retrieve it.
         }
         }
@@ -173,13 +164,12 @@ void Transformable:: getScale (float* xyz) const
     xyz[2] = scaling.z;
 }
 
-void Transformable:: getTransform (Transform* out_transform) const
+void Transformable:: getTransform (Transform* tra) const
 {
-    if (out_transform == NULL) {
+    if (tra == NULL) {
         throw NullPointerException (__FILE__, __func__, "Transform is NULL.");
     }
-
-    out_transform->set (transform);
+    tra->set (&transform);
 }
 
 void Transformable:: getTranslation (float* xyz) const
@@ -225,9 +215,9 @@ void Transformable:: setScale (float sx, float sy, float sz)
     scaling.z = sz;
 }
 
-void Transformable:: setTransform (const Transform& in_transform)
+void Transformable:: setTransform (const Transform* tra)
 {
-    transform.set (in_transform);
+    transform.set (tra);
 }
 
 void Transformable:: setTranslation (float tx, float ty, float tz)

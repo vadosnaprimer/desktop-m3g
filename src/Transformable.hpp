@@ -1,9 +1,9 @@
 #ifndef __TRANSFORMABLE_HPP__
 #define __TRANSFORMABLE_HPP__
 
-#include "Object3D.hpp"
-#include "Quaternion.hpp"
-#include "Transform.hpp"
+#include "m3g/Object3D.hpp"
+#include "m3g/Quaternion.hpp"
+#include "m3g/Transform.hpp"
 #include <iosfwd>
 
 namespace m3g {
@@ -97,7 +97,7 @@ namespace m3g {
         void getScale (float* xyz) const;
 
         /**
-         * @~English  Retrieves the matrix component of this Transofrmable.
+         * @~English  Retrieves the matrix component of this Transformable.
          * @~Japanese このクラスの行列要素を取得する.
          */
         void getTransform (Transform* transform) const;
@@ -142,7 +142,7 @@ namespace m3g {
          * @~English  Sets the matrix component of this Transformable by copying in the given Transform.
          * @~Japanese 指定されたTransformでこのTransformableクラスを設定する.
          */
-        void setTransform (const Transform& transform);
+        void setTransform (const Transform* transform);
 
         /**
          * @~English  Sets the translation component of this Transformable.

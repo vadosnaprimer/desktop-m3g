@@ -1,7 +1,7 @@
 #ifndef __LIGHT_HPP__
 #define __LIGHT_HPP__
 
-#include "Node.hpp"
+#include "m3g/Node.hpp"
 #include <iosfwd>
 
 namespace m3g {

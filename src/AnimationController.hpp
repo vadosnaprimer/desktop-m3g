@@ -2,7 +2,7 @@
 #ifndef __ANIMATION_CONTROLLER_HPP__
 #define __ANIMATION_CONTROLLER_HPP__
 
-#include "Object3D.hpp"
+#include "m3g/Object3D.hpp"
 #include <iosfwd>
 
 namespace m3g {
@@ -71,7 +71,7 @@ namespace m3g {
         float getPosition (int world_time) const;
 
         /**
-         * @~English  Returns the current feference world time.
+         * @~English  Returns the current reference world time.
          * @~Japanese カレントのリファレンスワールド時間を返す.
          */
         int   getRefWorldTime () const;
@@ -116,8 +116,7 @@ namespace m3g {
          * @~English  query specified world_time is in active interval, This is not under M3G spesification.
          * @^Japanese 指定されたworld_timeがアクティブ区間内だったらtrueを返すM3G非標準の関数.
          */
-        //  isActive (int world_time) const の方が良かった
-        bool isActiveInterval (int world_time) const;
+        bool isActive (int world_time) const;
 
         /**
          * @~English  Print out information of this class, for debug only.
@@ -133,8 +132,8 @@ namespace m3g {
         ActiveInterval active_interval;
         float          blending_weight;
         float          speed;
-        float          refference_world_time;
-        float          refference_sequence_time;
+        float          reference_world_time;
+        float          reference_sequence_time;
     };
 
 

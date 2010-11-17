@@ -3,22 +3,11 @@
 
 namespace m3g {
 
-    /*
-      #ifdef NDEBUG
-      #define PROTECTED protected
-      #define PRIVATE   private
-      #else
-      #define PROTECTED public
-      #define PRIVATE   public
-      #endif
-    */
-
 /**
  * このライブラリで許容できる誤差の指定.
  * 手元のPCで見たときは1.19209e-07*100だった。
  */
     extern const float M3G_EPSILON;
-
 
     /**
      *

@@ -1,5 +1,5 @@
-#include "m3g.hpp"
-#include "MemoryReader.hpp"
+#include "m3g/m3g.hpp"
+#include "m3g/MemoryReader.hpp"
 #include <iostream>
 #include <fstream>
 #include <algorithm>
@@ -49,7 +49,7 @@ std::vector<Object3D*> Loader:: load (int length, const char* p, int offset)
     else if (memcmp (p, jpg_sig, 4) == 0 && memcmp (p+6, jpg_sig+6, 5) == 0)
         objs = loader->load_jpg (p, length);
     else
-        throw IOException (__FILE__, __func__, "File signature is unknwon.");
+        throw IOException (__FILE__, __func__, "File signature is unknown.");
     
     delete loader;
     return objs;
@@ -131,7 +131,7 @@ std::vector<Object3D*> Loader:: load_m3g (const char* p, int size)
             case M3G_TYPE_WORLD               : parseWorld ()              ; break;
             case M3G_TYPE_EXTERNAL_REFERENCE  : parseExternalReference ()  ; break;
             default: {
-                throw IOException (__FILE__, __func__, "Unknwon objecte type = %d", object_type);
+                throw IOException (__FILE__, __func__, "Unknown objecte type = %d", object_type);
             }
             }
             reader->endObject ();
@@ -760,7 +760,7 @@ void Loader:: setCamera (Camera* cam, const M3GCameraStruct& cmr) const
     tra.set (cmr.matrix);
 
     switch (projection_type) {
-    case Camera::GENERIC    : cam->setGeneric (tra)                              ; break;
+    case Camera::GENERIC    : cam->setGeneric (&tra)                             ; break;
     case Camera::PARALLEL   : cam->setParallel (fovy, aspect_ratio, near, far)   ; break;
     case Camera::PERSPECTIVE: cam->setPerspective (fovy, aspect_ratio, near, far); break;
     default: throw IOException (__FILE__, __func__, "Projection type of camera is illegal, proj=%d", projection_type);
@@ -993,7 +993,7 @@ void Loader:: setTransformable (Transformable* trans, const M3GTransformableStru
         trans->setScale       (sx, sy, sz);
     }
     if (has_general_transform) {
-        trans->setTransform (tra);
+        trans->setTransform (&tra);
     }
 
 }

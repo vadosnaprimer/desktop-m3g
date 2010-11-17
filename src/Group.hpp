@@ -1,7 +1,7 @@
 #ifndef __GROUP_HPP__
 #define __GROUP_HPP__
 
-#include "Node.hpp"
+#include "m3g/Node.hpp"
 #include <iosfwd>
 #include <vector>
 
@@ -73,6 +73,12 @@ namespace m3g {
          * @~Japanese このグループの子ノードの数を取得する.
          */
         int getChildCount () const;
+
+        /**
+         * @~Enslish  Query node is this desendant or not, not in M3G.
+         * @~Japanese 引数のNodeがこのグループの子孫かどうかを問い合わせる。M3G非標準の関数.
+         */
+        bool isDescendant (const Node* node) const;
 
         /**
          * @~Enslish  Picks the first Mesh or scaled Sprite3D in this Group that is enabled for picking,

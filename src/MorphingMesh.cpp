@@ -1,13 +1,13 @@
-#include "MorphingMesh.hpp"
-#include "VertexBuffer.hpp"
-#include "VertexArray.hpp"
-#include "IndexBuffer.hpp"
-#include "Appearance.hpp"
-#include "AnimationTrack.hpp"
-#include "AnimationController.hpp"
-#include "KeyframeSequence.hpp"
-#include "Vector.hpp"
-#include "Exception.hpp"
+#include "m3g/MorphingMesh.hpp"
+#include "m3g/VertexBuffer.hpp"
+#include "m3g/VertexArray.hpp"
+#include "m3g/IndexBuffer.hpp"
+#include "m3g/Appearance.hpp"
+#include "m3g/AnimationTrack.hpp"
+#include "m3g/AnimationController.hpp"
+#include "m3g/KeyframeSequence.hpp"
+#include "m3g/Vector.hpp"
+#include "m3g/Exception.hpp"
 #include <iostream>
 using namespace std;
 using namespace m3g;
@@ -155,11 +155,7 @@ int MorphingMesh:: animate (int world_time)
         AnimationTrack*      track      = getAnimationTrack (i);
         KeyframeSequence*    keyframe   = track->getKeyframeSequence();
         AnimationController* controller = track->getController();
-        if (controller == NULL) {
-            //cout << "Material: missing controller, this animation track is ignored.\n";
-            continue;
-        }
-        if (!controller->isActiveInterval(world_time)) {
+        if (!controller || !controller->isActive(world_time)) {
             continue;
         }
         float animation_weight = controller->getWeight ();
@@ -181,7 +177,7 @@ int MorphingMesh:: animate (int world_time)
             break;
         }
         default: {
-            // Unknwon target should be ignored.
+            // Unknown target should be ignored.
             // animate() of Base class handle it.
         }
         }
@@ -284,13 +280,13 @@ void MorphingMesh:: setWeights (int num_weights, float* weights)
     if (weights == NULL) {
         throw NullPointerException (__FILE__, __func__, "Weights is NULL.");
     }
-    if (num_weights != (int)morph_weights.size()) {
-        throw IllegalArgumentException (__FILE__, __func__, "Number of weights is invalid, %d <--> %d.", num_weights, morph_weights.size());
-    }
 
     for (int i = 0; i < (int)morph_weights.size(); i++) {
-        morph_weights[i] = *weights++;
-        //cout << "weights = " << morph_weights[i] << "\n";
+        if (i < num_weights) {
+            morph_weights[i] = *weights++;
+        } else {
+            morph_weights[i] = 0;
+        }
     }
 
     updateMorphedVertices ();

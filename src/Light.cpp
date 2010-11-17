@@ -1,10 +1,10 @@
-#include "m3g-gl.hpp"
-#include "Light.hpp"
-#include "Exception.hpp"
-#include "AnimationTrack.hpp"
-#include "AnimationController.hpp"
-#include "KeyframeSequence.hpp"
-#include "RenderState.hpp"
+#include "m3g/m3g-gl.hpp"
+#include "m3g/Light.hpp"
+#include "m3g/Exception.hpp"
+#include "m3g/AnimationTrack.hpp"
+#include "m3g/AnimationController.hpp"
+#include "m3g/KeyframeSequence.hpp"
+#include "m3g/RenderState.hpp"
 #include <iostream>
 using namespace std;
 using namespace m3g;
@@ -79,20 +79,16 @@ int Light:: animate (int world_time)
     bool  is_spot_exponent_modefied = false;
     float rgb[] = {0,0,0};
     float new_intensity;
-    Spot new_spot = Spot(0,0);
+    Spot  new_spot = Spot(0,0);
   
     for (int i = 0; i < getAnimationTrackCount(); i++) {
         AnimationTrack*      track      = getAnimationTrack (i);
         KeyframeSequence*    keyframe   = track->getKeyframeSequence();
         AnimationController* controller = track->getController();
-        if (controller == NULL) {
-            //cout << "Node: missing controller, this animation track is ignored.\n";
+        if (!controller || !controller->isActive(world_time)) {
             continue;
         }
-        if (!controller->isActiveInterval(world_time)) {
-            continue;
-        }
-        float weight     = controller->getWeight ();
+        float weight        = controller->getWeight ();
         float sequence_time = controller->getPosition (world_time);
     
         switch (track->getTargetProperty()) {
@@ -131,7 +127,7 @@ int Light:: animate (int world_time)
             break;
         }
         default: {
-            // Unknwon target should be ignored.
+            // Unknown target should be ignored.
             // animate() of Base class (of Derived class) retrieve it.
         }
         }
@@ -312,7 +308,6 @@ void Light:: render (RenderState& state) const
         //cout << "-------------------------SPOT light----------\n";
         GLfloat pos[4] = {m[3], m[7], m[11], 1};
         GLfloat dir[4] = {-m[2], -m[6], -m[10], 0};
-        //cout << "dir = " << -m[2] << ", " << -m[6] << ", " << -m[10] << "\n";
         glLightfv (GL_LIGHT0+index, GL_POSITION, pos);
         glLightfv (GL_LIGHT0+index, GL_AMBIENT,  black);
         glLightfv (GL_LIGHT0+index, GL_DIFFUSE,  rgba);

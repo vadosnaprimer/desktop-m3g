@@ -1,8 +1,8 @@
 #ifndef __NODE_HPP__
 #define __NODE_HPP__
 
-#include "Transformable.hpp"
-#include "m3ginternal.hpp"
+#include "m3g/Transformable.hpp"
+#include "m3g/m3ginternal.hpp"
 #include <iosfwd>
 
 namespace m3g {
@@ -121,7 +121,7 @@ namespace m3g {
 
         /**
          * @~English   Retrieves the alpha factor of this Node and all ancestors, not in M3G.
-         * @~Japanese このノードと先祖のα値を全て乗算した値の取得, M3G未定義.
+         * @~Japanese このノードと先祖のα値を全て乗算した値の取得, M3G非標準.
          */
         float getGlobalAlphaFactor () const;
 
@@ -158,9 +158,17 @@ namespace m3g {
         bool getTransformTo (const Node* target, Transform* transform) const;
 
  
+        /**
+         * @~English   Retrieves the all ascendant picking enable flag of this Node, not in M3G.
+         * @~Japanese このノードの先祖まで遡ったピッキング可能フラグを返す, M3G非標準.
+         */
        bool isGlobalPickingEnabled () const;
 
 
+        /**
+         * @~English   Retrieves the all ascendant rendering enable flag of this Node, Not in M3G.
+         * @~Japanese このノードの先祖まで遡ったレンダリング可能フラグを返す, M3G非標準.
+         */
         bool isGlobalRenderingEnabled () const;
 
         /**
@@ -177,44 +185,44 @@ namespace m3g {
 
 
         /**
-         * @~English   Sts this node to align with the given other nodes(s), or disables alignment.
+         * @~English  Sets this node to align with the given other nodes(s), or disables alignment.
          * @~Japanese このノードを指定されたノードに整列させる。もしくはアライメントを無効にする.
          */
         void setAlignment (Node* z_ref, int z_target, Node* y_ref, int y_target);
 
 
         /**
-         * @~English   Sets the alpha factor for this Node.
-         * @~Japanese このノードのα値を設定.
+         * @~English  Sets the alpha factor for this Node.
+         * @~Japanese このノードのノードαを設定.
          */
-        void setAlphaFactor (float alpha_factor);
+        void setAlphaFactor (float alpha);
 
         /**
-         * @~English   Sets the picking enable flag of this Node.
+         * @~English  Sets the picking enable flag of this Node.
          * @~Japanese このノードのピッキング可能フラグの設定.
          */
         void setPickingEnable (bool enable);
 
         /**
-         * @~English   Sets the rendering enable flag of this Node.
+         * @~English  Sets the rendering enable flag of this Node.
          * @~Japanese このノードのレンダリング可能フラグの設定.
          */
         void setRenderingEnable (bool enable);
 
         /**
-         * @~English   Sets the scope of this node.
+         * @~English  Sets the scope of this node.
          * @~Japanese このノードのスコープを設定する.
          */
         void setScope (int scope);
 
         /**
-         * @~English   Print out information of this object.
+         * @~English  Print out information of this object.
          * @~Japanese このNodeクラスの情報を表示する。デバッグ用.
          */
         virtual std::ostream& print (std::ostream& out) const;
 
         /**
-         * @~English   Sets parent of this node.
+         * @~English  Sets parent of this node.
          * @~Japanese このノードの親ノードを設定する. 
          */
         void setParent (Node* node);

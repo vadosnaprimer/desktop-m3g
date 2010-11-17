@@ -1,11 +1,11 @@
-#include "m3g-gl.hpp"
-#include "VertexBuffer.hpp"
-#include "VertexArray.hpp"
-#include "AnimationTrack.hpp"
-#include "AnimationController.hpp"
-#include "KeyframeSequence.hpp"
-#include "Exception.hpp"
-#include "RenderState.hpp"
+#include "m3g/m3g-gl.hpp"
+#include "m3g/VertexBuffer.hpp"
+#include "m3g/VertexArray.hpp"
+#include "m3g/AnimationTrack.hpp"
+#include "m3g/AnimationController.hpp"
+#include "m3g/KeyframeSequence.hpp"
+#include "m3g/Exception.hpp"
+#include "m3g/RenderState.hpp"
 #include <iostream>
 using namespace std;
 using namespace m3g;
@@ -115,11 +115,7 @@ int VertexBuffer:: animate (int world_time)
         AnimationTrack*      track      = getAnimationTrack (i);
         KeyframeSequence*    keyframe   = track->getKeyframeSequence();
         AnimationController* controller = track->getController();
-        if (controller == NULL) {
-            //cout << "VertexBuffer: missing controller, this animation track is ignored.\n";
-            continue;
-        }
-        if (!controller->isActiveInterval(world_time)) {
+        if (!controller || !controller->isActive(world_time)) {
             continue;
         }
         float weight        = controller->getWeight ();
@@ -145,7 +141,7 @@ int VertexBuffer:: animate (int world_time)
             break;
         }
         default: {
-            // Unknwon target should be ignored.
+            // Unknown target should be ignored.
             // animate() of Base class (of Derived class) retrieve it.
         }
         }
@@ -333,8 +329,6 @@ void VertexBuffer:: setPositions (VertexArray* positions_, float scale, float* b
     positions_bias[0] = bias[0];
     positions_bias[1] = bias[1];
     positions_bias[2] = bias[2];
-
-
 }
 
 void VertexBuffer:: setTexCoords (int index, VertexArray* tex_coords_, float scale, float* bias)

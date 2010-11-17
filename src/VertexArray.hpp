@@ -2,9 +2,10 @@
 #define __VERTEX_ARRAY_HPP__
 
 
-#include "Object3D.hpp"
+#include "m3g/Object3D.hpp"
+#include "m3g/m3ginternal.hpp"
 #include <iosfwd>
-#include "m3ginternal.hpp"
+
 
 namespace m3g {
 

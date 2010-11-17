@@ -2,7 +2,7 @@
 #ifndef __ANIMATION_TRACK_HPP__
 #define __ANIMATION_TRACK_HPP__
 
-#include "Object3D.hpp"
+#include "m3g/Object3D.hpp"
 #include <iosfwd>
 
 namespace m3g {
@@ -158,7 +158,7 @@ namespace m3g {
 
 
         /**
-         * @~English Creates a duplicate of this Object3D. 
+         * @~English  Creates a duplicate of this Object3D. 
          * @~Japanese このオブジェクトの複製の作成.
          */
         virtual AnimationTrack* duplicate () const;
