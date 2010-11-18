@@ -34,4 +34,22 @@ TEST (Loader_load_png)
     CHECK_EQUAL (32          , img2->getHeight());
 }
 
+TEST (Loader_load_jpeg)
+{
+    Image2D* img1 = dynamic_cast<Image2D*>(Loader::load ("ank.jpeg")[0]);
+
+    CHECK (img1 != NULL);
+    CHECK_EQUAL (Image2D::RGB, img1->getFormat());
+    CHECK_EQUAL (32          , img1->getWidth());
+    CHECK_EQUAL (32          , img1->getHeight());
+
+    img1->writePNG ("output-ank.png");
+    Image2D* img2 = dynamic_cast<Image2D*>(Loader::load ("output-ank.png")[0]);
+
+    CHECK (img2 != NULL);
+    CHECK_EQUAL (Image2D::RGB, img2->getFormat());
+    CHECK_EQUAL (32          , img2->getWidth());
+    CHECK_EQUAL (32          , img2->getHeight());
+}
+
 

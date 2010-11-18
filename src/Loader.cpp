@@ -5,6 +5,8 @@
 #include <algorithm>
 #include <cstring>
 #include <png.h>
+#include <jpeglib.h>
+#include "jpeg_memory_src.hpp"
 using namespace std;
 using namespace m3g;
 
@@ -202,6 +204,48 @@ std::vector<Object3D*> Loader:: load_png (const char* file_ptr, int file_size)
 
 std::vector<Object3D*> Loader:: load_jpg (const char* p, int size)
 {
+    jpeg_decompress_struct cinfo;
+    jpeg_error_mgr         jerr;
+
+    cinfo.err = jpeg_std_error (&jerr);
+    jpeg_create_decompress (&cinfo);
+
+    jpeg_memory_src (&cinfo, p, size);
+
+    jpeg_read_header (&cinfo, true);
+    jpeg_start_decompress (&cinfo);
+  
+    int width  = cinfo.output_width;
+    int height = cinfo.output_height;
+    int bpp    = cinfo.output_components;
+
+    JSAMPLE*   pixels = new JSAMPLE [height*width*bpp];
+    JSAMPARRAY rows   = new JSAMPROW [height];
+    for (int i = 0; i < height; i++ ) {
+        rows[i] = pixels + (height-1-i)*width*bpp;
+    }
+
+    while (cinfo.output_scanline < cinfo.output_height) {
+        jpeg_read_scanlines (&cinfo,
+                             rows + cinfo.output_scanline,
+                             cinfo.output_height - cinfo.output_scanline);
+    }
+
+    int format;
+    switch (cinfo.out_color_space) {
+    case JCS_GRAYSCALE  : format = Image2D::LUMINANCE;       break;
+    case JCS_RGB        : format = Image2D::RGB;             break;
+    default: throw IOException (__FILE__, __func__, "Unknown jpeg format=%d.", cinfo.out_color_space);
+    }
+
+    Image2D*   img = new Image2D   (format, width, height, pixels);
+
+    jpeg_finish_decompress (&cinfo);
+    jpeg_destroy_decompress (&cinfo);
+
+    delete [] pixels;
+    
+    objs.push_back (img);
     return objs;
 }
 
