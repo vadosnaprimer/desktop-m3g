@@ -7,8 +7,10 @@
 #include "m3g/Node.hpp"
 #include <iostream>
 #include <typeinfo>
+#include <cmath>
 using namespace std;
 using namespace m3g;
+
 
 RayIntersection:: RayIntersection () :
     ray(Vector(0,0,0),Vector(0,0,1),0), node(0), u(0), v(0), submesh_index(0),
@@ -45,6 +47,8 @@ RayIntersection:: RayIntersection (Node* node_,
     for (int i = 0; i < MAX_TEXTURE_UNITS; i++) {
         tex_coord[i] = 0;
     }
+    //cout << "u = " << u << "\n";
+    //cout << "v = " << v << "\n";
 }
 
 RayIntersection:: ~RayIntersection ()
@@ -64,7 +68,7 @@ Node* RayIntersection:: getIntersected () const
     return node;
 }
 
-void RayIntersection:: setNormal ()
+void RayIntersection:: computeNormal ()
 {
     normal = new Vector(0,0,0);
 
@@ -81,8 +85,6 @@ void RayIntersection:: setNormal ()
         if (normals) {
             float scale    = scale_bias[0];
             float bias[3]  = {scale_bias[1], scale_bias[2], scale_bias[3]};
-            //cout << "RI: scale = " << scale << ", bias[] = " << bias[0] << ", " << bias[1] << ", " << bias[2] << "\n";
-            //cout << "vertex_indices = " << vertices[0] << ", " << vertices[1] << ", " << vertices[2] << "\n";
             float normal_values[3][3];
             normals->get (0, 1, scale, bias, normal_values[0]);
             normals->get (vertices[0], 1, scale, bias, normal_values[0]);
@@ -91,12 +93,7 @@ void RayIntersection:: setNormal ()
             Vector n0 = Vector(normal_values[0]);
             Vector n1 = Vector(normal_values[1]);
             Vector n2 = Vector(normal_values[2]);
-            //cout << "n0 = " << n0 << "\n";
-            //cout << "n1 = " << n1 << "\n";
-            //cout << "n2 = " << n2 << "\n";
-            //cout << "(u,v) = " << u << ", " << v << "\n";
             *normal = lerp (u, v, n0, n1, n2);
-            //cout << "normal = " << *normal << "\n";
             if (normal->length() > 0)
                 normal->normalize();
 
@@ -110,7 +107,7 @@ void RayIntersection:: setNormal ()
 float RayIntersection:: getNormalX () const
 {
     if (!normal) {
-        const_cast<RayIntersection*>(this)->setNormal();
+        const_cast<RayIntersection*>(this)->computeNormal();
     }
     return normal->x;
 }
@@ -118,7 +115,7 @@ float RayIntersection:: getNormalX () const
 float RayIntersection:: getNormalY () const
 {
     if (!normal) {
-        const_cast<RayIntersection*>(this)->setNormal();
+        const_cast<RayIntersection*>(this)->computeNormal();
     }
     return normal->y;
 }
@@ -126,7 +123,7 @@ float RayIntersection:: getNormalY () const
 float RayIntersection:: getNormalZ () const
 {
     if (!normal) {
-        const_cast<RayIntersection*>(this)->setNormal();
+        const_cast<RayIntersection*>(this)->computeNormal();
     }
     return normal->z;
 }
@@ -149,13 +146,21 @@ int RayIntersection:: getSubmeshIndex () const
     return submesh_index;
 }
 
-void RayIntersection:: setTexCoord (int index)
+void RayIntersection:: computeTexCoord (int index)
 {
     tex_coord[index] = new Vector(0,0,0);
 
     Sprite3D* spr = dynamic_cast<Sprite3D*>(node);
     if (spr) {
-        // 後で実装する
+        if (vertices[0] == 2 && vertices[1] == 1 && vertices[2] == 0) {
+            tex_coord[index]->x = u+v;
+            tex_coord[index]->y = 1-u*sinf(45);
+        } else if (vertices[0] == 2 && vertices[1] == 3 && vertices[2] == 1) {
+            tex_coord[index]->x = v;
+            tex_coord[index]->y = 1-(u+v*sinf(45));
+        } else {
+            throw InternalException (__FILE__, __func__, "Unknown winding.");
+        }
         return;
     }
 
@@ -183,7 +188,7 @@ void RayIntersection:: setTexCoord (int index)
 float RayIntersection:: getTextureS (int index) const
 {
     if (!tex_coord[index]) {
-        const_cast<RayIntersection*>(this)->setTexCoord(index);
+        const_cast<RayIntersection*>(this)->computeTexCoord(index);
     }
     return tex_coord[index]->x;
 }
@@ -191,7 +196,7 @@ float RayIntersection:: getTextureS (int index) const
 float RayIntersection:: getTextureT (int index) const
 {
     if (!tex_coord[index]) {
-        const_cast<RayIntersection*>(this)->setTexCoord(index);
+        const_cast<RayIntersection*>(this)->computeTexCoord(index);
     }
     return tex_coord[index]->y;
 }

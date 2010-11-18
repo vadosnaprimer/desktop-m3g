@@ -117,8 +117,8 @@ namespace m3g {
 
     private:
 
-        void setNormal ();
-        void setTexCoord (int index);
+        void computeNormal ();
+        void computeTexCoord (int index);
 
     private:
 
@@ -129,7 +129,7 @@ namespace m3g {
         int    submesh_index;
 
         Vector* normal;
-        std::vector<Vector*> tex_coord;
+        std::vector<Vector*> tex_coord;   // ここ複数形だよな?
     };
 
 } // namespace m3g {
