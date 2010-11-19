@@ -99,6 +99,25 @@ SkinnedMesh* SkinnedMesh:: duplicate () const
     return mesh;
 }
 
+int SkinnedMesh:: getReferences (Object3D** references) const
+{
+    int n  = Mesh:: getReferences (0);
+    int n0 = n;
+    if (skeleton)
+        n++;
+
+    if (references) {
+        int i = n0;
+        Mesh:: getReferences (references);
+        if (skeleton)
+            references[i++] = skeleton;
+    }
+
+    return n;
+}
+
+
+
 void SkinnedMesh:: mark (void(*func)(void*)) const
 {
     if (func == NULL)

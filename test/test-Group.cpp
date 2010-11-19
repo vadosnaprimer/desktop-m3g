@@ -51,6 +51,28 @@ TEST (Group_isDesendant)
 }
 
 
+TEST (Group_getReferences)
+{
+    Group* skeleton = new Group;
+    Group* bone0 = new Group;
+    Group* bone1 = new Group;
+
+    skeleton->addChild (bone0);
+    skeleton->addChild (bone1);
+
+    int n;
+    Object3D* objs[2];
+
+    n = skeleton->getReferences (objs);
+    CHECK_EQUAL (2, n);
+    CHECK_EQUAL (bone0, objs[0]);
+    CHECK_EQUAL (bone1, objs[1]);
+    
+    delete bone0;
+    delete bone1;
+    delete skeleton;
+}
+
 TEST (Group_pick)
 {
     Group* grp = new Group;

@@ -76,3 +76,21 @@ TEST (Background_duplicate)
     delete bg0;
     delete bg1;
 }
+
+TEST (Background_getReferences)
+{
+    Background* bg  = new Background;
+    Image2D*    img = new Image2D (Image2D::RGBA, 64, 48);
+    bg->setImage (img);
+
+    int n;
+    Object3D* objs[1];
+
+    n = bg->getReferences (objs);
+
+    CHECK_EQUAL (1, n);
+    CHECK_EQUAL (img, objs[0]);
+
+    delete img;
+    delete bg;
+}

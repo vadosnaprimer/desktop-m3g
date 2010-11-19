@@ -34,6 +34,41 @@ Appearance* Appearance:: duplicate () const
     return app;
 }
 
+int Appearance:: getReferences (Object3D** references) const
+{
+    int n = 0;
+    if (polygon_mode)
+        n++;
+    if (compositing_mode)
+        n++;
+    if (material)
+        n++;
+    for (int i = 0; i < MAX_TEXTURE_UNITS; i++) {
+        if (textures[i])
+            n++;
+    }
+    if (fog)
+        n++;
+
+    if (references) {
+        int i = 0;
+        if (polygon_mode)
+            references[i++] = polygon_mode;
+        if (compositing_mode)
+            references[i++] = compositing_mode;
+        if (material)
+            references[i++] = material;
+        for (int j = 0; j < MAX_TEXTURE_UNITS; j++) {
+            if (textures[j])
+                references[i++] = textures[j];
+        }
+        if (fog)
+            references[i++] = fog;
+    }
+
+    return n;
+}
+
 void Appearance:: mark (void(*func)(void*)) const
 {
     if (func == NULL)

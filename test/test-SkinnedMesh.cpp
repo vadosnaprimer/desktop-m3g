@@ -228,6 +228,41 @@ TEST (SkinnedMesh_duplicate)
     
 }
 
+TEST (SkinnedMesh_getReferences)
+{
+    VertexArray*  varry       = new VertexArray (16, 3, 2);
+    VertexBuffer* vbuf        = new VertexBuffer;
+    int           indices[]   = {0,1,2};
+    int           strips[]    = {3};
+    TriangleStripArray* tris  = new TriangleStripArray (indices, 1, strips);
+    Appearance*   app         = new Appearance;
+    Group*        skeleton    = new Group;
+
+    float scale  = 1;
+    float bias[] = {0,0,0};
+    vbuf->setPositions (varry, scale, bias);
+
+    SkinnedMesh*  mesh        = new SkinnedMesh (vbuf, 1, (IndexBuffer**)&tris, &app, skeleton);
+
+    int n;
+    Object3D* objs[4];
+
+    n = mesh->getReferences (objs);
+
+    CHECK_EQUAL (4, n);
+    CHECK_EQUAL (vbuf    , objs[0]);
+    CHECK_EQUAL (tris    , objs[1]);
+    CHECK_EQUAL (app     , objs[2]);
+    CHECK_EQUAL (skeleton, objs[3]);
+
+    delete vbuf;
+    delete tris;
+    delete app;
+    delete skeleton;
+    delete mesh;
+}
+
+
 TEST (SkinnedMesh_mark)
 {
     // マーク関数がskeletonの方にも行っているかのテスト

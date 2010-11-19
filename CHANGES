@@ -2,6 +2,7 @@
 2010/xx/xx  ver 0.3.2
    - change MAX_TEXTURE_UNITS = 4
    - argument of Transform is changed from "pass by value" to "pass by reference"
+   - implement jpeg loader
    - fix loading indexed png
    - fix blend color of Texture2D
    - and so many bug fix.

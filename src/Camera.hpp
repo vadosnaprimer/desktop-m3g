@@ -67,10 +67,6 @@ namespace m3g {
          */
         virtual void addAnimationTrack (AnimationTrack* animation_track);
 
-        /**
-         * @~English  Update animatable property to specified world time.
-         * @~Japanese アニメーションの更新.
-         */
         virtual int animate (int world_time);
 
         /**

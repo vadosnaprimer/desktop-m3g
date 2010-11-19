@@ -38,6 +38,8 @@ namespace m3g {
          */
         virtual World* duplicate () const;
 
+        virtual int getReferences (Object3D** references) const;
+
         virtual void mark (void(*func)(void*)) const;
 
         /**

@@ -96,6 +96,32 @@ TEST (Mesh_duplicate)
     delete mesh1;
 }
 
+TEST (Mesh_getReferences)
+{
+    VertexBuffer* vbuf = new VertexBuffer;
+    int indices[] = {0,1,2};
+    int strips[]  = {3};
+    TriangleStripArray* tris = new TriangleStripArray (indices, 1, strips);
+    Appearance*         app  = new Appearance;
+    Mesh*               mesh = new Mesh (vbuf, tris, app);
+
+    int n;
+    Object3D* objs[2];
+
+    n = mesh->getReferences (objs);
+
+    CHECK_EQUAL (3, n);
+    CHECK_EQUAL (vbuf, objs[0]);
+    CHECK_EQUAL (tris, objs[1]);
+    CHECK_EQUAL (app , objs[2]);
+
+    delete vbuf;
+    delete tris;
+    delete app;
+    delete mesh;
+}
+
+
 static int count = 0;
 static void func (void* p)
 {

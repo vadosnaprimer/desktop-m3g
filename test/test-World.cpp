@@ -37,6 +37,7 @@ TEST (World_set_variables)
     delete wld;
 }
 
+
 TEST (World_duplicate)
 {
     Background* bg   = new Background;
@@ -62,6 +63,31 @@ TEST (World_duplicate)
     delete cam;
     delete wld0;
     delete wld1;
+}
+
+
+TEST (World_getReferences)
+{
+    Background* bg  = new Background;
+    Camera*     cam = new Camera;
+    World*      wld = new World;
+
+    wld->addChild (cam);
+    wld->setActiveCamera (cam);
+    wld->setBackground (bg);
+
+    int n;
+    Object3D* objs[3];
+    n = wld->getReferences (objs);
+    
+    CHECK_EQUAL (3, n);
+    CHECK_EQUAL (cam, objs[0]); // 子ノードとして
+    CHECK_EQUAL (bg , objs[1]);
+    CHECK_EQUAL (cam, objs[2]); // アクティブカメラとして
+
+    delete bg;
+    delete cam;
+    delete wld;
 }
 
 static int count = 0;

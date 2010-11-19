@@ -147,6 +147,25 @@ const char* property_to_string (int property)
     }
 }
 
+int AnimationTrack:: getReferences (Object3D** references) const
+{
+    int n = 0;
+    if (keyframe_sequence)
+        n++;
+    if (animation_controller)
+        n++;
+    
+    if (references) {
+        int i = 0;
+        if (keyframe_sequence)
+            references[i++] = keyframe_sequence;
+        if (animation_controller)
+            references[i++] = animation_controller;
+    }
+    return n;
+}
+
+
 std::ostream& AnimationTrack:: print (std::ostream& out) const
 {
     out << "AnimationTrack: ";

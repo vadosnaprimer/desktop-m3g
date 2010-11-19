@@ -33,6 +33,20 @@ Group* Group:: duplicate () const
     return grp;
 }
 
+int Group:: getReferences (Object3D** references) const
+{
+    int n = children.size();
+    
+    if (references) {
+        for (int i = 0; i < (int)children.size(); i++) {
+            references[i] = children[i];
+        }
+    }
+
+    return n;
+}
+
+
 void Group:: mark (void(*func)(void*)) const
 {
     if (func == NULL)

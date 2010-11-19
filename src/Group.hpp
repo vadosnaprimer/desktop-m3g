@@ -42,6 +42,8 @@ namespace m3g {
          */
         virtual Group* duplicate () const;
 
+        virtual int getReferences (Object3D** references) const;
+
         virtual void mark (void(*func)(void*)) const;
 
         /**

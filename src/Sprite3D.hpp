@@ -52,6 +52,8 @@ namespace m3g {
          */
         virtual Sprite3D* duplicate () const;
 
+        virtual int getReferences (Object3D** references) const;
+
 
         virtual void mark (void(*func)(void*)) const;
 
@@ -204,12 +206,12 @@ namespace m3g {
         Sprite3D& operator= (const Sprite3D& spr);
 
     private:
-        bool        scaled;
-        Image2D*    image;
-        Appearance* appearance;
-        CropRect    crop;
+        bool         scaled;
+        Image2D*     image;
+        Appearance*  appearance;
+        CropRect     crop;
 
-        unsigned int      texobj;
+        unsigned int texobj;
     };
 
 } // namespace m3g {

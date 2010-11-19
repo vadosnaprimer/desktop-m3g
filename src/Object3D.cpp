@@ -66,8 +66,6 @@ int Object3D:: getAnimationTrackCount () const
 
 int Object3D:: getReferences (Object3D** references) const
 {
-    throw NotImplementedException (__FILE__, __func__, "Sorry, getReference is not implemented yet.");
-
     return 0;
 }
 

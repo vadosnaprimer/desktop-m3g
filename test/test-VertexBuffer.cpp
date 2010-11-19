@@ -103,6 +103,42 @@ TEST (VertexBuffer_duplicate)
     delete vbuf1;
 }
 
+
+
+TEST (VertexBuffer_getReferences)
+{
+    VertexBuffer* vbuf      = new VertexBuffer;
+    VertexArray*  colors    = new VertexArray (1, 3, 1);
+    VertexArray*  normals   = new VertexArray (1, 3, 2);
+    VertexArray*  positions = new VertexArray (1, 3, 2);
+    VertexArray*  texcoords = new VertexArray (1, 2, 2);
+    float scale   = 3;
+    float bias[3] = {1,2,3};
+
+    vbuf->setDefaultColor (0x12345678);
+    vbuf->setColors (colors);
+    vbuf->setNormals (normals);
+    vbuf->setPositions (positions, scale, bias);
+    vbuf->setTexCoords (0, texcoords, scale, bias);
+
+    int n;
+    Object3D* objs[4];
+    n = vbuf->getReferences (objs);
+
+    CHECK_EQUAL (4, n);
+    CHECK_EQUAL (positions, objs[0]);
+    CHECK_EQUAL (normals  , objs[1]);
+    CHECK_EQUAL (colors   , objs[2]);
+    CHECK_EQUAL (texcoords, objs[3]);
+
+    delete texcoords;
+    delete positions;
+    delete normals;
+    delete colors;
+    delete vbuf;
+}
+
+
 static int count = 0;
 static void func (void* p)
 {

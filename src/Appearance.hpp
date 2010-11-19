@@ -48,6 +48,8 @@ namespace m3g {
          */
         virtual Appearance* duplicate () const;
 
+        virtual int getReferences (Object3D** references) const;
+
         virtual void mark (void(*func)(void*)) const;
 
         /**

@@ -11,8 +11,8 @@ TEST (Object3D_defautlt_variables)
 {
     Object3D* obj = new Object3D;
 
-    CHECK_EQUAL (0, obj->getAnimationTrackCount());
-    //CHECK_EQUAL (0, obj->getReferences(0,0));
+    CHECK_EQUAL (0       , obj->getAnimationTrackCount());
+    CHECK_EQUAL (0       , obj->getReferences(0));
     CHECK_EQUAL (0       , obj->getUserID());
     CHECK_EQUAL ((void*)0, obj->getUserObject());
 
@@ -32,8 +32,8 @@ TEST (Object3D_set_variables)
 
 TEST (Object3D_animation_track) 
 {
-    KeyframeSequence* keyframe = new KeyframeSequence (1,1,KeyframeSequence::STEP);
-    AnimationTrack* anim_track = new AnimationTrack (keyframe, AnimationTrack::ALPHA);
+    KeyframeSequence* keyframe   = new KeyframeSequence (1,1,KeyframeSequence::STEP);
+    AnimationTrack*   anim_track = new AnimationTrack (keyframe, AnimationTrack::ALPHA);
 
     Object3D* obj = new Object3D;
     obj->addAnimationTrack (anim_track);

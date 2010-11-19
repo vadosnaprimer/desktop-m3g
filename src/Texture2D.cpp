@@ -66,6 +66,21 @@ Texture2D* Texture2D:: duplicate () const
     return tex;
 }
 
+int Texture2D:: getReferences (Object3D** references) const
+{
+    int n = 0;
+    if (image)
+        n++;
+
+    if (references) {
+        int i = 0;
+        if (image)
+            references[i++] = image;
+    }
+    
+    return n;
+}
+
 void Texture2D:: mark (void(*func)(void*)) const
 {
     if (func == NULL) 

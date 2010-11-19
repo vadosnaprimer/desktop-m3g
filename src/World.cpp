@@ -66,6 +66,28 @@ int World:: animate (int world_time)
     return 0;
 }
 
+int World:: getReferences (Object3D** references) const
+{
+    int n  = Group:: getReferences (0);
+    int n0 = n;
+    if (background)
+        n++;
+    if (camera)
+        n++;
+
+    if (references) {
+        int i = n0;
+        Group:: getReferences (references);
+        if (background)
+            references[i++] = background;
+        if (camera)
+            references[i++] = camera;
+    }
+    
+    return n;
+}
+
+
 Camera* World:: getActiveCamera () const
 {
     return camera;

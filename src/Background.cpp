@@ -42,6 +42,21 @@ Background* Background:: duplicate () const
     return bg;
 }
 
+int Background:: getReferences (Object3D** references) const
+{
+    int n = 0;
+    if (image)
+        n++;
+
+    if (references) {
+        int i = 0;
+        if (image)
+            references[i++] = image;
+    }
+
+    return n;
+}
+
 void Background:: copy (Background* bg) const
 {
     if (bg == NULL) {

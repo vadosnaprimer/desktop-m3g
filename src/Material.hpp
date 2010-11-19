@@ -99,7 +99,7 @@ namespace m3g {
 
 
         /**
-         * @~English  
+         * @~English  Sets the shininess of this Material.
          * @~Japanese このマテリアルのshinessパラメーターの設定.
          */
         void setShininess (float shininess);

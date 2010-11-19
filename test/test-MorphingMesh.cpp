@@ -114,3 +114,41 @@ TEST (MorphingMesh_duplicate)
     delete mesh2;
 }
 
+TEST (MorphingMesh_getReferences)
+{
+    VertexArray*  varry       = new VertexArray (16, 3, 2);
+    int           indices[]   = {0,1,2};
+    int           strips[]    = {3};
+    TriangleStripArray* tris  = new TriangleStripArray (indices, 1, strips);
+    Appearance*   app         = new Appearance;
+
+    float scale  = 1;
+    float bias[] = {0,0,0};
+
+    VertexBuffer* base_vertices = new VertexBuffer;
+    base_vertices->setPositions (varry, scale, bias);
+    VertexBuffer* target_vertices[2] = {base_vertices->duplicate (),
+                                        base_vertices->duplicate ()};
+    MorphingMesh*  mesh        = new MorphingMesh (base_vertices, 2, target_vertices, tris, app);
+
+    int n;
+    Object3D* objs[5];
+
+    n = mesh->getReferences (objs);
+
+    CHECK_EQUAL (5, n);
+    CHECK_EQUAL (base_vertices     , objs[0]);
+    CHECK_EQUAL (tris              , objs[1]);
+    CHECK_EQUAL (app               , objs[2]);
+    CHECK_EQUAL (target_vertices[0], objs[3]);
+    CHECK_EQUAL (target_vertices[1], objs[4]);
+
+
+    delete base_vertices;
+    delete target_vertices[0];
+    delete target_vertices[1];
+    delete tris;
+    delete app;
+    delete mesh;
+}
+

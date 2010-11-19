@@ -39,6 +39,8 @@ namespace m3g {
          */
         virtual VertexBuffer* duplicate () const;
 
+        virtual int getReferences (Object3D** references) const;
+
         virtual void mark (void(*func)(void*)) const;
 
         /**

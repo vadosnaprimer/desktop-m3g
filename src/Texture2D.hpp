@@ -123,6 +123,7 @@ namespace m3g {
 
         virtual void addAnimationTrack (AnimationTrack* animation_track);
 
+        virtual int getReferences (Object3D** references) const;
 
 
         /**

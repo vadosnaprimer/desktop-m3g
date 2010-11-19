@@ -80,12 +80,32 @@ TEST (Sprite3D_duplicate)
     delete spr1;
 }
 
+TEST (Sprite3D_getReferences)
+{
+    Image2D*    img = new Image2D (Image2D::RGBA, 64, 64);
+    Appearance* app = new Appearance;
+    Sprite3D*   spr = new Sprite3D (true, img, app);
+
+    int n;
+    Object3D* objs[2];
+
+    n = spr->getReferences (objs);
+
+    CHECK_EQUAL (2, n);
+    CHECK_EQUAL (img, objs[0]);
+    CHECK_EQUAL (app, objs[1]);
+
+    delete img;
+    delete app;
+    delete spr;
+}
 
 static int count = 0;
 static void func (void* p)
 {
     count++;
 }
+
 
 TEST (Sprite3D_mark)
 {

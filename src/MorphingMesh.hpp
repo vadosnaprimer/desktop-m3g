@@ -52,6 +52,8 @@ namespace m3g {
          */
         virtual MorphingMesh* duplicate () const;
 
+        virtual int getReferences (Object3D** references) const;
+
         /**
          * @~English  Copy this Object3D to specified Object3D, not defined by M3G. 
          * @~Japanese このオブジェクトのデータを引数で指定されたオブジェクトにコピーするM3G非標準の関数.

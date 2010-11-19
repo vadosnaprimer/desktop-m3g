@@ -63,6 +63,25 @@ Sprite3D* Sprite3D:: duplicate () const
     return spr;
 }
 
+int Sprite3D:: getReferences (Object3D** references) const
+{
+    int n = 0;
+    if (image)
+        n++;
+    if (appearance)
+        n++;
+
+    if (references) {
+        int i = 0;
+        if (image)
+            references[i++] = image;
+        if (appearance)
+            references[i++] = appearance;
+    }
+
+    return n;
+}
+
 void Sprite3D:: mark (void(*func)(void*)) const
 {
     if (func == NULL)

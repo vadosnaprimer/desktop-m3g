@@ -39,6 +39,38 @@ VertexBuffer* VertexBuffer:: duplicate () const
     return vbuf;
 }
 
+int VertexBuffer:: getReferences (Object3D** references) const
+{
+    int n = 0;
+    if (positions)
+        n++;
+    if (normals)
+        n++;
+    if (colors)
+        n++;
+    for (int i = 0; i < MAX_TEXTURE_UNITS; i++) {
+        if (tex_coords[i])
+            n++;
+    }
+
+    if (references) {
+        int i = 0;
+        if (positions)
+            references[i++] = positions;
+        if (normals)
+            references[i++] = normals;
+        if (colors)
+            references[i++] = colors;
+        for (int j = 0; j < (int)MAX_TEXTURE_UNITS; j++) {
+            if (tex_coords[j])
+                references[i++] = tex_coords[j];
+        }
+    }
+
+    return n;
+}
+
+
 void VertexBuffer:: mark (void(*func)(void*)) const
 {
     if (func == NULL)
@@ -418,6 +450,7 @@ void VertexBuffer:: render (RenderState& state) const
 
     if (colors) {
         //cout << "state.alpha = " << state.alpha << ", node_alpha = " << node_alpha << "\n";
+        // 頂点カラーが有効でノードαが変更されていた場合は再度GPUに転送する.
         if (state.alpha != node_alpha) {
             int vertex_count    = colors->getVertexCount ();
             int component_count = colors->getComponentCount ();

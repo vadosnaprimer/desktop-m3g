@@ -71,6 +71,24 @@ TEST (Texure2D_duplicate)
     delete tex1;
 }
 
+
+TEST (Texture2D_getReferences)
+{
+    Image2D*   img = new Image2D (Image2D::RGBA, 64, 64);
+    Texture2D* tex = new Texture2D (img);
+
+    int n;
+    Object3D* objs[1];
+    
+    n = tex->getReferences (objs);
+
+    CHECK_EQUAL (1, n);
+    CHECK_EQUAL (img, objs[0]);
+
+    delete img;
+    delete tex;
+}
+
 static int count = 0;
 static void func (void* p)
 {

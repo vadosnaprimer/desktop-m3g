@@ -100,6 +100,7 @@ void MorphingMesh:: initialize (int num_target, VertexBuffer** targets)
 }
 
 
+
 MorphingMesh:: ~MorphingMesh ()
 {
 }
@@ -121,6 +122,29 @@ void MorphingMesh:: copy (MorphingMesh* mesh) const
     // morhped_verticesとmorph_targetsはコンストラクタでコピー済み
     mesh->morph_weights    = morph_weights;
 }
+
+
+int MorphingMesh:: getReferences (Object3D** references) const
+{
+    int n  = Mesh:: getReferences (0);
+    int n0 = n;
+    for (int i = 0; i < (int)morph_targets.size(); i++) {
+        if (morph_targets[i])
+            n++;
+    }
+
+    if (references) {
+        int i = n0;
+        Mesh:: getReferences (references);
+        for (int j = 0; j < (int)morph_targets.size(); j++) {
+            if (morph_targets[j])
+                references[i++] = morph_targets[j];
+        }
+    }
+
+    return n;
+}
+
 
 
 void MorphingMesh:: addAnimationTrack (AnimationTrack* animation_track)
