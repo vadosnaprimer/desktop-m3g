@@ -127,9 +127,8 @@ void SkinnedMesh:: mark (void(*func)(void*)) const
     if (skeleton) {
         skeleton->mark (func);
     }
-    if (skinned_vertices) {
-        skinned_vertices->mark (func);
-    }
+
+    // 注意: skinned_verticesはこのクラスが責任を持つのでマークしない
 }
 
 

@@ -262,9 +262,37 @@ TEST (SkinnedMesh_getReferences)
     delete mesh;
 }
 
+static int count = 0;
+static void func (void* p)
+{
+    count++;
+}
+
 
 TEST (SkinnedMesh_mark)
 {
-    // マーク関数がskeletonの方にも行っているかのテスト
-    // 後で実装する
+    VertexArray*  varry       = new VertexArray (16, 3, 2);
+    VertexBuffer* vbuf        = new VertexBuffer;
+    int           indices[]   = {0,1,2};
+    int           strips[]    = {3};
+    TriangleStripArray* tris  = new TriangleStripArray (indices, 1, strips);
+    Appearance*   app         = new Appearance;
+    Group*        skeleton    = new Group;
+
+    float scale  = 1;
+    float bias[] = {0,0,0};
+    vbuf->setPositions (varry, scale, bias);
+
+    SkinnedMesh*  mesh        = new SkinnedMesh (vbuf, 1, (IndexBuffer**)&tris, &app, skeleton);
+
+    mesh->mark (func);
+
+    CHECK_EQUAL (6, count);
+
+    delete varry;
+    delete vbuf;
+    delete tris;
+    delete app;
+    delete skeleton;
+    delete mesh;
 }
