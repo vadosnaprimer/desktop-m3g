@@ -96,7 +96,7 @@ namespace m3g {
 
     private:
         Background* background;
-        Camera*     camera;
+        Camera*     active_camera;
     };
 
 

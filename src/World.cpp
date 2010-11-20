@@ -13,7 +13,7 @@ using namespace std;
 
 
 World:: World () :
-    background(0), camera(0)
+    background(0), active_camera(0)
 {
 }
 
@@ -47,7 +47,7 @@ void World:: mark (void(*func)(void*)) const
 void World:: copy (World* wld) const
 {
     wld->background = (background == NULL) ? NULL : background->duplicate ();
-    wld->camera     = (camera     == NULL) ? NULL : dynamic_cast<Camera*>(camera->getDuplicatedNode());
+    wld->active_camera     = (active_camera     == NULL) ? NULL : dynamic_cast<Camera*>(active_camera->getDuplicatedNode());
 }
 
 int World:: animate (int world_time)
@@ -59,8 +59,8 @@ int World:: animate (int world_time)
     if (background) {
         background->animate (world_time);
     }
-    if (camera) {
-        camera->animate (world_time);
+    if (active_camera) {
+        active_camera->animate (world_time);
     }
 
     return 0;
@@ -72,7 +72,7 @@ int World:: getReferences (Object3D** references) const
     int n0 = n;
     if (background)
         n++;
-    if (camera)
+    if (active_camera)
         n++;
 
     if (references) {
@@ -80,8 +80,8 @@ int World:: getReferences (Object3D** references) const
         Group:: getReferences (references);
         if (background)
             references[i++] = background;
-        if (camera)
-            references[i++] = camera;
+        if (active_camera)
+            references[i++] = active_camera;
     }
     
     return n;
@@ -90,7 +90,7 @@ int World:: getReferences (Object3D** references) const
 
 Camera* World:: getActiveCamera () const
 {
-    return camera;
+    return active_camera;
 }
 
 Background* World:: getBackground () const
@@ -103,7 +103,7 @@ void World:: setActiveCamera (Camera* cam)
     if (cam == NULL) {
         throw NullPointerException (__FILE__, __func__, "Camera is NULL.");
     }
-    camera = cam;
+    active_camera = cam;
 }
 
 void World:: setBackground (Background* bg)
@@ -124,13 +124,13 @@ void World:: setBackground (Background* bg)
  */
 void World:: render (RenderState& state) const
 {
-    if (camera == NULL) {
+    if (active_camera == NULL) {
         throw IllegalStateException (__FILE__, __func__, "Active camera is NULL.");
     }
     
     //cout << "World render\n";
     
-    state.camera = camera;
+    state.camera = active_camera;
 
     vector<int>& v = state.valid_layers;
 
@@ -148,7 +148,7 @@ void World:: render (RenderState& state) const
         } else {
             Background:: renderX ();
         }
-        camera->render (state);
+        active_camera->render (state);
         break;
     }
     case 1:
@@ -176,7 +176,7 @@ std::ostream& World::print (std::ostream& out) const
     out << "World: \n";
     int index = -1;
     for (int i = 0; i < (int)children.size(); i++) {
-        if (children[i] == camera) {
+        if (children[i] == active_camera) {
             index = i;
             break;
         }
