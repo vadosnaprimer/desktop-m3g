@@ -84,6 +84,9 @@ void SkinnedMesh:: initialize ()
 
 SkinnedMesh:: ~SkinnedMesh ()
 {
+    if (skinned_vertices) {
+        delete skinned_vertices;
+    }
 }
 
 
