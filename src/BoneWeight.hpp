@@ -1,6 +1,6 @@
 
-#ifndef __BONE_INDEX_HPP__
-#define __BONE_INDEX_HPP__
+#ifndef __BONE_WEIGHT_HPP__
+#define __BONE_WEIGHT_HPP__
 
 #include "m3g/Matrix.hpp"
 
@@ -13,15 +13,15 @@ namespace m3g {
      * @~English  Store bone index and weight, for inner use.
      * @~Japanese ボーンインデックスとウェイトを保持する内部使用の構造体.
      */
-    struct BoneIndex {
-        BoneIndex (int i, int w) : index(i), weight(w) {};
+    struct BoneWeight {
+        BoneWeight (int i, int w) : index(i), weight(w) {};
         int index;
         int weight;
     };
 
     /**
      * @~English  Store bind pose (at rest).
-     * @~Japanese バインドポーズを保存する内部使用の構造体.
+     * @~Japanese バインドポーズ(の逆行列)を保存する内部使用の構造体.
      */
     struct BindPose {
         BindPose (Node* n, const Matrix& m) : bone(n), inverse(m) {};

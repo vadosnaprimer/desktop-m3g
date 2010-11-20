@@ -2,7 +2,7 @@
 #define __SKINNED_MESH_HPP__
 
 #include "m3g/Mesh.hpp"
-#include "m3g/BoneIndex.hpp"
+#include "m3g/BoneWeight.hpp"
 #include <iosfwd>
 #include <vector>
 
@@ -142,8 +142,8 @@ namespace m3g {
         Group*        skeleton;
         VertexBuffer* skinned_vertices;
 
-        std::vector<std::vector<BoneIndex> > bone_indices;
-        std::vector<BindPose>                bind_poses;
+        std::vector<std::vector<BoneWeight> > bone_weights;
+        std::vector<BindPose>                 bind_poses;
     };
 
 

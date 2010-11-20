@@ -2,7 +2,7 @@
 #include "m3g/VertexArray.hpp"
 #include "m3g/Exception.hpp"
 #include "m3g/Vector.hpp"
-#include "m3g/BoneIndex.hpp"
+#include "m3g/BoneWeight.hpp"
 #include <iostream>
 #include <cstring>
 using namespace std;
@@ -390,7 +390,7 @@ void VertexArray:: setMorphing (const VertexArray* base,
 
 
 void VertexArray:: setSkinning (const VertexArray* base_positions,
-                                const std::vector<std::vector<BoneIndex> >& bone_indices,
+                                const std::vector<std::vector<BoneWeight> >& bone_indices,
                                 const std::vector<Matrix>& matrix_palette)
 {
     if (base_positions == NULL) {

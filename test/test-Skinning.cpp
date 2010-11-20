@@ -3,7 +3,7 @@
 #include <cstring>
 #include <GL/gl.h>
 #include "VertexArray.hpp"
-#include "BoneIndex.hpp"
+#include "BoneWeight.hpp"
 using namespace std;
 using namespace m3g;
 
@@ -20,16 +20,16 @@ TEST (VertexArray_setSkinning_1)
 
     base->set (0, 2, base_values);
 
-    vector<vector<BoneIndex> > bone_indices;
+    vector<vector<BoneWeight> > bone_indices;
 
-    vector<BoneIndex> bone_weights_v0;
-    bone_weights_v0.push_back (BoneIndex(0, 100));
-    bone_weights_v0.push_back (BoneIndex(1, 0));
+    vector<BoneWeight> bone_weights_v0;
+    bone_weights_v0.push_back (BoneWeight(0, 100));
+    bone_weights_v0.push_back (BoneWeight(1, 0));
     bone_indices.push_back (bone_weights_v0);
 
-    vector<BoneIndex> bone_weights_v1;
-    //bone_weights_v1.push_back (BoneIndex(0, 0));
-    bone_weights_v1.push_back (BoneIndex(1, 100));
+    vector<BoneWeight> bone_weights_v1;
+    //bone_weights_v1.push_back (BoneWeight(0, 0));
+    bone_weights_v1.push_back (BoneWeight(1, 100));
     bone_indices.push_back (bone_weights_v1);
     
     
@@ -69,16 +69,16 @@ TEST (VertexArray_setSkinning_2)
 
     base->set (0, 2, base_values);
 
-    vector<vector<BoneIndex> > bone_indices;
+    vector<vector<BoneWeight> > bone_indices;
 
-    vector<BoneIndex> bone_weights_v0;
-    bone_weights_v0.push_back (BoneIndex(0, 50));
-    bone_weights_v0.push_back (BoneIndex(1, 50));
+    vector<BoneWeight> bone_weights_v0;
+    bone_weights_v0.push_back (BoneWeight(0, 50));
+    bone_weights_v0.push_back (BoneWeight(1, 50));
     bone_indices.push_back (bone_weights_v0);
 
-    vector<BoneIndex> bone_weights_v1;
-    bone_weights_v1.push_back (BoneIndex(0, 50));
-    bone_weights_v1.push_back (BoneIndex(1, 50));
+    vector<BoneWeight> bone_weights_v1;
+    bone_weights_v1.push_back (BoneWeight(0, 50));
+    bone_weights_v1.push_back (BoneWeight(1, 50));
     bone_indices.push_back (bone_weights_v1);
     
     

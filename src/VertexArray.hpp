@@ -11,7 +11,7 @@ namespace m3g {
 
     class VertexBuffer;
     class Matrix;
-    struct BoneIndex;
+    struct BoneWeight;
 
     /**
      * @~English  An array of integer vectors representing vertex positions, normals, colors, or texture coordinates.
@@ -111,7 +111,7 @@ namespace m3g {
                           const std::vector<float>&              morph_wegiths);
 
         void setSkinning (const VertexArray*            base_positions,
-                          const std::vector<std::vector<BoneIndex> >& bone_indices,
+                          const std::vector<std::vector<BoneWeight> >& bone_indices,
                           const std::vector<Matrix>&    matrix_palette);
 
         void updateOpenGLData (const void* value) const;

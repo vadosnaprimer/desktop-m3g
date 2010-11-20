@@ -75,9 +75,9 @@ void SkinnedMesh:: initialize ()
     }
 
     int vertex_count = bind_positions->getVertexCount();
-    bone_indices.reserve(vertex_count);
+    bone_weights.reserve(vertex_count);
     for (int v = 0; v < vertex_count; v++) {
-        bone_indices.push_back (std::vector<BoneIndex>());
+        bone_weights.push_back (std::vector<BoneWeight>());
     }
     bind_poses.clear();
 }
@@ -137,7 +137,7 @@ void SkinnedMesh:: mark (void(*func)(void*)) const
 void SkinnedMesh:: copy (SkinnedMesh* mesh) const
 {
     // skeletonとskinned_verticesはコンストラクタで処理済み
-    mesh->bone_indices = bone_indices;
+    mesh->bone_weights = bone_weights;
     mesh->bind_poses   = bind_poses;
     for (int i = 0; i < (int)bind_poses.size(); i++) {
         mesh->bind_poses[i].bone = bind_poses[i].bone->getDuplicatedNode();
@@ -219,12 +219,12 @@ void SkinnedMesh:: updateSkinnedVertices ()
   
     // 位置
     if (bind_positions) {
-        skinned_positions->setSkinning (bind_positions, bone_indices, positions_matrix_palette);
+        skinned_positions->setSkinning (bind_positions, bone_weights, positions_matrix_palette);
     }
 
     // 法線
     if (bind_normals) {
-        skinned_normals->setSkinning (bind_normals, bone_indices, normals_matrix_palette);
+        skinned_normals->setSkinning (bind_normals, bone_weights, normals_matrix_palette);
     }
 
 
@@ -260,9 +260,9 @@ void SkinnedMesh:: addTransform (Node* node, int weight, int first_vertex, int n
     // ボーンインデックスの決定
     int index = addBoneIndex (node);
 
-    // ボーンインデックス（index,weight）の保存
+    // ボーンウェイト（index,weight）の保存
     for (int v = first_vertex; v < first_vertex+num_vertices; v++) {
-        bone_indices[v].push_back (BoneIndex(index,weight));
+        bone_weights[v].push_back (BoneWeight(index,weight));
     }
 
 }
@@ -301,22 +301,22 @@ int SkinnedMesh:: getBoneVertices (Node* node, int* vertex_indices, float* weigh
     }
 
     int bone_index      = getBoneIndex (node);
-    int vertex_count    = bone_indices.size();
+    int vertex_count    = bone_weights.size();
     int find            = 0;
 
     for (int v = 0; v < vertex_count; v++) {
         float weight     = 0;
-        int   bone_count = bone_indices[v].size();
+        int   bone_count = bone_weights[v].size();
         for (int b = 0; b < bone_count; b++) {
-            weight += bone_indices[v][b].weight;
+            weight += bone_weights[v][b].weight;
         }
         for (int b = 0; b < bone_count; b++) {
-            if (bone_indices[v][b].index == bone_index) {
+            if (bone_weights[v][b].index == bone_index) {
                 find++;
                 if (vertex_indices)
                     *vertex_indices++ = v;
                 if (weights)
-                    *weights++        = bone_indices[v][b].weight/weight;
+                    *weights++        = bone_weights[v][b].weight/weight;
             }
         }
     }

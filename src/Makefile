@@ -107,7 +107,7 @@ Graphics3D.o: m3g/Appearance.hpp m3g/Background.hpp m3g/CompositingMode.hpp
 Graphics3D.o: m3g/Fog.hpp m3g/IndexBuffer.hpp m3g/TriangleStripArray.hpp
 Graphics3D.o: m3g/KeyframeSequence.hpp m3g/Keyframe.hpp m3g/Material.hpp
 Graphics3D.o: m3g/PolygonMode.hpp m3g/Camera.hpp m3g/Light.hpp m3g/Mesh.hpp
-Graphics3D.o: m3g/MorphingMesh.hpp m3g/SkinnedMesh.hpp m3g/BoneIndex.hpp
+Graphics3D.o: m3g/MorphingMesh.hpp m3g/SkinnedMesh.hpp m3g/BoneWeight.hpp
 Graphics3D.o: m3g/Sprite3D.hpp m3g/Texture2D.hpp m3g/VertexArray.hpp
 Graphics3D.o: m3g/VertexBuffer.hpp m3g/RayIntersection.hpp m3g/Vector.hpp
 Graphics3D.o: m3g/Exception.hpp m3g/RenderState.hpp
@@ -173,7 +173,7 @@ Loader.o: m3g/KeyframeSequence.hpp m3g/Keyframe.hpp m3g/Material.hpp
 Loader.o: m3g/PolygonMode.hpp m3g/Transformable.hpp m3g/Quaternion.hpp
 Loader.o: m3g/Transform.hpp m3g/Matrix.hpp m3g/Node.hpp m3g/Camera.hpp
 Loader.o: m3g/Group.hpp m3g/World.hpp m3g/Light.hpp m3g/Mesh.hpp
-Loader.o: m3g/MorphingMesh.hpp m3g/SkinnedMesh.hpp m3g/BoneIndex.hpp
+Loader.o: m3g/MorphingMesh.hpp m3g/SkinnedMesh.hpp m3g/BoneWeight.hpp
 Loader.o: m3g/Sprite3D.hpp m3g/Texture2D.hpp m3g/VertexArray.hpp
 Loader.o: m3g/VertexBuffer.hpp m3g/RayIntersection.hpp m3g/Vector.hpp
 Loader.o: m3g/Loader.hpp m3g/M3GReader.hpp m3g/InMemoryStream.hpp
@@ -195,7 +195,8 @@ Loader.o: /usr/include/getopt.h /usr/include/pngconf.h /usr/include/stdio.h
 Loader.o: /usr/include/libio.h /usr/include/_G_config.h /usr/include/wchar.h
 Loader.o: /usr/include/bits/stdio_lim.h /usr/include/bits/sys_errlist.h
 Loader.o: /usr/include/setjmp.h /usr/include/bits/setjmp.h
-Loader.o: /usr/include/string.h /usr/include/xlocale.h
+Loader.o: /usr/include/string.h /usr/include/xlocale.h /usr/include/jpeglib.h
+Loader.o: /usr/include/jconfig.h /usr/include/jmorecfg.h jpeg_memory_src.hpp
 M3GReader.o: m3g/M3GReader.hpp m3g/InMemoryStream.hpp m3g/M3GStruct.hpp
 M3GReader.o: /usr/include/zlib.h /usr/include/zconf.h /usr/include/zlibdefs.h
 M3GReader.o: /usr/include/sys/types.h /usr/include/features.h
@@ -305,7 +306,7 @@ SkinnedMesh.o: /usr/include/bits/wchar.h /usr/include/GL/glu.h
 SkinnedMesh.o: m3g/SkinnedMesh.hpp m3g/Mesh.hpp m3g/Node.hpp
 SkinnedMesh.o: m3g/Transformable.hpp m3g/Object3D.hpp m3g/m3gdef.hpp
 SkinnedMesh.o: m3g/m3ginternal.hpp m3g/Object.hpp m3g/Quaternion.hpp
-SkinnedMesh.o: m3g/Transform.hpp m3g/Matrix.hpp m3g/BoneIndex.hpp
+SkinnedMesh.o: m3g/Transform.hpp m3g/Matrix.hpp m3g/BoneWeight.hpp
 SkinnedMesh.o: m3g/VertexBuffer.hpp m3g/IndexBuffer.hpp m3g/VertexArray.hpp
 SkinnedMesh.o: m3g/Vector.hpp m3g/Exception.hpp m3g/World.hpp m3g/Group.hpp
 SkinnedMesh.o: m3g/RayIntersection.hpp
@@ -369,7 +370,7 @@ VertexArray.o: /usr/include/gnu/stubs-64.h /usr/include/stdint.h
 VertexArray.o: /usr/include/bits/wchar.h /usr/include/GL/glu.h
 VertexArray.o: m3g/VertexArray.hpp m3g/Object3D.hpp m3g/m3gdef.hpp
 VertexArray.o: m3g/m3ginternal.hpp m3g/Object.hpp m3g/Exception.hpp
-VertexArray.o: m3g/Vector.hpp m3g/BoneIndex.hpp m3g/Matrix.hpp
+VertexArray.o: m3g/Vector.hpp /usr/include/m3g/BoneIndex.hpp Matrix.hpp
 VertexBuffer.o: m3g/m3g-gl.hpp /usr/include/GL/gl.h /usr/include/GL/glext.h
 VertexBuffer.o: /usr/include/inttypes.h /usr/include/features.h
 VertexBuffer.o: /usr/include/bits/predefs.h /usr/include/sys/cdefs.h
@@ -386,4 +387,6 @@ World.o: m3g/Object3D.hpp m3g/m3gdef.hpp m3g/m3ginternal.hpp m3g/Object.hpp
 World.o: m3g/Quaternion.hpp m3g/Transform.hpp m3g/Matrix.hpp m3g/Camera.hpp
 World.o: m3g/Background.hpp m3g/Light.hpp m3g/Exception.hpp
 World.o: m3g/RenderState.hpp
+jpeg_memory_src.o: /usr/include/jpeglib.h /usr/include/jconfig.h
+jpeg_memory_src.o: /usr/include/jmorecfg.h
 m3ginternal.o: m3g/m3ginternal.hpp m3g/m3gdef.hpp
