@@ -20,13 +20,20 @@ Brief description
 Make & Install
 -------------------------------------------
 
-  = libm3g =
-    1. move to src directory
-    2. make depend
-    3. make 
-    4. make install
-       - libm3g.so and header files are copyed to under /usr/local 
-
+  = libm3g.so =
+    You need cmake (http://www.cmake.org/)
+    1. cd build
+    2. cmake ..
+         - make file will be generated.
+    3. make
+    4  make install
+         - install Desktop-M3G to ${Desktop-M3G}/bin.
+    You must call cmake under build directory. Don't call it under top directory.
+    Currently, default build target is "Debug" and local install.
+    It will be installed under ${Desktop-M3G}/bin.
+    If you want to install in your system (DANGER!!),
+    3. cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr/local ..
+    
 
 -------------------------------------------
 Test & Samples
