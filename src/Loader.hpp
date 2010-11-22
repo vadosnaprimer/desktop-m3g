@@ -2,9 +2,9 @@
 #define __LOADER_HPP__
 
 #include <vector>
-#include "m3g/Object.hpp"
-#include "m3g/M3GReader.hpp"
 #include "m3g/m3g.hpp"
+#include "M3GReader.hpp"
+
 
 namespace m3g {
 

@@ -257,10 +257,7 @@ test-Image2D.o: ../bin/include/m3g/Object3D.hpp ../bin/include/m3g/m3gdef.hpp
 test-Image2D.o: ../bin/include/m3g/m3ginternal.hpp
 test-Image2D.o: ../bin/include/m3g/Object.hpp
 test-Image2D.o: ../bin/include/m3g/Exception.hpp
-test-Image2D.o: ../bin/include/m3g/Loader.hpp
-test-Image2D.o: ../bin/include/m3g/M3GReader.hpp
-test-Image2D.o: ../bin/include/m3g/InMemoryStream.hpp
-test-Image2D.o: ../bin/include/m3g/M3GStruct.hpp ../bin/include/m3g/m3g.hpp
+test-Image2D.o: ../bin/include/m3g/Loader.hpp ../bin/include/m3g/m3g.hpp
 test-Image2D.o: ../bin/include/m3g/Graphics3D.hpp
 test-Image2D.o: ../bin/include/m3g/AnimationController.hpp
 test-Image2D.o: ../bin/include/m3g/AnimationTrack.hpp
@@ -290,6 +287,9 @@ test-Image2D.o: ../bin/include/m3g/VertexBuffer.hpp
 test-Image2D.o: ../bin/include/m3g/RayIntersection.hpp
 test-Image2D.o: ../bin/include/m3g/Vector.hpp
 test-Image2D.o: ../bin/include/m3g/RenderState.hpp
+test-Image2D.o: ../bin/include/m3g/M3GReader.hpp
+test-Image2D.o: ../bin/include/m3g/InMemoryStream.hpp
+test-Image2D.o: ../bin/include/m3g/M3GStruct.hpp
 test-Intersect.o: /usr/include/unittest++/UnitTest++.h
 test-Intersect.o: /usr/include/unittest++/Config.h
 test-Intersect.o: /usr/include/unittest++/Test.h
@@ -390,13 +390,10 @@ test-Loader.o: /usr/include/unittest++/Checks.h
 test-Loader.o: /usr/include/unittest++/TestRunner.h
 test-Loader.o: /usr/include/unittest++/TimeConstraint.h
 test-Loader.o: /usr/include/unittest++/TimeHelpers.h
-test-Loader.o: ../bin/include/m3g/Loader.hpp ../bin/include/m3g/Object.hpp
-test-Loader.o: ../bin/include/m3g/M3GReader.hpp
-test-Loader.o: ../bin/include/m3g/InMemoryStream.hpp
-test-Loader.o: ../bin/include/m3g/M3GStruct.hpp ../bin/include/m3g/m3g.hpp
+test-Loader.o: ../bin/include/m3g/Loader.hpp ../bin/include/m3g/m3g.hpp
 test-Loader.o: ../bin/include/m3g/m3gdef.hpp
 test-Loader.o: ../bin/include/m3g/Graphics3D.hpp
-test-Loader.o: ../bin/include/m3g/Object3D.hpp
+test-Loader.o: ../bin/include/m3g/Object.hpp ../bin/include/m3g/Object3D.hpp
 test-Loader.o: ../bin/include/m3g/m3ginternal.hpp
 test-Loader.o: ../bin/include/m3g/AnimationController.hpp
 test-Loader.o: ../bin/include/m3g/AnimationTrack.hpp
@@ -426,6 +423,9 @@ test-Loader.o: ../bin/include/m3g/VertexBuffer.hpp
 test-Loader.o: ../bin/include/m3g/RayIntersection.hpp
 test-Loader.o: ../bin/include/m3g/Vector.hpp ../bin/include/m3g/Exception.hpp
 test-Loader.o: ../bin/include/m3g/RenderState.hpp
+test-Loader.o: ../bin/include/m3g/M3GReader.hpp
+test-Loader.o: ../bin/include/m3g/InMemoryStream.hpp
+test-Loader.o: ../bin/include/m3g/M3GStruct.hpp
 test-Material.o: /usr/include/unittest++/UnitTest++.h
 test-Material.o: /usr/include/unittest++/Config.h
 test-Material.o: /usr/include/unittest++/Test.h

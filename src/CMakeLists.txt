@@ -1,3 +1,7 @@
+#
+# M3G compile config file.
+#
+
 
 # m3g srcs
 file (GLOB M3G_SRCS *.cpp)
@@ -20,6 +24,11 @@ set (CMAKE_CXX_FLAGS_DEBUG   "-g")
 set (CMAKE_CXX_FLAGS_RELEASE "-O2")
 set (CMAKE_INCLUDE_CURRENT_DIR ON)
 
-include_directories (${CMAKE_REQUIRED_INCLUDE_DIR})
-target_link_libraries (m3g ${CMAKE_REQUIRED_LIBRARIES})
+# dependent libraries
+include_directories   (${M3G_REQUIRED_INCLUDE_DIR})
+target_link_libraries (m3g ${M3G_REQUIRED_LIBRARIES})
+
+# dependent custom libraries
+include_directories   (${M3G_READER_WRITER_INCLUDE_DIR})
+target_link_libraries (m3g ${M3G_READER_WRITER_LIBRARY})
 

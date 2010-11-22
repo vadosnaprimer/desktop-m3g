@@ -1,5 +1,5 @@
 #include "m3g/m3g.hpp"
-#include "m3g/MemoryReader.hpp"
+#include "MemoryReader.hpp"
 #include <iostream>
 #include <fstream>
 #include <algorithm>
