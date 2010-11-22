@@ -1,7 +1,7 @@
 #include <unittest++/UnitTest++.h>
 #include <iostream>
 #include <cstring>
-#include "TriangleStripArray.hpp"
+#include "m3g/TriangleStripArray.hpp"
 using namespace std;
 using namespace m3g;
 

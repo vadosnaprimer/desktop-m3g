@@ -1,8 +1,8 @@
 #include <unittest++/UnitTest++.h>
 #include <iostream>
-#include "Node.hpp"
-#include "Group.hpp"
-#include "World.hpp"
+#include "m3g/Node.hpp"
+#include "m3g/Group.hpp"
+#include "m3g/World.hpp"
 using namespace std;
 using namespace m3g;
 

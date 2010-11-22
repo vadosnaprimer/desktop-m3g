@@ -1,12 +1,11 @@
-SRCS = $(wildcard *.cpp)
-#SRCS = test-Appearance.cpp test-main.cpp	
-OBJS = $(SRCS:.cpp=.o)
-TARGET = a.out
-CXX = g++
-CXXFLAGS = -Wall -O3 -Wno-deprecated -I../src -I../lib
-LD = g++
-LDFLAGS = -L../src -L../lib
-LIBS =  -lm3g  -lUnitTest++ -lglut -lGL -lz
+SRCS     = $(wildcard *.cpp)
+OBJS     = $(SRCS:.cpp=.o)
+TARGET   = a.out
+CXX      = g++
+CXXFLAGS = -Wall -g -Wno-deprecated -I../bin/include
+LD       = g++
+LDFLAGS  = -L../bin/lib
+LIBS     = -lUnitTest++ -lm3g -lglut -lGL -lGLU -lpng -ljpeg
 
 all: $(OBJS)
 	$(LD)  $(LDFLAGS) $^ $(LIBS) -o $(TARGET)
@@ -44,13 +43,14 @@ test-AnimationController.o: /usr/include/unittest++/Checks.h
 test-AnimationController.o: /usr/include/unittest++/TestRunner.h
 test-AnimationController.o: /usr/include/unittest++/TimeConstraint.h
 test-AnimationController.o: /usr/include/unittest++/TimeHelpers.h
-test-AnimationController.o: ../src/AnimationTrack.hpp ../src/m3g/Object3D.hpp
-test-AnimationController.o: ../src/m3g/m3g/m3gdef.hpp
-test-AnimationController.o: ../src/m3g/m3g/m3ginternal.hpp
-test-AnimationController.o: ../src/m3g/m3g/Object.hpp
-test-AnimationController.o: ../src/AnimationController.hpp
-test-AnimationController.o: ../src/KeyframeSequence.hpp
-test-AnimationController.o: ../src/m3g/Keyframe.hpp
+test-AnimationController.o: ../bin/include/m3g/AnimationTrack.hpp
+test-AnimationController.o: ../bin/include/m3g/Object3D.hpp
+test-AnimationController.o: ../bin/include/m3g/m3gdef.hpp
+test-AnimationController.o: ../bin/include/m3g/m3ginternal.hpp
+test-AnimationController.o: ../bin/include/m3g/Object.hpp
+test-AnimationController.o: ../bin/include/m3g/AnimationController.hpp
+test-AnimationController.o: ../bin/include/m3g/KeyframeSequence.hpp
+test-AnimationController.o: ../bin/include/m3g/Keyframe.hpp
 test-AnimationTrack.o: /usr/include/unittest++/UnitTest++.h
 test-AnimationTrack.o: /usr/include/unittest++/Config.h
 test-AnimationTrack.o: /usr/include/unittest++/Test.h
@@ -68,12 +68,14 @@ test-AnimationTrack.o: /usr/include/unittest++/Checks.h
 test-AnimationTrack.o: /usr/include/unittest++/TestRunner.h
 test-AnimationTrack.o: /usr/include/unittest++/TimeConstraint.h
 test-AnimationTrack.o: /usr/include/unittest++/TimeHelpers.h
-test-AnimationTrack.o: ../src/AnimationTrack.hpp ../src/m3g/Object3D.hpp
-test-AnimationTrack.o: ../src/m3g/m3g/m3gdef.hpp
-test-AnimationTrack.o: ../src/m3g/m3g/m3ginternal.hpp
-test-AnimationTrack.o: ../src/m3g/m3g/Object.hpp
-test-AnimationTrack.o: ../src/AnimationController.hpp
-test-AnimationTrack.o: ../src/KeyframeSequence.hpp ../src/m3g/Keyframe.hpp
+test-AnimationTrack.o: ../bin/include/m3g/AnimationTrack.hpp
+test-AnimationTrack.o: ../bin/include/m3g/Object3D.hpp
+test-AnimationTrack.o: ../bin/include/m3g/m3gdef.hpp
+test-AnimationTrack.o: ../bin/include/m3g/m3ginternal.hpp
+test-AnimationTrack.o: ../bin/include/m3g/Object.hpp
+test-AnimationTrack.o: ../bin/include/m3g/AnimationController.hpp
+test-AnimationTrack.o: ../bin/include/m3g/KeyframeSequence.hpp
+test-AnimationTrack.o: ../bin/include/m3g/Keyframe.hpp
 test-Appearance.o: /usr/include/unittest++/UnitTest++.h
 test-Appearance.o: /usr/include/unittest++/Config.h
 test-Appearance.o: /usr/include/unittest++/Test.h
@@ -91,14 +93,20 @@ test-Appearance.o: /usr/include/unittest++/Checks.h
 test-Appearance.o: /usr/include/unittest++/TestRunner.h
 test-Appearance.o: /usr/include/unittest++/TimeConstraint.h
 test-Appearance.o: /usr/include/unittest++/TimeHelpers.h
-test-Appearance.o: ../src/Appearance.hpp ../src/m3g/Object3D.hpp
-test-Appearance.o: ../src/m3g/m3g/m3gdef.hpp ../src/m3g/m3g/m3ginternal.hpp
-test-Appearance.o: ../src/m3g/m3g/Object.hpp ../src/PolygonMode.hpp
-test-Appearance.o: ../src/CompositingMode.hpp ../src/Image2D.hpp
-test-Appearance.o: ../src/Texture2D.hpp ../src/m3g/Transformable.hpp
-test-Appearance.o: ../src/m3g/m3g/Quaternion.hpp ../src/m3g/m3g/Transform.hpp
-test-Appearance.o: ../src/m3g/m3g/m3g/Matrix.hpp ../src/Material.hpp
-test-Appearance.o: ../src/Fog.hpp
+test-Appearance.o: ../bin/include/m3g/Appearance.hpp
+test-Appearance.o: ../bin/include/m3g/Object3D.hpp
+test-Appearance.o: ../bin/include/m3g/m3gdef.hpp
+test-Appearance.o: ../bin/include/m3g/m3ginternal.hpp
+test-Appearance.o: ../bin/include/m3g/Object.hpp
+test-Appearance.o: ../bin/include/m3g/PolygonMode.hpp
+test-Appearance.o: ../bin/include/m3g/CompositingMode.hpp
+test-Appearance.o: ../bin/include/m3g/Image2D.hpp
+test-Appearance.o: ../bin/include/m3g/Texture2D.hpp
+test-Appearance.o: ../bin/include/m3g/Transformable.hpp
+test-Appearance.o: ../bin/include/m3g/Quaternion.hpp
+test-Appearance.o: ../bin/include/m3g/Transform.hpp
+test-Appearance.o: ../bin/include/m3g/Matrix.hpp
+test-Appearance.o: ../bin/include/m3g/Material.hpp ../bin/include/m3g/Fog.hpp
 test-Background.o: /usr/include/unittest++/UnitTest++.h
 test-Background.o: /usr/include/unittest++/Config.h
 test-Background.o: /usr/include/unittest++/Test.h
@@ -116,9 +124,12 @@ test-Background.o: /usr/include/unittest++/Checks.h
 test-Background.o: /usr/include/unittest++/TestRunner.h
 test-Background.o: /usr/include/unittest++/TimeConstraint.h
 test-Background.o: /usr/include/unittest++/TimeHelpers.h
-test-Background.o: ../src/Background.hpp ../src/m3g/Object3D.hpp
-test-Background.o: ../src/m3g/m3g/m3gdef.hpp ../src/m3g/m3g/m3ginternal.hpp
-test-Background.o: ../src/m3g/m3g/Object.hpp ../src/Image2D.hpp
+test-Background.o: ../bin/include/m3g/Background.hpp
+test-Background.o: ../bin/include/m3g/Object3D.hpp
+test-Background.o: ../bin/include/m3g/m3gdef.hpp
+test-Background.o: ../bin/include/m3g/m3ginternal.hpp
+test-Background.o: ../bin/include/m3g/Object.hpp
+test-Background.o: ../bin/include/m3g/Image2D.hpp
 test-Camera.o: /usr/include/unittest++/UnitTest++.h
 test-Camera.o: /usr/include/unittest++/Config.h
 test-Camera.o: /usr/include/unittest++/Test.h
@@ -135,12 +146,15 @@ test-Camera.o: /usr/include/unittest++/CheckMacros.h
 test-Camera.o: /usr/include/unittest++/Checks.h
 test-Camera.o: /usr/include/unittest++/TestRunner.h
 test-Camera.o: /usr/include/unittest++/TimeConstraint.h
-test-Camera.o: /usr/include/unittest++/TimeHelpers.h ../src/Camera.hpp
-test-Camera.o: ../src/m3g/Node.hpp ../src/m3g/Transformable.hpp
-test-Camera.o: ../src/m3g/Object3D.hpp ../src/m3g/m3g/m3gdef.hpp
-test-Camera.o: ../src/m3g/m3g/m3ginternal.hpp ../src/m3g/m3g/Object.hpp
-test-Camera.o: ../src/m3g/m3g/Quaternion.hpp ../src/m3g/m3g/Transform.hpp
-test-Camera.o: ../src/m3g/m3g/m3g/Matrix.hpp ../src/Group.hpp
+test-Camera.o: /usr/include/unittest++/TimeHelpers.h
+test-Camera.o: ../bin/include/m3g/Camera.hpp ../bin/include/m3g/Node.hpp
+test-Camera.o: ../bin/include/m3g/Transformable.hpp
+test-Camera.o: ../bin/include/m3g/Object3D.hpp ../bin/include/m3g/m3gdef.hpp
+test-Camera.o: ../bin/include/m3g/m3ginternal.hpp
+test-Camera.o: ../bin/include/m3g/Object.hpp
+test-Camera.o: ../bin/include/m3g/Quaternion.hpp
+test-Camera.o: ../bin/include/m3g/Transform.hpp ../bin/include/m3g/Matrix.hpp
+test-Camera.o: ../bin/include/m3g/Group.hpp
 test-CompositingMode.o: /usr/include/unittest++/UnitTest++.h
 test-CompositingMode.o: /usr/include/unittest++/Config.h
 test-CompositingMode.o: /usr/include/unittest++/Test.h
@@ -158,10 +172,11 @@ test-CompositingMode.o: /usr/include/unittest++/Checks.h
 test-CompositingMode.o: /usr/include/unittest++/TestRunner.h
 test-CompositingMode.o: /usr/include/unittest++/TimeConstraint.h
 test-CompositingMode.o: /usr/include/unittest++/TimeHelpers.h
-test-CompositingMode.o: ../src/CompositingMode.hpp ../src/m3g/Object3D.hpp
-test-CompositingMode.o: ../src/m3g/m3g/m3gdef.hpp
-test-CompositingMode.o: ../src/m3g/m3g/m3ginternal.hpp
-test-CompositingMode.o: ../src/m3g/m3g/Object.hpp
+test-CompositingMode.o: ../bin/include/m3g/CompositingMode.hpp
+test-CompositingMode.o: ../bin/include/m3g/Object3D.hpp
+test-CompositingMode.o: ../bin/include/m3g/m3gdef.hpp
+test-CompositingMode.o: ../bin/include/m3g/m3ginternal.hpp
+test-CompositingMode.o: ../bin/include/m3g/Object.hpp
 test-Exception.o: /usr/include/unittest++/UnitTest++.h
 test-Exception.o: /usr/include/unittest++/Config.h
 test-Exception.o: /usr/include/unittest++/Test.h
@@ -178,7 +193,8 @@ test-Exception.o: /usr/include/unittest++/CheckMacros.h
 test-Exception.o: /usr/include/unittest++/Checks.h
 test-Exception.o: /usr/include/unittest++/TestRunner.h
 test-Exception.o: /usr/include/unittest++/TimeConstraint.h
-test-Exception.o: /usr/include/unittest++/TimeHelpers.h ../src/Exception.hpp
+test-Exception.o: /usr/include/unittest++/TimeHelpers.h
+test-Exception.o: ../bin/include/m3g/Exception.hpp
 test-Fog.o: /usr/include/unittest++/UnitTest++.h
 test-Fog.o: /usr/include/unittest++/Config.h /usr/include/unittest++/Test.h
 test-Fog.o: /usr/include/unittest++/TestDetails.h
@@ -194,9 +210,9 @@ test-Fog.o: /usr/include/unittest++/CheckMacros.h
 test-Fog.o: /usr/include/unittest++/Checks.h
 test-Fog.o: /usr/include/unittest++/TestRunner.h
 test-Fog.o: /usr/include/unittest++/TimeConstraint.h
-test-Fog.o: /usr/include/unittest++/TimeHelpers.h ../src/Fog.hpp
-test-Fog.o: ../src/m3g/Object3D.hpp ../src/m3g/m3g/m3gdef.hpp
-test-Fog.o: ../src/m3g/m3g/m3ginternal.hpp ../src/m3g/m3g/Object.hpp
+test-Fog.o: /usr/include/unittest++/TimeHelpers.h ../bin/include/m3g/Fog.hpp
+test-Fog.o: ../bin/include/m3g/Object3D.hpp ../bin/include/m3g/m3gdef.hpp
+test-Fog.o: ../bin/include/m3g/m3ginternal.hpp ../bin/include/m3g/Object.hpp
 test-Group.o: /usr/include/unittest++/UnitTest++.h
 test-Group.o: /usr/include/unittest++/Config.h /usr/include/unittest++/Test.h
 test-Group.o: /usr/include/unittest++/TestDetails.h
@@ -212,12 +228,13 @@ test-Group.o: /usr/include/unittest++/CheckMacros.h
 test-Group.o: /usr/include/unittest++/Checks.h
 test-Group.o: /usr/include/unittest++/TestRunner.h
 test-Group.o: /usr/include/unittest++/TimeConstraint.h
-test-Group.o: /usr/include/unittest++/TimeHelpers.h ../src/Group.hpp
-test-Group.o: ../src/m3g/Node.hpp ../src/m3g/Transformable.hpp
-test-Group.o: ../src/m3g/Object3D.hpp ../src/m3g/m3g/m3gdef.hpp
-test-Group.o: ../src/m3g/m3g/m3ginternal.hpp ../src/m3g/m3g/Object.hpp
-test-Group.o: ../src/m3g/m3g/Quaternion.hpp ../src/m3g/m3g/Transform.hpp
-test-Group.o: ../src/m3g/m3g/m3g/Matrix.hpp
+test-Group.o: /usr/include/unittest++/TimeHelpers.h
+test-Group.o: ../bin/include/m3g/Group.hpp ../bin/include/m3g/Node.hpp
+test-Group.o: ../bin/include/m3g/Transformable.hpp
+test-Group.o: ../bin/include/m3g/Object3D.hpp ../bin/include/m3g/m3gdef.hpp
+test-Group.o: ../bin/include/m3g/m3ginternal.hpp
+test-Group.o: ../bin/include/m3g/Object.hpp ../bin/include/m3g/Quaternion.hpp
+test-Group.o: ../bin/include/m3g/Transform.hpp ../bin/include/m3g/Matrix.hpp
 test-Image2D.o: /usr/include/unittest++/UnitTest++.h
 test-Image2D.o: /usr/include/unittest++/Config.h
 test-Image2D.o: /usr/include/unittest++/Test.h
@@ -234,34 +251,45 @@ test-Image2D.o: /usr/include/unittest++/CheckMacros.h
 test-Image2D.o: /usr/include/unittest++/Checks.h
 test-Image2D.o: /usr/include/unittest++/TestRunner.h
 test-Image2D.o: /usr/include/unittest++/TimeConstraint.h
-test-Image2D.o: /usr/include/unittest++/TimeHelpers.h ../src/Image2D.hpp
-test-Image2D.o: ../src/m3g/Object3D.hpp ../src/m3g/m3g/m3gdef.hpp
-test-Image2D.o: ../src/m3g/m3g/m3ginternal.hpp ../src/m3g/m3g/Object.hpp
-test-Image2D.o: ../src/Exception.hpp ../src/Loader.hpp
-test-Image2D.o: ../src/m3g/M3GReader.hpp ../src/m3g/m3g/InMemoryStream.hpp
-test-Image2D.o: ../src/m3g/m3g/M3GStruct.hpp ../src/m3g/m3g.hpp
-test-Image2D.o: ../src/m3g/m3g/Graphics3D.hpp
-test-Image2D.o: ../src/m3g/m3g/AnimationController.hpp
-test-Image2D.o: ../src/m3g/m3g/AnimationTrack.hpp
-test-Image2D.o: ../src/m3g/m3g/Appearance.hpp ../src/m3g/m3g/Background.hpp
-test-Image2D.o: ../src/m3g/m3g/CompositingMode.hpp ../src/m3g/m3g/Fog.hpp
-test-Image2D.o: ../src/m3g/m3g/Image2D.hpp ../src/m3g/m3g/IndexBuffer.hpp
-test-Image2D.o: ../src/m3g/m3g/TriangleStripArray.hpp
-test-Image2D.o: ../src/m3g/m3g/KeyframeSequence.hpp ../src/m3g/Keyframe.hpp
-test-Image2D.o: ../src/m3g/m3g/Material.hpp ../src/m3g/m3g/PolygonMode.hpp
-test-Image2D.o: ../src/m3g/Transformable.hpp ../src/m3g/m3g/Quaternion.hpp
-test-Image2D.o: ../src/m3g/m3g/Transform.hpp ../src/m3g/m3g/m3g/Matrix.hpp
-test-Image2D.o: ../src/m3g/Node.hpp ../src/m3g/m3g/Camera.hpp
-test-Image2D.o: ../src/m3g/m3g/Group.hpp ../src/m3g/m3g/World.hpp
-test-Image2D.o: ../src/m3g/m3g/Light.hpp ../src/m3g/m3g/Mesh.hpp
-test-Image2D.o: ../src/m3g/m3g/MorphingMesh.hpp
-test-Image2D.o: ../src/m3g/m3g/SkinnedMesh.hpp
-test-Image2D.o: ../src/m3g/m3g/m3g/BoneWeight.hpp ../src/m3g/m3g/Sprite3D.hpp
-test-Image2D.o: ../src/m3g/m3g/Texture2D.hpp ../src/m3g/m3g/VertexArray.hpp
-test-Image2D.o: ../src/m3g/m3g/VertexBuffer.hpp
-test-Image2D.o: ../src/m3g/m3g/RayIntersection.hpp
-test-Image2D.o: ../src/m3g/m3g/m3g/Vector.hpp ../src/m3g/m3g/Loader.hpp
-test-Image2D.o: ../src/m3g/m3g/Exception.hpp ../src/m3g/m3g/RenderState.hpp
+test-Image2D.o: /usr/include/unittest++/TimeHelpers.h
+test-Image2D.o: ../bin/include/m3g/Image2D.hpp
+test-Image2D.o: ../bin/include/m3g/Object3D.hpp ../bin/include/m3g/m3gdef.hpp
+test-Image2D.o: ../bin/include/m3g/m3ginternal.hpp
+test-Image2D.o: ../bin/include/m3g/Object.hpp
+test-Image2D.o: ../bin/include/m3g/Exception.hpp
+test-Image2D.o: ../bin/include/m3g/Loader.hpp
+test-Image2D.o: ../bin/include/m3g/M3GReader.hpp
+test-Image2D.o: ../bin/include/m3g/InMemoryStream.hpp
+test-Image2D.o: ../bin/include/m3g/M3GStruct.hpp ../bin/include/m3g/m3g.hpp
+test-Image2D.o: ../bin/include/m3g/Graphics3D.hpp
+test-Image2D.o: ../bin/include/m3g/AnimationController.hpp
+test-Image2D.o: ../bin/include/m3g/AnimationTrack.hpp
+test-Image2D.o: ../bin/include/m3g/Appearance.hpp
+test-Image2D.o: ../bin/include/m3g/Background.hpp
+test-Image2D.o: ../bin/include/m3g/CompositingMode.hpp
+test-Image2D.o: ../bin/include/m3g/Fog.hpp ../bin/include/m3g/IndexBuffer.hpp
+test-Image2D.o: ../bin/include/m3g/TriangleStripArray.hpp
+test-Image2D.o: ../bin/include/m3g/KeyframeSequence.hpp
+test-Image2D.o: ../bin/include/m3g/Keyframe.hpp
+test-Image2D.o: ../bin/include/m3g/Material.hpp
+test-Image2D.o: ../bin/include/m3g/PolygonMode.hpp
+test-Image2D.o: ../bin/include/m3g/Transformable.hpp
+test-Image2D.o: ../bin/include/m3g/Quaternion.hpp
+test-Image2D.o: ../bin/include/m3g/Transform.hpp
+test-Image2D.o: ../bin/include/m3g/Matrix.hpp ../bin/include/m3g/Node.hpp
+test-Image2D.o: ../bin/include/m3g/Camera.hpp ../bin/include/m3g/Group.hpp
+test-Image2D.o: ../bin/include/m3g/World.hpp ../bin/include/m3g/Light.hpp
+test-Image2D.o: ../bin/include/m3g/Mesh.hpp
+test-Image2D.o: ../bin/include/m3g/MorphingMesh.hpp
+test-Image2D.o: ../bin/include/m3g/SkinnedMesh.hpp
+test-Image2D.o: ../bin/include/m3g/BoneWeight.hpp
+test-Image2D.o: ../bin/include/m3g/Sprite3D.hpp
+test-Image2D.o: ../bin/include/m3g/Texture2D.hpp
+test-Image2D.o: ../bin/include/m3g/VertexArray.hpp
+test-Image2D.o: ../bin/include/m3g/VertexBuffer.hpp
+test-Image2D.o: ../bin/include/m3g/RayIntersection.hpp
+test-Image2D.o: ../bin/include/m3g/Vector.hpp
+test-Image2D.o: ../bin/include/m3g/RenderState.hpp
 test-Intersect.o: /usr/include/unittest++/UnitTest++.h
 test-Intersect.o: /usr/include/unittest++/Config.h
 test-Intersect.o: /usr/include/unittest++/Test.h
@@ -278,8 +306,9 @@ test-Intersect.o: /usr/include/unittest++/CheckMacros.h
 test-Intersect.o: /usr/include/unittest++/Checks.h
 test-Intersect.o: /usr/include/unittest++/TestRunner.h
 test-Intersect.o: /usr/include/unittest++/TimeConstraint.h
-test-Intersect.o: /usr/include/unittest++/TimeHelpers.h ../src/Intersect.hpp
-test-Intersect.o: ../src/Vector.hpp
+test-Intersect.o: /usr/include/unittest++/TimeHelpers.h
+test-Intersect.o: ../bin/include/m3g/Intersect.hpp
+test-Intersect.o: ../bin/include/m3g/Vector.hpp
 test-Keyframe.o: /usr/include/unittest++/UnitTest++.h
 test-Keyframe.o: /usr/include/unittest++/Config.h
 test-Keyframe.o: /usr/include/unittest++/Test.h
@@ -296,8 +325,9 @@ test-Keyframe.o: /usr/include/unittest++/CheckMacros.h
 test-Keyframe.o: /usr/include/unittest++/Checks.h
 test-Keyframe.o: /usr/include/unittest++/TestRunner.h
 test-Keyframe.o: /usr/include/unittest++/TimeConstraint.h
-test-Keyframe.o: /usr/include/unittest++/TimeHelpers.h ../src/Keyframe.hpp
-test-Keyframe.o: ../src/Quaternion.hpp
+test-Keyframe.o: /usr/include/unittest++/TimeHelpers.h
+test-Keyframe.o: ../bin/include/m3g/Keyframe.hpp
+test-Keyframe.o: ../bin/include/m3g/Quaternion.hpp
 test-KeyframeSequence.o: /usr/include/unittest++/UnitTest++.h
 test-KeyframeSequence.o: /usr/include/unittest++/Config.h
 test-KeyframeSequence.o: /usr/include/unittest++/Test.h
@@ -315,10 +345,12 @@ test-KeyframeSequence.o: /usr/include/unittest++/Checks.h
 test-KeyframeSequence.o: /usr/include/unittest++/TestRunner.h
 test-KeyframeSequence.o: /usr/include/unittest++/TimeConstraint.h
 test-KeyframeSequence.o: /usr/include/unittest++/TimeHelpers.h
-test-KeyframeSequence.o: ../src/KeyframeSequence.hpp ../src/m3g/Object3D.hpp
-test-KeyframeSequence.o: ../src/m3g/m3g/m3gdef.hpp
-test-KeyframeSequence.o: ../src/m3g/m3g/m3ginternal.hpp
-test-KeyframeSequence.o: ../src/m3g/m3g/Object.hpp ../src/m3g/Keyframe.hpp
+test-KeyframeSequence.o: ../bin/include/m3g/KeyframeSequence.hpp
+test-KeyframeSequence.o: ../bin/include/m3g/Object3D.hpp
+test-KeyframeSequence.o: ../bin/include/m3g/m3gdef.hpp
+test-KeyframeSequence.o: ../bin/include/m3g/m3ginternal.hpp
+test-KeyframeSequence.o: ../bin/include/m3g/Object.hpp
+test-KeyframeSequence.o: ../bin/include/m3g/Keyframe.hpp
 test-Light.o: /usr/include/unittest++/UnitTest++.h
 test-Light.o: /usr/include/unittest++/Config.h /usr/include/unittest++/Test.h
 test-Light.o: /usr/include/unittest++/TestDetails.h
@@ -334,12 +366,13 @@ test-Light.o: /usr/include/unittest++/CheckMacros.h
 test-Light.o: /usr/include/unittest++/Checks.h
 test-Light.o: /usr/include/unittest++/TestRunner.h
 test-Light.o: /usr/include/unittest++/TimeConstraint.h
-test-Light.o: /usr/include/unittest++/TimeHelpers.h ../src/Light.hpp
-test-Light.o: ../src/m3g/Node.hpp ../src/m3g/Transformable.hpp
-test-Light.o: ../src/m3g/Object3D.hpp ../src/m3g/m3g/m3gdef.hpp
-test-Light.o: ../src/m3g/m3g/m3ginternal.hpp ../src/m3g/m3g/Object.hpp
-test-Light.o: ../src/m3g/m3g/Quaternion.hpp ../src/m3g/m3g/Transform.hpp
-test-Light.o: ../src/m3g/m3g/m3g/Matrix.hpp
+test-Light.o: /usr/include/unittest++/TimeHelpers.h
+test-Light.o: ../bin/include/m3g/Light.hpp ../bin/include/m3g/Node.hpp
+test-Light.o: ../bin/include/m3g/Transformable.hpp
+test-Light.o: ../bin/include/m3g/Object3D.hpp ../bin/include/m3g/m3gdef.hpp
+test-Light.o: ../bin/include/m3g/m3ginternal.hpp
+test-Light.o: ../bin/include/m3g/Object.hpp ../bin/include/m3g/Quaternion.hpp
+test-Light.o: ../bin/include/m3g/Transform.hpp ../bin/include/m3g/Matrix.hpp
 test-Loader.o: /usr/include/unittest++/UnitTest++.h
 test-Loader.o: /usr/include/unittest++/Config.h
 test-Loader.o: /usr/include/unittest++/Test.h
@@ -356,32 +389,43 @@ test-Loader.o: /usr/include/unittest++/CheckMacros.h
 test-Loader.o: /usr/include/unittest++/Checks.h
 test-Loader.o: /usr/include/unittest++/TestRunner.h
 test-Loader.o: /usr/include/unittest++/TimeConstraint.h
-test-Loader.o: /usr/include/unittest++/TimeHelpers.h ../src/Loader.hpp
-test-Loader.o: ../src/m3g/m3g/Object.hpp ../src/m3g/M3GReader.hpp
-test-Loader.o: ../src/m3g/m3g/InMemoryStream.hpp ../src/m3g/m3g/M3GStruct.hpp
-test-Loader.o: ../src/m3g/m3g.hpp ../src/m3g/m3g/m3gdef.hpp
-test-Loader.o: ../src/m3g/m3g/Graphics3D.hpp ../src/m3g/Object3D.hpp
-test-Loader.o: ../src/m3g/m3g/m3ginternal.hpp
-test-Loader.o: ../src/m3g/m3g/AnimationController.hpp
-test-Loader.o: ../src/m3g/m3g/AnimationTrack.hpp
-test-Loader.o: ../src/m3g/m3g/Appearance.hpp ../src/m3g/m3g/Background.hpp
-test-Loader.o: ../src/m3g/m3g/CompositingMode.hpp ../src/m3g/m3g/Fog.hpp
-test-Loader.o: ../src/m3g/m3g/Image2D.hpp ../src/m3g/m3g/IndexBuffer.hpp
-test-Loader.o: ../src/m3g/m3g/TriangleStripArray.hpp
-test-Loader.o: ../src/m3g/m3g/KeyframeSequence.hpp ../src/m3g/Keyframe.hpp
-test-Loader.o: ../src/m3g/m3g/Material.hpp ../src/m3g/m3g/PolygonMode.hpp
-test-Loader.o: ../src/m3g/Transformable.hpp ../src/m3g/m3g/Quaternion.hpp
-test-Loader.o: ../src/m3g/m3g/Transform.hpp ../src/m3g/m3g/m3g/Matrix.hpp
-test-Loader.o: ../src/m3g/Node.hpp ../src/m3g/m3g/Camera.hpp
-test-Loader.o: ../src/m3g/m3g/Group.hpp ../src/m3g/m3g/World.hpp
-test-Loader.o: ../src/m3g/m3g/Light.hpp ../src/m3g/m3g/Mesh.hpp
-test-Loader.o: ../src/m3g/m3g/MorphingMesh.hpp ../src/m3g/m3g/SkinnedMesh.hpp
-test-Loader.o: ../src/m3g/m3g/m3g/BoneWeight.hpp ../src/m3g/m3g/Sprite3D.hpp
-test-Loader.o: ../src/m3g/m3g/Texture2D.hpp ../src/m3g/m3g/VertexArray.hpp
-test-Loader.o: ../src/m3g/m3g/VertexBuffer.hpp
-test-Loader.o: ../src/m3g/m3g/RayIntersection.hpp
-test-Loader.o: ../src/m3g/m3g/m3g/Vector.hpp ../src/m3g/m3g/Loader.hpp
-test-Loader.o: ../src/m3g/m3g/Exception.hpp ../src/m3g/m3g/RenderState.hpp
+test-Loader.o: /usr/include/unittest++/TimeHelpers.h
+test-Loader.o: ../bin/include/m3g/Loader.hpp ../bin/include/m3g/Object.hpp
+test-Loader.o: ../bin/include/m3g/M3GReader.hpp
+test-Loader.o: ../bin/include/m3g/InMemoryStream.hpp
+test-Loader.o: ../bin/include/m3g/M3GStruct.hpp ../bin/include/m3g/m3g.hpp
+test-Loader.o: ../bin/include/m3g/m3gdef.hpp
+test-Loader.o: ../bin/include/m3g/Graphics3D.hpp
+test-Loader.o: ../bin/include/m3g/Object3D.hpp
+test-Loader.o: ../bin/include/m3g/m3ginternal.hpp
+test-Loader.o: ../bin/include/m3g/AnimationController.hpp
+test-Loader.o: ../bin/include/m3g/AnimationTrack.hpp
+test-Loader.o: ../bin/include/m3g/Appearance.hpp
+test-Loader.o: ../bin/include/m3g/Background.hpp
+test-Loader.o: ../bin/include/m3g/CompositingMode.hpp
+test-Loader.o: ../bin/include/m3g/Fog.hpp ../bin/include/m3g/Image2D.hpp
+test-Loader.o: ../bin/include/m3g/IndexBuffer.hpp
+test-Loader.o: ../bin/include/m3g/TriangleStripArray.hpp
+test-Loader.o: ../bin/include/m3g/KeyframeSequence.hpp
+test-Loader.o: ../bin/include/m3g/Keyframe.hpp
+test-Loader.o: ../bin/include/m3g/Material.hpp
+test-Loader.o: ../bin/include/m3g/PolygonMode.hpp
+test-Loader.o: ../bin/include/m3g/Transformable.hpp
+test-Loader.o: ../bin/include/m3g/Quaternion.hpp
+test-Loader.o: ../bin/include/m3g/Transform.hpp ../bin/include/m3g/Matrix.hpp
+test-Loader.o: ../bin/include/m3g/Node.hpp ../bin/include/m3g/Camera.hpp
+test-Loader.o: ../bin/include/m3g/Group.hpp ../bin/include/m3g/World.hpp
+test-Loader.o: ../bin/include/m3g/Light.hpp ../bin/include/m3g/Mesh.hpp
+test-Loader.o: ../bin/include/m3g/MorphingMesh.hpp
+test-Loader.o: ../bin/include/m3g/SkinnedMesh.hpp
+test-Loader.o: ../bin/include/m3g/BoneWeight.hpp
+test-Loader.o: ../bin/include/m3g/Sprite3D.hpp
+test-Loader.o: ../bin/include/m3g/Texture2D.hpp
+test-Loader.o: ../bin/include/m3g/VertexArray.hpp
+test-Loader.o: ../bin/include/m3g/VertexBuffer.hpp
+test-Loader.o: ../bin/include/m3g/RayIntersection.hpp
+test-Loader.o: ../bin/include/m3g/Vector.hpp ../bin/include/m3g/Exception.hpp
+test-Loader.o: ../bin/include/m3g/RenderState.hpp
 test-Material.o: /usr/include/unittest++/UnitTest++.h
 test-Material.o: /usr/include/unittest++/Config.h
 test-Material.o: /usr/include/unittest++/Test.h
@@ -398,9 +442,12 @@ test-Material.o: /usr/include/unittest++/CheckMacros.h
 test-Material.o: /usr/include/unittest++/Checks.h
 test-Material.o: /usr/include/unittest++/TestRunner.h
 test-Material.o: /usr/include/unittest++/TimeConstraint.h
-test-Material.o: /usr/include/unittest++/TimeHelpers.h ../src/Material.hpp
-test-Material.o: ../src/m3g/Object3D.hpp ../src/m3g/m3g/m3gdef.hpp
-test-Material.o: ../src/m3g/m3g/m3ginternal.hpp ../src/m3g/m3g/Object.hpp
+test-Material.o: /usr/include/unittest++/TimeHelpers.h
+test-Material.o: ../bin/include/m3g/Material.hpp
+test-Material.o: ../bin/include/m3g/Object3D.hpp
+test-Material.o: ../bin/include/m3g/m3gdef.hpp
+test-Material.o: ../bin/include/m3g/m3ginternal.hpp
+test-Material.o: ../bin/include/m3g/Object.hpp
 test-Matrix.o: /usr/include/unittest++/UnitTest++.h
 test-Matrix.o: /usr/include/unittest++/Config.h
 test-Matrix.o: /usr/include/unittest++/Test.h
@@ -417,9 +464,9 @@ test-Matrix.o: /usr/include/unittest++/CheckMacros.h
 test-Matrix.o: /usr/include/unittest++/Checks.h
 test-Matrix.o: /usr/include/unittest++/TestRunner.h
 test-Matrix.o: /usr/include/unittest++/TimeConstraint.h
-test-Matrix.o: /usr/include/unittest++/TimeHelpers.h ../src/Matrix.hpp
-test-Matrix.o: ../src/Vector.hpp
-test-MemoryReader.o: ../src/MemoryReader.hpp /usr/include/png.h
+test-Matrix.o: /usr/include/unittest++/TimeHelpers.h
+test-Matrix.o: ../bin/include/m3g/Matrix.hpp ../bin/include/m3g/Vector.hpp
+test-MemoryReader.o: ../bin/include/m3g/MemoryReader.hpp /usr/include/png.h
 test-MemoryReader.o: /usr/include/zlib.h /usr/include/zconf.h
 test-MemoryReader.o: /usr/include/zlibdefs.h /usr/include/sys/types.h
 test-MemoryReader.o: /usr/include/features.h /usr/include/bits/predefs.h
@@ -472,15 +519,20 @@ test-Mesh.o: /usr/include/unittest++/CheckMacros.h
 test-Mesh.o: /usr/include/unittest++/Checks.h
 test-Mesh.o: /usr/include/unittest++/TestRunner.h
 test-Mesh.o: /usr/include/unittest++/TimeConstraint.h
-test-Mesh.o: /usr/include/unittest++/TimeHelpers.h ../src/Mesh.hpp
-test-Mesh.o: ../src/m3g/Node.hpp ../src/m3g/Transformable.hpp
-test-Mesh.o: ../src/m3g/Object3D.hpp ../src/m3g/m3g/m3gdef.hpp
-test-Mesh.o: ../src/m3g/m3g/m3ginternal.hpp ../src/m3g/m3g/Object.hpp
-test-Mesh.o: ../src/m3g/m3g/Quaternion.hpp ../src/m3g/m3g/Transform.hpp
-test-Mesh.o: ../src/m3g/m3g/m3g/Matrix.hpp ../src/VertexArray.hpp
-test-Mesh.o: ../src/VertexBuffer.hpp ../src/TriangleStripArray.hpp
-test-Mesh.o: ../src/m3g/m3g/IndexBuffer.hpp ../src/Appearance.hpp
-test-Mesh.o: ../src/RayIntersection.hpp ../src/m3g/m3g/m3g/Vector.hpp
+test-Mesh.o: /usr/include/unittest++/TimeHelpers.h
+test-Mesh.o: ../bin/include/m3g/Mesh.hpp ../bin/include/m3g/Node.hpp
+test-Mesh.o: ../bin/include/m3g/Transformable.hpp
+test-Mesh.o: ../bin/include/m3g/Object3D.hpp ../bin/include/m3g/m3gdef.hpp
+test-Mesh.o: ../bin/include/m3g/m3ginternal.hpp ../bin/include/m3g/Object.hpp
+test-Mesh.o: ../bin/include/m3g/Quaternion.hpp
+test-Mesh.o: ../bin/include/m3g/Transform.hpp ../bin/include/m3g/Matrix.hpp
+test-Mesh.o: ../bin/include/m3g/VertexArray.hpp
+test-Mesh.o: ../bin/include/m3g/VertexBuffer.hpp
+test-Mesh.o: ../bin/include/m3g/TriangleStripArray.hpp
+test-Mesh.o: ../bin/include/m3g/IndexBuffer.hpp
+test-Mesh.o: ../bin/include/m3g/Appearance.hpp
+test-Mesh.o: ../bin/include/m3g/RayIntersection.hpp
+test-Mesh.o: ../bin/include/m3g/Vector.hpp
 test-MorphingMesh.o: /usr/include/unittest++/UnitTest++.h
 test-MorphingMesh.o: /usr/include/unittest++/Config.h
 test-MorphingMesh.o: /usr/include/unittest++/Test.h
@@ -498,16 +550,22 @@ test-MorphingMesh.o: /usr/include/unittest++/Checks.h
 test-MorphingMesh.o: /usr/include/unittest++/TestRunner.h
 test-MorphingMesh.o: /usr/include/unittest++/TimeConstraint.h
 test-MorphingMesh.o: /usr/include/unittest++/TimeHelpers.h
-test-MorphingMesh.o: ../src/MorphingMesh.hpp ../src/m3g/m3g/Mesh.hpp
-test-MorphingMesh.o: ../src/m3g/Node.hpp ../src/m3g/Transformable.hpp
-test-MorphingMesh.o: ../src/m3g/Object3D.hpp ../src/m3g/m3g/m3gdef.hpp
-test-MorphingMesh.o: ../src/m3g/m3g/m3ginternal.hpp ../src/m3g/m3g/Object.hpp
-test-MorphingMesh.o: ../src/m3g/m3g/Quaternion.hpp
-test-MorphingMesh.o: ../src/m3g/m3g/Transform.hpp
-test-MorphingMesh.o: ../src/m3g/m3g/m3g/Matrix.hpp ../src/VertexArray.hpp
-test-MorphingMesh.o: ../src/VertexBuffer.hpp ../src/TriangleStripArray.hpp
-test-MorphingMesh.o: ../src/m3g/m3g/IndexBuffer.hpp ../src/Appearance.hpp
-test-MorphingMesh.o: ../src/Group.hpp
+test-MorphingMesh.o: ../bin/include/m3g/MorphingMesh.hpp
+test-MorphingMesh.o: ../bin/include/m3g/Mesh.hpp ../bin/include/m3g/Node.hpp
+test-MorphingMesh.o: ../bin/include/m3g/Transformable.hpp
+test-MorphingMesh.o: ../bin/include/m3g/Object3D.hpp
+test-MorphingMesh.o: ../bin/include/m3g/m3gdef.hpp
+test-MorphingMesh.o: ../bin/include/m3g/m3ginternal.hpp
+test-MorphingMesh.o: ../bin/include/m3g/Object.hpp
+test-MorphingMesh.o: ../bin/include/m3g/Quaternion.hpp
+test-MorphingMesh.o: ../bin/include/m3g/Transform.hpp
+test-MorphingMesh.o: ../bin/include/m3g/Matrix.hpp
+test-MorphingMesh.o: ../bin/include/m3g/VertexArray.hpp
+test-MorphingMesh.o: ../bin/include/m3g/VertexBuffer.hpp
+test-MorphingMesh.o: ../bin/include/m3g/TriangleStripArray.hpp
+test-MorphingMesh.o: ../bin/include/m3g/IndexBuffer.hpp
+test-MorphingMesh.o: ../bin/include/m3g/Appearance.hpp
+test-MorphingMesh.o: ../bin/include/m3g/Group.hpp
 test-Node.o: /usr/include/unittest++/UnitTest++.h
 test-Node.o: /usr/include/unittest++/Config.h /usr/include/unittest++/Test.h
 test-Node.o: /usr/include/unittest++/TestDetails.h
@@ -523,13 +581,13 @@ test-Node.o: /usr/include/unittest++/CheckMacros.h
 test-Node.o: /usr/include/unittest++/Checks.h
 test-Node.o: /usr/include/unittest++/TestRunner.h
 test-Node.o: /usr/include/unittest++/TimeConstraint.h
-test-Node.o: /usr/include/unittest++/TimeHelpers.h ../src/Node.hpp
-test-Node.o: ../src/m3g/Transformable.hpp ../src/m3g/Object3D.hpp
-test-Node.o: ../src/m3g/m3g/m3gdef.hpp ../src/m3g/m3g/m3ginternal.hpp
-test-Node.o: ../src/m3g/m3g/Object.hpp ../src/m3g/m3g/Quaternion.hpp
-test-Node.o: ../src/m3g/m3g/Transform.hpp ../src/m3g/m3g/m3g/Matrix.hpp
-test-Node.o: ../src/Group.hpp ../src/m3g/Node.hpp ../src/World.hpp
-test-Node.o: ../src/m3g/m3g/Group.hpp
+test-Node.o: /usr/include/unittest++/TimeHelpers.h
+test-Node.o: ../bin/include/m3g/Node.hpp ../bin/include/m3g/Transformable.hpp
+test-Node.o: ../bin/include/m3g/Object3D.hpp ../bin/include/m3g/m3gdef.hpp
+test-Node.o: ../bin/include/m3g/m3ginternal.hpp ../bin/include/m3g/Object.hpp
+test-Node.o: ../bin/include/m3g/Quaternion.hpp
+test-Node.o: ../bin/include/m3g/Transform.hpp ../bin/include/m3g/Matrix.hpp
+test-Node.o: ../bin/include/m3g/Group.hpp ../bin/include/m3g/World.hpp
 test-Object.o: /usr/include/unittest++/UnitTest++.h
 test-Object.o: /usr/include/unittest++/Config.h
 test-Object.o: /usr/include/unittest++/Test.h
@@ -546,7 +604,8 @@ test-Object.o: /usr/include/unittest++/CheckMacros.h
 test-Object.o: /usr/include/unittest++/Checks.h
 test-Object.o: /usr/include/unittest++/TestRunner.h
 test-Object.o: /usr/include/unittest++/TimeConstraint.h
-test-Object.o: /usr/include/unittest++/TimeHelpers.h ../src/Object.hpp
+test-Object.o: /usr/include/unittest++/TimeHelpers.h
+test-Object.o: ../bin/include/m3g/Object.hpp
 test-Object3D.o: /usr/include/unittest++/UnitTest++.h
 test-Object3D.o: /usr/include/unittest++/Config.h
 test-Object3D.o: /usr/include/unittest++/Test.h
@@ -563,11 +622,14 @@ test-Object3D.o: /usr/include/unittest++/CheckMacros.h
 test-Object3D.o: /usr/include/unittest++/Checks.h
 test-Object3D.o: /usr/include/unittest++/TestRunner.h
 test-Object3D.o: /usr/include/unittest++/TimeConstraint.h
-test-Object3D.o: /usr/include/unittest++/TimeHelpers.h ../src/Object3D.hpp
-test-Object3D.o: ../src/m3g/m3g/m3gdef.hpp ../src/m3g/m3g/m3ginternal.hpp
-test-Object3D.o: ../src/m3g/m3g/Object.hpp ../src/AnimationTrack.hpp
-test-Object3D.o: ../src/m3g/Object3D.hpp ../src/KeyframeSequence.hpp
-test-Object3D.o: ../src/m3g/Keyframe.hpp
+test-Object3D.o: /usr/include/unittest++/TimeHelpers.h
+test-Object3D.o: ../bin/include/m3g/Object3D.hpp
+test-Object3D.o: ../bin/include/m3g/m3gdef.hpp
+test-Object3D.o: ../bin/include/m3g/m3ginternal.hpp
+test-Object3D.o: ../bin/include/m3g/Object.hpp
+test-Object3D.o: ../bin/include/m3g/AnimationTrack.hpp
+test-Object3D.o: ../bin/include/m3g/KeyframeSequence.hpp
+test-Object3D.o: ../bin/include/m3g/Keyframe.hpp
 test-PolygonMode.o: /usr/include/unittest++/UnitTest++.h
 test-PolygonMode.o: /usr/include/unittest++/Config.h
 test-PolygonMode.o: /usr/include/unittest++/Test.h
@@ -585,9 +647,11 @@ test-PolygonMode.o: /usr/include/unittest++/Checks.h
 test-PolygonMode.o: /usr/include/unittest++/TestRunner.h
 test-PolygonMode.o: /usr/include/unittest++/TimeConstraint.h
 test-PolygonMode.o: /usr/include/unittest++/TimeHelpers.h
-test-PolygonMode.o: ../src/PolygonMode.hpp ../src/m3g/Object3D.hpp
-test-PolygonMode.o: ../src/m3g/m3g/m3gdef.hpp ../src/m3g/m3g/m3ginternal.hpp
-test-PolygonMode.o: ../src/m3g/m3g/Object.hpp
+test-PolygonMode.o: ../bin/include/m3g/PolygonMode.hpp
+test-PolygonMode.o: ../bin/include/m3g/Object3D.hpp
+test-PolygonMode.o: ../bin/include/m3g/m3gdef.hpp
+test-PolygonMode.o: ../bin/include/m3g/m3ginternal.hpp
+test-PolygonMode.o: ../bin/include/m3g/Object.hpp
 test-Quaternion.o: /usr/include/unittest++/UnitTest++.h
 test-Quaternion.o: /usr/include/unittest++/Config.h
 test-Quaternion.o: /usr/include/unittest++/Test.h
@@ -605,7 +669,9 @@ test-Quaternion.o: /usr/include/unittest++/Checks.h
 test-Quaternion.o: /usr/include/unittest++/TestRunner.h
 test-Quaternion.o: /usr/include/unittest++/TimeConstraint.h
 test-Quaternion.o: /usr/include/unittest++/TimeHelpers.h
-test-Quaternion.o: ../src/Quaternion.hpp ../src/Matrix.hpp ../src/Vector.hpp
+test-Quaternion.o: ../bin/include/m3g/Quaternion.hpp
+test-Quaternion.o: ../bin/include/m3g/Matrix.hpp
+test-Quaternion.o: ../bin/include/m3g/Vector.hpp
 test-RayIntersect.o: /usr/include/unittest++/UnitTest++.h
 test-RayIntersect.o: /usr/include/unittest++/Config.h
 test-RayIntersect.o: /usr/include/unittest++/Test.h
@@ -623,17 +689,23 @@ test-RayIntersect.o: /usr/include/unittest++/Checks.h
 test-RayIntersect.o: /usr/include/unittest++/TestRunner.h
 test-RayIntersect.o: /usr/include/unittest++/TimeConstraint.h
 test-RayIntersect.o: /usr/include/unittest++/TimeHelpers.h
-test-RayIntersect.o: ../src/Intersect.hpp ../src/VertexArray.hpp
-test-RayIntersect.o: ../src/m3g/Object3D.hpp ../src/m3g/m3g/m3gdef.hpp
-test-RayIntersect.o: ../src/m3g/m3g/m3ginternal.hpp ../src/m3g/m3g/Object.hpp
-test-RayIntersect.o: ../src/VertexBuffer.hpp ../src/TriangleStripArray.hpp
-test-RayIntersect.o: ../src/m3g/m3g/IndexBuffer.hpp ../src/Appearance.hpp
-test-RayIntersect.o: ../src/Mesh.hpp ../src/m3g/Node.hpp
-test-RayIntersect.o: ../src/m3g/Transformable.hpp
-test-RayIntersect.o: ../src/m3g/m3g/Quaternion.hpp
-test-RayIntersect.o: ../src/m3g/m3g/Transform.hpp
-test-RayIntersect.o: ../src/m3g/m3g/m3g/Matrix.hpp ../src/Vector.hpp
-test-RayIntersect.o: ../src/RayIntersection.hpp ../src/m3g/m3g/m3g/Vector.hpp
+test-RayIntersect.o: ../bin/include/m3g/Intersect.hpp
+test-RayIntersect.o: ../bin/include/m3g/VertexArray.hpp
+test-RayIntersect.o: ../bin/include/m3g/Object3D.hpp
+test-RayIntersect.o: ../bin/include/m3g/m3gdef.hpp
+test-RayIntersect.o: ../bin/include/m3g/m3ginternal.hpp
+test-RayIntersect.o: ../bin/include/m3g/Object.hpp
+test-RayIntersect.o: ../bin/include/m3g/VertexBuffer.hpp
+test-RayIntersect.o: ../bin/include/m3g/TriangleStripArray.hpp
+test-RayIntersect.o: ../bin/include/m3g/IndexBuffer.hpp
+test-RayIntersect.o: ../bin/include/m3g/Appearance.hpp
+test-RayIntersect.o: ../bin/include/m3g/Mesh.hpp ../bin/include/m3g/Node.hpp
+test-RayIntersect.o: ../bin/include/m3g/Transformable.hpp
+test-RayIntersect.o: ../bin/include/m3g/Quaternion.hpp
+test-RayIntersect.o: ../bin/include/m3g/Transform.hpp
+test-RayIntersect.o: ../bin/include/m3g/Matrix.hpp
+test-RayIntersect.o: ../bin/include/m3g/Vector.hpp
+test-RayIntersect.o: ../bin/include/m3g/RayIntersection.hpp
 test-SkinnedMesh.o: /usr/include/unittest++/UnitTest++.h
 test-SkinnedMesh.o: /usr/include/unittest++/Config.h
 test-SkinnedMesh.o: /usr/include/unittest++/Test.h
@@ -651,17 +723,24 @@ test-SkinnedMesh.o: /usr/include/unittest++/Checks.h
 test-SkinnedMesh.o: /usr/include/unittest++/TestRunner.h
 test-SkinnedMesh.o: /usr/include/unittest++/TimeConstraint.h
 test-SkinnedMesh.o: /usr/include/unittest++/TimeHelpers.h
-test-SkinnedMesh.o: ../src/SkinnedMesh.hpp ../src/m3g/m3g/Mesh.hpp
-test-SkinnedMesh.o: ../src/m3g/Node.hpp ../src/m3g/Transformable.hpp
-test-SkinnedMesh.o: ../src/m3g/Object3D.hpp ../src/m3g/m3g/m3gdef.hpp
-test-SkinnedMesh.o: ../src/m3g/m3g/m3ginternal.hpp ../src/m3g/m3g/Object.hpp
-test-SkinnedMesh.o: ../src/m3g/m3g/Quaternion.hpp
-test-SkinnedMesh.o: ../src/m3g/m3g/Transform.hpp
-test-SkinnedMesh.o: ../src/m3g/m3g/m3g/Matrix.hpp
-test-SkinnedMesh.o: ../src/m3g/m3g/m3g/BoneWeight.hpp ../src/VertexArray.hpp
-test-SkinnedMesh.o: ../src/VertexBuffer.hpp ../src/TriangleStripArray.hpp
-test-SkinnedMesh.o: ../src/m3g/m3g/IndexBuffer.hpp ../src/Appearance.hpp
-test-SkinnedMesh.o: ../src/Group.hpp ../src/Exception.hpp
+test-SkinnedMesh.o: ../bin/include/m3g/SkinnedMesh.hpp
+test-SkinnedMesh.o: ../bin/include/m3g/Mesh.hpp ../bin/include/m3g/Node.hpp
+test-SkinnedMesh.o: ../bin/include/m3g/Transformable.hpp
+test-SkinnedMesh.o: ../bin/include/m3g/Object3D.hpp
+test-SkinnedMesh.o: ../bin/include/m3g/m3gdef.hpp
+test-SkinnedMesh.o: ../bin/include/m3g/m3ginternal.hpp
+test-SkinnedMesh.o: ../bin/include/m3g/Object.hpp
+test-SkinnedMesh.o: ../bin/include/m3g/Quaternion.hpp
+test-SkinnedMesh.o: ../bin/include/m3g/Transform.hpp
+test-SkinnedMesh.o: ../bin/include/m3g/Matrix.hpp
+test-SkinnedMesh.o: ../bin/include/m3g/BoneWeight.hpp
+test-SkinnedMesh.o: ../bin/include/m3g/VertexArray.hpp
+test-SkinnedMesh.o: ../bin/include/m3g/VertexBuffer.hpp
+test-SkinnedMesh.o: ../bin/include/m3g/TriangleStripArray.hpp
+test-SkinnedMesh.o: ../bin/include/m3g/IndexBuffer.hpp
+test-SkinnedMesh.o: ../bin/include/m3g/Appearance.hpp
+test-SkinnedMesh.o: ../bin/include/m3g/Group.hpp
+test-SkinnedMesh.o: ../bin/include/m3g/Exception.hpp
 test-Skinning.o: /usr/include/unittest++/UnitTest++.h
 test-Skinning.o: /usr/include/unittest++/Config.h
 test-Skinning.o: /usr/include/unittest++/Test.h
@@ -684,10 +763,13 @@ test-Skinning.o: /usr/include/features.h /usr/include/bits/predefs.h
 test-Skinning.o: /usr/include/sys/cdefs.h /usr/include/bits/wordsize.h
 test-Skinning.o: /usr/include/gnu/stubs.h /usr/include/gnu/stubs-64.h
 test-Skinning.o: /usr/include/stdint.h /usr/include/bits/wchar.h
-test-Skinning.o: ../src/VertexArray.hpp ../src/m3g/Object3D.hpp
-test-Skinning.o: ../src/m3g/m3g/m3gdef.hpp ../src/m3g/m3g/m3ginternal.hpp
-test-Skinning.o: ../src/m3g/m3g/Object.hpp ../src/BoneWeight.hpp
-test-Skinning.o: ../src/m3g/m3g/m3g/Matrix.hpp
+test-Skinning.o: ../bin/include/m3g/VertexArray.hpp
+test-Skinning.o: ../bin/include/m3g/Object3D.hpp
+test-Skinning.o: ../bin/include/m3g/m3gdef.hpp
+test-Skinning.o: ../bin/include/m3g/m3ginternal.hpp
+test-Skinning.o: ../bin/include/m3g/Object.hpp
+test-Skinning.o: ../bin/include/m3g/BoneWeight.hpp
+test-Skinning.o: ../bin/include/m3g/Matrix.hpp
 test-Sprite3D.o: /usr/include/unittest++/UnitTest++.h
 test-Sprite3D.o: /usr/include/unittest++/Config.h
 test-Sprite3D.o: /usr/include/unittest++/Test.h
@@ -704,13 +786,17 @@ test-Sprite3D.o: /usr/include/unittest++/CheckMacros.h
 test-Sprite3D.o: /usr/include/unittest++/Checks.h
 test-Sprite3D.o: /usr/include/unittest++/TestRunner.h
 test-Sprite3D.o: /usr/include/unittest++/TimeConstraint.h
-test-Sprite3D.o: /usr/include/unittest++/TimeHelpers.h ../src/Sprite3D.hpp
-test-Sprite3D.o: ../src/m3g/Node.hpp ../src/m3g/Transformable.hpp
-test-Sprite3D.o: ../src/m3g/Object3D.hpp ../src/m3g/m3g/m3gdef.hpp
-test-Sprite3D.o: ../src/m3g/m3g/m3ginternal.hpp ../src/m3g/m3g/Object.hpp
-test-Sprite3D.o: ../src/m3g/m3g/Quaternion.hpp ../src/m3g/m3g/Transform.hpp
-test-Sprite3D.o: ../src/m3g/m3g/m3g/Matrix.hpp ../src/Image2D.hpp
-test-Sprite3D.o: ../src/Appearance.hpp
+test-Sprite3D.o: /usr/include/unittest++/TimeHelpers.h
+test-Sprite3D.o: ../bin/include/m3g/Sprite3D.hpp ../bin/include/m3g/Node.hpp
+test-Sprite3D.o: ../bin/include/m3g/Transformable.hpp
+test-Sprite3D.o: ../bin/include/m3g/Object3D.hpp
+test-Sprite3D.o: ../bin/include/m3g/m3gdef.hpp
+test-Sprite3D.o: ../bin/include/m3g/m3ginternal.hpp
+test-Sprite3D.o: ../bin/include/m3g/Object.hpp
+test-Sprite3D.o: ../bin/include/m3g/Quaternion.hpp
+test-Sprite3D.o: ../bin/include/m3g/Transform.hpp
+test-Sprite3D.o: ../bin/include/m3g/Matrix.hpp ../bin/include/m3g/Image2D.hpp
+test-Sprite3D.o: ../bin/include/m3g/Appearance.hpp
 test-Texture2D.o: /usr/include/unittest++/UnitTest++.h
 test-Texture2D.o: /usr/include/unittest++/Config.h
 test-Texture2D.o: /usr/include/unittest++/Test.h
@@ -727,12 +813,17 @@ test-Texture2D.o: /usr/include/unittest++/CheckMacros.h
 test-Texture2D.o: /usr/include/unittest++/Checks.h
 test-Texture2D.o: /usr/include/unittest++/TestRunner.h
 test-Texture2D.o: /usr/include/unittest++/TimeConstraint.h
-test-Texture2D.o: /usr/include/unittest++/TimeHelpers.h ../src/Texture2D.hpp
-test-Texture2D.o: ../src/m3g/Transformable.hpp ../src/m3g/Object3D.hpp
-test-Texture2D.o: ../src/m3g/m3g/m3gdef.hpp ../src/m3g/m3g/m3ginternal.hpp
-test-Texture2D.o: ../src/m3g/m3g/Object.hpp ../src/m3g/m3g/Quaternion.hpp
-test-Texture2D.o: ../src/m3g/m3g/Transform.hpp ../src/m3g/m3g/m3g/Matrix.hpp
-test-Texture2D.o: ../src/Image2D.hpp
+test-Texture2D.o: /usr/include/unittest++/TimeHelpers.h
+test-Texture2D.o: ../bin/include/m3g/Texture2D.hpp
+test-Texture2D.o: ../bin/include/m3g/Transformable.hpp
+test-Texture2D.o: ../bin/include/m3g/Object3D.hpp
+test-Texture2D.o: ../bin/include/m3g/m3gdef.hpp
+test-Texture2D.o: ../bin/include/m3g/m3ginternal.hpp
+test-Texture2D.o: ../bin/include/m3g/Object.hpp
+test-Texture2D.o: ../bin/include/m3g/Quaternion.hpp
+test-Texture2D.o: ../bin/include/m3g/Transform.hpp
+test-Texture2D.o: ../bin/include/m3g/Matrix.hpp
+test-Texture2D.o: ../bin/include/m3g/Image2D.hpp
 test-Transform.o: /usr/include/unittest++/UnitTest++.h
 test-Transform.o: /usr/include/unittest++/Config.h
 test-Transform.o: /usr/include/unittest++/Test.h
@@ -749,11 +840,15 @@ test-Transform.o: /usr/include/unittest++/CheckMacros.h
 test-Transform.o: /usr/include/unittest++/Checks.h
 test-Transform.o: /usr/include/unittest++/TestRunner.h
 test-Transform.o: /usr/include/unittest++/TimeConstraint.h
-test-Transform.o: /usr/include/unittest++/TimeHelpers.h ../src/Transform.hpp
-test-Transform.o: ../src/m3g/m3g/m3g/Matrix.hpp ../src/m3g/m3g/Object.hpp
-test-Transform.o: ../src/VertexArray.hpp ../src/m3g/Object3D.hpp
-test-Transform.o: ../src/m3g/m3g/m3gdef.hpp ../src/m3g/m3g/m3ginternal.hpp
-test-Transform.o: ../src/Quaternion.hpp ../src/Vector.hpp
+test-Transform.o: /usr/include/unittest++/TimeHelpers.h
+test-Transform.o: ../bin/include/m3g/Transform.hpp
+test-Transform.o: ../bin/include/m3g/Matrix.hpp ../bin/include/m3g/Object.hpp
+test-Transform.o: ../bin/include/m3g/VertexArray.hpp
+test-Transform.o: ../bin/include/m3g/Object3D.hpp
+test-Transform.o: ../bin/include/m3g/m3gdef.hpp
+test-Transform.o: ../bin/include/m3g/m3ginternal.hpp
+test-Transform.o: ../bin/include/m3g/Quaternion.hpp
+test-Transform.o: ../bin/include/m3g/Vector.hpp
 test-Transformable.o: /usr/include/unittest++/UnitTest++.h
 test-Transformable.o: /usr/include/unittest++/Config.h
 test-Transformable.o: /usr/include/unittest++/Test.h
@@ -771,12 +866,14 @@ test-Transformable.o: /usr/include/unittest++/Checks.h
 test-Transformable.o: /usr/include/unittest++/TestRunner.h
 test-Transformable.o: /usr/include/unittest++/TimeConstraint.h
 test-Transformable.o: /usr/include/unittest++/TimeHelpers.h
-test-Transformable.o: ../src/Transformable.hpp ../src/m3g/Object3D.hpp
-test-Transformable.o: ../src/m3g/m3g/m3gdef.hpp
-test-Transformable.o: ../src/m3g/m3g/m3ginternal.hpp
-test-Transformable.o: ../src/m3g/m3g/Object.hpp ../src/m3g/m3g/Quaternion.hpp
-test-Transformable.o: ../src/m3g/m3g/Transform.hpp
-test-Transformable.o: ../src/m3g/m3g/m3g/Matrix.hpp
+test-Transformable.o: ../bin/include/m3g/Transformable.hpp
+test-Transformable.o: ../bin/include/m3g/Object3D.hpp
+test-Transformable.o: ../bin/include/m3g/m3gdef.hpp
+test-Transformable.o: ../bin/include/m3g/m3ginternal.hpp
+test-Transformable.o: ../bin/include/m3g/Object.hpp
+test-Transformable.o: ../bin/include/m3g/Quaternion.hpp
+test-Transformable.o: ../bin/include/m3g/Transform.hpp
+test-Transformable.o: ../bin/include/m3g/Matrix.hpp
 test-TriangleStripArray.o: /usr/include/unittest++/UnitTest++.h
 test-TriangleStripArray.o: /usr/include/unittest++/Config.h
 test-TriangleStripArray.o: /usr/include/unittest++/Test.h
@@ -794,11 +891,12 @@ test-TriangleStripArray.o: /usr/include/unittest++/Checks.h
 test-TriangleStripArray.o: /usr/include/unittest++/TestRunner.h
 test-TriangleStripArray.o: /usr/include/unittest++/TimeConstraint.h
 test-TriangleStripArray.o: /usr/include/unittest++/TimeHelpers.h
-test-TriangleStripArray.o: ../src/TriangleStripArray.hpp
-test-TriangleStripArray.o: ../src/m3g/m3g/IndexBuffer.hpp
-test-TriangleStripArray.o: ../src/m3g/Object3D.hpp ../src/m3g/m3g/m3gdef.hpp
-test-TriangleStripArray.o: ../src/m3g/m3g/m3ginternal.hpp
-test-TriangleStripArray.o: ../src/m3g/m3g/Object.hpp
+test-TriangleStripArray.o: ../bin/include/m3g/TriangleStripArray.hpp
+test-TriangleStripArray.o: ../bin/include/m3g/IndexBuffer.hpp
+test-TriangleStripArray.o: ../bin/include/m3g/Object3D.hpp
+test-TriangleStripArray.o: ../bin/include/m3g/m3gdef.hpp
+test-TriangleStripArray.o: ../bin/include/m3g/m3ginternal.hpp
+test-TriangleStripArray.o: ../bin/include/m3g/Object.hpp
 test-Vector.o: /usr/include/unittest++/UnitTest++.h
 test-Vector.o: /usr/include/unittest++/Config.h
 test-Vector.o: /usr/include/unittest++/Test.h
@@ -815,7 +913,8 @@ test-Vector.o: /usr/include/unittest++/CheckMacros.h
 test-Vector.o: /usr/include/unittest++/Checks.h
 test-Vector.o: /usr/include/unittest++/TestRunner.h
 test-Vector.o: /usr/include/unittest++/TimeConstraint.h
-test-Vector.o: /usr/include/unittest++/TimeHelpers.h ../src/Vector.hpp
+test-Vector.o: /usr/include/unittest++/TimeHelpers.h
+test-Vector.o: ../bin/include/m3g/Vector.hpp
 test-VertexArray.o: /usr/include/unittest++/UnitTest++.h
 test-VertexArray.o: /usr/include/unittest++/Config.h
 test-VertexArray.o: /usr/include/unittest++/Test.h
@@ -838,9 +937,12 @@ test-VertexArray.o: /usr/include/inttypes.h /usr/include/features.h
 test-VertexArray.o: /usr/include/bits/predefs.h /usr/include/sys/cdefs.h
 test-VertexArray.o: /usr/include/bits/wordsize.h /usr/include/gnu/stubs.h
 test-VertexArray.o: /usr/include/gnu/stubs-64.h /usr/include/stdint.h
-test-VertexArray.o: /usr/include/bits/wchar.h ../src/VertexArray.hpp
-test-VertexArray.o: ../src/m3g/Object3D.hpp ../src/m3g/m3g/m3gdef.hpp
-test-VertexArray.o: ../src/m3g/m3g/m3ginternal.hpp ../src/m3g/m3g/Object.hpp
+test-VertexArray.o: /usr/include/bits/wchar.h
+test-VertexArray.o: ../bin/include/m3g/VertexArray.hpp
+test-VertexArray.o: ../bin/include/m3g/Object3D.hpp
+test-VertexArray.o: ../bin/include/m3g/m3gdef.hpp
+test-VertexArray.o: ../bin/include/m3g/m3ginternal.hpp
+test-VertexArray.o: ../bin/include/m3g/Object.hpp
 test-VertexBuffer.o: /usr/include/unittest++/UnitTest++.h
 test-VertexBuffer.o: /usr/include/unittest++/Config.h
 test-VertexBuffer.o: /usr/include/unittest++/Test.h
@@ -858,9 +960,12 @@ test-VertexBuffer.o: /usr/include/unittest++/Checks.h
 test-VertexBuffer.o: /usr/include/unittest++/TestRunner.h
 test-VertexBuffer.o: /usr/include/unittest++/TimeConstraint.h
 test-VertexBuffer.o: /usr/include/unittest++/TimeHelpers.h
-test-VertexBuffer.o: ../src/VertexBuffer.hpp ../src/m3g/Object3D.hpp
-test-VertexBuffer.o: ../src/m3g/m3g/m3gdef.hpp ../src/m3g/m3g/m3ginternal.hpp
-test-VertexBuffer.o: ../src/m3g/m3g/Object.hpp ../src/VertexArray.hpp
+test-VertexBuffer.o: ../bin/include/m3g/VertexBuffer.hpp
+test-VertexBuffer.o: ../bin/include/m3g/Object3D.hpp
+test-VertexBuffer.o: ../bin/include/m3g/m3gdef.hpp
+test-VertexBuffer.o: ../bin/include/m3g/m3ginternal.hpp
+test-VertexBuffer.o: ../bin/include/m3g/Object.hpp
+test-VertexBuffer.o: ../bin/include/m3g/VertexArray.hpp
 test-World.o: /usr/include/unittest++/UnitTest++.h
 test-World.o: /usr/include/unittest++/Config.h /usr/include/unittest++/Test.h
 test-World.o: /usr/include/unittest++/TestDetails.h
@@ -876,13 +981,16 @@ test-World.o: /usr/include/unittest++/CheckMacros.h
 test-World.o: /usr/include/unittest++/Checks.h
 test-World.o: /usr/include/unittest++/TestRunner.h
 test-World.o: /usr/include/unittest++/TimeConstraint.h
-test-World.o: /usr/include/unittest++/TimeHelpers.h ../src/World.hpp
-test-World.o: ../src/m3g/m3g/Group.hpp ../src/m3g/Node.hpp
-test-World.o: ../src/m3g/Transformable.hpp ../src/m3g/Object3D.hpp
-test-World.o: ../src/m3g/m3g/m3gdef.hpp ../src/m3g/m3g/m3ginternal.hpp
-test-World.o: ../src/m3g/m3g/Object.hpp ../src/m3g/m3g/Quaternion.hpp
-test-World.o: ../src/m3g/m3g/Transform.hpp ../src/m3g/m3g/m3g/Matrix.hpp
-test-World.o: ../src/Camera.hpp ../src/Background.hpp ../src/Light.hpp
+test-World.o: /usr/include/unittest++/TimeHelpers.h
+test-World.o: ../bin/include/m3g/World.hpp ../bin/include/m3g/Group.hpp
+test-World.o: ../bin/include/m3g/Node.hpp
+test-World.o: ../bin/include/m3g/Transformable.hpp
+test-World.o: ../bin/include/m3g/Object3D.hpp ../bin/include/m3g/m3gdef.hpp
+test-World.o: ../bin/include/m3g/m3ginternal.hpp
+test-World.o: ../bin/include/m3g/Object.hpp ../bin/include/m3g/Quaternion.hpp
+test-World.o: ../bin/include/m3g/Transform.hpp ../bin/include/m3g/Matrix.hpp
+test-World.o: ../bin/include/m3g/Camera.hpp ../bin/include/m3g/Background.hpp
+test-World.o: ../bin/include/m3g/Light.hpp
 test-main.o: /usr/include/unittest++/UnitTest++.h
 test-main.o: /usr/include/unittest++/Config.h /usr/include/unittest++/Test.h
 test-main.o: /usr/include/unittest++/TestDetails.h

@@ -1,8 +1,8 @@
 #include <unittest++/UnitTest++.h>
 #include <iostream>
 #include <cstring>
-#include "VertexBuffer.hpp"
-#include "VertexArray.hpp"
+#include "m3g/VertexBuffer.hpp"
+#include "m3g/VertexArray.hpp"
 using namespace std;
 using namespace m3g;
 

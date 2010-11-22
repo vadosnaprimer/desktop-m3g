@@ -1,8 +1,8 @@
 #include <unittest++/UnitTest++.h>
 #include <iostream>
-#include "Image2D.hpp"
-#include "Exception.hpp"
-#include "Loader.hpp"
+#include "m3g/Image2D.hpp"
+#include "m3g/Exception.hpp"
+#include "m3g/Loader.hpp"
 using namespace std;
 using namespace m3g;
 

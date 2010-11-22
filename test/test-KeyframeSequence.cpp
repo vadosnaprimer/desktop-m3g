@@ -1,6 +1,6 @@
 #include <unittest++/UnitTest++.h>
 #include <iostream>
-#include "KeyframeSequence.hpp"
+#include "m3g/KeyframeSequence.hpp"
 using namespace std;
 using namespace m3g;
 

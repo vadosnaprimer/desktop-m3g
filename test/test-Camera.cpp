@@ -1,8 +1,8 @@
 #include <unittest++/UnitTest++.h>
 #include <iostream>
 #include <cstring>
-#include "Camera.hpp"
-#include "Group.hpp"
+#include "m3g/Camera.hpp"
+#include "m3g/Group.hpp"
 using namespace std;
 using namespace m3g;
 

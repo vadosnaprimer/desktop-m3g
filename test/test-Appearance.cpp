@@ -1,12 +1,12 @@
 #include <unittest++/UnitTest++.h>
 #include <iostream>
-#include "Appearance.hpp"
-#include "PolygonMode.hpp"
-#include "CompositingMode.hpp"
-#include "Image2D.hpp"
-#include "Texture2D.hpp"
-#include "Material.hpp"
-#include "Fog.hpp"
+#include "m3g/Appearance.hpp"
+#include "m3g/PolygonMode.hpp"
+#include "m3g/CompositingMode.hpp"
+#include "m3g/Image2D.hpp"
+#include "m3g/Texture2D.hpp"
+#include "m3g/Material.hpp"
+#include "m3g/Fog.hpp"
 using namespace std;
 using namespace m3g;
 

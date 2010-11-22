@@ -2,7 +2,7 @@
 #include <iostream>
 #include <cstring>
 #include <GL/gl.h>
-#include "VertexArray.hpp"
+#include "m3g/VertexArray.hpp"
 using namespace std;
 using namespace m3g;
 

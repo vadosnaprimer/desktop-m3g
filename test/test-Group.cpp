@@ -1,7 +1,7 @@
 #include <unittest++/UnitTest++.h>
 #include <iostream>
 #include <vector>
-#include "Group.hpp"
+#include "m3g/Group.hpp"
 using namespace std;
 using namespace m3g;
 

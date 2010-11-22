@@ -1,10 +1,10 @@
 #include <unittest++/UnitTest++.h>
 #include <iostream>
 #include <cstring>
-#include "World.hpp"
-#include "Camera.hpp"
-#include "Background.hpp"
-#include "Light.hpp"
+#include "m3g/World.hpp"
+#include "m3g/Camera.hpp"
+#include "m3g/Background.hpp"
+#include "m3g/Light.hpp"
 using namespace std;
 using namespace m3g;
 

@@ -1,6 +1,6 @@
 #include <unittest++/UnitTest++.h>
 #include <iostream>
-#include "PolygonMode.hpp"
+#include "m3g/PolygonMode.hpp"
 using namespace std;
 using namespace m3g;
 

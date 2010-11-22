@@ -1,8 +1,8 @@
 #include <unittest++/UnitTest++.h>
 #include <iostream>
-#include "Sprite3D.hpp"
-#include "Image2D.hpp"
-#include "Appearance.hpp"
+#include "m3g/Sprite3D.hpp"
+#include "m3g/Image2D.hpp"
+#include "m3g/Appearance.hpp"
 using namespace std;
 using namespace m3g;
 

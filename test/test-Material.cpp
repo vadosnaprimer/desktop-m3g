@@ -1,6 +1,6 @@
 #include <unittest++/UnitTest++.h>
 #include <iostream>
-#include "Material.hpp"
+#include "m3g/Material.hpp"
 using namespace std;
 using namespace m3g;
 

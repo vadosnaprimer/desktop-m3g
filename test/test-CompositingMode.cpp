@@ -1,6 +1,6 @@
 #include <unittest++/UnitTest++.h>
 #include <iostream>
-#include "CompositingMode.hpp"
+#include "m3g/CompositingMode.hpp"
 using namespace std;
 using namespace m3g;
 

@@ -1,9 +1,9 @@
 #include <unittest++/UnitTest++.h>
 #include <iostream>
 #include <cstdlib>
-#include "Quaternion.hpp"
-#include "Matrix.hpp"
-#include "Vector.hpp"
+#include "m3g/Quaternion.hpp"
+#include "m3g/Matrix.hpp"
+#include "m3g/Vector.hpp"
 using namespace std;
 using namespace m3g;
 

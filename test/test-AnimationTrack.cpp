@@ -1,8 +1,8 @@
 #include <unittest++/UnitTest++.h>
 #include <iostream>
-#include "AnimationTrack.hpp"
-#include "AnimationController.hpp"
-#include "KeyframeSequence.hpp"
+#include "m3g/AnimationTrack.hpp"
+#include "m3g/AnimationController.hpp"
+#include "m3g/KeyframeSequence.hpp"
 using namespace std;
 using namespace m3g;
 

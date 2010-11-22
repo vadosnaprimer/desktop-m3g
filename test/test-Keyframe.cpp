@@ -1,10 +1,11 @@
 #include <unittest++/UnitTest++.h>
 #include <iostream>
 #include <fstream>
-#include "Keyframe.hpp"
+#include "m3g/Keyframe.hpp"
+#include "m3g/Quaternion.hpp"
 using namespace std;
 using namespace m3g;
-#include "Quaternion.hpp"
+
 
 
 TEST (Keyframe_step)

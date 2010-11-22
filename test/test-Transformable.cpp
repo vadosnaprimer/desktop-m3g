@@ -1,7 +1,7 @@
 #include <unittest++/UnitTest++.h>
 #include <iostream>
 #include <cstdlib>
-#include "Transformable.hpp"
+#include "m3g/Transformable.hpp"
 using namespace std;
 using namespace m3g;
 

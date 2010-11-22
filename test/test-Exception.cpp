@@ -1,6 +1,6 @@
 #include <unittest++/UnitTest++.h>
 #include <iostream>
-#include "Exception.hpp"
+#include "m3g/Exception.hpp"
 using namespace std;
 using namespace m3g;
 

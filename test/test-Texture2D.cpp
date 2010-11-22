@@ -1,7 +1,7 @@
 #include <unittest++/UnitTest++.h>
 #include <iostream>
-#include "Texture2D.hpp"
-#include "Image2D.hpp"
+#include "m3g/Texture2D.hpp"
+#include "m3g/Image2D.hpp"
 using namespace std;
 using namespace m3g;
 
