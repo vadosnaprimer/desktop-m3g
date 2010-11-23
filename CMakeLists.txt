@@ -38,7 +38,7 @@ message (STATUS "Configuring for ${CMAKE_BUILD_TYPE}...")
 
 # dependent custom libraries
 add_subdirectory (exlib)
-
+link_directories (${M3G_READER_WRITER_LINK_DIR})
 
 
 # project src
