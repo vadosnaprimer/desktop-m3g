@@ -1,4 +1,4 @@
-#include "m3g.hpp"
+#include "m3g/m3g.hpp"
 #include <GL/glut.h>
 #include <iostream>
 #include <cstring>
