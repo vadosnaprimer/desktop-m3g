@@ -13,3 +13,8 @@ set (JPEG_HELPER_INCLUDE_DIR ${JPEG_HELPER_SOURCE_DIR}/src                      
 set (JPEG_HELPER_LINK_DIR    ${JPEG_HELPER_BINARY_DIR}/src                             PARENT_SCOPE)
 set (JPEG_HELPER_LIBRARY     -Wl,-whole-archive libjpeg-helper.a -Wl,-no-whole-archive PARENT_SCOPE)
 
+# png-helper
+add_subdirectory (png-helper)
+set (PNG_HELPER_INCLUDE_DIR ${PNG_HELPER_SOURCE_DIR}/src                             PARENT_SCOPE)
+set (PNG_HELPER_LINK_DIR    ${PNG_HELPER_BINARY_DIR}/src                             PARENT_SCOPE)
+set (PNG_HELPER_LIBRARY     -Wl,-whole-archive libpng-helper.a -Wl,-no-whole-archive PARENT_SCOPE)

@@ -35,7 +35,12 @@ target_link_libraries (m3g ${M3G_READER_WRITER_LIBRARY})
 include_directories   (${JPEG_HELPER_INCLUDE_DIR})
 target_link_libraries (m3g ${JPEG_HELPER_LIBRARY})
 
+# link png-helper
+include_directories   (${PNG_HELPER_INCLUDE_DIR})
+target_link_libraries (m3g ${PNG_HELPER_LIBRARY})
+
 message (STATUS "M3G_READER_WRITER_LINK_DIR = ${M3G_READER_WRITER_LINK_DIR}")
 message (STATUS "JPEG_HELPER_LINK_DIR = ${JPEG_HELPER_LINK_DIR}")
+message (STATUS "PNG_HELPER_LINK_DIR = ${PNG_HELPER_LINK_DIR}")
 
 

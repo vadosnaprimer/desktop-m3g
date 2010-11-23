@@ -1,10 +1,10 @@
 #
-#  M3G-Reader-Writer project file.
+#  png-helper project file.
 #
 
 
 # project info
-project (M3G_READER_WRITER)
+project (PNG_HELPER)
 cmake_minimum_required (VERSION 2.0)
 
 # dependend libraries
@@ -17,7 +17,7 @@ if (NOT CMAKE_BUILD_TYPE)
     set (CMAKE_BUILD_TYPE "DEBUG")
     set (CMAKE_INSTALL_PREFIX ${CMAKE_SOURCE_DIR}/bin)
 endif (NOT CMAKE_BUILD_TYPE)
-message (STATUS "Configuring m3g-reader-writer for ${CMAKE_BUILD_TYPE}...")
+message (STATUS "Configuring png-helper for ${CMAKE_BUILD_TYPE}...")
 
 
 # project src

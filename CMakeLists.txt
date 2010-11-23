@@ -8,6 +8,16 @@ project (M3G)
 # required cmake
 cmake_minimum_required (VERSION 2.0)
 
+# Default build setting.
+if (NOT CMAKE_BUILD_TYPE)
+    message (STATUS "Build type is not specified, then")
+    message (STATUS "  set CMAKE_BUILD_TYPE=Debug")
+    message (STATUS "  set CMAKE_INSTALL_PREFIX=${CMAKE_SOURCE_DIR}/bin")
+    set (CMAKE_BUILD_TYPE "Debug")
+    set (CMAKE_INSTALL_PREFIX ${CMAKE_SOURCE_DIR}/bin)
+endif (NOT CMAKE_BUILD_TYPE)
+message (STATUS "Configuring m3g for ${CMAKE_BUILD_TYPE}...")
+
 # dependend libraries
 find_package (ZLIB   REQUIRED)
 find_package (PNG    REQUIRED)
@@ -25,21 +35,12 @@ set (M3G_REQUIRED_INCLUDE_DIR
          ${JPEG_INCLUDE_DIR}
          ${OPENGL_INCLUDE_DIR})
 
-# build type = Debug (defualt)
-if (NOT CMAKE_BUILD_TYPE)
-    message (STATUS "Build type is not specified, then")
-    message (STATUS "  set CMAKE_BUILD_TYPE=Debug")
-    message (STATUS "  set CMAKE_INSTALL_PREFIX=${CMAKE_SOURCE_DIR}/bin")
-    set (CMAKE_BUILD_TYPE "Debug")
-    set (CMAKE_INSTALL_PREFIX ${CMAKE_SOURCE_DIR}/bin)
-endif (NOT CMAKE_BUILD_TYPE)
-message (STATUS "Configuring for ${CMAKE_BUILD_TYPE}...")
 
-
-# dependent custom libraries
+# my custom libraries
 add_subdirectory (exlib)
 link_directories (${M3G_READER_WRITER_LINK_DIR})
 link_directories (${JPEG_HELPER_LINK_DIR})
+link_directories (${PNG_HELPER_LINK_DIR})
 
 
 # project src
