@@ -27,10 +27,15 @@ set (CMAKE_INCLUDE_CURRENT_DIR ON)
 include_directories   (${M3G_REQUIRED_INCLUDE_DIR})
 target_link_libraries (m3g ${M3G_REQUIRED_LIBRARIES})
 
-# dependent custom libraries
+# link m3g-reader-writer
 include_directories   (${M3G_READER_WRITER_INCLUDE_DIR})
 target_link_libraries (m3g ${M3G_READER_WRITER_LIBRARY})
 
+# link jpeg-helper
+include_directories   (${JPEG_HELPER_INCLUDE_DIR})
+target_link_libraries (m3g ${JPEG_HELPER_LIBRARY})
+
 message (STATUS "M3G_READER_WRITER_LINK_DIR = ${M3G_READER_WRITER_LINK_DIR}")
+message (STATUS "JPEG_HELPER_LINK_DIR = ${JPEG_HELPER_LINK_DIR}")
 
 
