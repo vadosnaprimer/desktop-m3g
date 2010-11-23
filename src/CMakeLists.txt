@@ -28,6 +28,7 @@ target_link_libraries (m3g ${M3G_REQUIRED_LIBRARIES})
 
 # dependent custom libraries
 include_directories   (${M3G_READER_WRITER_INCLUDE_DIR})
+link_directories      (${M3G_READER_WRITER_LINK_DIR})
 target_link_libraries (m3g ${M3G_READER_WRITER_LIBRARY})
 
 
