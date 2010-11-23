@@ -26,10 +26,9 @@ clean:
 # DO NOT DELETE
 
 libpng.o: /usr/include/png.h /usr/include/zlib.h /usr/include/zconf.h
-libpng.o: /usr/include/zlibdefs.h /usr/include/sys/types.h
-libpng.o: /usr/include/features.h /usr/include/bits/predefs.h
+libpng.o: /usr/include/sys/types.h /usr/include/features.h
 libpng.o: /usr/include/sys/cdefs.h /usr/include/bits/wordsize.h
-libpng.o: /usr/include/gnu/stubs.h /usr/include/gnu/stubs-64.h
+libpng.o: /usr/include/gnu/stubs.h /usr/include/gnu/stubs-32.h
 libpng.o: /usr/include/bits/types.h /usr/include/bits/typesizes.h
 libpng.o: /usr/include/time.h /usr/include/endian.h
 libpng.o: /usr/include/bits/endian.h /usr/include/bits/byteswap.h
@@ -37,9 +36,9 @@ libpng.o: /usr/include/sys/select.h /usr/include/bits/select.h
 libpng.o: /usr/include/bits/sigset.h /usr/include/bits/time.h
 libpng.o: /usr/include/sys/sysmacros.h /usr/include/bits/pthreadtypes.h
 libpng.o: /usr/include/unistd.h /usr/include/bits/posix_opt.h
-libpng.o: /usr/include/bits/confname.h /usr/include/getopt.h
-libpng.o: /usr/include/pngconf.h /usr/include/stdio.h /usr/include/libio.h
-libpng.o: /usr/include/_G_config.h /usr/include/wchar.h
+libpng.o: /usr/include/bits/environments.h /usr/include/bits/confname.h
+libpng.o: /usr/include/getopt.h /usr/include/pngconf.h /usr/include/stdio.h
+libpng.o: /usr/include/libio.h /usr/include/_G_config.h /usr/include/wchar.h
 libpng.o: /usr/include/bits/stdio_lim.h /usr/include/bits/sys_errlist.h
 libpng.o: /usr/include/setjmp.h /usr/include/bits/setjmp.h
 libpng.o: /usr/include/string.h /usr/include/xlocale.h
@@ -80,14 +79,15 @@ main.o: ../../bin/include/m3g/Exception.hpp
 main.o: ../../bin/include/m3g/RenderState.hpp /usr/include/GL/glut.h
 main.o: /usr/include/GL/freeglut_std.h /usr/include/GL/gl.h
 main.o: /usr/include/GL/glext.h /usr/include/inttypes.h
-main.o: /usr/include/features.h /usr/include/bits/predefs.h
-main.o: /usr/include/sys/cdefs.h /usr/include/bits/wordsize.h
-main.o: /usr/include/gnu/stubs.h /usr/include/gnu/stubs-64.h
-main.o: /usr/include/stdint.h /usr/include/bits/wchar.h /usr/include/GL/glu.h
-main.o: /usr/include/stdlib.h /usr/include/sys/types.h
+main.o: /usr/include/features.h /usr/include/sys/cdefs.h
+main.o: /usr/include/bits/wordsize.h /usr/include/gnu/stubs.h
+main.o: /usr/include/gnu/stubs-32.h /usr/include/stdint.h
+main.o: /usr/include/bits/wchar.h /usr/include/GL/glu.h /usr/include/stdlib.h
+main.o: /usr/include/bits/waitflags.h /usr/include/bits/waitstatus.h
+main.o: /usr/include/endian.h /usr/include/bits/endian.h
+main.o: /usr/include/bits/byteswap.h /usr/include/sys/types.h
 main.o: /usr/include/bits/types.h /usr/include/bits/typesizes.h
-main.o: /usr/include/time.h /usr/include/endian.h /usr/include/bits/endian.h
-main.o: /usr/include/bits/byteswap.h /usr/include/sys/select.h
+main.o: /usr/include/time.h /usr/include/sys/select.h
 main.o: /usr/include/bits/select.h /usr/include/bits/sigset.h
 main.o: /usr/include/bits/time.h /usr/include/sys/sysmacros.h
 main.o: /usr/include/bits/pthreadtypes.h /usr/include/alloca.h
