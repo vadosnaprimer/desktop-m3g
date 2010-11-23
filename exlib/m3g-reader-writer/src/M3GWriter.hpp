@@ -3,8 +3,8 @@
 #define __M3G_WRITER_HPP__
 
 #include <iosfwd>
-#include "m3g/OutMemoryStream.hpp"
-#include "m3g/M3GStruct.hpp"
+#include "OutMemoryStream.hpp"
+#include "M3GStruct.hpp"
 
 
 /**

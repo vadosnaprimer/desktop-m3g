@@ -1,4 +1,4 @@
-#include "m3g/InMemoryStream.hpp"
+#include "InMemoryStream.hpp"
 #include <iostream>
 #include <fstream>
 #include <cassert>

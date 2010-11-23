@@ -1,4 +1,4 @@
-#include "m3g/M3GStruct.hpp"
+#include "M3GStruct.hpp"
 #include <iostream>
 using namespace std;
 

@@ -1,4 +1,4 @@
-#include "m3g/M3GWriter.hpp"
+#include "M3GWriter.hpp"
 #include <fstream>
 #include <iostream>
 #include <cstring>
