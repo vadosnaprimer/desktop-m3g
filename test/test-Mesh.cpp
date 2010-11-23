@@ -106,7 +106,7 @@ TEST (Mesh_getReferences)
     Mesh*               mesh = new Mesh (vbuf, tris, app);
 
     int n;
-    Object3D* objs[2];
+    Object3D* objs[3];
 
     n = mesh->getReferences (objs);
 
