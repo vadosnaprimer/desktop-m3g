@@ -1,11 +1,11 @@
-SRCS = $(wildcard *.cpp)
-OBJS = $(SRCS:.cpp=.o)
-TARGET = a.out
-CXX = g++
-CXXFLAGS = -Wall -g -Wno-deprecated  -I../../src
-LD = g++
-LDFLAGS = -L../../src -L../../lib
-LIBS = -lm3g -lglut -lGL -lpng -lz
+SRCS     = $(wildcard *.cpp)
+OBJS     = $(SRCS:.cpp=.o)
+TARGET   = a.out
+CXX      = g++
+CXXFLAGS = -Wall -g -Wno-deprecated  -I../../bin/include
+LD       = g++
+LDFLAGS  = -L../../bin/lib
+LIBS     = -lm3g -lglut
 
 
 all: $(OBJS)
@@ -25,23 +25,51 @@ clean:
 
 # DO NOT DELETE
 
-main.o: ../../src/m3g.hpp ../../src/m3gdef.hpp ../../src/Graphics3D.hpp
-main.o: ../../src/Object.hpp ../../src/Object3D.hpp ../../src/m3ginternal.hpp
-main.o: ../../src/AnimationController.hpp ../../src/AnimationTrack.hpp
-main.o: ../../src/Appearance.hpp ../../src/Background.hpp
-main.o: ../../src/CompositingMode.hpp ../../src/Fog.hpp ../../src/Image2D.hpp
-main.o: ../../src/IndexBuffer.hpp ../../src/TriangleStripArray.hpp
-main.o: ../../src/KeyframeSequence.hpp ../../src/Keyframe.hpp
-main.o: ../../src/Material.hpp ../../src/PolygonMode.hpp
-main.o: ../../src/Transformable.hpp ../../src/Quaternion.hpp
-main.o: ../../src/Transform.hpp ../../src/Matrix.hpp ../../src/Node.hpp
-main.o: ../../src/Camera.hpp ../../src/Group.hpp ../../src/World.hpp
-main.o: ../../src/Light.hpp ../../src/Mesh.hpp ../../src/MorphingMesh.hpp
-main.o: ../../src/SkinnedMesh.hpp ../../src/BoneIndex.hpp
-main.o: ../../src/Sprite3D.hpp ../../src/Texture2D.hpp
-main.o: ../../src/VertexArray.hpp ../../src/VertexBuffer.hpp
-main.o: ../../src/RayIntersection.hpp ../../src/Vector.hpp
-main.o: ../../src/Loader.hpp ../../src/Exception.hpp
-main.o: ../../src/RenderState.hpp /usr/include/GL/glut.h
+main.o: ../../bin/include/m3g/m3g.hpp ../../bin/include/m3g/m3gdef.hpp
+main.o: ../../bin/include/m3g/Graphics3D.hpp ../../bin/include/m3g/Object.hpp
+main.o: ../../bin/include/m3g/Object3D.hpp
+main.o: ../../bin/include/m3g/m3ginternal.hpp
+main.o: ../../bin/include/m3g/AnimationController.hpp
+main.o: ../../bin/include/m3g/AnimationTrack.hpp
+main.o: ../../bin/include/m3g/Appearance.hpp
+main.o: ../../bin/include/m3g/Background.hpp
+main.o: ../../bin/include/m3g/CompositingMode.hpp
+main.o: ../../bin/include/m3g/Fog.hpp ../../bin/include/m3g/Image2D.hpp
+main.o: ../../bin/include/m3g/IndexBuffer.hpp
+main.o: ../../bin/include/m3g/TriangleStripArray.hpp
+main.o: ../../bin/include/m3g/KeyframeSequence.hpp
+main.o: ../../bin/include/m3g/Keyframe.hpp ../../bin/include/m3g/Material.hpp
+main.o: ../../bin/include/m3g/PolygonMode.hpp
+main.o: ../../bin/include/m3g/Transformable.hpp
+main.o: ../../bin/include/m3g/Quaternion.hpp
+main.o: ../../bin/include/m3g/Transform.hpp ../../bin/include/m3g/Matrix.hpp
+main.o: ../../bin/include/m3g/Node.hpp ../../bin/include/m3g/Camera.hpp
+main.o: ../../bin/include/m3g/Group.hpp ../../bin/include/m3g/World.hpp
+main.o: ../../bin/include/m3g/Light.hpp ../../bin/include/m3g/Mesh.hpp
+main.o: ../../bin/include/m3g/MorphingMesh.hpp
+main.o: ../../bin/include/m3g/SkinnedMesh.hpp
+main.o: ../../bin/include/m3g/BoneWeight.hpp
+main.o: ../../bin/include/m3g/Sprite3D.hpp
+main.o: ../../bin/include/m3g/Texture2D.hpp
+main.o: ../../bin/include/m3g/VertexArray.hpp
+main.o: ../../bin/include/m3g/VertexBuffer.hpp
+main.o: ../../bin/include/m3g/RayIntersection.hpp
+main.o: ../../bin/include/m3g/Vector.hpp ../../bin/include/m3g/Loader.hpp
+main.o: ../../bin/include/m3g/M3GReader.hpp
+main.o: ../../bin/include/m3g/InMemoryStream.hpp
+main.o: ../../bin/include/m3g/M3GStruct.hpp
+main.o: ../../bin/include/m3g/Exception.hpp
+main.o: ../../bin/include/m3g/RenderState.hpp /usr/include/GL/glut.h
 main.o: /usr/include/GL/freeglut_std.h /usr/include/GL/gl.h
-main.o: /usr/include/GL/glext.h /usr/include/GL/glu.h
+main.o: /usr/include/GL/glext.h /usr/include/inttypes.h
+main.o: /usr/include/features.h /usr/include/bits/predefs.h
+main.o: /usr/include/sys/cdefs.h /usr/include/bits/wordsize.h
+main.o: /usr/include/gnu/stubs.h /usr/include/gnu/stubs-64.h
+main.o: /usr/include/stdint.h /usr/include/bits/wchar.h /usr/include/GL/glu.h
+main.o: /usr/include/stdlib.h /usr/include/sys/types.h
+main.o: /usr/include/bits/types.h /usr/include/bits/typesizes.h
+main.o: /usr/include/time.h /usr/include/endian.h /usr/include/bits/endian.h
+main.o: /usr/include/bits/byteswap.h /usr/include/sys/select.h
+main.o: /usr/include/bits/select.h /usr/include/bits/sigset.h
+main.o: /usr/include/bits/time.h /usr/include/sys/sysmacros.h
+main.o: /usr/include/bits/pthreadtypes.h /usr/include/alloca.h

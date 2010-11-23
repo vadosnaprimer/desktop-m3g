@@ -1,4 +1,4 @@
-#include "m3g.hpp"
+#include "m3g/m3g.hpp"
 #include <GL/glut.h>
 #include <iostream>
 #include <cstring>
@@ -11,7 +11,6 @@ using namespace m3g;
 
 std::vector<Object3D*> objs;
 World* wld = 0;
-int file_index = 1;
 
 
 void display(void)

@@ -1,7 +1,7 @@
 #ifndef __MY_WIDGET_HPP__
 #define __MY_WIDGET_HPP__
 
-#include "m3g.hpp"
+#include "m3g/m3g.hpp"
 #include <QtOpenGL/QGLWidget>
 #include <QMouseEvent>
 

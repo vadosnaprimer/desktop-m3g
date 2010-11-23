@@ -354,9 +354,9 @@ void Node:: setAlignment (Node* z_reference, int z_target, Node* y_reference, in
         !(y_target == NONE || y_target == ORIGIN)) {
         throw IllegalArgumentException (__FILE__, __func__, "Invalid target z_target=%d, y_target=%d.", z_target, y_target);
     }
-    if ((z_reference == y_reference) && (z_target != NONE && y_target != NONE)) {
-        throw IllegalArgumentException (__FILE__, __func__, "Invalid reference z_reference=%p, y_reference=%p.", z_reference, y_reference);
-    }
+    //if ((z_reference == y_reference) && (z_target != NONE && y_target != NONE)) {
+    //    throw IllegalArgumentException (__FILE__, __func__, "Invalid reference z_reference=%p, y_reference=%p.", z_reference, y_reference);
+    //}
     if (z_reference == this || y_reference == this) {
         throw IllegalArgumentException (__FILE__, __func__, "Reference is invalid, z_ref=%p, y_ref=%p, this=%p.", z_reference, y_reference, this);
     }

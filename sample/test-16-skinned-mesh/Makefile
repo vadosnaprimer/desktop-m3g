@@ -1,11 +1,11 @@
-SRCS = $(wildcard *.cpp)
-OBJS = $(SRCS:.cpp=.o)
-TARGET = a.out
-CXX = g++
-CXXFLAGS = -Wall -g -Wno-deprecated -I../../src
-LD = g++
-LDFLAGS = -L../../src
-LIBS = -lm3g -lglut -lGL -lz
+SRCS     = $(wildcard *.cpp)
+OBJS     = $(SRCS:.cpp=.o)
+TARGET   = a.out
+CXX      = g++
+CXXFLAGS = -Wall -g -Wno-deprecated -I../../bin/include
+LD       = g++
+LDFLAGS  = -L../../bin/lib
+LIBS     = -lm3g -lglut
 
 
 all: $(OBJS)
@@ -45,12 +45,10 @@ main.o: ../../src/m3g/m3g/BoneWeight.hpp ../../src/m3g/Sprite3D.hpp
 main.o: ../../src/m3g/Texture2D.hpp ../../src/m3g/VertexArray.hpp
 main.o: ../../src/m3g/VertexBuffer.hpp ../../src/m3g/RayIntersection.hpp
 main.o: ../../src/m3g/m3g/Vector.hpp ../../src/m3g/Loader.hpp
-main.o: ../../src/m3g/m3g/M3GReader.hpp
-main.o: ../../src/m3g/m3g/m3g/InMemoryStream.hpp
-main.o: ../../src/m3g/m3g/m3g/M3GStruct.hpp ../../src/m3g/m3g/m3g.hpp
-main.o: ../../src/m3g/Exception.hpp ../../src/m3g/RenderState.hpp data.hpp
-main.o: /usr/include/GL/glut.h /usr/include/GL/freeglut_std.h
-main.o: /usr/include/GL/gl.h /usr/include/GL/glext.h /usr/include/inttypes.h
+main.o: ../../src/m3g/m3g/m3g.hpp ../../src/m3g/Exception.hpp
+main.o: ../../src/m3g/RenderState.hpp data.hpp /usr/include/GL/glut.h
+main.o: /usr/include/GL/freeglut_std.h /usr/include/GL/gl.h
+main.o: /usr/include/GL/glext.h /usr/include/inttypes.h
 main.o: /usr/include/features.h /usr/include/bits/predefs.h
 main.o: /usr/include/sys/cdefs.h /usr/include/bits/wordsize.h
 main.o: /usr/include/gnu/stubs.h /usr/include/gnu/stubs-64.h

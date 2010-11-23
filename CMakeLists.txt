@@ -2,9 +2,10 @@
 # M3G project config file.
 #
 
-
 # project info
 project (M3G)
+
+# required cmake
 cmake_minimum_required (VERSION 2.0)
 
 # dependend libraries
@@ -40,8 +41,10 @@ add_subdirectory (exlib)
 
 # m3g-reader-writer
 set (M3G_READER_WRITER_INCLUDE_DIR ${M3G_READER_WRITER_SOURCE_DIR}/src)
-set (M3G_READER_WRITER_LIBRARY_DIR ${M3G_READER_WRITER_BINARY_DIR}/src)
-set (M3G_READER_WRITER_LIBRRAY -Wl,-whole-archive -lm3g-reader-writer -Wl,no-whole-archive)
+set (M3G_READER_WRITER_LINK_DIR    ${M3G_READER_WRITER_BINARY_DIR}/src)
+set (M3G_READER_WRITER_LIBRARY     -Wl,-whole-archive libm3g-reader-writer.a -Wl,-no-whole-archive)
+link_directories      (${M3G_READER_WRITER_LINK_DIR})
+
 
 # project src
 add_subdirectory (src)

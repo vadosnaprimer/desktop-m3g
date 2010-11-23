@@ -1,4 +1,4 @@
-#include "m3g.hpp"
+#include "m3g/m3g.hpp"
 #include <GL/glut.h>
 #include <iostream>
 #include <cstring>
@@ -141,7 +141,7 @@ int main (int argc, char** argv)
     wld->setBackground (bg);
     wld->addChild (mesh1);
     wld->addChild (mesh2);
-    Wld->addChild (mesh3);
+    wld->addChild (mesh3);
 
     cout << *wld << "\n";
 

@@ -24,7 +24,7 @@ Make & Install
     You need cmake (http://www.cmake.org/)
     1. cd build
     2. cmake ..
-         - make file will be generated.
+         - Makefile will be generated.
     3. make
     4  make install
          - install Desktop-M3G to ${Desktop-M3G}/bin.
@@ -43,7 +43,8 @@ Test & Samples
     1. move to test directory
     2. make depend
     3. make 
-    4. ./a.out
+    4. export LD_LIBRARY_PATH=../bin/lib
+    5. ./a.out
 
   = Samples =
     You can find about 20 samples at samples directory.
@@ -51,7 +52,8 @@ Test & Samples
     1. move to sample/test-xxx directory
     2. make depend
     3. make
-    4. ./a.out
+    4. export LD_LIBRARY_PATH=../bin/lib
+    5. ./a.out
 
 
 -------------------------------------------

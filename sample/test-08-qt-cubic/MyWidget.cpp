@@ -1,4 +1,4 @@
-#include "m3g.hpp"
+#include "m3g/m3g.hpp"
 #include "MyWidget.hpp"
 #include <GL/glu.h>
 #include <iostream>
