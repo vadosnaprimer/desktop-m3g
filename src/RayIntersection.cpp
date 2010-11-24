@@ -187,6 +187,10 @@ void RayIntersection:: computeTexCoord (int index)
 
 float RayIntersection:: getTextureS (int index) const
 {
+    if (index < 0 || index >= MAX_TEXTURE_UNITS) {
+        throw IndexOutOfBoundsException (__FILE__, __func__, "Index is invalid, index=%d.", index);
+    }
+
     if (!tex_coord[index]) {
         const_cast<RayIntersection*>(this)->computeTexCoord(index);
     }
@@ -195,6 +199,10 @@ float RayIntersection:: getTextureS (int index) const
 
 float RayIntersection:: getTextureT (int index) const
 {
+    if (index < 0 || index >= MAX_TEXTURE_UNITS) {
+        throw IndexOutOfBoundsException (__FILE__, __func__, "Index is invalid, index=%d.", index);
+    }
+
     if (!tex_coord[index]) {
         const_cast<RayIntersection*>(this)->computeTexCoord(index);
     }

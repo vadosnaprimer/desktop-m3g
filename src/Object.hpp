@@ -8,7 +8,7 @@ namespace m3g {
 
     /**
      * @~English   The basis of all classes.
-     * @~Japanese  全てのオブジェクトの規程となるクラス.
+     * @~Japanese  全てのオブジェクトの基底となるクラス.
      */
     class Object
     {

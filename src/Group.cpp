@@ -115,7 +115,7 @@ int Group:: animate (int world_time)
 Node* Group:: getChild (int index) const
 {
     if (index < 0 || index >= (int)children.size()) {
-        throw IllegalArgumentException (__FILE__, __func__, "Chldren index is invalid, index=%d.", index);
+        throw IndexOutOfBoundsException (__FILE__, __func__, "Children index is invalid, index=%d.", index);
     }
 
     return children[index];

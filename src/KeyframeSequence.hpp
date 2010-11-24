@@ -146,7 +146,7 @@ namespace m3g {
 
         /**
          * @~English  Sets the time position and value of the specified keyframe.
-         * @~Japanese 指定されたindex番目のキーフレームのローカル時間と値を設定.
+         * @~Japanese 指定されたキーフレームのローカル時間と値を設定.
          */
         void setKeyframe (int index, int time, float* value);
 

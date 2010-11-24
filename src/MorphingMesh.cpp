@@ -25,7 +25,7 @@ MorphingMesh:: MorphingMesh (VertexBuffer* base, int num_target, VertexBuffer** 
     }
     for (int i = 0; i < num_target; i++) {
         if (targets[i] == NULL) {
-            throw NullPointerException (__FILE__, __func__, " Target vertices is NULL, index=%d.", i);
+            throw NullPointerException (__FILE__, __func__, "Target vertices is NULL, i=%d.", i);
         }
     }
   

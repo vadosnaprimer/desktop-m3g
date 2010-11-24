@@ -54,8 +54,9 @@ Object3D* Object3D:: find (int target_user_id) const
 AnimationTrack* Object3D:: getAnimationTrack (int index) const
 {
     if (index < 0 || index >= (int)anim_tracks.size()) {
-        throw IllegalArgumentException (__FILE__, __func__, "Index is invalid, index=%d, max=%d.", index, anim_tracks.size());
+        throw IndexOutOfBoundsException (__FILE__, __func__, "Index is invalid, index=%d, max=%d.", index, anim_tracks.size());
     }
+
     return anim_tracks[index];
 }
 

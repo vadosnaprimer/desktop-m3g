@@ -245,7 +245,7 @@ VertexArray* VertexBuffer:: getPositions (float* scale_bias) const
 VertexArray* VertexBuffer:: getTexCoords (int index, float* scale_bias) const
 {
     if (index < 0 || index >= MAX_TEXTURE_UNITS) {
-        throw IllegalArgumentException (__FILE__, __func__, "Texture index is invalid.");
+        throw IndexOutOfBoundsException (__FILE__, __func__, "Texture index is invalid.");
     }
 
     if (tex_coords[index] && scale_bias) {
@@ -366,7 +366,7 @@ void VertexBuffer:: setPositions (VertexArray* positions_, float scale, float* b
 void VertexBuffer:: setTexCoords (int index, VertexArray* tex_coords_, float scale, float* bias)
 {
     if (index < 0 || index >= MAX_TEXTURE_UNITS) {
-        throw IllegalArgumentException (__FILE__, __func__, "Index is invalid, index=%d.", index);
+        throw IndexOutOfBoundsException (__FILE__, __func__, "Index is invalid, index=%d.", index);
     }
     if (tex_coords_ == NULL) {
         tex_coords[index] = NULL;

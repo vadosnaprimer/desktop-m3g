@@ -69,7 +69,7 @@ namespace m3g {
 
         /** 
          * @~English  Gets an AnimationTrack by index.
-         * @~Japanese 指定のインデックスのアニメーショントラックを見つける.
+         * @~Japanese 指定のインデックスのアニメーショントラックを取得する.
          */
         AnimationTrack* getAnimationTrack (int index) const;
 

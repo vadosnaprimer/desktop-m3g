@@ -93,7 +93,7 @@ int KeyframeSequence:: getInterpolationType () const
 int KeyframeSequence:: getKeyframe (int index, float* value) const
 {
     if (index < 0 || index >= keyframe_count) {
-        throw IllegalArgumentException (__FILE__, __func__, "Index is invalid, index=%d.", index);
+        throw IndexOutOfBoundsException (__FILE__, __func__, "Index is invalid, index=%d.", index);
     }
 
     if (value) {
@@ -136,7 +136,7 @@ void KeyframeSequence:: setDuration (int new_duration)
 void KeyframeSequence:: setKeyframe (int index, int time, float* value)
 {
     if (index < 0 || index >= keyframe_count) {
-        throw IllegalArgumentException (__FILE__, __func__, "Index is invalid, index=%d, keyframe_count=%d.", index, keyframe_count);
+        throw IndexOutOfBoundsException (__FILE__, __func__, "Index is invalid, index=%d, keyframe_count=%d.", index, keyframe_count);
     }
     if (time < 0) {
         throw IllegalArgumentException (__FILE__, __func__, "Time is Invalid, time=%d.", time);

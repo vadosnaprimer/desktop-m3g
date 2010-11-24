@@ -49,10 +49,10 @@ TriangleStripArray:: TriangleStripArray (int first_index, int num_strips, const 
         throw NullPointerException (__FILE__, __func__, "Strips array is NULL.");
     }
     if (first_index < 0 || first_index > 65535) {
-        throw IllegalArgumentException (__FILE__, __func__, "Fist index is invalid, first_idex=%d.", first_index);
+        throw IndexOutOfBoundsException (__FILE__, __func__, "Fist index is invalid, first_idex=%d.", first_index);
     }
     if (num_strips < 1 || first_index + num_strips > 65536) {
-        throw IllegalArgumentException (__FILE__, __func__, "Nummber of strip lengths is invalid, first_index=%d, num_strips=%d.", first_index, num_strips);
+        throw IndexOutOfBoundsException (__FILE__, __func__, "Nummber of strip lengths is invalid, first_index=%d, num_strips=%d.", first_index, num_strips);
     }
 
     strips.reserve (num_strips);
@@ -118,7 +118,7 @@ int TriangleStripArray:: getFaceVertexCount () const
 void TriangleStripArray:: getFaceVertexIndex (int face, int* vertex_indices) const
 {
     if (face < 0 || face >= getFaceCount()) {
-        throw IllegalArgumentException (__FILE__, __func__, "Face index is invalid, face=%d.", face);
+        throw IndexOutOfBoundsException (__FILE__, __func__, "Face index is invalid, face=%d.", face);
     }
     if (indices == NULL) {
         throw NullPointerException (__FILE__, __func__, "Indices is NULL.");
@@ -169,15 +169,10 @@ void TriangleStripArray:: render (RenderState& state) const
         throw OpenGLException (__FILE__, __func__, "Buffer object of index is not ready, ibuf=%d.", ibuf);
     }
 
-    //cout << "TriangleStripArray: rendered stips=" << strips.size() << "\n";
-  
-    //IndexBuffer:: render(pass, index);
-
     glBindBuffer (GL_ELEMENT_ARRAY_BUFFER, ibuf);
 
     int offset = 0;
     for (int i = 0; i < (int)strips.size(); i++) {
-        //cout << "offset = " << offset << ", strip=" << strips[i] << "\n";
         glDrawElements (GL_TRIANGLE_STRIP, strips[i], GL_UNSIGNED_INT, (GLvoid*)offset);
         offset += strips[i] * sizeof(int);
     }
