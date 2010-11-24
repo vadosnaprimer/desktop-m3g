@@ -77,9 +77,9 @@ int Light:: animate (int world_time)
     bool  is_intensity_modefied     = false;
     bool  is_spot_angle_modefied    = false;
     bool  is_spot_exponent_modefied = false;
-    float rgb[] = {0,0,0};
-    float new_intensity;
-    Spot  new_spot = Spot(0,0);
+    float rgb[]         = {0,0,0};
+    float new_intensity = 0;
+    Spot  new_spot      = Spot(0,0);
   
     for (int i = 0; i < getAnimationTrackCount(); i++) {
         AnimationTrack*      track      = getAnimationTrack (i);
@@ -150,10 +150,7 @@ int Light:: animate (int world_time)
         spot.exponent = clamp (0, 128, new_spot.exponent);
     }
 
-    //cout << *this << "\n";
-
     return 0;
-
 }
 
 
@@ -272,10 +269,8 @@ void Light:: render (RenderState& state) const
     float m[16];
     trans.get (m);
 
-    //cout << "Light is enabled\n";
     glEnable  (GL_LIGHTING);
     glEnable  (GL_LIGHT0+index);
-
 
     if (mode == AMBIENT) {
         //cout << "AMBIENT light\n";

@@ -222,10 +222,12 @@ bool Mesh:: intersect (const Vector& org, const Vector& dir, RayIntersection* ri
     float* bias  = &scale_bias[1];
 
     VertexArray* positions = vertices->getPositions(scale_bias);
-    bool         ri_hit   = false;
-    float        ri_u, ri_v, ri_t = numeric_limits<float>::max();
+    bool         ri_hit    = false;
+    float        ri_u      = 0;
+    float        ri_v      = 0;
+    float        ri_t      = numeric_limits<float>::max();
     int          ri_index_values[3];
-    int          ri_submesh_index;
+    int          ri_submesh_index = 0;
 
     //cout << "indices.size() = " << indices.size() << "\n";
 
