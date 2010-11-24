@@ -649,7 +649,7 @@ void M3GReader:: readWorld (M3GWorldStruct* world)
 void M3GReader:: readString (const char** str)
 {
     char* buf = new char[256];
-    memset (buf, 256, 0);
+    memset (buf, 0, 256);
     for (int i = 0; i < 255; i++) {
         buf[i] = getByte ();
         if (buf[i] == '\0') {
