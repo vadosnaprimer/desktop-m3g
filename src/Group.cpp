@@ -8,6 +8,7 @@
 #include "m3g/Vector.hpp"
 #include "m3g/Camera.hpp"
 #include "m3g/Mesh.hpp"
+#include "m3g/SkinnedMesh.hpp"
 #include "m3g/Sprite3D.hpp"
 using namespace m3g;
 using namespace std;
@@ -292,6 +293,13 @@ bool Group:: pick (int scope, float ox, float oy, float oz, float dx, float dy, 
 
 void Group:: removeChild (Node* child)
 {
+    Node* node = this;
+    while ((node = node->getParent()) != NULL) {
+        if (dynamic_cast<SkinnedMesh*>(node)) {
+            throw IllegalArgumentException (__FILE__, __func__, "Skeleton node is not removed.");
+        }
+    }
+
     std::vector<Node*>::iterator it;
     for (it = children.begin(); it < children.end(); it++) {
         if (*it == child) {

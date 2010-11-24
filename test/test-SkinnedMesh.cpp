@@ -19,15 +19,19 @@ TEST (SkinnedMesh_default_variables)
     TriangleStripArray* tris  = new TriangleStripArray (indices, 1, strips);
     Appearance*   app         = new Appearance;
     Group*        skeleton    = new Group;
+    Group*        bone        = new Group;
 
     float scale  = 1;
     float bias[] = {0,0,0};
     vbuf->setPositions (varry, scale, bias);
 
+    skeleton->addChild (bone);
+
     SkinnedMesh*  mesh        = new SkinnedMesh (vbuf, 1, (IndexBuffer**)&tris, &app, skeleton);
 
     CHECK_EQUAL (skeleton, mesh->getSkeleton());
     CHECK_EQUAL (mesh    , mesh->getSkeleton()->getParent());
+    CHECK_THROW (skeleton->removeChild (bone), IllegalArgumentException);
 
     delete vbuf;
     delete tris;
@@ -35,6 +39,7 @@ TEST (SkinnedMesh_default_variables)
     delete skeleton;
     delete mesh;
 }
+
 
 
 
