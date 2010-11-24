@@ -35,6 +35,9 @@ SkinnedMesh:: SkinnedMesh (VertexBuffer* vertices,
     if (vertices->getPositions(0) == NULL) {
         throw NullPointerException (__FILE__, __func__, "Vertices has no positions.");
     }
+    if (skeleton_ == NULL) {
+        throw NullPointerException (__FILE__, __func__, "Skeleton is NULL.");
+    }
 
     skeleton = skeleton_;
 
@@ -50,6 +53,9 @@ SkinnedMesh:: SkinnedMesh (VertexBuffer* vertices,
     if (vertices->getPositions(0) == NULL) {
         throw NullPointerException (__FILE__, __func__, "Vertices has no positions.");
     }
+    if (skeleton_ == NULL) {
+        throw NullPointerException (__FILE__, __func__, "Skeleton is NULL.");
+    }
 
     skeleton = skeleton_;
     
@@ -60,7 +66,7 @@ void SkinnedMesh:: initialize ()
 {
     skinned_vertices = vertices->duplicate ();
 
-    float scale_bias[4];
+    float        scale_bias[4];
     VertexArray* bind_positions = vertices->getPositions(scale_bias);
     if (bind_positions) {
         VertexArray* skinned_positions = bind_positions->duplicate ();

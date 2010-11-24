@@ -28,9 +28,6 @@ MorphingMesh:: MorphingMesh (VertexBuffer* base, int num_target, VertexBuffer** 
             throw NullPointerException (__FILE__, __func__, " Target vertices is NULL, index=%d.", i);
         }
     }
-    if (base->getPositions(0) == NULL) {
-        throw NullPointerException (__FILE__, __func__, "Base vertices has no positions.");
-    }
   
     initialize (num_target, targets);
 }
@@ -48,9 +45,6 @@ MorphingMesh:: MorphingMesh (VertexBuffer* base, int num_target, VertexBuffer** 
         if (targets[i] == NULL) {
             throw NullPointerException (__FILE__, __func__, " Target vertices is NULL, index=%d.", i);
         }
-    }
-    if (base->getPositions(0) == NULL) {
-        throw NullPointerException (__FILE__, __func__, "Base vertices has no positions.");
     }
 
     initialize (num_target, targets);
@@ -82,21 +76,8 @@ void MorphingMesh:: initialize (int num_target, VertexBuffer** targets)
         morphed_vertices->setColors (morphed_colors);
     }
 
-    morph_targets.reserve (num_target);
-    for (int i = 0; i < num_target; i++) {
-        VertexBuffer* vbuf = *targets++;
-        morph_targets.push_back (vbuf);
-    }
-    // メモ：1行でかける
-    // morph_targes.assign (targtes, targets+num_target);
-
-    morph_weights.reserve (num_target);
-    for (int i = 0; i < num_target; i++) {
-        morph_weights.push_back (0);
-    }
-    // メモ：1行でかける
-    //morph_weights.assign (num_target, 0);
-
+    morph_targets.assign (targets, targets+num_target);
+    morph_weights.assign (num_target, 0);
 }
 
 

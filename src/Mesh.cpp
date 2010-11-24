@@ -49,26 +49,13 @@ Mesh:: Mesh (VertexBuffer* vertices_, IndexBuffer* submesh, Appearance* appearan
     initialize (vertices_, 1, &submesh, &appearance_);
 }
 
-//Mesh:: Mesh () : vertices(0)
-//{
-//}
 
 void Mesh:: initialize (VertexBuffer* vertices_, int num_submesh, IndexBuffer** submeshes, Appearance** appearances_)
 {
     vertices = vertices_;
 
-    // 1行でかける
-    indices.reserve (num_submesh);
-    for (int i = 0; i < num_submesh; i++ ) {
-        indices.push_back (*submeshes++);
-    }
-
-    // 1行でかける
-    appearances.reserve (num_submesh);
-    for (int i = 0; i < num_submesh; i++ ) {
-        appearances.push_back (*appearances_++);
-    }
-
+    indices.assign (submeshes, submeshes+num_submesh);
+    appearances.assign (appearances_, appearances_+num_submesh);
 }
 
 Mesh:: ~Mesh ()
