@@ -240,17 +240,23 @@ float Node:: getGlobalAlphaFactor () const
     return alpha;
 }
 
-Matrix Node:: getGlobalPose () const
+// 補足: 
+// この関数のやっている事は getTransformTo() と同じ。
+// スキニングの時にはこの方が使いやすいので。
+Matrix Node:: getGlobalPose (const Node* target) const
 {
     const Node* node = this;
     Matrix global_pose;
     do {
+        if (node == NULL) {
+            throw InternalException (__FILE__, __func__, "Parent node is NULL, but not found target node.");
+        }
         Transform trans;
         node->getCompositeTransform (&trans);
         float m[16];
         trans.get (m);
         global_pose = Matrix(m) * global_pose;
-    } while ((node = node->getParent()));
+    } while ((node = node->getParent()) != target);
 
     return global_pose;
 }
@@ -324,12 +330,11 @@ bool Node:: getTransformTo (const Node* target, Transform* transform) const
     } while ((node = node->parent));
 
     if (root_a != root_b) {
-        cout << "Node: can't getTransformTo\n";
-        return false;
+         return false;
     }
 
-    Matrix global_pose_a = this->getGlobalPose ();
-    Matrix global_pose_b = target->getGlobalPose ();
+    Matrix global_pose_a = this->getGlobalPose (root_a);
+    Matrix global_pose_b = target->getGlobalPose (root_b);
 
     Matrix transform_matrix = global_pose_b.getInverse() * global_pose_a;
     transform->set (transform_matrix.m);

@@ -21,10 +21,17 @@ using namespace m3g;
  *       アニメーションした結果有効範囲外に飛び出すのを防止するためである。
  */
 
+/**
+ * メモ: ローカルポーズ   := ボーン座標から1個上のボーン座標への変換行列
+ *       グローバルポーズ := ボーン座標からモデル(ローカル)座標への変換行列
+ *       バインドポーズ   := 静止姿勢のグローバルポーズ
+ */
 
 /**
- * メモ：skeletonのparentをthisにするべき？
- *       それをすると現状では動かない。
+ * メモ: スキニングは (静止姿勢の)モデル座標 --> ボーン座標 --> (カレントの)モデル座標、で行う。
+ *       従ってマトリックスパレットは
+ *          matrix_pallete = global_pose * bind_pose.inverse
+ *       詳しくは Jason Gregory の Game Engine Architecture を参照の事。
  */
 SkinnedMesh:: SkinnedMesh (VertexBuffer* vertices, 
                            int num_submesh, IndexBuffer** submeshes, Appearance** appearances_,
@@ -40,6 +47,7 @@ SkinnedMesh:: SkinnedMesh (VertexBuffer* vertices,
     }
 
     skeleton = skeleton_;
+    skeleton->setParent (this);
 
     initialize ();
 }
@@ -58,6 +66,7 @@ SkinnedMesh:: SkinnedMesh (VertexBuffer* vertices,
     }
 
     skeleton = skeleton_;
+    skeleton->setParent (this);
     
     initialize ();
 }
@@ -185,7 +194,7 @@ void SkinnedMesh:: updateSkinnedVertices ()
     int bone_count = bind_poses.size();
     std::vector<Matrix> matrix_palette (bone_count);
     for (int b = 0; b < bone_count; b++) {
-        Matrix global_pose = bind_poses[b].bone->getGlobalPose ();
+        Matrix global_pose = bind_poses[b].bone->getGlobalPose (this);
         matrix_palette[b]  = global_pose * bind_poses[b].inverse;
         //cout << "global_pose[" << b << "] = " << global_pose << "\n";
     }
@@ -276,7 +285,7 @@ void SkinnedMesh:: addTransform (Node* node, int weight, int first_vertex, int n
 }
 
 /**
- * 
+ * ボーン行列(ボーン座標からローカル座標への変換行列)の取得.
  */
 void SkinnedMesh:: getBoneTransform (Node* node, Transform* transform) const
 {
@@ -290,7 +299,7 @@ void SkinnedMesh:: getBoneTransform (Node* node, Transform* transform) const
         throw IllegalArgumentException (__FILE__, __func__, "Node is not bone of this SkinnedmEsh, node=0x%x.", node);
     }
   
-    Matrix global_pose = node->getGlobalPose();
+    Matrix global_pose = node->getGlobalPose(this);
     global_pose.invert ();
 
     transform->set ((float*)global_pose.m);
@@ -397,23 +406,25 @@ void SkinnedMesh:: render (RenderState& state) const
     skeleton->render (state);
 
     (const_cast<SkinnedMesh*>(this))->vertices = tmp;
-
-
 }
 
 
-
+/**
+ * 指定ノードをボーンとして登録する.
+ * すでに登録済みなら何もしない。
+ * 戻り値はそのインデックス.
+ */
 int SkinnedMesh:: addBoneIndex (Node* bone)
 {
     for (int i = 0; i < (int)bind_poses.size(); i++) {
         if (bind_poses[i].bone == bone) {
-            Matrix bind_pose = bone->getGlobalPose ();
+            Matrix bind_pose = bone->getGlobalPose (this);
             bind_poses[i].inverse = bind_pose.invert();
             return i;
         }
     }
     // ボーンとバインドポーズ（の逆行列）を保存
-    Matrix bind_pose = bone->getGlobalPose ();
+    Matrix bind_pose = bone->getGlobalPose (this);
     bind_poses.push_back (BindPose(bone, bind_pose.invert()));
     return bind_poses.size()-1;
 }

@@ -12,16 +12,16 @@ TEST (Node_default_variables)
 {
     Node* node = new Node;
 
-    CHECK_EQUAL ((Node*)0, node->getParent());
-    CHECK_EQUAL ((Node*)0, node->getGlobalParent());
-    CHECK_EQUAL (true, node->isRenderingEnabled());
-    CHECK_EQUAL (true, node->isPickingEnabled());
-    CHECK_EQUAL (1.0f, node->getAlphaFactor());
-    CHECK_EQUAL (-1, node->getScope());
+    CHECK_EQUAL ((Node*)0  , node->getParent());
+    CHECK_EQUAL ((Node*)0  , node->getGlobalParent());
+    CHECK_EQUAL (true      , node->isRenderingEnabled());
+    CHECK_EQUAL (true      , node->isPickingEnabled());
+    CHECK_EQUAL (1.0f      , node->getAlphaFactor());
+    CHECK_EQUAL (-1        , node->getScope());
     CHECK_EQUAL (Node::NONE, node->getAlignmentTarget(Node::Z_AXIS));
-    CHECK_EQUAL ((Node*)0, node->getAlignmentReference(Node::Z_AXIS));
+    CHECK_EQUAL ((Node*)0  , node->getAlignmentReference(Node::Z_AXIS));
     CHECK_EQUAL (Node::NONE, node->getAlignmentTarget(Node::Y_AXIS));
-    CHECK_EQUAL ((Node*)0, node->getAlignmentReference(Node::Y_AXIS));
+    CHECK_EQUAL ((Node*)0  , node->getAlignmentReference(Node::Y_AXIS));
 
     delete node;
 }
@@ -42,16 +42,16 @@ TEST (Node_set_variables)
     grp->addChild (node);
     wld->addChild (grp);
 
-    CHECK_EQUAL (grp, node->getParent());
-    CHECK_EQUAL (wld, node->getGlobalParent());
-    CHECK_EQUAL (false, node->isRenderingEnabled());
-    CHECK_EQUAL (false, node->isPickingEnabled());
-    CHECK_EQUAL (0.5f, node->getAlphaFactor());
-    CHECK_EQUAL (1, node->getScope());
+    CHECK_EQUAL (grp         , node->getParent());
+    CHECK_EQUAL (wld         , node->getGlobalParent());
+    CHECK_EQUAL (false       , node->isRenderingEnabled());
+    CHECK_EQUAL (false       , node->isPickingEnabled());
+    CHECK_EQUAL (0.5f        , node->getAlphaFactor());
+    CHECK_EQUAL (1           , node->getScope());
     CHECK_EQUAL (Node::ORIGIN, node->getAlignmentTarget(Node::Z_AXIS));
-    CHECK_EQUAL ((Node*)zref, node->getAlignmentReference(Node::Z_AXIS));
+    CHECK_EQUAL ((Node*)zref , node->getAlignmentReference(Node::Z_AXIS));
     CHECK_EQUAL (Node::ORIGIN, node->getAlignmentTarget(Node::Y_AXIS));
-    CHECK_EQUAL ((Node*)yref, node->getAlignmentReference(Node::Y_AXIS));
+    CHECK_EQUAL ((Node*)yref , node->getAlignmentReference(Node::Y_AXIS));
 
     delete node;
     delete zref;
@@ -66,11 +66,11 @@ TEST (Node_duplicate)
 {
     // TODO : 現在アライメントのチェックはしていない
 
-    Node* node0  = new Node;
-    Node* zref   = new Node;
-    Node* yref   = new Node;
-    Node* parent = new Node;
-    Group* grp   = new Group;
+    Node*  node0  = new Node;
+    Node*  zref   = new Node;
+    Node*  yref   = new Node;
+    Node*  parent = new Node;
+    Group* grp    = new Group;
 
     node0->setAlignment (zref, Node::ORIGIN, yref, Node::ORIGIN);
     node0->setAlphaFactor (0.5);
@@ -103,8 +103,8 @@ TEST (Node_duplicate)
 
 TEST (Node_getGlobalAlphaFactor)
 {
-    Group* grp = new Group;
-    Node* node = new Node;
+    Group* grp  = new Group;
+    Node*  node = new Node;
     grp->setAlphaFactor (0.8);
     node->setAlphaFactor (0.6);
     grp->addChild (node);
@@ -130,7 +130,7 @@ TEST (Node_getGlobalPose)
 
     Matrix global_pose;
   
-    global_pose = grp0-> getGlobalPose ();
+    global_pose = grp0-> getGlobalPose (NULL);
     float m1[16] = {1,0,0,0,
                     0,1,0,1,
                     0,0,1,0,
@@ -138,7 +138,7 @@ TEST (Node_getGlobalPose)
     CHECK_ARRAY_CLOSE (m1, global_pose.m, 16, 0.0001f);
     //cout << global_pose << "\n";
 
-    global_pose = grp1->getGlobalPose ();
+    global_pose = grp1->getGlobalPose (NULL);
     float m2[16] = {1,0,0,0,
                     0,0,-1,1,
                     0,1,0,0,
@@ -146,7 +146,7 @@ TEST (Node_getGlobalPose)
     CHECK_ARRAY_CLOSE (m2, global_pose.m, 16, 0.0001f);
     //cout << global_pose << "\n";
 
-    global_pose = grp2-> getGlobalPose ();
+    global_pose = grp2-> getGlobalPose (NULL);
     float m3[16] = {1,0,0,0,
                     0,0,-1,-2,
                     0,1,0,0,

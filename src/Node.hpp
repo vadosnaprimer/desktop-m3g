@@ -126,10 +126,10 @@ namespace m3g {
         float getGlobalAlphaFactor () const;
 
         /**
-         * @~English   Get global pose matrix (bone coordinate to local coordinate), for inner use.
-         * @~Japanese  グローバルポーズ（ボーン座標からローカル座標）を計算するM3G非標準の関数.
+         * @~English   Retrieves the transformation matrix from this to target, not in M3G.
+         * @~Japanese  このノードから指定のノードまでの変換行列を返すM3G非標準の関数.
          */
-        Matrix getGlobalPose () const;
+        Matrix getGlobalPose (const Node* target) const;
 
         /**
          * @~English   Returns the scene graph parent of this node.
@@ -153,7 +153,7 @@ namespace m3g {
 
         /**
          * @~English   Gets the composite transfformation from this node to the given node.
-         * @~Japanese このノードから指定されたノードへの座標変換の取得.
+         * @~Japanese  このノードから指定されたノードへの座標変換の取得.
          */
         bool getTransformTo (const Node* target, Transform* transform) const;
 
@@ -222,8 +222,8 @@ namespace m3g {
         virtual std::ostream& print (std::ostream& out) const;
 
         /**
-         * @~English  Sets parent of this node.
-         * @~Japanese このノードの親ノードを設定する. 
+         * @~English  Sets parent of this node, not in M3G.
+         * @~Japanese このノードの親ノードを設定するM3G非標準の関数.
          */
         void setParent (Node* node);
 
