@@ -236,7 +236,6 @@ bool Mesh:: intersect (const Vector& org, const Vector& dir, RayIntersection* ri
             Vector v2 = Vector(position_values[2]);
             float u, v, t;
             bool hit = triangle_intersect (org, dir, v0, v1, v2, &u, &v, &t);
-            //cout << "triangle-intersect : " << hit << "\n";
             if (hit && t < ri_t) {
                 ri_hit = true;
                 ri_u = u;

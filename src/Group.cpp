@@ -149,9 +149,8 @@ bool Group:: isDescendant (const Node* node) const
 }
 
 /**
- * 注意1: (x,y)にはウィンドウ座標をピクセル数で指定する。
- *        左上が(0,0)、右下(width,height)
- * 注意2: ピック可能＝Mesh,Sprite3D
+ * 注意1: (x,y)はウィンドウ座標を左上が(0,0)右下を(1,1)で指定する。視野垂台以外も指定可。
+ * 注意2: ピック可能なのはMeshとscaledなSprite3Dのみ。unscaledなSprite3Dはピック対象外。
  */
 bool Group:: pick (int scope, float x, float y, const Camera* camera, RayIntersection* ri_out) const
 {
@@ -160,6 +159,9 @@ bool Group:: pick (int scope, float x, float y, const Camera* camera, RayInterse
     }
     if (!isGlobalPickingEnabled()) {
         return false;
+    }
+    if (this->getGlobalParent() != camera->getGlobalParent()) {
+        throw IllegalStateException (__FILE__, __func__, "Can't translate from Group coordinate to given Camera coordinate.");
     }
 
     //cout << "Group: pick\n";
@@ -171,11 +173,11 @@ bool Group:: pick (int scope, float x, float y, const Camera* camera, RayInterse
     //cout << "p1(ndc) = " << p1_ndc << "\n";
 
     // Camera
-    Transform proj;
-    camera->getProjection (&proj);
-    proj.invert();
-    Vector p0_cam = proj.transform (p0_ndc);
-    Vector p1_cam = proj.transform (p1_ndc);
+    Transform proj_inv;
+    camera->getProjection (&proj_inv);
+    proj_inv.invert();
+    Vector p0_cam = proj_inv.transform (p0_ndc);
+    Vector p1_cam = proj_inv.transform (p1_ndc);
     //cout << "p0(cam) = " << p0_cam << "\n";
     //cout << "p1(cam) = " << p1_cam << "\n";
     p0_cam.divided_by_w ();
@@ -185,14 +187,18 @@ bool Group:: pick (int scope, float x, float y, const Camera* camera, RayInterse
 
     for (int i = 0; i < (int)children.size(); i++) {
         RayIntersection ri;
-        Transform trans;
+        Transform       trans;
         Group* grp = dynamic_cast<Group*>(children[i]);
         if (grp) {
+            // 座標系を子ノードのGroupに変換して再帰呼び出し
+            // これ全面的におかしい。
+            // 1. pickの種類が異なる
+            // 2. 結果をこのGroupの座標系に変換すべき
             camera->getTransformTo (grp, &trans);
             Vector p0_grp = trans.transform (p0_cam);
             Vector p1_grp = trans.transform (p1_cam);
             Vector org = p0_grp;
-            Vector dir = (p1_grp-p0_grp).normalize();
+            Vector dir = (p1_grp-p0_grp).normalize();   // これ正規化したら駄目では?
             grp-> pick (scope, 
                         org.x, org.y, org.z,
                         dir.x, dir.y, dir.z, &ri);
@@ -206,20 +212,40 @@ bool Group:: pick (int scope, float x, float y, const Camera* camera, RayInterse
             //cout << "p0(mesh) = " << p0_mesh << "\n";
             //cout << "p1(mesh) = " << p1_mesh << "\n";
             Vector org = p0_mesh;
-            Vector dir = (p1_mesh-p0_mesh).normalize();
+            Vector dir = (p1_mesh-p0_mesh).normalize();   // これ正規化したら駄目では?
             mesh->intersect (org, dir, &ri);
             // レイはGroupの座標系で格納する
             mesh->getTransformTo (this, &trans);
             ri.transformRay (trans);
+            ri.normalizeRay ();
         }
         Sprite3D* spr = dynamic_cast<Sprite3D*>(children[i]);
-        if (spr && (spr->getScope() & scope)) {
+        if (spr && spr->isScaled() && (spr->getScope() & scope)) {
             // 交差判定はNDC座標系で行う
             Vector org = p0_ndc;
-            Vector dir = (p1_ndc-p0_ndc).normalize();
+            Vector dir = (p1_ndc-p0_ndc).normalize();   // これ正規化したら駄目では?
+
+            //cout << "org_ndc = " << org << "\n";
+            //cout << "dir_ndc = " << dir << "\n";
+
             spr->intersect (org, dir, camera, &ri);
+
+            //cout << "------ A -----------\n";
+            //cout << ri << "\n";
+
             // レイはGroupの座標系で格納する
-            ri.transformRay (proj);
+            ri.transformRay (proj_inv);
+
+            //cout << "------ B -----------\n";
+            //cout << ri << "\n";
+
+            camera->getTransformTo (this, &trans);
+            ri.transformRay (trans);
+            ri.normalizeRay ();
+
+            //cout << "------ C -----------\n";
+            //cout << ri << "\n";
+
         }
         if (ri.getIntersected()) {
             if (min_ri.getIntersected() == NULL ||
@@ -238,41 +264,48 @@ bool Group:: pick (int scope, float x, float y, const Camera* camera, RayInterse
 
 
 /**
- * 注意1: レイの原点と方向はこのGroupのモデル座標系で表す。
- *        左上が(0,0)、右下(width,height)
- *        方向ベクトルの長さは１である必要はない。
- * 注意2: ピック可能＝Meshのみ
+ * 注意1: レイ光線はこのGroupの座標系で指定する。
+ *        方向ベクトルの長さが１である必要はない。
+ * 注意2: ピック可能なのはMeshとscaledなSprite3Dのみ。unscaledなSprite3Dはピック対象外。
  */
 bool Group:: pick (int scope, float ox, float oy, float oz, float dx, float dy, float dz, RayIntersection* ri_out) const
 {
     if (dx == 0 && dy == 0 && dz == 0) {
-        throw IllegalArgumentException (__FILE__, __func__, "Direction is 0.");
+        throw IllegalArgumentException (__FILE__, __func__, "Given ray Direction is 0.");
     }
 
-    Vector org_mdl (ox,oy,oz);
-    Vector dir_mdl (dx,dy,dz);
+    Vector p0_grp (ox,oy,oz);
+    Vector p1_grp (ox+dx,oy+dy,oz+dz);
 
     RayIntersection min_ri;
 
     for (int i = 0; i < (int)children.size(); i++) {
         RayIntersection ri;
-        Transform trans;
-        Group* grp = dynamic_cast<Group*>(children[i]);
-        if (grp) {
-            getTransformTo (grp, &trans);
-            Vector org_grp = trans.transform (org_mdl).divided_by_w();
-            Vector dir_grp = trans.transform3x3 (dir_mdl).divided_by_w();
-            grp-> pick (scope, 
-                        org_grp.x, org_grp.y, org_grp.z,
-                        dir_grp.x, dir_grp.y, dir_grp.z, &ri);
+        Transform       trans;
+        Group* grp2 = dynamic_cast<Group*>(children[i]);
+        if (grp2) {
+            // 座標系を子ノードのGroupに変換して再帰呼び出し
+            this->getTransformTo (grp2, &trans);
+            Vector p0_grp2 = trans.transform (p0_grp);
+            Vector p1_grp2 = trans.transform (p1_grp);
+            Vector org     = p0_grp2;
+            Vector dir     = p1_grp2 - p0_grp2;   // ここ正規化が必要?
+            grp2-> pick (scope, 
+                        org.x, org.y, org.z,
+                        dir.x, dir.y, dir.z,
+                        &ri);
+            trans.invert();
+            ri.transformRay (trans);
         }
         Mesh* mesh = dynamic_cast<Mesh*>(children[i]);
         if (mesh && (mesh->getScope() & scope)) {
             // 交差判定はMeshのモデル座標系で行う
-            getTransformTo (mesh, &trans);
-            Vector org_mesh = trans.transform (org_mdl).divided_by_w();
-            Vector dir_mesh = trans.transform (dir_mdl).divided_by_w();
-            mesh->intersect (org_mesh, dir_mesh, &ri);
+            this->getTransformTo (mesh, &trans);
+            Vector p0_mesh = trans.transform (p0_grp);
+            Vector p1_mesh = trans.transform (p1_grp);
+            Vector org     = p0_mesh;
+            Vector dir     = p1_mesh - p0_mesh;   // ここ正規化が必要?
+            mesh->intersect (org, dir, &ri);
             // レイはこのGroupの座標系で格納する
             mesh->getTransformTo (this, &trans);
             ri.transformRay (trans);

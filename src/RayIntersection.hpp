@@ -92,22 +92,27 @@ namespace m3g {
         int getSubmeshIndex () const;
 
         /**
-         * @~English Retrives the S texture coordinate at the intersection point on the picked Mesh or Sprite3D. 
+         * @~English  Retrives the S texture coordinate at the intersection point on the picked Mesh or Sprite3D. 
          * @~Japanese ピックしたMesh,Sprite3Dの交差地点のテクスチャー座標Sを返す.
          */
         float getTextureS (int index) const;
 
         /**
-         * @~English Retrives the T texture coordinate at the intersection point on the picked Mesh or Sprite3D. 
+         * @~English  Retrives the T texture coordinate at the intersection point on the picked Mesh or Sprite3D. 
          * @~Japanese ピックしたMesh,Sprite3Dの交差地点のテクスチャー座標Tを返す.
          */
         float getTextureT (int index) const;
 
 
         /**
-         *  レイの座標変換を行うM3G未定義
+         *  @~Japanese レイの座標変換を行うM3G未定義の関数. この関数が呼ばれた後のray.dirは正規化されていない.
          */
         void transformRay (const Transform& trans);
+
+        /**
+         * @~Japanese レイの方向ベクトルを正規化し距離tを修正するM3G非標準の関数.
+         */
+        void normalizeRay ();
 
         /**
          * @~English  Print out information of this object, for debug only.

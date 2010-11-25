@@ -12,6 +12,7 @@
    - implement Object3D::getReferences()
    - fix indexed png loding of Loader
    - fix blend color of Texture2D
+   - fix picking of Group
    - and so many bug fix.
 
 2010/08/31  ver 0.3.1

@@ -13,7 +13,7 @@ TEST (Node_default_variables)
     Node* node = new Node;
 
     CHECK_EQUAL ((Node*)0  , node->getParent());
-    CHECK_EQUAL ((Node*)0  , node->getGlobalParent());
+    CHECK_EQUAL ((Node*)node , node->getGlobalParent());
     CHECK_EQUAL (true      , node->isRenderingEnabled());
     CHECK_EQUAL (true      , node->isPickingEnabled());
     CHECK_EQUAL (1.0f      , node->getAlphaFactor());

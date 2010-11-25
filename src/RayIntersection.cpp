@@ -211,20 +211,39 @@ float RayIntersection:: getTextureT (int index) const
 
 void RayIntersection:: transformRay (const Transform& trans)
 {
-    ray.org = trans.transform (ray.org);
-    ray.dir.w = 0;
-    ray.dir = trans.transform (ray.dir);
-    ray.dir.w = 1;
+    if (ray.dir.length() == 0) {
+        throw InternalException (__FILE__, __func__, "Ray dir is 0. this never happen.");
+    }
+
+    Vector org  = ray.org;
+    Vector dst0 = ray.org + ray.dir;
+    Vector dst1 = ray.org + ray.dir * ray.t;
+    org     = trans.transform (org) .divided_by_w ();
+    dst0    = trans.transform (dst0).divided_by_w ();
+    dst1    = trans.transform (dst1).divided_by_w ();
+
+    ray.org = org;
+    ray.dir = dst0-org;
+    ray.t  = (dst1-org).length() / (dst0-org).length();
 }
+
+void RayIntersection:: normalizeRay ()
+{
+    ray.t *= ray.dir.length();
+    ray.dir.normalize();
+}
+
+
 
 std::ostream& RayIntersection:: print (std::ostream& out) const
 {
-    out << "RayIntersection: " << (node ? "hit" : "not hit");
-    out << ", ray.org=" << ray.org;
-    out << ", ray.dir=" << ray.dir;
-    out << ", ray.t=" << ray.t;
-    out << ", node=" << (node ? typeid(*node).name() : "none");
-    out << ", u=" << u << ",v=" << v;
+    out << "RayIntersection:";
+    out << "  hit="      << (node ? "yes" : "no");
+    out << ", ray.org=(" << ray.org << ")";
+    out << ", ray.dir=(" << ray.dir << ")";
+    out << ", ray.t="    << ray.t;
+    out << ", node="     << (node ? typeid(*node).name() : "none");
+    out << ", u,v=("     << u << "," << v << ")";
     out << ", vertices=[";
     for (int i = 0; i < (int)vertices.size(); i++) {
         out << vertices[i] << ",";

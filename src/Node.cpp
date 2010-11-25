@@ -245,8 +245,12 @@ float Node:: getGlobalAlphaFactor () const
 // スキニングの時にはこの方が使いやすいので。
 Matrix Node:: getGlobalPose (const Node* target) const
 {
-    const Node* node = this;
     Matrix global_pose;
+    if (this == target) {
+        return global_pose;
+    }
+
+    const Node* node = this;
     do {
         if (node == NULL) {
             throw InternalException (__FILE__, __func__, "Parent node is NULL, but not found target node.");
@@ -266,11 +270,13 @@ Node* Node:: getParent () const
     return parent;
 }
 
+/**
+ * 注意: この関数はシーングラフの頂上のノードを返す。
+ *       parent=NULLの場合は自分自身.NULLが返る事はない。
+ */
 Node* Node:: getGlobalParent () const
 {
     Node* node = const_cast<Node*>(this);
-    if (node->getParent() == NULL)
-        return NULL;
 
     while (node->getParent() != NULL)
         node = node->getParent();

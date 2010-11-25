@@ -63,6 +63,9 @@ void mouse (int button, int state, int x, int y)
     RayIntersection ri;
     bool hit = wld->pick (-1, x/width, y/height, cam, &ri);
     cout << ((hit) ? "HIT!" : "miss") << "\n";
+    if (hit) {
+        cout << ri << "\n";
+    }
 }
 
 
