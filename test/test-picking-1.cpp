@@ -26,7 +26,7 @@ TEST (Group_pick_mesh_from_screen)
     positions->set (0, 4, positions_value);
 
     VertexArray* normals         = new VertexArray (4, 3, 1);
-    char        normals_value[] = {0,0,127, 0,0,127, 0,0,127, 0,0,127};
+    char         normals_value[] = {0,0,127, 0,0,127, 0,0,127, 0,0,127};
     normals->set (0, 4, normals_value);
 
     float         scale    = 1;
@@ -56,7 +56,7 @@ TEST (Group_pick_mesh_from_screen)
     RayIntersection ri;
     bool hit;
     
-    // ど真ん中のピック
+    // ど真ん中のピック.
     hit = wld->pick (-1, 0.5, 0.5, cam, &ri);
 
     CHECK_EQUAL (true, hit);
@@ -119,11 +119,6 @@ TEST (Group_pick_mesh_from_screen)
 // 内部的にピックはNDC座標で行われる。
 // レイ光線の方向ベクトルは正規化されて帰ってくるが、M3Gの要件では定義されていない独自仕様。
 // ----------------------------------------------------------------------------------------
-// -----------------------------------------------------
-// 
-// 
-// 
-// -----------------------------------------------------
 TEST (Group_pick_sprite_from_screen)
 {
     Image2D*    img = new Image2D (Image2D::RGB, 128, 128);

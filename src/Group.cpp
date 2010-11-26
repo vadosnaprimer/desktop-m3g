@@ -188,20 +188,14 @@ bool Group:: pick (int scope, float x, float y, const Camera* camera, RayInterse
     for (int i = 0; i < (int)children.size(); i++) {
         RayIntersection ri;
         Transform       trans;
+
         Group* grp = dynamic_cast<Group*>(children[i]);
         if (grp) {
-            // 座標系を子ノードのGroupに変換して再帰呼び出し
-            // これ全面的におかしい。
-            // 1. pickの種類が異なる
-            // 2. 結果をこのGroupの座標系に変換すべき
-            camera->getTransformTo (grp, &trans);
-            Vector p0_grp = trans.transform (p0_cam);
-            Vector p1_grp = trans.transform (p1_cam);
-            Vector org = p0_grp;
-            Vector dir = (p1_grp-p0_grp).normalize();   // これ正規化したら駄目では?
-            grp-> pick (scope, 
-                        org.x, org.y, org.z,
-                        dir.x, dir.y, dir.z, &ri);
+            // 再帰呼び出し
+            grp->pick (scope, x, y, camera, &ri);
+            // レイはこのGroupの座標系で格納する
+            grp->getTransformTo (this, &trans);
+            ri.transformRay (trans);
         }
         Mesh* mesh = dynamic_cast<Mesh*>(children[i]);
         if (mesh && (mesh->getScope() & scope)) {
@@ -209,12 +203,10 @@ bool Group:: pick (int scope, float x, float y, const Camera* camera, RayInterse
             camera->getTransformTo (mesh, &trans);
             Vector p0_mesh = trans.transform (p0_cam);
             Vector p1_mesh = trans.transform (p1_cam);
-            //cout << "p0(mesh) = " << p0_mesh << "\n";
-            //cout << "p1(mesh) = " << p1_mesh << "\n";
             Vector org = p0_mesh;
-            Vector dir = (p1_mesh-p0_mesh).normalize();   // これ正規化したら駄目では?
+            Vector dir = p1_mesh - p0_mesh;
             mesh->intersect (org, dir, &ri);
-            // レイはGroupの座標系で格納する
+            // レイはこのGroupの座標系で格納する
             mesh->getTransformTo (this, &trans);
             ri.transformRay (trans);
             ri.normalizeRay ();
@@ -223,29 +215,13 @@ bool Group:: pick (int scope, float x, float y, const Camera* camera, RayInterse
         if (spr && spr->isScaled() && (spr->getScope() & scope)) {
             // 交差判定はNDC座標系で行う
             Vector org = p0_ndc;
-            Vector dir = (p1_ndc-p0_ndc).normalize();   // これ正規化したら駄目では?
-
-            //cout << "org_ndc = " << org << "\n";
-            //cout << "dir_ndc = " << dir << "\n";
-
+            Vector dir = p1_ndc - p0_ndc;
             spr->intersect (org, dir, camera, &ri);
-
-            //cout << "------ A -----------\n";
-            //cout << ri << "\n";
-
-            // レイはGroupの座標系で格納する
+            // レイはこのGroupの座標系で格納する
             ri.transformRay (proj_inv);
-
-            //cout << "------ B -----------\n";
-            //cout << ri << "\n";
-
             camera->getTransformTo (this, &trans);
             ri.transformRay (trans);
             ri.normalizeRay ();
-
-            //cout << "------ C -----------\n";
-            //cout << ri << "\n";
-
         }
         if (ri.getIntersected()) {
             if (min_ri.getIntersected() == NULL ||
@@ -289,11 +265,12 @@ bool Group:: pick (int scope, float ox, float oy, float oz, float dx, float dy, 
             Vector p0_grp2 = trans.transform (p0_grp);
             Vector p1_grp2 = trans.transform (p1_grp);
             Vector org     = p0_grp2;
-            Vector dir     = p1_grp2 - p0_grp2;   // ここ正規化が必要?
+            Vector dir     = p1_grp2 - p0_grp2;
             grp2-> pick (scope, 
                         org.x, org.y, org.z,
                         dir.x, dir.y, dir.z,
                         &ri);
+            // レイはこのGroupの座標系で格納する
             trans.invert();
             ri.transformRay (trans);
         }
@@ -304,7 +281,7 @@ bool Group:: pick (int scope, float ox, float oy, float oz, float dx, float dy, 
             Vector p0_mesh = trans.transform (p0_grp);
             Vector p1_mesh = trans.transform (p1_grp);
             Vector org     = p0_mesh;
-            Vector dir     = p1_mesh - p0_mesh;   // ここ正規化が必要?
+            Vector dir     = p1_mesh - p0_mesh;
             mesh->intersect (org, dir, &ri);
             // レイはこのGroupの座標系で格納する
             mesh->getTransformTo (this, &trans);

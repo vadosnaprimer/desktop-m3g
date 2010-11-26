@@ -217,7 +217,7 @@ Image2D* Sprite3D:: getImage () const
  *        v3 -- v1
  *         | ／ |
  *        v2 -- v0
- * 注意3: M3Gの仕様ではピック出来るのはscaledのみ。unscaledもピック出来るのは独自拡張
+ * 注意3: M3Gの仕様ではピック出来るのはscaledのみ。
  */
 bool Sprite3D:: intersect (const Vector& org, const Vector& dir, const Camera* cam, RayIntersection* ri) const
 {

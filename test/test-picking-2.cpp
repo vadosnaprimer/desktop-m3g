@@ -11,7 +11,6 @@ using namespace m3g;
 // 実際問題これが通ればほぼ問題ないと思われるが。
 // -----------------------------------------------------------------
 
-
 // ----------------------------------------------------------------------------------------
 // 座標はすべてsample/test-01-simpleと同じ
 // Cameraは(0,0,5)でnear=0.1,far=1000
@@ -66,7 +65,7 @@ TEST (Group_pick_mesh_by_user)
     CHECK_EQUAL (true, hit);
     CHECK_EQUAL (mesh, ri.getIntersected());
 
-    // near面からメッシュまでの距離 = 5(*2)
+    // near面からメッシュまでの距離 = 10 (=5*2)
     CHECK_CLOSE (10.0f, ri.getDistance(), 0.0001f);
 
     float ray[6];
@@ -94,14 +93,14 @@ TEST (Group_pick_mesh_by_user)
     // (の時は0を返す実装)
     CHECK_CLOSE (0.f, ri.getTextureS(0), 0.0001f);  // s
     CHECK_CLOSE (0.f, ri.getTextureT(0), 0.0001f);  // t
-    
+
     // 端っこのピック
     // これはヒットしない
     ri = RayIntersection();
 
     hit = wld->pick (-1,
                      10, 0, 0,   //  ox, oy, oz
-                     0,  0, 1,   //  dx, dy, dz
+                     0,  0, -1,   //  dx, dy, dz
                      &ri);
 
 
@@ -117,7 +116,6 @@ TEST (Group_pick_mesh_by_user)
     delete normals;
 }
 
-#if 0
 
 // ---------------------------------------------------------------------------------------
 // 座標は上と若干異なる。sample/test-12-spriteに準拠
@@ -135,9 +133,7 @@ TEST (Group_pick_sprite_by_user)
 {
     Image2D*    img = new Image2D (Image2D::RGB, 128, 128);
     Appearance* app = new Appearance;
-
     Sprite3D*   spr = new Sprite3D (true, img, app);
-    //spr->translate (1,0,0);
 
     Camera* cam = new Camera;
     cam->setPerspective (45, 1, 1, 100);
@@ -153,40 +149,17 @@ TEST (Group_pick_sprite_by_user)
     RayIntersection ri;
     bool hit;
 
-    hit = wld->pick (-1, 0.5, 0.5, cam, &ri);
+    // レイ光線をユーザーが指定するピック.
+    // 方向ベクトルの長さが0.5であることに注意.
+    hit = wld->pick (-1, 
+                     0, 0, 5,     // ox, oy, oz
+                     0, 0, -0.5,  // dx, dy, dz
+                     &ri);
 
-    CHECK_EQUAL (true, hit);
+    // この形式のpick()はSprite3Dをピックしない
+    CHECK_EQUAL (false, hit);
 
-    CHECK_EQUAL (spr, ri.getIntersected());
 
-    // near面からメッシュまでの距離 = 4.0
-    CHECK_CLOSE (4.0f, ri.getDistance(), 0.0001f);
-
-    float ray[6];
-    ri.getRay (ray);
-
-    // レイはorg=(0,0,4),dir=(0,0,-1)
-    // 起点はnear面から
-    CHECK_CLOSE (0.f,   ray[0], 0.0001f);  // ox
-    CHECK_CLOSE (0.f,   ray[1], 0.0001f);  // oy
-    CHECK_CLOSE (4.f,   ray[2], 0.0001f);  // oz
-    CHECK_CLOSE (0.f,   ray[3], 0.0001f);  // dx
-    CHECK_CLOSE (0.f,   ray[4], 0.0001f);  // dy
-    CHECK_CLOSE (-1.f,  ray[5], 0.0001f);  // dz
-
-    // 法線は必ず(0,0,1)
-    CHECK_CLOSE (0.f,  ri.getNormalX(), 0.0001f);  // nx
-    CHECK_CLOSE (0.f,  ri.getNormalY(), 0.0001f);  // ny
-    CHECK_CLOSE (1.f,  ri.getNormalZ(), 0.0001f);  // nz
-
-    // サブメッシュはundefined.
-    // (の時は0を返す実装になっている)
-    CHECK_EQUAL (0, ri.getSubmeshIndex());
-
-    // (s,t)=(0.5,0.5)を期待しているが、なぜか(0.5,0.5745)が返る。
-    // 精度が悪いのが気になるが現在はこれで保留。
-    CHECK_CLOSE (0.5f, ri.getTextureS(0), 0.1f);  // s
-    CHECK_CLOSE (0.5f, ri.getTextureT(0), 0.1f);  // t
     
     delete wld;
     delete cam;
@@ -194,6 +167,4 @@ TEST (Group_pick_sprite_by_user)
     delete app;
 }
 
-
-#endif
 

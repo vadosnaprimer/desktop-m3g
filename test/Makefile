@@ -1,4 +1,5 @@
 SRCS     = $(wildcard *.cpp)
+#SRCS     = test-main.cpp test-picking-4.cpp
 OBJS     = $(SRCS:.cpp=.o)
 TARGET   = a.out
 CXX      = g++
