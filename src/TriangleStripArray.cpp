@@ -195,10 +195,10 @@ std::ostream& TriangleStripArray:: print_raw_data (std::ostream& out) const
     for (int i = 0; i < (int)strips.size(); i++) {
         out << " " << i << " (" << strips[i] << ") : ";
         for (int j = 0; j < strips[i]; j++) {
-            cout << indices[offset] << ",";
+            out << indices[offset] << ",";
             offset++;
         }
-        cout << "\n";
+        out << "\n";
     }
     return out;
 }

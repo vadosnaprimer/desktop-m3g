@@ -343,6 +343,12 @@ bool Node:: getTransformTo (const Node* target, Transform* transform) const
     Matrix global_pose_b = target->getGlobalPose (root_b);
 
     Matrix transform_matrix = global_pose_b.getInverse() * global_pose_a;
+
+    // 変換行列のw成分は厳密に1でないといろいろ不便なので
+    if (fabsf(transform_matrix.m[15] - 1) < M3G_EPSILON) {
+        transform_matrix.m[15] = 1;
+    }
+
     transform->set (transform_matrix.m);
 
     return true;
