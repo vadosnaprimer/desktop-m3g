@@ -4,8 +4,8 @@
        - see README for compile.
    - separate some codes to extlib
        - exlib/m3g-reader-writer
-       - png-helper
-       - jpeg-helper
+       - exlib/png-helper
+       - exlib/jpeg-helper
    - change MAX_TEXTURE_UNITS=4
    - argument of Transform is changed from "pass by value" to "pass by reference"
    - implement jpeg loader

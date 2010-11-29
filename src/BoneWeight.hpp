@@ -10,6 +10,7 @@ namespace m3g {
     class Node;
 
     /**
+     * @internal
      * @~English  Store bone index and weight, for inner use.
      * @~Japanese ボーンインデックスとウェイトを保持する内部使用の構造体.
      */
@@ -20,6 +21,7 @@ namespace m3g {
     };
 
     /**
+     * @internal
      * @~English  Store bind pose (at rest).
      * @~Japanese バインドポーズ(の逆行列)を保存する内部使用の構造体.
      */

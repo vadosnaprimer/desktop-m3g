@@ -113,15 +113,14 @@ namespace m3g {
         void  setWeight (float weight);
 
         /**
+         * @internal
          * @~English  query specified world_time is in active interval, This is not under M3G spesification.
-         * @^Japanese 指定されたworld_timeがアクティブ区間内だったらtrueを返すM3G非標準の関数.
+         * @~Japanese 指定されたworld_timeがアクティブ区間内だったらtrueを返すM3G非標準の関数.
          */
         bool isActive (int world_time) const;
 
-        /**
-         * @~English  Print out information of this class, for debug only.
-         * @~Japanese このAnimationControllerクラスの情報を表示する。デバッグ用.
-         */
+
+
         virtual std::ostream& print (std::ostream& out) const;
 
     private:
