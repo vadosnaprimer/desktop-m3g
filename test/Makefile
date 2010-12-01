@@ -673,40 +673,41 @@ test-Quaternion.o: /usr/include/unittest++/TimeHelpers.h
 test-Quaternion.o: ../bin/include/m3g/Quaternion.hpp
 test-Quaternion.o: ../bin/include/m3g/Matrix.hpp
 test-Quaternion.o: ../bin/include/m3g/Vector.hpp
-test-RayIntersect.o: /usr/include/unittest++/UnitTest++.h
-test-RayIntersect.o: /usr/include/unittest++/Config.h
-test-RayIntersect.o: /usr/include/unittest++/Test.h
-test-RayIntersect.o: /usr/include/unittest++/TestDetails.h
-test-RayIntersect.o: /usr/include/unittest++/TestList.h
-test-RayIntersect.o: /usr/include/unittest++/TestSuite.h
-test-RayIntersect.o: /usr/include/unittest++/TestResults.h
-test-RayIntersect.o: /usr/include/unittest++/TestMacros.h
-test-RayIntersect.o: /usr/include/unittest++/ExecuteTest.h
-test-RayIntersect.o: /usr/include/unittest++/MemoryOutStream.h
-test-RayIntersect.o: /usr/include/unittest++/AssertException.h
-test-RayIntersect.o: /usr/include/unittest++/CurrentTest.h
-test-RayIntersect.o: /usr/include/unittest++/CheckMacros.h
-test-RayIntersect.o: /usr/include/unittest++/Checks.h
-test-RayIntersect.o: /usr/include/unittest++/TestRunner.h
-test-RayIntersect.o: /usr/include/unittest++/TimeConstraint.h
-test-RayIntersect.o: /usr/include/unittest++/TimeHelpers.h
-test-RayIntersect.o: ../bin/include/m3g/Intersect.hpp
-test-RayIntersect.o: ../bin/include/m3g/VertexArray.hpp
-test-RayIntersect.o: ../bin/include/m3g/Object3D.hpp
-test-RayIntersect.o: ../bin/include/m3g/m3gdef.hpp
-test-RayIntersect.o: ../bin/include/m3g/m3ginternal.hpp
-test-RayIntersect.o: ../bin/include/m3g/Object.hpp
-test-RayIntersect.o: ../bin/include/m3g/VertexBuffer.hpp
-test-RayIntersect.o: ../bin/include/m3g/TriangleStripArray.hpp
-test-RayIntersect.o: ../bin/include/m3g/IndexBuffer.hpp
-test-RayIntersect.o: ../bin/include/m3g/Appearance.hpp
-test-RayIntersect.o: ../bin/include/m3g/Mesh.hpp ../bin/include/m3g/Node.hpp
-test-RayIntersect.o: ../bin/include/m3g/Transformable.hpp
-test-RayIntersect.o: ../bin/include/m3g/Quaternion.hpp
-test-RayIntersect.o: ../bin/include/m3g/Transform.hpp
-test-RayIntersect.o: ../bin/include/m3g/Matrix.hpp
-test-RayIntersect.o: ../bin/include/m3g/Vector.hpp
-test-RayIntersect.o: ../bin/include/m3g/RayIntersection.hpp
+test-RayIntersection.o: /usr/include/unittest++/UnitTest++.h
+test-RayIntersection.o: /usr/include/unittest++/Config.h
+test-RayIntersection.o: /usr/include/unittest++/Test.h
+test-RayIntersection.o: /usr/include/unittest++/TestDetails.h
+test-RayIntersection.o: /usr/include/unittest++/TestList.h
+test-RayIntersection.o: /usr/include/unittest++/TestSuite.h
+test-RayIntersection.o: /usr/include/unittest++/TestResults.h
+test-RayIntersection.o: /usr/include/unittest++/TestMacros.h
+test-RayIntersection.o: /usr/include/unittest++/ExecuteTest.h
+test-RayIntersection.o: /usr/include/unittest++/MemoryOutStream.h
+test-RayIntersection.o: /usr/include/unittest++/AssertException.h
+test-RayIntersection.o: /usr/include/unittest++/CurrentTest.h
+test-RayIntersection.o: /usr/include/unittest++/CheckMacros.h
+test-RayIntersection.o: /usr/include/unittest++/Checks.h
+test-RayIntersection.o: /usr/include/unittest++/TestRunner.h
+test-RayIntersection.o: /usr/include/unittest++/TimeConstraint.h
+test-RayIntersection.o: /usr/include/unittest++/TimeHelpers.h
+test-RayIntersection.o: ../bin/include/m3g/Intersect.hpp
+test-RayIntersection.o: ../bin/include/m3g/VertexArray.hpp
+test-RayIntersection.o: ../bin/include/m3g/Object3D.hpp
+test-RayIntersection.o: ../bin/include/m3g/m3gdef.hpp
+test-RayIntersection.o: ../bin/include/m3g/m3ginternal.hpp
+test-RayIntersection.o: ../bin/include/m3g/Object.hpp
+test-RayIntersection.o: ../bin/include/m3g/VertexBuffer.hpp
+test-RayIntersection.o: ../bin/include/m3g/TriangleStripArray.hpp
+test-RayIntersection.o: ../bin/include/m3g/IndexBuffer.hpp
+test-RayIntersection.o: ../bin/include/m3g/Appearance.hpp
+test-RayIntersection.o: ../bin/include/m3g/Mesh.hpp
+test-RayIntersection.o: ../bin/include/m3g/Node.hpp
+test-RayIntersection.o: ../bin/include/m3g/Transformable.hpp
+test-RayIntersection.o: ../bin/include/m3g/Quaternion.hpp
+test-RayIntersection.o: ../bin/include/m3g/Transform.hpp
+test-RayIntersection.o: ../bin/include/m3g/Matrix.hpp
+test-RayIntersection.o: ../bin/include/m3g/Vector.hpp
+test-RayIntersection.o: ../bin/include/m3g/RayIntersection.hpp
 test-SkinnedMesh.o: /usr/include/unittest++/UnitTest++.h
 test-SkinnedMesh.o: /usr/include/unittest++/Config.h
 test-SkinnedMesh.o: /usr/include/unittest++/Test.h
@@ -1022,3 +1023,223 @@ test-main.o: /usr/include/bits/byteswap.h /usr/include/sys/select.h
 test-main.o: /usr/include/bits/select.h /usr/include/bits/sigset.h
 test-main.o: /usr/include/bits/time.h /usr/include/sys/sysmacros.h
 test-main.o: /usr/include/bits/pthreadtypes.h /usr/include/alloca.h
+test-picking-1.o: /usr/include/unittest++/UnitTest++.h
+test-picking-1.o: /usr/include/unittest++/Config.h
+test-picking-1.o: /usr/include/unittest++/Test.h
+test-picking-1.o: /usr/include/unittest++/TestDetails.h
+test-picking-1.o: /usr/include/unittest++/TestList.h
+test-picking-1.o: /usr/include/unittest++/TestSuite.h
+test-picking-1.o: /usr/include/unittest++/TestResults.h
+test-picking-1.o: /usr/include/unittest++/TestMacros.h
+test-picking-1.o: /usr/include/unittest++/ExecuteTest.h
+test-picking-1.o: /usr/include/unittest++/MemoryOutStream.h
+test-picking-1.o: /usr/include/unittest++/AssertException.h
+test-picking-1.o: /usr/include/unittest++/CurrentTest.h
+test-picking-1.o: /usr/include/unittest++/CheckMacros.h
+test-picking-1.o: /usr/include/unittest++/Checks.h
+test-picking-1.o: /usr/include/unittest++/TestRunner.h
+test-picking-1.o: /usr/include/unittest++/TimeConstraint.h
+test-picking-1.o: /usr/include/unittest++/TimeHelpers.h
+test-picking-1.o: ../bin/include/m3g/m3g.hpp ../bin/include/m3g/m3gdef.hpp
+test-picking-1.o: ../bin/include/m3g/Graphics3D.hpp
+test-picking-1.o: ../bin/include/m3g/Object.hpp
+test-picking-1.o: ../bin/include/m3g/Object3D.hpp
+test-picking-1.o: ../bin/include/m3g/m3ginternal.hpp
+test-picking-1.o: ../bin/include/m3g/AnimationController.hpp
+test-picking-1.o: ../bin/include/m3g/AnimationTrack.hpp
+test-picking-1.o: ../bin/include/m3g/Appearance.hpp
+test-picking-1.o: ../bin/include/m3g/Background.hpp
+test-picking-1.o: ../bin/include/m3g/CompositingMode.hpp
+test-picking-1.o: ../bin/include/m3g/Fog.hpp ../bin/include/m3g/Image2D.hpp
+test-picking-1.o: ../bin/include/m3g/IndexBuffer.hpp
+test-picking-1.o: ../bin/include/m3g/TriangleStripArray.hpp
+test-picking-1.o: ../bin/include/m3g/KeyframeSequence.hpp
+test-picking-1.o: ../bin/include/m3g/Keyframe.hpp
+test-picking-1.o: ../bin/include/m3g/Material.hpp
+test-picking-1.o: ../bin/include/m3g/PolygonMode.hpp
+test-picking-1.o: ../bin/include/m3g/Transformable.hpp
+test-picking-1.o: ../bin/include/m3g/Quaternion.hpp
+test-picking-1.o: ../bin/include/m3g/Transform.hpp
+test-picking-1.o: ../bin/include/m3g/Matrix.hpp ../bin/include/m3g/Node.hpp
+test-picking-1.o: ../bin/include/m3g/Camera.hpp ../bin/include/m3g/Group.hpp
+test-picking-1.o: ../bin/include/m3g/World.hpp ../bin/include/m3g/Light.hpp
+test-picking-1.o: ../bin/include/m3g/Mesh.hpp
+test-picking-1.o: ../bin/include/m3g/MorphingMesh.hpp
+test-picking-1.o: ../bin/include/m3g/SkinnedMesh.hpp
+test-picking-1.o: ../bin/include/m3g/BoneWeight.hpp
+test-picking-1.o: ../bin/include/m3g/Sprite3D.hpp
+test-picking-1.o: ../bin/include/m3g/Texture2D.hpp
+test-picking-1.o: ../bin/include/m3g/VertexArray.hpp
+test-picking-1.o: ../bin/include/m3g/VertexBuffer.hpp
+test-picking-1.o: ../bin/include/m3g/RayIntersection.hpp
+test-picking-1.o: ../bin/include/m3g/Vector.hpp ../bin/include/m3g/Loader.hpp
+test-picking-1.o: ../bin/include/m3g/M3GReader.hpp
+test-picking-1.o: ../bin/include/m3g/InMemoryStream.hpp
+test-picking-1.o: ../bin/include/m3g/M3GStruct.hpp
+test-picking-1.o: ../bin/include/m3g/Exception.hpp
+test-picking-1.o: ../bin/include/m3g/RenderState.hpp
+test-picking-2.o: /usr/include/unittest++/UnitTest++.h
+test-picking-2.o: /usr/include/unittest++/Config.h
+test-picking-2.o: /usr/include/unittest++/Test.h
+test-picking-2.o: /usr/include/unittest++/TestDetails.h
+test-picking-2.o: /usr/include/unittest++/TestList.h
+test-picking-2.o: /usr/include/unittest++/TestSuite.h
+test-picking-2.o: /usr/include/unittest++/TestResults.h
+test-picking-2.o: /usr/include/unittest++/TestMacros.h
+test-picking-2.o: /usr/include/unittest++/ExecuteTest.h
+test-picking-2.o: /usr/include/unittest++/MemoryOutStream.h
+test-picking-2.o: /usr/include/unittest++/AssertException.h
+test-picking-2.o: /usr/include/unittest++/CurrentTest.h
+test-picking-2.o: /usr/include/unittest++/CheckMacros.h
+test-picking-2.o: /usr/include/unittest++/Checks.h
+test-picking-2.o: /usr/include/unittest++/TestRunner.h
+test-picking-2.o: /usr/include/unittest++/TimeConstraint.h
+test-picking-2.o: /usr/include/unittest++/TimeHelpers.h
+test-picking-2.o: ../bin/include/m3g/m3g.hpp ../bin/include/m3g/m3gdef.hpp
+test-picking-2.o: ../bin/include/m3g/Graphics3D.hpp
+test-picking-2.o: ../bin/include/m3g/Object.hpp
+test-picking-2.o: ../bin/include/m3g/Object3D.hpp
+test-picking-2.o: ../bin/include/m3g/m3ginternal.hpp
+test-picking-2.o: ../bin/include/m3g/AnimationController.hpp
+test-picking-2.o: ../bin/include/m3g/AnimationTrack.hpp
+test-picking-2.o: ../bin/include/m3g/Appearance.hpp
+test-picking-2.o: ../bin/include/m3g/Background.hpp
+test-picking-2.o: ../bin/include/m3g/CompositingMode.hpp
+test-picking-2.o: ../bin/include/m3g/Fog.hpp ../bin/include/m3g/Image2D.hpp
+test-picking-2.o: ../bin/include/m3g/IndexBuffer.hpp
+test-picking-2.o: ../bin/include/m3g/TriangleStripArray.hpp
+test-picking-2.o: ../bin/include/m3g/KeyframeSequence.hpp
+test-picking-2.o: ../bin/include/m3g/Keyframe.hpp
+test-picking-2.o: ../bin/include/m3g/Material.hpp
+test-picking-2.o: ../bin/include/m3g/PolygonMode.hpp
+test-picking-2.o: ../bin/include/m3g/Transformable.hpp
+test-picking-2.o: ../bin/include/m3g/Quaternion.hpp
+test-picking-2.o: ../bin/include/m3g/Transform.hpp
+test-picking-2.o: ../bin/include/m3g/Matrix.hpp ../bin/include/m3g/Node.hpp
+test-picking-2.o: ../bin/include/m3g/Camera.hpp ../bin/include/m3g/Group.hpp
+test-picking-2.o: ../bin/include/m3g/World.hpp ../bin/include/m3g/Light.hpp
+test-picking-2.o: ../bin/include/m3g/Mesh.hpp
+test-picking-2.o: ../bin/include/m3g/MorphingMesh.hpp
+test-picking-2.o: ../bin/include/m3g/SkinnedMesh.hpp
+test-picking-2.o: ../bin/include/m3g/BoneWeight.hpp
+test-picking-2.o: ../bin/include/m3g/Sprite3D.hpp
+test-picking-2.o: ../bin/include/m3g/Texture2D.hpp
+test-picking-2.o: ../bin/include/m3g/VertexArray.hpp
+test-picking-2.o: ../bin/include/m3g/VertexBuffer.hpp
+test-picking-2.o: ../bin/include/m3g/RayIntersection.hpp
+test-picking-2.o: ../bin/include/m3g/Vector.hpp ../bin/include/m3g/Loader.hpp
+test-picking-2.o: ../bin/include/m3g/M3GReader.hpp
+test-picking-2.o: ../bin/include/m3g/InMemoryStream.hpp
+test-picking-2.o: ../bin/include/m3g/M3GStruct.hpp
+test-picking-2.o: ../bin/include/m3g/Exception.hpp
+test-picking-2.o: ../bin/include/m3g/RenderState.hpp
+test-picking-3.o: /usr/include/unittest++/UnitTest++.h
+test-picking-3.o: /usr/include/unittest++/Config.h
+test-picking-3.o: /usr/include/unittest++/Test.h
+test-picking-3.o: /usr/include/unittest++/TestDetails.h
+test-picking-3.o: /usr/include/unittest++/TestList.h
+test-picking-3.o: /usr/include/unittest++/TestSuite.h
+test-picking-3.o: /usr/include/unittest++/TestResults.h
+test-picking-3.o: /usr/include/unittest++/TestMacros.h
+test-picking-3.o: /usr/include/unittest++/ExecuteTest.h
+test-picking-3.o: /usr/include/unittest++/MemoryOutStream.h
+test-picking-3.o: /usr/include/unittest++/AssertException.h
+test-picking-3.o: /usr/include/unittest++/CurrentTest.h
+test-picking-3.o: /usr/include/unittest++/CheckMacros.h
+test-picking-3.o: /usr/include/unittest++/Checks.h
+test-picking-3.o: /usr/include/unittest++/TestRunner.h
+test-picking-3.o: /usr/include/unittest++/TimeConstraint.h
+test-picking-3.o: /usr/include/unittest++/TimeHelpers.h
+test-picking-3.o: ../bin/include/m3g/m3g.hpp ../bin/include/m3g/m3gdef.hpp
+test-picking-3.o: ../bin/include/m3g/Graphics3D.hpp
+test-picking-3.o: ../bin/include/m3g/Object.hpp
+test-picking-3.o: ../bin/include/m3g/Object3D.hpp
+test-picking-3.o: ../bin/include/m3g/m3ginternal.hpp
+test-picking-3.o: ../bin/include/m3g/AnimationController.hpp
+test-picking-3.o: ../bin/include/m3g/AnimationTrack.hpp
+test-picking-3.o: ../bin/include/m3g/Appearance.hpp
+test-picking-3.o: ../bin/include/m3g/Background.hpp
+test-picking-3.o: ../bin/include/m3g/CompositingMode.hpp
+test-picking-3.o: ../bin/include/m3g/Fog.hpp ../bin/include/m3g/Image2D.hpp
+test-picking-3.o: ../bin/include/m3g/IndexBuffer.hpp
+test-picking-3.o: ../bin/include/m3g/TriangleStripArray.hpp
+test-picking-3.o: ../bin/include/m3g/KeyframeSequence.hpp
+test-picking-3.o: ../bin/include/m3g/Keyframe.hpp
+test-picking-3.o: ../bin/include/m3g/Material.hpp
+test-picking-3.o: ../bin/include/m3g/PolygonMode.hpp
+test-picking-3.o: ../bin/include/m3g/Transformable.hpp
+test-picking-3.o: ../bin/include/m3g/Quaternion.hpp
+test-picking-3.o: ../bin/include/m3g/Transform.hpp
+test-picking-3.o: ../bin/include/m3g/Matrix.hpp ../bin/include/m3g/Node.hpp
+test-picking-3.o: ../bin/include/m3g/Camera.hpp ../bin/include/m3g/Group.hpp
+test-picking-3.o: ../bin/include/m3g/World.hpp ../bin/include/m3g/Light.hpp
+test-picking-3.o: ../bin/include/m3g/Mesh.hpp
+test-picking-3.o: ../bin/include/m3g/MorphingMesh.hpp
+test-picking-3.o: ../bin/include/m3g/SkinnedMesh.hpp
+test-picking-3.o: ../bin/include/m3g/BoneWeight.hpp
+test-picking-3.o: ../bin/include/m3g/Sprite3D.hpp
+test-picking-3.o: ../bin/include/m3g/Texture2D.hpp
+test-picking-3.o: ../bin/include/m3g/VertexArray.hpp
+test-picking-3.o: ../bin/include/m3g/VertexBuffer.hpp
+test-picking-3.o: ../bin/include/m3g/RayIntersection.hpp
+test-picking-3.o: ../bin/include/m3g/Vector.hpp ../bin/include/m3g/Loader.hpp
+test-picking-3.o: ../bin/include/m3g/M3GReader.hpp
+test-picking-3.o: ../bin/include/m3g/InMemoryStream.hpp
+test-picking-3.o: ../bin/include/m3g/M3GStruct.hpp
+test-picking-3.o: ../bin/include/m3g/Exception.hpp
+test-picking-3.o: ../bin/include/m3g/RenderState.hpp
+test-picking-4.o: /usr/include/unittest++/UnitTest++.h
+test-picking-4.o: /usr/include/unittest++/Config.h
+test-picking-4.o: /usr/include/unittest++/Test.h
+test-picking-4.o: /usr/include/unittest++/TestDetails.h
+test-picking-4.o: /usr/include/unittest++/TestList.h
+test-picking-4.o: /usr/include/unittest++/TestSuite.h
+test-picking-4.o: /usr/include/unittest++/TestResults.h
+test-picking-4.o: /usr/include/unittest++/TestMacros.h
+test-picking-4.o: /usr/include/unittest++/ExecuteTest.h
+test-picking-4.o: /usr/include/unittest++/MemoryOutStream.h
+test-picking-4.o: /usr/include/unittest++/AssertException.h
+test-picking-4.o: /usr/include/unittest++/CurrentTest.h
+test-picking-4.o: /usr/include/unittest++/CheckMacros.h
+test-picking-4.o: /usr/include/unittest++/Checks.h
+test-picking-4.o: /usr/include/unittest++/TestRunner.h
+test-picking-4.o: /usr/include/unittest++/TimeConstraint.h
+test-picking-4.o: /usr/include/unittest++/TimeHelpers.h
+test-picking-4.o: ../bin/include/m3g/m3g.hpp ../bin/include/m3g/m3gdef.hpp
+test-picking-4.o: ../bin/include/m3g/Graphics3D.hpp
+test-picking-4.o: ../bin/include/m3g/Object.hpp
+test-picking-4.o: ../bin/include/m3g/Object3D.hpp
+test-picking-4.o: ../bin/include/m3g/m3ginternal.hpp
+test-picking-4.o: ../bin/include/m3g/AnimationController.hpp
+test-picking-4.o: ../bin/include/m3g/AnimationTrack.hpp
+test-picking-4.o: ../bin/include/m3g/Appearance.hpp
+test-picking-4.o: ../bin/include/m3g/Background.hpp
+test-picking-4.o: ../bin/include/m3g/CompositingMode.hpp
+test-picking-4.o: ../bin/include/m3g/Fog.hpp ../bin/include/m3g/Image2D.hpp
+test-picking-4.o: ../bin/include/m3g/IndexBuffer.hpp
+test-picking-4.o: ../bin/include/m3g/TriangleStripArray.hpp
+test-picking-4.o: ../bin/include/m3g/KeyframeSequence.hpp
+test-picking-4.o: ../bin/include/m3g/Keyframe.hpp
+test-picking-4.o: ../bin/include/m3g/Material.hpp
+test-picking-4.o: ../bin/include/m3g/PolygonMode.hpp
+test-picking-4.o: ../bin/include/m3g/Transformable.hpp
+test-picking-4.o: ../bin/include/m3g/Quaternion.hpp
+test-picking-4.o: ../bin/include/m3g/Transform.hpp
+test-picking-4.o: ../bin/include/m3g/Matrix.hpp ../bin/include/m3g/Node.hpp
+test-picking-4.o: ../bin/include/m3g/Camera.hpp ../bin/include/m3g/Group.hpp
+test-picking-4.o: ../bin/include/m3g/World.hpp ../bin/include/m3g/Light.hpp
+test-picking-4.o: ../bin/include/m3g/Mesh.hpp
+test-picking-4.o: ../bin/include/m3g/MorphingMesh.hpp
+test-picking-4.o: ../bin/include/m3g/SkinnedMesh.hpp
+test-picking-4.o: ../bin/include/m3g/BoneWeight.hpp
+test-picking-4.o: ../bin/include/m3g/Sprite3D.hpp
+test-picking-4.o: ../bin/include/m3g/Texture2D.hpp
+test-picking-4.o: ../bin/include/m3g/VertexArray.hpp
+test-picking-4.o: ../bin/include/m3g/VertexBuffer.hpp
+test-picking-4.o: ../bin/include/m3g/RayIntersection.hpp
+test-picking-4.o: ../bin/include/m3g/Vector.hpp ../bin/include/m3g/Loader.hpp
+test-picking-4.o: ../bin/include/m3g/M3GReader.hpp
+test-picking-4.o: ../bin/include/m3g/InMemoryStream.hpp
+test-picking-4.o: ../bin/include/m3g/M3GStruct.hpp
+test-picking-4.o: ../bin/include/m3g/Exception.hpp
+test-picking-4.o: ../bin/include/m3g/RenderState.hpp

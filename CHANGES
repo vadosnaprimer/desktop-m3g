@@ -1,5 +1,5 @@
 
-2010/xx/xx  ver 0.3.2
+2010/12/01  ver 0.3.2
    - introduce cmake
        - see README for compile.
    - separate some codes to extlib
