@@ -28,6 +28,7 @@ TEST (Object3D_set_variables)
 
       CHECK_EQUAL (100          , obj->getUserID());
       CHECK_EQUAL ((void*)0x1234, obj->getUserObject());
+
 }
 
 TEST (Object3D_animation_track) 
@@ -44,6 +45,31 @@ TEST (Object3D_animation_track)
     obj->removeAnimationTrack (anim_track);
   
     CHECK_EQUAL (0, obj->getAnimationTrackCount());
+
+    delete obj;
+    delete keyframe;
+    delete anim_track;
+}
+
+TEST (Object3D_get_references) 
+{
+    KeyframeSequence* keyframe   = new KeyframeSequence (1,1,KeyframeSequence::STEP);
+    AnimationTrack*   anim_track = new AnimationTrack (keyframe, AnimationTrack::ALPHA);
+
+    Object3D* obj = new Object3D;
+    obj->addAnimationTrack (anim_track);
+
+    int n;
+    Object3D* objs[1];
+
+    n = obj->getReferences (objs);
+
+    CHECK_EQUAL (1, n);
+    CHECK_EQUAL (anim_track, objs[0]);
+
+    delete obj;
+    delete keyframe;
+    delete anim_track;
 }
 
 TEST (Object3D_find)

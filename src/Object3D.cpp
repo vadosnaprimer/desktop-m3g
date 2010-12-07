@@ -27,6 +27,18 @@ int Object3D:: animate (int world_time)
     return 0;
 }
 
+void Object3D:: mark (void(*func)(void*)) const
+{
+    if (func == NULL) {
+        return;
+    }
+
+    Object:: mark (func);
+    for (int i = 0; i < (int)anim_tracks.size(); i++) {
+        anim_tracks[i]->mark (func);
+    }
+}
+
 Object3D* Object3D:: duplicate () const
 {
     Object3D* obj = new Object3D;
@@ -67,7 +79,15 @@ int Object3D:: getAnimationTrackCount () const
 
 int Object3D:: getReferences (Object3D** references) const
 {
-    return 0;
+    int n = anim_tracks.size();
+
+    if (references) {
+        for (int i = 0; i < (int)anim_tracks.size(); i++) {
+            references[i] = anim_tracks[i];
+        }
+    }
+
+    return n;
 }
 
 int Object3D:: getUserID () const

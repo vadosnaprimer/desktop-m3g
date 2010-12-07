@@ -36,11 +36,14 @@ Group* Group:: duplicate () const
 
 int Group:: getReferences (Object3D** references) const
 {
-    int n = children.size();
+    int n  = Object3D:: getReferences (0);
+    int n0 = n;
+    n += children.size();
     
     if (references) {
+        Object3D:: getReferences (references);
         for (int i = 0; i < (int)children.size(); i++) {
-            references[i] = children[i];
+            references[n0+i] = children[i];
         }
     }
 
@@ -53,7 +56,7 @@ void Group:: mark (void(*func)(void*)) const
     if (func == NULL)
         return;
 
-    Object::mark (func);
+    Object3D::mark (func);
     for (int i = 0; i < (int)children.size(); i++) {
         children[i]->mark (func);
     }
