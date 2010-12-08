@@ -5,19 +5,25 @@ using namespace std;
 using namespace m3g;
 
 
-/**
- * M3G1.1ではなぜかデフォルト値が定義されてない。自分で適当に決めた。
- */
 TEST (KeyframeSequence_default_variables)
 {
-    KeyframeSequence* keyframe = new KeyframeSequence (10, 3, KeyframeSequence::LINEAR);
+    KeyframeSequence* key_seq = new KeyframeSequence (10, 3, KeyframeSequence::LINEAR);
 
-    CHECK_EQUAL (10,   keyframe->getKeyframeCount());
-    CHECK_EQUAL (3,    keyframe->getComponentCount());
-    CHECK_EQUAL (KeyframeSequence::LINEAR, keyframe->getInterpolationType());
-    CHECK_EQUAL (KeyframeSequence::CONSTANT,   keyframe->getRepeatMode());
+    CHECK_EQUAL (10,                         key_seq->getKeyframeCount());
+    CHECK_EQUAL (3,                          key_seq->getComponentCount());
+    CHECK_EQUAL (KeyframeSequence::LINEAR,   key_seq->getInterpolationType());
+    CHECK_EQUAL (KeyframeSequence::CONSTANT, key_seq->getRepeatMode());
+    CHECK_EQUAL (0,                          key_seq->getValidRangeFirst());
+    CHECK_EQUAL (9,                          key_seq->getValidRangeLast());
+    for (int i = 0; i < 10; i++) {
+        float value[3];
+        CHECK_EQUAL (0, key_seq->getKeyframe (i, value));
+        CHECK_EQUAL (0, value[0]);
+        CHECK_EQUAL (0, value[1]);
+        CHECK_EQUAL (0, value[2]);
+    }
 
-    delete keyframe;
+    delete key_seq;
 }
 
 TEST (KeyframeSequence_set_variables)

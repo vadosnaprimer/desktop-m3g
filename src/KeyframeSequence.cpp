@@ -15,7 +15,7 @@ const int KeyframeSequence:: SQUAD;
 const int KeyframeSequence:: STEP;
 
 KeyframeSequence:: KeyframeSequence (int num_keyframes, int num_components, int interpolation) :
-    repeat_mode(CONSTANT), interp_type(LINEAR), duration(0), valid_range(0,0),
+    repeat_mode(CONSTANT), interp_type(LINEAR), duration(0), valid_range(-1,-1),
     component_count(0), keyframe_count(0)
 {
     if (num_keyframes < 1) {
@@ -36,8 +36,8 @@ KeyframeSequence:: KeyframeSequence (int num_keyframes, int num_components, int 
 
     keyframes.reserve (keyframe_count);
     for (int i = 0; i < keyframe_count; i++) {
-        int    time  = -1;
-        float* value = new float[component_count];
+        int    time  = 0;
+        float* value = new float[component_count] ();
         keyframes.push_back (Keyframe(time, value));
     }
 }
@@ -97,9 +97,7 @@ int KeyframeSequence:: getKeyframe (int index, float* value) const
     }
 
     if (value) {
-        for (int i = 0; i < component_count; i++) {
-            *value++ = keyframes[index].value[i];
-        }
+        memcpy (value, keyframes[index].value, sizeof(float)*component_count);
     }
     return keyframes[index].time;
 }
@@ -167,8 +165,8 @@ void KeyframeSequence:: setValidRange (int first, int last)
     if (last < 0 || last >= keyframe_count) {
         throw IllegalArgumentException (__FILE__, __func__, "Last of valid range is invalid, last=%d, keyframe_count=%d.", last, keyframe_count);
     }
-    if (first >= last) {
-        throw NotImplementedException (__FILE__, __func__, "Sorry, frist>last(inverse animation) is not yet implemented, first=%d, last=%d.", first, last);
+    if (first > last) {
+        throw NotImplementedException (__FILE__, __func__, "Sorry, valid_range.(frist > last) is not yet implemented, first=%d, last=%d.", first, last);
     }
 
     valid_range = ValidRange (first, last);
@@ -176,16 +174,11 @@ void KeyframeSequence:: setValidRange (int first, int last)
 
 void KeyframeSequence:: getFrame (int sequence_time, float* value) const
 {
-    //cout << "KeyframeSequence: sequence_time=" << sequence_time  << ", value = " << value << "\n";
-
     if (value == NULL) {
         throw NullPointerException (__FILE__, __func__, "Value is NULL.");
     }
-    if (valid_range.first == valid_range.last) {
-        throw IllegalArgumentException (__FILE__, __func__, "Valid range is not setted.");
-    }
     if (valid_range.first > valid_range.last) {
-        throw NotImplementedException (__FILE__, __func__, "Sorry, frist>last(inverse animation) is not yet implemented, first=%d, last=%d.", valid_range.first, valid_range.last);
+        throw NotImplementedException (__FILE__, __func__, "Sorry, valid_range.(first > last) is not yet implemented, first=%d, last=%d.", valid_range.first, valid_range.last);
     }
     if (duration <= 0) {
         throw IllegalArgumentException (__FILE__, __func__, "Duraion is invalid, duration=%d.", duration);
@@ -194,30 +187,10 @@ void KeyframeSequence:: getFrame (int sequence_time, float* value) const
     int first = valid_range.first;
     int last  = valid_range.last;
 
-    /*
-      if (repeat_mode == LOOP) {
-      while (sequence_time < keyframes[first].time) {
-      sequence_time += keyframes[last].time - keyframes[first].time;
-      }
-      while (sequence_time > keyframes[last].time) {
-      sequence_time -= keyframes[last].time - keyframes[first].time;
-      }
-      }
-    */
-    //cout << "duration = " << duration << "\n";
 
     if (repeat_mode == LOOP) {
         sequence_time %= duration;
     }
-    /*
-      while (sequence_time < 0) {
-      sequence_time += duration;
-      }
-      while (sequence_time > duration) {
-      sequence_time -= duration;
-      }
-      }
-    */
 
     if (sequence_time <= keyframes[first].time) {
         for (int i = 0; i < component_count; i++) {
@@ -244,7 +217,7 @@ void KeyframeSequence:: getFrame (int sequence_time, float* value) const
         }
     }
 
-    float     s  = (sequence_time - keyframes[left].time) / (float)(keyframes[right].time - keyframes[left].time);
+    float           s  = (sequence_time - keyframes[left].time) / (float)(keyframes[right].time - keyframes[left].time);
     const Keyframe& k0 = (left == first && repeat_mode == LOOP)     ? Keyframe(-1,0) : 
                          (left == first && repeat_mode == CONSTANT) ? Keyframe(-1,0) :
                          keyframes[left-1];
@@ -255,7 +228,7 @@ void KeyframeSequence:: getFrame (int sequence_time, float* value) const
                          keyframes[right+1];
 
     switch (interp_type) {
-    case STEP: 
+    case STEP:
         step (s, k1, k2, component_count, value);
         return;
     case LINEAR:
@@ -280,7 +253,7 @@ const char* repeat_mode_to_string (int mode)
 {
     switch (mode) {
     case KeyframeSequence::CONSTANT: return "CONSTANT";
-    case KeyframeSequence::LOOP: return "LOOP";
+    case KeyframeSequence::LOOP    : return "LOOP"    ;
     default: return "Unknown";
     }
 }
@@ -289,10 +262,10 @@ const char* interp_type_to_string (int interp)
 {
     switch (interp) {
     case KeyframeSequence::LINEAR: return "LINEAR";
-    case KeyframeSequence::SLERP:  return "SLERP";
+    case KeyframeSequence::SLERP:  return "SLERP" ;
     case KeyframeSequence::SPLINE: return "SPLINE";
-    case KeyframeSequence::SQUAD:  return "SQUAD";
-    case KeyframeSequence::STEP:   return "STEP";
+    case KeyframeSequence::SQUAD:  return "SQUAD" ;
+    case KeyframeSequence::STEP:   return "STEP"  ;
     default: return "Unknown";
     }
 }
