@@ -41,16 +41,31 @@ void quit ()
 
 int world_time = 0;
 bool stopped = false;
+float angle = 0;
+
+float rad (float degree) 
+{
+    return degree/(180.0/M_PI);
+}
 
 void idle ()
 {
     if (stopped)
         return;
-    world_time = (world_time + 80) % 6000;
-    if (world_time < 5000)
-        wld->animate (world_time);
-    cout << "main: time = " << world_time << "\n";
-    glutPostRedisplay();
+    //world_time = (world_time + 80) % 6000;
+ 
+    angle += 0.1;
+
+    Camera* cam = wld->getActiveCamera ();
+    float from_x = 0;
+    float from_y = 10*sin(rad(angle));
+    float from_z = 10*cos(rad(angle));
+    cam->lookAt (from_x, from_y, from_z,
+                 0, 0, 0,
+                 0, 1, 0);
+    cam->Transformable:: print (cout) << "\n";
+
+    glutPostRedisplay ();
 }
 
 void keyboard(unsigned char key, int x, int y)
@@ -91,7 +106,7 @@ int main (int argc, char** argv)
     glutCreateWindow(argv[0]);
 
     //objs = Loader::load ("simple.m3g");
-    objs = Loader::load ("test.m3g");
+    objs = Loader::load ("cube.m3g");
 
     for (int i = 0; i < (int)objs.size(); i++) {
         wld = dynamic_cast<World*>(objs[i]);
@@ -102,7 +117,14 @@ int main (int argc, char** argv)
     }
     assert (wld != 0);
 
-
+    Camera* cam = wld->getActiveCamera ();
+    cam->setTranslation (0, 0, 0);
+    cam->setOrientation (0, 0,0,0);
+    cam->lookAt (0,0,10,
+                0,0,0,
+                0,1,0);
+    cam->Transformable:: print (cout) << "\n";
+    
     Background* bg = wld->getBackground ();
     if (bg == 0) {
         bg = new Background;

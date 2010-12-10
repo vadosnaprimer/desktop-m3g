@@ -29,11 +29,10 @@ Make & Install
     4  make install
          - install Desktop-M3G to ${Desktop-M3G}/bin.
     You must call cmake on build directory. Don't call it under top directory.
-    Currently, default build target is "Debug" and local install.
-    It will be installed under ${Desktop-M3G}/bin.
-    If you want to install in your system (DANGER!!) with "Release" build,
-    3. cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr/local ..
-    
+    Currently, default build target is "Debug" and install under ${Desktop-M3G}/bin.
+    If you want to install it in your system with "Release" build, replace 2 with following 2' 
+    2'. cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr/local ..
+
 
 -------------------------------------------
 Test & Samples

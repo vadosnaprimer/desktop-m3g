@@ -5,7 +5,7 @@ TARGET   = a.out
 CXX      = g++
 CXXFLAGS = -Wall -g -Wno-deprecated -I../bin/include
 LD       = g++
-LDFLAGS  = -L../bin/lib -R../bin/lib
+LDFLAGS  = -L../bin/lib
 LIBS     = -lUnitTest++ -lm3g -lglut -lGL -lGLU -lpng -ljpeg
 
 all: $(OBJS)

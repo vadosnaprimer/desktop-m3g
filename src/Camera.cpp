@@ -263,7 +263,7 @@ void Camera:: lookAt  (float from_x, float from_y, float from_z,
 
     view.normalize();
     up.normalize();
-    Vector right = cross(view, up);
+    Vector right = cross(view, up).normalize();
     up = cross(right, view);
 
     float m[16] = { right.x, up.x, -view.x, from.x,
@@ -271,8 +271,8 @@ void Camera:: lookAt  (float from_x, float from_y, float from_z,
                     right.z, up.z, -view.z, from.z,
                     0,    0,       0,      1 };
     Transform trans;
-    trans.set (m);   
-
+    trans.set (m);
+    
     setTransform (&trans);
 }
 

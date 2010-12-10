@@ -3,6 +3,7 @@
 #include <cstring>
 #include "m3g/Camera.hpp"
 #include "m3g/Group.hpp"
+#include "m3g/Transform.hpp"
 using namespace std;
 using namespace m3g;
 
@@ -188,4 +189,38 @@ TEST (Camera_duplicate)
 
     delete cam0;
     delete cam1;
+}
+
+TEST (Camera_lookAt)
+{
+    Camera* cam = new Camera;
+
+    cam->lookAt (1,2,3,
+                 -3,-3,-1,
+                 3,3,1);
+
+    Transform tra;
+    cam->getTransform (&tra);
+    
+    float m[16];
+    tra.get (m);
+    
+    // 適当に呼び出した時のlookAt関数の値を再度チェックしただけなので
+    // 信頼性は低い
+    CHECK_CLOSE (m[0],  0.63375f , 0.0001f);
+    CHECK_CLOSE (m[1],  0.563612f, 0.0001f);
+    CHECK_CLOSE (m[2],  0.529813f, 0.0001f);
+    CHECK_CLOSE (m[3],  1.0f     , 0.0001f);
+    CHECK_CLOSE (m[4], -0.724286f, 0.0001f);
+    CHECK_CLOSE (m[5],  0.191868f, 0.0001f);
+    CHECK_CLOSE (m[6],  0.662266f, 0.0001f);
+    CHECK_CLOSE (m[7],  2.0f     , 0.0001f);
+    CHECK_CLOSE (m[8],  0.271607f, 0.0001f);
+    CHECK_CLOSE (m[9], -0.803447f, 0.0001f);
+    CHECK_CLOSE (m[10], 0.529813f, 0.0001f);
+    CHECK_CLOSE (m[11], 3.0f     , 0.0001f);
+    CHECK_CLOSE (m[12], 0.0f     , 0.0001f);
+    CHECK_CLOSE (m[13], 0.0f     , 0.0001f);
+    CHECK_CLOSE (m[14], 0.0f     , 0.0001f);
+    CHECK_CLOSE (m[15], 1.0f     , 0.0001f);
 }

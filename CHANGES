@@ -1,4 +1,10 @@
 
+
+2011/xx/xx ver 0.3.3
+   - fix Camera::lookAt
+   - fix KeyframeSequence which has only 1 frame
+   
+
 2010/12/01  ver 0.3.2
    - introduce cmake
        - see README for compile.
@@ -13,7 +19,7 @@
    - fix indexed png loding of Loader
    - fix blend color of Texture2D
    - fix picking of Group
-   - and so many bug fix.
+   - and many bug fix.
 
 2010/08/31  ver 0.3.1
    - replace Loader.cpp by new version which uses libM3GReaderWriter.
