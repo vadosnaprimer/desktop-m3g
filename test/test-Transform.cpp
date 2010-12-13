@@ -164,6 +164,24 @@ TEST (Transpose_post_rotate)
 
 }
 
+TEST (Transpose_post_rotate_quat)
+{
+    // q = [ 0,0.707107,0, 0.707107 or 90 ,0,1,0 ]
+    Quaternion q (90, 0,1,0);
+    Transform trs;
+
+    trs.postRotateQuat (q.x, q.y, q.z, q.w);
+
+
+    float v[4] = {-1,0,0,1};
+    trs.transform (4, v);
+    
+    CHECK_CLOSE (0.f, v[0], 0.00001);
+    CHECK_CLOSE (0.f, v[1], 0.00001);
+    CHECK_CLOSE (1.f, v[2], 0.00001);
+    CHECK_CLOSE (1.f, v[3], 0.00001);
+}
+
 
 TEST (Transform_transform_1)
 {
@@ -205,7 +223,6 @@ TEST (Transform_transform_2)
     CHECK_CLOSE ( 7.f, out[5], 0.0001f);
     CHECK_CLOSE ( 9.f, out[6], 0.0001f);
     CHECK_CLOSE ( 1.f, out[7], 0.0001f);
-    
 }
 
 
