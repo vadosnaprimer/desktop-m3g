@@ -27,10 +27,6 @@ TEST (Mesh_default_variables_1)
     CHECK_EQUAL (app[0],  mesh->getAppearance(0));
     CHECK_EQUAL (app[1],  mesh->getAppearance(1));
 
-    Appearance* app2 = new Appearance;
-    mesh->setAppearance (0, app2);
-    CHECK_EQUAL (app2, mesh->getAppearance(0));
-
     delete vbuf;
     delete tris[0];
     delete tris[1];
@@ -55,13 +51,35 @@ TEST (Mesh_default_variables_2)
     CHECK_EQUAL (app,  mesh->getAppearance(0));
 
 
-    Appearance* app2 = new Appearance;
-    mesh->setAppearance (0, app2);
-    CHECK_EQUAL (app2, mesh->getAppearance(0));
-
     delete vbuf;
     delete tris;
     delete app;
+    delete mesh;
+}
+
+TEST (Mesh_setAppearance)
+{
+    VertexBuffer* vbuf = new VertexBuffer;
+    int indices[] = {0,1,2};
+    int strips [] = {3};
+    TriangleStripArray* tris[2] = {new TriangleStripArray (indices, 1, strips),
+                                   new TriangleStripArray (indices, 1, strips)};
+    Appearance* apps[2] = {new Appearance,
+                           new Appearance};
+    Mesh* mesh = new Mesh (vbuf, 2, (IndexBuffer**)tris, apps);
+
+    Appearance* app2 = new Appearance;
+    mesh->setAppearance (0, NULL);
+    mesh->setAppearance (1, app2);
+    CHECK_EQUAL ((Appearance*)NULL, mesh->getAppearance(0));
+    CHECK_EQUAL (app2             , mesh->getAppearance(1));
+
+    delete vbuf;
+    delete tris[0];
+    delete tris[1];
+    delete apps[0];
+    delete apps[1];
+    delete app2;
     delete mesh;
 }
 

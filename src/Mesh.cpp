@@ -181,15 +181,7 @@ void Mesh:: setAppearance (int index, Appearance* appearance)
         throw IndexOutOfBoundsException (__FILE__, __func__, "Index is invalid, index=%d, max=%d.", index, appearances.size());
     }
   
-    if (appearance) {
-        appearances[index] = appearance;
-    }
-    else {
-        std::vector<Appearance*>::iterator it = appearances.begin();
-        it += index;
-        appearances.erase (it);
-    }
-
+    appearances[index] = appearance;
 }
 
 bool Mesh:: intersect (const Vector& org, const Vector& dir, RayIntersection* ri_out) const
