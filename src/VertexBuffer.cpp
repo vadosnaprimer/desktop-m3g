@@ -71,27 +71,6 @@ int VertexBuffer:: getReferences (Object3D** references) const
 }
 
 
-void VertexBuffer:: mark (void(*func)(void*)) const
-{
-    if (func == NULL)
-        return;
-
-    Object3D::mark (func);
-    if (positions) {
-        positions->mark (func);
-    }
-    if (normals) {
-        normals->mark (func);
-    }
-    if (colors) {
-        colors->mark (func);
-    }
-    for (int i = 0; i < MAX_TEXTURE_UNITS; i++) {
-        if (tex_coords[i]) {
-            tex_coords[i]->mark (func);
-        }
-    }
-}
 
 void VertexBuffer:: copy (VertexBuffer* vbuf) const
 {

@@ -89,23 +89,3 @@ TEST (Texture2D_getReferences)
     delete tex;
 }
 
-static int count = 0;
-static void func (void* p)
-{
-    count++;
-}
-
-TEST (Texure2D_mark)
-{
-    Image2D*   img = new Image2D(Image2D::RGBA, 64, 64);
-    Texture2D* tex = new Texture2D (img);
-
-    tex->setImage (img);
-
-    tex->mark (func);
-
-    CHECK_EQUAL (2, count);
-
-    delete img;
-    delete tex;
-}

@@ -22,15 +22,6 @@ void Object:: setExportedEntity (void* entity)
     exported_entity = entity;
 }
 
-void Object:: mark (void(*func)(void*)) const
-{
-    if (func == NULL)
-        return;
-
-    //cout << "marked " << typeid(*this).name() << ", " << exported_entity << "\n";
-    (*func)(exported_entity);
-}
-
 
 std::ostream& Object:: print (std::ostream& out) const
 {

@@ -40,12 +40,6 @@ namespace m3g {
         void setExportedEntity (void* entity);
 
         /**
-         * @~Enslish   mark this for Garbage Collect.
-         * @~Japanese  GCコレクター用のマークを行う.
-         */
-        virtual void mark (void(*func)(void*)) const;
-
-        /**
          * @~English  Print out information of this class, for debug only.
          * @~Japanese このObjectクラスの情報を表示する。デバッグ用.
          */

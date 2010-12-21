@@ -11,7 +11,7 @@ using namespace m3g;
 
 TEST (MorphingMesh_default_value)
 {
-    VertexArray*  varry         = new VertexArray (16, 3, 2);
+    VertexArray*  varry       = new VertexArray (16, 3, 2);
     int           indices[]   = {0,1,2};
     int           strips[]    = {3};
     TriangleStripArray* tris  = new TriangleStripArray (indices, 1, strips);

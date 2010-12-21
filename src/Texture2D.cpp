@@ -81,16 +81,6 @@ int Texture2D:: getReferences (Object3D** references) const
     return n;
 }
 
-void Texture2D:: mark (void(*func)(void*)) const
-{
-    if (func == NULL) 
-        return;
-
-    Object3D:: mark (func);
-    if (image) {
-        image->mark (func);
-    }
-}
 
 void Texture2D:: copy (Texture2D* tex) const
 {

@@ -27,18 +27,6 @@ int Object3D:: animate (int world_time)
     return 0;
 }
 
-void Object3D:: mark (void(*func)(void*)) const
-{
-    if (func == NULL) {
-        return;
-    }
-
-    Object:: mark (func);
-    for (int i = 0; i < (int)anim_tracks.size(); i++) {
-        anim_tracks[i]->mark (func);
-    }
-}
-
 Object3D* Object3D:: duplicate () const
 {
     Object3D* obj = new Object3D;

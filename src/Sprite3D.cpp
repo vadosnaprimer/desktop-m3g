@@ -82,19 +82,6 @@ int Sprite3D:: getReferences (Object3D** references) const
     return n;
 }
 
-void Sprite3D:: mark (void(*func)(void*)) const
-{
-    if (func == NULL)
-        return;
-
-    Object3D::mark (func);
-    if (image) {
-        image->mark (func);
-    }
-    if (appearance) {
-        appearance->mark (func);
-    }
-}
 
 void Sprite3D:: copy (Sprite3D* spr) const
 {

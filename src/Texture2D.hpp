@@ -109,7 +109,6 @@ namespace m3g {
          */
         virtual Texture2D* duplicate () const;
 
-        virtual void mark (void(*func)(void*)) const;
 
         /**
          * @~English  Copy this Object3D to specified Object3D, not defined by M3G. 

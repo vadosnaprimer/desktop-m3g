@@ -105,18 +105,6 @@ void MorphingMesh:: copy (MorphingMesh* mesh) const
 }
 
 
-void MorphingMesh:: mark (void(*func)(void*)) const
-{
-    if (func == NULL)
-        return;
-
-    Mesh::mark (func);
-    for (int i = 0; i < (int)morph_targets.size(); i++) {
-        morph_targets[i]->mark (func);
-    }
-}
-
-
 int MorphingMesh:: getReferences (Object3D** references) const
 {
     int n  = Mesh:: getReferences (0);

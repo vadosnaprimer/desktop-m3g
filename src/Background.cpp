@@ -34,16 +34,6 @@ Background:: ~Background ()
     }
 }
 
-void Background:: mark (void(*func)(void*)) const
-{
-    if (func == NULL)
-        return;
-
-    Object3D::mark (func);
-    if (image) {
-        image->mark (func);
-    }
-}
 
 Background* Background:: duplicate () const
 {

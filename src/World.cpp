@@ -32,20 +32,6 @@ World* World:: duplicate () const
     return wld;
 }
 
-void World:: mark (void(*func)(void*)) const
-{
-    if (func == NULL)
-        return;
-    
-    Group::mark (func);
-    if (background) {
-        background->mark (func);
-    }
-    if (active_camera) {
-        active_camera->mark (func);
-    }
-}
-
 
 void World:: copy (World* wld) const
 {

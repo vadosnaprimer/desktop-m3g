@@ -113,26 +113,3 @@ TEST (Group_duplicate)
     delete grp1;
 }
 
-static int count = 0;
-static void func (void* p)
-{
-    count++;
-}
-
-TEST (Group_mark)
-{
-    Group* grp0   = new Group;
-    Group* grp1   = new Group;
-    Group* grp2   = new Group;
-
-    grp0->addChild (grp1);
-    grp0->addChild (grp2);
-
-    grp0->mark (func);
-    
-    CHECK_EQUAL (3, count);
-
-    delete grp0;
-    delete grp1;
-    delete grp2;
-}

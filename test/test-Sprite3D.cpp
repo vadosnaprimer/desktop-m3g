@@ -100,24 +100,3 @@ TEST (Sprite3D_getReferences)
     delete spr;
 }
 
-static int count = 0;
-static void func (void* p)
-{
-    count++;
-}
-
-
-TEST (Sprite3D_mark)
-{
-    Image2D*    img  = new Image2D (Image2D::RGBA, 64, 64);
-    Appearance* app  = new Appearance;
-    Sprite3D*   spr  = new Sprite3D (false, img, app);
-
-    spr->mark (func);
-
-    CHECK_EQUAL (3, count);
-
-    delete img;
-    delete app;
-    delete spr;
-}

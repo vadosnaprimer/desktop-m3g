@@ -218,7 +218,7 @@ void VertexArray:: set (int first_vertex, int num_vertices, const char* values)
         throw IllegalStateException (__FILE__, __func__, "Component size of this vertex array is not 1 byte, component_size=%d.", component_size);
     }
     if (vbo == 0) {
-        throw OpenGLException (__FILE__, __func__, "Vertex Buffre Object is not ready.");
+        throw OpenGLException (__FILE__, __func__, "Vertex Buffer Object is not ready.");
     }
 
     int offset      = first_vertex*component_count;

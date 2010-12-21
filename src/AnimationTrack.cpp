@@ -98,21 +98,6 @@ void AnimationTrack:: copy (AnimationTrack* anim_track) const
     anim_track->animation_controller = animation_controller;
 }
 
-void AnimationTrack:: mark (void(*func)(void*)) const
-{
-    if (func == NULL) {
-        return;
-    }
-
-    Object:: mark (func);
-    if (keyframe_sequence) {
-        keyframe_sequence->mark (func);
-    }
-    if (animation_controller) {
-        animation_controller->mark (func);
-    }
-    
-}
 
 AnimationController* AnimationTrack:: getController () const
 {

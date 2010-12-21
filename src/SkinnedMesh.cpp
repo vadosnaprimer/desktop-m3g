@@ -136,20 +136,6 @@ int SkinnedMesh:: getReferences (Object3D** references) const
 
 
 
-void SkinnedMesh:: mark (void(*func)(void*)) const
-{
-    if (func == NULL)
-        return;
-
-    Mesh::mark (func);
-    if (skeleton) {
-        skeleton->mark (func);
-    }
-
-    // 注意: skinned_verticesはこのクラスが責任を持つのでマークしない
-}
-
-
 
 void SkinnedMesh:: copy (SkinnedMesh* mesh) const
 {

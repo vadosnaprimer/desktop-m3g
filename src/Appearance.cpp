@@ -69,30 +69,6 @@ int Appearance:: getReferences (Object3D** references) const
     return n;
 }
 
-void Appearance:: mark (void(*func)(void*)) const
-{
-    if (func == NULL)
-        return;
-
-    Object::mark (func);
-    if (polygon_mode) {
-        polygon_mode->mark (func);
-    }
-    if (compositing_mode) {
-        compositing_mode->mark (func);
-    }
-    if (material) {
-        material->mark (func);
-    }
-    if (fog) {
-        fog->mark (func);
-    }
-    for (int i = 0; i < (int)textures.size(); i++) {
-        if (textures[i]) {
-            textures[i]->mark (func);
-        }
-    }
-}
 
 void Appearance:: copy (Appearance* app) const
 {
