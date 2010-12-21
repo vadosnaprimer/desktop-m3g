@@ -80,6 +80,7 @@ namespace m3g {
          */
         void copy (Image2D* img) const;
 
+
         /**
          * @~English  Gets the internal format of this Image2D.
          * @~Japanese このImage2Dクラスの内部フォーマットを取得.

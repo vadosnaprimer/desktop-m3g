@@ -75,17 +75,17 @@ void Appearance:: mark (void(*func)(void*)) const
         return;
 
     Object::mark (func);
-    if (fog) {
-        fog->mark (func);
-    }
-    if (material) {
-        material->mark (func);
+    if (polygon_mode) {
+        polygon_mode->mark (func);
     }
     if (compositing_mode) {
         compositing_mode->mark (func);
     }
-    if (polygon_mode) {
-        polygon_mode->mark (func);
+    if (material) {
+        material->mark (func);
+    }
+    if (fog) {
+        fog->mark (func);
     }
     for (int i = 0; i < (int)textures.size(); i++) {
         if (textures[i]) {

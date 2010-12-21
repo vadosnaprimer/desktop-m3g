@@ -78,6 +78,8 @@ namespace m3g {
          */
         virtual Background* duplicate () const;
 
+        virtual void mark (void(*func)(void*)) const;
+
         virtual int getReferences (Object3D** references) const;
 
         /**

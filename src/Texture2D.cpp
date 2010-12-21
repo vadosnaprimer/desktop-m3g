@@ -86,7 +86,7 @@ void Texture2D:: mark (void(*func)(void*)) const
     if (func == NULL) 
         return;
 
-    Object:: mark (func);
+    Object3D:: mark (func);
     if (image) {
         image->mark (func);
     }

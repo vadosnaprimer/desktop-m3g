@@ -169,6 +169,8 @@ namespace m3g {
          */
         void copy (AnimationTrack* anim_track) const;
 
+        virtual void mark (void(*func)(void*)) const;
+
         /**
          * @~English  Retrieves the animation controller used for 
          *            controllling this animation track.

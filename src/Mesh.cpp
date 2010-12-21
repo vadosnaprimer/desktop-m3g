@@ -108,17 +108,17 @@ void Mesh:: mark (void(*func)(void*)) const
     if (func == NULL)
         return;
 
-    Object::mark (func);
+    Object3D::mark (func);
     if (vertices) {
         vertices->mark (func);
     }
     for (int i = 0; i < (int)indices.size(); i++) {
-        if (indices[i]) {
+        if (indices[i])
             indices[i]->mark (func);
-        }
-        if (appearances[i]) {
+    }
+    for (int i = 0; i < (int)appearances.size(); i++) {
+        if (appearances[i])
             appearances[i]->mark (func);
-        }
     }
 }
 

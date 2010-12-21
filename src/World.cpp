@@ -41,6 +41,9 @@ void World:: mark (void(*func)(void*)) const
     if (background) {
         background->mark (func);
     }
+    if (active_camera) {
+        active_camera->mark (func);
+    }
 }
 
 

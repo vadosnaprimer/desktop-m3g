@@ -165,8 +165,8 @@ namespace m3g {
         PolygonMode*            polygon_mode;
         CompositingMode*        compositing_mode;
         Material*               material;
-        std::vector<Texture2D*> textures;
         Fog*                    fog;
+        std::vector<Texture2D*> textures;
     };
 
 

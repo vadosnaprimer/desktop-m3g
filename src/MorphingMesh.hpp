@@ -52,6 +52,8 @@ namespace m3g {
          */
         virtual MorphingMesh* duplicate () const;
 
+        virtual void mark (void(*func)(void*)) const;
+
         virtual int getReferences (Object3D** references) const;
 
         /**

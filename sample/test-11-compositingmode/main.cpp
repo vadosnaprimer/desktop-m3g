@@ -142,7 +142,7 @@ int main (int argc, char** argv)
     grp->addChild(mesh10);
 
     Camera* cam = new Camera;
-    cam->lookAt (3,0,3, 0,0,-2, 0,1,0);
+    cam-./t>lookAt (3,0,3, 0,0,-2, 0,1,0);
 
     Background* bg = new Background;
     bg->setColor (0xff3f3f3f);
