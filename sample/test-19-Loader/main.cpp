@@ -52,18 +52,8 @@ void idle ()
 {
     if (stopped)
         return;
-    //world_time = (world_time + 80) % 6000;
- 
-    angle += 0.1;
-
-    Camera* cam = wld->getActiveCamera ();
-    float from_x = 0;
-    float from_y = 10*sin(rad(angle));
-    float from_z = 10*cos(rad(angle));
-    cam->lookAt (from_x, from_y, from_z,
-                 0, 0, 0,
-                 0, 1, 0);
-    cam->Transformable:: print (cout) << "\n";
+    world_time = (world_time + 20) % 6000;
+    wld->animate (world_time);
 
     glutPostRedisplay ();
 }
@@ -118,11 +108,8 @@ int main (int argc, char** argv)
     assert (wld != 0);
 
     Camera* cam = wld->getActiveCamera ();
-    cam->setTranslation (0, 0, 0);
+    cam->setTranslation (0, 10, 50);
     cam->setOrientation (0, 0,0,0);
-    cam->lookAt (0,0,100,
-                0,0,0,
-                0,1,0);
     cam->Transformable:: print (cout) << "\n";
     
     Background* bg = wld->getBackground ();
