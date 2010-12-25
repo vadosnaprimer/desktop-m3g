@@ -55,6 +55,14 @@ void idle ()
     world_time = (world_time + 20) % 6000;
     wld->animate (world_time);
 
+    Camera* cam = wld->getActiveCamera ();
+    float from_x = 0;
+    float from_y = 10*sin(rad(angle));
+    float from_z = 10*cos(rad(angle));
+    cam->lookAt (from_x, from_y, from_z,
+                 0, 0, 0,
+                 0, 1, 0);
+
     glutPostRedisplay ();
 }
 
@@ -95,8 +103,8 @@ int main (int argc, char** argv)
     glutInitWindowSize (512,512);
     glutCreateWindow(argv[0]);
 
-    objs = Loader::load ("test.m3g");
-    //objs = Loader::load ("cube.m3g");
+    //objs = Loader::load ("test.m3g");
+    objs = Loader::load ("cube.m3g");
 
     for (int i = 0; i < (int)objs.size(); i++) {
         wld = dynamic_cast<World*>(objs[i]);
