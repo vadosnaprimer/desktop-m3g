@@ -8,15 +8,25 @@ project (M3G)
 # required cmake
 cmake_minimum_required (VERSION 2.0)
 
-# Default build setting.
+# Default is "Debug"
 if (NOT CMAKE_BUILD_TYPE)
     message (STATUS "Build type is not specified, then")
     message (STATUS "  set CMAKE_BUILD_TYPE=Debug")
-    message (STATUS "  set CMAKE_INSTALL_PREFIX=${CMAKE_SOURCE_DIR}/bin")
     set (CMAKE_BUILD_TYPE "Debug")
-    set (CMAKE_INSTALL_PREFIX ${CMAKE_SOURCE_DIR}/bin)
 endif (NOT CMAKE_BUILD_TYPE)
-message (STATUS "Configuring m3g for ${CMAKE_BUILD_TYPE}...")
+
+  message (STATUS "Configuring m3g for ${CMAKE_BUILD_TYPE}...")
+
+# for "Debug"
+if (CMAKE_BUILD_TYPE STREQUAL "Debug")
+    message (STATUS "  set CMAKE_INSTALL_PREFIX=${CMAKE_SOURCE_DIR}/bin")
+    set (CMAKE_INSTALL_PREFIX ${CMAKE_SOURCE_DIR}/bin)
+endif (CMAKE_BUILD_TYPE STREQUAL "Debug")
+
+# for "Release"
+if  (CMAKE_BUILD_TYPE STREQUAL "Release")
+    # nothing
+endif (CMAKE_BUILD_TYPE STREQUAL "Release")
 
 # dependend libraries
 find_package (ZLIB   REQUIRED)
