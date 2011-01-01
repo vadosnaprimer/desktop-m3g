@@ -219,23 +219,35 @@ TEST (Quaternion_squad_1)
 
 TEST (Quaternion_matrix2quat)
 {
-    float  angle = 120;
-    Vector axis (-1,0,0);
-    axis.normalize();
-    //cout << "angle = " << angle << "\n";
-    //cout << "axis  = " << axis  << "\n";
     Matrix mat;
-    mat.setRotate (angle, axis.x, axis.y, axis.z);
-
-    Quaternion q = matrix2quat(mat);
-
+    Quaternion q;
     float angle_axis[4];
-    q.getAngleAxis (angle_axis);
 
+    mat.setRotate (120, -1,0,0);
+    q = matrix2quat(mat);
+    q.getAngleAxis (angle_axis);
     // 注意：回転方向が逆だが気にしなくて良い
     //cout << "q = " << q << "\n";
     CHECK_CLOSE (240, angle_axis[0], 0.00001f);
     CHECK_CLOSE (1,   angle_axis[1], 0.00001f);
     CHECK_CLOSE (0,   angle_axis[2], 0.00001f);
+    CHECK_CLOSE (0,   angle_axis[3], 0.00001f);
+
+    mat.setRotate (30, 0,0,1);
+    q = matrix2quat (mat);
+    q.getAngleAxis (angle_axis);
+    //cout << "q = " << q << "\n";
+    CHECK_CLOSE (30, angle_axis[0], 0.00001f);
+    CHECK_CLOSE (0,   angle_axis[1], 0.00001f);
+    CHECK_CLOSE (0,   angle_axis[2], 0.00001f);
+    CHECK_CLOSE (1,   angle_axis[3], 0.00001f);
+
+    mat.setRotate (-300, 0,1,0);
+    q = matrix2quat (mat);
+    q.getAngleAxis (angle_axis);
+    //cout << "q = " << q << "\n";
+    CHECK_CLOSE (60, angle_axis[0], 0.00001f);
+    CHECK_CLOSE (0,   angle_axis[1], 0.00001f);
+    CHECK_CLOSE (1,   angle_axis[2], 0.00001f);
     CHECK_CLOSE (0,   angle_axis[3], 0.00001f);
 }
