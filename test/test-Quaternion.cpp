@@ -6,6 +6,8 @@
 #include "m3g/Vector.hpp"
 using namespace std;
 using namespace m3g;
+#include "m3g/Transform.hpp"
+#include "m3g/Transformable.hpp"
 
 TEST (Quaternion_default_values)
 {
@@ -43,6 +45,41 @@ TEST (Quaternion_set_values)
     CHECK_CLOSE (0.812403840463596f, a[3], 0.00001);
     CHECK_CLOSE (1.f, q.getLength(), 0.00001);
 
+}
+
+TEST (Quaternion_get_angle_axis)
+{
+    float mat3x3[9] = {0,-1,0, 1,0,0, 0,0,1};
+    Matrix mat;
+    mat.m[0] = mat3x3[0];
+    mat.m[1] = mat3x3[1];
+    mat.m[2] = mat3x3[2];
+    mat.m[4] = mat3x3[3];
+    mat.m[5] = mat3x3[4];
+    mat.m[6] = mat3x3[5];
+    mat.m[8] = mat3x3[6];
+    mat.m[9] = mat3x3[7];
+    mat.m[10] = mat3x3[8];
+
+    Quaternion q (119.3, 0.73, 0.62, 0.27);
+    Transform tra;
+    tra.postRotateQuat (q.x, q.y, q.z, q.w);
+
+    //cout << "q = " << q << "\n";
+    //cout << "tra = " << tra << "\n";
+
+    float v[4] = {1,0,0,1};
+    tra.transform (4, v);
+    //cout << "v = " << v[0] << ", " << v[1] << ", " << v[2] << ", " << v[3] << "\n";
+
+    Transformable* trans = new Transformable;
+    trans->setOrientation (119.3, 0.73, 0.62, 0.27);
+    trans->getCompositeTransform (&tra);
+    //cout << "tra = " << tra << "\n";
+    float v2[4] = {1,0,0,1};
+    tra.transform (4, v2);
+    //cout << "v2 = " << v2[0] << ", " << v2[1] << ", " << v2[2] << ", " << v2[3] << "\n";
+    
 }
 
 
@@ -251,3 +288,24 @@ TEST (Quaternion_matrix2quat)
     CHECK_CLOSE (1,   angle_axis[2], 0.00001f);
     CHECK_CLOSE (0,   angle_axis[3], 0.00001f);
 }
+
+TEST (Quaternion_abc)
+{
+    // Qa = Qb・Qcのとき
+    // Qb = Qa・Qc^-1
+    // を解く。
+    Quaternion Qa (45, 1,0,0);
+    Quaternion Qb;
+    Quaternion Qc (30, 1,0,0);
+
+    Qb = Qa * Qc.inv();
+    // cout << "Qb = " << Qb << "\n";
+
+    float angle_axis[4];
+    Qb.getAngleAxis (angle_axis);
+
+    CHECK_CLOSE (15.f,  angle_axis[0], 0.0001f);
+    CHECK_CLOSE (1.f,   angle_axis[1], 0.0001f);
+    CHECK_CLOSE (0.f,   angle_axis[2], 0.0001f);
+    CHECK_CLOSE (0.f,   angle_axis[3], 0.0001f);
+ }
