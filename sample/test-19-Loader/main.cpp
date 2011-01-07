@@ -104,7 +104,7 @@ int main (int argc, char** argv)
     glutCreateWindow(argv[0]);
 
     //objs = Loader::load ("test.m3g");
-    objs = Loader::load ("cube.m3g");
+    objs = Loader::load ("checker-board.m3g");
 
     for (int i = 0; i < (int)objs.size(); i++) {
         wld = dynamic_cast<World*>(objs[i]);
@@ -114,6 +114,10 @@ int main (int argc, char** argv)
         }
     }
     assert (wld != 0);
+
+    for (int i = 0; i < (int)objs.size(); i++) {
+        cout << "i = " << i << " : " << *objs[i] << "\n";
+    }
 
     Camera* cam = wld->getActiveCamera ();
     cam->setTranslation (0, 10, 50);

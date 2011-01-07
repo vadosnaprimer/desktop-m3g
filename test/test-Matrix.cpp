@@ -237,13 +237,13 @@ TEST (Matrix_make_parallel_projection_matrix)
     Matrix proj   = make_parallel_projection_matrix (height, aspect_ratio, near, far);
 
     //cout << "parallel projection = " << proj << "\n";
-    CHECK_CLOSE (0.0015625f, proj[0], 0.00001f);
+    CHECK_CLOSE (0.0031250f, proj[0], 0.00001f);
     CHECK_CLOSE (0.f,        proj[1], 0.00001f);
     CHECK_CLOSE (0.f,        proj[2], 0.00001f);
     CHECK_CLOSE (0.f,        proj[3], 0.00001f);
 
     CHECK_CLOSE (0.f,        proj[4], 0.00001f);
-    CHECK_CLOSE (0.00208333f,proj[5], 0.00001f);
+    CHECK_CLOSE (0.00416667f,proj[5], 0.00001f);
     CHECK_CLOSE (0.f,        proj[6], 0.00001f);
     CHECK_CLOSE (0.f,        proj[7], 0.00001f);
 

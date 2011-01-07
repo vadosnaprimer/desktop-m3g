@@ -2,7 +2,8 @@
 
 2011/xx/xx ver 0.3.3
    - fix Camera::lookAt
-   - fix KeyframeSequence which has only 1 frame
+   - fix parallel projection matrix of Camera.
+   - fix KeyframeSequence which has only 1 frame.
 
 2010/12/01  ver 0.3.2
    - introduce cmake

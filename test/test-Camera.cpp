@@ -60,12 +60,12 @@ TEST (Camera_set_variables_parallel)
     CHECK_EQUAL (Camera::PARALLEL, type);
 
     trans.get (m);
-    CHECK_CLOSE (0.5f, m[0], 0.00001f);
+    CHECK_CLOSE (1.f, m[0], 0.00001f);
     CHECK_CLOSE (0.f, m[1], 0.00001f);
     CHECK_CLOSE (0.f, m[2], 0.00001f);
     CHECK_CLOSE (0.f, m[3], 0.00001f);
     CHECK_CLOSE (0.f, m[4], 0.00001f);
-    CHECK_CLOSE (0.666667f, m[5], 0.00001f);
+    CHECK_CLOSE (1.33333f, m[5], 0.00001f);
     CHECK_CLOSE (0.f, m[6], 0.00001f);
     CHECK_CLOSE (0.f, m[7], 0.00001f);
     CHECK_CLOSE (0.f, m[8], 0.00001f);
