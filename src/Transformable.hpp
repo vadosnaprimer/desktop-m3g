@@ -1,5 +1,5 @@
-#ifndef __TRANSFORMABLE_HPP__
-#define __TRANSFORMABLE_HPP__
+#ifndef __M3G_TRANSFORMABLE_HPP__
+#define __M3G_TRANSFORMABLE_HPP__
 
 #include "m3g/Object3D.hpp"
 #include "m3g/Quaternion.hpp"

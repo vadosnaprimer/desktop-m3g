@@ -1,6 +1,6 @@
 
-#ifndef __EXCEPTION_HPP__
-#define __EXCEPTION_HPP__
+#ifndef __M3G_EXCEPTION_HPP__
+#define __M3G_EXCEPTION_HPP__
 
 #include <exception>
 #include <string>

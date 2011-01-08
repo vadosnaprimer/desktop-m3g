@@ -1,5 +1,5 @@
-#ifndef __MESH_HPP__
-#define __MESH_HPP__
+#ifndef __M3G_MESH_HPP__
+#define __M3G_MESH_HPP__
 
 #include "m3g/Node.hpp"
 #include <iosfwd>

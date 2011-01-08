@@ -1,6 +1,6 @@
 
-#ifndef __BONE_WEIGHT_HPP__
-#define __BONE_WEIGHT_HPP__
+#ifndef __M3G_BONE_WEIGHT_HPP__
+#define __M3G_BONE_WEIGHT_HPP__
 
 #include "m3g/Matrix.hpp"
 

@@ -1,5 +1,5 @@
-#ifndef __LIGHT_HPP__
-#define __LIGHT_HPP__
+#ifndef __M3G_LIGHT_HPP__
+#define __M3G_LIGHT_HPP__
 
 #include "m3g/Node.hpp"
 #include <iosfwd>

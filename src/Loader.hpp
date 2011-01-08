@@ -1,5 +1,5 @@
-#ifndef __LOADER_HPP__
-#define __LOADER_HPP__
+#ifndef __M3G_LOADER_HPP__
+#define __M3G_LOADER_HPP__
 
 #include <vector>
 #include "m3g/m3g.hpp"

@@ -1,5 +1,5 @@
-#ifndef __COMPOSITING_MODE_HPP__
-#define __COMPOSITING_MODE_HPP__
+#ifndef __M3G_COMPOSITING_MODE_HPP__
+#define __M3G_COMPOSITING_MODE_HPP__
 
 
 #include <iosfwd>

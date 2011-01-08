@@ -1,5 +1,5 @@
-#ifndef __INTERSECT_HPP__
-#define __INTERSECT_HPP__
+#ifndef __M3G_INTERSECT_HPP__
+#define __M3G_INTERSECT_HPP__
 
 
 namespace m3g {

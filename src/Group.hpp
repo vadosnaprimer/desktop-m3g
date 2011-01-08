@@ -1,5 +1,5 @@
-#ifndef __GROUP_HPP__
-#define __GROUP_HPP__
+#ifndef __M3G_GROUP_HPP__
+#define __M3G_GROUP_HPP__
 
 #include "m3g/Node.hpp"
 #include <iosfwd>

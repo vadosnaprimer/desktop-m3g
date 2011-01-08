@@ -1,5 +1,5 @@
-#ifndef __MATRIX_HPP__
-#define __MATRIX_HPP__
+#ifndef __M3G_MATRIX_HPP__
+#define __M3G_MATRIX_HPP__
 
 #include <iosfwd>
 

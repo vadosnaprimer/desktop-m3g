@@ -1,5 +1,5 @@
-#ifndef __RAY_INTERSECTION_HPP__
-#define __RAY_INTERSECTION_HPP__
+#ifndef __M3G_RAY_INTERSECTION_HPP__
+#define __M3G_RAY_INTERSECTION_HPP__
 
 #include <iosfwd>
 #include "m3g/Object.hpp"

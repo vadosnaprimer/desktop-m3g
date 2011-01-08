@@ -1,5 +1,5 @@
-#ifndef __NODE_HPP__
-#define __NODE_HPP__
+#ifndef __M3G_NODE_HPP__
+#define __M3G_NODE_HPP__
 
 #include "m3g/Transformable.hpp"
 #include "m3g/m3ginternal.hpp"

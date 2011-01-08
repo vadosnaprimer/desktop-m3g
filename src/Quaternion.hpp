@@ -1,5 +1,5 @@
-#ifndef __QUATERNION_HPP__
-#define __QUATERNION_HPP__
+#ifndef __M3G_QUATERNION_HPP__
+#define __M3G_QUATERNION_HPP__
 
 #include <iosfwd>
 

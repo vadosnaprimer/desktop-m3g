@@ -1,6 +1,6 @@
 
-#ifndef __FOG_HPP__
-#define __FOG_HPP__
+#ifndef __M3G_FOG_HPP__
+#define __M3G_FOG_HPP__
 
 #include <iostream>
 #include "m3g/Object3D.hpp"

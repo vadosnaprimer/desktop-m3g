@@ -1,5 +1,5 @@
-#ifndef __OBJECT_HPP__
-#define __OBJECT_HPP__
+#ifndef __M3G_OBJECT_HPP__
+#define __M3G_OBJECT_HPP__
 
 #include <iosfwd>
 

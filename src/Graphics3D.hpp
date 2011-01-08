@@ -1,6 +1,6 @@
 
-#ifndef __GRAPHICS3D_HPP__
-#define __GRAPHICS3D_HPP__
+#ifndef __M3G_GRAPHICS3D_HPP__
+#define __M3G_GRAPHICS3D_HPP__
 
 #include <vector>
 #include <iosfwd>

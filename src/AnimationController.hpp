@@ -1,6 +1,6 @@
 
-#ifndef __ANIMATION_CONTROLLER_HPP__
-#define __ANIMATION_CONTROLLER_HPP__
+#ifndef __M3G_ANIMATION_CONTROLLER_HPP__
+#define __M3G_ANIMATION_CONTROLLER_HPP__
 
 #include "m3g/Object3D.hpp"
 #include <iosfwd>

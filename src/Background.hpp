@@ -1,5 +1,5 @@
-#ifndef __BACKGROUND_HPP__
-#define __BACKGROUND_HPP__
+#ifndef __M3G_BACKGROUND_HPP__
+#define __M3G_BACKGROUND_HPP__
 
 #include <iosfwd>
 #include "m3g/Object3D.hpp"

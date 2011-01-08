@@ -1,5 +1,5 @@
-#ifndef __IMAGE2D_HPP__
-#define __IMAGE2D_HPP__
+#ifndef __M3G_IMAGE2D_HPP__
+#define __M3G_IMAGE2D_HPP__
 
 #include "m3g/Object3D.hpp"
 #include <iosfwd>

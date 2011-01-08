@@ -1,5 +1,5 @@
-#ifndef __RENDER_STATE_HPP__
-#define __RENDER_STATE_HPP__
+#ifndef __M3G_RENDER_STATE_HPP__
+#define __M3G_RENDER_STATE_HPP__
 
 #include <vector>
 

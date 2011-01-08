@@ -1,5 +1,5 @@
-#ifndef __KEYFRAME_HPP__
-#define __KEYFRAME_HPP__
+#ifndef __M3G_KEYFRAME_HPP__
+#define __M3G_KEYFRAME_HPP__
 
 #include <iostream>
 #include <vector>

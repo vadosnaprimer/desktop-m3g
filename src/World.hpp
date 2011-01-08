@@ -1,5 +1,5 @@
-#ifndef __WORLD_HPP__
-#define __WORLD_HPP__
+#ifndef __M3G_WORLD_HPP__
+#define __M3G_WORLD_HPP__
 
 #include "m3g/Group.hpp"
 #include <iosfwd>

@@ -1,5 +1,5 @@
-#ifndef __SPRITE3D_HPP__
-#define __SPRITE3D_HPP__
+#ifndef __M3G_SPRITE3D_HPP__
+#define __M3G_SPRITE3D_HPP__
 
 #include "m3g/Node.hpp"
 #include <iosfwd>

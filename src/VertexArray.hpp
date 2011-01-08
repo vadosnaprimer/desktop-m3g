@@ -1,5 +1,5 @@
-#ifndef __VERTEX_ARRAY_HPP__
-#define __VERTEX_ARRAY_HPP__
+#ifndef __M3G_VERTEX_ARRAY_HPP__
+#define __M3G_VERTEX_ARRAY_HPP__
 
 
 #include "m3g/Object3D.hpp"

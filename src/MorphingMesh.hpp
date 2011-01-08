@@ -1,5 +1,5 @@
-#ifndef __MORPHING_MESH_HPP__
-#define __MORPHING_MESH_HPP__
+#ifndef __M3G_MORPHING_MESH_HPP__
+#define __M3G_MORPHING_MESH_HPP__
 
 #include "m3g/Mesh.hpp"
 #include <iosfwd>

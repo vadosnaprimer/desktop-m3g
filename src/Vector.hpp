@@ -1,5 +1,5 @@
-#ifndef __VECTOR_HPP__
-#define __VECTOR_HPP__
+#ifndef __M3G_VECTOR_HPP__
+#define __M3G_VECTOR_HPP__
 
 #include <iosfwd>
 
