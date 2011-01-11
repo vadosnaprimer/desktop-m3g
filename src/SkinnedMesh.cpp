@@ -157,10 +157,6 @@ int SkinnedMesh:: animate (int world_time)
     // ボーンの移動
     skeleton->animate (world_time);
 
-    // スキンメッシュの更新
-    updateSkinnedVertices ();
-
-
     return 0;
 }
 
@@ -375,6 +371,9 @@ void SkinnedMesh:: render (RenderState& state) const
     }
 
     //cout << "SkinnedMesh: render\n";
+
+    // スキンメッシュの更新
+    (const_cast<SkinnedMesh*>(this))->updateSkinnedVertices ();
 
     // 注意：vertices が skinned_vertices に変わった事を除けば Mesh::render()と同一。
     // M3Gの仕様で vertices を書き換える事は禁止されているので元に戻す。
