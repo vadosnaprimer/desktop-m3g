@@ -1,0 +1,165 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<title>Desktop-M3G: クラス Loader</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javaScript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css"/>
+</head>
+<body onload='searchBox.OnSelectItem(0);'>
+<!-- 作成： Doxygen 1.7.1 -->
+<script type="text/javascript"><!--
+var searchBox = new SearchBox("searchBox", "search",false,'検索');
+--></script>
+<div class="navigation" id="top">
+  <div class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>メインページ</span></a></li>
+      <li class="current"><a href="annotated.html"><span>クラス</span></a></li>
+      <li><a href="files.html"><span>ファイル</span></a></li>
+      <li id="searchli">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="検索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div class="tabs2">
+    <ul class="tablist">
+      <li><a href="annotated.html"><span>構成</span></a></li>
+      <li><a href="classes.html"><span>構成索引</span></a></li>
+      <li><a href="hierarchy.html"><span>クラス階層</span></a></li>
+      <li><a href="functions.html"><span>構成メンバ</span></a></li>
+    </ul>
+  </div>
+  <div class="navpath">
+    <ul>
+      <li><b>m3g</b>      </li>
+      <li><a class="el" href="classm3g_1_1Loader.html">Loader</a>      </li>
+    </ul>
+  </div>
+</div>
+<div class="header">
+  <div class="summary">
+<a href="#pub-static-methods">Static Public メソッド</a>  </div>
+  <div class="headertitle">
+<h1>クラス Loader</h1>  </div>
+</div>
+<div class="contents">
+<!-- doxytag: class="m3g::Loader" --><!-- doxytag: inherits="m3g::Object" -->
+<p><code>#include &lt;<a class="el" href="Loader_8hpp_source.html">Loader.hpp</a>&gt;</code></p>
+<div class="dynheader">
+Loaderに対する継承グラフ</div>
+<div class="dyncontent">
+<div class="center"><img src="classm3g_1_1Loader__inherit__graph.png" border="0" usemap="#Loader_inherit__map" alt="Inheritance graph"/></div>
+<map name="Loader_inherit__map" id="Loader_inherit__map">
+<area shape="rect" id="node2" href="classm3g_1_1Object.html" title="Object" alt="" coords="8,5,69,35"/></map>
+<center><span class="legend">[<a href="graph_legend.html">凡例</a>]</span></center></div>
+<div class="dynheader">
+Loaderのコラボレーション図</div>
+<div class="dyncontent">
+<div class="center"><img src="classm3g_1_1Loader__coll__graph.png" border="0" usemap="#Loader_coll__map" alt="Collaboration graph"/></div>
+<map name="Loader_coll__map" id="Loader_coll__map">
+<area shape="rect" id="node2" href="classm3g_1_1Object.html" title="Object" alt="" coords="8,5,69,35"/></map>
+<center><span class="legend">[<a href="graph_legend.html">凡例</a>]</span></center></div>
+
+<p><a href="classm3g_1_1Loader-members.html">すべてのメンバ一覧</a></p>
+<table class="memberdecls">
+<tr><td colspan="2"><h2><a name="pub-static-methods"></a>
+Static Public メソッド</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static std::vector&lt; <a class="el" href="classm3g_1_1Object3D.html">Object3D</a> * &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Loader.html#a5ffab014464b23f939609f94739846f3">load</a> (int length, const char *p, int offset)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static std::vector&lt; <a class="el" href="classm3g_1_1Object3D.html">Object3D</a> * &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Loader.html#a3228edacf404d657bf796e8781bc3230">load</a> (const char *file_name)</td></tr>
+</table>
+<hr/><a name="_details"></a><h2>説明</h2>
+<p>シーングラフとそのノード要素のダウンロード. </p>
+<hr/><h2>関数</h2>
+<a class="anchor" id="a5ffab014464b23f939609f94739846f3"></a><!-- doxytag: member="m3g::Loader::load" ref="a5ffab014464b23f939609f94739846f3" args="(int length, const char *p, int offset)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt; <a class="el" href="classm3g_1_1Object3D.html">Object3D</a> * &gt; load </td>
+          <td>(</td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>length</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&nbsp;</td>
+          <td class="paramname"> <em>p</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>offset</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td><code> [static]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>与えられたバイトストリームのオフセット位置からObject3Dのインスタンスを生成する. </p>
+
+</div>
+</div>
+<a class="anchor" id="a3228edacf404d657bf796e8781bc3230"></a><!-- doxytag: member="m3g::Loader::load" ref="a3228edacf404d657bf796e8781bc3230" args="(const char *file_name)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt; <a class="el" href="classm3g_1_1Object3D.html">Object3D</a> * &gt; load </td>
+          <td>(</td>
+          <td class="paramtype">const char *&nbsp;</td>
+          <td class="paramname"> <em>file_name</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [static]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>与えられた名前のリソースからObject3Dのインスタンスを生成する. </p>
+
+</div>
+</div>
+<hr/>このクラスの説明は次のファイルから生成されました:<ul>
+<li>/work/workspace.desktop-m3g/src/<a class="el" href="Loader_8hpp_source.html">Loader.hpp</a></li>
+<li>/work/workspace.desktop-m3g/src/Loader.cpp</li>
+</ul>
+</div>
+<!--- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&nbsp;</span>全て</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&nbsp;</span>クラス</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&nbsp;</span>関数</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&nbsp;</span>変数</a></div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<hr class="footer"/><address class="footer"><small>Desktop-M3Gに対してMon Jan 17 2011 11:59:29に生成されました。&nbsp;
+<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
+</body>
+</html>

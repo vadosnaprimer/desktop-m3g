@@ -1,0 +1,573 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<title>Desktop-M3G: クラス Sprite3D</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javaScript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css"/>
+</head>
+<body onload='searchBox.OnSelectItem(0);'>
+<!-- 作成： Doxygen 1.7.1 -->
+<script type="text/javascript"><!--
+var searchBox = new SearchBox("searchBox", "search",false,'検索');
+--></script>
+<div class="navigation" id="top">
+  <div class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>メインページ</span></a></li>
+      <li class="current"><a href="annotated.html"><span>クラス</span></a></li>
+      <li><a href="files.html"><span>ファイル</span></a></li>
+      <li id="searchli">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="検索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div class="tabs2">
+    <ul class="tablist">
+      <li><a href="annotated.html"><span>構成</span></a></li>
+      <li><a href="classes.html"><span>構成索引</span></a></li>
+      <li><a href="hierarchy.html"><span>クラス階層</span></a></li>
+      <li><a href="functions.html"><span>構成メンバ</span></a></li>
+    </ul>
+  </div>
+  <div class="navpath">
+    <ul>
+      <li><b>m3g</b>      </li>
+      <li><a class="el" href="classm3g_1_1Sprite3D.html">Sprite3D</a>      </li>
+    </ul>
+  </div>
+</div>
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public メソッド</a>  </div>
+  <div class="headertitle">
+<h1>クラス Sprite3D</h1>  </div>
+</div>
+<div class="contents">
+<!-- doxytag: class="m3g::Sprite3D" --><!-- doxytag: inherits="m3g::Node" -->
+<p><code>#include &lt;<a class="el" href="Sprite3D_8hpp_source.html">Sprite3D.hpp</a>&gt;</code></p>
+<div class="dynheader">
+Sprite3Dに対する継承グラフ</div>
+<div class="dyncontent">
+<div class="center"><img src="classm3g_1_1Sprite3D__inherit__graph.png" border="0" usemap="#Sprite3D_inherit__map" alt="Inheritance graph"/></div>
+<map name="Sprite3D_inherit__map" id="Sprite3D_inherit__map">
+<area shape="rect" id="node2" href="classm3g_1_1Node.html" title="Node" alt="" coords="33,237,89,267"/><area shape="rect" id="node4" href="classm3g_1_1Transformable.html" title="Transformable" alt="" coords="5,160,117,189"/><area shape="rect" id="node6" href="classm3g_1_1Object3D.html" title="Object3D" alt="" coords="21,83,101,112"/><area shape="rect" id="node8" href="classm3g_1_1Object.html" title="Object" alt="" coords="31,5,92,35"/></map>
+<center><span class="legend">[<a href="graph_legend.html">凡例</a>]</span></center></div>
+<div class="dynheader">
+Sprite3Dのコラボレーション図</div>
+<div class="dyncontent">
+<div class="center"><img src="classm3g_1_1Sprite3D__coll__graph.png" border="0" usemap="#Sprite3D_coll__map" alt="Collaboration graph"/></div>
+<map name="Sprite3D_coll__map" id="Sprite3D_coll__map">
+<area shape="rect" id="node2" href="classm3g_1_1Node.html" title="Node" alt="" coords="591,291,647,320"/><area shape="rect" id="node4" href="classm3g_1_1Transformable.html" title="Transformable" alt="" coords="563,181,675,211"/><area shape="rect" id="node6" href="classm3g_1_1Object3D.html" title="Object3D" alt="" coords="315,85,395,115"/><area shape="rect" id="node16" href="classm3g_1_1Appearance.html" title="Appearance" alt="" coords="208,291,307,320"/><area shape="rect" id="node19" href="classm3g_1_1PolygonMode.html" title="PolygonMode" alt="" coords="171,181,277,211"/><area shape="rect" id="node22" href="classm3g_1_1CompositingMode.html" title="CompositingMode" alt="" coords="352,181,488,211"/><area shape="rect" id="node25" href="classm3g_1_1Fog.html" title="Fog" alt="" coords="5,181,51,211"/><area shape="rect" id="node28" href="classm3g_1_1Material.html" title="Material" alt="" coords="75,181,147,211"/><area shape="rect" id="node31" href="classm3g_1_1Image2D.html" title="Image2D" alt="" coords="488,235,568,264"/><area shape="rect" id="node8" href="classm3g_1_1Object.html" title="Object" alt="" coords="437,5,499,35"/><area shape="rect" id="node10" href="classm3g_1_1Transform.html" title="Transform" alt="" coords="500,85,585,115"/><area shape="rect" id="node13" href="classm3g_1_1Quaternion.html" title="Quaternion" alt="" coords="651,85,744,115"/></map>
+<center><span class="legend">[<a href="graph_legend.html">凡例</a>]</span></center></div>
+
+<p><a href="classm3g_1_1Sprite3D-members.html">すべてのメンバ一覧</a></p>
+<table class="memberdecls">
+<tr><td colspan="2"><h2><a name="pub-methods"></a>
+Public メソッド</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Sprite3D.html#a9cb33fd453d441ed8e99b95f5e29df0c">Sprite3D</a> (bool scaled, <a class="el" href="classm3g_1_1Image2D.html">Image2D</a> *image, <a class="el" href="classm3g_1_1Appearance.html">Appearance</a> *appearance)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Sprite3D.html#aa57bd1e3141ba11c88ddec1e46c188d6">~Sprite3D</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classm3g_1_1Sprite3D.html">Sprite3D</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Sprite3D.html#a0af34e87be803eb476f9e118d2363246">duplicate</a> () const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Sprite3D.html#ad52d3c63076c4341b34c3631a17820e4">getReferences</a> (<a class="el" href="classm3g_1_1Object3D.html">Object3D</a> **references) const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Sprite3D.html#a11e9a75cdafefed10e6188b03585d418">copy</a> (<a class="el" href="classm3g_1_1Sprite3D.html">Sprite3D</a> *spr) const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Sprite3D.html#a415c0b110f95410ded9b85e5d99a496b">addAnimationTrack</a> (<a class="el" href="classm3g_1_1AnimationTrack.html">AnimationTrack</a> *animation_track)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Sprite3D.html#a8aad1ceab4c2a03609c8a42324ce484d">animate</a> (int world_time)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classm3g_1_1Appearance.html">Appearance</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Sprite3D.html#a0219cb20ddea978a5796b5b414d012d2">getAppearance</a> () const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Sprite3D.html#ad6d9d6f23b7bb004c93642bcd081f4a3">getCropHeight</a> () const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Sprite3D.html#a5c6515f6706675ef31ca5dfa0a03b953">getCropWidth</a> () const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Sprite3D.html#ad0ba0211183decc8f0459ca598b12912">getCropX</a> () const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Sprite3D.html#a9ef03b219415a1f08aef6745ad5d87d0">getCropY</a> () const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classm3g_1_1Image2D.html">Image2D</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Sprite3D.html#aa8c0193b0e7d47d4b5c9f60df24c44f5">getImage</a> () const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Sprite3D.html#ab6ca418b9c39fed3206e02aed801ee3b">intersect</a> (const <a class="el" href="classm3g_1_1Vector.html">Vector</a> &amp;org, const <a class="el" href="classm3g_1_1Vector.html">Vector</a> &amp;dir, const <a class="el" href="classm3g_1_1Camera.html">Camera</a> *cam, <a class="el" href="classm3g_1_1RayIntersection.html">RayIntersection</a> *ri) const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Sprite3D.html#a8e3e7fa70e1d3f2342580991105779f5">isScaled</a> () const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Sprite3D.html#ab9b44bad4241635062ed66437c9bae48">setAppearance</a> (<a class="el" href="classm3g_1_1Appearance.html">Appearance</a> *appearance)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Sprite3D.html#a8024bd0163b0041414279ee81523a6be">setCrop</a> (int crop_x, int crop_y, int crop_width, int crop_height)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Sprite3D.html#a705b89b41cd1b38f664ed912be44baaa">setImage</a> (<a class="el" href="classm3g_1_1Image2D.html">Image2D</a> *image)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual std::ostream &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Sprite3D.html#a6fea17fa1532df3794f8cb39cb4f911f">print</a> (std::ostream &amp;out) const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Sprite3D.html#a8babc8a79b78615da51161e94029eea9">render</a> (<a class="el" href="structm3g_1_1RenderState.html">RenderState</a> &amp;state) const </td></tr>
+</table>
+<hr/><a name="_details"></a><h2>説明</h2>
+<p>3Dの位置情報を持った2D画像を表すシーングラフノード. </p>
+<hr/><h2>コンストラクタとデストラクタ</h2>
+<a class="anchor" id="a9cb33fd453d441ed8e99b95f5e29df0c"></a><!-- doxytag: member="m3g::Sprite3D::Sprite3D" ref="a9cb33fd453d441ed8e99b95f5e29df0c" args="(bool scaled, Image2D *image, Appearance *appearance)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classm3g_1_1Sprite3D.html">Sprite3D</a> </td>
+          <td>(</td>
+          <td class="paramtype">bool&nbsp;</td>
+          <td class="paramname"> <em>scaled</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classm3g_1_1Image2D.html">Image2D</a> *&nbsp;</td>
+          <td class="paramname"> <em>image</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classm3g_1_1Appearance.html">Appearance</a> *&nbsp;</td>
+          <td class="paramname"> <em>appearance</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>指定されたスケーリングモード、画像、アピアランスを持ったSprite3Dの作成. </p>
+
+</div>
+</div>
+<a class="anchor" id="aa57bd1e3141ba11c88ddec1e46c188d6"></a><!-- doxytag: member="m3g::Sprite3D::~Sprite3D" ref="aa57bd1e3141ba11c88ddec1e46c188d6" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">~<a class="el" href="classm3g_1_1Sprite3D.html">Sprite3D</a> </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>このオブジェクトを削除するデストラクタ. </p>
+
+</div>
+</div>
+<hr/><h2>関数</h2>
+<a class="anchor" id="a415c0b110f95410ded9b85e5d99a496b"></a><!-- doxytag: member="m3g::Sprite3D::addAnimationTrack" ref="a415c0b110f95410ded9b85e5d99a496b" args="(AnimationTrack *animation_track)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void addAnimationTrack </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classm3g_1_1AnimationTrack.html">AnimationTrack</a> *&nbsp;</td>
+          <td class="paramname"> <em>animation_track</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>このObject3Dに指定されたアニメーショントラックを追加する。 既存のトラックの順番とインデックスは変更されるかもしれない. </p>
+
+<p><a class="el" href="classm3g_1_1Node.html#a415c0b110f95410ded9b85e5d99a496b">Node</a>を再定義しています。</p>
+
+</div>
+</div>
+<a class="anchor" id="a8aad1ceab4c2a03609c8a42324ce484d"></a><!-- doxytag: member="m3g::Sprite3D::animate" ref="a8aad1ceab4c2a03609c8a42324ce484d" args="(int world_time)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int animate </td>
+          <td>(</td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>world_time</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>このObject3D自身とここから到達できるObject3Dのアニメーテッドプロパティを更新する. </p>
+
+<p><a class="el" href="classm3g_1_1Node.html#a8aad1ceab4c2a03609c8a42324ce484d">Node</a>を再定義しています。</p>
+
+</div>
+</div>
+<a class="anchor" id="a11e9a75cdafefed10e6188b03585d418"></a><!-- doxytag: member="m3g::Sprite3D::copy" ref="a11e9a75cdafefed10e6188b03585d418" args="(Sprite3D *spr) const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void copy </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classm3g_1_1Sprite3D.html">Sprite3D</a> *&nbsp;</td>
+          <td class="paramname"> <em>spr</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>このオブジェクトのデータを引数で指定されたオブジェクトにコピーするM3G非標準の関数. </p>
+
+</div>
+</div>
+<a class="anchor" id="a0af34e87be803eb476f9e118d2363246"></a><!-- doxytag: member="m3g::Sprite3D::duplicate" ref="a0af34e87be803eb476f9e118d2363246" args="() const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classm3g_1_1Sprite3D.html">Sprite3D</a> * duplicate </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const<code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>このオブジェクトの複製の作成. </p>
+
+<p><a class="el" href="classm3g_1_1Node.html#a0b9f7531a4b56d34f47aeb1fff0d37e0">Node</a>を再定義しています。</p>
+
+</div>
+</div>
+<a class="anchor" id="a0219cb20ddea978a5796b5b414d012d2"></a><!-- doxytag: member="m3g::Sprite3D::getAppearance" ref="a0219cb20ddea978a5796b5b414d012d2" args="() const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classm3g_1_1Appearance.html">Appearance</a> * getAppearance </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>このSprite3Dのカレントのアピアランスを取得. </p>
+
+</div>
+</div>
+<a class="anchor" id="ad6d9d6f23b7bb004c93642bcd081f4a3"></a><!-- doxytag: member="m3g::Sprite3D::getCropHeight" ref="ad6d9d6f23b7bb004c93642bcd081f4a3" args="() const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int getCropHeight </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>ソース画像のカレントのクロップ領域の高さの取得. </p>
+
+</div>
+</div>
+<a class="anchor" id="a5c6515f6706675ef31ca5dfa0a03b953"></a><!-- doxytag: member="m3g::Sprite3D::getCropWidth" ref="a5c6515f6706675ef31ca5dfa0a03b953" args="() const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int getCropWidth </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>ソース画像のカレントのクロップ領域の高さの取得. </p>
+
+</div>
+</div>
+<a class="anchor" id="ad0ba0211183decc8f0459ca598b12912"></a><!-- doxytag: member="m3g::Sprite3D::getCropX" ref="ad0ba0211183decc8f0459ca598b12912" args="() const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int getCropX </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>クロップ矩形のソース画像の左上からのX方向の相対オフセット. </p>
+
+</div>
+</div>
+<a class="anchor" id="a9ef03b219415a1f08aef6745ad5d87d0"></a><!-- doxytag: member="m3g::Sprite3D::getCropY" ref="a9ef03b219415a1f08aef6745ad5d87d0" args="() const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int getCropY </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>クロップ矩形のソース画像の左上からのY方向の相対オフセット. </p>
+
+</div>
+</div>
+<a class="anchor" id="aa8c0193b0e7d47d4b5c9f60df24c44f5"></a><!-- doxytag: member="m3g::Sprite3D::getImage" ref="aa8c0193b0e7d47d4b5c9f60df24c44f5" args="() const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classm3g_1_1Image2D.html">Image2D</a> * getImage </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>カレントのSprite3D画像の取得. </p>
+
+</div>
+</div>
+<a class="anchor" id="ad52d3c63076c4341b34c3631a17820e4"></a><!-- doxytag: member="m3g::Sprite3D::getReferences" ref="ad52d3c63076c4341b34c3631a17820e4" args="(Object3D **references) const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int getReferences </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classm3g_1_1Object3D.html">Object3D</a> **&nbsp;</td>
+          <td class="paramname"> <em>references</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const<code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>このオブジェクトから参照しているObject3Dの数を返し、配列をそのポインターで埋める. </p>
+
+<p><a class="el" href="classm3g_1_1Object3D.html#ad52d3c63076c4341b34c3631a17820e4">Object3D</a>を再定義しています。</p>
+
+</div>
+</div>
+<a class="anchor" id="ab6ca418b9c39fed3206e02aed801ee3b"></a><!-- doxytag: member="m3g::Sprite3D::intersect" ref="ab6ca418b9c39fed3206e02aed801ee3b" args="(const Vector &amp;org, const Vector &amp;dir, const Camera *cam, RayIntersection *ri) const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool intersect </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classm3g_1_1Vector.html">Vector</a> &amp;&nbsp;</td>
+          <td class="paramname"> <em>org</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classm3g_1_1Vector.html">Vector</a> &amp;&nbsp;</td>
+          <td class="paramname"> <em>dir</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classm3g_1_1Camera.html">Camera</a> *&nbsp;</td>
+          <td class="paramname"> <em>cam</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classm3g_1_1RayIntersection.html">RayIntersection</a> *&nbsp;</td>
+          <td class="paramname"> <em>ri</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td> const</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>座標は全てNDC座標で渡す.</p>
+<p>注意1: org,dir,riはすべてNDC座標系 注意2: NDC座標系はOpenGLで一般的な右手座標系ではなく「左手座標系」 従って交差判定に渡す頂点は「時計回り」 v3 -- v1 | ／ | v2 -- v0 注意3: M3Gの仕様ではピック出来るのはscaledのみ。 </p>
+
+</div>
+</div>
+<a class="anchor" id="a8e3e7fa70e1d3f2342580991105779f5"></a><!-- doxytag: member="m3g::Sprite3D::isScaled" ref="a8e3e7fa70e1d3f2342580991105779f5" args="() const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool isScaled </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>このSprite3Dの自動スケーリングの状態を返す. </p>
+
+</div>
+</div>
+<a class="anchor" id="a6fea17fa1532df3794f8cb39cb4f911f"></a><!-- doxytag: member="m3g::Sprite3D::print" ref="a6fea17fa1532df3794f8cb39cb4f911f" args="(std::ostream &amp;out) const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::ostream &amp; print </td>
+          <td>(</td>
+          <td class="paramtype">std::ostream &amp;&nbsp;</td>
+          <td class="paramname"> <em>out</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const<code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>このSprite3Dクラスの情報を表示する。デバッグ用. </p>
+
+<p><a class="el" href="classm3g_1_1Node.html#a6fea17fa1532df3794f8cb39cb4f911f">Node</a>を再定義しています。</p>
+
+</div>
+</div>
+<a class="anchor" id="a8babc8a79b78615da51161e94029eea9"></a><!-- doxytag: member="m3g::Sprite3D::render" ref="a8babc8a79b78615da51161e94029eea9" args="(RenderState &amp;state) const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void render </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structm3g_1_1RenderState.html">RenderState</a> &amp;&nbsp;</td>
+          <td class="paramname"> <em>state</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const<code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>このノードをレンダリングする内部使用の関数.</p>
+<p>Note: <a class="el" href="classm3g_1_1Sprite3D.html">Sprite3D</a> should be rendered only at second rendering pass(pass=2). In other cases, do nothing. </p>
+
+<p><a class="el" href="classm3g_1_1Node.html#a8babc8a79b78615da51161e94029eea9">Node</a>を再定義しています。</p>
+
+</div>
+</div>
+<a class="anchor" id="ab9b44bad4241635062ed66437c9bae48"></a><!-- doxytag: member="m3g::Sprite3D::setAppearance" ref="ab9b44bad4241635062ed66437c9bae48" args="(Appearance *appearance)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void setAppearance </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classm3g_1_1Appearance.html">Appearance</a> *&nbsp;</td>
+          <td class="paramname"> <em>appearance</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>このSprite3Dのアピアランスの設定. </p>
+
+</div>
+</div>
+<a class="anchor" id="a8024bd0163b0041414279ee81523a6be"></a><!-- doxytag: member="m3g::Sprite3D::setCrop" ref="a8024bd0163b0041414279ee81523a6be" args="(int crop_x, int crop_y, int crop_width, int crop_height)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void setCrop </td>
+          <td>(</td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>crop_x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>crop_y</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>crop_width</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>crop_height</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>ソース画像のクロッピング矩形の設定. </p>
+
+</div>
+</div>
+<a class="anchor" id="a705b89b41cd1b38f664ed912be44baaa"></a><!-- doxytag: member="m3g::Sprite3D::setImage" ref="a705b89b41cd1b38f664ed912be44baaa" args="(Image2D *image)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void setImage </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classm3g_1_1Image2D.html">Image2D</a> *&nbsp;</td>
+          <td class="paramname"> <em>image</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>表示するスプライト画像の設定. </p>
+
+</div>
+</div>
+<hr/>このクラスの説明は次のファイルから生成されました:<ul>
+<li>/work/workspace.desktop-m3g/src/<a class="el" href="Sprite3D_8hpp_source.html">Sprite3D.hpp</a></li>
+<li>/work/workspace.desktop-m3g/src/Sprite3D.cpp</li>
+</ul>
+</div>
+<!--- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&nbsp;</span>全て</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&nbsp;</span>クラス</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&nbsp;</span>関数</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&nbsp;</span>変数</a></div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<hr class="footer"/><address class="footer"><small>Desktop-M3Gに対してMon Jan 17 2011 11:59:34に生成されました。&nbsp;
+<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
+</body>
+</html>

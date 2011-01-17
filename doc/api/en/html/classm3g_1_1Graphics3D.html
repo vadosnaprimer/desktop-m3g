@@ -1,0 +1,925 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<title>Desktop-M3G: クラス Graphics3D</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javaScript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css"/>
+</head>
+<body onload='searchBox.OnSelectItem(0);'>
+<!-- 作成： Doxygen 1.7.1 -->
+<script type="text/javascript"><!--
+var searchBox = new SearchBox("searchBox", "search",false,'検索');
+--></script>
+<div class="navigation" id="top">
+  <div class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>メインページ</span></a></li>
+      <li class="current"><a href="annotated.html"><span>クラス</span></a></li>
+      <li><a href="files.html"><span>ファイル</span></a></li>
+      <li id="searchli">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="検索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div class="tabs2">
+    <ul class="tablist">
+      <li><a href="annotated.html"><span>構成</span></a></li>
+      <li><a href="classes.html"><span>構成索引</span></a></li>
+      <li><a href="hierarchy.html"><span>クラス階層</span></a></li>
+      <li><a href="functions.html"><span>構成メンバ</span></a></li>
+    </ul>
+  </div>
+  <div class="navpath">
+    <ul>
+      <li><b>m3g</b>      </li>
+      <li><a class="el" href="classm3g_1_1Graphics3D.html">Graphics3D</a>      </li>
+    </ul>
+  </div>
+</div>
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public メソッド</a> &#124;
+<a href="#pub-static-methods">Static Public メソッド</a> &#124;
+<a href="#pub-static-attribs">Static Public 変数</a>  </div>
+  <div class="headertitle">
+<h1>クラス Graphics3D</h1>  </div>
+</div>
+<div class="contents">
+<!-- doxytag: class="m3g::Graphics3D" --><!-- doxytag: inherits="m3g::Object" -->
+<p><code>#include &lt;<a class="el" href="Graphics3D_8hpp_source.html">Graphics3D.hpp</a>&gt;</code></p>
+<div class="dynheader">
+Graphics3Dに対する継承グラフ</div>
+<div class="dyncontent">
+<div class="center"><img src="classm3g_1_1Graphics3D__inherit__graph.png" border="0" usemap="#Graphics3D_inherit__map" alt="Inheritance graph"/></div>
+<map name="Graphics3D_inherit__map" id="Graphics3D_inherit__map">
+<area shape="rect" id="node2" href="classm3g_1_1Object.html" title="Object" alt="" coords="23,5,84,35"/></map>
+<center><span class="legend">[<a href="graph_legend.html">凡例</a>]</span></center></div>
+<div class="dynheader">
+Graphics3Dのコラボレーション図</div>
+<div class="dyncontent">
+<div class="center"><img src="classm3g_1_1Graphics3D__coll__graph.png" border="0" usemap="#Graphics3D_coll__map" alt="Collaboration graph"/></div>
+<map name="Graphics3D_coll__map" id="Graphics3D_coll__map">
+<area shape="rect" id="node2" href="classm3g_1_1Object.html" title="Object" alt="" coords="23,5,84,35"/></map>
+<center><span class="legend">[<a href="graph_legend.html">凡例</a>]</span></center></div>
+
+<p><a href="classm3g_1_1Graphics3D-members.html">すべてのメンバ一覧</a></p>
+<table class="memberdecls">
+<tr><td colspan="2"><h2><a name="pub-methods"></a>
+Public メソッド</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Graphics3D.html#a9b9347476fc10e57b31694ac8a628511">~Graphics3D</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Graphics3D.html#a0a8acc61618bad17053cb62131819b92">addLight</a> (<a class="el" href="classm3g_1_1Light.html">Light</a> *light, const <a class="el" href="classm3g_1_1Transform.html">Transform</a> &amp;transform)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Graphics3D.html#ad34fb1ab11f2e25b98b93affd71dcc05">bindTarget</a> (void *target, bool depth_buffer_enabled=true, int hints=0)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Graphics3D.html#a21c4a68a53cfbe0a7cec05d5a56682bf">clear</a> (<a class="el" href="classm3g_1_1Background.html">Background</a> *background)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classm3g_1_1Camera.html">Camera</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Graphics3D.html#a1c6ba79e9112caef92e1a149a308b613">getCamera</a> (<a class="el" href="classm3g_1_1Transform.html">Transform</a> *transform)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">float&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Graphics3D.html#ac8c185b99073215202d2e35723f5c470">getDepthRangeFar</a> () const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">float&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Graphics3D.html#a60bc116f673bf2782de2df3eebfb2c92">getDepthRangeNear</a> () const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Graphics3D.html#a5837234a23dc5f46d3adec17f521b58e">getHints</a> () const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classm3g_1_1Light.html">Light</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Graphics3D.html#a02e7b19ae5c0342b11f2cbf9a4df4d77">getLight</a> (int index, <a class="el" href="classm3g_1_1Transform.html">Transform</a> *transform) const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Graphics3D.html#a7a08cfeb48d76ad5d8859a1fc0c77d98">getLightCount</a> () const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">std::map&lt; const char *, int &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Graphics3D.html#a2ea2a069c4b10555d50a193a44e63996">getProperties</a> () const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Graphics3D.html#a02d0033930c8e68f4d7ebd43abe7980a">getTarget</a> () const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Graphics3D.html#ad51e0c421126f5deb61b359cdb7dab2e">getViewportHeight</a> () const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Graphics3D.html#a768e5c057e2fa4c4b17a67134abbf89f">getViewportWidth</a> () const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Graphics3D.html#aaf58b44cc6219f86c40dadb8a9377856">getViewportX</a> () const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Graphics3D.html#ac21665afbf94a8f0153e099833c2b61a">getViewportY</a> () const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Graphics3D.html#a7f17c6781152840d42e756c27b0fb8c8">isDepthBufferEnabled</a> () const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Graphics3D.html#a1491a435e97a20d5325339359a719cc5">releaseTarget</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Graphics3D.html#a72393048eaa861da7fd61afe6537251a">render</a> (const <a class="el" href="classm3g_1_1Node.html">Node</a> *node, const <a class="el" href="classm3g_1_1Transform.html">Transform</a> *transform) const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Graphics3D.html#a1738a0a39fa5abedd039364f609505a4">render</a> (const <a class="el" href="classm3g_1_1VertexBuffer.html">VertexBuffer</a> *vertices, const <a class="el" href="classm3g_1_1IndexBuffer.html">IndexBuffer</a> *triangles, const <a class="el" href="classm3g_1_1Appearance.html">Appearance</a> *apperance, const <a class="el" href="classm3g_1_1Transform.html">Transform</a> *transform, int scope=-1) const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Graphics3D.html#a7d2f6347dbd7dc288eeaff9d8c16d67c">render</a> (const <a class="el" href="classm3g_1_1World.html">World</a> *world) const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Graphics3D.html#ab8821ec231e8ebd939ae0feaaf138542">resetLights</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Graphics3D.html#a0df7bb61cfeba6626e20fd07ddd1c460">setCamera</a> (<a class="el" href="classm3g_1_1Camera.html">Camera</a> *camera, const <a class="el" href="classm3g_1_1Transform.html">Transform</a> &amp;transform)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Graphics3D.html#a6fc3837286f3516aa3320aeec9729495">setDepthRange</a> (float near, float far)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Graphics3D.html#a2bf83cb69f50117dd9d5548fe96d0ab0">setLight</a> (int index, <a class="el" href="classm3g_1_1Light.html">Light</a> *light, const <a class="el" href="classm3g_1_1Transform.html">Transform</a> &amp;transform)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Graphics3D.html#a0b4ec48e9c19060e9be5648c118c23b1">setViewport</a> (int x, int y, int width, int height)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">std::ostream &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Graphics3D.html#a6fea17fa1532df3794f8cb39cb4f911f">print</a> (std::ostream &amp;out) const </td></tr>
+<tr><td colspan="2"><h2><a name="pub-static-methods"></a>
+Static Public メソッド</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classm3g_1_1Graphics3D.html">Graphics3D</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Graphics3D.html#ada6d71754bfe755dd8204a9332e9ed47">getInstance</a> ()</td></tr>
+<tr><td colspan="2"><h2><a name="pub-static-attribs"></a>
+Static Public 変数</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static const int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Graphics3D.html#a9df12c5332904e66a962e1bf2809a812">ANTIALIAS</a> = 1&lt;&lt;1</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static const int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Graphics3D.html#a3750f57b82328be988bdab3b672a64f9">DITHER</a> = 1&lt;&lt;2</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static const int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Graphics3D.html#af448f7f447a301823af9170bfe84c50e">OVERWRITE</a> = 1&lt;&lt;4</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static const int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1Graphics3D.html#abbd22a6baea672f895d5ef32e2438ec6">TRUE_COLOR</a> = 1&lt;&lt;3</td></tr>
+</table>
+<hr/><a name="_details"></a><h2>説明</h2>
+<p>描画デバイス(GPU)を抽象化したクラス。全てのレンダリングはこのクラスを通して行われる. </p>
+<hr/><h2>コンストラクタとデストラクタ</h2>
+<a class="anchor" id="a9b9347476fc10e57b31694ac8a628511"></a><!-- doxytag: member="m3g::Graphics3D::~Graphics3D" ref="a9b9347476fc10e57b31694ac8a628511" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">~<a class="el" href="classm3g_1_1Graphics3D.html">Graphics3D</a> </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>このオブジェクトを削除するデストラクタ. </p>
+
+</div>
+</div>
+<hr/><h2>関数</h2>
+<a class="anchor" id="a0a8acc61618bad17053cb62131819b92"></a><!-- doxytag: member="m3g::Graphics3D::addLight" ref="a0a8acc61618bad17053cb62131819b92" args="(Light *light, const Transform &amp;transform)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int addLight </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classm3g_1_1Light.html">Light</a> *&nbsp;</td>
+          <td class="paramname"> <em>light</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classm3g_1_1Transform.html">Transform</a> &amp;&nbsp;</td>
+          <td class="paramname"> <em>transform</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>ライトを追加します。この関数はイミーディエイトモードでのみ使用します。 この関数は実装されていません. </p>
+<dl><dt><b>引数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>light</em>&nbsp;</td><td>追加するLightオブジェクト. </td></tr>
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>transform</em>&nbsp;</td><td>ライトのローカル座標からワールド座標への変換を表すTransformオブジェクト. NULLの場合は単位行列を表します。 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>戻り値:</b></dt><dd>後でこのライトを参照する時に使用するインデックスを返します. </dd></dl>
+<dl><dt><b>例外:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>NotImplementedException</em>&nbsp;</td><td>この関数の呼び出しは常にこの例外を発生します. </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>NullPointerException</em>&nbsp;</td><td>引数のlightがNULLの場合.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>この関数はイミーディエイトモードでのみ使用し、Destkop-M3Gでは実装されていません。 現在イミーディエイトモードを実装する予定はありません。 </p>
+
+</div>
+</div>
+<a class="anchor" id="ad34fb1ab11f2e25b98b93affd71dcc05"></a><!-- doxytag: member="m3g::Graphics3D::bindTarget" ref="ad34fb1ab11f2e25b98b93affd71dcc05" args="(void *target, bool depth_buffer_enabled=true, int hints=0)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void bindTarget </td>
+          <td>(</td>
+          <td class="paramtype">void *&nbsp;</td>
+          <td class="paramname"> <em>target</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&nbsp;</td>
+          <td class="paramname"> <em>depth_buffer_enabled</em> = <code>true</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>hints</em> = <code>0</code></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>描画対象をこのGrapihcs3Dオブジェクトにバインドします。現在この関数は実装されていません。 </p>
+<dl><dt><b>引数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>target</em>&nbsp;</td><td>描画対象を表すオブジェクト。現在では特に規定されていない。 </td></tr>
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>depth_buffer_enabled</em>&nbsp;</td><td>デプスバッファーを有功にするフラグです。trueの時有効にし、falseの時に無効化します。 </td></tr>
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>hints</em>&nbsp;</td><td>レンダリングに使用する"ヒント"をビット演算のorで重ねて指定します。 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl><dt><b>例外:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>NotImplementedException</em>&nbsp;</td><td>この関数の呼び出しは常にこの例外を発生します. </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>NullPointerException</em>&nbsp;</td><td>引数のtargetがNULLの場合に発生します. </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>IllegalStateException</em>&nbsp;</td><td>すでにレンダリングターゲットがバインドされている場合に発生します。 </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>IllegalArgumentException</em>&nbsp;</td><td>targetがミュータブルなImage2Dオブジェクトでなかったか、 描画対象として適切なオブジェクトで無かった場合に発生します.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>この関数はDestkop-M3Gでは実装されていません。 実装する予定はありません。 </p>
+
+</div>
+</div>
+<a class="anchor" id="a21c4a68a53cfbe0a7cec05d5a56682bf"></a><!-- doxytag: member="m3g::Graphics3D::clear" ref="a21c4a68a53cfbe0a7cec05d5a56682bf" args="(Background *background)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void clear </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classm3g_1_1Background.html">Background</a> *&nbsp;</td>
+          <td class="paramname"> <em>background</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>ビューポートを指定されたBackgroundオブジェクトでクリアします. </p>
+<dl><dt><b>引数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>background</em>&nbsp;</td><td>バッファーのクリアの有無とその方法を定義するBackgroundオブジェクト。 NULLの場合はデフォルトでクリアされます。 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl><dt><b>例外:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>NotImplementedException</em>&nbsp;</td><td>この関数の呼び出しは常にこの例外を発生します。 </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>IllegalArgumentException</em>&nbsp;</td><td>Backgoundオブジェクトに設定された背景画像のフォーマットが現在の レンダリングターゲットのフォーマットと異なる場合に発生します。 </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>IllegalStateException</em>&nbsp;</td><td>このGraphics3Dオブジェクトにレンダリングターゲットがバインドされていない場合に発生します。</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>この関数はイミーディエイトモードでのみ使用し、Destkop-M3Gでは実装されていません。 現在イミーディエイトモードを実装する予定はありません。 </p>
+
+</div>
+</div>
+<a class="anchor" id="a1c6ba79e9112caef92e1a149a308b613"></a><!-- doxytag: member="m3g::Graphics3D::getCamera" ref="a1c6ba79e9112caef92e1a149a308b613" args="(Transform *transform)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classm3g_1_1Camera.html">Camera</a> * getCamera </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classm3g_1_1Transform.html">Transform</a> *&nbsp;</td>
+          <td class="paramname"> <em>transform</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>カレントのカメラを取得します.</p>
+<dl><dt><b>引数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[out]</tt>&nbsp;</td><td valign="top"><em>transform</em>&nbsp;</td><td>カメラの変換行列を書き込むTransformオブジェクトへのポインター.NULLの場合はCameraオブジェクトのみ取得します。 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>戻り値:</b></dt><dd>カレントのCameraオブジェクト. </dd></dl>
+<dl><dt><b>例外:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>NotImplementedException</em>&nbsp;</td><td>この関数の呼び出しは常にこの例外を発生します。</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>この関数はイミーディエイトモードでのみ使用し、Destkop-M3Gでは実装されていません。 現在イミーディエイトモードを実装する予定はありません。 </p>
+
+</div>
+</div>
+<a class="anchor" id="ac8c185b99073215202d2e35723f5c470"></a><!-- doxytag: member="m3g::Graphics3D::getDepthRangeFar" ref="ac8c185b99073215202d2e35723f5c470" args="() const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float getDepthRangeFar </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>デプス範囲のファー距離を取得します。 </p>
+<dl class="return"><dt><b>戻り値:</b></dt><dd>ファークリッピング面のウィンドウ座標での値を所得します.</dd></dl>
+<p>NDC座標系におけるファークリッピング面(z=1)が、ウィンドウ座標系に変換されたときのzの値を取得します。 デフォルトではz=1です。 </p>
+
+</div>
+</div>
+<a class="anchor" id="a60bc116f673bf2782de2df3eebfb2c92"></a><!-- doxytag: member="m3g::Graphics3D::getDepthRangeNear" ref="a60bc116f673bf2782de2df3eebfb2c92" args="() const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float getDepthRangeNear </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>デプス範囲のニア距離を取得します。 </p>
+<dl class="return"><dt><b>戻り値:</b></dt><dd>ニアクリッピング面のウィンドウ座標での値を所得します.</dd></dl>
+<p>NDC座標系におけるニアクリッピング面(z=-1)が、ウィンドウ座標系に変換されたときのzの値を取得します。 デフォルトではz=0です。 </p>
+
+</div>
+</div>
+<a class="anchor" id="a5837234a23dc5f46d3adec17f521b58e"></a><!-- doxytag: member="m3g::Graphics3D::getHints" ref="a5837234a23dc5f46d3adec17f521b58e" args="() const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int getHints </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>カレントのレンダリングターゲットのレンダリングヒントを取得します. </p>
+<dl class="return"><dt><b>戻り値:</b></dt><dd>カレントのレンダリング・ヒントを返します。 </dd></dl>
+<dl><dt><b>例外:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>NotImplementedException</em>&nbsp;</td><td>この関数の呼び出しは常にこの例外を発生します。</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>この関数はDestkop-M3Gでは実装されていません。 実装する予定はありません。 </p>
+
+</div>
+</div>
+<a class="anchor" id="ada6d71754bfe755dd8204a9332e9ed47"></a><!-- doxytag: member="m3g::Graphics3D::getInstance" ref="ada6d71754bfe755dd8204a9332e9ed47" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classm3g_1_1Graphics3D.html">Graphics3D</a> * getInstance </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [static]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>このアプリケーションに関連づけれれたGraphics3Dクラスのシングルトンオブジェクトを取得します. </p>
+<dl class="return"><dt><b>戻り値:</b></dt><dd>Graphics3Dオブジェクトへのポインター</dd></dl>
+<p>Graphics3Dクラスはシングルトン化されていてインスタンス化するにはこの関数を使用します。 Graphcis3Dオブジェクトはアプリケーションでただ1つ存在します。戻り値がNULLになる事はありません。 </p>
+
+</div>
+</div>
+<a class="anchor" id="a02e7b19ae5c0342b11f2cbf9a4df4d77"></a><!-- doxytag: member="m3g::Graphics3D::getLight" ref="a02e7b19ae5c0342b11f2cbf9a4df4d77" args="(int index, Transform *transform) const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classm3g_1_1Light.html">Light</a> * getLight </td>
+          <td>(</td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>index</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classm3g_1_1Transform.html">Transform</a> *&nbsp;</td>
+          <td class="paramname"> <em>transform</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td> const</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>カレントのライト配列からライトを取得する. </p>
+
+</div>
+</div>
+<a class="anchor" id="a7a08cfeb48d76ad5d8859a1fc0c77d98"></a><!-- doxytag: member="m3g::Graphics3D::getLightCount" ref="a7a08cfeb48d76ad5d8859a1fc0c77d98" args="() const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int getLightCount </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>カレントのライト配列のサイズを取得する. </p>
+
+</div>
+</div>
+<a class="anchor" id="a2ea2a069c4b10555d50a193a44e63996"></a><!-- doxytag: member="m3g::Graphics3D::getProperties" ref="a2ea2a069c4b10555d50a193a44e63996" args="() const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::map&lt; const char *, int &gt; getProperties </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>実装依存のプロパティの取得. </p>
+
+</div>
+</div>
+<a class="anchor" id="a02d0033930c8e68f4d7ebd43abe7980a"></a><!-- doxytag: member="m3g::Graphics3D::getTarget" ref="a02d0033930c8e68f4d7ebd43abe7980a" args="() const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void * getTarget </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>カレントのレンダリングターゲットの取得. </p>
+
+</div>
+</div>
+<a class="anchor" id="ad51e0c421126f5deb61b359cdb7dab2e"></a><!-- doxytag: member="m3g::Graphics3D::getViewportHeight" ref="ad51e0c421126f5deb61b359cdb7dab2e" args="() const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int getViewportHeight </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>ビューポートの高さの取得. </p>
+
+</div>
+</div>
+<a class="anchor" id="a768e5c057e2fa4c4b17a67134abbf89f"></a><!-- doxytag: member="m3g::Graphics3D::getViewportWidth" ref="a768e5c057e2fa4c4b17a67134abbf89f" args="() const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int getViewportWidth </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>ビューポートの幅の取得. </p>
+
+</div>
+</div>
+<a class="anchor" id="aaf58b44cc6219f86c40dadb8a9377856"></a><!-- doxytag: member="m3g::Graphics3D::getViewportX" ref="aaf58b44cc6219f86c40dadb8a9377856" args="() const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int getViewportX </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>ビューポートの水平方向の位置の取得. </p>
+
+</div>
+</div>
+<a class="anchor" id="ac21665afbf94a8f0153e099833c2b61a"></a><!-- doxytag: member="m3g::Graphics3D::getViewportY" ref="ac21665afbf94a8f0153e099833c2b61a" args="() const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int getViewportY </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>ビューポートの垂直方向の位置の取得. </p>
+
+</div>
+</div>
+<a class="anchor" id="a7f17c6781152840d42e756c27b0fb8c8"></a><!-- doxytag: member="m3g::Graphics3D::isDepthBufferEnabled" ref="a7f17c6781152840d42e756c27b0fb8c8" args="() const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool isDepthBufferEnabled </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>カレントのレンダリングターゲットの深度バッファーが有効かどうかの問い合わせ. </p>
+
+</div>
+</div>
+<a class="anchor" id="a6fea17fa1532df3794f8cb39cb4f911f"></a><!-- doxytag: member="m3g::Graphics3D::print" ref="a6fea17fa1532df3794f8cb39cb4f911f" args="(std::ostream &amp;out) const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::ostream &amp; print </td>
+          <td>(</td>
+          <td class="paramtype">std::ostream &amp;&nbsp;</td>
+          <td class="paramname"> <em>out</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>このオブジェクトの情報を表示する。デバッグ用. </p>
+
+<p><a class="el" href="classm3g_1_1Object.html#a6fea17fa1532df3794f8cb39cb4f911f">Object</a>を再定義しています。</p>
+
+</div>
+</div>
+<a class="anchor" id="a1491a435e97a20d5325339359a719cc5"></a><!-- doxytag: member="m3g::Graphics3D::releaseTarget" ref="a1491a435e97a20d5325339359a719cc5" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void releaseTarget </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>現在バインドされているターゲットをレンダリングし、ターゲットを解放する. </p>
+
+</div>
+</div>
+<a class="anchor" id="a1738a0a39fa5abedd039364f609505a4"></a><!-- doxytag: member="m3g::Graphics3D::render" ref="a1738a0a39fa5abedd039364f609505a4" args="(const VertexBuffer *vertices, const IndexBuffer *triangles, const Appearance *apperance, const Transform *transform, int scope=&#45;1) const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void render </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classm3g_1_1VertexBuffer.html">VertexBuffer</a> *&nbsp;</td>
+          <td class="paramname"> <em>vertices</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classm3g_1_1IndexBuffer.html">IndexBuffer</a> *&nbsp;</td>
+          <td class="paramname"> <em>triangles</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classm3g_1_1Appearance.html">Appearance</a> *&nbsp;</td>
+          <td class="paramname"> <em>apperance</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classm3g_1_1Transform.html">Transform</a> *&nbsp;</td>
+          <td class="paramname"> <em>transform</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>scope</em> = <code>-1</code></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td> const</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>指定されたスコープのサブメッシュを指定された行列でローカル座標からワールド座標に変換してレンダリングする. </p>
+
+</div>
+</div>
+<a class="anchor" id="a72393048eaa861da7fd61afe6537251a"></a><!-- doxytag: member="m3g::Graphics3D::render" ref="a72393048eaa861da7fd61afe6537251a" args="(const Node *node, const Transform *transform) const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void render </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classm3g_1_1Node.html">Node</a> *&nbsp;</td>
+          <td class="paramname"> <em>node</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classm3g_1_1Transform.html">Transform</a> *&nbsp;</td>
+          <td class="paramname"> <em>transform</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td> const</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>指定されたSprite3D,<a class="el" href="classm3g_1_1Mesh.html">Mesh</a>,Groupノードを指定された行列でローカル座用からワールド座標に変換してレンダリングする. </p>
+
+</div>
+</div>
+<a class="anchor" id="a7d2f6347dbd7dc288eeaff9d8c16d67c"></a><!-- doxytag: member="m3g::Graphics3D::render" ref="a7d2f6347dbd7dc288eeaff9d8c16d67c" args="(const World *world) const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void render </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classm3g_1_1World.html">World</a> *&nbsp;</td>
+          <td class="paramname"> <em>world</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>ワールドのアクティブなカメラでワールドをレンダリングする. </p>
+
+</div>
+</div>
+<a class="anchor" id="ab8821ec231e8ebd939ae0feaaf138542"></a><!-- doxytag: member="m3g::Graphics3D::resetLights" ref="ab8821ec231e8ebd939ae0feaaf138542" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void resetLights </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>カレントのライト配列のクリア. </p>
+
+</div>
+</div>
+<a class="anchor" id="a0df7bb61cfeba6626e20fd07ddd1c460"></a><!-- doxytag: member="m3g::Graphics3D::setCamera" ref="a0df7bb61cfeba6626e20fd07ddd1c460" args="(Camera *camera, const Transform &amp;transform)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void setCamera </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classm3g_1_1Camera.html">Camera</a> *&nbsp;</td>
+          <td class="paramname"> <em>camera</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classm3g_1_1Transform.html">Transform</a> &amp;&nbsp;</td>
+          <td class="paramname"> <em>transform</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>イミーディエイトモードレンダリングで使用するカメラを設定する. </p>
+
+</div>
+</div>
+<a class="anchor" id="a6fc3837286f3516aa3320aeec9729495"></a><!-- doxytag: member="m3g::Graphics3D::setDepthRange" ref="a6fc3837286f3516aa3320aeec9729495" args="(float near, float far)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void setDepthRange </td>
+          <td>(</td>
+          <td class="paramtype">float&nbsp;</td>
+          <td class="paramname"> <em>near</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&nbsp;</td>
+          <td class="paramname"> <em>far</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>NDC座標系からウィンドウ座標系に変換するさいの深度値のマッピングの仕方を設定する. </p>
+
+</div>
+</div>
+<a class="anchor" id="a2bf83cb69f50117dd9d5548fe96d0ab0"></a><!-- doxytag: member="m3g::Graphics3D::setLight" ref="a2bf83cb69f50117dd9d5548fe96d0ab0" args="(int index, Light *light, const Transform &amp;transform)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void setLight </td>
+          <td>(</td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>index</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classm3g_1_1Light.html">Light</a> *&nbsp;</td>
+          <td class="paramname"> <em>light</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classm3g_1_1Transform.html">Transform</a> &amp;&nbsp;</td>
+          <td class="paramname"> <em>transform</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>イミーディエイトモードレンダリング現在バウンドされているライトを置き換えるか修正する. </p>
+
+</div>
+</div>
+<a class="anchor" id="a0b4ec48e9c19060e9be5648c118c23b1"></a><!-- doxytag: member="m3g::Graphics3D::setViewport" ref="a0b4ec48e9c19060e9be5648c118c23b1" args="(int x, int y, int width, int height)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void setViewport </td>
+          <td>(</td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>y</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>width</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>height</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>現在バウンドされているレンダリングターゲットの矩形ビューポートを設定する. </p>
+
+</div>
+</div>
+<hr/><h2>変数</h2>
+<a class="anchor" id="a9df12c5332904e66a962e1bf2809a812"></a><!-- doxytag: member="m3g::Graphics3D::ANTIALIAS" ref="a9df12c5332904e66a962e1bf2809a812" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const int <a class="el" href="classm3g_1_1Graphics3D.html#a9df12c5332904e66a962e1bf2809a812">ANTIALIAS</a> = 1&lt;&lt;1<code> [static]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p><a class="el" href="classm3g_1_1Graphics3D.html#ad34fb1ab11f2e25b98b93affd71dcc05">bindTarget()</a>で使用するアンチエイリアスを指定する定数. </p>
+
+</div>
+</div>
+<a class="anchor" id="a3750f57b82328be988bdab3b672a64f9"></a><!-- doxytag: member="m3g::Graphics3D::DITHER" ref="a3750f57b82328be988bdab3b672a64f9" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const int <a class="el" href="classm3g_1_1Graphics3D.html#a3750f57b82328be988bdab3b672a64f9">DITHER</a> = 1&lt;&lt;2<code> [static]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p><a class="el" href="classm3g_1_1Graphics3D.html#ad34fb1ab11f2e25b98b93affd71dcc05">bindTarget()</a>で使用するディザーリングを指定する定数. </p>
+
+</div>
+</div>
+<a class="anchor" id="af448f7f447a301823af9170bfe84c50e"></a><!-- doxytag: member="m3g::Graphics3D::OVERWRITE" ref="af448f7f447a301823af9170bfe84c50e" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const int <a class="el" href="classm3g_1_1Graphics3D.html#af448f7f447a301823af9170bfe84c50e">OVERWRITE</a> = 1&lt;&lt;4<code> [static]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p><a class="el" href="classm3g_1_1Graphics3D.html#ad34fb1ab11f2e25b98b93affd71dcc05">bindTarget()</a>で使用するレンダリングターゲットの内容が書き換えられることを示す定数. </p>
+
+</div>
+</div>
+<a class="anchor" id="abbd22a6baea672f895d5ef32e2438ec6"></a><!-- doxytag: member="m3g::Graphics3D::TRUE_COLOR" ref="abbd22a6baea672f895d5ef32e2438ec6" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const int <a class="el" href="classm3g_1_1Graphics3D.html#abbd22a6baea672f895d5ef32e2438ec6">TRUE_COLOR</a> = 1&lt;&lt;3<code> [static]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p><a class="el" href="classm3g_1_1Graphics3D.html#ad34fb1ab11f2e25b98b93affd71dcc05">bindTarget()</a>で使用するトゥルーカラー(1677万色)を指定する定数. </p>
+
+</div>
+</div>
+<hr/>このクラスの説明は次のファイルから生成されました:<ul>
+<li>/work/workspace.desktop-m3g/src/<a class="el" href="Graphics3D_8hpp_source.html">Graphics3D.hpp</a></li>
+<li>/work/workspace.desktop-m3g/src/Graphics3D.cpp</li>
+</ul>
+</div>
+<!--- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&nbsp;</span>全て</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&nbsp;</span>クラス</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&nbsp;</span>関数</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&nbsp;</span>変数</a></div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<hr class="footer"/><address class="footer"><small>Desktop-M3Gに対してMon Jan 17 2011 11:59:34に生成されました。&nbsp;
+<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
+</body>
+</html>

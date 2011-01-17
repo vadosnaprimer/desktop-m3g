@@ -1,0 +1,155 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<title>Desktop-M3G: /work/workspace.desktop-m3g/src/MorphingMesh.hpp ソースファイル</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javaScript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css"/>
+</head>
+<body onload='searchBox.OnSelectItem(0);'>
+<!-- 作成： Doxygen 1.7.1 -->
+<script type="text/javascript"><!--
+var searchBox = new SearchBox("searchBox", "search",false,'検索');
+--></script>
+<div class="navigation" id="top">
+  <div class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>メインページ</span></a></li>
+      <li><a href="annotated.html"><span>クラス</span></a></li>
+      <li class="current"><a href="files.html"><span>ファイル</span></a></li>
+      <li id="searchli">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="検索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>ファイル一覧</span></a></li>
+    </ul>
+  </div>
+<div class="header">
+  <div class="headertitle">
+<h1>/work/workspace.desktop-m3g/src/MorphingMesh.hpp</h1>  </div>
+</div>
+<div class="contents">
+<div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="preprocessor">#ifndef __M3G_MORPHING_MESH_HPP__</span>
+<a name="l00002"></a>00002 <span class="preprocessor"></span><span class="preprocessor">#define __M3G_MORPHING_MESH_HPP__</span>
+<a name="l00003"></a>00003 <span class="preprocessor"></span>
+<a name="l00004"></a>00004 <span class="preprocessor">#include &quot;m3g/Mesh.hpp&quot;</span>
+<a name="l00005"></a>00005 <span class="preprocessor">#include &lt;iosfwd&gt;</span>
+<a name="l00006"></a>00006 
+<a name="l00007"></a>00007 
+<a name="l00008"></a>00008 <span class="keyword">namespace </span>m3g {
+<a name="l00009"></a>00009 
+<a name="l00010"></a>00010     <span class="keyword">class </span>VertexBuffer;
+<a name="l00011"></a>00011     <span class="keyword">class </span>IndexBuffer;
+<a name="l00012"></a>00012     <span class="keyword">class </span>Appearance;
+<a name="l00013"></a>00013     <span class="keyword">class </span>AnimationTrack;
+<a name="l00014"></a>00014 
+<a name="l00019"></a><a class="code" href="classm3g_1_1MorphingMesh.html">00019</a>     <span class="keyword">class </span><a class="code" href="classm3g_1_1MorphingMesh.html">MorphingMesh</a> : <span class="keyword">public</span> <a class="code" href="classm3g_1_1Mesh.html">Mesh</a>
+<a name="l00020"></a>00020     {
+<a name="l00021"></a>00021     <span class="keyword">public</span>:
+<a name="l00026"></a>00026         <a class="code" href="classm3g_1_1MorphingMesh.html#a13b967c3217b8747289eb681e13e2678">MorphingMesh</a> (<a class="code" href="classm3g_1_1VertexBuffer.html">VertexBuffer</a>*  base,
+<a name="l00027"></a>00027                       <span class="keywordtype">int</span>            num_targets,
+<a name="l00028"></a>00028                       <a class="code" href="classm3g_1_1VertexBuffer.html">VertexBuffer</a>** targets,
+<a name="l00029"></a>00029                       <span class="keywordtype">int</span>            num_submesh,
+<a name="l00030"></a>00030                       <a class="code" href="classm3g_1_1IndexBuffer.html">IndexBuffer</a>**  submeshes,
+<a name="l00031"></a>00031                       <a class="code" href="classm3g_1_1Appearance.html">Appearance</a>**   appearances);
+<a name="l00032"></a>00032 
+<a name="l00037"></a>00037         <a class="code" href="classm3g_1_1MorphingMesh.html#a13b967c3217b8747289eb681e13e2678">MorphingMesh</a> (<a class="code" href="classm3g_1_1VertexBuffer.html">VertexBuffer</a>*  base, 
+<a name="l00038"></a>00038                       <span class="keywordtype">int</span>            num_targets, 
+<a name="l00039"></a>00039                       <a class="code" href="classm3g_1_1VertexBuffer.html">VertexBuffer</a>** targets,
+<a name="l00040"></a>00040                       <a class="code" href="classm3g_1_1IndexBuffer.html">IndexBuffer</a>*   submesh,
+<a name="l00041"></a>00041                       <a class="code" href="classm3g_1_1Appearance.html">Appearance</a>*    appearance);
+<a name="l00042"></a>00042 
+<a name="l00047"></a>00047         <span class="keyword">virtual</span> <a class="code" href="classm3g_1_1MorphingMesh.html#acdafafba64a0167f28f3b66ac4b9d7d6">~MorphingMesh</a> ();
+<a name="l00048"></a>00048 
+<a name="l00053"></a>00053         <span class="keyword">virtual</span> <a class="code" href="classm3g_1_1MorphingMesh.html">MorphingMesh</a>* <a class="code" href="classm3g_1_1MorphingMesh.html#a7e7b2c3c4c988c6341a5e249bd468f57">duplicate</a> () <span class="keyword">const</span>;
+<a name="l00054"></a>00054 
+<a name="l00055"></a>00055 
+<a name="l00056"></a>00056         <span class="keyword">virtual</span> <span class="keywordtype">int</span> <a class="code" href="classm3g_1_1MorphingMesh.html#ad52d3c63076c4341b34c3631a17820e4">getReferences</a> (<a class="code" href="classm3g_1_1Object3D.html">Object3D</a>** references) <span class="keyword">const</span>;
+<a name="l00057"></a>00057 
+<a name="l00062"></a>00062         <span class="keywordtype">void</span> <a class="code" href="classm3g_1_1MorphingMesh.html#a5fc2083c124dd6ba16abf75c391333a6">copy</a> (<a class="code" href="classm3g_1_1MorphingMesh.html">MorphingMesh</a>* mesh) <span class="keyword">const</span>;
+<a name="l00063"></a>00063 
+<a name="l00068"></a>00068         <span class="keyword">virtual</span> <span class="keywordtype">int</span> <a class="code" href="classm3g_1_1MorphingMesh.html#a8aad1ceab4c2a03609c8a42324ce484d">animate</a> (<span class="keywordtype">int</span> world_time);
+<a name="l00069"></a>00069 
+<a name="l00070"></a>00070 
+<a name="l00071"></a>00071 
+<a name="l00072"></a>00072         <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classm3g_1_1MorphingMesh.html#a415c0b110f95410ded9b85e5d99a496b">addAnimationTrack</a> (<a class="code" href="classm3g_1_1AnimationTrack.html">AnimationTrack</a>* animation_track);
+<a name="l00073"></a>00073 
+<a name="l00074"></a>00074 
+<a name="l00075"></a>00075 
+<a name="l00076"></a>00076 
+<a name="l00081"></a>00081         <a class="code" href="classm3g_1_1VertexBuffer.html">VertexBuffer</a>* <a class="code" href="classm3g_1_1MorphingMesh.html#a44766cc08b595f074d0d698c75f544b4">getMorphTarget</a> (<span class="keywordtype">int</span> index) <span class="keyword">const</span>;
+<a name="l00082"></a>00082 
+<a name="l00087"></a>00087         <span class="keywordtype">int</span> <a class="code" href="classm3g_1_1MorphingMesh.html#a620d9684124201f738a28c7c39641541">getMorphTargetCount</a> () <span class="keyword">const</span>;
+<a name="l00088"></a>00088 
+<a name="l00093"></a>00093         <span class="keywordtype">void</span> <a class="code" href="classm3g_1_1MorphingMesh.html#a80cef3b2c5e4881567409829de224e46">getWeights</a> (<span class="keywordtype">float</span>* weights) <span class="keyword">const</span>;
+<a name="l00094"></a>00094 
+<a name="l00099"></a>00099         <span class="keywordtype">void</span> <a class="code" href="classm3g_1_1MorphingMesh.html#ab97015e8aeed76a33582eb11d06e322b">setWeights</a> (<span class="keywordtype">int</span> num_weights, <span class="keywordtype">float</span>* weights);
+<a name="l00100"></a>00100 
+<a name="l00105"></a>00105         <span class="keyword">virtual</span> std::ostream&amp; <a class="code" href="classm3g_1_1MorphingMesh.html#a6fea17fa1532df3794f8cb39cb4f911f">print</a> (std::ostream&amp; out) <span class="keyword">const</span>;
+<a name="l00106"></a>00106 
+<a name="l00111"></a>00111         <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classm3g_1_1MorphingMesh.html#a8babc8a79b78615da51161e94029eea9">render</a> (<a class="code" href="structm3g_1_1RenderState.html">RenderState</a>&amp; state) <span class="keyword">const</span>;
+<a name="l00112"></a>00112 
+<a name="l00113"></a>00113     <span class="keyword">private</span>:
+<a name="l00114"></a>00114 
+<a name="l00119"></a>00119         <span class="keywordtype">void</span> updateMorphedVertices ();
+<a name="l00120"></a>00120 
+<a name="l00121"></a>00121     <span class="keyword">private</span>:
+<a name="l00125"></a>00125         <span class="keywordtype">void</span> initialize (<span class="keywordtype">int</span> num_targets, <a class="code" href="classm3g_1_1VertexBuffer.html">VertexBuffer</a>** targets);
+<a name="l00126"></a>00126 
+<a name="l00127"></a>00127         <a class="code" href="classm3g_1_1MorphingMesh.html#a13b967c3217b8747289eb681e13e2678">MorphingMesh</a> (<span class="keyword">const</span> <a class="code" href="classm3g_1_1MorphingMesh.html">MorphingMesh</a>&amp; mesh);
+<a name="l00128"></a>00128         <a class="code" href="classm3g_1_1MorphingMesh.html">MorphingMesh</a>&amp; operator= (<span class="keyword">const</span> <a class="code" href="classm3g_1_1MorphingMesh.html">MorphingMesh</a>&amp; mesh);
+<a name="l00129"></a>00129 
+<a name="l00130"></a>00130     <span class="keyword">private</span>:
+<a name="l00131"></a>00131 
+<a name="l00132"></a>00132         <a class="code" href="classm3g_1_1VertexBuffer.html">VertexBuffer</a>*              morphed_vertices;
+<a name="l00133"></a>00133         std::vector&lt;VertexBuffer*&gt; morph_targets;
+<a name="l00134"></a>00134         std::vector&lt;float&gt;         morph_weights;
+<a name="l00135"></a>00135     
+<a name="l00136"></a>00136     };
+<a name="l00137"></a>00137 
+<a name="l00138"></a>00138 } <span class="comment">// namespace m3g {</span>
+<a name="l00139"></a>00139 
+<a name="l00140"></a>00140 std::ostream&amp; operator&lt;&lt; (std::ostream&amp; out, <span class="keyword">const</span> <a class="code" href="classm3g_1_1MorphingMesh.html">m3g::MorphingMesh</a>&amp; m);
+<a name="l00141"></a>00141 
+<a name="l00142"></a>00142 
+<a name="l00143"></a>00143 
+<a name="l00144"></a>00144 <span class="preprocessor">#endif</span>
+</pre></div></div>
+</div>
+<!--- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&nbsp;</span>全て</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&nbsp;</span>クラス</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&nbsp;</span>関数</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&nbsp;</span>変数</a></div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<hr class="footer"/><address class="footer"><small>Desktop-M3Gに対してMon Jan 17 2011 11:59:34に生成されました。&nbsp;
+<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
+</body>
+</html>

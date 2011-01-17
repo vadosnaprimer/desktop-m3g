@@ -1,0 +1,150 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<title>Desktop-M3G: /work/workspace.desktop-m3g/src/Fog.hpp ソースファイル</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javaScript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css"/>
+</head>
+<body onload='searchBox.OnSelectItem(0);'>
+<!-- 作成： Doxygen 1.7.1 -->
+<script type="text/javascript"><!--
+var searchBox = new SearchBox("searchBox", "search",false,'検索');
+--></script>
+<div class="navigation" id="top">
+  <div class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>メインページ</span></a></li>
+      <li><a href="annotated.html"><span>クラス</span></a></li>
+      <li class="current"><a href="files.html"><span>ファイル</span></a></li>
+      <li id="searchli">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="検索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>ファイル一覧</span></a></li>
+    </ul>
+  </div>
+<div class="header">
+  <div class="headertitle">
+<h1>/work/workspace.desktop-m3g/src/Fog.hpp</h1>  </div>
+</div>
+<div class="contents">
+<div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 
+<a name="l00002"></a>00002 <span class="preprocessor">#ifndef __M3G_FOG_HPP__</span>
+<a name="l00003"></a>00003 <span class="preprocessor"></span><span class="preprocessor">#define __M3G_FOG_HPP__</span>
+<a name="l00004"></a>00004 <span class="preprocessor"></span>
+<a name="l00005"></a>00005 <span class="preprocessor">#include &lt;iostream&gt;</span>
+<a name="l00006"></a>00006 <span class="preprocessor">#include &quot;m3g/Object3D.hpp&quot;</span>
+<a name="l00007"></a>00007 
+<a name="l00008"></a>00008 
+<a name="l00009"></a>00009 <span class="keyword">namespace </span>m3g {
+<a name="l00010"></a>00010 
+<a name="l00015"></a><a class="code" href="classm3g_1_1Fog.html">00015</a>     <span class="keyword">class </span><a class="code" href="classm3g_1_1Fog.html">Fog</a> : <span class="keyword">public</span> <a class="code" href="classm3g_1_1Object3D.html">Object3D</a>
+<a name="l00016"></a>00016     {
+<a name="l00017"></a>00017 
+<a name="l00022"></a>00022         <span class="keyword">struct </span>Distance {
+<a name="l00023"></a>00023             Distance (<span class="keywordtype">float</span> n, <span class="keywordtype">float</span> f) : near(n), far(f) {};
+<a name="l00024"></a>00024             <span class="keywordtype">float</span> near;
+<a name="l00025"></a>00025             <span class="keywordtype">float</span> far;
+<a name="l00026"></a>00026         };
+<a name="l00027"></a>00027     
+<a name="l00028"></a>00028 
+<a name="l00029"></a>00029     <span class="keyword">public</span>:
+<a name="l00030"></a>00030 
+<a name="l00035"></a><a class="code" href="classm3g_1_1Fog.html#a86b391da2e58c0448712a10f6609a62c">00035</a>         <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code" href="classm3g_1_1Fog.html#a86b391da2e58c0448712a10f6609a62c">EXPONENTIAL</a> = 80;
+<a name="l00040"></a><a class="code" href="classm3g_1_1Fog.html#a23ccf193c67257f1be26417041cecb31">00040</a>         <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code" href="classm3g_1_1Fog.html#a23ccf193c67257f1be26417041cecb31">LINEAR</a>      = 81;
+<a name="l00041"></a>00041 
+<a name="l00042"></a>00042     <span class="keyword">public</span>:
+<a name="l00047"></a>00047         <a class="code" href="classm3g_1_1Fog.html#a232ea9c5f5824d924fa185401fbfb234">Fog</a> ();
+<a name="l00048"></a>00048 
+<a name="l00053"></a>00053         <span class="keyword">virtual</span> <a class="code" href="classm3g_1_1Fog.html#ac13d77e65284ed8f7480c8f83ed9780f">~Fog</a> ();
+<a name="l00054"></a>00054 
+<a name="l00059"></a>00059         <span class="keyword">virtual</span> <a class="code" href="classm3g_1_1Fog.html">Fog</a>* <a class="code" href="classm3g_1_1Fog.html#ad46dc959a547ee3a804fc871b83c0bbf">duplicate</a> () <span class="keyword">const</span>;
+<a name="l00060"></a>00060 
+<a name="l00065"></a>00065         <span class="keywordtype">void</span> <a class="code" href="classm3g_1_1Fog.html#a1c95b689dc13d518f87be584475e56e3">copy</a> (<a class="code" href="classm3g_1_1Fog.html">Fog</a>* fog) <span class="keyword">const</span>;
+<a name="l00066"></a>00066 
+<a name="l00072"></a>00072         <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classm3g_1_1Fog.html#a415c0b110f95410ded9b85e5d99a496b">addAnimationTrack</a> (<a class="code" href="classm3g_1_1AnimationTrack.html">AnimationTrack</a>* animation_track);
+<a name="l00073"></a>00073 
+<a name="l00078"></a>00078         <span class="keyword">virtual</span> <span class="keywordtype">int</span> <a class="code" href="classm3g_1_1Fog.html#a8aad1ceab4c2a03609c8a42324ce484d">animate</a> (<span class="keywordtype">int</span> world_time);
+<a name="l00079"></a>00079 
+<a name="l00084"></a>00084         <span class="keywordtype">int</span> <a class="code" href="classm3g_1_1Fog.html#a4cfa1931c265ec3412fe3f6408a1b4f5">getColor</a> () <span class="keyword">const</span>;
+<a name="l00085"></a>00085 
+<a name="l00090"></a>00090         <span class="keywordtype">float</span> <a class="code" href="classm3g_1_1Fog.html#a31deef556a6aa5e519d3c79bd9c383c0">getDensity</a> () <span class="keyword">const</span>;
+<a name="l00091"></a>00091 
+<a name="l00096"></a>00096         <span class="keywordtype">float</span> <a class="code" href="classm3g_1_1Fog.html#a90df17252a921929fce6a5e92aed4021">getFarDistance</a> () <span class="keyword">const</span>;
+<a name="l00097"></a>00097 
+<a name="l00102"></a>00102         <span class="keywordtype">int</span> <a class="code" href="classm3g_1_1Fog.html#ad4ce4524e4751fe5e3cfb8c270347d54">getMode</a> () <span class="keyword">const</span>;
+<a name="l00103"></a>00103 
+<a name="l00108"></a>00108         <span class="keywordtype">float</span> <a class="code" href="classm3g_1_1Fog.html#acd7a642e43bf99b0e1c5c24d3c6424a2">getNearDistance</a> () <span class="keyword">const</span>;
+<a name="l00109"></a>00109 
+<a name="l00114"></a>00114         <span class="keywordtype">void</span> <a class="code" href="classm3g_1_1Fog.html#ab1f5cc0f5cc6bbbd716a526c61f1081d">setColor</a> (<span class="keywordtype">int</span> rgb);
+<a name="l00115"></a>00115 
+<a name="l00120"></a>00120         <span class="keywordtype">void</span> <a class="code" href="classm3g_1_1Fog.html#a0ceeda25e326e99d6e971e980a00bd49">setDensity</a> (<span class="keywordtype">float</span> density);
+<a name="l00121"></a>00121 
+<a name="l00126"></a>00126         <span class="keywordtype">void</span> <a class="code" href="classm3g_1_1Fog.html#aa46fd556865ae7f1c683c3741b68c168">setLinear</a> (<span class="keywordtype">float</span> near, <span class="keywordtype">float</span> far);
+<a name="l00127"></a>00127 
+<a name="l00132"></a>00132         <span class="keywordtype">void</span> <a class="code" href="classm3g_1_1Fog.html#a9f407b18ba6235cb96fa95611c1ea3a4">setMode</a> (<span class="keywordtype">int</span> mode);
+<a name="l00133"></a>00133 
+<a name="l00138"></a>00138         <span class="keyword">virtual</span> std::ostream&amp; <a class="code" href="classm3g_1_1Fog.html#a6fea17fa1532df3794f8cb39cb4f911f">print</a> (std::ostream&amp; out) <span class="keyword">const</span>;
+<a name="l00139"></a>00139 
+<a name="l00144"></a>00144         <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classm3g_1_1Fog.html#a8babc8a79b78615da51161e94029eea9">render</a> (<a class="code" href="structm3g_1_1RenderState.html">RenderState</a>&amp; state) <span class="keyword">const</span>;
+<a name="l00145"></a>00145 
+<a name="l00150"></a>00150         <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="classm3g_1_1Fog.html#a443a7a301f77f625335ecc06d13bad06">renderX</a> ();
+<a name="l00151"></a>00151 
+<a name="l00152"></a>00152     <span class="keyword">private</span>:
+<a name="l00153"></a>00153         <a class="code" href="classm3g_1_1Fog.html#a232ea9c5f5824d924fa185401fbfb234">Fog</a> (<span class="keyword">const</span> <a class="code" href="classm3g_1_1Fog.html">Fog</a>&amp; fog);
+<a name="l00154"></a>00154         <a class="code" href="classm3g_1_1Fog.html">Fog</a>&amp; operator= (<span class="keyword">const</span> <a class="code" href="classm3g_1_1Fog.html">Fog</a>&amp; fog);
+<a name="l00155"></a>00155 
+<a name="l00156"></a>00156     <span class="keyword">private</span>:
+<a name="l00157"></a>00157         <span class="keywordtype">int</span>      mode;
+<a name="l00158"></a>00158         <span class="keywordtype">int</span>      color;
+<a name="l00159"></a>00159         <span class="keywordtype">float</span>    density;
+<a name="l00160"></a>00160         Distance distance;
+<a name="l00161"></a>00161     };
+<a name="l00162"></a>00162 
+<a name="l00163"></a>00163 
+<a name="l00164"></a>00164 } <span class="comment">// namespace m3g {</span>
+<a name="l00165"></a>00165 
+<a name="l00166"></a>00166 std::ostream&amp; operator&lt;&lt; (std::ostream&amp; out, <span class="keyword">const</span> <a class="code" href="classm3g_1_1Fog.html">m3g::Fog</a>&amp; f);
+<a name="l00167"></a>00167 
+<a name="l00168"></a>00168 
+<a name="l00169"></a>00169 <span class="preprocessor">#endif</span>
+</pre></div></div>
+</div>
+<!--- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&nbsp;</span>全て</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&nbsp;</span>クラス</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&nbsp;</span>関数</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&nbsp;</span>変数</a></div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<hr class="footer"/><address class="footer"><small>Desktop-M3Gに対してMon Jan 17 2011 11:59:34に生成されました。&nbsp;
+<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
+</body>
+</html>

@@ -1,0 +1,469 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<title>Desktop-M3G: クラス MorphingMesh</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javaScript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css"/>
+</head>
+<body onload='searchBox.OnSelectItem(0);'>
+<!-- 作成： Doxygen 1.7.1 -->
+<script type="text/javascript"><!--
+var searchBox = new SearchBox("searchBox", "search",false,'検索');
+--></script>
+<div class="navigation" id="top">
+  <div class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>メインページ</span></a></li>
+      <li class="current"><a href="annotated.html"><span>クラス</span></a></li>
+      <li><a href="files.html"><span>ファイル</span></a></li>
+      <li id="searchli">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="検索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div class="tabs2">
+    <ul class="tablist">
+      <li><a href="annotated.html"><span>構成</span></a></li>
+      <li><a href="classes.html"><span>構成索引</span></a></li>
+      <li><a href="hierarchy.html"><span>クラス階層</span></a></li>
+      <li><a href="functions.html"><span>構成メンバ</span></a></li>
+    </ul>
+  </div>
+  <div class="navpath">
+    <ul>
+      <li><b>m3g</b>      </li>
+      <li><a class="el" href="classm3g_1_1MorphingMesh.html">MorphingMesh</a>      </li>
+    </ul>
+  </div>
+</div>
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public メソッド</a>  </div>
+  <div class="headertitle">
+<h1>クラス MorphingMesh</h1>  </div>
+</div>
+<div class="contents">
+<!-- doxytag: class="m3g::MorphingMesh" --><!-- doxytag: inherits="m3g::Mesh" -->
+<p><code>#include &lt;<a class="el" href="MorphingMesh_8hpp_source.html">MorphingMesh.hpp</a>&gt;</code></p>
+<div class="dynheader">
+MorphingMeshに対する継承グラフ</div>
+<div class="dyncontent">
+<div class="center"><img src="classm3g_1_1MorphingMesh__inherit__graph.png" border="0" usemap="#MorphingMesh_inherit__map" alt="Inheritance graph"/></div>
+<map name="MorphingMesh_inherit__map" id="MorphingMesh_inherit__map">
+<area shape="rect" id="node2" href="classm3g_1_1Mesh.html" title="Mesh" alt="" coords="35,315,91,344"/><area shape="rect" id="node4" href="classm3g_1_1Node.html" title="Node" alt="" coords="35,237,91,267"/><area shape="rect" id="node6" href="classm3g_1_1Transformable.html" title="Transformable" alt="" coords="7,160,119,189"/><area shape="rect" id="node8" href="classm3g_1_1Object3D.html" title="Object3D" alt="" coords="23,83,103,112"/><area shape="rect" id="node10" href="classm3g_1_1Object.html" title="Object" alt="" coords="32,5,93,35"/></map>
+<center><span class="legend">[<a href="graph_legend.html">凡例</a>]</span></center></div>
+<div class="dynheader">
+MorphingMeshのコラボレーション図</div>
+<div class="dyncontent">
+<div class="center"><img src="classm3g_1_1MorphingMesh__coll__graph.png" border="0" usemap="#MorphingMesh_coll__map" alt="Collaboration graph"/></div>
+<map name="MorphingMesh_coll__map" id="MorphingMesh_coll__map">
+<area shape="rect" id="node2" href="classm3g_1_1Mesh.html" title="Mesh" alt="" coords="215,429,271,459"/><area shape="rect" id="node4" href="classm3g_1_1Node.html" title="Node" alt="" coords="215,331,271,360"/><area shape="rect" id="node6" href="classm3g_1_1Transformable.html" title="Transformable" alt="" coords="187,181,299,211"/><area shape="rect" id="node8" href="classm3g_1_1Object3D.html" title="Object3D" alt="" coords="92,85,172,115"/><area shape="rect" id="node18" href="classm3g_1_1VertexBuffer.html" title="VertexBuffer" alt="" coords="56,331,157,360"/><area shape="rect" id="node21" href="classm3g_1_1VertexArray.html" title="VertexArray" alt="" coords="5,181,101,211"/><area shape="rect" id="node10" href="classm3g_1_1Object.html" title="Object" alt="" coords="236,5,297,35"/><area shape="rect" id="node12" href="classm3g_1_1Transform.html" title="Transform" alt="" coords="313,85,399,115"/><area shape="rect" id="node15" href="classm3g_1_1Quaternion.html" title="Quaternion" alt="" coords="196,85,289,115"/></map>
+<center><span class="legend">[<a href="graph_legend.html">凡例</a>]</span></center></div>
+
+<p><a href="classm3g_1_1MorphingMesh-members.html">すべてのメンバ一覧</a></p>
+<table class="memberdecls">
+<tr><td colspan="2"><h2><a name="pub-methods"></a>
+Public メソッド</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1MorphingMesh.html#a13b967c3217b8747289eb681e13e2678">MorphingMesh</a> (<a class="el" href="classm3g_1_1VertexBuffer.html">VertexBuffer</a> *base, int num_targets, <a class="el" href="classm3g_1_1VertexBuffer.html">VertexBuffer</a> **targets, int num_submesh, <a class="el" href="classm3g_1_1IndexBuffer.html">IndexBuffer</a> **submeshes, <a class="el" href="classm3g_1_1Appearance.html">Appearance</a> **appearances)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1MorphingMesh.html#a82b522a649e0565165bd7cb0a1e065dd">MorphingMesh</a> (<a class="el" href="classm3g_1_1VertexBuffer.html">VertexBuffer</a> *base, int num_targets, <a class="el" href="classm3g_1_1VertexBuffer.html">VertexBuffer</a> **targets, <a class="el" href="classm3g_1_1IndexBuffer.html">IndexBuffer</a> *submesh, <a class="el" href="classm3g_1_1Appearance.html">Appearance</a> *appearance)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1MorphingMesh.html#acdafafba64a0167f28f3b66ac4b9d7d6">~MorphingMesh</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classm3g_1_1MorphingMesh.html">MorphingMesh</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1MorphingMesh.html#a7e7b2c3c4c988c6341a5e249bd468f57">duplicate</a> () const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1MorphingMesh.html#ad52d3c63076c4341b34c3631a17820e4">getReferences</a> (<a class="el" href="classm3g_1_1Object3D.html">Object3D</a> **references) const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1MorphingMesh.html#a5fc2083c124dd6ba16abf75c391333a6">copy</a> (<a class="el" href="classm3g_1_1MorphingMesh.html">MorphingMesh</a> *mesh) const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1MorphingMesh.html#a8aad1ceab4c2a03609c8a42324ce484d">animate</a> (int world_time)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1MorphingMesh.html#a415c0b110f95410ded9b85e5d99a496b">addAnimationTrack</a> (<a class="el" href="classm3g_1_1AnimationTrack.html">AnimationTrack</a> *animation_track)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classm3g_1_1VertexBuffer.html">VertexBuffer</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1MorphingMesh.html#a44766cc08b595f074d0d698c75f544b4">getMorphTarget</a> (int index) const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1MorphingMesh.html#a620d9684124201f738a28c7c39641541">getMorphTargetCount</a> () const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1MorphingMesh.html#a80cef3b2c5e4881567409829de224e46">getWeights</a> (float *weights) const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1MorphingMesh.html#ab97015e8aeed76a33582eb11d06e322b">setWeights</a> (int num_weights, float *weights)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual std::ostream &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1MorphingMesh.html#a6fea17fa1532df3794f8cb39cb4f911f">print</a> (std::ostream &amp;out) const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm3g_1_1MorphingMesh.html#a8babc8a79b78615da51161e94029eea9">render</a> (<a class="el" href="structm3g_1_1RenderState.html">RenderState</a> &amp;state) const </td></tr>
+</table>
+<hr/><a name="_details"></a><h2>説明</h2>
+<p>頂点モーフィングメッシュを表すシーングラフのノード. </p>
+<hr/><h2>コンストラクタとデストラクタ</h2>
+<a class="anchor" id="a13b967c3217b8747289eb681e13e2678"></a><!-- doxytag: member="m3g::MorphingMesh::MorphingMesh" ref="a13b967c3217b8747289eb681e13e2678" args="(VertexBuffer *base, int num_targets, VertexBuffer **targets, int num_submesh, IndexBuffer **submeshes, Appearance **appearances)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classm3g_1_1MorphingMesh.html">MorphingMesh</a> </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classm3g_1_1VertexBuffer.html">VertexBuffer</a> *&nbsp;</td>
+          <td class="paramname"> <em>base</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>num_targets</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classm3g_1_1VertexBuffer.html">VertexBuffer</a> **&nbsp;</td>
+          <td class="paramname"> <em>targets</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>num_submesh</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classm3g_1_1IndexBuffer.html">IndexBuffer</a> **&nbsp;</td>
+          <td class="paramname"> <em>submeshes</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classm3g_1_1Appearance.html">Appearance</a> **&nbsp;</td>
+          <td class="paramname"> <em>appearances</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>指定されたベースメッシュとモーフターゲットを持つ新しいモーフィングメッシュを作成. </p>
+
+</div>
+</div>
+<a class="anchor" id="a82b522a649e0565165bd7cb0a1e065dd"></a><!-- doxytag: member="m3g::MorphingMesh::MorphingMesh" ref="a82b522a649e0565165bd7cb0a1e065dd" args="(VertexBuffer *base, int num_targets, VertexBuffer **targets, IndexBuffer *submesh, Appearance *appearance)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classm3g_1_1MorphingMesh.html">MorphingMesh</a> </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classm3g_1_1VertexBuffer.html">VertexBuffer</a> *&nbsp;</td>
+          <td class="paramname"> <em>base</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>num_targets</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classm3g_1_1VertexBuffer.html">VertexBuffer</a> **&nbsp;</td>
+          <td class="paramname"> <em>targets</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classm3g_1_1IndexBuffer.html">IndexBuffer</a> *&nbsp;</td>
+          <td class="paramname"> <em>submesh</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classm3g_1_1Appearance.html">Appearance</a> *&nbsp;</td>
+          <td class="paramname"> <em>appearance</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>指定されたベースメッシュとモーフターゲットを持つ新しいモーフィングメッシュを作成. </p>
+
+</div>
+</div>
+<a class="anchor" id="acdafafba64a0167f28f3b66ac4b9d7d6"></a><!-- doxytag: member="m3g::MorphingMesh::~MorphingMesh" ref="acdafafba64a0167f28f3b66ac4b9d7d6" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">~<a class="el" href="classm3g_1_1MorphingMesh.html">MorphingMesh</a> </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>このオブジェクトを削除するデストラクタ. </p>
+
+</div>
+</div>
+<hr/><h2>関数</h2>
+<a class="anchor" id="a415c0b110f95410ded9b85e5d99a496b"></a><!-- doxytag: member="m3g::MorphingMesh::addAnimationTrack" ref="a415c0b110f95410ded9b85e5d99a496b" args="(AnimationTrack *animation_track)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void addAnimationTrack </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classm3g_1_1AnimationTrack.html">AnimationTrack</a> *&nbsp;</td>
+          <td class="paramname"> <em>animation_track</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>このObject3Dに指定されたアニメーショントラックを追加する。 既存のトラックの順番とインデックスは変更されるかもしれない. </p>
+
+<p><a class="el" href="classm3g_1_1Node.html#a415c0b110f95410ded9b85e5d99a496b">Node</a>を再定義しています。</p>
+
+</div>
+</div>
+<a class="anchor" id="a8aad1ceab4c2a03609c8a42324ce484d"></a><!-- doxytag: member="m3g::MorphingMesh::animate" ref="a8aad1ceab4c2a03609c8a42324ce484d" args="(int world_time)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int animate </td>
+          <td>(</td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>world_time</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>このObject3D自身とここから到達できるObject3Dのアニメーテッドプロパティを更新する. </p>
+
+<p><a class="el" href="classm3g_1_1Mesh.html#a8aad1ceab4c2a03609c8a42324ce484d">Mesh</a>を再定義しています。</p>
+
+</div>
+</div>
+<a class="anchor" id="a5fc2083c124dd6ba16abf75c391333a6"></a><!-- doxytag: member="m3g::MorphingMesh::copy" ref="a5fc2083c124dd6ba16abf75c391333a6" args="(MorphingMesh *mesh) const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void copy </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classm3g_1_1MorphingMesh.html">MorphingMesh</a> *&nbsp;</td>
+          <td class="paramname"> <em>mesh</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>このオブジェクトのデータを引数で指定されたオブジェクトにコピーするM3G非標準の関数. </p>
+
+</div>
+</div>
+<a class="anchor" id="a7e7b2c3c4c988c6341a5e249bd468f57"></a><!-- doxytag: member="m3g::MorphingMesh::duplicate" ref="a7e7b2c3c4c988c6341a5e249bd468f57" args="() const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classm3g_1_1MorphingMesh.html">MorphingMesh</a> * duplicate </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const<code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>このオブジェクトの複製の作成. </p>
+
+<p><a class="el" href="classm3g_1_1Mesh.html#a52ce6d0b3eda2bd3a95bfb5b7dbb6f82">Mesh</a>を再定義しています。</p>
+
+</div>
+</div>
+<a class="anchor" id="a44766cc08b595f074d0d698c75f544b4"></a><!-- doxytag: member="m3g::MorphingMesh::getMorphTarget" ref="a44766cc08b595f074d0d698c75f544b4" args="(int index) const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classm3g_1_1VertexBuffer.html">VertexBuffer</a> * getMorphTarget </td>
+          <td>(</td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>index</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>指定されたインデックスのモーフターゲット頂点バッファーの取得. </p>
+
+</div>
+</div>
+<a class="anchor" id="a620d9684124201f738a28c7c39641541"></a><!-- doxytag: member="m3g::MorphingMesh::getMorphTargetCount" ref="a620d9684124201f738a28c7c39641541" args="() const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int getMorphTargetCount </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>このモーフィングメッシュのモーフターゲット数の取得. </p>
+
+</div>
+</div>
+<a class="anchor" id="ad52d3c63076c4341b34c3631a17820e4"></a><!-- doxytag: member="m3g::MorphingMesh::getReferences" ref="ad52d3c63076c4341b34c3631a17820e4" args="(Object3D **references) const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int getReferences </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classm3g_1_1Object3D.html">Object3D</a> **&nbsp;</td>
+          <td class="paramname"> <em>references</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const<code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>このオブジェクトから参照しているObject3Dの数を返し、配列をそのポインターで埋める. </p>
+
+<p><a class="el" href="classm3g_1_1Mesh.html#ad52d3c63076c4341b34c3631a17820e4">Mesh</a>を再定義しています。</p>
+
+</div>
+</div>
+<a class="anchor" id="a80cef3b2c5e4881567409829de224e46"></a><!-- doxytag: member="m3g::MorphingMesh::getWeights" ref="a80cef3b2c5e4881567409829de224e46" args="(float *weights) const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void getWeights </td>
+          <td>(</td>
+          <td class="paramtype">float *&nbsp;</td>
+          <td class="paramname"> <em>weights</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>このメッシュのカレントのモーフターゲットのウェイトの取得. </p>
+
+</div>
+</div>
+<a class="anchor" id="a6fea17fa1532df3794f8cb39cb4f911f"></a><!-- doxytag: member="m3g::MorphingMesh::print" ref="a6fea17fa1532df3794f8cb39cb4f911f" args="(std::ostream &amp;out) const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::ostream &amp; print </td>
+          <td>(</td>
+          <td class="paramtype">std::ostream &amp;&nbsp;</td>
+          <td class="paramname"> <em>out</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const<code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>このオブジェクトの情報を表示。デバッグ用. </p>
+
+<p><a class="el" href="classm3g_1_1Mesh.html#a6fea17fa1532df3794f8cb39cb4f911f">Mesh</a>を再定義しています。</p>
+
+</div>
+</div>
+<a class="anchor" id="a8babc8a79b78615da51161e94029eea9"></a><!-- doxytag: member="m3g::MorphingMesh::render" ref="a8babc8a79b78615da51161e94029eea9" args="(RenderState &amp;state) const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void render </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structm3g_1_1RenderState.html">RenderState</a> &amp;&nbsp;</td>
+          <td class="paramname"> <em>state</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const<code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>このMorphingMeshをレンダリングする内部使用の関数. </p>
+
+<p><a class="el" href="classm3g_1_1Mesh.html#a8babc8a79b78615da51161e94029eea9">Mesh</a>を再定義しています。</p>
+
+</div>
+</div>
+<a class="anchor" id="ab97015e8aeed76a33582eb11d06e322b"></a><!-- doxytag: member="m3g::MorphingMesh::setWeights" ref="ab97015e8aeed76a33582eb11d06e322b" args="(int num_weights, float *weights)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void setWeights </td>
+          <td>(</td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>num_weights</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float *&nbsp;</td>
+          <td class="paramname"> <em>weights</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>このメッシュの全てのモーフターゲットのウエイトの設定. </p>
+
+</div>
+</div>
+<hr/>このクラスの説明は次のファイルから生成されました:<ul>
+<li>/work/workspace.desktop-m3g/src/<a class="el" href="MorphingMesh_8hpp_source.html">MorphingMesh.hpp</a></li>
+<li>/work/workspace.desktop-m3g/src/MorphingMesh.cpp</li>
+</ul>
+</div>
+<!--- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&nbsp;</span>全て</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&nbsp;</span>クラス</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&nbsp;</span>関数</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&nbsp;</span>変数</a></div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<hr class="footer"/><address class="footer"><small>Desktop-M3Gに対してMon Jan 17 2011 11:59:34に生成されました。&nbsp;
+<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
+</body>
+</html>
