@@ -53,7 +53,6 @@ namespace m3g {
         virtual MorphingMesh* duplicate () const;
 
 
-        virtual int getReferences (Object3D** references) const;
 
         /**
          * @~English  Copy this Object3D to specified Object3D, not defined by M3G. 
@@ -69,7 +68,6 @@ namespace m3g {
 
 
 
-        virtual void addAnimationTrack (AnimationTrack* animation_track);
 
 
 
@@ -110,7 +108,24 @@ namespace m3g {
          */
         virtual void render (RenderState& state) const;
 
+    protected:
+        /**
+         * @~English  
+         * @~Japanese 
+         */
+        virtual void addAnimationTrack_xxx (AnimationTrack* animation_track, bool accepted);
+
+        /**
+         * @~English  
+         * @~Japanese 
+         */
+        virtual int getReferences_xxx (Object3D** references) const;
+
     private:
+
+        MorphingMesh (const MorphingMesh& mesh);
+        MorphingMesh& operator= (const MorphingMesh& mesh);
+
 
         /**
          * @~English  Morph skin, inner use.
@@ -118,14 +133,11 @@ namespace m3g {
          */
         void updateMorphedVertices ();
 
-    private:
         /**
          * @~Japanesse  共通初期化処理.
          */
         void initialize (int num_targets, VertexBuffer** targets);
 
-        MorphingMesh (const MorphingMesh& mesh);
-        MorphingMesh& operator= (const MorphingMesh& mesh);
 
     private:
 

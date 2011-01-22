@@ -66,17 +66,13 @@ Texture2D* Texture2D:: duplicate () const
     return tex;
 }
 
-int Texture2D:: getReferences (Object3D** references) const
-{
-    int n = 0;
-    if (image)
-        n++;
 
-    if (references) {
-        int i = 0;
-        if (image)
-            references[i++] = image;
-    }
+
+int Texture2D:: getReferences_xxx (Object3D** references) const
+{
+    int n = Transformable:: getReferences_xxx (references);
+    if (image)
+        references ? references[n] = image, n++ : n++;
     
     return n;
 }
@@ -95,20 +91,13 @@ void Texture2D:: copy (Texture2D* tex) const
 
 
 
-void Texture2D:: addAnimationTrack (AnimationTrack* animation_track)
+void Texture2D:: addAnimationTrack_xxx (AnimationTrack* animation_track, bool accepted)
 {
-    if (animation_track == NULL) {
-        throw NullPointerException (__FILE__, __func__, "Animation track is NULL.");
-    }
     int property = animation_track->getTargetProperty();
-    if (property != AnimationTrack::COLOR       &&
-        property != AnimationTrack::ORIENTATION &&
-        property != AnimationTrack::SCALE       &&
-        property != AnimationTrack::TRANSLATION) {
-        throw IllegalArgumentException (__FILE__, __func__, "Animation target is invalid for this VertexBuffer, property=%d.", property);
+    if (property == AnimationTrack::COLOR) {
+        accepted = true;
     }
- 
-    Object3D:: addAnimationTrack (animation_track);
+    Transformable:: addAnimationTrack_xxx (animation_track, accepted);
 }
 
 int Texture2D:: animate (int world_time)

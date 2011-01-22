@@ -79,7 +79,6 @@ namespace m3g {
         virtual Background* duplicate () const;
 
 
-        virtual int getReferences (Object3D** references) const;
 
         /**
          * @~English  Copy this Object3D to specified Object3D, not defined by M3G. 
@@ -87,11 +86,6 @@ namespace m3g {
          */
         void copy (Background* bg) const;
 
-        /**
-         * @~English  
-         * @~Japanese 
-         */
-        virtual void addAnimationTrack (AnimationTrack* animation_track);
 
         /**
          * @~English  
@@ -213,9 +207,23 @@ namespace m3g {
          */
         static void renderX ();
 
+    protected:
+        /**
+         * @~English  
+         * @~Japanese 
+         */
+        virtual void addAnimationTrack_xxx (AnimationTrack* animation_track, bool accepted);
+
+        /**
+         * @~English  
+         * @~Japanese 
+         */
+        virtual int getReferences_xxx (Object3D** references) const;
+
     private:
         Background (const Background& bg);
         Background& operator= (const Background& bg);
+
 
     private:
         bool      color_clear_enable;

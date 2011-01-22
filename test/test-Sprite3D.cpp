@@ -80,6 +80,25 @@ TEST (Sprite3D_duplicate)
     delete spr1;
 }
 
+TEST (Sprite3D_find)
+{
+    Image2D*    img = new Image2D (Image2D::RGBA, 64, 64);
+    Appearance* app = new Appearance;
+    Sprite3D*   spr = new Sprite3D (true, img, app);
+
+    img->setUserID (100);
+    app->setUserID (101);
+    spr->setUserID (102);
+
+    CHECK_EQUAL (img, spr->find(100));
+    CHECK_EQUAL (app, spr->find(101));
+    CHECK_EQUAL (spr, spr->find(102));
+    
+    delete img;
+    delete app;
+    delete spr;
+}
+
 TEST (Sprite3D_getReferences)
 {
     Image2D*    img = new Image2D (Image2D::RGBA, 64, 64);
@@ -99,4 +118,5 @@ TEST (Sprite3D_getReferences)
     delete app;
     delete spr;
 }
+
 

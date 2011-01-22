@@ -81,12 +81,6 @@ namespace m3g {
          */
         void copy (Light* lgh) const;
 
-        /**
-         * @~English  Adds the given AnimationTrack to this Object3D, 
-         * @~Japanese アニメーショントラックの追加。
-         *            既存のトラックの順番とインデックスは変更されるかもしれない.
-         */
-        virtual void addAnimationTrack (AnimationTrack* animation_track);
 
         /**
          * @~English  Updates all animated properties in this Object3D and all Object3Ds that are reachable from this Object3D.
@@ -194,6 +188,12 @@ namespace m3g {
     private:
         Light (const Light& lgh);
         Light& operator= (const Light& lgh);
+
+        /**
+         * @~English  
+         * @~Japanese 
+         */
+        virtual void addAnimationTrack_xxx (AnimationTrack* animation_track, bool accepted);
 
     private:
         int         mode;

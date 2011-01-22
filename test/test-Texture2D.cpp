@@ -71,6 +71,20 @@ TEST (Texure2D_duplicate)
     delete tex1;
 }
 
+TEST (Texture2D_find)
+{
+    Image2D*   img = new Image2D (Image2D::RGBA, 64, 64);
+    Texture2D* tex = new Texture2D (img);
+    
+    img->setUserID (100);
+    tex->setUserID (101);
+
+    CHECK_EQUAL (img, img->find(100));
+    CHECK_EQUAL (tex, tex->find(101));
+
+    delete img;
+    delete tex;
+}
 
 TEST (Texture2D_getReferences)
 {

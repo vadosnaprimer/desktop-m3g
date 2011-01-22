@@ -38,26 +38,16 @@ void Fog:: copy (Fog* fog) const
     fog->distance = distance;
 }
 
-void Fog:: addAnimationTrack (AnimationTrack* animation_track)
+void Fog:: addAnimationTrack_xxx (AnimationTrack* animation_track, bool accepted)
 {
-    if (animation_track == NULL) {
-        throw NullPointerException (__FILE__, __func__, "Animation track is NULL.");
-    }
     int property = animation_track->getTargetProperty();
-    if (property != AnimationTrack::COLOR         &&
-        property != AnimationTrack::DENSITY       &&
-        property != AnimationTrack::FAR_DISTANCE  &&
-        property != AnimationTrack::NEAR_DISTANCE &&
-        property != AnimationTrack::ALPHA         &&
-        property != AnimationTrack::PICKABILITY   &&
-        property != AnimationTrack::VISIBILITY    &&
-        property != AnimationTrack::ORIENTATION   &&
-        property != AnimationTrack::SCALE         &&
-        property != AnimationTrack::TRANSLATION) {
-        throw IllegalArgumentException (__FILE__, __func__, "Animation track target is invalid for this Fog, property=%d.", property);
+    if (property == AnimationTrack::COLOR         ||
+        property == AnimationTrack::DENSITY       ||
+        property == AnimationTrack::FAR_DISTANCE  ||
+        property == AnimationTrack::NEAR_DISTANCE) {
+        accepted = true;
     }
- 
-    Object3D:: addAnimationTrack (animation_track);
+    Object3D:: addAnimationTrack_xxx (animation_track, accepted);
 }
 
 

@@ -50,7 +50,6 @@ namespace m3g {
          */
         virtual Mesh* duplicate () const;
 
-        virtual int getReferences (Object3D** references) const;
 
         /**
          * @~English  Copy this Object3D to specified Object3D, not defined by M3G. 
@@ -113,14 +112,24 @@ namespace m3g {
          */
         virtual void render (RenderState& state) const;
 
-    private:
+    protected:
+
         /**
+         * @~English  
+         * @~Japanese 
+         */
+        virtual int getReferences_xxx (Object3D** references) const;
+
+    private:
+        Mesh (const Mesh& mesh);
+        Mesh operator= (const Mesh& mesh);
+
+        /**
+         * @~English   
          * @~Japanese  共通初期化処理
          */
         void initialize (VertexBuffer* vertices, int num_submesh, IndexBuffer** submeshes, Appearance** appearances);
 
-        Mesh (const Mesh& mesh);
-        Mesh operator= (const Mesh& mesh);
 
     protected:
         VertexBuffer*             vertices;

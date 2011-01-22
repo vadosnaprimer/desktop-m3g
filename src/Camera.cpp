@@ -48,25 +48,15 @@ void Camera:: copy (Camera* cam) const
     cam->projection   = projection;
 }
 
-void Camera:: addAnimationTrack (AnimationTrack* animation_track)
+void Camera:: addAnimationTrack_xxx (AnimationTrack* animation_track, bool accepted)
 {
-    if (animation_track == NULL) {
-        throw NullPointerException (__FILE__, __func__, "Animation track is NULL.");
-    }
     int property = animation_track->getTargetProperty();
-    if (property != AnimationTrack::FAR_DISTANCE  &&
-        property != AnimationTrack::FIELD_OF_VIEW &&
-        property != AnimationTrack::NEAR_DISTANCE &&
-        property != AnimationTrack::ALPHA         &&
-        property != AnimationTrack::PICKABILITY   &&
-        property != AnimationTrack::VISIBILITY    &&
-        property != AnimationTrack::ORIENTATION   &&
-        property != AnimationTrack::SCALE         &&
-        property != AnimationTrack::TRANSLATION) {
-        throw IllegalArgumentException (__FILE__, __func__, "Animation track target is invalid for this Camera, property=%d.", property);
+    if (property == AnimationTrack::FAR_DISTANCE  ||
+        property == AnimationTrack::FIELD_OF_VIEW ||
+        property == AnimationTrack::NEAR_DISTANCE) {
+        accepted = true;
     }
- 
-    Object3D:: addAnimationTrack (animation_track);
+    Node:: addAnimationTrack_xxx (animation_track, accepted);
 }
 
 int Camera:: animate (int world_time)

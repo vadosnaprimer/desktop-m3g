@@ -1,7 +1,10 @@
 
 
 2011/xx/xx ver 0.3.3
-   - fix Camera::lookAt
+   - adopt NVI (Non-Virtual Interface)
+       - see "Effective C++"
+   - fix Object3D::find()
+   - fix Camera::lookAt()
    - fix parallel projection matrix of Camera.
    - fix KeyframeSequence which has only 1 frame.
 

@@ -55,24 +55,15 @@ int World:: animate (int world_time)
     return 0;
 }
 
-int World:: getReferences (Object3D** references) const
-{
-    int n  = Group:: getReferences (0);
-    int n0 = n;
-    if (background)
-        n++;
-    if (active_camera)
-        n++;
 
-    if (references) {
-        int i = n0;
-        Group:: getReferences (references);
-        if (background)
-            references[i++] = background;
-        if (active_camera)
-            references[i++] = active_camera;
-    }
-    
+int World:: getReferences_xxx (Object3D** references) const
+{
+    int n = Group:: getReferences_xxx (references);
+    if (background)
+        references ? references[n] = background, n++ : n++;
+    if (active_camera)
+        references ? references[n] = active_camera, n++ : n++;
+
     return n;
 }
 

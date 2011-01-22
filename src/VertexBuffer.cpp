@@ -39,32 +39,20 @@ VertexBuffer* VertexBuffer:: duplicate () const
     return vbuf;
 }
 
-int VertexBuffer:: getReferences (Object3D** references) const
-{
-    int n = 0;
-    if (positions)
-        n++;
-    if (normals)
-        n++;
-    if (colors)
-        n++;
-    for (int i = 0; i < MAX_TEXTURE_UNITS; i++) {
-        if (tex_coords[i])
-            n++;
-    }
 
-    if (references) {
-        int i = 0;
-        if (positions)
-            references[i++] = positions;
-        if (normals)
-            references[i++] = normals;
-        if (colors)
-            references[i++] = colors;
-        for (int j = 0; j < (int)MAX_TEXTURE_UNITS; j++) {
-            if (tex_coords[j])
-                references[i++] = tex_coords[j];
-        }
+
+int VertexBuffer:: getReferences_xxx (Object3D** references) const
+{
+    int n = Object3D:: getReferences_xxx (references);
+    if (positions)
+        references ? references[n] = positions, n++ : n++;
+    if (normals)
+        references ? references[n] = normals, n++ : n++;
+    if (colors)
+        references ? references[n] = colors, n++ : n++;
+    for (int i = 0; i < (int)MAX_TEXTURE_UNITS; i++) {
+        if (tex_coords[i])
+            references ? references[n] = tex_coords[i], n++ : n++;
     }
 
     return n;
@@ -97,18 +85,13 @@ void VertexBuffer:: copy (VertexBuffer* vbuf) const
 }
 
 
-void VertexBuffer:: addAnimationTrack (AnimationTrack* animation_track)
+void VertexBuffer:: addAnimationTrack_xxx (AnimationTrack* animation_track, bool accepted)
 {
-    if (animation_track == NULL) {
-        throw NullPointerException (__FILE__, __func__, "Animation track is NULL.");
-    }
     int property = animation_track->getTargetProperty();
-    if (property != AnimationTrack::COLOR &&
-        property != AnimationTrack::ALPHA) {
-        throw IllegalArgumentException (__FILE__, __func__, "Animation target is invalid for this VertexBuffer, property=%d.", property);
+    if (property == AnimationTrack::COLOR) {
+        accepted = true;
     }
- 
-    Object3D:: addAnimationTrack (animation_track);
+    Object3D:: addAnimationTrack_xxx (animation_track, accepted);
 }
 
 int VertexBuffer:: animate (int world_time)

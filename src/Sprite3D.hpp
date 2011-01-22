@@ -52,7 +52,6 @@ namespace m3g {
          */
         virtual Sprite3D* duplicate () const;
 
-        virtual int getReferences (Object3D** references) const;
 
 
         /**
@@ -60,14 +59,6 @@ namespace m3g {
          * @~Japanese このオブジェクトのデータを引数で指定されたオブジェクトにコピーするM3G非標準の関数.
          */
         void copy (Sprite3D* spr) const;
-
-        /**
-         * @~English  Adds the given AnimationTrack to this Object3D, 
-         *            potentially changing the order and indices of the previously added tracks.
-         * @~Japanese このObject3Dに指定されたアニメーショントラックを追加する。
-         *            既存のトラックの順番とインデックスは変更されるかもしれない.
-         */
-        virtual void addAnimationTrack (AnimationTrack* animation_track);
 
         /**
          * @~English  Updates all animated properties in this Object3D and all Object3Ds that are reachable from this Object3D.
@@ -153,9 +144,21 @@ namespace m3g {
          */
         virtual void render (RenderState& state) const;
 
+    protected:
+        /**
+         * @~English  
+         * @~Japanese 
+         */
+        virtual void addAnimationTrack_xxx (AnimationTrack* animation_track, bool accepted);
+
+        /**
+         * @~English  
+         * @~Japanese 
+         */
+        virtual int getReferences_xxx (Object3D** references) const;
 
     private:
-        
+
         /**
          * @~English  Retrieves center of scaled sprite in NDC coordinate.
          * @~Japanese スケールドスプライトのNDC座標での中心点を取得.

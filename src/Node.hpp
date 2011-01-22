@@ -85,13 +85,6 @@ namespace m3g {
          */
         virtual void align (Node* reference);
 
-        /**
-         * @~English  Adds the given AnimationTrack to this Object3D, 
-         *            potentially changing the order and indices of the previously added tracks.
-         * @~Japanese このObject3Dに指定されたアニメーショントラックを追加する。
-         *            既存のトラックの順番とインデックスは変更されるかもしれない.
-         */
-        virtual void addAnimationTrack (AnimationTrack* animation_track);
 
         /**
          * @~English  Updates all animated properties in this Object3D and all Object3Ds that are reachable from this Object3D.
@@ -240,9 +233,18 @@ namespace m3g {
          */
         Node* getDuplicatedNode () const;
 
+    protected:
+
+        /**
+         * @~English  
+         * @~Japanese 
+         */
+        virtual void addAnimationTrack_xxx (AnimationTrack* animation_track, bool accepted);
+
     private:
         Node (const Node& node);
         Node& operator= (const Node& node);
+
 
     private:
         Node*     parent;

@@ -43,22 +43,19 @@ void Material:: copy (Material* mat) const
     mat->shininess             = shininess;
 }
 
-void Material:: addAnimationTrack (AnimationTrack* animation_track)
+void Material:: addAnimationTrack_xxx (AnimationTrack* animation_track, bool accepted)
 {
-    if (animation_track == NULL) {
-        throw NullPointerException (__FILE__, __func__, "Animation_track is NULL.");
-    }
     int property = animation_track->getTargetProperty();
-    if (property != AnimationTrack::ALPHA &&
-        property != AnimationTrack::AMBIENT_COLOR &&
-        property != AnimationTrack::DIFFUSE_COLOR &&
-        property != AnimationTrack::EMISSIVE_COLOR &&
-        property != AnimationTrack::SHININESS && 
-        property != AnimationTrack::SPECULAR_COLOR) {
-        throw IllegalArgumentException (__FILE__, __func__, "Animation target is invalid for this Material, property=%d.", property);
+    if (property == AnimationTrack::ALPHA          ||
+        property == AnimationTrack::AMBIENT_COLOR  ||
+        property == AnimationTrack::DIFFUSE_COLOR  ||
+        property == AnimationTrack::EMISSIVE_COLOR ||
+        property == AnimationTrack::SHININESS      || 
+        property == AnimationTrack::SPECULAR_COLOR) {
+        accepted = true;
     }
- 
-    Object3D:: addAnimationTrack (animation_track);
+
+    Object3D:: addAnimationTrack_xxx (animation_track, accepted);
 }
 
 int Material:: animate (int world_time)

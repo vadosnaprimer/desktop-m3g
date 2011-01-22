@@ -18,6 +18,14 @@ void Object3D:: addAnimationTrack (AnimationTrack* animation_track)
     if (animation_track == NULL) {
         throw NullPointerException (__FILE__, __func__, "Animation track is Null.");
     }
+    addAnimationTrack_xxx (animation_track, false);
+}
+
+void Object3D:: addAnimationTrack_xxx (AnimationTrack* animation_track, bool accepted)
+{
+    if (!accepted) {
+        throw IllegalArgumentException (__FILE__, __func__, "AnimationTrack property is invalid, pro=%d\n", animation_track->getTargetProperty());
+    }
 
     anim_tracks.push_back (animation_track);
 }
@@ -43,12 +51,24 @@ void Object3D:: copy (Object3D* obj) const
 
 
 
-Object3D* Object3D:: find (int target_user_id) const
+Object3D* Object3D:: find (int id) const
 {
-    if (user_id == target_user_id)
+    if (id == user_id) {
         return const_cast<Object3D*>(this);
-    else 
-        return 0;
+    }
+
+    int n = getReferences (NULL);
+    Object3D** objs = new Object3D* [n];
+    getReferences (objs);
+    for (int i = 0; i < n; i++) {
+        if (Object3D* obj = objs[i]->find (id)) {
+            delete [] objs;
+            return obj;
+        }
+    }
+    delete [] objs;
+
+    return NULL;
 }
 
 AnimationTrack* Object3D:: getAnimationTrack (int index) const
@@ -67,16 +87,21 @@ int Object3D:: getAnimationTrackCount () const
 
 int Object3D:: getReferences (Object3D** references) const
 {
-    int n = anim_tracks.size();
+    return getReferences_xxx (references);
+}
 
+int Object3D:: getReferences_xxx (Object3D** references) const
+{
+    int n = anim_tracks.size();
     if (references) {
-        for (int i = 0; i < (int)anim_tracks.size(); i++) {
+        for (int i = 0; i < (int)anim_tracks.size(); i++)
             references[i] = anim_tracks[i];
-        }
     }
 
     return n;
 }
+
+
 
 int Object3D:: getUserID () const
 {

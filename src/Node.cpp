@@ -50,23 +50,15 @@ void Node:: copy (Node* node) const
     const_cast<Node*>(this)->duplicated       = node;
 }
 
-void Node:: addAnimationTrack (AnimationTrack* animation_track)
+void Node:: addAnimationTrack_xxx (AnimationTrack* animation_track, bool accepted)
 {
-    if (animation_track == NULL) {
-        throw NullPointerException (__FILE__, __func__, "Animation track is NULL.");
-    }
     int property = animation_track->getTargetProperty();
-    if (property != AnimationTrack::ALPHA       &&
-        property != AnimationTrack::PICKABILITY &&
-        property != AnimationTrack::VISIBILITY  &&
-        property != AnimationTrack::ORIENTATION &&
-        property != AnimationTrack::SCALE       &&
-        property != AnimationTrack::TRANSLATION &&
-        property != AnimationTrack::MORPH_WEIGHTS ) {
-        throw IllegalArgumentException (__FILE__, __func__, "Annimation target is invlid for this Node, property=%d.", property);
+    if (property == AnimationTrack::ALPHA       ||
+        property == AnimationTrack::PICKABILITY ||
+        property == AnimationTrack::VISIBILITY  ) {
+        accepted = true;
     }
-
-    Object3D:: addAnimationTrack (animation_track);
+    Transformable:: addAnimationTrack_xxx (animation_track, accepted);
 }
 
 void Node:: align (Node* reference)

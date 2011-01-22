@@ -3,6 +3,7 @@
 #include "m3g/Object3D.hpp"
 #include "m3g/AnimationTrack.hpp"
 #include "m3g/KeyframeSequence.hpp"
+#include "m3g/Node.hpp"
 using namespace std;
 using namespace m3g;
 
@@ -31,12 +32,12 @@ TEST (Object3D_set_variables)
 
 }
 
-TEST (Object3D_animation_track) 
+TEST (Object3D_add_animation_track) 
 {
     KeyframeSequence* keyframe   = new KeyframeSequence (1,1,KeyframeSequence::STEP);
     AnimationTrack*   anim_track = new AnimationTrack (keyframe, AnimationTrack::ALPHA);
 
-    Object3D* obj = new Object3D;
+    Object3D* obj = new Node;
     obj->addAnimationTrack (anim_track);
 
     CHECK_EQUAL (1, obj->getAnimationTrackCount());
@@ -51,12 +52,12 @@ TEST (Object3D_animation_track)
     delete anim_track;
 }
 
-TEST (Object3D_get_references) 
+TEST (Object3D_getReferences) 
 {
     KeyframeSequence* keyframe   = new KeyframeSequence (1,1,KeyframeSequence::STEP);
     AnimationTrack*   anim_track = new AnimationTrack (keyframe, AnimationTrack::ALPHA);
 
-    Object3D* obj = new Object3D;
+    Object3D* obj = new Node;
     obj->addAnimationTrack (anim_track);
 
     int n;
@@ -74,19 +75,30 @@ TEST (Object3D_get_references)
 
 TEST (Object3D_find)
 {
-    Object3D* obj = new Object3D;
-    obj->setUserID (100);
-    CHECK_EQUAL (obj, obj->find (100));
-
+    KeyframeSequence* key_sequence = new KeyframeSequence (1,1,KeyframeSequence::STEP);
+    AnimationTrack*   anim_track   = new AnimationTrack (key_sequence, AnimationTrack::ALPHA);
+    Object3D* obj = new Node;
+    obj->addAnimationTrack (anim_track);
+    
+    key_sequence->setUserID (100);
+    anim_track->setUserID (101);
+    obj->setUserID (102);
+    
+    CHECK_EQUAL (key_sequence, obj->find (100));
+    CHECK_EQUAL (anim_track  , obj->find (101));
+    CHECK_EQUAL (obj         , obj->find (102));
+    
     delete obj;
+    delete anim_track;
+    delete key_sequence;
 }
 
 TEST (Object3D_duplicate)
 {
-    KeyframeSequence* key_seq    = new KeyframeSequence (10, 3, KeyframeSequence::LINEAR);
-    AnimationTrack*   anim_track = new AnimationTrack   (key_seq, AnimationTrack::COLOR);
+    KeyframeSequence* key_seq    = new KeyframeSequence (10, 1, KeyframeSequence::LINEAR);
+    AnimationTrack*   anim_track = new AnimationTrack   (key_seq, AnimationTrack::PICKABILITY);
     
-    Object3D* obj0 = new Object3D;
+    Object3D* obj0 = new Node;
     obj0->setUserID     (0x87654321);
     obj0->setUserObject ((void*)0x12345678);
     obj0->addAnimationTrack (anim_track);

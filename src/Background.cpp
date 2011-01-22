@@ -43,17 +43,13 @@ Background* Background:: duplicate () const
     return bg;
 }
 
-int Background:: getReferences (Object3D** references) const
-{
-    int n = 0;
-    if (image)
-        n++;
 
-    if (references) {
-        int i = 0;
-        if (image)
-            references[i++] = image;
-    }
+
+int Background:: getReferences_xxx (Object3D** references) const
+{
+    int n = Object3D:: getReferences_xxx (references);
+    if (image)
+        references ? references[n] = image, n++ : n++;
 
     return n;
 }
@@ -72,19 +68,15 @@ void Background:: copy (Background* bg) const
 }
 
 
-void Background:: addAnimationTrack (AnimationTrack* animation_track)
+void Background:: addAnimationTrack_xxx (AnimationTrack* animation_track, bool accepted)
 {
-    if (animation_track == NULL) {
-        throw NullPointerException (__FILE__, __func__, "Animation track is NULL.");
-    }
     int property = animation_track->getTargetProperty();
-    if (property != AnimationTrack::ALPHA &&
-        property != AnimationTrack::COLOR &&
-        property != AnimationTrack::CROP) {
-        throw IllegalArgumentException (__FILE__, __func__, "Animation track target is invalid for this Background, property=%d", property);
+    if (property == AnimationTrack::ALPHA ||
+        property == AnimationTrack::COLOR ||
+        property == AnimationTrack::CROP) {
+        accepted = true;
     }
-
-    Object3D:: addAnimationTrack (animation_track);
+    Object3D:: addAnimationTrack_xxx (animation_track, accepted);
 }
 
 int Background:: animate (int world_time)

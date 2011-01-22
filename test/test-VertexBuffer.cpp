@@ -105,6 +105,42 @@ TEST (VertexBuffer_duplicate)
 
 
 
+TEST (VertexBuffer_find)
+{
+    VertexBuffer* vbuf      = new VertexBuffer;
+    VertexArray*  colors    = new VertexArray (1, 3, 1);
+    VertexArray*  normals   = new VertexArray (1, 3, 2);
+    VertexArray*  positions = new VertexArray (1, 3, 2);
+    VertexArray*  tex_coords = new VertexArray (1, 2, 2);
+    float scale   = 3;
+    float bias[3] = {1,2,3};
+
+    vbuf->setDefaultColor (0x12345678);
+    vbuf->setColors (colors);
+    vbuf->setNormals (normals);
+    vbuf->setPositions (positions, scale, bias);
+    vbuf->setTexCoords (0, tex_coords, scale, bias);
+
+    vbuf->setUserID (100);
+    colors->setUserID (101);
+    normals->setUserID (102);
+    positions->setUserID (103);
+    tex_coords->setUserID (104);
+
+    CHECK_EQUAL (vbuf      , vbuf->find(100));
+    CHECK_EQUAL (colors    , vbuf->find(101));
+    CHECK_EQUAL (normals   , vbuf->find(102));
+    CHECK_EQUAL (positions , vbuf->find(103));
+    CHECK_EQUAL (tex_coords, vbuf->find(104));
+
+    delete tex_coords;
+    delete positions;
+    delete normals;
+    delete colors;
+    delete vbuf;
+}
+
+
 TEST (VertexBuffer_getReferences)
 {
     VertexBuffer* vbuf      = new VertexBuffer;

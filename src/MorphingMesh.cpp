@@ -105,22 +105,12 @@ void MorphingMesh:: copy (MorphingMesh* mesh) const
 }
 
 
-int MorphingMesh:: getReferences (Object3D** references) const
+int MorphingMesh:: getReferences_xxx (Object3D** references) const
 {
-    int n  = Mesh:: getReferences (0);
-    int n0 = n;
+    int n = Mesh:: getReferences_xxx (references);
     for (int i = 0; i < (int)morph_targets.size(); i++) {
         if (morph_targets[i])
-            n++;
-    }
-
-    if (references) {
-        int i = n0;
-        Mesh:: getReferences (references);
-        for (int j = 0; j < (int)morph_targets.size(); j++) {
-            if (morph_targets[j])
-                references[i++] = morph_targets[j];
-        }
+            references ? references[n] = morph_targets[i], n++ : n++;
     }
 
     return n;
@@ -128,23 +118,13 @@ int MorphingMesh:: getReferences (Object3D** references) const
 
 
 
-void MorphingMesh:: addAnimationTrack (AnimationTrack* animation_track)
+void MorphingMesh:: addAnimationTrack_xxx (AnimationTrack* animation_track, bool accepted)
 {
-    if (animation_track == NULL) {
-        throw NullPointerException (__FILE__, __func__, "Animation track is NULL.");
-    }
     int property = animation_track->getTargetProperty();
-    if (property != AnimationTrack::ALPHA       &&
-        property != AnimationTrack::PICKABILITY &&
-        property != AnimationTrack::VISIBILITY  &&
-        property != AnimationTrack::ORIENTATION &&
-        property != AnimationTrack::SCALE       &&
-        property != AnimationTrack::TRANSLATION &&
-        property != AnimationTrack::MORPH_WEIGHTS) {
-        throw IllegalArgumentException (__FILE__, __func__, "Animation target is invalid for this MorphMesh, property=%d.", property);
+    if (property == AnimationTrack::MORPH_WEIGHTS) {
+        accepted = true;
     }
-
-    Object3D:: addAnimationTrack (animation_track);
+    Mesh:: addAnimationTrack_xxx (animation_track, accepted);
 }
 
 

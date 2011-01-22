@@ -38,7 +38,6 @@ namespace m3g {
          */
         virtual World* duplicate () const;
 
-        virtual int getReferences (Object3D** references) const;
 
         /**
          * @~English  Copy this Object3D to specified Object3D, not defined by M3G. 
@@ -87,6 +86,14 @@ namespace m3g {
          * @~Japanese このノードをレンダリングする内部使用の関数.
          */
         virtual void render (RenderState& state) const;
+
+    protected:
+
+        /**
+         * @~English  
+         * @~Japanese 
+         */
+        virtual int getReferences_xxx (Object3D** references) const;
 
     private:
         World (const World& wld);

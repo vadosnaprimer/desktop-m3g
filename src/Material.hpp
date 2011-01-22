@@ -61,11 +61,6 @@ namespace m3g {
          */
         void copy (Material* mat) const;
 
-        /**
-         * @~English  
-         * @~Japanese 
-         */
-        virtual void addAnimationTrack (AnimationTrack* animation_track);
 
         /**
          * @~English  Update animatable property.
@@ -128,6 +123,14 @@ namespace m3g {
          * @~Japanese このオブジェクトをレンダリングする内部使用の関数.
          */
         static void renderX ();
+
+    protected:
+        /**
+         * @~English  
+         * @~Japanese 
+         */
+        virtual void addAnimationTrack_xxx (AnimationTrack* animation_track, bool accepted);
+
 
     private:
         Material (const Material& mat);

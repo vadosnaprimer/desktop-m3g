@@ -120,9 +120,6 @@ namespace m3g {
 
         virtual int animate (int world_time);
 
-        virtual void addAnimationTrack (AnimationTrack* animation_track);
-
-        virtual int getReferences (Object3D** references) const;
 
 
         /**
@@ -216,9 +213,25 @@ namespace m3g {
          */
         static void renderX ();
 
+    protected:
+        /**
+         * @~English  
+         * @~Japanese 
+         */
+        virtual void addAnimationTrack_xxx (AnimationTrack* animation_track, bool accepted);
+
+        /**
+         * @~English  
+         * @~Japanese 
+         */
+        virtual int getReferences_xxx (Object3D** references) const;
+
+
     private:
         Texture2D (const Texture2D& img);
         Texture2D& operator= (const Texture2D& img);
+
+
 
     private:
         Image2D* image;

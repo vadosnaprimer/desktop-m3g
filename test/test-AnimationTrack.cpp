@@ -22,17 +22,17 @@ TEST (AnimationTrack_default_variables)
 
 TEST (AnimationTrack_set_variables)
 {
-    AnimationController* controller = new AnimationController;
-    KeyframeSequence*    keyframe   = new KeyframeSequence (10, 3, KeyframeSequence::LINEAR);
-    AnimationTrack*      track      = new AnimationTrack   (keyframe, AnimationTrack::COLOR);
+    AnimationController* controller   = new AnimationController;
+    KeyframeSequence*    key_sequence = new KeyframeSequence (10, 3, KeyframeSequence::LINEAR);
+    AnimationTrack*      track        = new AnimationTrack   (key_sequence, AnimationTrack::COLOR);
     track->setController (controller);
 
-    CHECK_EQUAL ((AnimationController*)controller, track->getController());
-    CHECK_EQUAL (keyframe,                         track->getKeyframeSequence());
-    CHECK_EQUAL (AnimationTrack::COLOR,            track->getTargetProperty());
+    CHECK_EQUAL (controller           , track->getController());
+    CHECK_EQUAL (key_sequence         , track->getKeyframeSequence());
+    CHECK_EQUAL (AnimationTrack::COLOR, track->getTargetProperty());
 
     delete track;
-    delete keyframe;
+    delete key_sequence;
     delete controller;
 }
 
@@ -44,10 +44,37 @@ TEST (AnimationTrack_duplicate)
     track0->setController (controller);
 
     AnimationTrack* track1 = track0->duplicate();
+
     CHECK_EQUAL (track0->getController(),       track1->getController());
     CHECK_EQUAL (track0->getKeyframeSequence(), track1->getKeyframeSequence());
     CHECK_EQUAL (track0->getTargetProperty(),   track1->getTargetProperty());
+
+    delete track0;
+    delete track1;
+    delete keyframe;
+    delete controller;
 }
+
+TEST (AnimationTrack_find)
+{
+    AnimationController* controller   = new AnimationController;
+    KeyframeSequence*    key_sequence = new KeyframeSequence (10, 3, KeyframeSequence::LINEAR);
+    AnimationTrack*      track        = new AnimationTrack   (key_sequence, AnimationTrack::COLOR);
+    track->setController (controller);
+
+    controller  ->setUserID (100);
+    key_sequence->setUserID (101);
+    track       ->setUserID (102);
+
+    CHECK_EQUAL (controller  , track->find(100));
+    CHECK_EQUAL (key_sequence, track->find(101));
+    CHECK_EQUAL (track       , track->find(102));
+
+    delete track;
+    delete key_sequence;
+    delete controller;
+}
+
 
 TEST (AnimationTrack_getReferences)
 {

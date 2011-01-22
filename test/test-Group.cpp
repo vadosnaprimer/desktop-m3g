@@ -31,6 +31,7 @@ TEST (Group_set_variables)
     delete grp;
 }
 
+
 TEST (Group_isDesendant) 
 {
     Group* skeleton = new Group;
@@ -50,6 +51,34 @@ TEST (Group_isDesendant)
     CHECK_EQUAL (false, skeleton->isDescendant(node1));
 }
 
+
+TEST (Group_find)
+{
+    Group* skeleton = new Group;
+    Group* bone0 = new Group;
+    Group* bone1 = new Group;
+    Group* bone2 = new Group;
+
+    skeleton->addChild (bone0);
+    skeleton->addChild (bone1);
+    bone1->addChild (bone2);
+
+    skeleton->setUserID (103);
+    bone0->setUserID (100);
+    bone1->setUserID (101);
+    bone2->setUserID (102);
+
+    CHECK_EQUAL (skeleton, skeleton->find (103));
+    CHECK_EQUAL (bone0, skeleton->find (100));
+    CHECK_EQUAL (bone1, skeleton->find (101));
+    CHECK_EQUAL (bone2, skeleton->find (102));
+
+    
+    delete bone0;
+    delete bone1;
+    delete bone2;
+    delete skeleton;
+}
 
 TEST (Group_getReferences)
 {

@@ -64,12 +64,6 @@ namespace m3g {
          */
         void copy (Fog* fog) const;
 
-        /**
-         * @~English  
-         * @~Japanese アニメーショントラックの追加。
-         *            既存のトラックの順番とインデックスは変更されるかもしれない.
-         */
-        virtual void addAnimationTrack (AnimationTrack* animation_track);
 
         /**
          * @~English  
@@ -149,9 +143,17 @@ namespace m3g {
          */
         static void renderX ();
 
+    protected:
+        /**
+         * @~English  
+         * @~Japanese
+         */
+        virtual void addAnimationTrack_xxx (AnimationTrack* animation_track, bool accepted);
+
     private:
         Fog (const Fog& fog);
         Fog& operator= (const Fog& fog);
+
 
     private:
         int      mode;

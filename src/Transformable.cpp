@@ -38,19 +38,15 @@ void Transformable:: copy (Transformable* trans) const
 }
 
 
-void Transformable:: addAnimationTrack (AnimationTrack* animation_track)
+void Transformable:: addAnimationTrack_xxx (AnimationTrack* animation_track, bool accepted)
 {
-    if (animation_track == NULL) {
-        throw NullPointerException (__FILE__, __func__, "Animation track is NULL.");
-    }
     int property = animation_track->getTargetProperty();
-    if (property != AnimationTrack::ORIENTATION &&
-        property != AnimationTrack::SCALE &&
-        property != AnimationTrack::TRANSLATION) {
-        throw IllegalArgumentException (__FILE__, __func__, "Animation target is invalid for this Transformable, property=%d.", property);
+    if (property == AnimationTrack::ORIENTATION ||
+        property == AnimationTrack::SCALE       ||
+        property == AnimationTrack::TRANSLATION) {
+        accepted = true;
     }
- 
-    Object3D:: addAnimationTrack (animation_track);
+    Object3D:: addAnimationTrack_xxx (animation_track, accepted);
 }
 
 int Transformable:: animate (int world_time)

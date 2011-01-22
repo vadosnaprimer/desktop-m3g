@@ -63,21 +63,15 @@ Sprite3D* Sprite3D:: duplicate () const
     return spr;
 }
 
-int Sprite3D:: getReferences (Object3D** references) const
-{
-    int n = 0;
-    if (image)
-        n++;
-    if (appearance)
-        n++;
 
-    if (references) {
-        int i = 0;
-        if (image)
-            references[i++] = image;
-        if (appearance)
-            references[i++] = appearance;
-    }
+
+int Sprite3D:: getReferences_xxx (Object3D** references) const
+{
+    int n = Node:: getReferences_xxx (references);
+    if (image)
+        references ? references[n] = image, n++ : n++;
+    if (appearance)
+        references ? references[n] = appearance, n++ : n++;
 
     return n;
 }
@@ -93,23 +87,13 @@ void Sprite3D:: copy (Sprite3D* spr) const
 }
 
 
-void Sprite3D:: addAnimationTrack (AnimationTrack* animation_track)
+void Sprite3D:: addAnimationTrack_xxx (AnimationTrack* animation_track, bool accepted)
 {
-    if (animation_track == NULL) {
-        throw NullPointerException (__FILE__, __func__, "Animation track is NULL.");
-    }
     int property = animation_track->getTargetProperty();
-    if (property != AnimationTrack::CROP        &&
-        property != AnimationTrack::ALPHA       &&
-        property != AnimationTrack::PICKABILITY &&
-        property != AnimationTrack::VISIBILITY  &&
-        property != AnimationTrack::ORIENTATION &&
-        property != AnimationTrack::SCALE       &&
-        property != AnimationTrack::TRANSLATION) {
-        throw IllegalArgumentException (__FILE__, __func__, "Animation target is invalid for this Sprite3D, property=%d.", property);
+    if (property == AnimationTrack::CROP) {
+        accepted = true;
     }
- 
-    Object3D:: addAnimationTrack (animation_track);
+    Object3D:: addAnimationTrack_xxx (animation_track, accepted);
 }
 
 int Sprite3D:: animate (int world_time)

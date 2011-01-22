@@ -66,6 +66,29 @@ TEST (World_duplicate)
 }
 
 
+TEST (World_find)
+{
+    Background* bg   = new Background;
+    Camera*     cam  = new Camera;
+    World*      wld  = new World;
+
+    wld->addChild (cam);
+    wld->setActiveCamera (cam);
+    wld->setBackground (bg);
+
+    bg->setUserID (100);
+    cam->setUserID (101);
+    wld->setUserID (102);
+
+    CHECK_EQUAL (bg , wld->find(100));
+    CHECK_EQUAL (cam, wld->find(101));
+    CHECK_EQUAL (wld, wld->find(102));
+
+    delete bg;
+    delete cam;
+    delete wld;
+}
+
 TEST (World_getReferences)
 {
     Background* bg  = new Background;

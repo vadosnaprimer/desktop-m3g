@@ -34,17 +34,13 @@ Group* Group:: duplicate () const
     return grp;
 }
 
-int Group:: getReferences (Object3D** references) const
+
+
+int Group:: getReferences_xxx (Object3D** references) const
 {
-    int n  = Object3D:: getReferences (0);
-    int n0 = n;
-    n += children.size();
-    
-    if (references) {
-        Object3D:: getReferences (references);
-        for (int i = 0; i < (int)children.size(); i++) {
-            references[n0+i] = children[i];
-        }
+    int n = Node:: getReferences_xxx (references);
+    for (int i = 0; i < (int)children.size(); i++) {
+        references ? references[n] = children[i], n++ : n++;
     }
 
     return n;

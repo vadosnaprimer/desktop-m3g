@@ -139,4 +139,29 @@ TEST (Mesh_getReferences)
     delete mesh;
 }
 
+TEST (Mesh_find)
+{
+    VertexBuffer* vbuf = new VertexBuffer;
+    int indices[] = {0,1,2};
+    int strips[]  = {3};
+    TriangleStripArray* tris = new TriangleStripArray (indices, 1, strips);
+    Appearance*         app  = new Appearance;
+    Mesh*               mesh = new Mesh (vbuf, tris, app);
+
+    vbuf->setUserID (100);
+    tris->setUserID (101);
+    app ->setUserID (102);
+    mesh->setUserID (103);
+
+    CHECK_EQUAL (vbuf, mesh->find(100));
+    CHECK_EQUAL (tris, mesh->find(101));
+    CHECK_EQUAL (app , mesh->find(102));
+    CHECK_EQUAL (mesh, mesh->find(103));
+
+    delete vbuf;
+    delete tris;
+    delete app;
+    delete mesh;
+}
+
 

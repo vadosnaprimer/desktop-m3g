@@ -59,13 +59,6 @@ namespace m3g {
          */
         void copy (Camera* cam) const;
 
-        /**
-         * @~English  Adds the given AnimationTrack to this Object3D, 
-         *            potentially chaing the order and indices of the previously added tracks.
-         * @~Japanese アニメーショントラックの追加。
-         *            既存のトラックの順番とインデックスは変更されるかもしれない.
-         */
-        virtual void addAnimationTrack (AnimationTrack* animation_track);
 
         virtual int animate (int world_time);
 
@@ -120,9 +113,17 @@ namespace m3g {
          */
         virtual void render (RenderState& state) const;
 
+    protected:
+        /**
+         * @~English  
+         * @~Japanese 
+         */
+        virtual void addAnimationTrack_xxx (AnimationTrack* animation_track, bool accepted);
+
     private:
         Camera (const Camera& cam);
         Camera& operator= (const Camera& cam);
+
 
     private:
         int   type;

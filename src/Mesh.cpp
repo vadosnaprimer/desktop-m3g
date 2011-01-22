@@ -72,32 +72,21 @@ Mesh* Mesh:: duplicate () const
     return mesh;
 }
 
-int Mesh:: getReferences (Object3D** references) const
+
+
+
+int Mesh:: getReferences_xxx (Object3D** references) const
 {
-    int n = 0;
+    int n = Node:: getReferences_xxx (references);
     if (vertices)
-        n++;
+        references ? references[n] = vertices, n++ : n++;
     for (int i = 0; i < (int)indices.size(); i++) {
         if (indices[i])
-            n++;
+            references ? references[n] = indices[i], n++ : n++;
     }
     for (int i = 0; i < (int)appearances.size(); i++) {
         if (appearances[i])
-            n++;
-    }
-
-    if (references) {
-        int i = 0;
-        if (vertices)
-            references[i++] = vertices;
-        for (int j = 0; j < (int)indices.size(); j++) {
-            if (indices[j])
-                references[i++] = indices[j];
-        }
-        for (int j = 0; j < (int)appearances.size(); j++) {
-            if (appearances[j])
-                references[i++] = appearances[j];
-        }
+            references ? references[n] = appearances[i], n++ : n++;
     }
 
     return n;  

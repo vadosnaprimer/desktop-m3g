@@ -143,7 +143,50 @@ TEST (MorphingMesh_getReferences)
     CHECK_EQUAL (target_vertices[0], objs[3]);
     CHECK_EQUAL (target_vertices[1], objs[4]);
 
+    delete varry;
+    delete base_vertices;
+    delete target_vertices[0];
+    delete target_vertices[1];
+    delete tris;
+    delete app;
+    delete mesh;
+}
 
+TEST (MorphingMesh_find)
+{
+    VertexArray*  varry       = new VertexArray (16, 3, 2);
+    int           indices[]   = {0,1,2};
+    int           strips[]    = {3};
+    TriangleStripArray* tris  = new TriangleStripArray (indices, 1, strips);
+    Appearance*   app         = new Appearance;
+
+    float scale  = 1;
+    float bias[] = {0,0,0};
+
+    VertexBuffer* base_vertices = new VertexBuffer;
+    base_vertices->setPositions (varry, scale, bias);
+    VertexBuffer* target_vertices[2] = {base_vertices->duplicate (),
+                                        base_vertices->duplicate ()};
+    MorphingMesh*  mesh        = new MorphingMesh (base_vertices, 2, target_vertices, tris, app);
+
+
+    varry->setUserID (100);
+    tris->setUserID  (101);
+    app->setUserID   (102);
+    base_vertices->setUserID      (103);
+    target_vertices[0]->setUserID (104);
+    target_vertices[1]->setUserID (105);
+    mesh->setUserID (106);
+
+    CHECK_EQUAL (varry             , mesh->find(100));
+    CHECK_EQUAL (tris              , mesh->find(101));
+    CHECK_EQUAL (app               , mesh->find(102));
+    CHECK_EQUAL (base_vertices     , mesh->find(103));
+    CHECK_EQUAL (target_vertices[0], mesh->find(104));
+    CHECK_EQUAL (target_vertices[1], mesh->find(105));
+    CHECK_EQUAL (mesh              , mesh->find(106));
+
+    delete varry;
     delete base_vertices;
     delete target_vertices[0];
     delete target_vertices[1];

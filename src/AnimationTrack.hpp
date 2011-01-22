@@ -195,13 +195,20 @@ namespace m3g {
          */
         void setController (AnimationController* controller);
 
-        virtual int getReferences (Object3D** references) const;
 
         /**
          * @~English  Print out information of this class, for debug only.
          * @~Japanese このAnimationTrackクラスの情報を表示する。デバッグ用.
          */
         virtual std::ostream& print (std::ostream& out) const;
+
+    protected:
+
+        /**
+         * @~English  
+         * @~Japanese 
+         */
+        virtual int getReferences_xxx (Object3D** references) const;
 
     private:
         AnimationTrack (const AnimationTrack& anim_track);

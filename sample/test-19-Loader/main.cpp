@@ -103,8 +103,8 @@ int main (int argc, char** argv)
     glutInitWindowSize (512,512);
     glutCreateWindow(argv[0]);
 
-    //objs = Loader::load ("test.m3g");
-    objs = Loader::load ("checker-board.m3g");
+    objs = Loader::load ("test.m3g");
+    //objs = Loader::load ("checker-board.m3g");
 
     for (int i = 0; i < (int)objs.size(); i++) {
         wld = dynamic_cast<World*>(objs[i]);

@@ -232,6 +232,53 @@ TEST (SkinnedMesh_duplicate)
     CHECK_ARRAY_EQUAL (vertex_indices0, vertex_indices1, 6);
     CHECK_ARRAY_EQUAL (weights0, weights1, 6);
     
+    delete varry;
+    delete vbuf;
+    delete tris;
+    delete app;
+    delete bone0;
+    delete bone1;
+    delete bone2;
+    delete mesh0;
+    delete mesh1;
+}
+
+TEST (SkinnedMesh_find)
+{
+    VertexArray*  varry       = new VertexArray (16, 3, 2);
+    VertexBuffer* vbuf        = new VertexBuffer;
+    int           indices[]   = {0,1,2};
+    int           strips[]    = {3};
+    TriangleStripArray* tris  = new TriangleStripArray (indices, 1, strips);
+    Appearance*   app         = new Appearance;
+    Group*        skeleton    = new Group;
+
+    float scale  = 1;
+    float bias[] = {0,0,0};
+    vbuf->setPositions (varry, scale, bias);
+
+    SkinnedMesh*  mesh        = new SkinnedMesh (vbuf, 1, (IndexBuffer**)&tris, &app, skeleton);
+
+
+    varry->setUserID (100);
+    vbuf ->setUserID (101);
+    tris ->setUserID (102);
+    app  ->setUserID (103);
+    skeleton->setUserID (104);
+    mesh->setUserID  (105);
+
+    CHECK_EQUAL (vbuf    , mesh->find(101));
+    CHECK_EQUAL (tris    , mesh->find(102));
+    CHECK_EQUAL (app     , mesh->find(103));
+    CHECK_EQUAL (skeleton, mesh->find(104));
+    CHECK_EQUAL (mesh    , mesh->find(105));
+
+    delete varry;
+    delete vbuf;
+    delete tris;
+    delete app;
+    delete skeleton;
+    delete mesh;
 }
 
 TEST (SkinnedMesh_getReferences)

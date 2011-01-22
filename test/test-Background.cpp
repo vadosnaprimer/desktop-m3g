@@ -77,6 +77,22 @@ TEST (Background_duplicate)
     delete bg1;
 }
 
+TEST (Background_find)
+{
+    Background* bg  = new Background;
+    Image2D*    img = new Image2D (Image2D::RGBA, 64, 48);
+    bg->setImage (img);
+
+    bg->setUserID (100);
+    img->setUserID (101);
+
+    CHECK_EQUAL (bg, bg->find (100));
+    CHECK_EQUAL (img, bg->find (101));
+
+    delete img;
+    delete bg;
+}
+
 TEST (Background_getReferences)
 {
     Background* bg  = new Background;

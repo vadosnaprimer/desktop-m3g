@@ -40,7 +40,7 @@ namespace m3g {
          * @~Japanese このObject3Dに指定されたアニメーショントラックを追加する。
          *            既存のトラックの順番とインデックスは変更されるかもしれない.
          */
-        virtual void addAnimationTrack (AnimationTrack* animation_track);
+        void addAnimationTrack (AnimationTrack* animation_track);
 
         /**
          * @~English  Updates all animated properties in this Object3D and all Object3Ds that are reachable from this Object3D.
@@ -64,7 +64,7 @@ namespace m3g {
          * @~English  Retrieves an object that has the given uer ID and is reachable from this object.
          * @~Japanese このオブジェクトと到達できるオブジェクトから指定のユーザーIDのオブジェクトを見つける.
          */
-        virtual Object3D* find (int user_id) const;
+        Object3D* find (int user_id) const;
 
 
         /** 
@@ -81,9 +81,10 @@ namespace m3g {
 
         /**
          * @~English  Returns the number of direct Object3D references in this object, and fills in the objects to the given array.
-         * @~Japanese このオブジェクトから参照しているObject3Dの数を返し、配列をそのポインターで埋める.
+         * @~Japanese このオブジェクトから参照されているObject3Dの数を返し、
+         *            引数の配列をそのポインターで埋める.
          */
-        virtual int getReferences (Object3D** references) const;
+        int getReferences (Object3D** references) const;
 
         /**
          * @~English  Gets the user ID of this object.
@@ -131,9 +132,31 @@ namespace m3g {
          */
         virtual void render (RenderState& state) const;
 
+    protected:
+        /**
+         * @~English  Implement addAniamtionTrack().
+         * @~Japanese アニメーション・トラックを追加するaddAnimationTrack()関数の実装関数.
+         * @param[in]  animation_track  追加したいアニメーショントラック
+         * @param[in]  accepted         このターゲットプロパティを受け付けたらtrueで呼び出す。
+         */
+        virtual void addAnimationTrack_xxx (AnimationTrack* animation_track, bool accepted);
+
+        /**
+         * @~English  Implement getReferences().
+         * @~Japanese 参照しているObject3Dを取得するgetReferences()関数の実装関数.
+         * @param[in]  animation_track  追加したいアニメーショントラック
+         * @param[in]  references  結果を書き込む配列.
+         * @return 配列に書き込むObject3Dの個数.
+         */
+        virtual int getReferences_xxx (Object3D** references) const;
+
+
+
+
     private:
         Object3D (const Object3D& obj);
         Object3D& operator= (const Object3D& obj);
+
 
     private:
         int   user_id;

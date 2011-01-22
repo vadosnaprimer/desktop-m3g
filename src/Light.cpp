@@ -47,26 +47,17 @@ void Light:: copy (Light* lgh) const
 }
 
 
-void Light:: addAnimationTrack (AnimationTrack* animation_track)
+void Light:: addAnimationTrack_xxx (AnimationTrack* animation_track, bool accepted)
 {
-    if (animation_track == NULL) {
-        throw NullPointerException (__FILE__, __func__, "Animation track is NULL.");
-    }
     int property = animation_track->getTargetProperty();
-    if (property != AnimationTrack::COLOR         &&
-        property != AnimationTrack::INTENSITY     &&
-        property != AnimationTrack::SPOT_ANGLE    &&
-        property != AnimationTrack::SPOT_EXPONENT &&
-        property != AnimationTrack::ALPHA         &&
-        property != AnimationTrack::PICKABILITY   &&
-        property != AnimationTrack::VISIBILITY    &&
-        property != AnimationTrack::ORIENTATION   &&
-        property != AnimationTrack::SCALE         &&
-        property != AnimationTrack::TRANSLATION) {
-        throw IllegalArgumentException (__FILE__, __func__, "Animation target is invalid for Light, property=%d.", property);
+    if (property == AnimationTrack::COLOR         ||
+        property == AnimationTrack::INTENSITY     ||
+        property == AnimationTrack::SPOT_ANGLE    ||
+        property == AnimationTrack::SPOT_EXPONENT) {
+        accepted = true;
     }
- 
-    Object3D:: addAnimationTrack (animation_track);
+
+    Node:: addAnimationTrack_xxx (animation_track, accepted);
 }
 
 int Light:: animate (int world_time)

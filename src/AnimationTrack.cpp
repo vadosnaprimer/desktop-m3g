@@ -148,21 +148,15 @@ const char* property_to_string (int property)
     }
 }
 
-int AnimationTrack:: getReferences (Object3D** references) const
+
+int AnimationTrack:: getReferences_xxx (Object3D** references) const
 {
-    int n = 0;
+    int n = Object3D:: getReferences_xxx (references);
     if (keyframe_sequence)
-        n++;
+        references ? references[n] = keyframe_sequence, n++ : n++;
     if (animation_controller)
-        n++;
-    
-    if (references) {
-        int i = 0;
-        if (keyframe_sequence)
-            references[i++] = keyframe_sequence;
-        if (animation_controller)
-            references[i++] = animation_controller;
-    }
+        references ? references[n] = animation_controller, n++ : n++;
+
     return n;
 }
 
