@@ -37,12 +37,6 @@ namespace m3g {
         virtual ~Appearance ();
 
         /**
-         * @~English  
-         * @~Japanese このノードをアニメーションする.
-         */
-        virtual int animate (int world_time);
-
-        /**
          * @~English  Creates a duplicate of this Object3D. 
          * @~Japanese このオブジェクトの複製の作成.
          */
@@ -154,6 +148,12 @@ namespace m3g {
         static void renderX ();
 
     protected:
+
+        /**
+         * @~English  
+         * @~Japanese 
+         */
+        virtual int animate_xxx (int world_time);
 
         /**
          * @~English  

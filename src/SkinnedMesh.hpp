@@ -63,7 +63,6 @@ namespace m3g {
         void copy (SkinnedMesh* mesh) const;
 
 
-        virtual int animate (int world_time);
 
         /**
          * @~English  Associates a weighted transformation, or "bone", with a range of vertices int this SkinnedMesh.
@@ -109,6 +108,12 @@ namespace m3g {
         virtual void render (RenderState& state) const;
 
     protected:
+
+        /**
+         * @~English   
+         * @~Japanese  
+         */
+        virtual int animate_xxx (int world_time);
 
         /**
          * @~English   

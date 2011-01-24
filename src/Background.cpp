@@ -79,11 +79,9 @@ void Background:: addAnimationTrack_xxx (AnimationTrack* animation_track, bool a
     Object3D:: addAnimationTrack_xxx (animation_track, accepted);
 }
 
-int Background:: animate (int world_time)
+int Background:: animate_xxx (int world_time)
 {
-    //cout << "Background: animate time=" << world_time << "\n";
-
-    Object3D:: animate (world_time);
+    Object3D:: animate_xxx (world_time);
 
     bool     is_color_modefied = false;
     bool     is_alpha_modefied = false;
@@ -96,11 +94,7 @@ int Background:: animate (int world_time)
         AnimationTrack*      track      = getAnimationTrack (i);
         KeyframeSequence*    keyframe   = track->getKeyframeSequence();
         AnimationController* controller = track->getController();
-        if (controller == NULL) {
-            //cout << "Background: missing controller, this animation track should be ignored.\n";
-            continue;
-        }
-        if (world_time < controller->getActiveIntervalStart() || world_time >= controller->getActiveIntervalEnd()) {
+        if (!controller || !controller->isActive(world_time)) {
             continue;
         }
         float weight        = controller->getWeight ();

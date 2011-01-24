@@ -56,12 +56,6 @@ namespace m3g {
         void addChild (Node* child);
 
         /**
-         * @~Enslish  Update animatable property, for inner use.
-         * @~Japanese このノードと子ノードをアニメーションする.
-         */
-        virtual int animate (int world_time);
-
-        /**
          * @~Enslish  Gets a child by index.
          * @~Japanese インデックスを指定して子ノードを取得する.
          */
@@ -113,6 +107,12 @@ namespace m3g {
         virtual void render (RenderState& state) const;
 
     protected:
+
+        /**
+         * @~Enslish  
+         * @~Japanese 
+         */
+        virtual int animate_xxx (int world_time);
 
         /**
          * @~Enslish  

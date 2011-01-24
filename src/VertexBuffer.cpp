@@ -94,12 +94,10 @@ void VertexBuffer:: addAnimationTrack_xxx (AnimationTrack* animation_track, bool
     Object3D:: addAnimationTrack_xxx (animation_track, accepted);
 }
 
-int VertexBuffer:: animate (int world_time)
+int VertexBuffer:: animate_xxx (int world_time)
 {
-    Object3D:: animate (world_time);
+    Object3D:: animate_xxx (world_time);
 
-    //cout << "VertexBuffer: animate, track=" << getAnimationTrackCount() << "\n";
-  
     bool  is_color_modefied = false;
     bool  is_alpha_modefied = false;
     float rgb[]  = {0,0,0};
@@ -152,8 +150,6 @@ int VertexBuffer:: animate (int world_time)
         unsigned char a = clamp (0, 1, new_alpha) * 255;
         default_color = (default_color & 0x00ffffff) | (a << 24);
     }
-
-    //cout << hex << "VertexBuffer: default_color = 0x" << default_color << dec << "\n";
 
     return 0;
 }

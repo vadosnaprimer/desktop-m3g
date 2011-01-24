@@ -39,18 +39,14 @@ void World:: copy (World* wld) const
     wld->active_camera     = (active_camera     == NULL) ? NULL : dynamic_cast<Camera*>(active_camera->getDuplicatedNode());
 }
 
-int World:: animate (int world_time)
+int World:: animate_xxx (int world_time)
 {
-    //cout << "World: animate, time=" << world_time << "\n";
-
-    Group:: animate (world_time);
+    Group:: animate_xxx (world_time);
 
     if (background) {
         background->animate (world_time);
     }
-    if (active_camera) {
-        active_camera->animate (world_time);
-    }
+    // don't call active_camera->animate ();
 
     return 0;
 }
@@ -59,10 +55,13 @@ int World:: animate (int world_time)
 int World:: getReferences_xxx (Object3D** references) const
 {
     int n = Group:: getReferences_xxx (references);
-    if (background)
+    if (background) {
         references ? references[n] = background, n++ : n++;
-    if (active_camera)
+    }
+    if (active_camera) {
         references ? references[n] = active_camera, n++ : n++;
+    }
+
 
     return n;
 }

@@ -32,8 +32,15 @@ void Object3D:: addAnimationTrack_xxx (AnimationTrack* animation_track, bool acc
 
 int Object3D:: animate (int world_time)
 {
+    return animate_xxx (world_time);
+}
+
+int Object3D:: animate_xxx (int world_time)
+{
     return 0;
 }
+
+
 
 Object3D* Object3D:: duplicate () const
 {

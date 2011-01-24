@@ -96,12 +96,9 @@ void Sprite3D:: addAnimationTrack_xxx (AnimationTrack* animation_track, bool acc
     Object3D:: addAnimationTrack_xxx (animation_track, accepted);
 }
 
-int Sprite3D:: animate (int world_time)
+int Sprite3D:: animate_xxx (int world_time)
 {
-
-    Object3D:: animate (world_time);
-
-    //cout << "Sprite3D: animte, time=" << world_time << "\n";
+    Node:: animate_xxx (world_time);
 
     bool     is_crop_modefied = false;
     CropRect new_crop         = CropRect(0,0,0,0);

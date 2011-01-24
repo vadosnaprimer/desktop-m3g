@@ -88,11 +88,9 @@ void Group:: align (Node* reference)
     }
 }
 
-int Group:: animate (int world_time)
+int Group:: animate_xxx (int world_time)
 {
-    //cout << "Group: animate, time=" << world_time << "\n";
-
-    Node:: animate (world_time);
+    Node:: animate_xxx (world_time);
 
     for (int i = 0; i < (int)children.size(); i++) {
         children[i]->animate (world_time);

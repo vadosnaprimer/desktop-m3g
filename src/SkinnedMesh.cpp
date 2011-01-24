@@ -16,15 +16,20 @@ using namespace std;
 using namespace m3g;
 
 /**
- * メモ: スキニング済みの頂点座標(skinned_positions)は必ずfloat型に変換して持つ。
- *       これは静止した状態でchar型,short型の有効範囲をすべて使いきっているモデルデータが
- *       アニメーションした結果有効範囲外に飛び出すのを防止するためである。
- */
-
-/**
  * メモ: ローカルポーズ   := ボーン座標から1個上のボーン座標への変換行列
  *       グローバルポーズ := ボーン座標からモデル(ローカル)座標への変換行列
  *       バインドポーズ   := 静止姿勢のグローバルポーズ
+ */
+
+/**
+ * メモ: skinned_verticesのnew/deleteはこのオブジェクトが責任も持つ。
+ *       外には見せない。従って間違ってgetReferences()で返すことがないようにする。
+ */
+
+/**
+ * メモ: スキニング済みの頂点座標(skinned_positions)は必ずfloat型に変換して持つ。
+ *       これは静止した状態でchar型,short型の有効範囲をすべて使いきっているモデルデータが
+ *       アニメーションした結果有効範囲外に飛び出すのを防止するためである。
  */
 
 /**
@@ -33,6 +38,15 @@ using namespace m3g;
  *          matrix_pallete = global_pose * bind_pose.inverse
  *       詳しくは Jason Gregory の Game Engine Architecture を参照の事。
  */
+
+/**
+ * メモ: 現在の実装では毎render()ごとにupdateSkinnedVertices()を呼んでいる。
+ *       これは無駄だがスケルトンをユーザーが直接動かしたときに、
+ *       更新の必要性をうまく取得できないため。いいアイディアを考えついたら修正する。
+ */
+
+
+
 SkinnedMesh:: SkinnedMesh (VertexBuffer* vertices, 
                            int num_submesh, IndexBuffer** submeshes, Appearance** appearances_,
                            Group* skeleton_) :
@@ -141,14 +155,14 @@ void SkinnedMesh:: copy (SkinnedMesh* mesh) const
 }
 
 
-int SkinnedMesh:: animate (int world_time)
+int SkinnedMesh:: animate_xxx (int world_time)
 {
-    //cout << "SkinnedMesh: animate\n";
-  
-    Mesh:: animate (world_time);
+    Mesh:: animate_xxx (world_time);
 
     // ボーンの移動
-    skeleton->animate (world_time);
+    if (skeleton) {
+        skeleton->animate (world_time);
+    }
 
     return 0;
 }
@@ -162,8 +176,6 @@ void SkinnedMesh:: updateSkinnedVertices ()
     VertexArray* skinned_normals   = skinned_vertices->getNormals ();
     //int          vertex_count      = bind_positions->getVertexCount();
 
-    //cout << "scale = " << scale_bias[0] << "\n";
-    //cout << "bias  = " << scale_bias[1] << ", " << scale_bias[2] << ", " << scale_bias[3] << "\n";
 
     // 基本マトリックスパレットの作成
     int bone_count = bind_poses.size();

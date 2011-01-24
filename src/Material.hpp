@@ -63,12 +63,6 @@ namespace m3g {
 
 
         /**
-         * @~English  Update animatable property.
-         * @~Japanese このMaterialをアニメーションする.
-         */
-        virtual int animate (int world_time);
-
-        /**
          * @~English  Gets the value of the specified color component of this Material.
          * @~Japanese このマテリアルの指定されたカラーコンポーネントの取得.
          */
@@ -125,12 +119,18 @@ namespace m3g {
         static void renderX ();
 
     protected:
+
         /**
          * @~English  
          * @~Japanese 
          */
         virtual void addAnimationTrack_xxx (AnimationTrack* animation_track, bool accepted);
 
+        /**
+         * @~English  
+         * @~Japanese 
+         */
+        virtual int animate_xxx (int world_time);
 
     private:
         Material (const Material& mat);

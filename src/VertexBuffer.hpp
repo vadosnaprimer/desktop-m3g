@@ -46,10 +46,6 @@ namespace m3g {
          */
         void copy (VertexBuffer* vbuf) const;
 
-        virtual int animate (int world_time);
-
-
-
         /**
          * @~English  Gets the current color array.
          * @~Japanese カレントのカラー配列の取得.
@@ -131,11 +127,18 @@ namespace m3g {
         virtual void render (RenderState& state) const;
 
     protected:
+
         /**
          * @~English  
          * @~Japanese 
          */
         virtual void addAnimationTrack_xxx (AnimationTrack* animation_track, bool accepted);
+
+        /**
+         * @~English  
+         * @~Japanese 
+         */
+        virtual int animate_xxx (int world_time);
 
         /**
          * @~English  

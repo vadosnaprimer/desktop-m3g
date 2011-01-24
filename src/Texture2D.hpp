@@ -118,10 +118,6 @@ namespace m3g {
 
 
 
-        virtual int animate (int world_time);
-
-
-
         /**
          * @~English  Returns the current texture blend color for this Texture2D.
          * @~Japanese カレントのテクスチャーブレンドカラーの取得.
@@ -214,11 +210,20 @@ namespace m3g {
         static void renderX ();
 
     protected:
+
         /**
          * @~English  
          * @~Japanese 
          */
         virtual void addAnimationTrack_xxx (AnimationTrack* animation_track, bool accepted);
+
+        /**
+         * @~English  
+         * @~Japanese 
+         */
+        virtual int animate_xxx (int world_time);
+
+
 
         /**
          * @~English  

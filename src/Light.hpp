@@ -83,13 +83,6 @@ namespace m3g {
 
 
         /**
-         * @~English  Updates all animated properties in this Object3D and all Object3Ds that are reachable from this Object3D.
-
-         * @~Japanese アニメーションの更新.
-         */
-        virtual int animate (int world_time);
-
-        /**
          * @~English  Retrieves the curent color fo this Light.
          * @~Japanese このライトのカレントのカラーの取得.
          */
@@ -185,15 +178,25 @@ namespace m3g {
          */
         virtual void render (RenderState& state) const;
 
-    private:
-        Light (const Light& lgh);
-        Light& operator= (const Light& lgh);
+    protected:
 
         /**
          * @~English  
          * @~Japanese 
          */
         virtual void addAnimationTrack_xxx (AnimationTrack* animation_track, bool accepted);
+
+        /**
+         * @~English  
+         * @~Japanese 
+         */
+        virtual int animate_xxx (int world_time);
+
+
+
+    private:
+        Light (const Light& lgh);
+        Light& operator= (const Light& lgh);
 
     private:
         int         mode;

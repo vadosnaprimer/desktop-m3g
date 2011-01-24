@@ -102,16 +102,17 @@ void Mesh:: copy (Mesh* mesh) const
     // vertices, indices, appearancesはコンストラクタで設定済み
 }
 
-int Mesh:: animate (int world_time)
+int Mesh:: animate_xxx (int world_time)
 {
-    //cout << "Mesh: animate time=" << world_time << "\n";
-
-    Node::animate (world_time);
+    Node::animate_xxx (world_time);
 
     if (vertices) {
         vertices->animate (world_time);
     }
 
+    for (int i = 0; i < (int)indices.size(); i++) {
+        indices[i]->animate (world_time);
+    }
     for (int i = 0; i < (int)appearances.size(); i++) {
         appearances[i]->animate (world_time);
     }

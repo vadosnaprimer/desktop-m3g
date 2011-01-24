@@ -51,12 +51,10 @@ void Fog:: addAnimationTrack_xxx (AnimationTrack* animation_track, bool accepted
 }
 
 
-int Fog :: animate (int world_time)
+int Fog :: animate_xxx (int world_time)
 {
-    Object3D:: animate (world_time);
+    Object3D:: animate_xxx (world_time);
 
-    //cout << "Fog: animate, track=" << getAnimationTrackCount() << "\n";
-  
     bool  is_color_modefied   = false;
     bool  is_density_modefied = false;
     bool  is_far_modefied     = false;
@@ -121,7 +119,7 @@ int Fog :: animate (int world_time)
     if (is_color_modefied) {
         unsigned char r = clamp (0, 1, rgb[0]) * 255;
         unsigned char g = clamp (0, 1, rgb[1]) * 255;
-        unsigned char b = clamp (0, 1, rgb[1]) * 255;
+        unsigned char b = clamp (0, 1, rgb[2]) * 255;
         color = (r << 16) | (g << 8) | (b << 0);
     }
     if (is_density_modefied) {
@@ -133,8 +131,6 @@ int Fog :: animate (int world_time)
     if (is_near_modefied) {
         distance.near = new_near;
     }
-
-    //this->print (cout);
 
     return 0;
 }

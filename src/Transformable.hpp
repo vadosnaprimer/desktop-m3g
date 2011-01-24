@@ -65,12 +65,6 @@ namespace m3g {
         void copy (Transformable* trans) const;
 
         /**
-         * @~English  Updates all animated properties in this Object3D and all Object3Ds that are reachable from this Object3D.
-         * @~Japanese このObject3D自身とここから到達できるObject3Dのアニメーテッドプロパティを更新する.
-         */
-        virtual int animate (int world_time);
-
-        /**
          * @~English  Retrieves the composite transformation matrix of this Transformabls.
          * @~Japanese このクラスの複合変換行列を取得する.
          */
@@ -166,6 +160,13 @@ namespace m3g {
          * @~Japanese
          */
         virtual void addAnimationTrack_xxx (AnimationTrack* animation_track, bool accepted);
+
+        /**
+         * @~English  
+         * @~Japanese 
+         */
+        virtual int animate_xxx (int world_time);
+
 
     private:
         Transformable (const Transformable& trans);

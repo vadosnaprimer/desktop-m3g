@@ -127,11 +127,9 @@ void Node:: align (Node* reference)
 
 }
 
-int Node:: animate (int world_time)
+int Node:: animate_xxx (int world_time)
 {
-    //cout << "Node: animate, time=" << world_time << "\n";
-
-    Transformable:: animate (world_time);
+    Transformable:: animate_xxx (world_time);
 
     bool  is_alpha_modefied            = false;
     bool  is_picking_enable_modefied   = false;
@@ -191,8 +189,6 @@ int Node:: animate (int world_time)
     if (is_rendering_enable_modefied) {
         rendering_enable = new_rendering_enable;
     }
-
-    //cout << *this << "\n";
 
     return 0;
 }

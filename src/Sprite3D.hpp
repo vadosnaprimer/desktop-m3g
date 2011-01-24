@@ -61,12 +61,6 @@ namespace m3g {
         void copy (Sprite3D* spr) const;
 
         /**
-         * @~English  Updates all animated properties in this Object3D and all Object3Ds that are reachable from this Object3D.
-         * @~Japanese このObject3D自身とここから到達できるObject3Dのアニメーテッドプロパティを更新する.
-         */
-        virtual int animate (int world_time);
-
-        /**
          * @~English  Gets the current Appearance of this Sprite3D.
          * @~Japanese このSprite3Dのカレントのアピアランスを取得.
          */
@@ -145,11 +139,18 @@ namespace m3g {
         virtual void render (RenderState& state) const;
 
     protected:
+
         /**
          * @~English  
          * @~Japanese 
          */
         virtual void addAnimationTrack_xxx (AnimationTrack* animation_track, bool accepted);
+
+        /**
+         * @~English  
+         * @~Japanese 
+         */
+        virtual int animate_xxx (int world_time);
 
         /**
          * @~English  

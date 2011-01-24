@@ -88,12 +88,6 @@ namespace m3g {
 
 
         /**
-         * @~English  
-         * @~Japanese このBackgroundをアニメーションする.
-         */
-        virtual int animate (int world_time);
-
-        /**
          * @~English  Retrieves the current background color.
          * @~Japanese カレントの背景色の取得
          */
@@ -208,11 +202,18 @@ namespace m3g {
         static void renderX ();
 
     protected:
+
         /**
          * @~English  
          * @~Japanese 
          */
         virtual void addAnimationTrack_xxx (AnimationTrack* animation_track, bool accepted);
+
+        /**
+         * @~English  
+         * @~Japanese 
+         */
+        virtual int animate_xxx (int world_time);
 
         /**
          * @~English  

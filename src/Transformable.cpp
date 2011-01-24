@@ -49,11 +49,9 @@ void Transformable:: addAnimationTrack_xxx (AnimationTrack* animation_track, boo
     Object3D:: addAnimationTrack_xxx (animation_track, accepted);
 }
 
-int Transformable:: animate (int world_time)
+int Transformable:: animate_xxx (int world_time)
 {
-    //cout << "Transformable: animate, time=" << world_time << "\n";
-
-    Object3D:: animate (world_time);
+    Object3D:: animate_xxx (world_time);
 
     bool        is_orientation_modefied = false;
     bool        is_scaling_modefied     = false;
@@ -122,8 +120,6 @@ int Transformable:: animate (int world_time)
         translation = new_translation;
     }
 
-    //this->Transformable::print (cout);
-  
     return 0;
 }
 

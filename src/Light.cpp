@@ -60,9 +60,9 @@ void Light:: addAnimationTrack_xxx (AnimationTrack* animation_track, bool accept
     Node:: addAnimationTrack_xxx (animation_track, accepted);
 }
 
-int Light:: animate (int world_time)
+int Light:: animate_xxx (int world_time)
 {
-    Object3D:: animate (world_time);
+    Node:: animate_xxx (world_time);
 
     bool  is_color_modefied         = false;
     bool  is_intensity_modefied     = false;
@@ -128,7 +128,6 @@ int Light:: animate (int world_time)
         unsigned char r = clamp (0, 1, rgb[0]) * 255;
         unsigned char g = clamp (0, 1, rgb[1]) * 255;
         unsigned char b = clamp (0, 1, rgb[2]) * 255;
-        //cout << "Light: r,g,b = " << (int)r << ", " << (int)g << ", " << (int)b << "\n";
         color = (color & 0xff000000) | (r << 16) | (g << 8) | (b << 0);
     }
     if (is_intensity_modefied) {

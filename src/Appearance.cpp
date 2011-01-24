@@ -68,11 +68,9 @@ void Appearance:: copy (Appearance* app) const
     app->fog              = fog;
 }
 
-int Appearance:: animate (int world_time)
+int Appearance:: animate_xxx (int world_time)
 {
-    //cout << "Appearance: animate, time=" << world_time << "\n";
-
-    Object3D:: animate (world_time);
+    Object3D:: animate_xxx (world_time);
 
     if (polygon_mode) {
         polygon_mode->animate (world_time);
@@ -82,8 +80,9 @@ int Appearance:: animate (int world_time)
     }
 
     for (int i = 0; i < (int)textures.size(); i++) {
-        if (textures[i])
+        if (textures[i]) {
             textures[i]->animate (world_time);
+        }
     }
     if (material) {
         material->animate (world_time);

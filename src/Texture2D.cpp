@@ -100,12 +100,10 @@ void Texture2D:: addAnimationTrack_xxx (AnimationTrack* animation_track, bool ac
     Transformable:: addAnimationTrack_xxx (animation_track, accepted);
 }
 
-int Texture2D:: animate (int world_time)
+int Texture2D:: animate_xxx (int world_time)
 {
-    Object3D:: animate (world_time);
+    Transformable:: animate_xxx (world_time);
 
-    //cout << "Texture2D: animate, track=" << getAnimationTrackCount() << "\n";
-  
     bool  is_color_modefied = false;
     float rgb[]  = {0,0,0};
 

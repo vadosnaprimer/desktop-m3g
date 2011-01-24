@@ -60,7 +60,6 @@ namespace m3g {
         void copy (Camera* cam) const;
 
 
-        virtual int animate (int world_time);
 
         /**
          * @~English  Gets the current projection matrix and type.
@@ -114,11 +113,18 @@ namespace m3g {
         virtual void render (RenderState& state) const;
 
     protected:
+
         /**
          * @~English  
          * @~Japanese 
          */
         virtual void addAnimationTrack_xxx (AnimationTrack* animation_track, bool accepted);
+
+        /**
+         * @~English  
+         * @~Japanese 
+         */
+        virtual int animate_xxx (int world_time);
 
     private:
         Camera (const Camera& cam);

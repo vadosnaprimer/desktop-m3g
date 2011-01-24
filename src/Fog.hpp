@@ -66,12 +66,6 @@ namespace m3g {
 
 
         /**
-         * @~English  
-         * @~Japanese アニメーションの更新.
-         */
-        virtual int animate (int world_time);
-
-        /**
          * @~English  Retrieves the current color of this Fog.
          * @~Japanese フォグカラーの取得.
          */
@@ -149,6 +143,13 @@ namespace m3g {
          * @~Japanese
          */
         virtual void addAnimationTrack_xxx (AnimationTrack* animation_track, bool accepted);
+
+        /**
+         * @~English  
+         * @~Japanese 
+         */
+        int animate_xxx (int world_time);
+
 
     private:
         Fog (const Fog& fog);

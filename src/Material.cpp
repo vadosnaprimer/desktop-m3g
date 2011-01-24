@@ -58,11 +58,9 @@ void Material:: addAnimationTrack_xxx (AnimationTrack* animation_track, bool acc
     Object3D:: addAnimationTrack_xxx (animation_track, accepted);
 }
 
-int Material:: animate (int world_time)
+int Material:: animate_xxx (int world_time)
 {
-    //cout << "Material: animate, track=" << getAnimationTrackCount() << "\n";
-
-    Object3D:: animate (world_time);
+    Object3D:: animate_xxx (world_time);
   
     bool  is_alpha_modefied          = false;
     bool  is_ambient_color_modefied  = false;
@@ -187,7 +185,7 @@ int Material:: animate (int world_time)
         specular_color = (r << 16) | (g << 8) | (b << 0);
     }
 
-
+    // don't delete for quick debug.
     //cout << hex << "Material: ambient_color = 0x" << ambient_color << dec << "\n";
     //cout << hex << "Material: diffuse_color = 0x" << diffuse_color << dec << "\n";
     //cout << "Material: alpha = " << alpha << "\n";

@@ -60,17 +60,6 @@ namespace m3g {
          */
         void copy (MorphingMesh* mesh) const;
 
-        /**
-         * @~English  Updates all animated properties in this Object3D and all Object3Ds that are reachable from this Object3D.
-         * @~Japanese このObject3D自身とここから到達できるObject3Dのアニメーテッドプロパティを更新する.
-         */
-        virtual int animate (int world_time);
-
-
-
-
-
-
 
         /**
          * @~English  Returns the morph target VertxBuffer at the given index.
@@ -114,6 +103,12 @@ namespace m3g {
          * @~Japanese 
          */
         virtual void addAnimationTrack_xxx (AnimationTrack* animation_track, bool accepted);
+
+        /**
+         * @~English  
+         * @~Japanese 
+         */
+        virtual int animate_xxx (int world_time);
 
         /**
          * @~English  

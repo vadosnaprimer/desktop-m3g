@@ -44,9 +44,9 @@ namespace m3g {
 
         /**
          * @~English  Updates all animated properties in this Object3D and all Object3Ds that are reachable from this Object3D.
-         * @~Japanese このObject3D自身とここから到達できるObject3Dのアニメーテッドプロパティを更新する.
+         * @~Japanese このオブジェクトとそこから到達できるオブジェクトのアニメーション・プロパティを更新（アニメーション）する.
          */
-        virtual int animate (int world_time);
+        int animate (int world_time);
 
         /**
          * @~English  Creates a duplicate of this Object3D. 
@@ -133,9 +133,18 @@ namespace m3g {
         virtual void render (RenderState& state) const;
 
     protected:
+
+        /**
+         * @~English  Implemente animate().
+         * @~Japanese アニメーションを更新するanimate()関数の実装.
+         * @param[in]  world_time  ワールド時刻を指定する.
+         * @return 使用しない。必ず0を返す.
+         */
+        virtual int animate_xxx (int world_time);
+
         /**
          * @~English  Implement addAniamtionTrack().
-         * @~Japanese アニメーション・トラックを追加するaddAnimationTrack()関数の実装関数.
+         * @~Japanese アニメーション・トラックを追加するaddAnimationTrack()関数の実装.
          * @param[in]  animation_track  追加したいアニメーショントラック
          * @param[in]  accepted         このターゲットプロパティを受け付けたらtrueで呼び出す。
          */
@@ -143,7 +152,7 @@ namespace m3g {
 
         /**
          * @~English  Implement getReferences().
-         * @~Japanese 参照しているObject3Dを取得するgetReferences()関数の実装関数.
+         * @~Japanese 参照しているObject3Dを取得するgetReferences()関数の実装.
          * @param[in]  animation_track  追加したいアニメーショントラック
          * @param[in]  references  結果を書き込む配列.
          * @return 配列に書き込むObject3Dの個数.

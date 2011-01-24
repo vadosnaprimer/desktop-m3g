@@ -5,8 +5,10 @@
        - see "Effective C++"
    - fix Object3D::find()
    - fix Camera::lookAt()
+   - fix Camera::animate(), Light::animate() and Sprite3D::animate().
    - fix parallel projection matrix of Camera.
    - fix KeyframeSequence which has only 1 frame.
+
 
 2010/12/01  ver 0.3.2
    - introduce cmake

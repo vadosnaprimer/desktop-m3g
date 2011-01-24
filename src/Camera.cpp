@@ -59,11 +59,9 @@ void Camera:: addAnimationTrack_xxx (AnimationTrack* animation_track, bool accep
     Node:: addAnimationTrack_xxx (animation_track, accepted);
 }
 
-int Camera:: animate (int world_time)
+int Camera:: animate_xxx (int world_time)
 {
-    //cout << "Camera: animate, time=" << world_time << "\n";
-
-    Object3D:: animate (world_time);
+    Node:: animate_xxx (world_time);
 
     bool  is_far_modefied  = false;
     bool  is_fovy_modefied = false;
@@ -135,10 +133,9 @@ int Camera:: animate (int world_time)
     if (is_fovy_modefied || is_near_modefied || is_far_modefied) {
         switch (type) {
         case PERSPECTIVE: setPerspective (fovy, aspect_ratio, near, far); break;
-        case PARALLEL   : setParallel (fovy, aspect_ratio, near, far); break;
+        case PARALLEL   : setParallel (fovy, aspect_ratio, near, far)   ; break;
         }
     }
-
   
     return 0;
 }

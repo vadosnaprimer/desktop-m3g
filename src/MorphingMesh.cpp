@@ -128,9 +128,9 @@ void MorphingMesh:: addAnimationTrack_xxx (AnimationTrack* animation_track, bool
 }
 
 
-int MorphingMesh:: animate (int world_time)
+int MorphingMesh:: animate_xxx (int world_time)
 {
-    Mesh:: animate (world_time);
+    Mesh:: animate_xxx (world_time);
 
     bool   is_weights_modefied = false;
     float* new_weights         = new float[morph_weights.size()];
@@ -169,19 +169,13 @@ int MorphingMesh:: animate (int world_time)
     }
 
     if (is_weights_modefied) {
-        //cout << "MorphingMesh: weights --> ";
         for (int i = 0; i < (int)morph_weights.size(); i++) {
-            //cout << new_weights[i] << ", ";
             morph_weights[i] = new_weights[i];
         }
-        //cout << "\n";
         updateMorphedVertices ();
     }
 
-    //for (int i = 0; i < (int)morph_weights.size(); i++) {
-    //  cout << "B: morph_weights[" << i << "] = " << morph_weights[i] << "\n";
-    //}
-
+    delete [] new_weights;
 
     return 0;
 }
