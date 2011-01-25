@@ -110,12 +110,6 @@ namespace m3g {
          * @~English  Render this object, for inner use.
          * @~Japanese このオブジェクトをレンダリングする内部使用の関数.
          */
-        virtual void render (RenderState& state) const;
-
-        /**
-         * @~English  Render this object, for inner use.
-         * @~Japanese このオブジェクトをレンダリングする内部使用の関数.
-         */
         static void renderX ();
 
     protected:
@@ -131,6 +125,13 @@ namespace m3g {
          * @~Japanese 
          */
         virtual int animate_xxx (int world_time);
+
+        /**
+         * @~English  
+         * @~Japanese 
+         */
+        virtual void render_xxx (RenderState& state) const;
+
 
     private:
         Material (const Material& mat);

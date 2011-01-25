@@ -312,7 +312,7 @@ void Group:: removeChild (Node* child)
 /**
  * Note: Group should be rendered via all rendering pass.
  */
-void Group:: render (RenderState& state) const
+void Group:: render_xxx (RenderState& state) const
 {
     if (!isGlobalRenderingEnabled()) {
         return;
@@ -320,7 +320,7 @@ void Group:: render (RenderState& state) const
 
     //cout << "Group: render\n";
     glPushMatrix ();
-    Node::render (state);
+    Node::render_xxx (state);
 
     for (int i = 0; i < (int)children.size(); i++) {
         glPushMatrix ();

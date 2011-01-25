@@ -276,7 +276,7 @@ void Background:: setImageMode (int mode_x, int mode_y)
  * Note: Background should be rendered only at 0th rendering pass(pass=0).
  * In other cases, do nothing.
  */
-void Background:: render (RenderState& state) const
+void Background:: render_xxx (RenderState& state) const
 {
     if (state.pass != 0) {
         return;
@@ -308,7 +308,6 @@ void Background:: render (RenderState& state) const
 
         glEnable (GL_TEXTURE_2D);
 
-        //cout << "Background: render image, texobj = " << texobj << "\n";
         glBindTexture    (GL_TEXTURE_2D, texobj);
         glTexParameteri  (GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
         glTexParameteri  (GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
@@ -353,8 +352,6 @@ void Background:: render (RenderState& state) const
         glPopMatrix  ();
         glMatrixMode (GL_MODELVIEW);
         glPopMatrix  ();
-
-
     }
 }
 

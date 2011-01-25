@@ -159,7 +159,7 @@ void TriangleStripArray:: getIndices (int* indices_) const
  * Note: TriangleStripArray should be rendered only at second rendering pass(pass=2).
  * In other cases, do nothing.
  */
-void TriangleStripArray:: render (RenderState& state) const
+void TriangleStripArray:: render_xxx (RenderState& state) const
 {
     if (state.pass != 2) {
         return;

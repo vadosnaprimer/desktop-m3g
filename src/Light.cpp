@@ -232,12 +232,15 @@ void Light:: setSpotExponent (float exponent)
 }
 
 
-
+/**
+ * メモ: ここからNode::render()を呼んではいけない。
+ *       ライトの位置はglLight()で指定するので。
+ */
 /**
  * Note: Light should be rendered only at first rendering pass(pass=1).
  * In other cases, do nothing.
  */
-void Light:: render (RenderState& state) const
+void Light:: render_xxx (RenderState& state) const
 {
     if (state.pass != 1) {
         return;
@@ -309,10 +312,9 @@ void Light:: render (RenderState& state) const
     glLightf (GL_LIGHT0+index, GL_LINEAR_ATTENUATION,    attenuation.linear);
     glLightf (GL_LIGHT0+index, GL_QUADRATIC_ATTENUATION, attenuation.quadratic);
 
-    glEnable  (GL_LIGHTING);
-    glEnable  (GL_LIGHT0+index);
-
 }
+
+
 static
 const char* mode_to_string (int mode)
 {

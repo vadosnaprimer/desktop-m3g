@@ -148,12 +148,6 @@ namespace m3g {
          */
         virtual std::ostream& print (std::ostream& out) const;
 
-        /**
-         * @~English  Render this object, for inner use.
-         * @~Japanese このTransformableをレンダリングする内部使用の関数.
-         */
-        virtual void render (RenderState& state) const;
-
     protected:
         /**
          * @~English
@@ -166,6 +160,12 @@ namespace m3g {
          * @~Japanese 
          */
         virtual int animate_xxx (int world_time);
+
+        /**
+         * @~English  
+         * @~Japanese 
+         */
+        virtual void render_xxx (RenderState& state) const;
 
 
     private:

@@ -200,7 +200,7 @@ void Fog:: setMode (int mode_)
  * Note: Fog should be rendered only at second rendering pass(pass=2).
  * In other cases, do nothing.
  */
-void Fog:: render (RenderState& state) const
+void Fog:: render_xxx (RenderState& state) const
 {
     if (state.pass != 2) {
         return;

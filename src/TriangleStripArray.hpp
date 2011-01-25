@@ -81,11 +81,14 @@ namespace m3g {
 
         virtual std::ostream& print_raw_data (std::ostream& out) const;
 
+
+    protected:
+
         /**
-         * @~English  Render this object, for inner use.
-         * @~Japanese このオブジェクトのレンダリング.
+         * @~English  
+         * @~Japanese 
          */
-        virtual void render (RenderState& state) const;
+        virtual void render_xxx (RenderState& state) const;
 
 
     private:

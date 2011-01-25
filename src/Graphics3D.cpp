@@ -148,6 +148,11 @@ void Graphics3D:: render (const Node* node, const Transform* transform) const
     throw NotImplementedException (__FILE__, __func__, "Immediate mode is obsoleted, Please use retained mode.");
 }
 
+void Graphics3D:: render (const VertexBuffer* vertices, const IndexBuffer* submesh, const Appearance* apperance, const Transform* transform) const
+{
+    throw NotImplementedException (__FILE__, __func__, "Immediate mode is obsoleted, Please use retained mode.");
+}
+
 void Graphics3D:: render (const VertexBuffer* vertices, const IndexBuffer* submesh, const Appearance* apperance, const Transform* transform, int scope) const
 {
     throw NotImplementedException (__FILE__, __func__, "Immediate mode is obsoleted, Please use retained mode.");

@@ -366,10 +366,10 @@ bool SkinnedMesh:: intersect (const Vector& org, const Vector& dir, RayIntersect
 }
 
 /**
- * Note: Mesh should be rendered only at second rendering pass(pass=2).
+ * Note: Mesh should be rendered only at 2nd rendering pass(pass=2).
  *       In other cases, do nothing.
  */
-void SkinnedMesh:: render (RenderState& state) const
+void SkinnedMesh:: render_xxx (RenderState& state) const
 {
     if (!isGlobalRenderingEnabled()) {
         return;
@@ -378,6 +378,8 @@ void SkinnedMesh:: render (RenderState& state) const
     //cout << "SkinnedMesh: render\n";
 
     // スキンメッシュの更新
+    // メモ：ここで毎フレーム呼び出すのはいいコードではない。
+    //       きちんと更新の必要性をチェックすべき。
     (const_cast<SkinnedMesh*>(this))->updateSkinnedVertices ();
 
     // 注意：vertices が skinned_vertices に変わった事を除けば Mesh::render()と同一。
@@ -387,11 +389,11 @@ void SkinnedMesh:: render (RenderState& state) const
     (const_cast<SkinnedMesh*>(this))->vertices = skinned_vertices;
 
     glPushMatrix ();
-    Mesh::render (state);
+    Mesh::render_xxx (state);
     glPopMatrix ();
 
     // 注意：骨には（レンダリングすべき）任意のノードを付加できるのでこれは必要
-    Transformable::render (state);
+    Transformable::render_xxx (state);
     skeleton->render (state);
 
     (const_cast<SkinnedMesh*>(this))->vertices = tmp;

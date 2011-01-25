@@ -228,12 +228,14 @@ bool Mesh:: intersect (const Vector& org, const Vector& dir, RayIntersection* ri
 }
 
 
-
 /**
+ * Note: if 1st rendering pass (pass=1), add this mesh's rendering layer number.
+ */
+/*
  * Note: Mesh should be rendered only at second rendering pass(pass=2).
  *       In other cases, do nothing.
  */
-void Mesh:: render (RenderState& state) const
+void Mesh:: render_xxx (RenderState& state) const
 {
     if (!isGlobalRenderingEnabled()) {
         return;
@@ -253,7 +255,7 @@ void Mesh:: render (RenderState& state) const
     // 注意：下の３つは厳密にこの順番でなければならない。変更不可
 
     // ノードαの設定
-    Node::render (state);
+    Node::render_xxx (state);
 
     // 頂点データの指定
     vertices->render (state);

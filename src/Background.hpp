@@ -190,12 +190,6 @@ namespace m3g {
         virtual std::ostream& print (std::ostream& out) const;
 
         /**
-         * @~English  Render this object, for inner use.
-         * @~Japanese このBackgroundをレンダリングする内部使用の関数.
-         */
-        virtual void render (RenderState& state) const;
-
-        /**
          * @~English  Render this object as default, for inner use.
          * @~Japanese このオブジェクトをデフォルトでレンダリングする内部使用の関数.
          */
@@ -220,6 +214,13 @@ namespace m3g {
          * @~Japanese 
          */
         virtual int getReferences_xxx (Object3D** references) const;
+
+        /**
+         * @~English  
+         * @~Japanese 
+         */
+        virtual void render_xxx (RenderState& state) const;
+
 
     private:
         Background (const Background& bg);

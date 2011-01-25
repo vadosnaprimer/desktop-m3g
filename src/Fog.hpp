@@ -126,12 +126,6 @@ namespace m3g {
         virtual std::ostream& print (std::ostream& out) const;
 
         /**
-         * @~English  Render this object, for inner use.
-         * @~Japanese このFogノードをレンダリングする内部使用の関数.
-         */
-        virtual void render (RenderState& state) const;
-
-        /**
          * @~English  Render defualt, for inner use.
          * @~Japanese デフォルト値でレンダリングする内部使用の関数.
          */
@@ -148,7 +142,13 @@ namespace m3g {
          * @~English  
          * @~Japanese 
          */
-        int animate_xxx (int world_time);
+        virtual int animate_xxx (int world_time);
+
+        /**
+         * @~English  
+         * @~Japanese 
+         */
+        virtual void render_xxx (RenderState& state) const;
 
 
     private:

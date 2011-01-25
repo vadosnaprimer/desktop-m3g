@@ -213,10 +213,14 @@ void Camera:: setPerspective (float fovy_, float aspect_ratio_, float near_, flo
 }
 
 /**
+ * メモ：ここでTransformable::render_xxx()を呼び出してはいけない。
+ *       カメラは通常のNodeと異なり、逆行列をセットするので
+ */
+/**
  * Note: Camera should be rendered only at 0th rendering pass(pass=0).
  * In other cases, do nothing.
  */
-void Camera:: render (RenderState& state) const
+void Camera:: render_xxx (RenderState& state) const
 {
     if (state.pass != 0) {
         return;

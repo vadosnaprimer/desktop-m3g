@@ -245,7 +245,7 @@ void Material:: setVertexColorTrackingEnable (bool enable)
  * Note: Material should be rendered only at second rendering pass(pass=2).
  * In other cases, do nothing.
  */
-void Material:: render (RenderState& state) const
+void Material:: render_xxx (RenderState& state) const
 {
     if (state.pass != 2) {
         return;

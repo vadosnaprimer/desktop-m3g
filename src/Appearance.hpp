@@ -138,13 +138,6 @@ namespace m3g {
          * @~English  Render this object, inner use only.
          * @~Japanese このノードをレンダリングする内部使用の関数.
          */
-        virtual void render (RenderState& state) const;
-
-
-        /**
-         * @~English  Render this object, inner use only.
-         * @~Japanese このノードをレンダリングする内部使用の関数.
-         */
         static void renderX ();
 
     protected:
@@ -160,6 +153,14 @@ namespace m3g {
          * @~Japanese 
          */
         virtual int getReferences_xxx (Object3D** references) const;
+
+        /**
+         * @~English  
+         * @~Japanese 
+         */
+        virtual void render_xxx (RenderState& state) const;
+
+
 
     private:
         Appearance (const Appearance& app);

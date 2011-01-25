@@ -62,7 +62,7 @@ void IndexBuffer:: getIndices (int*) const
  * Note: Background should be rendered only at second rendering pass(pass=2).
  * In other cases, do nothing.
  */
-void IndexBuffer:: render (RenderState& state) const
+void IndexBuffer:: render_xxx (RenderState& state) const
 {
     // nothing to do.
 }

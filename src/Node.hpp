@@ -213,13 +213,6 @@ namespace m3g {
         void setParent (Node* node);
 
         /**
-         * @~English  Render this object, for inner use.
-         * @~Japanese このNodeをレンダリングする内部使用の関数.
-         */
-        virtual void render (RenderState& state) const;
-
-
-        /**
          * @~English   Retrieve duplicated node from this node, for inner use.
          * @~Japanese  このノードから複製されたNodeを取得する内部仕様の関数.
          */
@@ -234,10 +227,17 @@ namespace m3g {
         virtual void addAnimationTrack_xxx (AnimationTrack* animation_track, bool accepted);
 
         /**
-         * @~English  Updates all animated properties in this Object3D and all Object3Ds that are reachable from this Object3D.
-         * @~Japanese このObject3D自身とここから到達できるObject3Dのアニメーテッドプロパティを更新する.
+         * @~English  
+         * @~Japanese 
          */
         virtual int animate_xxx (int world_time);
+
+        /**
+         * @~English  
+         * @~Japanese 
+         */
+        virtual void render_xxx (RenderState& state) const;
+
 
 
 

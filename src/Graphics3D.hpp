@@ -283,13 +283,20 @@ namespace m3g {
 
         /**
          * @~English  Render the iven submesh with the given transformation from local coordinates to world coordinates.
+         * @~Japanese 指定されたサブメッシュを指定された行列でローカル座標からワールド座標に変換してレンダリングする.
+         */
+        void render (const VertexBuffer* vertices, const IndexBuffer* triangles, const Appearance* apperance, const Transform* transform) const;
+
+        /**
+         * @~English  Render the iven submesh with the given transformation from local coordinates to world coordinates.
          * @~Japanese 指定されたスコープのサブメッシュを指定された行列でローカル座標からワールド座標に変換してレンダリングする.
          */
-        void render (const VertexBuffer* vertices, const IndexBuffer* triangles, const Appearance* apperance, const Transform* transform, int scope=-1) const;
+        void render (const VertexBuffer* vertices, const IndexBuffer* triangles, const Appearance* apperance, const Transform* transform, int scope) const;
 
         /**
          * @~English  Rnders a image of world as viewd by the active camera of that World.
-         * @~Japanese ワールドのアクティブなカメラでワールドをレンダリングする.
+         * @~Japanese 引数のworld以下をアクティブなカメラでレンダリングする.
+         * @param[in]  world  レンダリングしたいシーン.
          */
         void render (const World* world) const;
 

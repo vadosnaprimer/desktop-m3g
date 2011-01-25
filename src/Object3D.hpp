@@ -130,7 +130,7 @@ namespace m3g {
          * @~English  Render this object, for inner use.
          * @~Japanese このObject3Dをレンダリングする内部使用の関数.
          */
-        virtual void render (RenderState& state) const;
+        void render (RenderState& state) const;
 
     protected:
 
@@ -159,8 +159,12 @@ namespace m3g {
          */
         virtual int getReferences_xxx (Object3D** references) const;
 
-
-
+        /**
+         * @~English  Implement render().
+         * @~Japanese このObject3Dをレンダリングするrender()関数の実装.
+         * @param[in]  state  現在のレンダリングステート(関数内部で書き換えられる可能性あり）.
+         */
+        virtual void render_xxx (RenderState& state) const;
 
     private:
         Object3D (const Object3D& obj);

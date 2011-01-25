@@ -288,12 +288,12 @@ void Sprite3D:: setImage (Image2D* img)
  * Note: Sprite3D should be rendered only at second rendering pass(pass=2).
  * In other cases, do nothing.
  */
-void Sprite3D:: render (RenderState& state) const
+void Sprite3D:: render_xxx (RenderState& state) const
 {
     if (!isGlobalRenderingEnabled()) {
         return;
     }
-    if (appearance == 0)
+    if (appearance == NULL)
         return;
 
     if (state.pass == -1) {
@@ -308,8 +308,9 @@ void Sprite3D:: render (RenderState& state) const
 
     // cout << "Sprite3D: render \n";
 
-    Node:: render (state);
+    Node:: render_xxx (state);
 
+    // メモ：規格でCompositingModeとFog以外はデフォルトを使用する。
     Appearance:: renderX ();
     CompositingMode* cmp = appearance->getCompositingMode ();
     if (cmp) {

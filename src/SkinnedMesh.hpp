@@ -101,12 +101,6 @@ namespace m3g {
         virtual std::ostream& print (std::ostream& out) const;
 
 
-        /**
-         * @~English  Render this object.
-         * @~Japanese このSkinnedMeshをレンダリングする内部使用の関数.
-         */
-        virtual void render (RenderState& state) const;
-
     protected:
 
         /**
@@ -120,6 +114,12 @@ namespace m3g {
          * @~Japanese  
          */
         virtual int getReferences_xxx (Object3D** references) const;
+
+        /**
+         * @~English  
+         * @~Japanese 
+         */
+        virtual void render_xxx (RenderState& state) const;
 
 
     private:

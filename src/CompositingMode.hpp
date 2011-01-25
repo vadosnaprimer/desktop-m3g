@@ -179,13 +179,16 @@ namespace m3g {
          * @~English  Render this object, for inner use.
          * @~Japanese このオブジェクトをレンダリングする内部使用の関数.
          */
-        virtual void render (RenderState& state) const;
+        static void renderX ();
+
+    protected:
 
         /**
-         * @~English  Render this object, for inner use.
-         * @~Japanese このオブジェクトをレンダリングする内部使用の関数.
+         * @~English  
+         * @~Japanese 
          */
-        static void renderX ();
+        virtual void render_xxx (RenderState& state) const;
+
 
     private:
         CompositingMode (const CompositingMode& cmode);

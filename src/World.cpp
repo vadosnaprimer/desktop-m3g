@@ -101,7 +101,7 @@ void World:: setBackground (Background* bg)
  *   pass=1: render lights.
  *   pass=2: render objets.
  */
-void World:: render (RenderState& state) const
+void World:: render_xxx (RenderState& state) const
 {
     if (active_camera == NULL) {
         throw IllegalStateException (__FILE__, __func__, "Active camera is NULL.");
@@ -116,7 +116,7 @@ void World:: render (RenderState& state) const
     switch (state.pass) {
     case -1:
         // 使用するレイヤー番号の収集
-        Group::render (state);
+        Group::render_xxx (state);
         sort (v.begin(), v.end());
         v.erase (unique(v.begin(), v.end()), v.end());
         break;
@@ -133,13 +133,13 @@ void World:: render (RenderState& state) const
     case 1:
         // ライト
         state.light_index = 0;
-        Group::render (state);
+        Group::render_xxx (state);
         break;
     case 2:
         // プリミティブ
         for (int i = 0; i < (int)state.valid_layers.size(); i++) {
             state.layer = state.valid_layers[i];
-            Group::render (state);
+            Group::render_xxx (state);
         }
         break;
     default:

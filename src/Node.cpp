@@ -406,13 +406,13 @@ void Node:: setParent (Node* node)
 /**
  * Note: Node should be rendered via all rendering pass.
  */
-void Node:: render (RenderState& state) const
+void Node:: render_xxx (RenderState& state) const
 {
     if (!isGlobalRenderingEnabled()) {
         return;
     }
 
-    Transformable::render (state);
+    Transformable::render_xxx (state);
   
     state.alpha = getGlobalAlphaFactor();
 }

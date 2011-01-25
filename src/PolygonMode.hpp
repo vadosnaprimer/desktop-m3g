@@ -154,18 +154,20 @@ namespace m3g {
          */
         virtual std::ostream& print (std::ostream& out) const;
 
-
-        /**
-         * @~English   Render this object, for inner use.
-         * @~Japanese  このオブジェクトをレンダリングする内部使用の関数.
-         */
-        virtual void render (RenderState& state) const;
-
         /**
          * @~English   Render default, for inner use.
          * @~Japanese  デフォルトでレンダリングする内部使用の関数.
          */
         static void renderX ();
+
+    protected:
+
+        /**
+         * @~English   Render this object, for inner use.
+         * @~Japanese  このオブジェクトをレンダリングする内部使用の関数.
+         */
+        virtual void render_xxx (RenderState& state) const;
+
 
     private:
         PolygonMode (const PolygonMode& pmode);

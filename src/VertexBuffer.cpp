@@ -364,18 +364,14 @@ void VertexBuffer:: setTexCoords (int index, VertexArray* tex_coords_, float sca
  * Note: VertexBuffer should be rendered only at second rendering pass(pass=2).
  * In other cases, do nothing.
  */
-void VertexBuffer:: render (RenderState& state) const
+void VertexBuffer:: render_xxx (RenderState& state) const
 {
     if (state.pass != 2) {
         return;
     }
 
     if (positions) {
-        //cout << "render vertex array\n";
-        //cout << "component_type = " << component_type << "\n";
-        //cout << "scale = " << positions_scale << "\n";
-        //cout << "bias = " << positions_bias[0] << ", "<< positions_bias[1] << ", " << positions_bias[2] << "\n";
-        //positions->print_raw_data (cout) << "\n";
+        //cout << "render position array\n";
 
         int component_count = positions->getComponentCount ();
         unsigned int format = positions->getOpenGLFormat ();
@@ -457,8 +453,6 @@ void VertexBuffer:: render (RenderState& state) const
             glScalef (tex_coords_scale[i], tex_coords_scale[i], tex_coords_scale[i]);
 
             //cout << "VertexBuffer: render " << i << "th texture coordinate array\n";
-            //cout << " scale = " << tex_coords_scale[i] << "\n";
-            //cout << " bias = " << tex_coords_bias[i][0] << ", " << tex_coords_bias[i][1] << ", " << tex_coords_bias[i][2] << "\n";
 
             int component_count = tex_coords[i]->getComponentCount();
             unsigned int format = tex_coords[i]->getOpenGLFormat ();

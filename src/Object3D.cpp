@@ -146,7 +146,14 @@ void Object3D:: setUserObject (void* new_user_object)
 
 void Object3D:: render (RenderState& state) const
 {
+    render_xxx (state);
+}
+
+void Object3D:: render_xxx (RenderState& state) const
+{
     // nothing to do
+    // メモ：この関数をオーバーライドしたら、呼ぶ必要がなければ
+    // 基底クラスのrender_xxx()を呼ばなくてもいい。
 }
 
 std::ostream& Object3D:: print (std::ostream& out) const

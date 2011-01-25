@@ -114,7 +114,7 @@ void PolygonMode:: setWinding (int mode)
     winding = mode;
 }
 
-void PolygonMode:: render (RenderState& state) const
+void PolygonMode:: render_xxx (RenderState& state) const
 {
     if (state.pass != 2) {
         return;
@@ -124,7 +124,7 @@ void PolygonMode:: render (RenderState& state) const
 
     switch (winding) {
     case WINDING_CCW: glFrontFace (GL_CCW); break;
-    case WINDING_CW : glFrontFace (GL_CW); break;
+    case WINDING_CW : glFrontFace (GL_CW) ; break;
     default : throw InternalException (__FILE__, __func__, "Winding mode is invalid, mode=%d\n", winding);
     }
 

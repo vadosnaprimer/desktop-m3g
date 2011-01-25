@@ -254,7 +254,7 @@ void Texture2D:: setWrapping (int wrap_s, int wrap_t)
  * Note: Texture2D should be rendered only at second rendering pass(pass=2).
  * In other cases, do nothing.
  */
-void Texture2D:: render (RenderState& state) const
+void Texture2D:: render_xxx (RenderState& state) const
 {
     if (state.pass != 2) {
         return;
@@ -269,7 +269,7 @@ void Texture2D:: render (RenderState& state) const
     glBindTexture   (GL_TEXTURE_2D, texobj);
 
     // マトリックスパレットの設定
-    Transformable:: render (state);
+    Transformable:: render_xxx (state);
 
     GLfloat color[4] = {((blend_color && 0x00ff0000) >> 16) / 255.f,
                         ((blend_color && 0x0000ff00) >> 8 ) / 255.f,

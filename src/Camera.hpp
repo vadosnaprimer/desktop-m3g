@@ -106,11 +106,6 @@ namespace m3g {
                      float to_x, float to_y, float to_z, 
                      float up_x, float up_y, float up_z);
 
-        /**
-         * @~English  Render this Camear object, for inner use.
-         * @~Japanese このCameraをレンダリングする内部使用の関数.
-         */
-        virtual void render (RenderState& state) const;
 
     protected:
 
@@ -125,6 +120,12 @@ namespace m3g {
          * @~Japanese 
          */
         virtual int animate_xxx (int world_time);
+
+        /**
+         * @~English  Render this Camear object, for inner use.
+         * @~Japanese このCameraをレンダリングする内部使用の関数.
+         */
+        virtual void render_xxx (RenderState& state) const;
 
     private:
         Camera (const Camera& cam);

@@ -271,7 +271,11 @@ void MorphingMesh:: setWeights (int num_weights, float* weights)
     updateMorphedVertices ();
 }
 
-void MorphingMesh:: render (RenderState& state) const
+/*
+ * Note: Mesh should be rendered only at 2nd rendering pass(pass=2).
+ *       In other cases, do nothing.
+ */
+void MorphingMesh:: render_xxx (RenderState& state) const
 {
     if (!isGlobalRenderingEnabled()) {
         return;
@@ -285,7 +289,7 @@ void MorphingMesh:: render (RenderState& state) const
     VertexBuffer* tmp = vertices;
     (const_cast<MorphingMesh*>(this))->vertices = morphed_vertices;
 
-    Mesh::render (state);
+    Mesh::render_xxx (state);
 
     (const_cast<MorphingMesh*>(this))->vertices = tmp;
 

@@ -190,7 +190,7 @@ void Appearance:: setTexture (int index, Texture2D* texture)
  * Note: Appearance should be rendered only at second rendering pass(pass=2).
  * In other cases, do nothing.
  */
-void Appearance:: render (RenderState& state) const
+void Appearance:: render_xxx (RenderState& state) const
 {
     if (state.pass != 2) {
         return;
@@ -198,25 +198,29 @@ void Appearance:: render (RenderState& state) const
 
     //cout << "Appearance: render\n";
 
-    if (fog)
+    if (fog) {
         fog->render (state);
-    else
+    } else {
         Fog:: renderX ();
+    }
 
-    if (material)
+    if (material) {
         material->render (state);
-    else
+    } else {
         Material:: renderX ();
+    }
 
-    if (compositing_mode)
+    if (compositing_mode) {
         compositing_mode->render (state);
-    else
+    } else {
         CompositingMode:: renderX ();
+    }
 
-    if (polygon_mode)
+    if (polygon_mode) {
         polygon_mode->render (state);
-    else
+    } else {
         PolygonMode:: renderX ();
+    }
 
     // ここのgl関数はTexture2Dの中に移動しようか？
     // 注意：テクスチャーマトリックスは独立に複数あるので

@@ -134,11 +134,12 @@ void CompositingMode:: setDepthWriteEnable (bool enable)
  * Note: CompositingMode should be rendered only at second rendering pass(pass=2).
  * In other cases, do nothing.
  */
-void CompositingMode:: render (RenderState& state) const
+void CompositingMode:: render_xxx (RenderState& state) const
 {
     if (state.pass != 2) {
         return;
     }
+    // これは何？？？
     if (this == NULL) {
         renderX ();
         return;

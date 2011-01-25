@@ -235,9 +235,11 @@ void* Image2D:: getOpenGLPointer () const
 }
 
 /**
- * (非公開) この関数は現在のフレームバッファーの内容をこのImag2Dへコピーする.
+ * メモ： (非公開)この関数は通常のrender()関数と異なり、
+ *        現在のフレームバッファーの内容をこのImag2Dへ取り込む.
+ *        別の名前にしたほうがいいだろう。
  */
-void Image2D:: render (RenderState& state) const
+void Image2D:: render_xxx (RenderState& state) const
 {
     unsigned int gl_format = getOpenGLFormat ();
     unsigned int gl_type   = GL_UNSIGNED_BYTE;

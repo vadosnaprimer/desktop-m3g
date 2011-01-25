@@ -125,12 +125,6 @@ namespace m3g {
         virtual std::ostream& print (std::ostream& out) const;
 
         /**
-         * @~English  Render this object, for inner use.
-         * @~Japanese このオブジェクトをレンダリングする内部使用の関数.
-         */
-        virtual void render (RenderState& state) const;
-
-        /**
          * @~English  Return OpenGL format, for inner use.
          * @~Japanese OpenGLの画像形式を返すM3G未定義の関数.
          */
@@ -141,6 +135,15 @@ namespace m3g {
          * @~Japanese 内部データへのポインターを返すM3G未定義の関数.
          */
         void* getOpenGLPointer () const;
+
+    protected:
+
+        /**
+         * @~English  
+         * @~Japanese 
+         */
+        virtual void render_xxx (RenderState& state) const;
+
 
     private:
         Image2D (const Image2D& img);
