@@ -26,24 +26,24 @@ Light:: ~Light ()
 
 Light* Light:: duplicate () const
 {
-    Light* lgh  = new Light;
-    this->Object3D     :: copy (lgh);
-    this->Node         :: copy (lgh);
-    this->Transformable:: copy (lgh);
-    this->Light        :: copy (lgh);
-    return lgh;
+    return duplicate_xxx (NULL);
 }
 
-void Light:: copy (Light* lgh) const
+Light* Light:: duplicate_xxx (Object3D* obj) const
 {
+    Light* lgh  = dynamic_cast<Light*>(obj); 
     if (lgh == NULL) {
-        throw NullPointerException (__FILE__, __func__, "Light is NULL.");
+        lgh = new Light;
     }
+    Node:: duplicate_xxx (lgh);
+
     lgh->mode        = mode;
     lgh->color       = color;
     lgh->intensity   = intensity;
     lgh->attenuation = attenuation;
     lgh->spot        = spot;
+
+    return lgh;
 }
 
 

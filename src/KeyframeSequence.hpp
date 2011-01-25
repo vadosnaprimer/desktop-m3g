@@ -81,13 +81,7 @@ namespace m3g {
          * @~English  Creates a duplicate of this Object3D. 
          * @~Japanese このオブジェクトの複製の作成.
          */
-        virtual KeyframeSequence* duplicate () const;
-
-        /**
-         * @~English  Copy this Object3D to specified Object3D, not defined by M3G. 
-         * @~Japanese このオブジェクトのデータを引数で指定されたオブジェクトにコピーするM3G非標準の関数.
-         */
-        void copy (KeyframeSequence* key_seq) const;
+        KeyframeSequence* duplicate () const;
 
         /**
          * @~English  Returns the number of components per keyframe in this ssequence.
@@ -173,6 +167,15 @@ namespace m3g {
          * @~Japanese 指定されたシーケンス時間のフレームを取得する内部使用の関数.
          */
         void getFrame (int sequence_time, float* value) const;
+
+
+    protected:
+
+        /**
+         * @~English  
+         * @~Japanese 
+         */
+        virtual KeyframeSequence* duplicate_xxx (Object3D* obj) const;
 
     private:
         KeyframeSequence (const KeyframeSequence& key_seq);

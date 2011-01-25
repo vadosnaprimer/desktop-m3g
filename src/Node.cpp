@@ -30,15 +30,17 @@ Node:: ~Node ()
 
 Node* Node:: duplicate () const
 {
-    Node* node = new Node;
-    this->Object3D     :: copy (node);
-    this->Transformable:: copy (node);
-    this->Node         :: copy (node);
-    return node;
+    return duplicate_xxx (NULL);
 }
 
-void Node:: copy (Node* node) const
+Node* Node:: duplicate_xxx (Object3D* obj) const
 {
+    Node* node = dynamic_cast<Node*>(obj);
+    if (node == NULL) {
+        node = new Node;
+    }
+    Transformable:: duplicate_xxx (node);
+
     node->parent           = NULL;
     node->rendering_enable = rendering_enable;
     node->picking_enable   = picking_enable;
@@ -48,7 +50,10 @@ void Node:: copy (Node* node) const
     node->y_alignment      = y_alignment;
 
     const_cast<Node*>(this)->duplicated       = node;
+
+    return node;
 }
+
 
 void Node:: addAnimationTrack_xxx (AnimationTrack* animation_track, bool accepted)
 {

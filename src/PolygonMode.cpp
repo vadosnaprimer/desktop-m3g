@@ -26,24 +26,27 @@ PolygonMode:: ~PolygonMode ()
 
 PolygonMode* PolygonMode:: duplicate () const
 {
-    PolygonMode* pmode = new PolygonMode;
-    this->Object3D   :: copy (pmode);
-    this->PolygonMode:: copy (pmode);
-    return pmode;
+    return duplicate_xxx (NULL);
 }
 
-void PolygonMode:: copy (PolygonMode* pmode) const
+PolygonMode* PolygonMode:: duplicate_xxx (Object3D* obj) const
 {
+    PolygonMode* pmode = dynamic_cast<PolygonMode*>(obj);
     if (pmode == NULL) {
-        throw NullPointerException (__FILE__, __func__, "PolyMode is NULL.");
+        pmode = new PolygonMode;
     }
+    Object3D:: duplicate_xxx (pmode);
+
     pmode->culling                = culling;
     pmode->winding                = winding;
     pmode->shading                = shading;
     pmode->two_sided_lighting     = two_sided_lighting;
     pmode->local_camera_lighting  = local_camera_lighting;
     pmode->perspective_correction = perspective_correction;
+
+    return pmode;
 }
+
 
 int PolygonMode:: getCulling () const
 {

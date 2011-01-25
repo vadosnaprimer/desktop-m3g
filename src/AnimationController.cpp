@@ -17,23 +17,26 @@ AnimationController:: ~AnimationController ()
 
 AnimationController* AnimationController:: duplicate () const
 {
-    AnimationController* anim_ctr = new AnimationController;
-    this->Object3D           :: copy (anim_ctr);
-    this->AnimationController:: copy (anim_ctr);
-    return anim_ctr;
+    return duplicate_xxx (NULL);
 }
 
-void AnimationController:: copy (AnimationController* anim_ctr) const
+AnimationController* AnimationController:: duplicate_xxx (Object3D* obj) const
 {
+    AnimationController* anim_ctr = dynamic_cast<AnimationController*>(obj);
     if (anim_ctr == NULL) {
-        throw NullPointerException (__FILE__, __func__, "AnimationController is NULL.");
+        anim_ctr = new AnimationController;
     }
+    Object3D:: duplicate_xxx (anim_ctr);
+
     anim_ctr->active_interval          = active_interval;
     anim_ctr->blending_weight          = blending_weight;
     anim_ctr->speed                    = speed;
     anim_ctr->reference_world_time    = reference_world_time;
     anim_ctr->reference_sequence_time = reference_sequence_time;
+
+    return anim_ctr;
 }
+
 
 int AnimationController:: getActiveIntervalEnd () const
 {

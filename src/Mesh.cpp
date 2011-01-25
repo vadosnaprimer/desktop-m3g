@@ -64,11 +64,20 @@ Mesh:: ~Mesh ()
 
 Mesh* Mesh:: duplicate () const
 {
-    Mesh* mesh = new Mesh (vertices, indices.size(), (IndexBuffer**)&indices[0], (Appearance**)&appearances[0]);
-    this->Object3D     :: copy (mesh);
-    this->Node         :: copy (mesh);
-    this->Transformable:: copy (mesh);
-    this->Mesh         :: copy (mesh);
+    return duplicate_xxx (NULL);
+}
+
+Mesh* Mesh:: duplicate_xxx (Object3D* obj) const
+{
+    Mesh* mesh = dynamic_cast<Mesh*>(obj);
+    if (mesh == NULL) {
+        mesh = new Mesh (vertices,
+                         indices.size(),
+                         (IndexBuffer**)&indices[0],
+                         (Appearance**)&appearances[0]);        
+    }
+    Node:: duplicate_xxx (mesh);
+
     return mesh;
 }
 
@@ -92,15 +101,6 @@ int Mesh:: getReferences_xxx (Object3D** references) const
     return n;  
 }
 
-
-
-void Mesh:: copy (Mesh* mesh) const
-{
-    if (mesh == NULL) {
-        throw NullPointerException (__FILE__, __func__, "Mesh is NULL.");
-    }
-    // vertices, indices, appearancesはコンストラクタで設定済み
-}
 
 int Mesh:: animate_xxx (int world_time)
 {

@@ -51,19 +51,17 @@ KeyframeSequence:: ~KeyframeSequence ()
 
 KeyframeSequence* KeyframeSequence:: duplicate () const
 {
-    KeyframeSequence* key_seq = new KeyframeSequence (keyframe_count, component_count, interp_type);
-    this->Object3D        :: copy (key_seq);
-    this->KeyframeSequence:: copy (key_seq);
-    return key_seq;
+    return duplicate_xxx (NULL);
 }
 
-void KeyframeSequence:: copy (KeyframeSequence* key_seq) const
+KeyframeSequence* KeyframeSequence:: duplicate_xxx (Object3D* obj) const
 {
+    KeyframeSequence* key_seq = dynamic_cast<KeyframeSequence*>(obj);
     if (key_seq == NULL) {
-        throw NullPointerException (__FILE__, __func__, "KeyframeSequence is NULL.");
+        key_seq = new KeyframeSequence (keyframe_count, component_count, interp_type);
     }
-    // interp_type, keyframes, keyframe_count, component_count
-    // はコンストラクタで設定済み
+    Object3D:: duplicate_xxx (key_seq);
+
     key_seq->repeat_mode     = repeat_mode;
     key_seq->duration        = duration;
     key_seq->valid_range     = valid_range;
@@ -73,7 +71,10 @@ void KeyframeSequence:: copy (KeyframeSequence* key_seq) const
                 keyframes[i].value,
                 sizeof(float)*component_count);
     }
+
+    return key_seq;
 }
+
 
 int KeyframeSequence:: getComponentCount () const
 {

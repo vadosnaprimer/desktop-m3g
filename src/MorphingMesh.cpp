@@ -88,20 +88,25 @@ MorphingMesh:: ~MorphingMesh ()
 
 MorphingMesh* MorphingMesh:: duplicate () const
 {
-    MorphingMesh* mesh = new MorphingMesh (vertices, morph_targets.size(), (VertexBuffer**)&morph_targets[0],
-                                           indices.size(), (IndexBuffer**)&indices[0], (Appearance**)&appearances[0]);
-    this->Object3D     :: copy (mesh);
-    this->Node         :: copy (mesh);
-    this->Transformable:: copy (mesh);
-    this->Mesh         :: copy (mesh);
-    this->MorphingMesh :: copy (mesh);
-    return mesh;
+    return duplicate_xxx (NULL);
 }
 
-void MorphingMesh:: copy (MorphingMesh* mesh) const
+MorphingMesh* MorphingMesh:: duplicate_xxx (Object3D* obj) const
 {
-    // morhped_verticesとmorph_targetsはコンストラクタでコピー済み
+    MorphingMesh* mesh = dynamic_cast<MorphingMesh*>(obj);
+    if (mesh == NULL) {
+        mesh = new MorphingMesh (vertices,
+                                 morph_targets.size(),
+                                 (VertexBuffer**)&morph_targets[0],
+                                 indices.size(),
+                                 (IndexBuffer**)&indices[0],
+                                 (Appearance**)&appearances[0]);
+    }
+    Mesh:: duplicate_xxx (mesh);
+
     mesh->morph_weights    = morph_weights;
+
+    return mesh;
 }
 
 

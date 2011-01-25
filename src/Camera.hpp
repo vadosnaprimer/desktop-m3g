@@ -51,15 +51,7 @@ namespace m3g {
          * @~English  Creates a duplicate of this Object3D. 
          * @~Japanese このオブジェクトの複製の作成.
          */
-        virtual Camera* duplicate () const;
-
-        /**
-         * @~English  Copy this Object3D to specified Object3D, not defined by M3G. 
-         * @~Japanese このオブジェクトのデータを引数で指定されたオブジェクトにコピーするM3G非標準の関数.
-         */
-        void copy (Camera* cam) const;
-
-
+        Camera* duplicate () const;
 
         /**
          * @~English  Gets the current projection matrix and type.
@@ -120,6 +112,12 @@ namespace m3g {
          * @~Japanese 
          */
         virtual int animate_xxx (int world_time);
+
+        /**
+         * @~English  Creates a duplicate of this Object3D. 
+         * @~Japanese このオブジェクトの複製の作成.
+         */
+        virtual Camera* duplicate_xxx (Object3D* obj) const;
 
         /**
          * @~English  Render this Camear object, for inner use.

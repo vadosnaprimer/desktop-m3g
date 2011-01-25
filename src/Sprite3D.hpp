@@ -50,15 +50,7 @@ namespace m3g {
          * @~English  Creates a duplicate of this Object3D. 
          * @~Japanese このオブジェクトの複製の作成.
          */
-        virtual Sprite3D* duplicate () const;
-
-
-
-        /**
-         * @~English  Copy this Object3D to specified Object3D, not defined by M3G. 
-         * @~Japanese このオブジェクトのデータを引数で指定されたオブジェクトにコピーするM3G非標準の関数.
-         */
-        void copy (Sprite3D* spr) const;
+        Sprite3D* duplicate () const;
 
         /**
          * @~English  Gets the current Appearance of this Sprite3D.
@@ -203,6 +195,15 @@ namespace m3g {
          * @~Japanese 右上のテクスチャー座標を計算して取得.
          */
         Vector getTexCoord1 () const;
+
+    protected:
+
+        /**
+         * @~English  
+         * @~Japanese 
+         */
+        virtual Sprite3D* duplicate_xxx (Object3D* obj) const;
+
 
     private:
         Sprite3D (const Sprite3D& spr);

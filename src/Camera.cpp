@@ -27,25 +27,25 @@ Camera:: ~Camera ()
 
 Camera* Camera:: duplicate () const
 {
-    Camera* cam = new Camera;
-    this->Object3D     :: copy (cam);
-    this->Transformable:: copy (cam);
-    this->Node         :: copy (cam);
-    this->Camera       :: copy (cam);
-    return cam;
+    return duplicate_xxx (NULL);
 }
 
-void Camera:: copy (Camera* cam) const
+Camera* Camera:: duplicate_xxx (Object3D* obj) const
 {
+    Camera* cam = dynamic_cast<Camera*>(obj);
     if (cam == NULL) {
-        throw NullPointerException (__FILE__, __func__, "Camera is NULL.");
+        cam = new Camera;
     }
+    Node:: duplicate_xxx (cam);
+
     cam->type         = type;
     cam->fovy         = fovy;
     cam->aspect_ratio = aspect_ratio;
     cam->near         = near;
     cam->far          = far;
     cam->projection   = projection;
+
+    return cam;
 }
 
 void Camera:: addAnimationTrack_xxx (AnimationTrack* animation_track, bool accepted)

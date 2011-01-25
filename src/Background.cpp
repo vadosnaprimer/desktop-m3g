@@ -37,9 +37,24 @@ Background:: ~Background ()
 
 Background* Background:: duplicate () const
 {
-    Background* bg = new Background;
-    this->Object3D  :: copy (bg);
-    this->Background:: copy (bg);
+    return duplicate_xxx (NULL);
+}
+
+Background* Background:: duplicate_xxx (Object3D* obj) const
+{
+    Background* bg = dynamic_cast<Background*>(obj);
+    if (bg == NULL) {
+        bg = new Background;
+    }
+    Object3D:: duplicate_xxx (bg);
+
+    bg->color_clear_enable = color_clear_enable;
+    bg->depth_clear_enable = depth_clear_enable;
+    bg->color              = color;
+    bg->mode               = mode;
+    bg->setImage (image);
+    bg->crop               = crop;
+
     return bg;
 }
 
@@ -52,19 +67,6 @@ int Background:: getReferences_xxx (Object3D** references) const
         references ? references[n] = image, n++ : n++;
 
     return n;
-}
-
-void Background:: copy (Background* bg) const
-{
-    if (bg == NULL) {
-        throw NullPointerException (__FILE__, __func__, "Background is NULL.");
-    }
-    bg->color_clear_enable = color_clear_enable;
-    bg->depth_clear_enable = depth_clear_enable;
-    bg->color              = color;
-    bg->mode               = mode;
-    bg->setImage (image);
-    bg->crop               = crop;
 }
 
 

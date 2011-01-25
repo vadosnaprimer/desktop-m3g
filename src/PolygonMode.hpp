@@ -68,13 +68,7 @@ namespace m3g {
          * @~English  Creates a duplicate of this Object3D. 
          * @~Japanese このオブジェクトの複製の作成.
          */
-        virtual PolygonMode* duplicate () const;
-
-        /**
-         * @~English  Copy this Object3D to specified Object3D, not defined by M3G. 
-         * @~Japanese このオブジェクトのデータを引数で指定されたオブジェクトにコピーするM3G非標準の関数.
-         */
-        void copy (PolygonMode* pmode) const;
+        PolygonMode* duplicate () const;
 
         /**
          * @~English  Retrieves the current poygon culling mode.
@@ -163,8 +157,14 @@ namespace m3g {
     protected:
 
         /**
-         * @~English   Render this object, for inner use.
-         * @~Japanese  このオブジェクトをレンダリングする内部使用の関数.
+         * @~English  
+         * @~Japanese 
+         */
+        virtual PolygonMode* duplicate_xxx (Object3D* obj) const;
+
+        /**
+         * @~English   
+         * @~Japanese  
          */
         virtual void render_xxx (RenderState& state) const;
 

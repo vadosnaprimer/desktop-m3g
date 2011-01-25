@@ -56,13 +56,7 @@ namespace m3g {
          * @~English  Creates a duplicate of this Object3D. 
          * @~Japanese このオブジェクトの複製の作成.
          */
-        virtual Transformable* duplicate () const;
-
-        /**
-         * @~English  Copy this Object3D to specified Object3D, not defined by M3G. 
-         * @~Japanese このオブジェクトのデータを引数で指定されたオブジェクトにコピーするM3G非標準の関数.
-         */
-        void copy (Transformable* trans) const;
+        Transformable* duplicate () const;
 
         /**
          * @~English  Retrieves the composite transformation matrix of this Transformabls.
@@ -149,6 +143,7 @@ namespace m3g {
         virtual std::ostream& print (std::ostream& out) const;
 
     protected:
+
         /**
          * @~English
          * @~Japanese
@@ -166,6 +161,12 @@ namespace m3g {
          * @~Japanese 
          */
         virtual void render_xxx (RenderState& state) const;
+
+        /**
+         * @~English  
+         * @~Japanese 
+         */
+        virtual Transformable* duplicate_xxx (Object3D* obj) const;
 
 
     private:

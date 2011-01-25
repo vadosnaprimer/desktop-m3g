@@ -16,14 +16,18 @@ IndexBuffer:: ~IndexBuffer ()
 
 IndexBuffer* IndexBuffer:: duplicate () const
 {
-    IndexBuffer* ibuf = new IndexBuffer;
-    ibuf->Object3D   :: copy (ibuf);
-    ibuf->IndexBuffer:: copy (ibuf);
-    return ibuf;
+    return duplicate_xxx (NULL);
 }
 
-void IndexBuffer:: copy (IndexBuffer* ibuf) const
+IndexBuffer* IndexBuffer:: duplicate_xxx (Object3D* obj) const
 {
+    IndexBuffer* ibuf = dynamic_cast<IndexBuffer*>(obj);
+    if (ibuf == NULL) {
+        ibuf = new IndexBuffer;
+    }
+    Object3D:: duplicate_xxx (ibuf);
+
+    return ibuf;
 }
 
 

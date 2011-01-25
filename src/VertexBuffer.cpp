@@ -33,9 +33,38 @@ VertexBuffer:: ~VertexBuffer ()
 
 VertexBuffer* VertexBuffer:: duplicate () const
 {
-    VertexBuffer* vbuf = new VertexBuffer;
-    this->Object3D    :: copy (vbuf);
-    this->VertexBuffer:: copy (vbuf);
+    return duplicate_xxx (NULL);
+}
+
+VertexBuffer* VertexBuffer:: duplicate_xxx (Object3D* obj) const
+{
+    VertexBuffer* vbuf = dynamic_cast<VertexBuffer*>(obj);
+    if (vbuf == NULL) {
+        vbuf = new VertexBuffer;
+    }
+    Object3D:: duplicate_xxx (vbuf);
+
+    vbuf->positions = positions;
+    vbuf->normals   = normals;
+    vbuf->colors    = colors;
+    for (int i = 0; i < MAX_TEXTURE_UNITS; i++) {
+        vbuf->tex_coords[i] = tex_coords[i];
+    }
+    vbuf->positions_scale   = positions_scale;
+    vbuf->positions_bias[0] = positions_bias[0];
+    vbuf->positions_bias[1] = positions_bias[1];
+    vbuf->positions_bias[2] = positions_bias[2];
+    for (int i = 0; i < MAX_TEXTURE_UNITS; i++) {
+        vbuf->tex_coords_scale[i] = tex_coords_scale[i];
+    }
+    for (int i = 0; i < MAX_TEXTURE_UNITS; i++) {
+        vbuf->tex_coords_bias[i][0] = tex_coords_bias[i][0];
+        vbuf->tex_coords_bias[i][1] = tex_coords_bias[i][1];
+        vbuf->tex_coords_bias[i][2] = tex_coords_bias[i][2];
+    }
+    vbuf->default_color = default_color;
+    vbuf->node_alpha    = node_alpha;
+
     return vbuf;
 }
 
@@ -57,33 +86,6 @@ int VertexBuffer:: getReferences_xxx (Object3D** references) const
 
     return n;
 }
-
-
-
-void VertexBuffer:: copy (VertexBuffer* vbuf) const
-{
-    vbuf->positions = positions;
-    vbuf->normals   = normals;
-    vbuf->colors    = colors;
-    for (int i = 0; i < MAX_TEXTURE_UNITS; i++) {
-        vbuf->tex_coords[i] = tex_coords[i];
-    }
-    vbuf->positions_scale   = positions_scale;
-    vbuf->positions_bias[0] = positions_bias[0];
-    vbuf->positions_bias[1] = positions_bias[1];
-    vbuf->positions_bias[2] = positions_bias[2];
-    for (int i = 0; i < MAX_TEXTURE_UNITS; i++) {
-        vbuf->tex_coords_scale[i] = tex_coords_scale[i];
-    }
-    for (int i = 0; i < MAX_TEXTURE_UNITS; i++) {
-        vbuf->tex_coords_bias[i][0] = tex_coords_bias[i][0];
-        vbuf->tex_coords_bias[i][1] = tex_coords_bias[i][1];
-        vbuf->tex_coords_bias[i][2] = tex_coords_bias[i][2];
-    }
-    vbuf->default_color = default_color;
-    vbuf->node_alpha    = node_alpha;
-}
-
 
 void VertexBuffer:: addAnimationTrack_xxx (AnimationTrack* animation_track, bool accepted)
 {

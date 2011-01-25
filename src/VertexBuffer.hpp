@@ -37,14 +37,7 @@ namespace m3g {
          * @~English  Creates a duplicate of this Object3D. 
          * @~Japanese このオブジェクトの複製の作成.
          */
-        virtual VertexBuffer* duplicate () const;
-
-
-        /**
-         * @~English  Copy this Object3D to specified Object3D, not defined by M3G. 
-         * @~Japanese このオブジェクトのデータを引数で指定されたオブジェクトにコピーするM3G非標準の関数.
-         */
-        void copy (VertexBuffer* vbuf) const;
+        VertexBuffer* duplicate () const;
 
         /**
          * @~English  Gets the current color array.
@@ -138,11 +131,17 @@ namespace m3g {
          * @~English  
          * @~Japanese 
          */
+        virtual VertexBuffer* duplicate_xxx (Object3D* obj) const;
+
+        /**
+         * @~English  
+         * @~Japanese 
+         */
         virtual int getReferences_xxx (Object3D** references) const;
 
         /**
-         * @~English  Render this object, for inner use.
-         * @~Japanese このオブジェクトをレンダリングする内部使用の関数.
+         * @~English  
+         * @~Japanese 
          */
         virtual void render_xxx (RenderState& state) const;
 

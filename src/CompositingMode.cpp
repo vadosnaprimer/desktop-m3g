@@ -27,17 +27,17 @@ CompositingMode:: ~CompositingMode ()
 
 CompositingMode* CompositingMode:: duplicate () const
 {
-    CompositingMode* cmode = new CompositingMode;
-    this->Object3D       :: copy (cmode);
-    this->CompositingMode:: copy (cmode);
-    return cmode;
+    return duplicate_xxx (NULL);
 }
 
-void CompositingMode:: copy (CompositingMode* cmode) const
+CompositingMode* CompositingMode:: duplicate_xxx (Object3D* obj) const
 {
+    CompositingMode* cmode = dynamic_cast<CompositingMode*>(obj);
     if (cmode == NULL) {
-        throw NullPointerException (__FILE__, __func__, "CompositingMode is NULL.");
+        cmode = new CompositingMode;
     }
+    Object3D:: duplicate_xxx (cmode);
+
     cmode->blending_mode   = blending_mode;
     cmode->alpha_threshold = alpha_threshold;
     cmode->depth_offset    = depth_offset;
@@ -45,7 +45,10 @@ void CompositingMode:: copy (CompositingMode* cmode) const
     cmode->depth_write     = depth_write;
     cmode->color_write     = color_write;
     cmode->alpha_write     = alpha_write;
+
+    return cmode;
 }
+
 
 float CompositingMode:: getAlphaThreshold () const
 {

@@ -59,10 +59,22 @@ Texture2D:: ~Texture2D ()
 
 Texture2D* Texture2D:: duplicate () const
 {
-    Texture2D* tex  = new Texture2D (image);
-    this->Object3D     :: copy (tex);
-    this->Transformable:: copy (tex);
-    this->Texture2D    :: copy (tex);
+    return duplicate_xxx (NULL);
+}
+
+Texture2D* Texture2D:: duplicate_xxx (Object3D* obj) const
+{
+    Texture2D* tex  = dynamic_cast<Texture2D*>(obj);
+    if (tex == NULL) {
+        tex = new Texture2D (image);
+    }
+    Transformable:: duplicate_xxx (tex);
+
+    tex->wrapping      = wrapping;
+    tex->filter        = filter;
+    tex->blending_mode = blending_mode;
+    tex->blend_color   = blend_color;
+
     return tex;
 }
 
@@ -76,19 +88,6 @@ int Texture2D:: getReferences_xxx (Object3D** references) const
     
     return n;
 }
-
-
-void Texture2D:: copy (Texture2D* tex) const
-{
-    if (tex == NULL) {
-        throw NullPointerException (__FILE__, __func__, "Texture2D is NULL.");
-    }
-    tex->wrapping      = wrapping;
-    tex->filter        = filter;
-    tex->blending_mode = blending_mode;
-    tex->blend_color   = blend_color;
-}
-
 
 
 void Texture2D:: addAnimationTrack_xxx (AnimationTrack* animation_track, bool accepted)

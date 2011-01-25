@@ -20,21 +20,23 @@ Transformable:: ~Transformable ()
 
 Transformable* Transformable:: duplicate () const
 {
-    Transformable* trans = new Transformable;
-    this->Object3D     :: copy (trans);
-    this->Transformable:: copy (trans);
-    return trans;
+    return duplicate_xxx (NULL);
 }
 
-void Transformable:: copy (Transformable* trans) const
+Transformable* Transformable:: duplicate_xxx (Object3D* obj) const
 {
+    Transformable* trans = dynamic_cast<Transformable*>(obj);
     if (trans == NULL) {
-        throw NullPointerException (__FILE__, __func__, "Transformalbe is NULL.");
+        trans = new Transformable;
     }
+    Object3D:: duplicate_xxx (trans);
+
     trans->scaling     = scaling;
     trans->translation = translation;
     trans->orientation = orientation;
     trans->transform   = transform;
+
+    return trans;
 }
 
 

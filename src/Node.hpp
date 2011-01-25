@@ -71,13 +71,7 @@ namespace m3g {
          * @~English  Creates a duplicate of this Object3D. 
          * @~Japanese このオブジェクトの複製の作成.
          */
-        virtual Node* duplicate () const;
-
-        /**
-         * @~English  Copy this Object3D to specified Object3D, not defined by M3G. 
-         * @~Japanese このオブジェクトのデータを引数で指定されたオブジェクトにコピーするM3G非標準の関数.
-         */
-        void copy (Node* node) const;
+        Node* duplicate () const;
 
         /**
          * @~English   Applies alignments to this Node and its descendants.
@@ -231,6 +225,12 @@ namespace m3g {
          * @~Japanese 
          */
         virtual int animate_xxx (int world_time);
+
+        /**
+         * @~English  
+         * @~Japanese 
+         */
+        virtual Node* duplicate_xxx (Object3D* obj) const;
 
         /**
          * @~English  

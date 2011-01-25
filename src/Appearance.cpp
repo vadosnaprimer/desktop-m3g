@@ -28,9 +28,24 @@ Appearance:: ~Appearance ()
 
 Appearance* Appearance:: duplicate () const
 {
-    Appearance* app = new Appearance;
-    this->Object3D  :: copy (app);
-    this->Appearance:: copy (app);
+    return duplicate_xxx (NULL);
+}
+
+Appearance* Appearance:: duplicate_xxx (Object3D* obj) const
+{
+    Appearance* app = dynamic_cast<Appearance*>(obj);
+    if (app == NULL) {
+        app = new Appearance;
+    }
+    Object3D:: duplicate_xxx (app);
+
+    app->layer            = layer;
+    app->polygon_mode     = polygon_mode;
+    app->compositing_mode = compositing_mode;
+    app->material         = material;
+    app->textures         = textures;
+    app->fog              = fog;
+
     return app;
 }
 
@@ -52,20 +67,6 @@ int Appearance:: getReferences_xxx (Object3D** references) const
         references ? references[n] = fog, n++ : n++;
 
     return n;
-}
-
-
-void Appearance:: copy (Appearance* app) const
-{
-    if (app == NULL) {
-        throw NullPointerException (__FILE__, __func__, "Appearance is NULL.");
-    }
-    app->layer            = layer;
-    app->polygon_mode     = polygon_mode;
-    app->compositing_mode = compositing_mode;
-    app->material         = material;
-    app->textures         = textures;
-    app->fog              = fog;
 }
 
 int Appearance:: animate_xxx (int world_time)

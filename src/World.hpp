@@ -36,14 +36,8 @@ namespace m3g {
          * @~English  Creates a duplicate of this Object3D. 
          * @~Japanese このオブジェクトの複製の作成.
          */
-        virtual World* duplicate () const;
+        World* duplicate () const;
 
-
-        /**
-         * @~English  Copy this Object3D to specified Object3D, not defined by M3G. 
-         * @~Japanese このオブジェクトのデータを引数で指定されたオブジェクトにコピーするM3G非標準の関数.
-         */
-        void copy (World* wld) const;
 
         /**
          * @~English  Gets the currently active cameara.
@@ -78,10 +72,16 @@ namespace m3g {
     protected:
 
         /**
-         * @~English  Updates all animated properties in this Object3D and all Object3Ds that are reachable from this Object3D.
-         * @~Japanese このObject3D自身とここから到達できるObject3Dのアニメーテッドプロパティを更新する.
+         * @~English  
+         * @~Japanese 
          */
         virtual int animate_xxx (int world_time);
+
+        /**
+         * @~English  
+         * @~Japanese 
+         */
+        virtual World* duplicate_xxx (Object3D* obj) const;
 
         /**
          * @~English  
@@ -90,8 +90,8 @@ namespace m3g {
         virtual int getReferences_xxx (Object3D** references) const;
 
         /**
-         * @~English  Render this object.
-         * @~Japanese このノードをレンダリングする内部使用の関数.
+         * @~English  
+         * @~Japanese 
          */
         virtual void render_xxx (RenderState& state) const;
 

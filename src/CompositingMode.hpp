@@ -65,19 +65,11 @@ namespace m3g {
          */
         virtual ~CompositingMode ();
 
-
         /**
          * @~English  Creates a duplicate of this Object3D. 
          * @~Japanese このオブジェクトの複製の作成.
          */
-        virtual CompositingMode* duplicate () const;
-
-
-        /**
-         * @~English  Copy this Object3D to specified Object3D, not defined by M3G. 
-         * @~Japanese このオブジェクトのデータを引数で指定されたオブジェクトにコピーするM3G非標準の関数.
-         */
-        void copy (CompositingMode* cmode) const;
+        CompositingMode* duplicate () const;
 
         /**
          * @~English  Retrieves the current alpha testing threashold.
@@ -182,6 +174,12 @@ namespace m3g {
         static void renderX ();
 
     protected:
+
+        /**
+         * @~English  
+         * @~Japanese 
+         */
+        virtual CompositingMode* duplicate_xxx (Object3D* obj) const;
 
         /**
          * @~English  

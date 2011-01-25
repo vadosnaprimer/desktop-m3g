@@ -161,13 +161,8 @@ namespace m3g {
          * @~English  Creates a duplicate of this Object3D. 
          * @~Japanese このオブジェクトの複製の作成.
          */
-        virtual AnimationTrack* duplicate () const;
+        AnimationTrack* duplicate () const;
 
-        /**
-         * @~English  Copy this Object3D to specified Object3D, not defined by M3G. 
-         * @~Japanese このオブジェクトのデータを引数で指定されたオブジェクトにコピーするM3G非標準の関数.
-         */
-        void copy (AnimationTrack* anim_track) const;
 
         /**
          * @~English  Retrieves the animation controller used for 
@@ -203,6 +198,12 @@ namespace m3g {
         virtual std::ostream& print (std::ostream& out) const;
 
     protected:
+
+        /**
+         * @~English  
+         * @~Japanese 
+         */
+        AnimationTrack* duplicate_xxx (Object3D* obj) const;
 
         /**
          * @~English  

@@ -72,14 +72,7 @@ namespace m3g {
          * @~English  Creates a duplicate of this Object3D. 
          * @~Japanese このオブジェクトの複製の作成.
          */
-        virtual Image2D* duplicate () const;
-
-        /**
-         * @~English  Copy this Object3D to specified Object3D, not defined by M3G. 
-         * @~Japanese このオブジェクトのデータを引数で指定されたオブジェクトにコピーするM3G非標準の関数.
-         */
-        void copy (Image2D* img) const;
-
+        Image2D* duplicate () const;
 
         /**
          * @~English  Gets the internal format of this Image2D.
@@ -137,6 +130,12 @@ namespace m3g {
         void* getOpenGLPointer () const;
 
     protected:
+
+        /**
+         * @~English  Creates a duplicate of this Object3D. 
+         * @~Japanese このオブジェクトの複製の作成.
+         */
+        virtual Image2D* duplicate_xxx (Object3D* obj) const;
 
         /**
          * @~English  

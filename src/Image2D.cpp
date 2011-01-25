@@ -87,23 +87,23 @@ Image2D:: ~Image2D ()
 
 Image2D* Image2D:: duplicate () const
 {
-    Image2D* img;
-    if (immutable)
-        img = new Image2D (format, width, height, image);
-    else
-        img = new Image2D (format, width, height);
-    img->Object3D:: copy (img);
-    img->Image2D :: copy (img);
+    return duplicate_xxx (NULL);
+}
+
+Image2D* Image2D:: duplicate_xxx (Object3D* obj) const
+{
+    Image2D* img = dynamic_cast<Image2D*>(obj);
+    if (img == NULL) {
+        if (immutable)
+            img = new Image2D (format, width, height, image);
+        else
+            img = new Image2D (format, width, height);
+    }
+    Object3D:: duplicate_xxx (img);
+
     return img;
 }
 
-void Image2D:: copy (Image2D* img) const
-{
-    if (img == NULL) {
-        throw NullPointerException (__FILE__, __func__, "Image is NULL.");
-    }
-    // すべてコンストラクタで設定済み
-}
 
 int Image2D:: getFormat () const
 {

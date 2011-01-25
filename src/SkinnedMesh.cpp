@@ -121,13 +121,28 @@ SkinnedMesh:: ~SkinnedMesh ()
 
 SkinnedMesh* SkinnedMesh:: duplicate () const
 {
-    Group*       skl  = skeleton->duplicate ();
-    SkinnedMesh* mesh = new SkinnedMesh (vertices, indices.size(), (IndexBuffer**)&indices[0], (Appearance**)&appearances[0], skl);
-    this->Object3D     :: copy (mesh);
-    this->Transformable:: copy (mesh);
-    this->Node         :: copy (mesh);
-    this->Mesh         :: copy (mesh);
-    this->SkinnedMesh  :: copy (mesh);
+    return duplicate_xxx (NULL);
+}
+
+SkinnedMesh* SkinnedMesh:: duplicate_xxx (Object3D* obj) const
+{
+    SkinnedMesh* mesh = dynamic_cast<SkinnedMesh*>(obj);
+    if (mesh == NULL) {
+        Group* skl  = skeleton->duplicate ();
+        mesh = new SkinnedMesh (vertices,
+                                indices.size(),
+                                (IndexBuffer**)&indices[0],
+                                (Appearance**)&appearances[0],
+                                skl);
+    }
+    Mesh:: duplicate_xxx (mesh);
+
+    mesh->bone_weights = bone_weights;
+    mesh->bind_poses   = bind_poses;
+    for (int i = 0; i < (int)bind_poses.size(); i++) {
+        mesh->bind_poses[i].bone = bind_poses[i].bone->getDuplicatedNode();
+    }
+
     return mesh;
 }
 
@@ -140,20 +155,6 @@ int SkinnedMesh:: getReferences_xxx (Object3D** references) const
 
     return n;
 }
-
-
-
-
-void SkinnedMesh:: copy (SkinnedMesh* mesh) const
-{
-    // skeletonとskinned_verticesはコンストラクタで処理済み
-    mesh->bone_weights = bone_weights;
-    mesh->bind_poses   = bind_poses;
-    for (int i = 0; i < (int)bind_poses.size(); i++) {
-        mesh->bind_poses[i].bone = bind_poses[i].bone->getDuplicatedNode();
-    }
-}
-
 
 int SkinnedMesh:: animate_xxx (int world_time)
 {

@@ -84,20 +84,21 @@ TriangleStripArray:: ~TriangleStripArray ()
 
 TriangleStripArray* TriangleStripArray:: duplicate () const
 {
-    TriangleStripArray* tris = new TriangleStripArray (indices, strips.size(), (int*)&strips[0]);
-    tris->Object3D          :: copy (tris);
-    tris->IndexBuffer       :: copy (tris);
-    tris->TriangleStripArray:: copy (tris);
-    return tris;
+    return duplicate_xxx (NULL);
 }
 
-void TriangleStripArray:: copy (TriangleStripArray* tris) const
+TriangleStripArray* TriangleStripArray:: duplicate_xxx (Object3D* obj) const
 {
+    TriangleStripArray* tris = dynamic_cast<TriangleStripArray*>(obj);
     if (tris == NULL) {
-        throw NullPointerException (__FILE__, __func__, "TriangleStripArray is NULL.");
+        tris = new TriangleStripArray (indices, strips.size(), (int*)&strips[0]);
     }
+    IndexBuffer:: duplicate_xxx (tris);
+
     tris->indices = indices;
     tris->strips  = strips;
+
+    return tris;
 }
 
 

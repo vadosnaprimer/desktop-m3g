@@ -24,18 +24,23 @@ Fog:: ~Fog ()
 
 Fog* Fog:: duplicate () const
 {
-    Fog* fog = new Fog;
-    this->Object3D:: copy (fog);
-    this->Fog     :: copy (fog);
-    return fog;
+    return duplicate_xxx (NULL);
 }
 
-void Fog:: copy (Fog* fog) const
+Fog* Fog:: duplicate_xxx (Object3D* obj) const
 {
+    Fog* fog = dynamic_cast<Fog*>(obj);
+    if (fog == NULL) {
+        fog = new Fog;
+    }
+    Object3D:: duplicate_xxx (fog);
+
     fog->mode     = mode;
     fog->color    = color;
     fog->density  = density;
     fog->distance = distance;
+
+    return fog;
 }
 
 void Fog:: addAnimationTrack_xxx (AnimationTrack* animation_track, bool accepted)

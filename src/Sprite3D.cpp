@@ -55,11 +55,20 @@ Sprite3D:: ~Sprite3D ()
 
 Sprite3D* Sprite3D:: duplicate () const
 {
-    Sprite3D* spr = new Sprite3D (scaled, image, appearance);
-    this->Object3D     :: copy (spr);
-    this->Transformable:: copy (spr);
-    this->Node         :: copy (spr);
-    this->Sprite3D     :: copy (spr);
+    return duplicate_xxx (NULL);
+}
+
+Sprite3D* Sprite3D:: duplicate_xxx (Object3D* obj) const
+{
+    Sprite3D* spr = dynamic_cast<Sprite3D*>(obj);
+    if (spr == NULL) {
+        spr = new Sprite3D (scaled, image, appearance);
+    }
+
+    Node:: duplicate_xxx (spr);
+
+    spr->crop       = crop;
+
     return spr;
 }
 
@@ -75,17 +84,6 @@ int Sprite3D:: getReferences_xxx (Object3D** references) const
 
     return n;
 }
-
-
-void Sprite3D:: copy (Sprite3D* spr) const
-{
-    if (spr == NULL) {
-        throw NullPointerException (__FILE__, __func__, "Sprite3D is NULL.");
-    }
-    // scaled, image, appearanceはコンストラクタで設定済み
-    spr->crop       = crop;
-}
-
 
 void Sprite3D:: addAnimationTrack_xxx (AnimationTrack* animation_track, bool accepted)
 {

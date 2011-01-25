@@ -59,25 +59,24 @@ VertexArray:: VertexArray () :
 
 VertexArray* VertexArray:: duplicate () const
 {
-    VertexArray* varry = new VertexArray (vertex_count, component_count, component_size);
-    this->Object3D   :: copy (varry);
-    this->VertexArray:: copy (varry);
-    return varry;
+    return duplicate_xxx (NULL);
 }
 
-void VertexArray:: copy (VertexArray* varry) const
+VertexArray* VertexArray:: duplicate_xxx (Object3D* obj) const
 {
-    if (varry->component_count != component_count ||
-        varry->component_size  != component_size ||
-        varry->vertex_count    != vertex_count) {
-        throw IllegalArgumentException (__FILE__, __func__, "VertexArray size is invalid.\n");
+    VertexArray* varry = dynamic_cast<VertexArray*>(obj);
+    if (varry == NULL) {
+        varry = new VertexArray (vertex_count, component_count, component_size);
     }
-    
+    Object3D:: duplicate_xxx (obj);
+
     switch (component_size) {
-    case 1: varry->set (0, vertex_count, char_values); break;
+    case 1: varry->set (0, vertex_count, char_values ); break;
     case 2: varry->set (0, vertex_count, short_values); break;
     case 4: varry->set (0, vertex_count, float_values); break;
     }
+
+    return varry;
 }
 
 

@@ -50,15 +50,8 @@ namespace m3g {
          * @~English  Creates a duplicate of this Object3D. 
          * @~Japanese このオブジェクトの複製の作成.
          */
-        virtual MorphingMesh* duplicate () const;
+        MorphingMesh* duplicate () const;
 
-
-
-        /**
-         * @~English  Copy this Object3D to specified Object3D, not defined by M3G. 
-         * @~Japanese このオブジェクトのデータを引数で指定されたオブジェクトにコピーするM3G非標準の関数.
-         */
-        void copy (MorphingMesh* mesh) const;
 
 
         /**
@@ -104,6 +97,12 @@ namespace m3g {
          * @~Japanese 
          */
         virtual int animate_xxx (int world_time);
+
+        /**
+         * @~English  
+         * @~Japanese 
+         */
+        virtual MorphingMesh* duplicate_xxx (Object3D* obj) const;
 
         /**
          * @~English  

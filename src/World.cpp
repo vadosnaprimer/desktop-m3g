@@ -23,21 +23,27 @@ World:: ~World ()
 
 World* World:: duplicate () const
 {
-    World* wld   = new World;
-    this->Object3D     :: copy (wld);
-    this->Transformable:: copy (wld);
-    this->Node         :: copy (wld);
-    this->Group        :: copy (wld);
-    this->World        :: copy (wld);
+    return duplicate_xxx (NULL);
+}
+
+World* World:: duplicate_xxx (Object3D* obj) const
+{
+    World* wld   = dynamic_cast<World*>(obj);
+    if (wld == NULL) {
+        wld = new World;
+    }
+    Group:: duplicate_xxx (wld);
+
+    if (background) {
+        wld->background = background->duplicate ();
+    }
+    if (active_camera) {
+        wld->active_camera = dynamic_cast<Camera*>(active_camera->getDuplicatedNode());
+    }
+
     return wld;
 }
 
-
-void World:: copy (World* wld) const
-{
-    wld->background = (background == NULL) ? NULL : background->duplicate ();
-    wld->active_camera     = (active_camera     == NULL) ? NULL : dynamic_cast<Camera*>(active_camera->getDuplicatedNode());
-}
 
 int World:: animate_xxx (int world_time)
 {
@@ -46,7 +52,7 @@ int World:: animate_xxx (int world_time)
     if (background) {
         background->animate (world_time);
     }
-    // don't call active_camera->animate ();
+    // shoud not call active_camera->animate ();
 
     return 0;
 }
