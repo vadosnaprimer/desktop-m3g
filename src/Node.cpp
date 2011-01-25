@@ -66,7 +66,12 @@ void Node:: addAnimationTrack_xxx (AnimationTrack* animation_track, bool accepte
     Transformable:: addAnimationTrack_xxx (animation_track, accepted);
 }
 
-void Node:: align (Node* reference)
+void Node:: align (const Node* reference)
+{
+    align_xxx (reference);
+}
+
+void Node:: align_xxx (const Node* reference)
 {
     Matrix Rz, Ry;
     Vector tz(0,0,1), ty(0,1,0);
@@ -74,7 +79,7 @@ void Node:: align (Node* reference)
 
     if (z_alignment.target == ORIGIN) {
 
-        Node* z_reference = (z_alignment.reference != NULL) ? z_alignment.reference : reference;
+        const Node* z_reference = (z_alignment.reference != NULL) ? z_alignment.reference : reference;
         if (z_reference != NULL) {
             Transform t;
             z_reference->getCompositeTransform (&t);
@@ -89,7 +94,7 @@ void Node:: align (Node* reference)
 
         if (y_alignment.target == ORIGIN) {
 
-            Node* y_reference = (y_alignment.reference != NULL) ? y_alignment.reference : reference;
+            const Node* y_reference = (y_alignment.reference != NULL) ? y_alignment.reference : reference;
             if (y_reference != NULL) {
                 Transform t;
                 y_reference->getCompositeTransform (&t);
@@ -108,7 +113,7 @@ void Node:: align (Node* reference)
 
     } else if (y_alignment.target == ORIGIN) {
 
-        Node* y_reference = (y_alignment.reference != NULL) ? y_alignment.reference : reference;
+        const Node* y_reference = (y_alignment.reference != NULL) ? y_alignment.reference : reference;
         if (y_reference != NULL) {
             Transform t;
             y_reference->getCompositeTransform (&t);

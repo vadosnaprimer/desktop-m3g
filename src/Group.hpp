@@ -32,11 +32,6 @@ namespace m3g {
         virtual ~Group ();
 
         /**
-         *
-         */
-        virtual void align (Node* reference);
-
-        /**
          * @~English  Creates a duplicate of this Object3D. 
          * @~Japanese このオブジェクトの複製の作成.
          */
@@ -95,6 +90,12 @@ namespace m3g {
         virtual std::ostream& print (std::ostream& out) const;
 
     protected:
+
+        /**
+         * @~Enslish  
+         * @~Japanese 
+         */
+        virtual void align_xxx (const Node* reference);
 
         /**
          * @~Enslish  

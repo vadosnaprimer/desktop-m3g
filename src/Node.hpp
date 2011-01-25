@@ -77,7 +77,7 @@ namespace m3g {
          * @~English   Applies alignments to this Node and its descendants.
          * @~Japanese このノードと子孫ノードにアライメントを適応する.
          */
-        virtual void align (Node* reference);
+        void align (const Node* reference);
 
 
         /**
@@ -219,6 +219,13 @@ namespace m3g {
          * @~Japanese 
          */
         virtual void addAnimationTrack_xxx (AnimationTrack* animation_track, bool accepted);
+
+        /**
+         * @~English  Implement align().
+         * @~Japanese アライメントを実行するalign()関数の実装.
+         * @param[in] reference  実行時にアライメント対象を指定する時のノード.
+         */
+        virtual void align_xxx (const Node* reference);
 
         /**
          * @~English  

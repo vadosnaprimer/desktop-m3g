@@ -77,11 +77,11 @@ void Group:: addChild (Node* child)
     children.push_back (child);
 }
 
-void Group:: align (Node* reference)
+void Group:: align_xxx (const Node* reference)
 {
     //cout << "Group: align, ref=0x" << reference << "\n";
 
-    Node:: align (reference);
+    Node:: align_xxx (reference);
     for (int i = 0; i < (int)children.size(); i++) {
         children[i]->align (reference);
     }
