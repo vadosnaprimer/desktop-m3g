@@ -118,7 +118,7 @@ int VertexBuffer:: animate_xxx (int world_time)
         switch (track->getTargetProperty()) {
         case AnimationTrack::COLOR: {
             float value[3] = {1,1,1};
-            keyframe->getFrame (sequence_time, value);
+            keyframe->sample (sequence_time, value);
             rgb[0] += value[0] * weight;
             rgb[1] += value[1] * weight;
             rgb[2] += value[2] * weight;
@@ -128,7 +128,7 @@ int VertexBuffer:: animate_xxx (int world_time)
         }
         case AnimationTrack::ALPHA: {
             float value[1] = {1};
-            keyframe->getFrame (sequence_time, value);
+            keyframe->sample (sequence_time, value);
             new_alpha += value[0] * weight;
             is_alpha_modefied = true;
             //cout << "VertexBuffer: alpha --> " << alpha << "\n";

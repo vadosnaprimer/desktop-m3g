@@ -57,25 +57,25 @@ TEST (KeyframeSequence_interpolate_step)
 
     float value;
 
-    keyframe->getFrame (-50, &value);
+    keyframe->sample (-50, &value);
     CHECK_CLOSE (0, value, 0.00001);
 
-    keyframe->getFrame (0, &value);
+    keyframe->sample (0, &value);
     CHECK_CLOSE (0, value, 0.00001);
 
-    keyframe->getFrame (50, &value);
+    keyframe->sample (50, &value);
     CHECK_CLOSE (0, value, 0.00001);
 
-    keyframe->getFrame (100, &value);
+    keyframe->sample (100, &value);
     CHECK_CLOSE (1, value, 0.00001);
 
-    keyframe->getFrame (150, &value);
+    keyframe->sample (150, &value);
     CHECK_CLOSE (1, value, 0.00001);
 
-    keyframe->getFrame (200, &value);
+    keyframe->sample (200, &value);
     CHECK_CLOSE (3, value, 0.00001);
 
-    keyframe->getFrame (250, &value);
+    keyframe->sample (250, &value);
     CHECK_CLOSE (3, value, 0.00001);
 }
 
@@ -94,25 +94,25 @@ TEST (KeyframeSequence_interpolate_linear_constant)
 
     float value;
 
-    keyframe->getFrame (-50, &value);
+    keyframe->sample (-50, &value);
     CHECK_CLOSE (0, value, 0.00001);
 
-    keyframe->getFrame (0, &value);
+    keyframe->sample (0, &value);
     CHECK_CLOSE (0, value, 0.00001);
 
-    keyframe->getFrame (50, &value);
+    keyframe->sample (50, &value);
     CHECK_CLOSE (0.5, value, 0.00001);
 
-    keyframe->getFrame (100, &value);
+    keyframe->sample (100, &value);
     CHECK_CLOSE (1, value, 0.00001);
 
-    keyframe->getFrame (150, &value);
+    keyframe->sample (150, &value);
     CHECK_CLOSE (2, value, 0.00001);
 
-    keyframe->getFrame (200, &value);
+    keyframe->sample (200, &value);
     CHECK_CLOSE (3, value, 0.00001);
 
-    keyframe->getFrame (250, &value);
+    keyframe->sample (250, &value);
     CHECK_CLOSE (3, value, 0.00001);
 }
 
@@ -131,25 +131,25 @@ TEST (KeyframeSequence_interpolate_linear_loop)
 
     float value;
 
-    keyframe->getFrame (-50, &value);
+    keyframe->sample (-50, &value);
     CHECK_CLOSE (0, value, 0.00001);
 
-    keyframe->getFrame (0, &value);
+    keyframe->sample (0, &value);
     CHECK_CLOSE (0, value, 0.00001);
 
-    keyframe->getFrame (50, &value);
+    keyframe->sample (50, &value);
     CHECK_CLOSE (0.5, value, 0.00001);
 
-    keyframe->getFrame (100, &value);
+    keyframe->sample (100, &value);
     CHECK_CLOSE (1, value, 0.00001);
 
-    keyframe->getFrame (150, &value);
+    keyframe->sample (150, &value);
     CHECK_CLOSE (2, value, 0.00001);
 
-    keyframe->getFrame (200, &value);
+    keyframe->sample (200, &value);
     CHECK_CLOSE (3, value, 0.00001);
 
-    keyframe->getFrame (250, &value);
+    keyframe->sample (250, &value);
     CHECK_CLOSE (3, value, 0.00001);
 }
 

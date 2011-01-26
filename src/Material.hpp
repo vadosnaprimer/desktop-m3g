@@ -16,29 +16,29 @@ namespace m3g {
     public:
         /**
          * @~English  A parameter to setColor and getColor, specifying that the ambient color component.
-         * @~Japanese 環境光(アンビエント)を表す定数.
+         * @~Japanese 環境色(アンビエント)を表す定数.
          */
         static const int AMBIENT  = 1<<10;
         /**
          * @~English  A parameter to setColor and getColor, specifying that the diffuse color component.
-         * @~Japanese 拡散反射光(ディフューズ)を表す定数.
+         * @~Japanese 拡散反射色(ディフューズ)を表す定数.
          */
         static const int DIFFUSE  = 1<<11;
         /**
          * @~English  A parameter to setColor and getColor, specifying that the emissive color component.
-         * @~Japanese 発光を表す定数.
+         * @~Japanese 発光色を表す定数.
          */
         static const int EMISSIVE = 1<<12;
         /**
          * @~English  A parameter to setColor and getColor, specifying that the specular color component.
-         * @~Japanese 鏡面反射光(スペキュラー)を表す定数.
+         * @~Japanese 鏡面反射色(スペキュラー)を表す定数.
          */
         static const int SPECULAR = 1<<13;
 
     public:
         /**
          * @~English  Creates a Material object with default values.
-         * @~Japanese デフォルト値のコンストラクタ.
+         * @~Japanese このオブジェクトを作成するコンストラクタ.
          */
         Material ();
 
@@ -58,13 +58,16 @@ namespace m3g {
 
         /**
          * @~English  Gets the value of the specified color component of this Material.
-         * @~Japanese 引数で指定された要素のカラーの取得.
+         * @~Japanese 引数で指定されたカラーコンポーネントの取得.
+         * @param[in] target  取得したいカラーコンポーネント
+         * @return 引数で指定したカラーコンポーネント
          */
         int getColor (int target) const;
 
         /**
          * @~English  Sets the shininess of this Material.
-         * @~Japanese このマテリアルのカレントのshininessパラメーターの取得.
+         * @~Japanese 鏡面反射色(スペキュラー)の指数成分(shininess)の取得.
+         * @return 鏡面反射色(スペキュラー)の指数成分(shininess)
          */
         float getShininess () const;
 
@@ -76,14 +79,17 @@ namespace m3g {
 
         /**
          * @~English  Sets the given value to the specified color component(s) of this Material.
-         * @~Japanese このマテリアルの指定されたカラーコンポーネントの設定.
+         * @~Japanese 引数で指定したカラーコンポーネントを、引数の色に変更する.
+         * @param[in] target 　変更したいカラーコンポーネントの指定.
+         * @param[in] argb     設定する色
          */
         void setColor (int target, int argb);
 
 
         /**
          * @~English  Sets the shininess of this Material.
-         * @~Japanese このマテリアルのshinessパラメーターの設定.
+         * @~Japanese このマテリアルの環境色の指数パラメーター(shiness)の設定.
+         * @param[in] shininess  設定する指数パラメーター[0,128]
          */
         void setShininess (float shininess);
 
@@ -101,8 +107,8 @@ namespace m3g {
         virtual std::ostream& print (std::ostream& out) const;
 
         /**
-         * @~English  Render this object, for inner use.
-         * @~Japanese このオブジェクトをレンダリングする内部使用の関数.
+         * @~English  Render with default variables, for inner use.
+         * @~Japanese デフォルト値でレンダリングする内部使用の関数.
          */
         static void renderX ();
 

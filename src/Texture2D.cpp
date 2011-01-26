@@ -119,7 +119,7 @@ int Texture2D:: animate_xxx (int world_time)
         switch (track->getTargetProperty()) {
         case AnimationTrack::COLOR: {
             float value[3] = {1,1,1};
-            keyframe->getFrame (sequence_time, value);
+            keyframe->sample (sequence_time, value);
             rgb[0] += value[0] * weight;
             rgb[1] += value[1] * weight;
             rgb[2] += value[2] * weight;

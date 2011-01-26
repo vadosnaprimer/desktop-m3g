@@ -96,7 +96,7 @@ int Material:: animate_xxx (int world_time)
         switch (track->getTargetProperty()) {
         case AnimationTrack::ALPHA: {
             float value[1] = {1};
-            keyframe->getFrame (sequence_time, value);
+            keyframe->sample (sequence_time, value);
             alpha += value[0] * weight;
             is_alpha_modefied = true;
             //cout << "Material: alpha --> " << alpha << "\n";
@@ -104,7 +104,7 @@ int Material:: animate_xxx (int world_time)
         }
         case AnimationTrack::AMBIENT_COLOR: {
             float value[3] = {1,1,1};
-            keyframe->getFrame (sequence_time, value);
+            keyframe->sample (sequence_time, value);
             ambient_rgb[0] += value[0] * weight;
             ambient_rgb[1] += value[1] * weight;
             ambient_rgb[2] += value[2] * weight;
@@ -114,7 +114,7 @@ int Material:: animate_xxx (int world_time)
         }
         case AnimationTrack::DIFFUSE_COLOR: {
             float value[3] = {1,1,1};
-            keyframe->getFrame (sequence_time, value);
+            keyframe->sample (sequence_time, value);
             diffuse_rgb[0] += value[0] * weight;
             diffuse_rgb[1] += value[1] * weight;
             diffuse_rgb[2] += value[2] * weight;
@@ -124,7 +124,7 @@ int Material:: animate_xxx (int world_time)
         }
         case AnimationTrack::EMISSIVE_COLOR: {
             float value[3] = {1,1,1};
-            keyframe->getFrame (sequence_time, value);
+            keyframe->sample (sequence_time, value);
             emissive_rgb[0] += value[0] * weight;
             emissive_rgb[1] += value[1] * weight;
             emissive_rgb[2] += value[2] * weight;
@@ -134,7 +134,7 @@ int Material:: animate_xxx (int world_time)
         }
         case AnimationTrack::SHININESS: {
             float value[1] = {1};
-            keyframe->getFrame (sequence_time, value);
+            keyframe->sample (sequence_time, value);
             shininess += value[0] * weight;
             is_shininess_modefied = true;
             //cout << "Material: shininess --> " << shininess << "\n";
@@ -142,7 +142,7 @@ int Material:: animate_xxx (int world_time)
         }
         case AnimationTrack::SPECULAR_COLOR: {
             float value[3] = {1,1,1};
-            keyframe->getFrame (sequence_time, value);
+            keyframe->sample (sequence_time, value);
             specular_rgb[0] += value[0] * weight;
             specular_rgb[1] += value[1] * weight;
             specular_rgb[2] += value[2] * weight;
@@ -193,7 +193,7 @@ int Material:: animate_xxx (int world_time)
         specular_color = (r << 16) | (g << 8) | (b << 0);
     }
 
-    // don't delete for quick debug.
+    // don't delete this for quick debug.
     //cout << hex << "Material: ambient_color = 0x" << ambient_color << dec << "\n";
     //cout << hex << "Material: diffuse_color = 0x" << diffuse_color << dec << "\n";
     //cout << "Material: alpha = " << alpha << "\n";
@@ -226,12 +226,21 @@ bool Material:: isVertexColorTrackingEnabled () const
 
 void Material:: setColor (int target, int argb)
 {
-    switch (target) {
-    case AMBIENT : ambient_color  = argb & 0x00ffffff; return;
-    case DIFFUSE : diffuse_color  = argb             ; return;
-    case EMISSIVE: emissive_color = argb & 0x00ffffff; return;
-    case SPECULAR: specular_color = argb & 0x00ffffff; return;
-    default: throw IllegalArgumentException (__FILE__, __func__, "Target is invalid, target=%d.", target);
+    if (!(target & AMBIENT || target & DIFFUSE || target & EMISSIVE || target & SPECULAR)) {
+        throw IllegalArgumentException (__FILE__, __func__, "Target color is invalid, target=%d\n", target);
+    }
+    
+    if (target & AMBIENT) {
+        ambient_color  = argb & 0x00ffffff;
+    }
+    if (target & DIFFUSE) {
+        diffuse_color  = argb;
+    }
+    if (target & EMISSIVE) {
+        emissive_color = argb & 0x00ffffff;
+    }
+    if (target & SPECULAR) {
+        specular_color = argb & 0x00ffffff;
     }
   
 }

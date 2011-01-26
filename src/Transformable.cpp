@@ -76,7 +76,7 @@ int Transformable:: animate_xxx (int world_time)
         switch (track->getTargetProperty()) {
         case AnimationTrack:: ORIENTATION: {
             float value[4] = {0,0,0,0};  // Quaternion(x,y,z,w)
-            keyframe->getFrame (sequence_time, value);
+            keyframe->sample (sequence_time, value);
             Quaternion q;
             q.set (value[0], value[1], value[2], value[3]);
             new_orientation = new_orientation + q * weight;
@@ -86,7 +86,7 @@ int Transformable:: animate_xxx (int world_time)
         }
         case AnimationTrack:: SCALE: {
             float value[3] = {0,0,0};
-            keyframe->getFrame (sequence_time, value);
+            keyframe->sample (sequence_time, value);
             if (keyframe->getComponentCount() == 3) {
                 new_scaling = Scale(value[0]*weight, value[1]*weight, value[2]*weight);
             }
@@ -99,7 +99,7 @@ int Transformable:: animate_xxx (int world_time)
         }
         case AnimationTrack:: TRANSLATION: {
             float value[3] = {0,0,0};
-            keyframe->getFrame (sequence_time, value);
+            keyframe->sample (sequence_time, value);
             new_translation = Translation (value[0]*weight, value[1]*weight, value[2]*weight);
             is_translation_modefied = true;
             //cout << "Transformable: translation --> " << new_translation.x << ", " << new_translation.y << ", " << new_translation.z << "\n";

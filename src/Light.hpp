@@ -8,7 +8,7 @@ namespace m3g {
 
     /**
      * @~English  A scene graph node that represents different kinds of light sources.
-     * @~Japanese ライトを表すシーングラフノード.
+     * @~Japanese ライトを表すシーングラフ・ノード.
      */
     class Light : public Node
     {
@@ -59,7 +59,7 @@ namespace m3g {
     public:
         /**
          * @~English  Consturct a new Light witdh default values.
-         * @~Japanese デフォルト値のLightオブジェクトを作成するコンストラクタ..
+         * @~Japanese デフォルト値のLightオブジェクトを作成するコンストラクタ.
          */
         Light ();
 
@@ -72,90 +72,106 @@ namespace m3g {
         /**
          * @~English  Creates a duplicate of this Object3D. 
          * @~Japanese このオブジェクトの複製の作成.
+         * @return 複製されたライト.
          */
         Light* duplicate () const;
 
         /**
          * @~English  Retrieves the curent color fo this Light.
-         * @~Japanese このライトのカレントのカラーの取得.
+         * @~Japanese 現在のライトの色の取得.
+         * @return 現在設定されているのライトの色
          */
         int getColor () const;
 
         /**
          * @~English  Retrieves the current constant attenuation coefficient for this Light.
-         * @~Japanese このライトのカレントのコンスタントの減衰率の取得.
+         * @~Japanese ライトの減衰定数の１つである定数減衰パラメーターの取得.
+         * @return 減衰定数のconstantパラメーター
          */
         float getConstantAttenuation () const;
 
         /**
          * @~English  Retrieves the current intensity of this Light.
-         * @~Japanese このライトのカレントの強度の取得.
+         * @~Japanese このライトの発光強度の取得.
+         * @return 現在設定されている発光強度
          */
         float getIntensity () const;
 
         /**
          * @~English  Retrieves the current linear attenuation coefficient for this Light.
-         * @~Japanese このライトのリニアの減衰率の取得.
+         * @~Japanese ライトの減衰定数の１つである線形減衰パラメーターの取得.
          */
         float getLinearAttenuation () const;
 
         /**
          * @~English  Retrieves the current type of this Light.
-         * @~Japanese このライトのカレントの種類の取得.
+         * @~Japanese ライトの種類の取得.
+         * @return ライトの種類。AMBIENT, DIRECTIONAL, OMNI, SPOTのいずれか。
          */
         int getMode () const;
 
         /**
          * @~English  Retrieves the current quadratic attenuation coefficient for this Light.
-         * @~Japanese このライトの2乗の減衰率の取得.
+         * @~Japanese ライトの減衰定数の１つである自乗減衰パラメーターの取得.
+         * @return 自乗減衰パラメーター
          */
         float getQuadraticAttenuation () const;
 
         /**
          * @~English  Retrieves the current spot angle of this Light.
-         * @~Japanese このライトのカレントのスポット角度の取得.
+         * @~Japanese このライトのスポット角度の取得.　ライトの種類がスポットライトの時のみ有効。
+         * @return スポット角度.
          */
         float getSpotAngle () const;
 
         /**
          * @~English  Sets the spot exponent for this Light.
-         * @~Japanese このライトのカレントのスポットexponential減衰率の取得.
+         * @~Japanese このライトのスポット指数係数の取得. ライトの種類がスポットライトの時のみ有効。
+         * @return スポット指数定数.
          */
         float getSpotExponent () const;
 
         /**
          * @~English  Sets the attenuation coeffieicients for this Light.
-         * @~Japanese このライトの減衰係数の取得.
+         * @~Japanese このライトの減衰係数を変更する.
+         * @param[in] constant  定数パラメーター
+         * @param[in] linear    線形パラメーター
+         * @param[in] quadratic 自乗パラメーター
          */
         void setAttenuation (float constant, float linear, float quadratic);
 
         /**
          * @~English  Sets the color of this Light.
-         * @~Japanese このライトのカラーの設定.
+         * @~Japanese このライトの色の設定.
+         * @param[in] rgb このライトの色
          */
         void setColor (int rgb);
 
         /**
          * @~English  Sets the intensity of this Light.
          * @~Japanese このライトの強度の設定.
+         * @pramra[in] intensity ライトの強度.
          */
         void setIntensity (float intensity);
 
         /**
          * @~English  Sets the type of this Light.
-         * @~Japanese このライトの種類の設置.
+         * @~Japanese このライトの種類の設定.
+         * @param[in] mode  ライトの種類。AMBIENT, DIRECTIONAL, OMNI, SPOTのいずれか。
          */
         void setMode (int mode);
 
         /**
          * @~English  Sets the spot cone angle for this Light.
-         * @~Japanese このライトのスポットコーン角度の設定.
+         * @~Japanese このライトのスポット角度の設定. ライトの種類がスポットの時のみ有効。
+         * @param[in] angle スポット角度[0,90]
          */
         void setSpotAngle (float angle);
 
         /**
          * @~English  Sets the spot exponent for this Light.
-         * @~Japanese このライトのスポットライト指数の設定.
+         * @~Japanese このライトのスポットライト指数の設定.ライトの種類がスポットの時のみ有効。
+         * @param[in] exponent  スポットライトの指数係数
          */
         void setSpotExponent (float exponent);
 

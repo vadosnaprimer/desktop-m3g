@@ -50,31 +50,38 @@ namespace m3g {
         /**
          * @~English  Creates a duplicate of this Object3D. 
          * @~Japanese このオブジェクトの複製の作成.
+         * @return 複製したカメラオブジェクト.
          */
         Camera* duplicate () const;
 
         /**
          * @~English  Gets the current projection matrix and type.
-         * @~Japanese 透視変換パラメーターと種類の取得。
-         *            paramsには4要素(fovy,aspect_ratio,near,far)がこの順番で書き込まれる.
+         * @~Japanese 透視変換パラメーターと種類の取得。この関数はPARALLEL, GENERICの時のみ有効.
+         *            引数のparamsには4要素(fovy,aspect_ratio,near,far)がこの順番で書き込まれる.
+         * @param[in] params 透視変換パラメーターを書き込むfloat４つの配列.
+         * @return カメラの種類。PARALLEL, PROJECTION, GENERICのいずれかが返る。
          */
         int getProjection (float* params) const;
 
         /**
          * @~English  Gets the current projection matrix and type.
-         * @~Japanese カレントの透視変換行列と種類の取得.
+         * @~Japanese カレントの透視変換行列と種類の取得.　この関数はGENERICの時のみ有効.
+         * @param[in] 透視変換行列を書き込むTranformオブジェクト.
+         * @return カメラの種類。PARALLEL, PROJECTION, GENERICのいずれかが返る。
          */
         int getProjection (Transform* transform) const;
 
         /**
          * @~English  Sets the given x4 transformation as the current projcetion matrix.
-         * @~Japanese 指定された4x4行列を透視変換行列として設定する.
+         * @~Japanese このカメラの種類をGENERICに指定すると共に、指定された4x4行列を透視変換行列として設定する.
+         * @param[in] transfom 任意の透視変換行列を表すTransformオブジェクト
          */
         void setGeneric (const Transform* transorm);
 
         /**
          * @~English  Constructs a parallel projection matrix and sets that as the current projcection matrix.
-         * @~Japanese 平行投影行列を作成し、カレントの透視変換行列として設定する.
+         * @~Japanese このカメラの種類をPARALLELに指定すると共に、パラメーターから平行投影行列を作成し、
+         *            カレントの透視変換行列として設定する.
          */
         void setParallel (float height, float aspect_ratio, float near, float far);
 

@@ -173,7 +173,7 @@ void KeyframeSequence:: setValidRange (int first, int last)
     valid_range = ValidRange (first, last);
 }
 
-void KeyframeSequence:: getFrame (int sequence_time, float* value) const
+void KeyframeSequence:: sample (int sequence_time, float* value) const
 {
     if (value == NULL) {
         throw NullPointerException (__FILE__, __func__, "Value is NULL.");

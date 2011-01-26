@@ -161,7 +161,7 @@ int Node:: animate_xxx (int world_time)
         switch (track->getTargetProperty()) {
         case AnimationTrack:: ALPHA: {
             float value[1] = {1};
-            keyframe->getFrame (sequence_time, value);
+            keyframe->sample (sequence_time, value);
             new_alpha += value[0] * weight;
             is_alpha_modefied = true;
             //cout << "Node: alpha --> " << alpha << "\n";
@@ -169,7 +169,7 @@ int Node:: animate_xxx (int world_time)
         }
         case AnimationTrack:: PICKABILITY: {
             float value[1] = {1};
-            keyframe->getFrame (sequence_time, value);
+            keyframe->sample (sequence_time, value);
             new_picking_enable = new_picking_enable || ((value[0] != 0) ? true : false);
             is_picking_enable_modefied = true;
             //cout << "Node: picking_enable --> " << new_picking_enable << "\n";
@@ -177,7 +177,7 @@ int Node:: animate_xxx (int world_time)
         }
         case AnimationTrack:: VISIBILITY: {
             float value[1] = {1};
-            keyframe->getFrame (sequence_time, value);
+            keyframe->sample (sequence_time, value);
             new_rendering_enable = new_rendering_enable || ((value[0] != 0) ? true : false);
             is_rendering_enable_modefied = true;
             //cout << "Node: rendering_enable --> " << new_rendering_enable << "\n";

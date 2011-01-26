@@ -114,7 +114,7 @@ int Sprite3D:: animate_xxx (int world_time)
         switch (track->getTargetProperty()) {
         case AnimationTrack:: CROP: {
             float value[4] = {0,0,0,0};
-            keyframe->getFrame (sequence_time, value);
+            keyframe->sample (sequence_time, value);
             if (keyframe->getComponentCount() == 4) {
                 new_crop.x      += value[0] * weight;
                 new_crop.y      += value[1] * weight;

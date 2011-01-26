@@ -105,7 +105,7 @@ int Background:: animate_xxx (int world_time)
         switch (track->getTargetProperty()) {
         case AnimationTrack:: ALPHA: {
             float value[1] = {1};
-            keyframe->getFrame (sequence_time, value);
+            keyframe->sample (sequence_time, value);
             new_alpha += value[0] * weight;
             is_alpha_modefied = true;
             //cout << "Background: alpha --> " << new_alpha << "\n";
@@ -113,7 +113,7 @@ int Background:: animate_xxx (int world_time)
         }
         case AnimationTrack:: CROP: {
             float value[4] = {0,0,0,0};
-            keyframe->getFrame (sequence_time, value);
+            keyframe->sample (sequence_time, value);
             if (keyframe->getComponentCount() == 4) {
                 new_crop.x      += value[0] * weight;
                 new_crop.y      += value[1] * weight;
@@ -131,7 +131,7 @@ int Background:: animate_xxx (int world_time)
         }
         case AnimationTrack:: COLOR: {
             float value[3] = {1,1,1};
-            keyframe->getFrame (sequence_time, value);
+            keyframe->sample (sequence_time, value);
             new_color[0] += value[0] * weight;
             new_color[1] += value[1] * weight;
             new_color[2] += value[2] * weight;
