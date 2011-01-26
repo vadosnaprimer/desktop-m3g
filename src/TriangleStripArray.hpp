@@ -8,7 +8,7 @@ namespace m3g {
 
     /**
      * @~English  TriangleStripArray defines an array  of triangle strips.
-     * @~Japanese トライアングルストリップを定義する.
+     * @~Japanese トライアングルストリップの配列を定義する.
      */
     class TriangleStripArray : public IndexBuffer
     {
@@ -18,13 +18,13 @@ namespace m3g {
          * @~English  Constructs a triangle strip array with explicit indices.
          * @~Japanese 明示的なインデックスで指定したトライアングルストリップ配列の作成
          */
-        TriangleStripArray (const int* indices, int num_strips, const int* strips);
+        TriangleStripArray (const int* indices, int num_strips, const int* strip_lengthss);
 
         /**
          * @~English  Constructs a triangle strip array with implicit indices.
          * @~Japanese 暗黙的にインデックスで指定したトライアングルストリップ配列の作成
          */
-        TriangleStripArray (int first_index, int num_strips, const int* strips);
+        TriangleStripArray (int first_index, int num_strips, const int* strip_lengths);
 
 
         /**
@@ -39,41 +39,12 @@ namespace m3g {
          */
         TriangleStripArray* duplicate () const;
 
-        /**
-         *
-         */
-        virtual int getFaceCount () const;
-
-        /**
-         *
-         */
-        virtual int getFaceVertexCount () const;
-
-        /**
-         *
-         */
-        virtual void getFaceVertexIndex (int face_index, int* vertex_indices) const;
-
-
-        /**
-         * @~English  Returns the number of indices in this buffer.
-         * @~Japanese このバッファーのインデックスの数を取得.
-         */
-        virtual int getIndexCount () const;
-
-        /**
-         * @~English  Retrieves vertex indices for the rendering primitives stored in this buffer.
-         * @~Japanese このバッファーに収納されているインデックスを取得する.
-         */
-        virtual void getIndices (int* indices) const;
 
         /**
          * @~English  Print out information of this object, for debug only.
          * @~Japanese このTriangleStripArrayクラスの情報を表示する。デバッグ用の関数.
          */
         virtual std::ostream& print (std::ostream& out) const;
-
-        virtual std::ostream& print_raw_data (std::ostream& out) const;
 
 
     protected:
@@ -84,22 +55,11 @@ namespace m3g {
          */
         virtual TriangleStripArray* duplicate_xxx (Object3D* obj) const;
 
-        /**
-         * @~English  
-         * @~Japanese 
-         */
-        virtual void render_xxx (RenderState& state) const;
-
 
     private:
         TriangleStripArray (const TriangleStripArray& tris);
         TriangleStripArray& operator= (const TriangleStripArray& tris);
 
-    private:
-        int*             indices;
-        std::vector<int> strips;
-
-        unsigned int     ibuf;
     };
   
 

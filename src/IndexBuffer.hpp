@@ -10,18 +10,49 @@ namespace m3g {
 
     /**
      * @~English  An abstract class defining how to connect vertices to form a geometric object.
-     * @~Japanese 頂点を連結し幾何形状を定義する抽象クラス.
+     * @~Japanese 頂点を連結し物体の形状を定義する抽象クラス.
      */
     class IndexBuffer : public Object3D
     {
+    public:
 
+        /**
+         * @~English  A constructor parameter specifying that 
+         *            the new IndexBuffer is to contain an array of triangles or triangle strips.
+         * @~Japanese このIndexBufferのプリミティブがトライアングル・リストまたは
+         *            トライアングル・ストリップの配列であることを示す定数値.
+         */
+        static const int TRIANGLES     = 8;
+
+        /**
+         * @~English  A constructor parameter specifying that 
+         *            the new IndexBuffer is to contain an array of lines or line strips.
+         * @~Japanese このIndexBufferのプリミティブがライン・リストまたは
+         *            ライン・ストリップの配列であることを示す定数値.
+         */
+        static const int LINES         = 9;
+
+        /**
+         * @~English  A constructor parameter specifying that 
+         *            the new IndexBuffer is to contain an array of point sprites.
+         * @~Japanese このIndexBufferのプリミティブがポイントスプライトの配列であることを示す定数値.
+         */
+        static const int POINT_SPRITES = 10;
 
     public:
+
         /**
-         * @~English  Construct a new IndexBuffer object.
-         * @~Japanese 新しいIndexBufferオブジェクトを作成するコンストラクタ.
+         * @~English  Constructs a triangle strip array with explicit indices.
+         * @~Japanese ストリップ形式のインデックスを、インデックス配列を明示的に指定しての作成.
          */
-        IndexBuffer ();
+        IndexBuffer (int type, const int* strip_indices, int num_strips, const int* strip_lengths);
+
+        /**
+         * @~English  Constructs a triangle strip array with implicit indices.
+         * @~Japanese ストリップ形式のインデックスを、インデックスを暗黙的に指定して作成.
+         */
+        IndexBuffer (int type, int first_index, int num_strips, const int* strip_lengths);
+
 
         /**
          * @~English  Destruct this object.
@@ -36,35 +67,31 @@ namespace m3g {
         IndexBuffer* duplicate () const;
 
         /**
-         * @~English  Get a number of faces, not in M3G.
-         * @~Japanese この面数の合計を取得する, M3G非標準.
+         * @~English  Retrieve the type of rendering primitives stored in this indexBuffer.  
+         * @~Japanese プリミティブのタイプを取得する.
          */
-        virtual int getFaceCount () const;
-
-        /**
-         * @~English  Get a vertex number of 1 face, not in M3G.
-         * @~Japanese 1面あたりの頂点数を取得する, M3G非標準.
-         */
-        virtual int getFaceVertexCount () const;
-
-        /**
-         * @~English  Get a vertex number of 1 face, not in M3G.
-         * @~Japanese 指定の面の頂点インデックスを取得する, M3G非標準.
-         */
-        virtual void getFaceVertexIndex (int face_index, int* vertex_indices) const;
+        int getPrimitiveType () const;
 
         /**
          * @~English  Returns the number of indices in this buffer.
-         * @~Japanese このバッファーの頂点インデックスの総数を取得.
+         * @~Japanese 頂点のインデックスの総数を取得する.
+         *            トライアングル・ストリップの場合、分解されてリストとして数える。
+         *            従ってgetIndexCount()/3がトライアングルの個数になる。
          */
-        virtual int getIndexCount () const;
+        int getIndexCount () const;
 
         /**
          * @~English  Retrieves vertex indices for the rendering primitives stored in this buffer.
-         * @~Japanese このバッファーに収納されているインデックスを取得.
+         * @~Japanese 頂点のインデックス配列をプリミティブのリスト形式で取得する.
+         *            トライアングル・ストリップは分解されてトライアングル・リストとして返される。
          */
-        virtual void getIndices (int* indices) const;
+        void getIndices (int* indices) const;
 
+        /**
+         * @~English  Print out raw data of this object, for debug only.
+         * @~Japanese このIndexBufferクラスの保持しているデータを表示する。デバッグ用.
+         */
+        std::ostream& print_raw_data (std::ostream& out) const;
 
         /**
          * @~English  Print out information of this object, for only debug.
@@ -72,11 +99,6 @@ namespace m3g {
          */
         virtual std::ostream& print (std::ostream& out) const;
 
-        /**
-         * @~English  Print out raw data of this object, for debug only.
-         * @~Japanese このIndexBufferクラスの保持しているデータを表示する。デバッグ用.
-         */
-        virtual std::ostream& print_raw_data (std::ostream& out) const;
 
     protected:
 
@@ -96,6 +118,13 @@ namespace m3g {
     private:
         IndexBuffer (const IndexBuffer& ibuf);
         IndexBuffer& operator= (const IndexBuffer& ibuf);
+
+    protected:
+        int              type;
+        std::vector<int> strip_indices;
+        std::vector<int> strip_lengths;
+
+        unsigned int     name;
     };
 
 

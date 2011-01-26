@@ -9,6 +9,11 @@
 using namespace std;
 using namespace m3g;
 
+const int Material:: AMBIENT;
+const int Material:: DIFFUSE;
+const int Material:: EMISSIVE;
+const int Material:: SPECULAR;
+
 
 Material:: Material () : 
     vertex_color_tracking(false), 

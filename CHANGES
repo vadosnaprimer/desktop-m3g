@@ -3,6 +3,7 @@
 2011/xx/xx ver 0.3.3
    - adopt NVI (Non-Virtual Interface)
        - see "Effective C++"
+   - fix IndexBuffer::getIndexCount() and getIndices()
    - fix Object3D::find()
    - fix Camera::lookAt()
    - fix Camera::animate(), Light::animate() and Sprite3D::animate().

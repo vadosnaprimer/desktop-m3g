@@ -180,21 +180,23 @@ bool Mesh:: intersect (const Vector& org, const Vector& dir, RayIntersection* ri
     int          ri_index_values[3];
     int          ri_submesh_index = 0;
 
-    //cout << "indices.size() = " << indices.size() << "\n";
-
     for (int i = 0; i < (int)indices.size(); i++) {
-        int   face_vertex_count = indices[i]->getFaceVertexCount();
-        assert (face_vertex_count == 3);
 
-        int   face_count        = indices[i]->getFaceCount();
+        int type = indices[i]->getPrimitiveType ();
+        if (type != IndexBuffer::TRIANGLES) {
+            throw IllegalStateException (__FILE__, __func__, "Primitive type is invalid, type=%d\n", type);
+        }
+
+        int  num_vertices = indices[i]->getIndexCount();
+        int* vertices     = new int [num_vertices];
+        indices[i]->getIndices (vertices);
+
         float position_values[3][3];
-        int   index_values[3];
 
-        for (int f = 0; f < face_count; f++) {
-            indices[i]->getFaceVertexIndex (f, index_values);
-            positions->get (index_values[0], 1, scale, bias, &position_values[0][0]);
-            positions->get (index_values[1], 1, scale, bias, &position_values[1][0]);
-            positions->get (index_values[2], 1, scale, bias, &position_values[2][0]);
+        for (int i = 0; i < num_vertices; i+=3) {
+            positions->get (vertices[i+0], 1, scale, bias, &position_values[0][0]);
+            positions->get (vertices[i+1], 1, scale, bias, &position_values[1][0]);
+            positions->get (vertices[i+2], 1, scale, bias, &position_values[2][0]);
             Vector v0 = Vector(position_values[0]);
             Vector v1 = Vector(position_values[1]);
             Vector v2 = Vector(position_values[2]);
@@ -206,9 +208,11 @@ bool Mesh:: intersect (const Vector& org, const Vector& dir, RayIntersection* ri
                 ri_v = v;
                 ri_t = t;
                 ri_submesh_index = i;
-                memcpy (ri_index_values, index_values, sizeof(int)*3);
+                memcpy (ri_index_values, &vertices[i], sizeof(int)*3);
             }
         }
+
+        delete [] vertices;
 
     }
 
