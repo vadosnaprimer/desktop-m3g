@@ -68,48 +68,56 @@ namespace m3g {
         /**
          * @~English  Creates a duplicate of this Object3D. 
          * @~Japanese このオブジェクトの複製の作成.
+         * @return 複製されたCompositingModeオブジェクト.
          */
         CompositingMode* duplicate () const;
 
         /**
          * @~English  Retrieves the current alpha testing threashold.
          * @~Japanese カレントのαテストの閾値を取得する.
+         * @return αテストの閾値.
          */
         float getAlphaThreshold () const;
 
         /**
          * @~English  Retrieves the current frame buffer blending mode.
          * @~Japanese カレントのフレームバッファーのブレンディングモードを取得する.
+         * @return ブレンディングモード。ALPHA, ALPHA_ADD, MODULATE, MODULATE_X2, REPLACEのいずれか。
          */
         int getBlending () const;
 
         /**
          * @~English  Retrieves the current depth offset slope factor.
-         * @~Japanese カレントの深度オフセットの勾配値を取得する.
+         * @~Japanese 深度オフセット計算における勾配ファクターを取得する.
+         * @return 深度オフセット計算における勾配ファクター.
          */
         float getDepthOffsetFactor () const;
 
         /**
          * @~English  Retrieves the current constant depth offset.
-         * @~Japanese カレントの固定深度オフセット値を取得する.
+         * @~Japanese 深度オフセット計算における固定ファクターを取得する.
+         * @return 深度オフセット計算における固定ファクター.
          */
         float getDepthOffsetUnits () const;
 
         /**
          * @~English  Queries whether alpha writing is enabled.
          * @~Japanese αチャンネルへの書き込みが有効かどうかの問い合わせ.
+         * @return 有効ならtrue, 無効ならfalse.
          */
         bool isAlphaWriteEnabled () const;
 
         /**
          * @~English  Queries whether color writing is enabled.
          * @~Japanese カラーチャンネルへの書き込みが有効かどうかの問い合わせ.
+         * @return 有効ならtrue, 無効ならfalse.
          */
         bool isColorWriteEnabled () const;
 
         /**
          * @~English  Queries whether depth writing is enabled.
          * @~Japanese 深度テストが有効かどうかの問い合わせ.
+         * @return 有効ならtrue, 無効ならfalse.
          */
         bool isDepthTestEnabled () const;
 
@@ -121,25 +129,29 @@ namespace m3g {
 
         /**
          * @~English  Sets the threshold value for alpha testing.
-         * @~Japanese αテスト閾値の設定.
+         * @~Japanese αテスト閾値[0,1]の設定. この値以下α値を持つフラグメントは破棄される.
+         * @param[in] threshold  αテストに使用する閾値[0,1]
          */
         void setAlphaThreshold (float threshold);
 
         /**
          * @~English  Enables or disables writing of fragment alpha values into the color buffer.
          * @~Japanese フラグメントのα成分をカラーバッファーへ書き込む事を許可もしくは不許可にする.
+         * @param[in] enable 有効化するときtrue, 無効化するときfalse.
          */
         void setAlphaWriteEnable (bool enable);
 
         /**
          * @~English  Selects a method of combindinnnng the pixel to be rendered with the pixel already inthe frame buffer.
          * @~Japanese フレームバッファーのピクセルとのブレンドモードの設定.
+         * @param[in] mode  設定したいブレンドモード。ALHPA, ALPHA_ADD, MODULATE, MODULATE_X2, REPLACEのいずれか。
          */
         void setBlending (int mode);
 
         /**
          * @~English  Enables or disables writing of fragment coor values into the color buffer.
          * @~Japanese カラーバッファーへのフラグメントのカラーの書き込みの許可もしくは不許可の設定.
+         * @param[in] enable 有効化するときtrue, 無効化するときfalse.
          */
         void setColorWriteEnable (bool enable);
 
@@ -152,18 +164,20 @@ namespace m3g {
         /**
          * @~English  Enables or disables depth testing.
          * @~Japanese 深度テストの有効、無効の設定.
+         * @param[in] enable 有効化するときtrue, 無効化するときfalse.
          */
         void setDepthTestEnable (bool enable);
 
         /**
          * @~English  Queries whether depth writing is enabled.
          * @~Japanese 深度バッファーへフラグメントの深度値を書き込みの許可もしくは不許可.
+         * @param[in] enable 有効化するときtrue, 無効化するときfalse.
          */
         void setDepthWriteEnable (bool enable);
 
         /**
          * @~English  Print out information of this object, for debug only.
-         * @~Japanese このCompositingModeの情報を表示する。デバッグ用.
+         * @~Japanese このオブジェクトの情報を表示する。デバッグ用.
          */
         virtual std::ostream& print (std::ostream& out) const;
 

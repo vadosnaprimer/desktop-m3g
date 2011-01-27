@@ -67,42 +67,49 @@ namespace m3g {
         /**
          * @~English  Creates a duplicate of this Object3D. 
          * @~Japanese このオブジェクトの複製の作成.
+         * @return 複製されたPlygonModeオブジェクト
          */
         PolygonMode* duplicate () const;
 
         /**
          * @~English  Retrieves the current poygon culling mode.
          * @~Japanese カレントのポリゴンのカリングモードの取得.
+         * @return 現在のカリングモード。CULL_FRONT, CULL_BACK, CULL_NONEのいずれか。
          */
         int getCulling () const;
 
         /**
          * @~English  Retrieves the current polygon shading mode.
          * @~Japanese ポリゴンのシェーディングモードの取得.
+         * @return 現在のシェーディングモード。SHADE_FLAT, SHADE_SMOOTHのいずれか。
          */
         int getShading () const;
 
         /**
          * @~English  Retrieves the current polygon windign mode.
          * @~Japanese ポリゴンのワインディングモードの取得.
+         * @return 現在のワインディングモード。WINDING_CCW, WINDING_CWのいずれか。
          */
         int getWinding () const;
 
         /**
          * @~English  Queries whether local camera lighting is enabled.
          * @~Japanese ローカルカメラライティングの有効、無効の取得.
+         * @return 有効の時true, 無効の時false
          */
         bool isLocalCameraLightingEnabled () const;
 
         /**
          * @~English  Queries wheter perspective correction is enabled.
          * @~Japanese 透視変換補正の有効、無効の問い合わせ.
+         * @return 有効の時true, 無効の時false
          */
         bool isPerspectiveCorrectionEnabled () const;
 
         /**
          * @~English  Queries wheter two-sided lighting is enabled.
          * @~Japanese 両面ライティングの有効、無効の問い合わせ.
+         * @return 有効の時true, 無効の時false
          */
         bool isTwoSidedLightingEnabled () const;
 
@@ -115,30 +122,35 @@ namespace m3g {
         /**
          * @~English  Enables of diables local camera lighting.
          * @~Japanese ローカルカメラライティングの有効化、無効化.
+         * @param[in] enable 有効化するときtrue, 無効化するときfalse.
          */
         void setLocalCameraLightingEnable (bool enable);
 
         /**
          * @~English  Enables or disables perspective corrention.
          * @~Japanese 透視変換補正の有効化、無効化.
+         * @param[in] enable 有効化するときtrue, 無効化するときfalse.
          */
         void setPerspectiveCorrectionEnable (bool enable);
 
         /**
          * @~English  Sets the polygon shading mode.
          * @~Japanese ポリゴンのシェーディングモードの設定.
+         * @param[in] mode  設定したいシェーディングモード。SHADE_FLAT, SHADE_SMOOTHのいずれか。
          */
         void setShading (int mode);
 
         /**
          * @~English  Enables or diables two-sided lighting.
          * @~Japanese 両面ライティングの有効化、無効化.
+         * @param[in] enable 有効化するときtrue, 無効化するときfalse.
          */
         void setTwoSidedLightingEnable (bool enable);
 
         /**
          * @~English  Sets the polygon winding mode to clockwise ofr counter-clockwise.
          * @~Japanese ポリゴンのワインディングモードを時計回りか、反時計回りに設定する.
+         * @param[in] mode  設定したいワインディングモード。WINDING_CCW, WINDING_CWのいづれか。
          */
         void setWinding (int mode);
 

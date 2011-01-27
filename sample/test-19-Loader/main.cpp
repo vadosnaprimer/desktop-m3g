@@ -103,8 +103,9 @@ int main (int argc, char** argv)
     glutInitWindowSize (512,512);
     glutCreateWindow(argv[0]);
 
-    objs = Loader::load ("test.m3g");
+    //objs = Loader::load ("test.m3g");
     //objs = Loader::load ("checker-board.m3g");
+    objs = Loader::load ("kitune-miko.m3g");
 
     for (int i = 0; i < (int)objs.size(); i++) {
         wld = dynamic_cast<World*>(objs[i]);
@@ -120,7 +121,7 @@ int main (int argc, char** argv)
     }
 
     Camera* cam = wld->getActiveCamera ();
-    cam->setTranslation (0, 10, 50);
+    cam->setTranslation (0, 10, 100);
     cam->setOrientation (0, 0,0,0);
     cam->Transformable:: print (cout) << "\n";
     
