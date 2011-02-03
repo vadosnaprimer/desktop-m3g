@@ -53,10 +53,12 @@ TEST (Appearance_set_variables)
     CHECK_EQUAL (mat,           app->getMaterial());
     CHECK_EQUAL (fog,           app->getFog());
 
-
     cmode->setBlending (CompositingMode::ALPHA);
     CHECK_EQUAL (1,             app->getLayer());
     CHECK_EQUAL (3,             app->getLayer2());
+
+    app->setTexture (1, NULL);
+    CHECK_EQUAL ((Texture2D*)0, app->getTexture(0));
 
     delete img;
     delete tex;

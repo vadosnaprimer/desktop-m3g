@@ -39,14 +39,11 @@ namespace m3g {
         /**
          * @~English  Retrieves the contents of this tarnsformation as a 16-element float array.
          * @~Japanese この変換を16個のfloatの配列として取り出す.
+         * @param[out] matrix  結果を書き込むfloat16個の領域.
          */
         void get (float* matrix) const;
 
 
-        /**
-         * M3G非標準.
-         */
-        Matrix getMatrix () const;
 
         /**
          * @~English  Invertes this matrix, if possible.
@@ -56,61 +53,82 @@ namespace m3g {
 
         /**
          * @~English  Multiplies this transformation from the right by the given transformation.  
-         * @~Japanese 指定された変換行列を右から乗算する.
+         * @~Japanese この行列に、指定された変換行列を右から乗算する.
+         * @param[in] transform  変換行列.
          */
         void postMultiply (const Transform& transform);
 
         /**
          * @~English  Multiplies this transformation from the right by the given rotation matrix, specified in axis-angle form.
-         * @~Japanese 指定された回転軸と角度で回転する回転行列を右から乗算する。角度の単位はdegree.
+         * @~Japanese この行列に、指定された回転軸と角度で回転する回転行列を右から乗算する。角度の単位はdegree.
+         * @param[in] angle  角度[degree]
+         * @param[in] ax     回転軸のx成分.
+         * @param[in] ay     回転軸のy成分.
+         * @param[in] az     回転軸のz成分.
          */
         void postRotate (float angle, float ax, float ay, float az);
 
         /**
          * @~English  Multiplies this transformation from the right by the given rotation matrix, specified in quaternion form.
-         * @~Japanese クォータニオン形式で指定された回転を行う回転行列を右から乗算する.
+         * @~Japanese この行列に、クォータニオン形式で指定された回転を行う回転行列を右から乗算する.
+         * @param[in] qx  クォータニオンのベクター成分i
+         * @param[in] qy  クォータニオンのベクター成分j
+         * @param[in] qz  クォータニオンのベクター成分k
+         * @param[in] qw  クォータニオンのスカラー成分
          */
         void postRotateQuat (float qx, float qy, float qz, float qw);
 
         /**
          * @~English  Multiplies this transformation from the right by the given scale matrix.
-         * @~Japanese 指定されたスケーリング行列を右から乗算する.
+         * @~Japanese この行列に、指定されたスケーリング行列を右から乗算する.
+         * @param[in] sx  x方向のスケーリング成分
+         * @param[in] sy  y方向のスケーリング成分
+         * @param[in] sz  z方向のスケーリング成分
          */
         void postScale (float sx, float sy, float sz);
 
         /**
          * @~English  Multiplies this transformation from the right by the given translation matrix.
          * @~Japanese 指定された移動行列を右から乗算する.
+         * @param[in] tx  x方向の移動成分.
+         * @param[in] ty  y方向の移動成分.
+         * @param[in] tz  z方向の移動成分.
          */
         void postTranslate (float tx, float ty, float tz);
 
         /**
          * @~English  Sets this transformation by copying from the given 16-element float array.
-         * @~Japanese 指定された16個のfloatの配列をコピーして変換を設定する.
+         * @~Japanese 指定された16個のfloatの配列で変換行列を設定する.
+         * @param[in] matrix  変換行列を表す16個の配列。row-major.
          */
         void set (const float* matrix);
 
         /**
-         * @~English  Sets this transformation by copying the cvontents of the given Transform.
-         * @~Japanese 指定されたTransformをコピーして変換を設定する.
+         * @~English  Sets this transformation by copying the contents of the given Transform.
+         * @~Japanese 指定されたTransformオブジェクトで変換行列を設定する.
+         * @param[in] transform  変換行列を表すTransformオブジェクト.
          */
         void set (const Transform* transform);
         
         
         /**
-         * M3G非標準.
+         * @internal
+         * @~English  set this tranformation bycopying from the contents of the given Matrix.
+         * @~Japanese 指定されたMatrixオブジェクトで変換行列を設定する.
          */
         void set (const Matrix& matrix);
 
         /**
          * @~English  Replaces this transformation with the 4x4 identity matrix.
-         * @~Japanese この変換を4x4の単位行列に設定する.
+         * @~Japanese この変換行列を4x4の単位行列に設定する.
          */
         void setIdentity ();
 
         /**
          * @~English  Multiplies the given array of 4D vectors with this matrix.
-         * @~Japanese 指定された4要素のfloatのベクトルにこの変換行列を乗算する.
+         * @~Japanese float4要素のベクトルの集合をすべてこの変換行列で変換して書き換える.
+         * @param[in]     vector_num  変換するデータの個数。かならず4の倍数になる.
+         * @param[in,out] vectors     変換するデータの集合。値は変換後の値に書き換えられる.
          */
         void transform (int vector_num, float* vectors) const;
 

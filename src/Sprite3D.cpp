@@ -505,8 +505,8 @@ std::ostream& Sprite3D:: print (std::ostream& out) const
     int height = image ? image->getHeight() : 0;
     out << "Sprite3D: ";
     out << "  scaled=" << scaled;
-    out << ", image=0x" << image << "(" << width << "x" << height << ")";
-    out << ", appearance=0x" << appearance;
+    out << ", image=" << image << "(" << width << "x" << height << ")";
+    out << ", appearance=" << appearance;
     out << ", crop=" << crop.x << "," << crop.y << "," << crop.width << "," << crop.height;
     return out;
 }

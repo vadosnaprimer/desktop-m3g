@@ -58,9 +58,9 @@ int Transformable:: animate_xxx (int world_time)
     bool        is_orientation_modefied = false;
     bool        is_scaling_modefied     = false;
     bool        is_translation_modefied = false;
-    Scale       new_scaling       = Scale(0,0,0);
-    Translation new_translation   = Translation(0,0,0);
-    Quaternion  new_orientation   = Quaternion();
+    Scale       new_scaling       = Scale (0,0,0);
+    Translation new_translation   = Translation (0,0,0);
+    Quaternion  new_orientation   = Quaternion ();
     new_orientation.setZero();
 
     for (int i = 0; i < getAnimationTrackCount(); i++) {

@@ -18,16 +18,26 @@ TEST (Group_default_variables)
 TEST (Group_set_variables)
 {
     Group* grp  = new Group;
-    Node*  node = new Node;
+    Node*  node1 = new Node;
+    Node*  node2 = new Node;
 
-    grp->addChild (node);
+    grp->addChild (node1);
     CHECK_EQUAL (1, grp->getChildCount());
-    CHECK_EQUAL (node, grp->getChild(0));
+    CHECK_EQUAL (node1, grp->getChild(0));
 
-    grp->removeChild (node);
+    // M3Gの仕様上は順不定
+    grp->addChild (node2);
+    CHECK_EQUAL (2, grp->getChildCount());
+    CHECK_EQUAL (node2, grp->getChild(1));
+
+    grp->removeChild (node1);
+    CHECK_EQUAL (1, grp->getChildCount());
+
+    grp->removeChild (node2);
     CHECK_EQUAL (0, grp->getChildCount());
 
-    delete node;
+    delete node1;
+    delete node2;
     delete grp;
 }
 

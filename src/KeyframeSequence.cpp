@@ -132,7 +132,7 @@ void KeyframeSequence:: setDuration (int new_duration)
     duration = new_duration;
 }
 
-void KeyframeSequence:: setKeyframe (int index, int time, float* value)
+void KeyframeSequence:: setKeyframe (int index, int time, const float* value)
 {
     if (index < 0 || index >= keyframe_count) {
         throw IndexOutOfBoundsException (__FILE__, __func__, "Index is invalid, index=%d, keyframe_count=%d.", index, keyframe_count);

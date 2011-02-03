@@ -40,7 +40,7 @@ namespace m3g {
          * @~English   Return inverse of this quaternion
          * @~Japanese  q^(-1)を返す.
          */
-        Quaternion inv () const;
+        Quaternion getInverse () const;
 
         /**
          * @~English   make vector components to be 0, scaler componet to be 1.

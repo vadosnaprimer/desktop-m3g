@@ -138,13 +138,13 @@ m3g::Quaternion m3g::squad (
 {
     float f1 = 2*(t2-t1)/(t2-t0);
     float f2 = 2*(t2-t1)/(t3-t1);
-    Quaternion a1 = q1 * exp( (f1*(log(q1.inv()*q2) + log(q0.inv()*q1))*0.5f - log(q1.inv()*q2))*0.5f );
-    Quaternion b2 = q2 * exp( (log(q1.inv()*q2) - f2*(log(q2.inv()*q3) + log(q1.inv()*q2))*0.5f)*0.5f );
+    Quaternion a1 = q1 * exp( (f1*(log(q1.getInverse()*q2) + log(q0.getInverse()*q1))*0.5f - log(q1.getInverse()*q2))*0.5f );
+    Quaternion b2 = q2 * exp( (log(q1.getInverse()*q2) - f2*(log(q2.getInverse()*q3) + log(q1.getInverse()*q2))*0.5f)*0.5f );
     Quaternion q  = slerp (slerp(q1,q2,s), slerp(a1,b2,s), 2*s*(1-s));
     return q;
 }
 
-m3g::Quaternion Quaternion::inv () const
+m3g::Quaternion Quaternion::getInverse () const
 {
     Quaternion q;
     q.x = -x;

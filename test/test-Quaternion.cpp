@@ -151,10 +151,10 @@ TEST (Quaternion_plus_minus)
     CHECK_CLOSE (q3.w, (q0-q1).w, 0.0001f);
 }
 
-TEST (Quaternion_inv)
+TEST (Quaternion_getInverse)
 {
     Quaternion q0 (10, 1,0,0);
-    Quaternion q1 = q0.inv();
+    Quaternion q1 = q0.getInverse();
     Quaternion q2 = q1*q0;
 
     CHECK_CLOSE (-q0.x, q1.x, 0.00001f);
@@ -298,7 +298,7 @@ TEST (Quaternion_abc)
     Quaternion Qb;
     Quaternion Qc (30, 1,0,0);
 
-    Qb = Qa * Qc.inv();
+    Qb = Qa * Qc.getInverse();
     // cout << "Qb = " << Qb << "\n";
 
     float angle_axis[4];

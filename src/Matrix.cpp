@@ -39,7 +39,8 @@ Matrix:: ~Matrix ()
 Matrix Matrix:: getInverse () const
 {
     Matrix mat = *this;
-    return mat.invert();
+    mat.invert();
+    return mat;
 }
 
 Matrix Matrix:: get3x3 () const
@@ -142,8 +143,8 @@ Matrix& Matrix:: invert ()
     m[13] = inv_det*(n[0]*n[9 ]*n[14] + n[1]*n[10]*n[12] + n[2]*n[8 ]*n[13] - n[0]*n[10]*n[13] - n[1]*n[8 ]*n[14] - n[2]*n[9 ]*n[12]);
     m[14] = inv_det*(n[0]*n[6 ]*n[13] + n[1]*n[4 ]*n[14] + n[2]*n[5 ]*n[12] - n[0]*n[5 ]*n[14] - n[1]*n[6 ]*n[12] - n[2]*n[4 ]*n[13]);
     m[15] = inv_det*(n[0]*n[5 ]*n[10] + n[1]*n[6 ]*n[8 ] + n[2]*n[4 ]*n[9 ] - n[0]*n[6 ]*n[9 ] - n[1]*n[4 ]*n[10] - n[2]*n[5 ]*n[8 ]);
-  
-    return *this;
+
+    return *this;  
 }
 
 Matrix& Matrix:: transpose ()

@@ -43,66 +43,83 @@ namespace m3g {
         /**
          * @~English  Creates a duplicate of this Object3D. 
          * @~Japanese このオブジェクトの複製の作成.
+         * @return 複製されたAnimationControllerオブジェクト.
          */
         AnimationController* duplicate () const;
 
         /**
          * @~English  Retrieve the ending time of the current active interval of this animation controller, in the world time units.
          * @~Japanese このアニメーションコントローラーのアクティブ期間の終了時刻を返す。単位はワールド時間.
+         * @return アクティブ区間の終了時刻.
          */
         int   getActiveIntervalEnd () const;
 
         /**
          * @~English  Retrieve the starting time of the current active interval of this animation controller, in the world time units.
          * @~Japanese  このアニメーションコントローラーのアクティブ期間の開始時刻を返す。単位はワールド時間.
+         * @return アクティブ区間の開始時刻.
          */
         int   getActiveIntervalStart () const;
 
         /**
          * @~English  Retrievews the sequence time that corresponds to the given world time.
-         * @~Japanese 与えられたワールド時刻に一致するローカル時刻を返す.
+         * @~Japanese 与えられたワールド時刻に一致するシーケンス時刻の取得.
+         * @param[in] world_time  ワールド時刻.
+         * @return 与えられたワールド時刻に対応するシーケンス時刻
          */
         float getPosition (int world_time) const;
 
         /**
          * @~English  Returns the current reference world time.
-         * @~Japanese カレントのリファレンスワールド時間を返す.
+         * @~Japanese カレントのリファレンスワールド時間の取得.
+         * @return リファレンスとしているワールド時間.
          */
         int   getRefWorldTime () const;
 
         /**
          * @~English  Retrieves the currently set playback speed of this animation controller.
-         * @~Japanese このアニメーションコントローラーに設定された再生速度を返す.
+         * @~Japanese このアニメーションコントローラーに設定された再生速度の取得.
+         * @return 再生速度.
          */
         float getSpeed () const;
 
         /**
          * @~English  Retrieves the currently set blending weight for this animation controller.
          * @~Japanese このアニメーションコントローラーに設定されたブレンドウェイトを返す.
+         * @return ウェイト値.
          */
         float getWeight () const;
 
         /**
          * @~English  Sets the world time interval during which this animation controller is active.
          * @~Japanese このアニメーションコントローラーがアクティブなワールド時間の期間を設定する。
+         * @param[in] start アクティブ区間の開始時刻.
+         * @param[in] end   アクティブ区間の終了時刻.
          */
         void  setActiveInterval (int start, int end);
 
         /**
          * @~English  Sets a new playback position, relative to world time.
-         * @~Japanese このアニメーションコントローラーにワールド時間で新しい再生位置を設定する.
+         * @~Japanese あるワールド時刻に対応する再生位置（シーケンス時刻）を新しく指定する.
+         * @param[in] sequence_time シーケンス時刻.
+         * @param[in] world_time    ワールド時刻.
          */
         void  setPosition (float sequence_time, int world_time);
 
         /**
          * @~English  Sets a new playback speed for this animation.
          * @~Japanese このアニメーションの再生速度を設定する.
+         * @param[in] speed      再生速度。1が標準. 
+         * @param[in] world_time 現在のワールド時刻を指定する.
+         * 引数のworld_timeはアニメーションをなめらかに変化させるために
+         * 内部で必要とするパラメーターで、通常気にする必要はない。
          */
         void  setSpeed (float speed, int world_time);
 
         /**
          * @~English  Sets the blending weight for this animation controller.
-         * @~Japanese このアニメーションコントローラーにブレンドウェイトを設定する.
+         * @~Japanese このアニメーションコントローラーにウェイト値を設定する.
+         * param[in] weight  ウェイト値.
          */
         void  setWeight (float weight);
 
@@ -110,11 +127,16 @@ namespace m3g {
          * @internal
          * @~English  query specified world_time is in active interval, This is not under M3G spesification.
          * @~Japanese 指定されたworld_timeがアクティブ区間内だったらtrueを返すM3G非標準の関数.
+         * @param[in] world_time ワールド時刻.
+         * @return このコントローラーがアクティブならtrue, 非アクティブならfalseが返る.
          */
         bool isActive (int world_time) const;
 
 
-
+        /**
+         * @~English  Print out information of this class, for debug only.
+         * @~Japanese このAnimationControllerオブジェクトの情報を表示する。デバッグ用.
+         */
         virtual std::ostream& print (std::ostream& out) const;
 
     protected:
@@ -140,7 +162,7 @@ namespace m3g {
 
 } // namespace m3g
 
-std::ostream& operator<< (std::ostream& out, const m3g::AnimationController& a);
+std::ostream& operator<< (std::ostream& out, const m3g::AnimationController& ctrl);
 
 
 #endif

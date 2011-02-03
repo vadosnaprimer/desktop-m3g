@@ -49,13 +49,6 @@ VertexArray:: ~VertexArray ()
     }
 }
 
-VertexArray:: VertexArray () :
-    component_count(0),
-    component_size(0),
-    vertex_count(0),
-    char_values(0), vbo(0)
-{
-}
 
 VertexArray* VertexArray:: duplicate () const
 {
@@ -74,6 +67,7 @@ VertexArray* VertexArray:: duplicate_xxx (Object3D* obj) const
     case 1: varry->set (0, vertex_count, char_values ); break;
     case 2: varry->set (0, vertex_count, short_values); break;
     case 4: varry->set (0, vertex_count, float_values); break;
+    default : throw InternalException (__FILE__, __func__, "This never happen. comp_size=%d.", component_size);
     }
 
     return varry;

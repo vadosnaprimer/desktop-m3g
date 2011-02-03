@@ -126,7 +126,7 @@ bool Image2D:: isMutable () const
     return !immutable;
 }
 
-void Image2D:: set (int px, int py, int wid, int hei, void* pixels)
+void Image2D:: set (int px, int py, int wid, int hei, const void* pixels)
 {
     if (immutable) {
         throw IllegalStateException (__FILE__, __func__, "This image is immutable.");

@@ -28,9 +28,9 @@ AnimationController* AnimationController:: duplicate_xxx (Object3D* obj) const
     }
     Object3D:: duplicate_xxx (anim_ctr);
 
-    anim_ctr->active_interval          = active_interval;
-    anim_ctr->blending_weight          = blending_weight;
-    anim_ctr->speed                    = speed;
+    anim_ctr->active_interval         = active_interval;
+    anim_ctr->blending_weight         = blending_weight;
+    anim_ctr->speed                   = speed;
     anim_ctr->reference_world_time    = reference_world_time;
     anim_ctr->reference_sequence_time = reference_sequence_time;
 
@@ -114,7 +114,7 @@ std::ostream& AnimationController:: print (std::ostream& out) const
     return out;
 }
 
-std::ostream& operator<< (std::ostream& out, const AnimationController& a)
+std::ostream& operator<< (std::ostream& out, const AnimationController& ctrl)
 {
-    return a.print(out);
+    return ctrl.print(out);
 }

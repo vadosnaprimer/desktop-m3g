@@ -102,7 +102,7 @@ namespace m3g {
          * @~English  Updates a rectangular area of this Image2D by copying pixels from a byte array.
          * @~Japanese バイト配列からピクセルをコピーしてこのImage2Dクラスの矩形領域を更新する.
          */
-        void set (int x, int y, int width, int height, void* image);
+        void set (int x, int y, int width, int height, const void* image);
 
 
         /**

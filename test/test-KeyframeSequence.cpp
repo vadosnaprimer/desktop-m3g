@@ -28,20 +28,34 @@ TEST (KeyframeSequence_default_variables)
 
 TEST (KeyframeSequence_set_variables)
 {
-    KeyframeSequence* keyframe = new KeyframeSequence (10, 3, KeyframeSequence::LINEAR);
-    keyframe->setDuration (1000);
-    keyframe->setRepeatMode (KeyframeSequence::LOOP);
-    keyframe->setValidRange (5,9);
+    KeyframeSequence* key_seq = new KeyframeSequence (10, 3, KeyframeSequence::LINEAR);
+    key_seq->setDuration (1000);
+    key_seq->setRepeatMode (KeyframeSequence::LOOP);
+    key_seq->setValidRange (5,9);
 
-    CHECK_EQUAL (10,   keyframe->getKeyframeCount());
-    CHECK_EQUAL (3,    keyframe->getComponentCount());
-    CHECK_EQUAL (KeyframeSequence::LINEAR,   keyframe->getInterpolationType());
-    CHECK_EQUAL (KeyframeSequence::LOOP, keyframe->getRepeatMode());
-    CHECK_EQUAL (1000, keyframe->getDuration());
-    CHECK_EQUAL (5,    keyframe->getValidRangeFirst());
-    CHECK_EQUAL (9,   keyframe->getValidRangeLast());
+    CHECK_EQUAL (10,   key_seq->getKeyframeCount());
+    CHECK_EQUAL (3,    key_seq->getComponentCount());
+    CHECK_EQUAL (KeyframeSequence::LINEAR,   key_seq->getInterpolationType());
+    CHECK_EQUAL (KeyframeSequence::LOOP, key_seq->getRepeatMode());
+    CHECK_EQUAL (1000, key_seq->getDuration());
+    CHECK_EQUAL (5,    key_seq->getValidRangeFirst());
+    CHECK_EQUAL (9,   key_seq->getValidRangeLast());
 
-    delete keyframe;
+    for (int i = 0; i < 10; i++) {
+        int   time      = i*10;
+        float values[3] = {i,i+1,i+2};
+        key_seq->setKeyframe (i,   time, values);
+    }
+    for (int i = 0; i < 10; i++) {
+        float values[3];
+        int   time = key_seq->getKeyframe (i, values);
+        CHECK_EQUAL (i*10, time);
+        CHECK_EQUAL (i   , values[0]);
+        CHECK_EQUAL (i+1 , values[1]);
+        CHECK_EQUAL (i+2 , values[2]);
+    }
+
+    delete key_seq;
 }
 
 TEST (KeyframeSequence_interpolate_step)

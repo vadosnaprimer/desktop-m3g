@@ -68,6 +68,9 @@ namespace m3g {
          * @~English  Constructs a new2 keyframe sequence with specified interpolation method,
          *            number of components per keyframe, and number of keyframes.
          * @~Japanese 指定された補間方法、キーフレーム構成、キーフレーム数でキーフレームシーケンスを作成する.
+         * @param[in] num_keyframes  このシーケンスで使用する総フレーム数.
+         * @param[in] num_cmponents  １フレーム内のコンポーネント数.
+         * @param[in] interpolation  補間方法.STEP, LINEAR, SPLINE, SLERP, SQUADのいずれか.
          */
         KeyframeSequence (int num_keyframes, int num_components, int interpolation);
 
@@ -80,14 +83,14 @@ namespace m3g {
         /**
          * @~English  Creates a duplicate of this Object3D. 
          * @~Japanese このオブジェクトの複製の作成.
-         * @return 複製されたキーフレーム・オブジェクト
+         * @return 複製されたKeyframeSequenceオブジェクト.
          */
         KeyframeSequence* duplicate () const;
 
         /**
          * @~English  Returns the number of components per keyframe in this ssequence.
          * @~Japanese このシーケンスの1キーフレーム当たりのコンポーネント数を取得.
-         * @return コンポーネント数。2,3,4のいずれか。
+         * @return コンポーネント数。2,3,4のいずれか.
          */
         int getComponentCount () const;
 
@@ -109,7 +112,8 @@ namespace m3g {
         /**
          * @~English  Retrieves the time stamp and value of a single keyframe.
          * @~Japanese 引数で指定したキーフレームのデータ（時刻とその時の値）の取得.
-         * @param[in] value 　キーフレームの値
+         * @param[in]  index 　取得したいキーフレームのインデックス番号.
+         * @param[out] value 　結果を書き込むfloatの領域.
          * @return キーフレームの時刻
          */
         int getKeyframe (int index, float* value) const;
@@ -117,6 +121,7 @@ namespace m3g {
         /**
          * @~English  Returns the total number of keyframes in this sequence.
          * @~Japanese このシーケンスが保持しているキーフレーム数を取得.
+         * @return 総キーフレーム数.
          */
         int getKeyframeCount () const;
 
@@ -142,6 +147,14 @@ namespace m3g {
         int getValidRangeLast () const;
 
         /**
+         * @~English  Returns interpolated values at specified time.
+         * @~Japanese 指定されたシーケンス時間の補完済みデータを取得する関数.
+         * @param[in]  sequence_time  サンプリングする時刻
+         * @param[out] value          サンプリング結果を書き込む領域
+         */
+        void sample (int sequence_time, float* value) const;
+
+        /**
          * @~English  Sets the duration of this sequence in sequence time units.
          * @~Japanese このキーフレーム・シーケンスの期間を（シーケンス時間単位で）設定する.
          * @param[in] duration シーケンス期間
@@ -155,7 +168,7 @@ namespace m3g {
          * @param[in] time  時刻.
          * @param[in] value その時の値.
          */
-        void setKeyframe (int index, int time, float* value);
+        void setKeyframe (int index, int time, const float* value);
 
         /** 
          * @~English  Sets the repeat mode of this KeyframeSequence.
@@ -178,13 +191,6 @@ namespace m3g {
          */
         virtual std::ostream& print (std::ostream& out) const;
 
-        /**
-         * @~English  Returns interpolated values at specified time.
-         * @~Japanese 指定されたシーケンス時間の補完済みデータを取得する関数.
-         * @param[in] sequence_time  サンプリングする時刻
-         * @param[in] value          サンプリング結果を書き込む領域
-         */
-        void sample (int sequence_time, float* value) const;
 
 
     protected:

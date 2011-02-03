@@ -48,11 +48,15 @@ float rad (float degree)
     return degree/(180.0/M_PI);
 }
 
+static int frame = 0;
+
 void idle ()
 {
+    cout << "frame = " << frame++ << "\n";
+
     if (stopped)
         return;
-    world_time = (world_time + 20) % 6000;
+    world_time = (world_time + 100) % 10000;
     wld->animate (world_time);
 
     Camera* cam = wld->getActiveCamera ();

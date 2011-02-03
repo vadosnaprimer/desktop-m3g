@@ -179,9 +179,6 @@ void Appearance:: setTexture (int index, Texture2D* texture)
     if (index < 0 || index >= (int)textures.size()) {
         throw IndexOutOfBoundsException (__FILE__, __func__, "Texture unit index is invalid, i=%d in [0,%d).", index, textures.size());
     }
-    if (texture == NULL) {
-        throw NullPointerException (__FILE__, __func__, "Null texture is specified.");
-    }
 
     textures[index] = texture;
 }

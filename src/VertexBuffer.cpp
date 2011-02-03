@@ -145,7 +145,6 @@ int VertexBuffer:: animate_xxx (int world_time)
         unsigned char r = clamp (0, 1, rgb[0]) * 255;
         unsigned char g = clamp (0, 1, rgb[1]) * 255;
         unsigned char b = clamp (0, 1, rgb[2]) * 255;
-        //cout << "VertexBuffer: r,g,b = " << (int)r << ", " << (int)g << ", " << (int)b << "\n";
         default_color = (default_color & 0xff000000) | (r << 16) | (g << 8) | (b << 0);
     }
     if (is_alpha_modefied) {

@@ -160,6 +160,7 @@ namespace m3g {
         /**
          * @~English  Creates a duplicate of this Object3D. 
          * @~Japanese このオブジェクトの複製の作成.
+         * @return 複製したAnimationTrackオブジェクト.
          */
         AnimationTrack* duplicate () const;
 
@@ -167,33 +168,40 @@ namespace m3g {
         /**
          * @~English  Retrieves the animation controller used for 
          *            controllling this animation track.
-         * @~Japanese このアニメーショントラックを制御するアニメーションコントローラーを取得する.
+         * @~Japanese このアニメーショントラックに関連付けられているアニメーションコントローラーを取得する.
+         * @return AnimationControllerオブジェクト.
          */
         AnimationController* getController () const;
 
         /**
          * @~English  Returns the keyframe sequence object which defines the keyframe values for this animation track.
-         * @~Japanese このアニメーショントラック用のキーフレームの値を持つキーフレームシーケンスを取得する.
+         * @~Japanese このアニメーショントラックに関連付けられているキーフレームシーケンスを取得する.
+         * @return KeyframeSequenceオブジェクト.
          */
         KeyframeSequence* getKeyframeSequence () const;
 
         /**
          * @~English  Returns the property targeted by this AnimationTrack.
-         * @~Japanese このアニメーショントラックによるターゲットプロパティを取得する.
+         * @~Japanese このアニメーショントラックの対象となっているプロパティを取得する.
+         * @return ターゲットプロパティ. ALPHA, AMBIENT_COLOR, COLOR, CROP, DENSITY, DIFFUSE_COLOR,
+         *         EMISSIVE_COLOR, FAR_DISTANCE, FIELD_OF_VIEW, INTENSITY, MORPH_WEIGHTS, 
+         *         NEAR_DISTANCE, ORIENTATION, PICKABILITY, SCALE, SHININESS, SPECULAR_COLOR, 
+         *         SPOT_ANGLE, SPOT_EXPONENT, TRANSLATION, VISIBILITYのいづれかが返る.
          */
         int getTargetProperty () const;
 
         /**
          * @~English  Specifieds the animation controller tobe used for 
          *            controlling this animation track.
-         * @~Japanese このアニメーショントラックを制御するアニメーションコントローラーを設定する.
+         * @~Japanese このアニメーショントラックを制御するアニメーション・コントローラーを設定する.
+         * @param[in] controller  コントローラー
          */
         void setController (AnimationController* controller);
 
 
         /**
          * @~English  Print out information of this class, for debug only.
-         * @~Japanese このAnimationTrackクラスの情報を表示する。デバッグ用.
+         * @~Japanese このAnimationTrackオブジェクトの情報を表示する。デバッグ用.
          */
         virtual std::ostream& print (std::ostream& out) const;
 
