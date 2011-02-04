@@ -47,6 +47,7 @@ namespace m3g {
         /**
          * @~English  Returns the current CompostingMode for this Appearance.
          * @~Japanese このアピアランスのCompositingModeの取得.
+         * @return コンポジティングモード要素.
          */
         CompositingMode* getCompositingMode () const;
 
@@ -116,6 +117,7 @@ namespace m3g {
         /**
          * @~English  Sets the Material to use when lighting this Appearance.
          * @~Japanese このアピアランスのMaterialの設定.
+         * @param[in] material  マテリアルを表すMaterialオブジェクト.
          */
         void setMaterial (Material* material);
 
@@ -127,7 +129,9 @@ namespace m3g {
 
         /**
          * @~English  Sets the texture image and its attributes for the given textureing unit.
-         * @~Japanese 指定されたテクスチャーユニットのテクスチャーイメージとその属性値の設定.
+         * @~Japanese 指定されたテクスチャーユニットのテクスチャーイメージとその属性値の設定. NULLでテクスチャーの無効化.
+         * @param[in] index   テクスチャーユニット番号.
+         * @param[in] texture テクスチャーを表すTexture2Dオブジェクト.
          */
         void setTexture (int index, Texture2D* texture);
 
