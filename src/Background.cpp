@@ -257,8 +257,8 @@ void Background:: setImage (Image2D* img)
 
     glBindTexture   (GL_TEXTURE_2D, texobj);
     glPixelStorei   (GL_UNPACK_ALIGNMENT, 1);
-    glTexImage2D    (GL_TEXTURE_2D, 0, format, width, height, 0, format, GL_UNSIGNED_BYTE, data);
     glTexParameteri (GL_TEXTURE_2D, GL_GENERATE_MIPMAP, GL_TRUE);
+    glTexImage2D    (GL_TEXTURE_2D, 0, format, width, height, 0, format, GL_UNSIGNED_BYTE, data);
 }
 
 void Background:: setImageMode (int mode_x, int mode_y)
