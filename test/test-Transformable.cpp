@@ -5,6 +5,52 @@
 using namespace std;
 using namespace m3g;
 
+TEST (Transformable_default_variables)
+{
+    Transformable* trans = new Transformable;
+
+    float a[4];
+    trans->getOrientation (a);
+    CHECK_CLOSE (0.f, a[0], 0.00001);
+    CHECK_CLOSE (0.f, a[1], 0.00001);
+    CHECK_CLOSE (0.f, a[2], 0.00001);
+    CHECK_CLOSE (0.f, a[3], 0.00001);
+
+    float s[3];
+    trans->getScale (s);
+    CHECK_CLOSE (1.f, s[0], 0.00001);
+    CHECK_CLOSE (1.f, s[1], 0.00001);
+    CHECK_CLOSE (1.f, s[2], 0.00001);
+
+    float t[3];
+    trans->getTranslation (t);
+    CHECK_CLOSE (0.f, t[0], 0.00001);
+    CHECK_CLOSE (0.f, t[1], 0.00001);
+    CHECK_CLOSE (0.f, t[2], 0.00001);
+  
+    Transform tra;
+    float m[16];
+    trans->getTransform (&tra);
+    tra.get (m);
+    CHECK_CLOSE (1.f, m[0], 0.00001);
+    CHECK_CLOSE (0.f, m[1], 0.00001);
+    CHECK_CLOSE (0.f, m[2], 0.00001);
+    CHECK_CLOSE (0.f, m[3], 0.00001);
+    CHECK_CLOSE (0.f, m[4], 0.00001);
+    CHECK_CLOSE (1.f, m[5], 0.00001);
+    CHECK_CLOSE (0.f, m[6], 0.00001);
+    CHECK_CLOSE (0.f, m[7], 0.00001);
+    CHECK_CLOSE (0.f, m[8], 0.00001);
+    CHECK_CLOSE (0.f, m[9], 0.00001);
+    CHECK_CLOSE (1.f, m[10], 0.00001);
+    CHECK_CLOSE (0.f, m[11], 0.00001);
+    CHECK_CLOSE (0.f, m[12], 0.00001);
+    CHECK_CLOSE (0.f, m[13], 0.00001);
+    CHECK_CLOSE (0.f, m[14], 0.00001);
+    CHECK_CLOSE (1.f, m[15], 0.00001);
+
+    delete trans;
+}
 
 TEST (Transformable_set_variables)
 {

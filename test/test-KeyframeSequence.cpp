@@ -60,138 +60,151 @@ TEST (KeyframeSequence_set_variables)
 
 TEST (KeyframeSequence_interpolate_step)
 {
-    KeyframeSequence* keyframe = new KeyframeSequence (3, 1, KeyframeSequence::STEP);
-    keyframe->setDuration  (1000);
-    keyframe->setValidRange (0,2);
+    KeyframeSequence* key_seq = new KeyframeSequence (3, 1, KeyframeSequence::STEP);
+    key_seq->setDuration  (1000);
+    key_seq->setValidRange (0,2);
 
     float values[] = {0,1,3};
-    keyframe->setKeyframe (0,   0, &values[0]);
-    keyframe->setKeyframe (1, 100, &values[1]);
-    keyframe->setKeyframe (2, 200, &values[2]);
+    key_seq->setKeyframe (0,   0, &values[0]);
+    key_seq->setKeyframe (1, 100, &values[1]);
+    key_seq->setKeyframe (2, 200, &values[2]);
 
     float value;
 
-    keyframe->sample (-50, &value);
+    key_seq->sample (-50, &value);
     CHECK_CLOSE (0, value, 0.00001);
 
-    keyframe->sample (0, &value);
+    key_seq->sample (0, &value);
     CHECK_CLOSE (0, value, 0.00001);
 
-    keyframe->sample (50, &value);
+    key_seq->sample (50, &value);
     CHECK_CLOSE (0, value, 0.00001);
 
-    keyframe->sample (100, &value);
+    key_seq->sample (100, &value);
     CHECK_CLOSE (1, value, 0.00001);
 
-    keyframe->sample (150, &value);
+    key_seq->sample (150, &value);
     CHECK_CLOSE (1, value, 0.00001);
 
-    keyframe->sample (200, &value);
+    key_seq->sample (200, &value);
     CHECK_CLOSE (3, value, 0.00001);
 
-    keyframe->sample (250, &value);
+    key_seq->sample (250, &value);
     CHECK_CLOSE (3, value, 0.00001);
+
+    delete key_seq;    
 }
 
 
 
 TEST (KeyframeSequence_interpolate_linear_constant)
 {
-    KeyframeSequence* keyframe = new KeyframeSequence (3, 1, KeyframeSequence::LINEAR);
-    keyframe->setDuration  (1000);
-    keyframe->setValidRange (0,2);
+    KeyframeSequence* key_seq = new KeyframeSequence (3, 1, KeyframeSequence::LINEAR);
+    key_seq->setDuration  (1000);
+    key_seq->setValidRange (0,2);
 
     float values[] = {0,1,3};
-    keyframe->setKeyframe (0,   0, &values[0]);
-    keyframe->setKeyframe (1, 100, &values[1]);
-    keyframe->setKeyframe (2, 200, &values[2]);
+    key_seq->setKeyframe (0,   0, &values[0]);
+    key_seq->setKeyframe (1, 100, &values[1]);
+    key_seq->setKeyframe (2, 200, &values[2]);
 
     float value;
 
-    keyframe->sample (-50, &value);
+    key_seq->sample (-50, &value);
     CHECK_CLOSE (0, value, 0.00001);
 
-    keyframe->sample (0, &value);
+    key_seq->sample (0, &value);
     CHECK_CLOSE (0, value, 0.00001);
 
-    keyframe->sample (50, &value);
+    key_seq->sample (50, &value);
     CHECK_CLOSE (0.5, value, 0.00001);
 
-    keyframe->sample (100, &value);
+    key_seq->sample (100, &value);
     CHECK_CLOSE (1, value, 0.00001);
 
-    keyframe->sample (150, &value);
+    key_seq->sample (150, &value);
     CHECK_CLOSE (2, value, 0.00001);
 
-    keyframe->sample (200, &value);
+    key_seq->sample (200, &value);
     CHECK_CLOSE (3, value, 0.00001);
 
-    keyframe->sample (250, &value);
+    key_seq->sample (250, &value);
     CHECK_CLOSE (3, value, 0.00001);
+
+    delete key_seq;
 }
 
 
 TEST (KeyframeSequence_interpolate_linear_loop)
 {
-    KeyframeSequence* keyframe = new KeyframeSequence (3, 1, KeyframeSequence::LINEAR);
-    keyframe->setDuration  (1000);
-    keyframe->setValidRange (0,2);
-    keyframe->setRepeatMode (KeyframeSequence::LOOP);
+    KeyframeSequence* key_seq = new KeyframeSequence (3, 1, KeyframeSequence::LINEAR);
+    key_seq->setDuration  (1000);
+    key_seq->setValidRange (0,2);
+    key_seq->setRepeatMode (KeyframeSequence::LOOP);
 
     float values[] = {0,1,3};
-    keyframe->setKeyframe (0,   0, &values[0]);
-    keyframe->setKeyframe (1, 100, &values[1]);
-    keyframe->setKeyframe (2, 200, &values[2]);
+    key_seq->setKeyframe (0,   0, &values[0]);
+    key_seq->setKeyframe (1, 100, &values[1]);
+    key_seq->setKeyframe (2, 200, &values[2]);
 
     float value;
 
-    keyframe->sample (-50, &value);
+    key_seq->sample (-50, &value);
     CHECK_CLOSE (0, value, 0.00001);
 
-    keyframe->sample (0, &value);
+    key_seq->sample (0, &value);
     CHECK_CLOSE (0, value, 0.00001);
 
-    keyframe->sample (50, &value);
+    key_seq->sample (50, &value);
     CHECK_CLOSE (0.5, value, 0.00001);
 
-    keyframe->sample (100, &value);
+    key_seq->sample (100, &value);
     CHECK_CLOSE (1, value, 0.00001);
 
-    keyframe->sample (150, &value);
+    key_seq->sample (150, &value);
     CHECK_CLOSE (2, value, 0.00001);
 
-    keyframe->sample (200, &value);
+    key_seq->sample (200, &value);
     CHECK_CLOSE (3, value, 0.00001);
 
-    keyframe->sample (250, &value);
+    key_seq->sample (250, &value);
     CHECK_CLOSE (3, value, 0.00001);
+
+    delete key_seq;
 }
 
 
 TEST (KeyframeSequence_duplicate)
 {
-    KeyframeSequence* kseq0 = new KeyframeSequence (10, 3, KeyframeSequence::LINEAR);
-    kseq0->setDuration (1000);
-    kseq0->setRepeatMode (KeyframeSequence::LOOP);
-    kseq0->setValidRange (5,9);
+    KeyframeSequence* key_seq_0 = new KeyframeSequence (10, 1, KeyframeSequence::LINEAR);
+    key_seq_0->setDuration (1000);
+    key_seq_0->setRepeatMode (KeyframeSequence::LOOP);
+    key_seq_0->setValidRange (0,2);
 
     float values[] = {0,1,3};
-    kseq0->setKeyframe (0,   0, &values[0]);
-    kseq0->setKeyframe (1, 100, &values[1]);
-    kseq0->setKeyframe (2, 200, &values[2]);
+    key_seq_0->setKeyframe (0,   0, &values[0]);
+    key_seq_0->setKeyframe (1, 100, &values[1]);
+    key_seq_0->setKeyframe (2, 200, &values[2]);
 
-    KeyframeSequence* kseq1 = kseq0->duplicate();
+    KeyframeSequence* key_seq_1 = key_seq_0->duplicate();
 
-    CHECK_EQUAL (kseq0->getKeyframeCount()    , kseq1->getKeyframeCount());
-    CHECK_EQUAL (kseq0->getComponentCount()   , kseq1->getComponentCount());
-    CHECK_EQUAL (kseq0->getInterpolationType(), kseq1->getInterpolationType());
-    CHECK_EQUAL (kseq0->getRepeatMode()       , kseq1->getRepeatMode());
-    CHECK_EQUAL (kseq0->getDuration()         , kseq1->getDuration());
-    CHECK_EQUAL (kseq0->getValidRangeFirst()  , kseq1->getValidRangeFirst());
-    CHECK_EQUAL (kseq0->getValidRangeLast()   , kseq1->getValidRangeLast());
+    CHECK_EQUAL (key_seq_0->getKeyframeCount()    , key_seq_1->getKeyframeCount());
+    CHECK_EQUAL (key_seq_0->getComponentCount()   , key_seq_1->getComponentCount());
+    CHECK_EQUAL (key_seq_0->getInterpolationType(), key_seq_1->getInterpolationType());
+    CHECK_EQUAL (key_seq_0->getRepeatMode()       , key_seq_1->getRepeatMode());
+    CHECK_EQUAL (key_seq_0->getDuration()         , key_seq_1->getDuration());
+    CHECK_EQUAL (key_seq_0->getValidRangeFirst()  , key_seq_1->getValidRangeFirst());
+    CHECK_EQUAL (key_seq_0->getValidRangeLast()   , key_seq_1->getValidRangeLast());
 
-    delete kseq0;
-    delete kseq1;
+    float value;
+    key_seq_0->sample (100, &value);
+    CHECK_CLOSE (1.f, value, 0.00001);
+    
+    key_seq_1->sample (100, &value);
+    CHECK_CLOSE (1.f, value, 0.00001);
+
+    delete key_seq_0;
+    delete key_seq_1;
 }
 
 

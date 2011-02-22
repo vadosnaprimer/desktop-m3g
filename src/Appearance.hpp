@@ -192,4 +192,6 @@ namespace m3g {
 
 } // namespace m3g {
 
+std::ostream& operator<< (std::ostream& out, const m3g::Appearance& app);
+
 #endif

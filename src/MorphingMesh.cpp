@@ -11,8 +11,12 @@
 #include <iostream>
 using namespace std;
 using namespace m3g;
-#include <cstdlib>
+//#include <cstdlib>
     
+/**
+ * メモ： 仕様書にはBaseのpositionsがNULLでもエラーにしろとは書かれていないが、
+ *        それは非常に困るのでここでエラーとしてる。多分仕様書の抜けだと思われる。
+ */
 MorphingMesh:: MorphingMesh (VertexBuffer* base, int num_target, VertexBuffer** targets,
                              int num_submesh, IndexBuffer** submeshes, Appearance** appearances) :
     Mesh (base, num_submesh, submeshes, appearances), morphed_vertices(0)
@@ -28,6 +32,10 @@ MorphingMesh:: MorphingMesh (VertexBuffer* base, int num_target, VertexBuffer** 
             throw NullPointerException (__FILE__, __func__, "Target vertices is NULL, i=%d.", i);
         }
     }
+    if (base->getPositions(0) == NULL) {
+        throw NullPointerException (__FILE__, __func__, "Base vertices has no positions.");
+    }
+
   
     initialize (num_target, targets);
 }
@@ -46,13 +54,17 @@ MorphingMesh:: MorphingMesh (VertexBuffer* base, int num_target, VertexBuffer** 
             throw NullPointerException (__FILE__, __func__, " Target vertices is NULL, index=%d.", i);
         }
     }
+    if (base->getPositions(0) == NULL) {
+        throw NullPointerException (__FILE__, __func__, "Base vertices has no positions.");
+    }
 
     initialize (num_target, targets);
 }
 
-// 注意：
-// VertexBufferをduplicate()しただけではその下のVertexArrayは同じのを指している。
-// モーフィング変形後のpositions,normals,colorsを保存するために、それらもduplicateする。
+/**
+ * メモ：VertexBufferをduplicate()しただけではその下のVertexArrayは同じのを指している。
+ *       モーフィング変形後のpositions,normals,colorsを保存するために、それらもduplicateする。
+ */
 void MorphingMesh:: initialize (int num_target, VertexBuffer** targets)
 {
     morphed_vertices = vertices->duplicate ();

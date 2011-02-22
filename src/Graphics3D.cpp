@@ -51,6 +51,11 @@ void Graphics3D:: initOpenGL ()
 {
 }
 
+void Graphics3D:: bindTarget (void* target)
+{
+    throw NotImplementedException (__FILE__, __func__, "Sorry, bindTarget() is not implemented.");
+}
+
 void Graphics3D:: bindTarget (void* target, bool depth_buffer_enable, int hint)
 {
     throw NotImplementedException (__FILE__, __func__, "Sorry, bindTarget() is not implemented.");

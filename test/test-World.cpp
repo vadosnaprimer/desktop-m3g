@@ -54,10 +54,13 @@ TEST (World_duplicate)
 
     World* wld1 = wld0->duplicate();
 
-    CHECK_EQUAL (1, wld1->getChildCount());
+    CHECK_EQUAL (1 , wld1->getChildCount());
+    CHECK_EQUAL (bg,  wld1->getBackground());
+
+    // ノードは複製された方を指す.
     CHECK (wld0->getChild(0) != wld1->getChild(0));
     CHECK (cam != wld1->getActiveCamera());
-    CHECK (bg  != wld1->getBackground());
+
 
     delete bg;
     delete cam;

@@ -27,7 +27,7 @@ IndexBuffer:: IndexBuffer (int        t,
         throw NullPointerException (__FILE__, __func__, "Strip lengths is NULL.");
     }
     if (num_strips < 1 || num_strips > 65535) {
-        throw IllegalArgumentException (__FILE__, __func__, "Number of strip lengths is invalid, num_strips=%d.", num_strips);
+        throw IllegalArgumentException (__FILE__, __func__, "Number of strips is invalid, num_strips=%d.", num_strips);
     }
 
     strip_lengths.assign (lengths, lengths + num_strips);
@@ -56,7 +56,7 @@ IndexBuffer:: IndexBuffer (int        t,
         throw IndexOutOfBoundsException (__FILE__, __func__, "Fist index is invalid, first_idex=%d.", first_index);
     }
     if (num_strips < 1 || first_index + num_strips > 65536) {
-        throw IndexOutOfBoundsException (__FILE__, __func__, "Nummber of strip lengths is invalid, first_index=%d, num_strips=%d.", first_index, num_strips);
+        throw IndexOutOfBoundsException (__FILE__, __func__, "Nummber of strip is invalid, first_index=%d, num_strips=%d.", first_index, num_strips);
     }
 
     strip_lengths.assign (lengths, lengths + num_strips);

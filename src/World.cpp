@@ -34,9 +34,8 @@ World* World:: duplicate_xxx (Object3D* obj) const
     }
     Group:: duplicate_xxx (wld);
 
-    if (background) {
-        wld->background = background->duplicate ();
-    }
+
+    wld->background = background;
     if (active_camera) {
         wld->active_camera = dynamic_cast<Camera*>(active_camera->getDuplicatedNode());
     }

@@ -223,6 +223,18 @@ TEST (Transform_transform_2)
     CHECK_CLOSE ( 7.f, out[5], 0.0001f);
     CHECK_CLOSE ( 9.f, out[6], 0.0001f);
     CHECK_CLOSE ( 1.f, out[7], 0.0001f);
+
+    trans.transform (in, out, false);
+
+    CHECK_CLOSE ( 1.f, out[0], 0.0001f);
+    CHECK_CLOSE ( 2.f, out[1], 0.0001f);
+    CHECK_CLOSE ( 3.f, out[2], 0.0001f);
+    CHECK_CLOSE ( 0.f, out[3], 0.0001f);
+
+    CHECK_CLOSE ( 4.f, out[4], 0.0001f);
+    CHECK_CLOSE ( 5.f, out[5], 0.0001f);
+    CHECK_CLOSE ( 6.f, out[6], 0.0001f);
+    CHECK_CLOSE ( 0.f, out[7], 0.0001f);
 }
 
 

@@ -15,8 +15,9 @@ TEST (Camera_default_values)
     int type;
     float m[16];
 
-
     type = cam->getProjection (&trans);
+
+    // 間違えやすいがデフォルトはジェネリック
     CHECK_EQUAL (Camera::GENERIC, type);
 
     trans.get (m);
@@ -56,26 +57,35 @@ TEST (Camera_set_variables_parallel)
 
     cam->setParallel (fovy, aspect_ratio, near, far);
 
+    float params[4];
+    type = cam->getProjection (params);
+    CHECK_EQUAL (Camera::PARALLEL, type);
+    CHECK_CLOSE (fovy        , params[0], 0.00001f);
+    CHECK_CLOSE (aspect_ratio, params[1], 0.00001f);
+    CHECK_CLOSE (near        , params[2], 0.00001f);
+    CHECK_CLOSE (far         , params[3], 0.00001f);
+    
+    // 仕様上は未定義だが、Desktop-M3Gの実装では正しい値を返す.
     type = cam->getProjection (&trans);
     CHECK_EQUAL (Camera::PARALLEL, type);
 
     trans.get (m);
-    CHECK_CLOSE (1.f, m[0], 0.00001f);
-    CHECK_CLOSE (0.f, m[1], 0.00001f);
-    CHECK_CLOSE (0.f, m[2], 0.00001f);
-    CHECK_CLOSE (0.f, m[3], 0.00001f);
-    CHECK_CLOSE (0.f, m[4], 0.00001f);
-    CHECK_CLOSE (1.33333f, m[5], 0.00001f);
-    CHECK_CLOSE (0.f, m[6], 0.00001f);
-    CHECK_CLOSE (0.f, m[7], 0.00001f);
-    CHECK_CLOSE (0.f, m[8], 0.00001f);
-    CHECK_CLOSE (0.f, m[9], 0.00001f);
+    CHECK_CLOSE (1.f       , m[0], 0.00001f);
+    CHECK_CLOSE (0.f       , m[1], 0.00001f);
+    CHECK_CLOSE (0.f       , m[2], 0.00001f);
+    CHECK_CLOSE (0.f       , m[3], 0.00001f);
+    CHECK_CLOSE (0.f       , m[4], 0.00001f);
+    CHECK_CLOSE (1.33333f  , m[5], 0.00001f);
+    CHECK_CLOSE (0.f       , m[6], 0.00001f);
+    CHECK_CLOSE (0.f       , m[7], 0.00001f);
+    CHECK_CLOSE (0.f       , m[8], 0.00001f);
+    CHECK_CLOSE (0.f       , m[9], 0.00001f);
     CHECK_CLOSE (-0.020202f, m[10], 0.00001f);
     CHECK_CLOSE (-1.020200f, m[11], 0.00001f);
-    CHECK_CLOSE (0.f, m[12], 0.00001f);
-    CHECK_CLOSE (0.f, m[13], 0.00001f);
-    CHECK_CLOSE (0.f, m[14], 0.00001f);
-    CHECK_CLOSE (1.f, m[15], 0.00001f);
+    CHECK_CLOSE (0.f       , m[12], 0.00001f);
+    CHECK_CLOSE (0.f       , m[13], 0.00001f);
+    CHECK_CLOSE (0.f       , m[14], 0.00001f);
+    CHECK_CLOSE (1.f       , m[15], 0.00001f);
 
     delete cam;    
 }
@@ -83,10 +93,10 @@ TEST (Camera_set_variables_parallel)
 
 TEST (Camera_set_variables_perspective)
 {
-    Camera* cam = new Camera;
+    Camera*   cam = new Camera;
     Transform trans;
-    float m[16];
-    int type;
+    float     m[16];
+    int       type;
 
     float fovy   = 60;
     float aspect_ratio = 640/480.f;
@@ -94,27 +104,36 @@ TEST (Camera_set_variables_perspective)
     float far    = 100;
 
     cam->setPerspective (fovy, aspect_ratio, near, far);
+    
+    float params[4];
+    type = cam->getProjection (params);
+    CHECK_EQUAL (Camera::PERSPECTIVE, type);
+    CHECK_CLOSE (fovy        , params[0], 0.00001f);
+    CHECK_CLOSE (aspect_ratio, params[1], 0.00001f);
+    CHECK_CLOSE (near        , params[2], 0.00001f);
+    CHECK_CLOSE (far         , params[3], 0.00001f);
 
+    // 仕様上は未定義だが、Desktop-M3Gの実装では正しい値を返す.
     type = cam->getProjection (&trans);
     CHECK_EQUAL (Camera::PERSPECTIVE, type);
 
     trans.get (m);
-    CHECK_CLOSE (1.29904f, m[0], 0.00001f);
-    CHECK_CLOSE (0.f, m[1], 0.00001f);
-    CHECK_CLOSE (0.f, m[2], 0.00001f);
-    CHECK_CLOSE (0.f, m[3], 0.00001f);
-    CHECK_CLOSE (0.f, m[4], 0.00001f);
-    CHECK_CLOSE (1.73205f, m[5], 0.00001f);
-    CHECK_CLOSE (0.f, m[6], 0.00001f);
-    CHECK_CLOSE (0.f, m[7], 0.00001f);
-    CHECK_CLOSE (0.f, m[8], 0.00001f);
-    CHECK_CLOSE (0.f, m[9], 0.00001f);
-    CHECK_CLOSE (-1.0202f, m[10], 0.00001f);
-    CHECK_CLOSE (-2.0202f, m[11], 0.00001f);
-    CHECK_CLOSE (0.f, m[12], 0.00001f);
-    CHECK_CLOSE (0.f, m[13], 0.00001f);
-    CHECK_CLOSE (-1.f, m[14], 0.00001f);
-    CHECK_CLOSE (0.f, m[15], 0.00001f);
+    CHECK_CLOSE (1.29904f , m[0], 0.00001f);
+    CHECK_CLOSE (0.f      , m[1], 0.00001f);
+    CHECK_CLOSE (0.f      , m[2], 0.00001f);
+    CHECK_CLOSE (0.f      , m[3], 0.00001f);
+    CHECK_CLOSE (0.f      , m[4], 0.00001f);
+    CHECK_CLOSE (1.73205f , m[5], 0.00001f);
+    CHECK_CLOSE (0.f      , m[6], 0.00001f);
+    CHECK_CLOSE (0.f      , m[7], 0.00001f);
+    CHECK_CLOSE (0.f      , m[8], 0.00001f);
+    CHECK_CLOSE (0.f      , m[9], 0.00001f);
+    CHECK_CLOSE (-1.0202f , m[10], 0.00001f);
+    CHECK_CLOSE (-2.0202f , m[11], 0.00001f);
+    CHECK_CLOSE (0.f      , m[12], 0.00001f);
+    CHECK_CLOSE (0.f      , m[13], 0.00001f);
+    CHECK_CLOSE (-1.f     , m[14], 0.00001f);
+    CHECK_CLOSE (0.f      , m[15], 0.00001f);
 
     delete cam;    
 }
@@ -223,4 +242,6 @@ TEST (Camera_lookAt)
     CHECK_CLOSE (m[13], 0.0f     , 0.0001f);
     CHECK_CLOSE (m[14], 0.0f     , 0.0001f);
     CHECK_CLOSE (m[15], 1.0f     , 0.0001f);
+
+    delete cam;
 }

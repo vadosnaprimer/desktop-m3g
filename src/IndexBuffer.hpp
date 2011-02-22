@@ -44,12 +44,18 @@ namespace m3g {
         /**
          * @~English  Constructs a triangle strip array with explicit indices.
          * @~Japanese ストリップ形式のインデックスを、インデックス配列を明示的に指定しての作成.
+         * @param[in] indices      ストリップで使用する全インデックスの配列
+         * @param[in] num_strips   ストリップの本数
+         * @param[in] srip_lengths ストリップの長さの配列
          */
         IndexBuffer (int type, const int* strip_indices, int num_strips, const int* strip_lengths);
 
         /**
          * @~English  Constructs a triangle strip array with implicit indices.
          * @~Japanese ストリップ形式のインデックスを、インデックスを暗黙的に指定して作成.
+         * @param[in] indices      使用する最初のインデックス（以下暗黙的に+1ずつずらした値が使われる）
+         * @param[in] num_strips   ストリップの本数
+         * @param[in] srip_lengths ストリップの長さの配列
          */
         IndexBuffer (int type, int first_index, int num_strips, const int* strip_lengths);
 
@@ -63,20 +69,23 @@ namespace m3g {
         /**
          * @~English  Creates a duplicate of this Object3D. 
          * @~Japanese このオブジェクトの複製の作成.
+         * @param[in] 複製されたIndexBufferオブジェクト.
          */
         IndexBuffer* duplicate () const;
 
         /**
          * @~English  Retrieve the type of rendering primitives stored in this indexBuffer.  
          * @~Japanese プリミティブのタイプを取得する.
+         * @return プリミティブタイプ。現在では必ずTRIANGLESが返る.
          */
         int getPrimitiveType () const;
 
         /**
          * @~English  Returns the number of indices in this buffer.
          * @~Japanese 頂点のインデックスの総数を取得する.
-         *            トライアングル・ストリップの場合、分解されてリストとして数える。
-         *            従ってgetIndexCount()/3がトライアングルの個数になる。
+         *            トライアングル・ストリップの場合分解されて、トライアングルの集合として数える。
+         *            従ってトライアングルの個数はgetIndexCount()/3になる。
+         * @return 全てのトライアングルを列挙した場合のインデックスの出現回数
          */
         int getIndexCount () const;
 
@@ -84,18 +93,21 @@ namespace m3g {
          * @~English  Retrieves vertex indices for the rendering primitives stored in this buffer.
          * @~Japanese 頂点のインデックス配列をプリミティブのリスト形式で取得する.
          *            トライアングル・ストリップは分解されてトライアングル・リストとして返される。
+         * @param[out] indices  インデックスを書き込む領域.
          */
         void getIndices (int* indices) const;
 
         /**
          * @~English  Print out raw data of this object, for debug only.
          * @~Japanese このIndexBufferクラスの保持しているデータを表示する。デバッグ用.
+         * @param[in] out 表示先のストリーム.
          */
         std::ostream& print_raw_data (std::ostream& out) const;
 
         /**
          * @~English  Print out information of this object, for only debug.
          * @~Japanese このIndexBufferクラスの情報を表示する。デバッグ用.
+         * @param[in] out 表示先のストリーム.
          */
         virtual std::ostream& print (std::ostream& out) const;
 
@@ -119,6 +131,7 @@ namespace m3g {
         IndexBuffer (const IndexBuffer& ibuf);
         IndexBuffer& operator= (const IndexBuffer& ibuf);
 
+        // TriangleStripArrayから使用している（修正したいなぁ...)
     protected:
         int              type;
         std::vector<int> strip_indices;

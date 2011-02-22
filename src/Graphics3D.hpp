@@ -102,15 +102,23 @@ namespace m3g {
         /**
          * @~English  Binds the defualt (frame buffer) as the rendring ttarget of this Graphics3D.
          * @param[in]  target                the Image2D or Graphics object to receive the rendered image.
+         * This function is not implmented.
+         * I have no plan to implment this function.
+         * 
+         * @~Japanese  描画対象をこのGrapihcs3Dオブジェクトにバインドします。現在この関数は実装されていません。
+         * @param[in]  target                描画対象を表すオブジェクト。現在では特に規定されていない。
+         * この関数はDestkop-M3Gでは実装されていません。
+         * 実装する予定はありません。
+         */
+        void bindTarget (void* target);
+
+
+        /**
+         * @~English  Binds the defualt (frame buffer) as the rendring ttarget of this Graphics3D.
+         * @param[in]  target                the Image2D or Graphics object to receive the rendered image.
          * @param[in]  depth_buffer_enabled  true to enabled depth buffering; false to disable.
          * @param[in]  hints                 an integer bitmask specifying which rendering hints to enbale,
          *                                   or zero to disable all hints.
-         * @throw      NotImplementedException   allways rise this exception.
-         * @throw      NullPointerException      if target is null.
-         * @throw      IllegalStateException     if this Graphics3D already has a rendering target.
-         * @throw      IllegalArgumentException  if target is not mutable Image2D object or a Graphics object 
-         *                                       appropriate to the underlying Java profile. 
-         *
          * This function is not implmented.
          * I have no plan to implment this function.
          * 
@@ -118,16 +126,10 @@ namespace m3g {
          * @param[in]  target                描画対象を表すオブジェクト。現在では特に規定されていない。
          * @param[in]  depth_buffer_enabled  デプスバッファーを有功にするフラグです。trueの時有効にし、falseの時に無効化します。
          * @param[in]  hints                 レンダリングに使用する"ヒント"をビット演算のorで重ねて指定します。
-         * @throw      NotImplementedException   この関数の呼び出しは常にこの例外を発生します.
-         * @throw      NullPointerException      引数のtargetがNULLの場合に発生します.
-         * @throw      IllegalStateException     すでにレンダリングターゲットがバインドされている場合に発生します。
-         * @throw      IllegalArgumentException  targetがミュータブルなImage2Dオブジェクトでなかったか、
-         *                                       描画対象として適切なオブジェクトで無かった場合に発生します.
-         * 
          * この関数はDestkop-M3Gでは実装されていません。
          * 実装する予定はありません。
          */
-        void bindTarget (void* target, bool depth_buffer_enabled=true, int hints=0);
+        void bindTarget (void* target, bool depth_buffer_enabled, int hints);
 
 
         /**

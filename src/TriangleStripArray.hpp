@@ -16,13 +16,19 @@ namespace m3g {
     public:
         /**
          * @~English  Constructs a triangle strip array with explicit indices.
-         * @~Japanese 明示的なインデックスで指定したトライアングルストリップ配列の作成
+         * @~Japanese 明示的なインデックスで指定したトライアングルストリップ配列の作成.
+         * @param[in] indices      ストリップで使用する全インデックスの配列
+         * @param[in] num_strips   ストリップの本数
+         * @param[in] srip_lengths ストリップの長さの配列
          */
-        TriangleStripArray (const int* indices, int num_strips, const int* strip_lengthss);
+        TriangleStripArray (const int* indices, int num_strips, const int* strip_lengths);
 
         /**
          * @~English  Constructs a triangle strip array with implicit indices.
-         * @~Japanese 暗黙的にインデックスで指定したトライアングルストリップ配列の作成
+         * @~Japanese インデックスを暗黙的に指定したトライアングルストリップ配列の作成.
+         * @param[in] indices      使用する最初のインデックス（以下暗黙的に+1ずつずらした値が使われる）
+         * @param[in] num_strips   ストリップの本数
+         * @param[in] srip_lengths ストリップの長さの配列
          */
         TriangleStripArray (int first_index, int num_strips, const int* strip_lengths);
 
@@ -36,6 +42,7 @@ namespace m3g {
         /**
          * @~English  Creates a duplicate of this Object3D. 
          * @~Japanese このオブジェクトの複製の作成.
+         * @param[in] 複製されたTriangleStripArrayオブジェクト.
          */
         TriangleStripArray* duplicate () const;
 
@@ -43,6 +50,7 @@ namespace m3g {
         /**
          * @~English  Print out information of this object, for debug only.
          * @~Japanese このTriangleStripArrayクラスの情報を表示する。デバッグ用の関数.
+         * @param[in] out  表示先のストリーム
          */
         virtual std::ostream& print (std::ostream& out) const;
 

@@ -16,6 +16,7 @@ TEST (AnimationController_default_variables)
     CHECK_EQUAL (0, controller->getRefWorldTime());
     CHECK_EQUAL (1, controller->getSpeed());
     CHECK_EQUAL (1, controller->getWeight());
+    // Always active if start == end (default)
     CHECK_EQUAL (true, controller->isActive(-1000));
 }
 
@@ -52,6 +53,7 @@ TEST (AnimationController_set_variables)
 
     controller->setWeight (0);
     CHECK_EQUAL (false, controller->isActive(1000));
+
 }
 
 TEST (AnimationController_duplicate)
