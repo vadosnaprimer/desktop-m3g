@@ -270,16 +270,16 @@ void Sprite3D:: setImage (Image2D* img)
     image       = img;
     crop.x      = 0;
     crop.y      = 0;
-    crop.width  = image->getWidth();
-    crop.height = image->getHeight();
+    crop.width  = image->getWidth ();
+    crop.height = image->getHeight ();
 
     int   format = image->getOpenGLFormat ();
     void* data   = image->getOpenGLPointer ();
 
     glBindTexture   (GL_TEXTURE_2D, texobj);
     glPixelStorei   (GL_UNPACK_ALIGNMENT, 1);
-
-    gluBuild2DMipmaps (GL_TEXTURE_2D, GL_RGBA, image->getWidth(), image->getHeight(), format, GL_UNSIGNED_BYTE, data);
+    glTexImage2D    (GL_TEXTURE_2D, 0, format, image->getWidth(), image->getHeight(), 0, format, GL_UNSIGNED_BYTE, data);
+    glTexParameteri (GL_TEXTURE_2D, GL_GENERATE_MIPMAP, GL_TRUE);
 }
 
 /**
@@ -323,13 +323,13 @@ void Sprite3D:: render_xxx (RenderState& state) const
     GLfloat border_color[4] = {1,1,1,0};
     glActiveTexture  (GL_TEXTURE0);
     glEnable         (GL_TEXTURE_2D);
-    glBindTexture    (GL_TEXTURE_2D, texobj);
-    glTexParameteri  (GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-    glTexParameteri  (GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
-    glTexParameteri  (GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_BORDER);
-    glTexParameteri  (GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_BORDER);
-    glTexParameterfv (GL_TEXTURE_2D, GL_TEXTURE_BORDER_COLOR, border_color);
-    glTexEnvi        (GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
+    glBindTexture    (GL_TEXTURE_2D , texobj);
+    glTexParameteri  (GL_TEXTURE_2D , GL_TEXTURE_MAG_FILTER  , GL_LINEAR);
+    glTexParameteri  (GL_TEXTURE_2D , GL_TEXTURE_MIN_FILTER  , GL_LINEAR_MIPMAP_LINEAR);
+    glTexParameteri  (GL_TEXTURE_2D , GL_TEXTURE_WRAP_S      , GL_CLAMP_TO_BORDER);
+    glTexParameteri  (GL_TEXTURE_2D , GL_TEXTURE_WRAP_T      , GL_CLAMP_TO_BORDER);
+    glTexParameterfv (GL_TEXTURE_2D , GL_TEXTURE_BORDER_COLOR, border_color);
+    glTexEnvi        (GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE    , GL_MODULATE);
     glEnable         (GL_ALPHA_TEST);
     glAlphaFunc      (GL_GREATER, 0);
 

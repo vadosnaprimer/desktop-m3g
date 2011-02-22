@@ -230,10 +230,10 @@ void Texture2D:: setImage (Image2D* img)
     int   format = image->getOpenGLFormat ();
     void* data   = image->getOpenGLPointer ();
 
-    glBindTexture (GL_TEXTURE_2D, texobj);
-    glPixelStorei (GL_UNPACK_ALIGNMENT, 1);
-    gluBuild2DMipmaps (GL_TEXTURE_2D, format, width, height, format, GL_UNSIGNED_BYTE, data);
-
+    glBindTexture   (GL_TEXTURE_2D, texobj);
+    glPixelStorei   (GL_UNPACK_ALIGNMENT, 1);
+    glTexImage2D    (GL_TEXTURE_2D, 0, format, image->getWidth(), image->getHeight(), 0, format, GL_UNSIGNED_BYTE, data);
+    glTexParameteri (GL_TEXTURE_2D, GL_GENERATE_MIPMAP, GL_TRUE);
 }
 
 void Texture2D:: setWrapping (int wrap_s, int wrap_t)

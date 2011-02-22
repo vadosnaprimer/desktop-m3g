@@ -43,7 +43,12 @@ namespace m3g {
          */
         void get (float* matrix) const;
 
-
+        /**
+         * @~English  
+         * @~Japanese 
+         * @return matrix.
+         */
+        Matrix getMatrix () const;
 
         /**
          * @~English  Invertes this matrix, if possible.

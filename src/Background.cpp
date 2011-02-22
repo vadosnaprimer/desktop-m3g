@@ -257,9 +257,8 @@ void Background:: setImage (Image2D* img)
 
     glBindTexture   (GL_TEXTURE_2D, texobj);
     glPixelStorei   (GL_UNPACK_ALIGNMENT, 1);
-
-    gluBuild2DMipmaps (GL_TEXTURE_2D, format, width, height, format, GL_UNSIGNED_BYTE, data);
-
+    glTexImage2D    (GL_TEXTURE_2D, 0, format, width, height, 0, format, GL_UNSIGNED_BYTE, data);
+    glTexParameteri (GL_TEXTURE_2D, GL_GENERATE_MIPMAP, GL_TRUE);
 }
 
 void Background:: setImageMode (int mode_x, int mode_y)
@@ -310,10 +309,10 @@ void Background:: render_xxx (RenderState& state) const
 
         glEnable (GL_TEXTURE_2D);
 
-        glBindTexture    (GL_TEXTURE_2D, texobj);
-        glTexParameteri  (GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-        glTexParameteri  (GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
-        glTexEnvi        (GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
+        glBindTexture    (GL_TEXTURE_2D , texobj);
+        glTexParameteri  (GL_TEXTURE_2D , GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+        glTexParameteri  (GL_TEXTURE_2D , GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+        glTexEnvi        (GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE  , GL_REPLACE);
         if (mode.x == BORDER) {
             glTexParameteri  (GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_BORDER);
             glTexParameterfv (GL_TEXTURE_2D, GL_TEXTURE_BORDER_COLOR, (GLfloat*)&rgba);

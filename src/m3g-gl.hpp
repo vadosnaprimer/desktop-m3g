@@ -13,11 +13,12 @@
 //   gl.h と glext.h をインクルードする
 // - ATI系は gl.h のみをインクルードすれば十分。
 //   定義しても動作に問題はない
+// - 2011.02.23 gluは必要無くなったのでコメントアウト.
 #ifndef GL_GLEXT_PROTOTYPES
 #define GL_GLEXT_PROTOTYPES
 #endif
 #include <GL/gl.h>
-#include <GL/glu.h>
+//#include <GL/glu.h>
 #include <GL/glext.h>
 
 

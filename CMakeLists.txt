@@ -33,7 +33,8 @@ find_package (ZLIB   REQUIRED)
 find_package (PNG    REQUIRED)
 find_package (JPEG   REQUIRED)
 find_package (OpenGL REQUIRED)
-find_package (GLU    REQUIRED)
+# i don't need glu
+#find_package (GLU    REQUIRED)
 
 set (M3G_REQUIRED_LIBRARIES
          ${ZLIB_LIBRARIES}
