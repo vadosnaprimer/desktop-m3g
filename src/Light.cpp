@@ -6,6 +6,7 @@
 #include "m3g/KeyframeSequence.hpp"
 #include "m3g/RenderState.hpp"
 #include <iostream>
+#include <iomanip>
 using namespace std;
 using namespace m3g;
 
@@ -330,7 +331,7 @@ const char* mode_to_string (int mode)
 std::ostream& Light:: print (std::ostream& out) const
 {
     out << "Light: mode="   << mode_to_string(mode);
-    out << ", color=0x"     << hex << color << dec;
+    out << ", color=0x"     << hex << setw(8) << setfill('0') << color << dec;
     out << ", intensity="   << intensity;
     out << ", attenuation=" << attenuation.constant;
     out << ","              << attenuation.linear;

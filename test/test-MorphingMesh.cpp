@@ -54,17 +54,20 @@ TEST (MorphingMesh_set_variable)
                                         base_vertices->duplicate ()};
     MorphingMesh*  mesh        = new MorphingMesh (base_vertices, 2, target_vertices, tris, app);
 
-    CHECK_EQUAL (2, mesh->getMorphTargetCount());
-  
     float weights[3] = {1,2,998};
     mesh->setWeights(2, weights);
 
+  
+
     float values[3] = {999,999,999};
     mesh->getWeights(values);
-  
     CHECK_EQUAL (1.f,   values[0]);
     CHECK_EQUAL (2.f,   values[1]);
     CHECK_EQUAL (999.f, values[2]);
+
+    CHECK_EQUAL (2                 , mesh->getMorphTargetCount());
+    CHECK_EQUAL (target_vertices[0], mesh->getMorphTarget(0));
+    CHECK_EQUAL (target_vertices[1], mesh->getMorphTarget(1));
 
     delete base_vertices;
     delete target_vertices[0];
@@ -96,13 +99,14 @@ TEST (MorphingMesh_duplicate)
 
     MorphingMesh* mesh2 = mesh1->duplicate();
 
-    CHECK_EQUAL (2, mesh2->getMorphTargetCount());
-
     float values[3] = {999,999};
     mesh2->getWeights(values);
-
     CHECK_EQUAL (1.f,   values[0]);
     CHECK_EQUAL (2.f,   values[1]);
+
+    CHECK_EQUAL (2                 , mesh2->getMorphTargetCount());
+    CHECK_EQUAL (target_vertices[0], mesh2->getMorphTarget(0));
+    CHECK_EQUAL (target_vertices[1], mesh2->getMorphTarget(1));
 
 
     delete base_vertices;

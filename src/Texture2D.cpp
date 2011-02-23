@@ -8,6 +8,7 @@
 #include "m3g/KeyframeSequence.hpp"
 #include "m3g/RenderState.hpp"
 #include <iostream>
+#include <iomanip>
 using namespace std;
 using namespace m3g;
 
@@ -332,14 +333,14 @@ void Texture2D:: render_xxx (RenderState& state) const
     }
 
     switch (wrapping.s) {
-    case WRAP_CLAMP :  glTexParameteri (GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP) ; break;
-    case WRAP_REPEAT:  glTexParameteri (GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT); break;
+    case WRAP_CLAMP :  glTexParameteri (GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE); break;
+    case WRAP_REPEAT:  glTexParameteri (GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT       ); break;
     default: throw IllegalStateException (__FILE__, __func__, "Wraping mode S is invalid, mode=%d.", wrapping.s);
     }
 
     switch (wrapping.t) {
-    case WRAP_CLAMP :  glTexParameteri (GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP) ; break;
-    case WRAP_REPEAT:  glTexParameteri (GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT); break;
+    case WRAP_CLAMP :  glTexParameteri (GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE); break;
+    case WRAP_REPEAT:  glTexParameteri (GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT       ); break;
     default: throw IllegalStateException (__FILE__, __func__, "Wraping mode T is invalid, mode=%d.", wrapping.t);
     }
 
@@ -350,8 +351,6 @@ void Texture2D:: renderX ()
     glTexEnvi        (GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
     glTexParameteri  (GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
     glTexParameteri  (GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-    glTexParameteri  (GL_TEXTURE_2D, GL_TEXTURE_BASE_LEVEL, 0);
-    glTexParameteri  (GL_TEXTURE_2D, GL_TEXTURE_MAX_LEVEL, 0);
     glTexParameteri  (GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
     glTexParameteri  (GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
 }
@@ -394,10 +393,10 @@ const char* blending_to_string (int blending)
 std::ostream& Texture2D:: print (std::ostream& out) const
 {
     out << "Texture2D: ";
-    out << "  wrapping=" << wrap_to_string(wrapping.s) << "," << wrap_to_string(wrapping.t);
+    out << "  wrapping=" << wrap_to_string(wrapping.s)     << "," << wrap_to_string(wrapping.t);
     out << ", filter="   << filter_to_string(filter.level) << "," << filter_to_string(filter.image);
     out << ", blending=" << blending_to_string(blending_mode);
-    out << ", blend_color=0x" << hex << blend_color << dec;
+    out << ", blend_color=0x" << hex << setw(8) << setfill('0') << blend_color << dec;
     return out;
 }
 

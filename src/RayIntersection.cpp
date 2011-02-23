@@ -70,11 +70,10 @@ Node* RayIntersection:: getIntersected () const
 
 void RayIntersection:: computeNormal ()
 {
-    normal = new Vector(0,0,0);
+    normal = new Vector(0,0,1);
 
     Sprite3D* spr = dynamic_cast<Sprite3D*>(node);
     if (spr) {
-        *normal = Vector(0,0,1);
         return;
     }
 

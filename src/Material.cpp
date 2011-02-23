@@ -1,4 +1,3 @@
-#include <iostream>
 #include "m3g/m3g-gl.hpp"
 #include "m3g/Material.hpp"
 #include "m3g/Exception.hpp"
@@ -6,6 +5,8 @@
 #include "m3g/AnimationController.hpp"
 #include "m3g/KeyframeSequence.hpp"
 #include "m3g/RenderState.hpp"
+#include <iostream>
+#include <iomanip>
 using namespace std;
 using namespace m3g;
 
@@ -248,7 +249,7 @@ void Material:: setColor (int target, int argb)
 void Material:: setShininess (float shi)
 {
     if (shi < 0 || shi > 128) {
-        throw IllegalArgumentException (__FILE__, __func__, "shininess is invalid, sh=%f.", shi);
+        throw IllegalArgumentException (__FILE__, __func__, "shininess is invalid, shi=%f.", shi);
     }
     shininess = shi;
 }
@@ -273,8 +274,7 @@ void Material:: render_xxx (RenderState& state) const
 
     GLfloat ambient_rgb[4] = {((ambient_color & 0x00ff0000) >> 16) / 255.f,
                               ((ambient_color & 0x0000ff00) >> 8 ) / 255.f,
-                              ((ambient_color & 0x000000ff) >> 0 ) / 255.f,
-                              1};
+                              ((ambient_color & 0x000000ff) >> 0 ) / 255.f, 1};
     glMaterialfv (GL_FRONT_AND_BACK, GL_AMBIENT, ambient_rgb);
 
     GLfloat diffuse_rgba[4] = {((diffuse_color & 0x00ff0000) >> 16) / 255.f,
@@ -284,8 +284,7 @@ void Material:: render_xxx (RenderState& state) const
     glMaterialfv (GL_FRONT_AND_BACK, GL_DIFFUSE, diffuse_rgba);
 
     // Diffuse color is used as 'Color' too.
-    glColor4fv (diffuse_rgba);
-    //cout << "diffuse_rgba = " << hex << diffuse_rgba[0] << ", " << diffuse_rgba[1] << ", " << diffuse_rgba[2] << ", " << diffuse_rgba[3] << dec << "\n";
+    glColor4f    (diffuse_rgba[0], diffuse_rgba[1], diffuse_rgba[2], diffuse_rgba[3]);
 
     GLfloat specular_rgb[4] = {((specular_color & 0x00ff0000) >> 16) / 255.f,
                                ((specular_color & 0x0000ff00) >> 8 ) / 255.f,
@@ -303,15 +302,13 @@ void Material:: render_xxx (RenderState& state) const
     if (vertex_color_tracking) {
         glDisable (GL_LIGHTING);
         if (state.vertex_color_buffer_ready) {
-            //cout << "Material: enable colors per vertex .\n";
             glEnableClientState (GL_COLOR_ARRAY);
         } else {
-            //cout << "Material: enabled colors as default color.\n";
             GLfloat vertex_color_rgba[4] = {((state.default_vertex_color & 0x00ff0000) >> 16) / 255.f,
                                             ((state.default_vertex_color & 0x0000ff00) >> 8 ) / 255.f,
                                             ((state.default_vertex_color & 0x000000ff) >> 0 ) / 255.f,
                                             ((state.default_vertex_color & 0xff000000) >> 24) / 255.f * state.alpha};
-            glColor4fv (vertex_color_rgba);
+            glColor4f  (vertex_color_rgba[0], vertex_color_rgba[1], vertex_color_rgba[2], vertex_color_rgba[3]);
         }
     }
 
@@ -325,18 +322,18 @@ void Material:: renderX ()
     GLfloat black[3] = {0,0,0};
     GLfloat zero     = 0;
 
-    glMaterialfv (GL_FRONT_AND_BACK, GL_AMBIENT,   dark);
-    glMaterialfv (GL_FRONT_AND_BACK, GL_DIFFUSE,   gray);
-    glMaterialfv (GL_FRONT_AND_BACK, GL_SPECULAR,  black);
-    glMaterialf  (GL_FRONT_AND_BACK, GL_SHININESS, zero);
-    glMaterialfv (GL_FRONT_AND_BACK, GL_EMISSION,  black);
-    glColor4fv   (gray);
+    glMaterialfv (GL_FRONT_AND_BACK, GL_AMBIENT  , dark );
+    glMaterialfv (GL_FRONT_AND_BACK, GL_DIFFUSE  , gray );
+    glMaterialfv (GL_FRONT_AND_BACK, GL_SPECULAR , black);
+    glMaterialf  (GL_FRONT_AND_BACK, GL_SHININESS, zero );
+    glMaterialfv (GL_FRONT_AND_BACK, GL_EMISSION , black);
+    glColor4f    (gray[0], gray[1], gray[2], gray[3]);
 }
 
 
 std::ostream& Material:: print (std::ostream& out) const
 {
-    out << "Material: " << hex;
+    out << "Material: " << hex << setw(8) << setfill('0');
     out << "  ambient=0x"  << ambient_color;
     out << ", diffuse=0x"  << diffuse_color;
     out << ", emissive=0x" << emissive_color;

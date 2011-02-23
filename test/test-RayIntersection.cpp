@@ -12,6 +12,30 @@
 using namespace std;
 using namespace m3g;
 
+TEST (RayIntersection_default_variables)
+{
+    RayIntersection ri;
+    float ray[6];
+    ri.getRay (ray);
+
+    CHECK_EQUAL (0.f, ri.getDistance());
+    CHECK_EQUAL ((Node*)NULL, ri.getIntersected());
+    CHECK_EQUAL (0.f, ri.getNormalX());
+    CHECK_EQUAL (0.f, ri.getNormalY());
+    CHECK_EQUAL (1.f, ri.getNormalZ());
+    CHECK_EQUAL (0.f, ray[0]);
+    CHECK_EQUAL (0.f, ray[1]);
+    CHECK_EQUAL (0.f, ray[2]);
+    CHECK_EQUAL (0.f, ray[3]);
+    CHECK_EQUAL (0.f, ray[4]);
+    CHECK_EQUAL (1.f, ray[5]);
+    CHECK_EQUAL (0  , ri.getSubmeshIndex());
+    CHECK_EQUAL (0.f, ri.getTextureS(0));
+    CHECK_EQUAL (0.f, ri.getTextureT(0));
+    CHECK_EQUAL (0.f, ri.getTextureS(1));
+    CHECK_EQUAL (0.f, ri.getTextureT(1));
+}
+
 TEST (RayIntersect_set_variable)
 {
     float        position_values[] = {1,-1,0, 1,1,0, -1,-1,0, -1,1,0};

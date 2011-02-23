@@ -133,31 +133,31 @@ void PolygonMode:: render_xxx (RenderState& state) const
 
     switch (culling) {
     case CULL_FRONT: glEnable (GL_CULL_FACE); glCullFace (GL_FRONT); break;
-    case CULL_BACK : glEnable (GL_CULL_FACE); glCullFace (GL_BACK) ; break;
+    case CULL_BACK : glEnable (GL_CULL_FACE); glCullFace (GL_BACK ); break;
     case CULL_NONE : glDisable(GL_CULL_FACE); break;
     default : throw InternalException (__FILE__, __func__, "Culling mode is invalid, mode=%d\n", culling);
     }
 
     switch (two_sided_lighting) {
-    case true : glLightModeli (GL_LIGHT_MODEL_TWO_SIDE, GL_TRUE) ; break;
-    case false: glLightModeli (GL_LIGHT_MODEL_TWO_SIDE, GL_FALSE); break;
+    case true : glLightModelf (GL_LIGHT_MODEL_TWO_SIDE, GL_TRUE ); break;
+    case false: glLightModelf (GL_LIGHT_MODEL_TWO_SIDE, GL_FALSE); break;
     default : throw InternalException (__FILE__, __func__, "Two sided lighting is invalid, mode=%d\n", two_sided_lighting);
     }
 
     switch (shading) {
-    case SHADE_FLAT  : glShadeModel (GL_FLAT)  ; break;
+    case SHADE_FLAT  : glShadeModel (GL_FLAT  ); break;
     case SHADE_SMOOTH: glShadeModel (GL_SMOOTH); break;
     default : throw InternalException (__FILE__, __func__, "Shading mode is invalid, mode=%d\n", shading);
     }
 
     switch (local_camera_lighting) {
-    case true : glLightModeli (GL_LIGHT_MODEL_LOCAL_VIEWER, GL_TRUE) ; break;
+    case true : glLightModeli (GL_LIGHT_MODEL_LOCAL_VIEWER, GL_TRUE ); break;
     case false: glLightModeli (GL_LIGHT_MODEL_LOCAL_VIEWER, GL_FALSE); break;
     default: throw InternalException (__FILE__, __func__, "Local camera lighting is invalid, mode=%d\n", local_camera_lighting);
     }
 
     switch (perspective_correction) {
-    case true : glHint (GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST) ; break;
+    case true : glHint (GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST ); break;
     case false: glHint (GL_PERSPECTIVE_CORRECTION_HINT, GL_FASTEST); break;
     default: throw InternalException (__FILE__, __func__, "Perspective correction is invalid, mode=%d\n", perspective_correction);
     }

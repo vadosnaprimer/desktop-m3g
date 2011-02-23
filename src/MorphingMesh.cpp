@@ -250,7 +250,7 @@ void MorphingMesh:: updateMorphedVertices ()
 VertexBuffer* MorphingMesh:: getMorphTarget (int index) const
 {
     if (index < 0 || index >= (int)morph_targets.size()) {
-        throw IndexOutOfBoundsException (__FILE__, __func__, "Target index is invalid. index=%d.", index);
+        throw IndexOutOfBoundsException (__FILE__, __func__, "Target index is invalid. index=%d, max=%d.", index, morph_targets.size());
     }
     return morph_targets[index];
 }

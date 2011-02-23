@@ -29,15 +29,20 @@ IndexBuffer:: IndexBuffer (int        t,
     if (num_strips < 1 || num_strips > 65535) {
         throw IllegalArgumentException (__FILE__, __func__, "Number of strips is invalid, num_strips=%d.", num_strips);
     }
+    int num_indices = 0;
+    for (int i = 0; i < num_strips; i++) {
+        num_indices += lengths[i];
+    }
+    if (num_indices > 65535) {
+        throw IllegalArgumentException (__FILE__, __func__, "Number of indices is invalid, num=%d > 65535.", num_indices);
+    }
 
+    strip_indices.assign (indices, indices + num_indices);
     strip_lengths.assign (lengths, lengths + num_strips);
-    
-    int num = accumulate (strip_lengths.begin(), strip_lengths.end(), 0);
-    strip_indices.assign (indices, indices + num);
 
     glGenBuffers (1, &name);
     glBindBuffer (GL_ELEMENT_ARRAY_BUFFER, name); 
-    glBufferData (GL_ELEMENT_ARRAY_BUFFER, sizeof(int)*num, &strip_indices[0], GL_STATIC_DRAW);
+    glBufferData (GL_ELEMENT_ARRAY_BUFFER, sizeof(int)*num_indices, &strip_indices[0], GL_STATIC_DRAW);
 }
 
 
@@ -55,23 +60,27 @@ IndexBuffer:: IndexBuffer (int        t,
     if (first_index < 0 || first_index > 65535) {
         throw IndexOutOfBoundsException (__FILE__, __func__, "Fist index is invalid, first_idex=%d.", first_index);
     }
-    if (num_strips < 1 || first_index + num_strips > 65536) {
-        throw IndexOutOfBoundsException (__FILE__, __func__, "Nummber of strip is invalid, first_index=%d, num_strips=%d.", first_index, num_strips);
+    if (num_strips < 1 || num_strips > 65535) {
+        throw IndexOutOfBoundsException (__FILE__, __func__, "Nummber of strip is invalid, num_strips=%d.", num_strips);
+    }
+    int num_indices = 0;
+    for (int i = 0; i < num_strips; i++) {
+        num_indices += lengths[i];
+    }
+    if (num_indices > 65535) {
+        throw IllegalArgumentException (__FILE__, __func__, "Number of indices is invalid, num=%d > 65535.", num_indices);
     }
 
-    strip_lengths.assign (lengths, lengths + num_strips);
-
-    int num = accumulate (strip_lengths.begin(), strip_lengths.end(), 0);
-    strip_indices.reserve (num);
-    for (int i = 0; i < num; i++) {
+    strip_indices.reserve (num_indices);
+    for (int i = 0; i < num_indices; i++) {
         strip_indices.push_back (first_index + i);
     }
+    strip_lengths.assign (lengths, lengths + num_strips);
+
 
     glGenBuffers (1, &name);
     glBindBuffer (GL_ELEMENT_ARRAY_BUFFER, name); 
-    glBufferData (GL_ELEMENT_ARRAY_BUFFER, sizeof(int)*num, &strip_indices[0], GL_STATIC_DRAW);
-
-
+    glBufferData (GL_ELEMENT_ARRAY_BUFFER, sizeof(int)*num_indices, &strip_indices[0], GL_STATIC_DRAW);
 }
 
 IndexBuffer:: ~IndexBuffer ()
@@ -106,7 +115,7 @@ int IndexBuffer:: getPrimitiveType () const
     return type;
 }
 
-// メモ：プリミティブのリストで返す。
+// メモ：ストリップはトライアングルの集合に分解して返す
 int IndexBuffer:: getIndexCount () const
 {
     int num = 0;
@@ -124,7 +133,7 @@ int IndexBuffer:: getIndexCount () const
     return num;
 }
 
-// メモ：プリミティブのリストで返す。
+// メモ：ストリップはトライアングルの集合に分解して返す
 void IndexBuffer:: getIndices (int* indices) const
 {
     int i = 0;
@@ -169,7 +178,7 @@ void IndexBuffer:: render_xxx (RenderState& state) const
     for (int i = 0; i < (int)strip_lengths.size(); i++) {
         glDrawElements (GL_TRIANGLE_STRIP,
                         strip_lengths[i],
-                        GL_UNSIGNED_INT,
+                        GL_UNSIGNED_SHORT,
                         (GLvoid*)offset);
         offset += strip_lengths[i] * sizeof(int);
     }

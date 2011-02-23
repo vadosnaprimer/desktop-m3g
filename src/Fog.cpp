@@ -1,4 +1,5 @@
 #include <iostream>
+#include <iomanip>
 #include <algorithm>
 #include "m3g/m3g-gl.hpp"
 #include "m3g/Fog.hpp"
@@ -221,12 +222,12 @@ void Fog:: render_xxx (RenderState& state) const
 
     switch (mode) {
     case EXPONENTIAL:
-        glFogi  (GL_FOG_MODE   , GL_EXP);
+        glFogf  (GL_FOG_MODE   , GL_EXP);
         glFogf  (GL_FOG_DENSITY, density);
         glFogfv (GL_FOG_COLOR  , rgb);
         break;
     case LINEAR:
-        glFogi  (GL_FOG_MODE , GL_LINEAR);
+        glFogf  (GL_FOG_MODE , GL_LINEAR);
         glFogf  (GL_FOG_START, distance.near);
         glFogf  (GL_FOG_END  , distance.far);
         glFogfv (GL_FOG_COLOR, rgb);
@@ -256,11 +257,11 @@ const char* mode_to_string (int mode)
 std::ostream& Fog:: print (std::ostream& out) const
 {
     out << "Fog: ";
-    out << "  mode=" << mode_to_string(mode);
+    out << "  mode="    << mode_to_string(mode);
     out << ", density=" << density;
-    out << ", near=" << distance.near;
-    out << ", far=" << distance.far;
-    out << ", color=0x" << hex << color << dec; 
+    out << ", near="    << distance.near;
+    out << ", far="     << distance.far;
+    out << ", color=0x" << hex << setw(8) << setfill('0') << color << dec; 
     return out;
 }
 

@@ -7,9 +7,10 @@
 #include "m3g/Exception.hpp"
 #include "m3g/RenderState.hpp"
 #include <iostream>
+#include <iomanip>
 using namespace std;
 using namespace m3g;
-#include <cstdlib>
+
 
 VertexBuffer:: VertexBuffer () :
     positions(0), normals(0), colors(0), positions_scale(1),
@@ -494,7 +495,7 @@ std::ostream& VertexBuffer:: print (std::ostream& out) const
         out << ", colors  = " << *colors;
     else
         out << ", colors  = NOT FOUND";
-    out << ", default color = 0x" << hex << default_color << dec;
+    out << ", default color = 0x" << hex << setw(8) << setfill('0') << default_color << dec;
     return out;
 }
 

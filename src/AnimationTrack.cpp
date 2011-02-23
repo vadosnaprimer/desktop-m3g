@@ -173,7 +173,7 @@ std::ostream& AnimationTrack:: print (std::ostream& out) const
     }
     out << "]";
     if (animation_controller)
-        out << ", animation_controller=0x" << hex << animation_controller << dec;
+        out << ", animation_controller=0x" << animation_controller;
     else
         out << ", animation_controller=0";
     return out;

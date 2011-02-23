@@ -7,9 +7,10 @@ using namespace std;
 using namespace m3g;
 
 /**
- * メモ：事実上このクラスは何もしない。
+ * メモ：事実上このクラスは何もせず、IndexBufferが全て処理する。
  *       TriangleStripArrayクラスはM3G-2.0で廃止され、
  *       IndexBufferクラスに統合される事が決定している。
+ *       それの先取り。
  */
 
 TriangleStripArray:: TriangleStripArray (const int* indices,

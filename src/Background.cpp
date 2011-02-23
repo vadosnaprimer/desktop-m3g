@@ -1,5 +1,3 @@
-#include <iostream>
-#include <cmath>
 #include "m3g/m3g-gl.hpp"
 #include "m3g/Background.hpp"
 #include "m3g/Image2D.hpp"
@@ -8,6 +6,8 @@
 #include "m3g/AnimationController.hpp"
 #include "m3g/KeyframeSequence.hpp"
 #include "m3g/RenderState.hpp"
+#include <iostream>
+#include <iomanip>
 using namespace std;
 using namespace m3g;
 
@@ -291,10 +291,10 @@ void Background:: render_xxx (RenderState& state) const
     float a = ((color & 0xff000000) >> 24) / 255.f;
     float rgba[4] = {r,g,b,a};
 
-    glDepthMask (GL_TRUE);
-    glColorMask (GL_TRUE, GL_TRUE, GL_TRUE, GL_TRUE);
-    glClearColor (r,g,b,a);
-    glClearDepth (1.f);
+    glDepthMask   (GL_TRUE);
+    glColorMask   (GL_TRUE, GL_TRUE, GL_TRUE, GL_TRUE);
+    glClearColor  (r,g,b,a);
+    glClearDepthf (1.f);
 
     if (color_clear_enable) {
         glClear (GL_COLOR_BUFFER_BIT);
@@ -358,11 +358,11 @@ void Background:: render_xxx (RenderState& state) const
 
 void Background:: renderX ()
 {
-    glDepthMask  (GL_TRUE);
-    glColorMask  (GL_TRUE, GL_TRUE, GL_TRUE, GL_TRUE);
-    glClearColor (0,0,0,0);   // r,g,b,a
-    glClearDepth (1.0f);
-    glClear      (GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    glDepthMask   (GL_TRUE);
+    glColorMask   (GL_TRUE, GL_TRUE, GL_TRUE, GL_TRUE);
+    glClearColor  (0,0,0,0);   // r,g,b,a
+    glClearDepthf (1.0f);
+    glClear       (GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 }
 
 
@@ -381,7 +381,7 @@ std::ostream& Background:: print (std::ostream& out) const
     out << "Background: ";
     out << "  color clear=" << color_clear_enable;
     out << ", depth clear=" << depth_clear_enable;
-    out << ", color=0x"     << hex << color << dec;
+    out << ", color=0x"     << hex << setw(8) << setfill('0') << color << dec;
     out << ", image=0x"     << image;
     out << ", mode="        << mode_to_string(mode.x);
     out << ","              << mode_to_string(mode.y);
