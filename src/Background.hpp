@@ -9,13 +9,30 @@ namespace m3g {
 
     class Image2D;
 
-
     /**
      * @~English  Defines whether and how to clear the viewport.
      * @~Japanese ビューポートのクリアとその設定.
      */
     class Background : public Object3D
     {
+    public:
+
+        /**
+         * @~English  Specifies that the imaginary pixels outside of 
+         *            the source image bondaries in X or Y direction
+         *            are considered to have the background color.
+         * @~Japanese 背景画像の領域外を指定した場合、背景色を返す設定を表す定数.
+         */
+        static const int BORDER = 32;
+        /**
+         * @~English  Specifies that the imaginary pixels outside of 
+         *            the source image bondaries in X or Y direction
+         *            are considered to have the same color as the pixel 
+         *            in the correspondign position in the source iamge.
+         * @~Japanese 背景画像の領域外を指定した場合、ソース画像を
+         *            繰り返す設定を表す定数.
+         */
+        static const int REPEAT = 33;
 
         /**
          * @~English  Image mode of x or y direction, for inner use .
@@ -40,24 +57,16 @@ namespace m3g {
             float height;
         };
 
-    public:
+        struct GLData {
+            GLData (unsigned int t, unsigned int p, unsigned int tc, unsigned int i) : 
+                tex_object(t), vbo_positions(p), vbo_tex_coords(tc), vbo_indices(i) {};
+            unsigned int tex_object;
+            unsigned int vbo_positions;
+            unsigned int vbo_tex_coords;
+            unsigned int vbo_indices;
+        };
 
-        /**
-         * @~English  Specifies that the imaginary pixels outside of 
-         *            the source image bondaries in X or Y direction
-         *            are considered to have the background color.
-         * @~Japanese 背景画像の領域外を指定した場合、背景色を返す設定を表す定数.
-         */
-        static const int BORDER = 32;
-        /**
-         * @~English  Specifies that the imaginary pixels outside of 
-         *            the source image bondaries in X or Y direction
-         *            are considered to have the same color as the pixel 
-         *            in the correspondign position in the source iamge.
-         * @~Japanese 背景画像の領域外を指定した場合、ソース画像を
-         *            繰り返す設定を表す定数.
-         */
-        static const int REPEAT = 33;
+
 
     public:
         /**
@@ -232,8 +241,7 @@ namespace m3g {
         Image2D*  image;
         ImageMode mode;
         CropRect  crop;
-
-        unsigned int texobj;
+        GLData    gl;
     };
 
 } //namespace m3g {

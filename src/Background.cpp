@@ -14,23 +14,62 @@ using namespace m3g;
 const int Background:: BORDER;
 const int Background:: REPEAT;
 
+namespace {
+    // 背景画像の表示に使う板ポリゴン.
+    short positions[12] = {1, 0, 1,
+                           1, 1, 1,
+                           0, 0, 1,
+                           0, 1, 1};
+    unsigned char tex_coords[12] = {255, 0,
+                                    255, 255,
+                                    0,   0,
+                                    0,   255};
+    unsigned short indices[4] = {0,1,2,3};
+}
+
+
 Background:: Background () :
     color_clear_enable(true), depth_clear_enable(true), color(0x00000000), 
-    image(0), mode(BORDER,BORDER), crop(0,0,0,0),
-    texobj(0)
+    image(0), mode(BORDER,BORDER), crop(0,0,0,0), gl(0,0,0,0)
 {
-    glGenTextures   (1, &texobj);
-    int err = glGetError();
+    glGenTextures   (1, &gl.tex_object);
+    int err = glGetError ();
     if (err != GL_NO_ERROR) {
         throw OpenGLException (__FILE__, __func__, "Can't make texture object, err=%d.", err);
+    }
+
+    glGenBuffers (1, &gl.vbo_positions);
+    glBindBuffer (GL_ARRAY_BUFFER, gl.vbo_positions);
+    glBufferData (GL_ARRAY_BUFFER, sizeof(positions), positions, GL_STATIC_DRAW);
+
+    glGenBuffers (1, &gl.vbo_tex_coords);
+    glBindBuffer (GL_ARRAY_BUFFER, gl.vbo_tex_coords);
+    glBufferData (GL_ARRAY_BUFFER, sizeof(tex_coords), tex_coords, GL_STATIC_DRAW);
+
+    glGenBuffers (1, &gl.vbo_indices);
+    glBindBuffer (GL_ELEMENT_ARRAY_BUFFER, gl.vbo_indices);
+    glBufferData (GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
+
+    err = glGetError ();
+    if (err != GL_NO_ERROR) {
+        throw OpenGLException (__FILE__, __func__, "Can't make vertex buffer object, err=%d.", err);
     }
 
 }
 
 Background:: ~Background ()
 {
-    if (texobj > 0) {
-        glDeleteTextures(1, &texobj);
+    if (gl.tex_object > 0) {
+        glDeleteTextures(1, &gl.tex_object);
+    }
+    if (gl.vbo_positions > 0) {
+        glDeleteTextures(1, &gl.vbo_positions);
+    }
+    if (gl.vbo_tex_coords > 0) {
+        glDeleteTextures(1, &gl.vbo_tex_coords);
+    }
+    if (gl.vbo_indices > 0) {
+        glDeleteTextures(1, &gl.vbo_indices);
     }
 }
 
@@ -54,6 +93,9 @@ Background* Background:: duplicate_xxx (Object3D* obj) const
     bg->mode               = mode;
     bg->setImage (image);
     bg->crop               = crop;
+
+    // ???
+    bg->gl = gl;
 
     return bg;
 }
@@ -255,7 +297,7 @@ void Background:: setImage (Image2D* img)
 
     crop    = CropRect (0, 0, width, height);
 
-    glBindTexture   (GL_TEXTURE_2D, texobj);
+    glBindTexture   (GL_TEXTURE_2D, gl.tex_object);
     glPixelStorei   (GL_UNPACK_ALIGNMENT, 1);
     glTexParameteri (GL_TEXTURE_2D, GL_GENERATE_MIPMAP, GL_TRUE);
     glTexImage2D    (GL_TEXTURE_2D, 0, format, width, height, 0, format, GL_UNSIGNED_BYTE, data);
@@ -268,7 +310,8 @@ void Background:: setImageMode (int mode_x, int mode_y)
         throw IllegalArgumentException (__FILE__, __func__, "Mode is invalid, x=%d, y=%d.\n", mode_x, mode_y);
     }
 
-    mode = ImageMode (mode_x, mode_y);
+    mode.x = mode_x;
+    mode.y = mode_y;
 }
 
 
@@ -289,71 +332,66 @@ void Background:: render_xxx (RenderState& state) const
     float g = ((color & 0x0000ff00) >>  8) / 255.f;
     float b = ((color & 0x000000ff) >>  0) / 255.f;
     float a = ((color & 0xff000000) >> 24) / 255.f;
-    float rgba[4] = {r,g,b,a};
 
     glDepthMask   (GL_TRUE);
     glColorMask   (GL_TRUE, GL_TRUE, GL_TRUE, GL_TRUE);
     glClearColor  (r,g,b,a);
-    glClearDepthf (1.f);
+    glClearDepthf (1);
 
-    if (color_clear_enable) {
-        glClear (GL_COLOR_BUFFER_BIT);
-    }
     if (depth_clear_enable) {
         glClear (GL_DEPTH_BUFFER_BIT);
     }
-    if (image) {
 
-        int width  = image->getWidth ();
-        int height = image->getHeight ();
+    if (color_clear_enable) {
+        glClear  (GL_COLOR_BUFFER_BIT);
 
-        glEnable (GL_TEXTURE_2D);
+        if (image) {
+            glDepthMask   (GL_FALSE);
+            float img_width  = image->getWidth ();
+            float img_height = image->getHeight ();
+            float scale_x    = (mode.x == BORDER) ? 1 : ((crop.x + crop.width  - 1) / img_width  + 1) * img_width;
+            float scale_y    = (mode.y == BORDER) ? 1 : ((crop.y + crop.height - 1) / img_height + 1) * img_height;
+            float scale_s    = (mode.x == BORDER) ? 1 : (crop.x + crop.width  - 1) / img_width  + 1;
+            float scale_t    = (mode.y == BORDER) ? 1 : (crop.y + crop.height - 1) / img_height + 1;
+            
+            glEnable            (GL_TEXTURE);
+            glEnableClientState (GL_VERTEX_ARRAY);
+            glEnableClientState (GL_TEXTURE_COORD_ARRAY);
 
-        glBindTexture    (GL_TEXTURE_2D , texobj);
-        glTexParameteri  (GL_TEXTURE_2D , GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-        glTexParameteri  (GL_TEXTURE_2D , GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
-        glTexEnvi        (GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE  , GL_REPLACE);
-        if (mode.x == BORDER) {
-            glTexParameteri  (GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_BORDER);
-            glTexParameterfv (GL_TEXTURE_2D, GL_TEXTURE_BORDER_COLOR, (GLfloat*)&rgba);
-        } else {
-            glTexParameteri (GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+            glMatrixMode   (GL_PROJECTION);
+            glLoadIdentity ();
+            glOrtho        (crop.x, crop.x + crop.width, crop.y, crop.y + crop.height, 0, 1);
+            
+            glMatrixMode   (GL_MODELVIEW);
+            glLoadIdentity ();
+            glScalef       (scale_x, scale_y, 1);
+            
+            glMatrixMode   (GL_TEXTURE);
+            glLoadIdentity ();
+            glScalef       (scale_s, scale_t, 1);
+            
+            // 頂点データ
+            glBindBuffer    (GL_ARRAY_BUFFER, gl.vbo_positions);
+            glVertexPointer (3, GL_SHORT, 0, 0);
+            
+            // テクスチャー座標データ
+            glBindBuffer       (GL_ARRAY_BUFFER, gl.vbo_tex_coords);
+            glTexCoordPointer  (2, GL_UNSIGNED_BYTE, 0, 0);
+            
+            // インデックス
+            glBindBuffer    (GL_ELEMENT_ARRAY_BUFFER, gl.vbo_indices);
+            glDrawElements  (GL_TRIANGLE_STRIP, sizeof(indices)/sizeof(indices[0]), GL_UNSIGNED_SHORT, 0);
+            
+            glDisableClientState (GL_VERTEX_ARRAY);
+            glDisableClientState (GL_COLOR_ARRAY);
+
+            // 念のため
+            glDepthMask   (GL_TRUE);
         }
-        if (mode.y == BORDER) {
-            glTexParameteri (GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_BORDER);
-            glTexParameterfv (GL_TEXTURE_2D, GL_TEXTURE_BORDER_COLOR, (GLfloat*)&rgba);
-        } else {
-            glTexParameteri (GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-        }
-
-        glMatrixMode   (GL_PROJECTION);
-        glPushMatrix   ();
-        glLoadIdentity ();
-        glMatrixMode   (GL_MODELVIEW);
-        glPushMatrix   ();
-        glLoadIdentity ();
-
-        float s0 = crop.x / width;
-        float t0 = (height - crop.y) / height;
-        float s1 = (crop.x + crop.width) / width;
-        float t1 = (height - (crop.y + crop.height)) / height;
-
-        glBegin      (GL_TRIANGLE_STRIP);
-        glTexCoord2f (s1, t1);
-        glVertex3f   (1, -1, 0.99999f);
-        glTexCoord2f (s1, t0);
-        glVertex3f   (1, 1,  0.99999f);
-        glTexCoord2f (s0, t1);
-        glVertex3f   (-1, -1, 0.99999f);
-        glTexCoord2f (s0, t0);
-        glVertex3f   (-1, 1,  0.99999f);
-        glEnd        ();
-
-        glMatrixMode (GL_PROJECTION);
-        glPopMatrix  ();
-        glMatrixMode (GL_MODELVIEW);
-        glPopMatrix  ();
     }
+
+    
+
 }
 
 void Background:: renderX ()
