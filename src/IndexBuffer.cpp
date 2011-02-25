@@ -42,7 +42,7 @@ IndexBuffer:: IndexBuffer (int        t,
 
     glGenBuffers (1, &name);
     glBindBuffer (GL_ELEMENT_ARRAY_BUFFER, name); 
-    glBufferData (GL_ELEMENT_ARRAY_BUFFER, sizeof(int)*num_indices, &strip_indices[0], GL_STATIC_DRAW);
+    glBufferData (GL_ELEMENT_ARRAY_BUFFER, sizeof(short)*num_indices, &strip_indices[0], GL_STATIC_DRAW);
 }
 
 
@@ -80,7 +80,7 @@ IndexBuffer:: IndexBuffer (int        t,
 
     glGenBuffers (1, &name);
     glBindBuffer (GL_ELEMENT_ARRAY_BUFFER, name); 
-    glBufferData (GL_ELEMENT_ARRAY_BUFFER, sizeof(int)*num_indices, &strip_indices[0], GL_STATIC_DRAW);
+    glBufferData (GL_ELEMENT_ARRAY_BUFFER, sizeof(short)*num_indices, &strip_indices[0], GL_STATIC_DRAW);
 }
 
 IndexBuffer:: ~IndexBuffer ()
@@ -99,10 +99,22 @@ IndexBuffer* IndexBuffer:: duplicate_xxx (Object3D* obj) const
 {
     IndexBuffer* ibuf = dynamic_cast<IndexBuffer*>(obj);
     if (ibuf == NULL) {
+        int  num_indices = strip_indices.size();
+        int  num_lengths = strip_lengths.size();
+        int* indices     = new int [strip_indices.size()];
+        int* lengths     = new int [strip_lengths.size()];
+        for (int i = 0; i < num_indices; i++) {
+            indices[i] = strip_indices[i];
+        }
+        for (int i = 0; i < num_lengths; i++) {
+            lengths[i] = strip_lengths[i];
+        }
         ibuf = new IndexBuffer (type, 
-                                &strip_indices[0],
-                                strip_lengths.size(),
-                                &strip_lengths[0]);
+                                indices,
+                                num_lengths,
+                                lengths);
+        delete [] indices;
+        delete [] lengths;
     }
     Object3D:: duplicate_xxx (ibuf);
 
@@ -180,7 +192,7 @@ void IndexBuffer:: render_xxx (RenderState& state) const
                         strip_lengths[i],
                         GL_UNSIGNED_SHORT,
                         (GLvoid*)offset);
-        offset += strip_lengths[i] * sizeof(int);
+        offset += strip_lengths[i] * sizeof(short);
     }
 }
 

@@ -91,8 +91,8 @@ namespace m3g {
 
         /**
          * @~English  Retrieves vertex indices for the rendering primitives stored in this buffer.
-         * @~Japanese 頂点のインデックス配列をプリミティブのリスト形式で取得する.
-         *            トライアングル・ストリップは分解されてトライアングル・リストとして返される。
+         * @~Japanese 頂点インデックスの配列をプリミティブのリスト形式で取得する.
+         *            トライアングル・ストリップは分解されてトライアングルの集合として返される。
          * @param[out] indices  インデックスを書き込む領域.
          */
         void getIndices (int* indices) const;
@@ -133,9 +133,9 @@ namespace m3g {
 
         // TriangleStripArrayから使用している（修正したいなぁ...)
     protected:
-        int              type;
-        std::vector<int> strip_indices;
-        std::vector<int> strip_lengths;
+        int                type;
+        std::vector<short> strip_indices;
+        std::vector<short> strip_lengths;
 
         unsigned int     name;
     };
