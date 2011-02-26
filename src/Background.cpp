@@ -16,16 +16,17 @@ const int Background:: REPEAT;
 
 namespace {
     // 背景画像の表示に使う板ポリゴン.
-    short positions[12] = {1, 0, 1,
-                           1, 1, 1,
-                           0, 0, 1,
-                           0, 1, 1};
-    unsigned char tex_coords[12] = {255, 0,
-                                    255, 255,
-                                    0,   0,
-                                    0,   255};
+    short positions[12] = {1, 0, 0,
+                           1, 1, 0,
+                           0, 0, 0,
+                           0, 1, 0};
+    float tex_coords[8] = {1, 0,
+                           1, 1,
+                           0, 0,
+                           0, 1};
     unsigned short indices[4] = {0,1,2,3};
 }
+
 
 
 Background:: Background () :
@@ -281,8 +282,9 @@ void Background:: setDepthClearEnable (bool enable)
 void Background:: setImage (Image2D* img)
 {
     image = img;
-    if (image == NULL) 
+    if (image == NULL) {
         return;
+    }
 
     int fmt = img->getFormat ();
     if (fmt != Image2D::RGB && fmt != Image2D::RGBA) {
@@ -346,44 +348,72 @@ void Background:: render_xxx (RenderState& state) const
         glClear  (GL_COLOR_BUFFER_BIT);
 
         if (image) {
-            glDepthMask   (GL_FALSE);
+            cout << "レンダー画像\n";
+            glActiveTexture       (GL_TEXTURE0);
+            glClientActiveTexture (GL_TEXTURE0);
+            glEnable              (GL_TEXTURE_2D);
+            glDepthMask           (GL_FALSE);
+            glDisable             (GL_LIGHTING);
+            glDisable             (GL_CULL_FACE);
             float img_width  = image->getWidth ();
             float img_height = image->getHeight ();
-            float scale_x    = (mode.x == BORDER) ? 1 : ((crop.x + crop.width  - 1) / img_width  + 1) * img_width;
-            float scale_y    = (mode.y == BORDER) ? 1 : ((crop.y + crop.height - 1) / img_height + 1) * img_height;
-            float scale_s    = (mode.x == BORDER) ? 1 : (crop.x + crop.width  - 1) / img_width  + 1;
-            float scale_t    = (mode.y == BORDER) ? 1 : (crop.y + crop.height - 1) / img_height + 1;
-            
-            glEnable            (GL_TEXTURE);
+            float scale_x    = (mode.x == BORDER) ? img_width  : ((crop.x + crop.width  - 1) / img_width  + 1) * img_width;
+            float scale_y    = (mode.y == BORDER) ? img_height : ((crop.y + crop.height - 1) / img_height + 1) * img_height;
+            float scale_s    = (mode.x == BORDER) ? 1          :  (crop.x + crop.width  - 1) / img_width  + 1;
+            float scale_t    = (mode.y == BORDER) ? 1          :  (crop.y + crop.height - 1) / img_height + 1;
+            cout << "img_width  = " << img_width << "\n";
+            cout << "img_height = " << img_height << "\n";
+            cout << "scale_x = " << scale_x << "\n";
+            cout << "scale_y = " << scale_y << "\n";
+            cout << "scale_s = " << scale_s << "\n";
+            cout << "scale_t = " << scale_t << "\n";
+
+            glBindTexture       (GL_TEXTURE_2D , gl.tex_object);
+            glTexEnvi           (GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE  , GL_REPLACE);
+            glTexParameteri     (GL_TEXTURE_2D , GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+            glTexParameteri     (GL_TEXTURE_2D , GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+            glTexParameteri     (GL_TEXTURE_2D , GL_TEXTURE_WRAP_S    , GL_REPEAT);
+            glTexParameteri     (GL_TEXTURE_2D , GL_TEXTURE_WRAP_T    , GL_REPEAT);
             glEnableClientState (GL_VERTEX_ARRAY);
             glEnableClientState (GL_TEXTURE_COORD_ARRAY);
 
             glMatrixMode   (GL_PROJECTION);
+            glPushMatrix   ();
             glLoadIdentity ();
-            glOrtho        (crop.x, crop.x + crop.width, crop.y, crop.y + crop.height, 0, 1);
+            glOrtho        (crop.x, crop.x + crop.width, crop.y + crop.height, crop.y , 0, 2);
+            cout << "crop = " << crop.x << ", " << crop.y << ", " << crop.width << ", " << crop.height << "\n";
+
+            glMatrixMode   (GL_TEXTURE);
+            glPushMatrix   ();
+            glLoadIdentity ();
+            glScalef       (scale_s, -scale_t, 1);
             
             glMatrixMode   (GL_MODELVIEW);
+            glPushMatrix   ();
             glLoadIdentity ();
             glScalef       (scale_x, scale_y, 1);
-            
-            glMatrixMode   (GL_TEXTURE);
-            glLoadIdentity ();
-            glScalef       (scale_s, scale_t, 1);
             
             // 頂点データ
             glBindBuffer    (GL_ARRAY_BUFFER, gl.vbo_positions);
             glVertexPointer (3, GL_SHORT, 0, 0);
-            
+
             // テクスチャー座標データ
             glBindBuffer       (GL_ARRAY_BUFFER, gl.vbo_tex_coords);
-            glTexCoordPointer  (2, GL_UNSIGNED_BYTE, 0, 0);
-            
+            glTexCoordPointer  (2, GL_FLOAT, 0, 0);
+
             // インデックス
             glBindBuffer    (GL_ELEMENT_ARRAY_BUFFER, gl.vbo_indices);
             glDrawElements  (GL_TRIANGLE_STRIP, sizeof(indices)/sizeof(indices[0]), GL_UNSIGNED_SHORT, 0);
             
             glDisableClientState (GL_VERTEX_ARRAY);
-            glDisableClientState (GL_COLOR_ARRAY);
+            glDisableClientState (GL_TEXTURE_COORD_ARRAY);
+
+            glMatrixMode   (GL_PROJECTION);
+            glPopMatrix    ();
+            glMatrixMode   (GL_TEXTURE);
+            glPopMatrix    ();
+            glMatrixMode   (GL_MODELVIEW);
+            glPopMatrix    ();
 
             // 念のため
             glDepthMask   (GL_TRUE);

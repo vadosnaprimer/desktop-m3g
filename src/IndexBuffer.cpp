@@ -15,7 +15,7 @@ const int IndexBuffer:: POINT_SPRITES;
 IndexBuffer:: IndexBuffer (int        t,
                            const int* indices,
                            int        num_strips,
-                           const int* lengths) : type(t), name(0)
+                           const int* lengths) : type(t), gl(0)
 {
     if (type != TRIANGLES) {
         throw IllegalArgumentException (__FILE__, __func__, "Primitive type is invalid, type=%d.", type);        
@@ -40,8 +40,8 @@ IndexBuffer:: IndexBuffer (int        t,
     strip_indices.assign (indices, indices + num_indices);
     strip_lengths.assign (lengths, lengths + num_strips);
 
-    glGenBuffers (1, &name);
-    glBindBuffer (GL_ELEMENT_ARRAY_BUFFER, name); 
+    glGenBuffers (1, &gl.indices);
+    glBindBuffer (GL_ELEMENT_ARRAY_BUFFER, gl.indices); 
     glBufferData (GL_ELEMENT_ARRAY_BUFFER, sizeof(short)*num_indices, &strip_indices[0], GL_STATIC_DRAW);
 }
 
@@ -49,7 +49,7 @@ IndexBuffer:: IndexBuffer (int        t,
 IndexBuffer:: IndexBuffer (int        t,
                            int        first_index,
                            int        num_strips,
-                           const int* lengths) : type(t), name(0)
+                           const int* lengths) : type(t), gl(0)
 {
     if (type != TRIANGLES) {
         throw IllegalArgumentException (__FILE__, __func__, "Primitive type is invalid, type=%d.", type);        
@@ -78,15 +78,15 @@ IndexBuffer:: IndexBuffer (int        t,
     strip_lengths.assign (lengths, lengths + num_strips);
 
 
-    glGenBuffers (1, &name);
-    glBindBuffer (GL_ELEMENT_ARRAY_BUFFER, name); 
+    glGenBuffers (1, &gl.indices);
+    glBindBuffer (GL_ELEMENT_ARRAY_BUFFER, gl.indices); 
     glBufferData (GL_ELEMENT_ARRAY_BUFFER, sizeof(short)*num_indices, &strip_indices[0], GL_STATIC_DRAW);
 }
 
 IndexBuffer:: ~IndexBuffer ()
 {
-    if (glIsBuffer(name)) {
-        glDeleteBuffers (1, &name);
+    if (glIsBuffer(gl.indices)) {
+        glDeleteBuffers (1, &gl.indices);
     }
 }
 
@@ -180,11 +180,11 @@ void IndexBuffer:: render_xxx (RenderState& state) const
         return;
     }
 
-    if (name == 0) {
-        throw OpenGLException (__FILE__, __func__, "Buffer object of index is not ready, name=%d.", name);
+    if (gl.indices == 0) {
+        throw OpenGLException (__FILE__, __func__, "Buffer object of index is not ready, vbo=%d.", gl.indices);
     }
 
-    glBindBuffer (GL_ELEMENT_ARRAY_BUFFER, name);
+    glBindBuffer (GL_ELEMENT_ARRAY_BUFFER, gl.indices);
 
     int offset = 0;
     for (int i = 0; i < (int)strip_lengths.size(); i++) {

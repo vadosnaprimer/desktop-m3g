@@ -247,7 +247,9 @@ void Mesh:: render_xxx (RenderState& state) const
 
     if (state.pass == -1) {
         for (int i = 0; i < (int)appearances.size(); i++) {
-            state.valid_layers.push_back (appearances[i]->getLayer2());
+            if (appearances[i]) {
+                state.valid_layers.push_back (appearances[i]->getLayer2());
+            }
         }
     }
     if (state.pass != 2) {
@@ -264,7 +266,6 @@ void Mesh:: render_xxx (RenderState& state) const
     // 頂点データの指定
     vertices->render (state);
 
-
     // マテリアルとインデックスの指定
     for (int i = 0; i < (int)appearances.size(); i++) {
         if (appearances[i] && appearances[i]->getLayer2() == state.layer) {
@@ -272,6 +273,7 @@ void Mesh:: render_xxx (RenderState& state) const
             indices[i]->render (state);
         }
     }
+
 
 }
 

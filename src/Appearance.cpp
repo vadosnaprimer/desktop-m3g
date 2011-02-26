@@ -245,11 +245,11 @@ void Appearance:: render_xxx (RenderState& state) const
 
 void Appearance:: renderX ()
 {
-    PolygonMode:: renderX ();
+    PolygonMode    :: renderX ();
     CompositingMode:: renderX ();
-    Material:: renderX ();
-    Texture2D:: renderX ();
-    Fog:: renderX ();
+    Material       :: renderX ();
+    Texture2D      :: renderX ();
+    Fog            :: renderX ();
 }
 
 std::ostream& Appearance:: print (std::ostream& out) const

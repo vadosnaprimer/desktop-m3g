@@ -39,6 +39,13 @@ namespace m3g {
          */
         static const int POINT_SPRITES = 10;
 
+    private:
+        
+        struct GLData {
+            GLData (unsigned int in) : indices(in) {};
+            unsigned int indices;
+        };
+       
     public:
 
         /**
@@ -137,7 +144,8 @@ namespace m3g {
         std::vector<short> strip_indices;
         std::vector<short> strip_lengths;
 
-        unsigned int     name;
+    private:
+        GLData gl;
     };
 
 
