@@ -19,6 +19,13 @@
 using namespace std;
 using namespace m3g;
 
+/**
+ * メモ: 規格ではクロップ領域を画像の範囲外に指定した場合、
+ *      α=0で描画するように求められている（要するにに何も描画しない）。
+ *      OpenGL ESにはCLAMP_TO_BORDERが存在しないために、この実装が非常に難しい。
+ *      従って現在はCLAM_TO_REPEATで実装してある。
+ *      正直使わない機能なので恐らく実装しない。
+ */
 
 Sprite3D:: Sprite3D (bool scaled_, Image2D* image_, Appearance* appearance_) :
     scaled(false), image(0), appearance(0), crop(0,0,0,0),
@@ -320,18 +327,14 @@ void Sprite3D:: render_xxx (RenderState& state) const
     }
 
 
-    GLfloat border_color[4] = {1,1,1,0};
     glActiveTexture  (GL_TEXTURE0);
     glEnable         (GL_TEXTURE_2D);
     glBindTexture    (GL_TEXTURE_2D , texobj);
     glTexParameteri  (GL_TEXTURE_2D , GL_TEXTURE_MAG_FILTER  , GL_LINEAR);
     glTexParameteri  (GL_TEXTURE_2D , GL_TEXTURE_MIN_FILTER  , GL_LINEAR_MIPMAP_LINEAR);
-    glTexParameteri  (GL_TEXTURE_2D , GL_TEXTURE_WRAP_S      , GL_CLAMP_TO_BORDER);
-    glTexParameteri  (GL_TEXTURE_2D , GL_TEXTURE_WRAP_T      , GL_CLAMP_TO_BORDER);
-    glTexParameterfv (GL_TEXTURE_2D , GL_TEXTURE_BORDER_COLOR, border_color);
+    glTexParameteri  (GL_TEXTURE_2D , GL_TEXTURE_WRAP_S      , GL_REPEAT);
+    glTexParameteri  (GL_TEXTURE_2D , GL_TEXTURE_WRAP_T      , GL_REPEAT);
     glTexEnvi        (GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE    , GL_MODULATE);
-    glEnable         (GL_ALPHA_TEST);
-    glAlphaFunc      (GL_GREATER, 0);
 
     const Camera* cam = state.camera;
 
