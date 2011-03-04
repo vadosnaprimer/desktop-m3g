@@ -32,6 +32,20 @@ namespace m3g {
             float height;
         };
 
+        /**
+         * @~English  OpenGL data, for inner use.
+         * @~Japanese OpenGLで使用するデータを定義する内部使用の構造体.
+         */
+        struct GLData {
+            GLData (unsigned int t, unsigned int p, unsigned int tc, unsigned int i) : 
+                tex_object(t), vbo_positions(p), vbo_tex_coords(tc), vbo_indices(i) {};
+            unsigned int tex_object;
+            unsigned int vbo_positions;
+            unsigned int vbo_tex_coords;
+            unsigned int vbo_indices;
+        };
+
+
     public:
 
         /**
@@ -214,8 +228,7 @@ namespace m3g {
         Image2D*     image;
         Appearance*  appearance;
         CropRect     crop;
-
-        unsigned int texobj;
+        GLData       gl;
     };
 
 } // namespace m3g {

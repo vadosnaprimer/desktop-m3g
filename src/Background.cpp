@@ -94,9 +94,7 @@ Background* Background:: duplicate_xxx (Object3D* obj) const
     bg->mode               = mode;
     bg->setImage (image);
     bg->crop               = crop;
-
-    // ???
-    bg->gl = gl;
+    bg->gl                 = gl;
 
     return bg;
 }
@@ -348,7 +346,6 @@ void Background:: render_xxx (RenderState& state) const
         glClear  (GL_COLOR_BUFFER_BIT);
 
         if (image) {
-            cout << "レンダー画像\n";
             glActiveTexture       (GL_TEXTURE0);
             glClientActiveTexture (GL_TEXTURE0);
             glEnable              (GL_TEXTURE_2D);
@@ -361,12 +358,6 @@ void Background:: render_xxx (RenderState& state) const
             float scale_y    = (mode.y == BORDER) ? img_height : ((crop.y + crop.height - 1) / img_height + 1) * img_height;
             float scale_s    = (mode.x == BORDER) ? 1          :  (crop.x + crop.width  - 1) / img_width  + 1;
             float scale_t    = (mode.y == BORDER) ? 1          :  (crop.y + crop.height - 1) / img_height + 1;
-            cout << "img_width  = " << img_width << "\n";
-            cout << "img_height = " << img_height << "\n";
-            cout << "scale_x = " << scale_x << "\n";
-            cout << "scale_y = " << scale_y << "\n";
-            cout << "scale_s = " << scale_s << "\n";
-            cout << "scale_t = " << scale_t << "\n";
 
             glBindTexture       (GL_TEXTURE_2D , gl.tex_object);
             glTexEnvi           (GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE  , GL_REPLACE);
@@ -380,12 +371,7 @@ void Background:: render_xxx (RenderState& state) const
             glMatrixMode   (GL_PROJECTION);
             glPushMatrix   ();
             glLoadIdentity ();
-            #ifdef USE_GL
-            glOrtho       (crop.x, crop.x + crop.width, crop.y + crop.height, crop.y , 0, 2);
-            #endif
-            #ifdef USE_GL_ES
-            glOrthof      (crop.x, crop.x + crop.width, crop.y + crop.height, crop.y , 0, 2);
-            #endif
+            glOrthof       (crop.x, crop.x + crop.width, crop.y + crop.height, crop.y , 0, 2);
             
             glMatrixMode   (GL_TEXTURE);
             glPushMatrix   ();

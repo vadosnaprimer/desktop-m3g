@@ -23,7 +23,16 @@
 #endif
 #include <GL/gl.h>
 #include <GL/glext.h>
-#endif
+
+// quick hack
+inline static
+void glOrthof ( GLdouble left, GLdouble right,
+                GLdouble bottom, GLdouble top,
+                GLdouble near_val, GLdouble far_val )
+{
+    glOrtho (left, right, bottom, top, near_val, far_val);
+}
+#endif // USE_GL
 
 // =====  Android =====
 // - Android用OpenGL ES.
@@ -36,4 +45,4 @@
 #endif
 
 
-#endif
+#endif // USE_GL_ES

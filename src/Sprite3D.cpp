@@ -29,9 +29,23 @@ using namespace m3g;
  *      正直使わない機能なので恐らく実装しない。
  */
 
+namespace {
+    // スプライト画像の表示に使う板ポリゴン.
+    float positions[12] = {  0.5,  0.5, 0,
+                             0.5, -0.5, 0,
+                            -0.5,  0.5, 0,
+                            -0.5, -0.5, 0};
+
+    float tex_coords[8] = {1, 0,
+                           1, 1,
+                           0, 0,
+                           0, 1};
+    unsigned short indices[4] = {0,1,2,3};
+}
+
+
 Sprite3D:: Sprite3D (bool scaled_, Image2D* image_, Appearance* appearance_) :
-    scaled(false), image(0), appearance(0), crop(0,0,0,0),
-    texobj(0)
+    scaled(false), image(0), appearance(0), crop(0,0,0,0), gl(0,0,0,0)
 {
     if (image_ == NULL) {
         throw NullPointerException (__FILE__, __func__, "Image is NULL.");
@@ -45,11 +59,27 @@ Sprite3D:: Sprite3D (bool scaled_, Image2D* image_, Appearance* appearance_) :
     crop.width  = image->getWidth();
     crop.height = image->getHeight();
 
-    glGenTextures   (1, &texobj);
-
+    glGenTextures   (1, &gl.tex_object);
     int err = glGetError ();
     if (err != GL_NO_ERROR) {
         throw OpenGLException (__FILE__, __func__, "Can't make texture object, err=%d.", err);
+    }
+
+    glGenBuffers (1, &gl.vbo_positions);
+    glBindBuffer (GL_ARRAY_BUFFER, gl.vbo_positions);
+    glBufferData (GL_ARRAY_BUFFER, sizeof(positions), positions, GL_STATIC_DRAW);
+
+    glGenBuffers (1, &gl.vbo_tex_coords);
+    glBindBuffer (GL_ARRAY_BUFFER, gl.vbo_tex_coords);
+    glBufferData (GL_ARRAY_BUFFER, sizeof(tex_coords), tex_coords, GL_STATIC_DRAW);
+
+    glGenBuffers (1, &gl.vbo_indices);
+    glBindBuffer (GL_ELEMENT_ARRAY_BUFFER, gl.vbo_indices);
+    glBufferData (GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
+
+    err = glGetError ();
+    if (err != GL_NO_ERROR) {
+        throw OpenGLException (__FILE__, __func__, "Can't make vertex buffer object, err=%d.", err);
     }
 
     setImage (image);
@@ -57,8 +87,17 @@ Sprite3D:: Sprite3D (bool scaled_, Image2D* image_, Appearance* appearance_) :
 
 Sprite3D:: ~Sprite3D ()
 {
-    if (texobj > 0)  {
-        glDeleteTextures (1, &texobj);
+    if (gl.tex_object > 0) {
+        glDeleteTextures(1, &gl.tex_object);
+    }
+    if (gl.vbo_positions > 0) {
+        glDeleteTextures(1, &gl.vbo_positions);
+    }
+    if (gl.vbo_tex_coords > 0) {
+        glDeleteTextures(1, &gl.vbo_tex_coords);
+    }
+    if (gl.vbo_indices > 0) {
+        glDeleteTextures(1, &gl.vbo_indices);
     }
 }
 
@@ -77,6 +116,7 @@ Sprite3D* Sprite3D:: duplicate_xxx (Object3D* obj) const
     Node:: duplicate_xxx (spr);
 
     spr->crop       = crop;
+    spr->gl         = gl;
 
     return spr;
 }
@@ -272,23 +312,20 @@ void Sprite3D:: setImage (Image2D* img)
     if ((width & (width-1)) || (height & (height-1))) {
         throw IllegalArgumentException (__FILE__, __func__, "Image size must be power of 2. w=%d,h=%d", width, height);
     }
-    if (texobj == 0) {
-        throw OpenGLException (__FILE__, __func__, "Texture object is not ready.");
-    }
 
     image       = img;
     crop.x      = 0;
     crop.y      = 0;
-    crop.width  = image->getWidth ();
-    crop.height = image->getHeight ();
+    crop.width  = width;
+    crop.height = height;
 
     int   format = image->getOpenGLFormat ();
     void* data   = image->getOpenGLPointer ();
 
-    glBindTexture   (GL_TEXTURE_2D, texobj);
+    glBindTexture   (GL_TEXTURE_2D, gl.tex_object);
     glPixelStorei   (GL_UNPACK_ALIGNMENT, 1);
     glTexParameteri (GL_TEXTURE_2D, GL_GENERATE_MIPMAP, GL_TRUE);
-    glTexImage2D    (GL_TEXTURE_2D, 0, GL_RGBA, image->getWidth(), image->getHeight(), 0, format, GL_UNSIGNED_BYTE, data);
+    glTexImage2D    (GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, format, GL_UNSIGNED_BYTE, data);
 }
 
 /**
@@ -329,17 +366,18 @@ void Sprite3D:: render_xxx (RenderState& state) const
     }
 
 
-    glActiveTexture  (GL_TEXTURE0);
+    glActiveTexture  (GL_TEXTURE0  );
     glEnable         (GL_TEXTURE_2D);
-    glBindTexture    (GL_TEXTURE_2D , texobj);
+    glBindTexture    (GL_TEXTURE_2D , gl.tex_object);
     glTexEnvi        (GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE    , GL_REPLACE);
-    glTexParameteri  (GL_TEXTURE_2D , GL_TEXTURE_MAG_FILTER  , GL_LINEAR);
+    glTexParameteri  (GL_TEXTURE_2D , GL_TEXTURE_MAG_FILTER  , GL_LINEAR );
     glTexParameteri  (GL_TEXTURE_2D , GL_TEXTURE_MIN_FILTER  , GL_LINEAR_MIPMAP_LINEAR);
-    glTexParameteri  (GL_TEXTURE_2D , GL_TEXTURE_WRAP_S      , GL_REPEAT);
-    glTexParameteri  (GL_TEXTURE_2D , GL_TEXTURE_WRAP_T      , GL_REPEAT);
+    glTexParameteri  (GL_TEXTURE_2D , GL_TEXTURE_WRAP_S      , GL_REPEAT );
+    glTexParameteri  (GL_TEXTURE_2D , GL_TEXTURE_WRAP_T      , GL_REPEAT );
+    glDisable        (GL_CULL_FACE);
 
     #ifdef USE_GL
-    GLfloat border_color[4] = {1,0,0,0};
+    GLfloat border_color[4] = {0.5,0.5,0.5,0};
     glTexParameteri  (GL_TEXTURE_2D , GL_TEXTURE_WRAP_S      , GL_CLAMP_TO_BORDER);
     glTexParameteri  (GL_TEXTURE_2D , GL_TEXTURE_WRAP_T      , GL_CLAMP_TO_BORDER);
     glTexParameterfv (GL_TEXTURE_2D , GL_TEXTURE_BORDER_COLOR, border_color);
@@ -364,13 +402,41 @@ void Sprite3D:: render_xxx (RenderState& state) const
     float width  = scaled ? getScaledWidth(cam)  : getUnscaledWidth();
     float height = scaled ? getScaledHeight(cam) : getUnscaledHeight();
 
+    glEnableClientState (GL_VERTEX_ARRAY);
+    glEnableClientState (GL_TEXTURE_COORD_ARRAY);
+
     glMatrixMode   (GL_PROJECTION);
     glPushMatrix   ();
     glLoadIdentity ();
+
     glMatrixMode   (GL_MODELVIEW);
     glPushMatrix   ();
     glLoadIdentity ();
+    glTranslatef   (tx   , ty    , tz);
+    glScalef       (width, height, 1 );
+
+    glMatrixMode   (GL_TEXTURE);
+    glPushMatrix   ();
+    glLoadIdentity ();
+    glTranslatef   (s0   , t0   , 0);
+    glScalef       (s1-s0, (t1-t0), 1);
     
+    // 頂点データ
+    glBindBuffer    (GL_ARRAY_BUFFER, gl.vbo_positions);
+    glVertexPointer (3, GL_FLOAT, 0, 0);
+    
+    // テクスチャー座標データ
+    glBindBuffer       (GL_ARRAY_BUFFER, gl.vbo_tex_coords);
+    glTexCoordPointer  (2, GL_FLOAT, 0, 0);
+    
+    // インデックス
+    glBindBuffer    (GL_ELEMENT_ARRAY_BUFFER, gl.vbo_indices);
+    glDrawElements  (GL_TRIANGLE_STRIP, sizeof(indices)/sizeof(indices[0]), GL_UNSIGNED_SHORT, 0);
+    
+    glDisableClientState (GL_VERTEX_ARRAY);
+    glDisableClientState (GL_TEXTURE_COORD_ARRAY);
+
+/*
     glBegin      (GL_TRIANGLE_STRIP);
     glColor4f    (1,1,1,1);
     glTexCoord2f (s1, t1);
@@ -382,8 +448,11 @@ void Sprite3D:: render_xxx (RenderState& state) const
     glTexCoord2f (s0, t0);
     glVertex3f   (tx-width/2.f, ty+height/2.f, tz);
     glEnd        ();
-    
+*/
+  
     glMatrixMode (GL_PROJECTION);
+    glPopMatrix  ();
+    glMatrixMode (GL_TEXTURE);
     glPopMatrix  ();
     glMatrixMode (GL_MODELVIEW);
     glPopMatrix  ();

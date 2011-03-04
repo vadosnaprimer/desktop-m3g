@@ -57,6 +57,10 @@ namespace m3g {
             float height;
         };
 
+        /**
+         * @~English  OpenGL data, for inner use.
+         * @~Japanese OpenGLで使用するデータを定義する内部使用の構造体.
+         */
         struct GLData {
             GLData (unsigned int t, unsigned int p, unsigned int tc, unsigned int i) : 
                 tex_object(t), vbo_positions(p), vbo_tex_coords(tc), vbo_indices(i) {};
