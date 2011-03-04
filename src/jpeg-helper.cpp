@@ -1,9 +1,18 @@
 #include <cstdio>
 #include <cstdlib>
-#include "jpeglib.h"
+#include "m3g/Config.hpp"
+#include "m3g/jpeg-helper.hpp"
+using namespace std;
+using namespace m3g;
 
-// メモリソースからのJPEG展開用マネージャ
-// 引用元: http://yarimit.blog.so-net.ne.jp/2005-06-03
+#ifdef USE_JPEG
+
+/**
+ * メモ： メモリソースからのJPEG展開用マネージャ
+ *       引用元: http://yarimit.blog.so-net.ne.jp/2005-06-03
+ *       作者と連絡がつかず、実は無許可。
+ */
+
 
 typedef struct {
 	struct jpeg_source_mgr pub;	/* public fields */
@@ -12,11 +21,12 @@ typedef struct {
 } memory_source_mgr;
 typedef memory_source_mgr *memory_src_ptr;
 
+static
 void memory_init_source (j_decompress_ptr cinfo)
 {
 }
 
-
+static
 boolean memory_fill_input_buffer (j_decompress_ptr cinfo)
 {
 	memory_src_ptr src = (memory_src_ptr) cinfo->src;
@@ -28,6 +38,7 @@ boolean memory_fill_input_buffer (j_decompress_ptr cinfo)
 	return TRUE;
 }
 
+static
 void memory_skip_input_data (j_decompress_ptr cinfo, long num_bytes)
 {
 	memory_src_ptr src = (memory_src_ptr) cinfo->src;
@@ -38,12 +49,13 @@ void memory_skip_input_data (j_decompress_ptr cinfo, long num_bytes)
 	}
 }
 
+static
 void memory_term_source (j_decompress_ptr cinfo)
 {
 }
 
 
-void jpeg_memory_src (j_decompress_ptr cinfo, const void* data, unsigned long len)
+void m3g::jpeg_memory_src (j_decompress_ptr cinfo, const void* data, unsigned long len)
 {
 	memory_src_ptr src;
 
@@ -69,3 +81,4 @@ void jpeg_memory_src (j_decompress_ptr cinfo, const void* data, unsigned long le
 	src->pub.next_input_byte = (JOCTET*)data;
 }
 
+#endif // #ifdef USE_JPEG

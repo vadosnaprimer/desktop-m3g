@@ -1,6 +1,11 @@
 
 
 2011/xx/xx ver 0.3.3
+   - remove extlib
+       - merge png-helper.cpp to src
+       - merge jpeg-helper.cpp to src
+       - separate m3g-reader-writer to independent project.
+           - see http://code.google.com/p/m3g-reader-writer/
    - adopt NVI (Non-Virtual Interface)
        - see "Effective C++"
    - replace gluBuild2DMipmaps() by GL_GENERATE_MIPMAP
@@ -15,7 +20,7 @@
    - fix Camera::animate(), Light::animate() and Sprite3D::animate().
    - fix parallel projection matrix of Camera.
    - fix KeyframeSequence which has only 1 frame.
-
+   - and many bug fix.
 
 2010/12/01  ver 0.3.2
    - introduce cmake

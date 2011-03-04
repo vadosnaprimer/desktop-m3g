@@ -1,13 +1,13 @@
 #include "m3g/m3g.hpp"
-#include "MemoryReader.hpp"
-#include "Config.hpp"
+#include "m3g/png-helper.hpp"
+#include "m3g/jpeg-helper.hpp"
+#include "m3g/Config.hpp"
 #include <iostream>
 #include <fstream>
 #include <algorithm>
 #include <cstring>
-#include <png.h>
-#include <jpeglib.h>
-#include "jpeg_memory_src.hpp"
+//#include <png.h>
+//#include <jpeglib.h>
 using namespace std;
 using namespace m3g;
 

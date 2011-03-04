@@ -1,10 +1,8 @@
-#include "m3g/MemoryReader.hpp"
+#include "m3g/png-helper.hpp"
 #include <unittest++/UnitTest++.h>
 #include <iostream>
-
-
 using namespace std;
-//using namespace m3g;
+using namespace m3g;
 
 
 TEST (MemoryReader)

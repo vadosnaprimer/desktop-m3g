@@ -1,0 +1,12 @@
+
+
+/**
+ * メモ：Config.hppはCMakeによってConfig.hpp.inから自動生成される。
+ *       手動で書き換えないこと！！
+ *       またCMake以外のビルドシステムを使う場合Config.hppを手動で作成する必要がある。
+ */
+
+#cmakedefine USE_GL
+#cmakedefine USE_GL_ES
+#cmakedefine USE_PNG
+#cmakedefine USE_JPEG
