@@ -380,9 +380,13 @@ void Background:: render_xxx (RenderState& state) const
             glMatrixMode   (GL_PROJECTION);
             glPushMatrix   ();
             glLoadIdentity ();
-            glOrtho        (crop.x, crop.x + crop.width, crop.y + crop.height, crop.y , 0, 2);
-            cout << "crop = " << crop.x << ", " << crop.y << ", " << crop.width << ", " << crop.height << "\n";
-
+            #ifdef USE_GL
+            glOrtho       (crop.x, crop.x + crop.width, crop.y + crop.height, crop.y , 0, 2);
+            #endif
+            #ifdef USE_GL_ES
+            glOrthof      (crop.x, crop.x + crop.width, crop.y + crop.height, crop.y , 0, 2);
+            #endif
+            
             glMatrixMode   (GL_TEXTURE);
             glPushMatrix   ();
             glLoadIdentity ();

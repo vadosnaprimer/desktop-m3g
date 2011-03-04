@@ -14,6 +14,7 @@
 #include "m3g/Intersect.hpp"
 #include "m3g/RayIntersection.hpp"
 #include "m3g/Camera.hpp"
+#include "m3g/Config.hpp"
 #include <iostream>
 #include <cmath>
 using namespace std;
@@ -22,7 +23,8 @@ using namespace m3g;
 /**
  * メモ: 規格ではクロップ領域を画像の範囲外に指定した場合、
  *      α=0で描画するように求められている（要するにに何も描画しない）。
- *      OpenGL ESにはCLAMP_TO_BORDERが存在しないために、この実装が非常に難しい。
+ *      OpenGLではこれをCLAMP_TO_BORDERで実装している。
+ *      しかしESにはCLAMP_TO_BORDERが存在しないために、この実装が非常に難しい。
  *      従って現在はCLAM_TO_REPEATで実装してある。
  *      正直使わない機能なので恐らく実装しない。
  */
@@ -286,7 +288,7 @@ void Sprite3D:: setImage (Image2D* img)
     glBindTexture   (GL_TEXTURE_2D, texobj);
     glPixelStorei   (GL_UNPACK_ALIGNMENT, 1);
     glTexParameteri (GL_TEXTURE_2D, GL_GENERATE_MIPMAP, GL_TRUE);
-    glTexImage2D    (GL_TEXTURE_2D, 0, format, image->getWidth(), image->getHeight(), 0, format, GL_UNSIGNED_BYTE, data);
+    glTexImage2D    (GL_TEXTURE_2D, 0, GL_RGBA, image->getWidth(), image->getHeight(), 0, format, GL_UNSIGNED_BYTE, data);
 }
 
 /**
@@ -330,11 +332,20 @@ void Sprite3D:: render_xxx (RenderState& state) const
     glActiveTexture  (GL_TEXTURE0);
     glEnable         (GL_TEXTURE_2D);
     glBindTexture    (GL_TEXTURE_2D , texobj);
+    glTexEnvi        (GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE    , GL_REPLACE);
     glTexParameteri  (GL_TEXTURE_2D , GL_TEXTURE_MAG_FILTER  , GL_LINEAR);
     glTexParameteri  (GL_TEXTURE_2D , GL_TEXTURE_MIN_FILTER  , GL_LINEAR_MIPMAP_LINEAR);
     glTexParameteri  (GL_TEXTURE_2D , GL_TEXTURE_WRAP_S      , GL_REPEAT);
     glTexParameteri  (GL_TEXTURE_2D , GL_TEXTURE_WRAP_T      , GL_REPEAT);
-    glTexEnvi        (GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE    , GL_MODULATE);
+
+    #ifdef USE_GL
+    GLfloat border_color[4] = {1,0,0,0};
+    glTexParameteri  (GL_TEXTURE_2D , GL_TEXTURE_WRAP_S      , GL_CLAMP_TO_BORDER);
+    glTexParameteri  (GL_TEXTURE_2D , GL_TEXTURE_WRAP_T      , GL_CLAMP_TO_BORDER);
+    glTexParameterfv (GL_TEXTURE_2D , GL_TEXTURE_BORDER_COLOR, border_color);
+    glEnable         (GL_ALPHA_TEST);
+    glAlphaFunc      (GL_GREATER, 0);
+    #endif
 
     const Camera* cam = state.camera;
 
@@ -376,7 +387,6 @@ void Sprite3D:: render_xxx (RenderState& state) const
     glPopMatrix  ();
     glMatrixMode (GL_MODELVIEW);
     glPopMatrix  ();
-    
 }
 
 Vector Sprite3D:: getCenterPoint (const Camera* cam) const

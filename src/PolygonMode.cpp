@@ -2,6 +2,7 @@
 #include "m3g/PolygonMode.hpp"
 #include "m3g/Exception.hpp"
 #include "m3g/RenderState.hpp"
+#include "m3g/Config.hpp"
 #include <iostream>
 using namespace std;
 using namespace m3g;
@@ -150,11 +151,13 @@ void PolygonMode:: render_xxx (RenderState& state) const
     default : throw InternalException (__FILE__, __func__, "Shading mode is invalid, mode=%d\n", shading);
     }
 
+    #ifdef USE_GL
     switch (local_camera_lighting) {
-    case true : glLightModeli (GL_LIGHT_MODEL_LOCAL_VIEWER, GL_TRUE ); break;
-    case false: glLightModeli (GL_LIGHT_MODEL_LOCAL_VIEWER, GL_FALSE); break;
+    case true : glLightModelf (GL_LIGHT_MODEL_LOCAL_VIEWER, GL_TRUE ); break;
+    case false: glLightModelf (GL_LIGHT_MODEL_LOCAL_VIEWER, GL_FALSE); break;
     default: throw InternalException (__FILE__, __func__, "Local camera lighting is invalid, mode=%d\n", local_camera_lighting);
     }
+    #endif
 
     switch (perspective_correction) {
     case true : glHint (GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST ); break;
@@ -171,9 +174,12 @@ void PolygonMode:: renderX ()
     glCullFace    (GL_BACK);
     glEnable      (GL_CULL_FACE);
     glShadeModel  (GL_SMOOTH);
-    glLightModeli (GL_LIGHT_MODEL_TWO_SIDE, GL_FALSE);
-    glLightModeli (GL_LIGHT_MODEL_LOCAL_VIEWER, GL_TRUE);
+    glLightModelf (GL_LIGHT_MODEL_TWO_SIDE, GL_FALSE);
     glHint        (GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
+
+    #ifdef USE_GL
+    glLightModelf (GL_LIGHT_MODEL_LOCAL_VIEWER, GL_TRUE);
+    #endif
 }
 
 

@@ -1,5 +1,6 @@
 #include "m3g/m3g.hpp"
 #include "MemoryReader.hpp"
+#include "Config.hpp"
 #include <iostream>
 #include <fstream>
 #include <algorithm>
@@ -44,14 +45,15 @@ std::vector<Object3D*> Loader:: load (int length, const char* p, int offset)
     Loader* loader = new Loader;
     vector<Object3D*> objs;
 
-    if (memcmp (p, m3g_sig, sizeof(m3g_sig)) == 0)
+    if (memcmp (p, m3g_sig, sizeof(m3g_sig)) == 0) {
         objs = loader->load_m3g (p, length);
-    else if (memcmp (p, png_sig, sizeof(png_sig)) == 0)
+    } else if (memcmp (p, png_sig, sizeof(png_sig)) == 0) {
         objs = loader->load_png (p, length);
-    else if (memcmp (p, jpg_sig, 4) == 0 && memcmp (p+6, jpg_sig+6, 5) == 0)
+    } else if (memcmp (p, jpg_sig, 4) == 0 && memcmp (p+6, jpg_sig+6, 5) == 0) {
         objs = loader->load_jpg (p, length);
-    else
+    } else {
         throw IOException (__FILE__, __func__, "File signature is unknown.");
+    }
     
     delete loader;
     return objs;
@@ -147,8 +149,13 @@ std::vector<Object3D*> Loader:: load_m3g (const char* p, int size)
 }
 
 
+
 std::vector<Object3D*> Loader:: load_png (const char* file_ptr, int file_size)
 {
+    #ifndef USE_PNG
+    throw NotImplementedException (__FILE__, __func__, "Can't load png, Compiled with USE_PNG=NO.");
+    #endif
+
     png_structp png_ptr;
     png_infop   info_ptr;
 
@@ -202,8 +209,14 @@ std::vector<Object3D*> Loader:: load_png (const char* file_ptr, int file_size)
     return objs;
 }
 
+
+
 std::vector<Object3D*> Loader:: load_jpg (const char* p, int size)
 {
+    #ifndef USE_JPEG
+    throw NotImplementedException (__FILE__, __func__, "Can't load jpeg, Compiled with USE_JPEG=NO.");
+    #endif
+
     jpeg_decompress_struct cinfo;
     jpeg_error_mgr         jerr;
 
@@ -248,7 +261,6 @@ std::vector<Object3D*> Loader:: load_jpg (const char* p, int size)
     objs.push_back (img);
     return objs;
 }
-
 
 void Loader:: parseHeader ()
 {

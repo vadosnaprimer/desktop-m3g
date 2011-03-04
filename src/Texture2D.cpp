@@ -311,8 +311,10 @@ void Texture2D:: render_xxx (RenderState& state) const
 
     switch (filter.level) {
     case FILTER_BASE_LEVEL:
+        #ifdef USE_GL
         glTexParameteri  (GL_TEXTURE_2D, GL_TEXTURE_BASE_LEVEL, 0);
         glTexParameteri  (GL_TEXTURE_2D, GL_TEXTURE_MAX_LEVEL, 0);
+        #endif
         switch (filter.image) {
         case FILTER_NEAREST: glTexParameteri  (GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST); break;
         case FILTER_LINEAR : glTexParameteri  (GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR) ; break;

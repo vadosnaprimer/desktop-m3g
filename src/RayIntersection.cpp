@@ -241,7 +241,7 @@ std::ostream& RayIntersection:: print (std::ostream& out) const
     out << ", ray.org=(" << ray.org << ")";
     out << ", ray.dir=(" << ray.dir << ")";
     out << ", ray.t="    << ray.t;
-    out << ", node="     << (node ? typeid(*node).name() : "none");
+    out << ", node="     << node;;
     out << ", u,v=("     << u << "," << v << ")";
     out << ", vertices=[";
     for (int i = 0; i < (int)vertices.size(); i++) {

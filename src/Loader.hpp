@@ -40,7 +40,9 @@ namespace m3g {
 
         std::vector<Object3D*> load_m3g (const char* p, int size);
 
+
         std::vector<Object3D*> load_png (const char* p, int size);
+
 
         std::vector<Object3D*> load_jpg (const char* p, int size);
 
