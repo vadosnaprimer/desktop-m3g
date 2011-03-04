@@ -1,8 +1,7 @@
 LOCAL_PATH := $(call my-dir)
 include $(CLEAR_VARS)
 LOCAL_MODULE    := libm3g
-LOCAL_SRC_FILES := 
-LOCAL_LDLIBS    := -llog
+LOCAL_SRC_FILES :=                      \
 	AnimationController.cpp  \
 	Graphics3D.cpp           \
 	Loader.cpp               \
@@ -42,9 +41,6 @@ LOCAL_LDLIBS    := -llog
 	Object3D.cpp             \
 	Transformable.cpp
 LOCAL_CPPFLAGS   := -fexceptions -frtti
-LOCAL_LDLIBS     := -lGLESv1_CM
-LOCAL_C_INCLUDES := internal/jpeg-helper/src       \
-                    internal/m3g-reader-writer/src \
-                    internal/png-helper/src        \
-                    external/include
+LOCAL_LDLIBS     := -lm3g-reader-writer -lGLESv1_CM -llog 
+LOCAL_C_INCLUDES := ./ external/include
 include $(BUILD_SHARED_LIBRARY)

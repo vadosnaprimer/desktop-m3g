@@ -7,13 +7,13 @@ Brief description
     Desktop-M3G is a free C++ implementation of M3G-1.1 (JSR-184) API.
     It is distributed under MIT license.
     Current version of Desktop-M3G works on only Linux.
-    I recommend Ubuntu 10.04. It's same as My PC.
+    I recommend Ubuntu 10.10. It's same as My PC.
 
   = Requirement =
     - OpenGL 1.5 or higher
-    - libpng, libjpeg, libz
+    - libpng, libjpeg, libz, libm3g-reader-writer
     Desktop-M3G does not have any method for creating a window and OpenGL context.
-    You need glut or any other library (SDL, Qt, ...)
+    You need glut or any other libraries (SDL, Qt, ...)
 
 
 -------------------------------------------
@@ -22,16 +22,25 @@ Make & Install
 
   = libm3g.so =
     You need cmake (http://www.cmake.org/).
-    1. cd build
-    2. cmake ..
-         - Makefile will be generated.
-    3. make
-    4  make install
-         - install Desktop-M3G to ${Desktop-M3G}/bin.
-    You must call cmake on build directory. Don't call it under top directory.
+
+      1. cd build/Debug
+      2. cmake -DCMAKE_BUILD_TYPE=Debug ../..
+           - Makefile will be generated.
+      3. make
+      4. make install
+           - install Desktop-M3G to ${Desktop-M3G}/bin.
+
+    You must call cmake under build directory. Don't call it at top directory.
     Currently, default build target is "Debug" and install under ${Desktop-M3G}/bin.
-    If you want to install it in your system with "Release" build, replace 2 with following 2' 
-    2'. cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr/local ..
+    If you want to install it in your system with "Release" build,
+
+
+      1'. cd build/Release
+      2'. cmake -DCMAKE_BUILD_TYPE=Relese ../..
+      3'. make
+      4'. sudo make install
+           - install Desktop-M3G to /usr/local/include and /usr/local/lib.
+
 
 
 -------------------------------------------
@@ -46,9 +55,9 @@ Test & Samples
     5. ./a.out
 
   = Samples =
-    You can find about 20 samples on samples directory.
-    These are good entry points learning how to use Desktop-M3G.
-    1. cd sample/test-xxx-yyy
+    You can find about 15 samples on samples directory.
+    These are good entry points for learning how to use Desktop-M3G.
+    1. cd sample/sample-xxx-yyy
     2. make depend
     3. make
     4. export LD_LIBRARY_PATH=../../bin/lib

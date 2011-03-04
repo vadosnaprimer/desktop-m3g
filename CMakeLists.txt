@@ -1,12 +1,21 @@
-#
+# =================================
 # M3G project config file.
-#
+# =================================
 
 # project info
 project (M3G)
 
 # required cmake
 cmake_minimum_required (VERSION 2.0)
+
+
+# Avairable options
+option (USE_GL    "Set ON, if you use OpenGL (default ON)"      ON )
+option (USE_GL_ES "Set ON, if you use OpenGL ES (default OFF)"  OFF)
+option (USE_PNG   "Set ON, if you use PNG format (default ON)"  ON )
+option (USE_JPEG  "Set ON, if you use JPEG format (default ON)" ON )
+configure_file (${CMAKE_CURRENT_SOURCE_DIR}/src/m3g/Config.hpp.in
+                ${CMAKE_CURRENT_BINARY_DIR}/src/m3g/Config.hpp)
 
 # Default is "Debug"
 if (NOT CMAKE_BUILD_TYPE)
@@ -29,12 +38,21 @@ if  (CMAKE_BUILD_TYPE STREQUAL "Release")
 endif (CMAKE_BUILD_TYPE STREQUAL "Release")
 
 # dependend libraries
+# libz.so
 find_package (ZLIB   REQUIRED)
-find_package (PNG    REQUIRED)
-find_package (JPEG   REQUIRED)
-find_package (OpenGL REQUIRED)
-# i don't need glu
-#find_package (GLU    REQUIRED)
+# libpng
+if (USE_PNG BOOLEQUAL ON)
+  find_package (PNG    REQUIRED)
+endif (USE_PNG BOOLEQUAL ON)
+# libjpeg.so
+if (USE_JPEG BOOLEQUAL ON)
+  find_package (JPEG   REQUIRED)
+endif (USE_JPEG BOOLEQUAL ON)
+# libGL.so
+if (USE_GL BOOLEQUAL ON)
+  find_package (OpenGL REQUIRED)
+endif (USE_GL_BOOLEQUAL ON)
+
 
 set (M3G_REQUIRED_LIBRARIES
          ${ZLIB_LIBRARIES}
@@ -57,5 +75,12 @@ link_directories (${PNG_HELPER_LINK_DIR})
 
 # project src
 add_subdirectory (src)
+
+
+message (STATUS "Generating Config.hpp ...")
+message (STATUS "USE_GL    = ${USE_GL}")
+message (STATUS "USE_GL_ES = ${USE_GL_ES}")
+message (STATUS "USE_PNG   = ${USE_PNG}")
+message (STATUS "USE_JPEG  = ${USE_JPEG}")
 
 
