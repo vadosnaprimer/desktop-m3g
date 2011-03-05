@@ -13,7 +13,7 @@
 using namespace m3g;
 using namespace std;
 
-#include <typeinfo>
+//#include <typeinfo>
 
 
 Group:: Group ()

@@ -6,8 +6,6 @@
 #include <fstream>
 #include <algorithm>
 #include <cstring>
-//#include <png.h>
-//#include <jpeglib.h>
 using namespace std;
 using namespace m3g;
 
@@ -156,6 +154,7 @@ std::vector<Object3D*> Loader:: load_png (const char* file_ptr, int file_size)
     throw NotImplementedException (__FILE__, __func__, "Can't load png, Compiled with USE_PNG=NO.");
     #endif
 
+    #ifdef USE_PNG
     png_structp png_ptr;
     png_infop   info_ptr;
 
@@ -206,6 +205,8 @@ std::vector<Object3D*> Loader:: load_png (const char* file_ptr, int file_size)
     delete my_mem_reader;
     objs.push_back (img);
 
+    #endif // USE_PNG
+
     return objs;
 }
 
@@ -217,6 +218,7 @@ std::vector<Object3D*> Loader:: load_jpg (const char* p, int size)
     throw NotImplementedException (__FILE__, __func__, "Can't load jpeg, Compiled with USE_JPEG=NO.");
     #endif
 
+    #ifdef USE_JPEG
     jpeg_decompress_struct cinfo;
     jpeg_error_mgr         jerr;
 
@@ -259,6 +261,8 @@ std::vector<Object3D*> Loader:: load_jpg (const char* p, int size)
     delete [] pixels;
     
     objs.push_back (img);
+    #endif // USE_JPEG
+
     return objs;
 }
 

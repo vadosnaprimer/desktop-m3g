@@ -36,7 +36,7 @@ message (STATUS "M3G_REQUIRED_LIBRARIES = ${M3G_REQUIRED_LIBRARIES}")
 
 # precompiled libraries
 set (M3G_PRECOMPILED_INCLUDE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/external/include)
-set (M3G_READER_WRITER_LIBRARY   ${CMAKE_CURRENT_SOURCE_DIR}/external/lib/libm3g-reader-writer.a)
+set (M3G_READER_WRITER_LIBRARY   ${CMAKE_CURRENT_SOURCE_DIR}/external/lib/libm3g-reader-writer.so)
 set (M3G_PRECOMPILED_LIBRARIES
             -Wl,-whole-archive 
             ${M3G_READER_WRITER_LIBRARY}

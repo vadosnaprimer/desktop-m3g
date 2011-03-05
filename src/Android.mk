@@ -1,4 +1,18 @@
 LOCAL_PATH := $(call my-dir)
+
+# libpng.so用
+include $(CLEAR_VARS)
+LOCAL_MODULE    := prebuild-libpng.so
+LOCAL_SRC_FILES := external/lib/libpng.so
+include $(PREBUILT_SHARED_LIBRARY)
+
+# libm3g-reader-writer.so用
+include $(CLEAR_VARS)
+LOCAL_MODULE    := prebuild-libm3g-reader-writer.so
+LOCAL_SRC_FILES := external/lib/libm3g-reader-writer.so
+include $(PREBUILT_SHARED_LIBRARY)
+
+# libm3g.so用
 include $(CLEAR_VARS)
 LOCAL_MODULE    := libm3g
 LOCAL_SRC_FILES :=                      \
@@ -39,8 +53,12 @@ LOCAL_SRC_FILES :=                      \
 	Fog.cpp                  \
 	Light.cpp                \
 	Object3D.cpp             \
+	png-helper.cpp           \
+               jpeg-helper.cpp          \
 	Transformable.cpp
-LOCAL_CPPFLAGS   := -fexceptions -frtti
-LOCAL_LDLIBS     := -lm3g-reader-writer -lGLESv1_CM -llog 
-LOCAL_C_INCLUDES := ./ external/include
+LOCAL_CPPFLAGS         := -fexceptions -frtti
+LOCAL_LDLIBS           := -lGLESv1_CM -llog 
+LOCAL_SHARED_LIBRARIES := prebuild-libm3g-reader-writer.so \
+                          prebuild-libpng.so
+LOCAL_C_INCLUDES       := ./include ./jni/external/include
 include $(BUILD_SHARED_LIBRARY)

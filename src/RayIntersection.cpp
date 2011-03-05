@@ -6,7 +6,7 @@
 #include "m3g/Sprite3D.hpp"
 #include "m3g/Node.hpp"
 #include <iostream>
-#include <typeinfo>
+//#include <typeinfo>
 #include <cmath>
 using namespace std;
 using namespace m3g;

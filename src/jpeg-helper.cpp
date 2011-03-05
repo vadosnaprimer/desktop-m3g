@@ -3,9 +3,10 @@
 #include "m3g/Config.hpp"
 #include "m3g/jpeg-helper.hpp"
 using namespace std;
+#ifdef USE_JPEG
 using namespace m3g;
 
-#ifdef USE_JPEG
+
 
 /**
  * メモ： メモリソースからのJPEG展開用マネージャ
