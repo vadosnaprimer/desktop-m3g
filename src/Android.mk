@@ -1,16 +1,16 @@
 LOCAL_PATH := $(call my-dir)
 
-# libpng.so用
+# libpng.a用
 include $(CLEAR_VARS)
-LOCAL_MODULE    := prebuild-libpng.so
-LOCAL_SRC_FILES := external/lib/libpng.so
-include $(PREBUILT_SHARED_LIBRARY)
+LOCAL_MODULE    := prebuild-libpng
+LOCAL_SRC_FILES := external/lib/libpng.a
+include $(PREBUILT_STATIC_LIBRARY)
 
-# libm3g-reader-writer.so用
+# libm3g-reader-writer.a用
 include $(CLEAR_VARS)
-LOCAL_MODULE    := prebuild-libm3g-reader-writer.so
-LOCAL_SRC_FILES := external/lib/libm3g-reader-writer.so
-include $(PREBUILT_SHARED_LIBRARY)
+LOCAL_MODULE    := prebuild-libm3g-reader-writer
+LOCAL_SRC_FILES := external/lib/libm3g-reader-writer.a
+include $(PREBUILT_STATIC_LIBRARY)
 
 # libm3g.so用
 include $(CLEAR_VARS)
@@ -57,8 +57,12 @@ LOCAL_SRC_FILES :=                      \
                jpeg-helper.cpp          \
 	Transformable.cpp
 LOCAL_CPPFLAGS         := -fexceptions -frtti
-LOCAL_LDLIBS           := -lGLESv1_CM -llog 
-LOCAL_SHARED_LIBRARIES := prebuild-libm3g-reader-writer.so \
-                          prebuild-libpng.so
+LOCAL_LDLIBS           := -lGLESv1_CM -llog -lz
+#LOCAL_WHOLE_STATIC_LIBRARIES := prebuild-libm3g-reader-writer \
+#                                prebuild-libpng
+LOCAL_STATIC_LIBRARIES := prebuild-libm3g-reader-writer \
+                          prebuild-libpng
 LOCAL_C_INCLUDES       := ./include ./jni/external/include
 include $(BUILD_SHARED_LIBRARY)
+
+
