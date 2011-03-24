@@ -245,6 +245,11 @@ void VertexBuffer:: setColors (VertexArray* colors_)
     if (component_count != 3 && component_count != 4) {
         throw IllegalArgumentException (__FILE__, __func__, "Component count must be 3 or 4, size=%d.", component_count);
     }
+    #ifdef USE_GL_ES
+    if (component_count == 3) {
+        throw IllegalArgumentException (__FILE__, __func__, "OpenGL ES doesn't support 3 component counts as vertex color.");
+    }
+    #endif
 
     colors     = colors_;
     node_alpha = 1;

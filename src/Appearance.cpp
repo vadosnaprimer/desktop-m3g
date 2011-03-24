@@ -240,6 +240,7 @@ void Appearance:: render_xxx (RenderState& state) const
     }
 
     glMatrixMode (GL_MODELVIEW);
+
 }
 
 

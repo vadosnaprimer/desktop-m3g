@@ -4,7 +4,7 @@
 namespace m3g {
 
 
-const int MAX_TEXTURE_UNITS = 4;
+const int MAX_TEXTURE_UNITS = 2;
 
 const int OBJTYPE_HEADER_OBJECT        = 0;
 const int OBJTYPE_ANIMATION_CONTROLLER = 1;

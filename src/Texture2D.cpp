@@ -233,7 +233,7 @@ void Texture2D:: setImage (Image2D* img)
 
     glBindTexture   (GL_TEXTURE_2D, texobj);
     glPixelStorei   (GL_UNPACK_ALIGNMENT, 1);
-    glTexParameteri (GL_TEXTURE_2D, GL_GENERATE_MIPMAP, GL_TRUE);
+    glTexParameterf (GL_TEXTURE_2D, GL_GENERATE_MIPMAP, GL_TRUE);
     glTexImage2D    (GL_TEXTURE_2D, 0, format, image->getWidth(), image->getHeight(), 0, format, GL_UNSIGNED_BYTE, data);
 }
 
@@ -278,20 +278,20 @@ void Texture2D:: render_xxx (RenderState& state) const
 
     switch (blending_mode) {
     case FUNC_ADD :
-        glTexEnvi (GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_ADD);
+        glTexEnvf (GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_ADD);
         break;
     case FUNC_BLEND :
-        glTexEnvi  (GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_BLEND);
+        glTexEnvf  (GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_BLEND);
         glTexEnvfv (GL_TEXTURE_ENV, GL_TEXTURE_ENV_COLOR, color);
         break;
     case FUNC_DECAL :
-        glTexEnvi (GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_DECAL);
+        glTexEnvf (GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_DECAL);
         break;
     case FUNC_MODULATE : 
-        glTexEnvi (GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
+        glTexEnvf (GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
         break;
     case FUNC_REPLACE : 
-        glTexEnvi (GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
+        glTexEnvf (GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
         break;
     default:
         throw IllegalStateException (__FILE__, __func__, "Blending mode is invalid, mode=%d.", blending_mode);
@@ -305,44 +305,44 @@ void Texture2D:: render_xxx (RenderState& state) const
     }
 
     switch (filter.image) {
-    case FILTER_NEAREST: glTexParameteri  (GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST); break;
-    case FILTER_LINEAR : glTexParameteri  (GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR ); break;
+    case FILTER_NEAREST: glTexParameterf  (GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST); break;
+    case FILTER_LINEAR : glTexParameterf  (GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR ); break;
     }
 
     switch (filter.level) {
     case FILTER_BASE_LEVEL:
         #ifdef USE_GL
-        glTexParameteri  (GL_TEXTURE_2D, GL_TEXTURE_BASE_LEVEL, 0);
-        glTexParameteri  (GL_TEXTURE_2D, GL_TEXTURE_MAX_LEVEL, 0);
+        glTexParameterf  (GL_TEXTURE_2D, GL_TEXTURE_BASE_LEVEL, 0);
+        glTexParameterf  (GL_TEXTURE_2D, GL_TEXTURE_MAX_LEVEL, 0);
         #endif
         switch (filter.image) {
-        case FILTER_NEAREST: glTexParameteri  (GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST); break;
-        case FILTER_LINEAR : glTexParameteri  (GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR) ; break;
+        case FILTER_NEAREST: glTexParameterf  (GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST); break;
+        case FILTER_LINEAR : glTexParameterf  (GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR) ; break;
         }
         break;
     case FILTER_NEAREST:
         switch (filter.image) {
-        case FILTER_NEAREST: glTexParameteri  (GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST_MIPMAP_NEAREST); break;
-        case FILTER_LINEAR : glTexParameteri  (GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_NEAREST) ; break;
+        case FILTER_NEAREST: glTexParameterf  (GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST_MIPMAP_NEAREST); break;
+        case FILTER_LINEAR : glTexParameterf  (GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_NEAREST) ; break;
         }
         break;
     case FILTER_LINEAR:
         switch (filter.image) {
-        case FILTER_NEAREST: glTexParameteri  (GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST_MIPMAP_LINEAR); break;
-        case FILTER_LINEAR : glTexParameteri  (GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR) ; break;
+        case FILTER_NEAREST: glTexParameterf  (GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST_MIPMAP_LINEAR); break;
+        case FILTER_LINEAR : glTexParameterf  (GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR) ; break;
         }
         break;
     }
 
     switch (wrapping.s) {
-    case WRAP_CLAMP :  glTexParameteri (GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE); break;
-    case WRAP_REPEAT:  glTexParameteri (GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT       ); break;
+    case WRAP_CLAMP :  glTexParameterf (GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE); break;
+    case WRAP_REPEAT:  glTexParameterf (GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT       ); break;
     default: throw IllegalStateException (__FILE__, __func__, "Wraping mode S is invalid, mode=%d.", wrapping.s);
     }
 
     switch (wrapping.t) {
-    case WRAP_CLAMP :  glTexParameteri (GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE); break;
-    case WRAP_REPEAT:  glTexParameteri (GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT       ); break;
+    case WRAP_CLAMP :  glTexParameterf (GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE); break;
+    case WRAP_REPEAT:  glTexParameterf (GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT       ); break;
     default: throw IllegalStateException (__FILE__, __func__, "Wraping mode T is invalid, mode=%d.", wrapping.t);
     }
 
@@ -350,11 +350,11 @@ void Texture2D:: render_xxx (RenderState& state) const
 
 void Texture2D:: renderX ()
 {
-    glTexEnvi        (GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
-    glTexParameteri  (GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-    glTexParameteri  (GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-    glTexParameteri  (GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-    glTexParameteri  (GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+    glTexEnvf        (GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE  , GL_MODULATE);
+    glTexParameterf  (GL_TEXTURE_2D , GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+    glTexParameterf  (GL_TEXTURE_2D , GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+    glTexParameterf  (GL_TEXTURE_2D , GL_TEXTURE_WRAP_S    , GL_REPEAT);
+    glTexParameterf  (GL_TEXTURE_2D , GL_TEXTURE_WRAP_T    , GL_REPEAT);
 }
 
 

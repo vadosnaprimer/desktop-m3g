@@ -241,6 +241,7 @@ bool Mesh:: intersect (const Vector& org, const Vector& dir, RayIntersection* ri
  */
 void Mesh:: render_xxx (RenderState& state) const
 {
+
     if (!isGlobalRenderingEnabled()) {
         return;
     }
@@ -273,7 +274,6 @@ void Mesh:: render_xxx (RenderState& state) const
             indices[i]->render (state);
         }
     }
-
 
 }
 

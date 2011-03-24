@@ -21,12 +21,15 @@ using namespace std;
 using namespace m3g;
 
 /**
- * メモ: 規格ではクロップ領域を画像の範囲外に指定した場合、
+ * メモ: M3Gの規格ではクロップ領域を画像の範囲外に指定した場合、
  *      α=0で描画するように求められている（要するにに何も描画しない）。
- *      OpenGLではこれをCLAMP_TO_BORDERで実装している。
- *      しかしESにはCLAMP_TO_BORDERが存在しないために、この実装が非常に難しい。
- *      従って現在はCLAM_TO_REPEATで実装してある。
- *      正直使わない機能なので恐らく実装しない。
+ *      当初の実装ではこれをCLAMP_TO_BORDERで実装していたが、
+ *      OpenGL ESに移植するにあたって次の２つの問題が出た。
+ *        1. CLAMP_TO_BORDERが存在しない
+ *        2. glTexImage2Dの内部フォーマットとデータフォーマットは一致していなければならないので
+ *           テクスチャーをRGBで指定された場合αが使えない
+ *      正直実装するのが大変な割には使い道が限られている機能なので
+ *      Desktop-M3Gではこれを実装せず、範囲外はREPEATとして実装してある。
  */
 
 namespace {
@@ -322,10 +325,12 @@ void Sprite3D:: setImage (Image2D* img)
     int   format = image->getOpenGLFormat ();
     void* data   = image->getOpenGLPointer ();
 
+    glEnable        (GL_TEXTURE_2D);
+    glActiveTexture (GL_TEXTURE0);
     glBindTexture   (GL_TEXTURE_2D, gl.tex_object);
     glPixelStorei   (GL_UNPACK_ALIGNMENT, 1);
-    glTexParameteri (GL_TEXTURE_2D, GL_GENERATE_MIPMAP, GL_TRUE);
-    glTexImage2D    (GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, format, GL_UNSIGNED_BYTE, data);
+    glTexParameterf (GL_TEXTURE_2D, GL_GENERATE_MIPMAP, GL_TRUE);
+    glTexImage2D    (GL_TEXTURE_2D, 0, format, width, height, 0, format, GL_UNSIGNED_BYTE, data);
 }
 
 /**
@@ -366,25 +371,6 @@ void Sprite3D:: render_xxx (RenderState& state) const
     }
 
 
-    glActiveTexture  (GL_TEXTURE0  );
-    glEnable         (GL_TEXTURE_2D);
-    glBindTexture    (GL_TEXTURE_2D , gl.tex_object);
-    glTexEnvi        (GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE    , GL_REPLACE);
-    glTexParameteri  (GL_TEXTURE_2D , GL_TEXTURE_MAG_FILTER  , GL_LINEAR );
-    glTexParameteri  (GL_TEXTURE_2D , GL_TEXTURE_MIN_FILTER  , GL_LINEAR_MIPMAP_LINEAR);
-    glTexParameteri  (GL_TEXTURE_2D , GL_TEXTURE_WRAP_S      , GL_REPEAT );
-    glTexParameteri  (GL_TEXTURE_2D , GL_TEXTURE_WRAP_T      , GL_REPEAT );
-    glDisable        (GL_CULL_FACE);
-
-    #ifdef USE_GL
-    GLfloat border_color[4] = {0.5,0.5,0.5,0};
-    glTexParameteri  (GL_TEXTURE_2D , GL_TEXTURE_WRAP_S      , GL_CLAMP_TO_BORDER);
-    glTexParameteri  (GL_TEXTURE_2D , GL_TEXTURE_WRAP_T      , GL_CLAMP_TO_BORDER);
-    glTexParameterfv (GL_TEXTURE_2D , GL_TEXTURE_BORDER_COLOR, border_color);
-    glEnable         (GL_ALPHA_TEST);
-    glAlphaFunc      (GL_GREATER, 0);
-    #endif
-
     const Camera* cam = state.camera;
 
     Vector center = getCenterPoint (cam);
@@ -402,9 +388,6 @@ void Sprite3D:: render_xxx (RenderState& state) const
     float width  = scaled ? getScaledWidth(cam)  : getUnscaledWidth();
     float height = scaled ? getScaledHeight(cam) : getUnscaledHeight();
 
-    glEnableClientState (GL_VERTEX_ARRAY);
-    glEnableClientState (GL_TEXTURE_COORD_ARRAY);
-
     glMatrixMode   (GL_PROJECTION);
     glPushMatrix   ();
     glLoadIdentity ();
@@ -420,7 +403,22 @@ void Sprite3D:: render_xxx (RenderState& state) const
     glLoadIdentity ();
     glTranslatef   (s0   , t0   , 0);
     glScalef       (s1-s0, (t1-t0), 1);
+
+    glEnable              (GL_TEXTURE_2D);
+    glBindTexture         (GL_TEXTURE_2D , gl.tex_object);
+    glActiveTexture       (GL_TEXTURE0);
+    glClientActiveTexture (GL_TEXTURE0);
+    glTexEnvf             (GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE    , GL_REPLACE);
+    glTexParameterf       (GL_TEXTURE_2D , GL_TEXTURE_MAG_FILTER  , GL_LINEAR );
+    glTexParameterf       (GL_TEXTURE_2D , GL_TEXTURE_MIN_FILTER  , GL_LINEAR_MIPMAP_LINEAR);
+    glTexParameterf       (GL_TEXTURE_2D , GL_TEXTURE_WRAP_S      , GL_REPEAT );
+    glTexParameterf       (GL_TEXTURE_2D , GL_TEXTURE_WRAP_T      , GL_REPEAT );
+    glDisable             (GL_CULL_FACE);
+
     
+    glEnableClientState (GL_VERTEX_ARRAY);
+    glEnableClientState (GL_TEXTURE_COORD_ARRAY);
+
     // 頂点データ
     glBindBuffer    (GL_ARRAY_BUFFER, gl.vbo_positions);
     glVertexPointer (3, GL_FLOAT, 0, 0);
@@ -436,19 +434,6 @@ void Sprite3D:: render_xxx (RenderState& state) const
     glDisableClientState (GL_VERTEX_ARRAY);
     glDisableClientState (GL_TEXTURE_COORD_ARRAY);
 
-/*
-    glBegin      (GL_TRIANGLE_STRIP);
-    glColor4f    (1,1,1,1);
-    glTexCoord2f (s1, t1);
-    glVertex3f   (tx+width/2.f, ty-height/2.f, tz);
-    glTexCoord2f (s1, t0);
-    glVertex3f   (tx+width/2.f, ty+height/2.f, tz);
-    glTexCoord2f (s0, t1);
-    glVertex3f   (tx-width/2.f, ty-height/2.f, tz);
-    glTexCoord2f (s0, t0);
-    glVertex3f   (tx-width/2.f, ty+height/2.f, tz);
-    glEnd        ();
-*/
   
     glMatrixMode (GL_PROJECTION);
     glPopMatrix  ();

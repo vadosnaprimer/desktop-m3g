@@ -58,8 +58,6 @@ LOCAL_SRC_FILES :=                      \
 	Transformable.cpp
 LOCAL_CPPFLAGS         := -fexceptions -frtti
 LOCAL_LDLIBS           := -lGLESv1_CM -llog -lz
-#LOCAL_WHOLE_STATIC_LIBRARIES := prebuild-libm3g-reader-writer \
-#                                prebuild-libpng
 LOCAL_STATIC_LIBRARIES := prebuild-libm3g-reader-writer \
                           prebuild-libpng
 LOCAL_C_INCLUDES       := ./include ./jni/external/include

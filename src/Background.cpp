@@ -297,9 +297,11 @@ void Background:: setImage (Image2D* img)
 
     crop    = CropRect (0, 0, width, height);
 
+    glEnable        (GL_TEXTURE_2D);
+    glActiveTexture (GL_TEXTURE0);
     glBindTexture   (GL_TEXTURE_2D, gl.tex_object);
     glPixelStorei   (GL_UNPACK_ALIGNMENT, 1);
-    glTexParameteri (GL_TEXTURE_2D, GL_GENERATE_MIPMAP, GL_TRUE);
+    glTexParameterf (GL_TEXTURE_2D, GL_GENERATE_MIPMAP, GL_TRUE);
     glTexImage2D    (GL_TEXTURE_2D, 0, format, width, height, 0, format, GL_UNSIGNED_BYTE, data);
 }
 
@@ -346,12 +348,6 @@ void Background:: render_xxx (RenderState& state) const
         glClear  (GL_COLOR_BUFFER_BIT);
 
         if (image) {
-            glActiveTexture       (GL_TEXTURE0);
-            glClientActiveTexture (GL_TEXTURE0);
-            glEnable              (GL_TEXTURE_2D);
-            glDepthMask           (GL_FALSE);
-            glDisable             (GL_LIGHTING);
-            glDisable             (GL_CULL_FACE);
             float img_width  = image->getWidth ();
             float img_height = image->getHeight ();
             float scale_x    = (mode.x == BORDER) ? img_width  : ((crop.x + crop.width  - 1) / img_width  + 1) * img_width;
@@ -359,19 +355,23 @@ void Background:: render_xxx (RenderState& state) const
             float scale_s    = (mode.x == BORDER) ? 1          :  (crop.x + crop.width  - 1) / img_width  + 1;
             float scale_t    = (mode.y == BORDER) ? 1          :  (crop.y + crop.height - 1) / img_height + 1;
 
+            glEnable              (GL_TEXTURE_2D);
+            glActiveTexture       (GL_TEXTURE0);
+            glClientActiveTexture (GL_TEXTURE0);
             glBindTexture       (GL_TEXTURE_2D , gl.tex_object);
-            glTexEnvi           (GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE  , GL_REPLACE);
-            glTexParameteri     (GL_TEXTURE_2D , GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-            glTexParameteri     (GL_TEXTURE_2D , GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
-            glTexParameteri     (GL_TEXTURE_2D , GL_TEXTURE_WRAP_S    , GL_REPEAT);
-            glTexParameteri     (GL_TEXTURE_2D , GL_TEXTURE_WRAP_T    , GL_REPEAT);
-            glEnableClientState (GL_VERTEX_ARRAY);
-            glEnableClientState (GL_TEXTURE_COORD_ARRAY);
+            glTexEnvf           (GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE  , GL_REPLACE);
+            glTexParameterf     (GL_TEXTURE_2D , GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+            glTexParameterf     (GL_TEXTURE_2D , GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+            glTexParameterf     (GL_TEXTURE_2D , GL_TEXTURE_WRAP_S    , GL_REPEAT);
+            glTexParameterf     (GL_TEXTURE_2D , GL_TEXTURE_WRAP_T    , GL_REPEAT);
+            glDepthMask           (GL_FALSE);
+            glDisable             (GL_LIGHTING);
+            glDisable             (GL_CULL_FACE);
 
             glMatrixMode   (GL_PROJECTION);
             glPushMatrix   ();
             glLoadIdentity ();
-            glOrthof       (crop.x, crop.x + crop.width, crop.y + crop.height, crop.y , 0, 2);
+            glOrthof       (crop.x, crop.x + crop.width, crop.y + crop.height, crop.y , -1, 1);
             
             glMatrixMode   (GL_TEXTURE);
             glPushMatrix   ();
@@ -383,6 +383,9 @@ void Background:: render_xxx (RenderState& state) const
             glLoadIdentity ();
             glScalef       (scale_x, scale_y, 1);
             
+            glEnableClientState (GL_VERTEX_ARRAY);
+            glEnableClientState (GL_TEXTURE_COORD_ARRAY);
+
             // 頂点データ
             glBindBuffer    (GL_ARRAY_BUFFER, gl.vbo_positions);
             glVertexPointer (3, GL_SHORT, 0, 0);
