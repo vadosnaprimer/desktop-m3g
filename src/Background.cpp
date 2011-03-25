@@ -61,16 +61,16 @@ Background:: Background () :
 Background:: ~Background ()
 {
     if (gl.tex_object > 0) {
-        glDeleteTextures(1, &gl.tex_object);
+        glDeleteTextures (1, &gl.tex_object);
     }
     if (gl.vbo_positions > 0) {
-        glDeleteTextures(1, &gl.vbo_positions);
+        glDeleteBuffers (1, &gl.vbo_positions);
     }
     if (gl.vbo_tex_coords > 0) {
-        glDeleteTextures(1, &gl.vbo_tex_coords);
+        glDeleteBuffers (1, &gl.vbo_tex_coords);
     }
     if (gl.vbo_indices > 0) {
-        glDeleteTextures(1, &gl.vbo_indices);
+        glDeleteBuffers (1, &gl.vbo_indices);
     }
 }
 
@@ -297,11 +297,14 @@ void Background:: setImage (Image2D* img)
 
     crop    = CropRect (0, 0, width, height);
 
-    glEnable        (GL_TEXTURE_2D);
     glActiveTexture (GL_TEXTURE0);
+//    glClientActiveTexture (GL_TEXTURE0);
+    glEnable        (GL_TEXTURE_2D);
     glBindTexture   (GL_TEXTURE_2D, gl.tex_object);
     glPixelStorei   (GL_UNPACK_ALIGNMENT, 1);
     glTexParameterf (GL_TEXTURE_2D, GL_GENERATE_MIPMAP, GL_TRUE);
+    glTexParameterf (GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR); //
+    glTexParameterf (GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);               //
     glTexImage2D    (GL_TEXTURE_2D, 0, format, width, height, 0, format, GL_UNSIGNED_BYTE, data);
 }
 
@@ -355,24 +358,25 @@ void Background:: render_xxx (RenderState& state) const
             float scale_s    = (mode.x == BORDER) ? 1          :  (crop.x + crop.width  - 1) / img_width  + 1;
             float scale_t    = (mode.y == BORDER) ? 1          :  (crop.y + crop.height - 1) / img_height + 1;
 
-            glEnable              (GL_TEXTURE_2D);
             glActiveTexture       (GL_TEXTURE0);
             glClientActiveTexture (GL_TEXTURE0);
-            glBindTexture       (GL_TEXTURE_2D , gl.tex_object);
-            glTexEnvf           (GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE  , GL_REPLACE);
-            glTexParameterf     (GL_TEXTURE_2D , GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-            glTexParameterf     (GL_TEXTURE_2D , GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
-            glTexParameterf     (GL_TEXTURE_2D , GL_TEXTURE_WRAP_S    , GL_REPEAT);
-            glTexParameterf     (GL_TEXTURE_2D , GL_TEXTURE_WRAP_T    , GL_REPEAT);
+            glEnable              (GL_TEXTURE_2D);
+            glBindTexture         (GL_TEXTURE_2D , gl.tex_object);
+            glTexEnvf             (GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE  , GL_MODULATE);
+            glTexParameterf       (GL_TEXTURE_2D , GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+            glTexParameterf       (GL_TEXTURE_2D , GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+            glTexParameterf       (GL_TEXTURE_2D , GL_TEXTURE_WRAP_S    , GL_REPEAT);
+            glTexParameterf       (GL_TEXTURE_2D , GL_TEXTURE_WRAP_T    , GL_REPEAT);
             glDepthMask           (GL_FALSE);
             glDisable             (GL_LIGHTING);
             glDisable             (GL_CULL_FACE);
+            glColor4f             (1,1,1,1);
 
             glMatrixMode   (GL_PROJECTION);
             glPushMatrix   ();
             glLoadIdentity ();
             glOrthof       (crop.x, crop.x + crop.width, crop.y + crop.height, crop.y , -1, 1);
-            
+
             glMatrixMode   (GL_TEXTURE);
             glPushMatrix   ();
             glLoadIdentity ();
@@ -408,7 +412,6 @@ void Background:: render_xxx (RenderState& state) const
             glMatrixMode   (GL_MODELVIEW);
             glPopMatrix    ();
 
-            // 念のため
             glDepthMask   (GL_TRUE);
         }
     }
