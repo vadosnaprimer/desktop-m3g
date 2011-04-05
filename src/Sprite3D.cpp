@@ -94,13 +94,13 @@ Sprite3D:: ~Sprite3D ()
         glDeleteTextures(1, &gl.tex_object);
     }
     if (gl.vbo_positions > 0) {
-        glDeleteTextures(1, &gl.vbo_positions);
+        glDeleteBuffers(1, &gl.vbo_positions);
     }
     if (gl.vbo_tex_coords > 0) {
-        glDeleteTextures(1, &gl.vbo_tex_coords);
+        glDeleteBuffers(1, &gl.vbo_tex_coords);
     }
     if (gl.vbo_indices > 0) {
-        glDeleteTextures(1, &gl.vbo_indices);
+        glDeleteBuffers(1, &gl.vbo_indices);
     }
 }
 
