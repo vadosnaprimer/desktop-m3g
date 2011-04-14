@@ -78,6 +78,7 @@ int main (int argc, char** argv)
     app->setMaterial (mat);
 
     Mesh* mesh = new Mesh (vertices, tris, app);
+    cout << "GL_MAX_TEXTURE_UNITS = " << GL_MAX_TEXTURE_UNITS << "\n";
   
     Camera* cam = new Camera;
     cam->translate (0,0,5);
@@ -88,6 +89,10 @@ int main (int argc, char** argv)
     wld->addChild (mesh);
 
     cout << *wld << "\n";
+
+    int num = 0;
+    glGetIntegerv (GL_MAX_TEXTURE_UNITS, &num);
+    cout << "GL_MAX_TEXTURE_UNITS = " << num << "\n";
 
     objs.push_back (positions);
     objs.push_back (vertices);

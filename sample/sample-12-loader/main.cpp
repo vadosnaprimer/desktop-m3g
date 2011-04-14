@@ -68,7 +68,7 @@ void idle ()
 
     cout << "frame = " << frame++ << "\n";
 
-    world_time = (world_time + 100) % 10000;
+    world_time = world_time + 20;
     wld->animate (world_time);
 
     Camera* cam = wld->getActiveCamera ();
@@ -124,7 +124,8 @@ int main (int argc, char** argv)
 
     //objs = Loader::load ("test.m3g");
     //objs = Loader::load ("checker-board.m3g");
-    objs = Loader::load ("kitune-miko.m3g");
+    //objs = Loader::load ("kitune-miko.m3g");
+    objs = Loader::load ("mahosyojo-with-sexy-walking.m3g");
 
     for (int i = 0; i < (int)objs.size(); i++) {
         wld = dynamic_cast<World*>(objs[i]);
@@ -135,7 +136,7 @@ int main (int argc, char** argv)
     }
 
     Camera* cam = wld->getActiveCamera ();
-    cam->setTranslation (0, 10, 100);
+    cam->setTranslation (0, 3, 15);
     cam->setOrientation (0, 0,0,0);
     
     Background* bg = wld->getBackground ();

@@ -11,7 +11,7 @@ World* wld = NULL;
 AnimationController* controller_translation = NULL;
 AnimationController* controller_orientation = NULL;
 
-astatic
+static
 void draw_string (int x, int y, const char* s)
 {
     while (*s) {

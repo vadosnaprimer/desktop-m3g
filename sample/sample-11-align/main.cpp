@@ -104,8 +104,8 @@ int main (int argc, char** argv)
     float        position_values[] = {1,-1,0, 1,1,0, -1,-1,0, -1,1,0};
     positions->set (0, 4, position_values);
 
-    VertexArray*  colors = new VertexArray (4, 3, 1);
-    unsigned char colors_values[] = {255,255,255, 255,0,0, 255,255,255, 0,0,255, 255,255,255};
+    VertexArray*  colors = new VertexArray (4, 4, 1);
+    unsigned char colors_values[] = {255,255,255,255, 255,0,0,255, 255,255,255,255, 0,0,255,255, 255,255,255,255};
     colors->set (0, 4, (char*)colors_values);
 
     float scale = 1;

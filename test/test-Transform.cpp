@@ -204,7 +204,7 @@ TEST (Transform_transform_1)
 
 TEST (Transform_transform_2)
 {
-    float values[] = {1,2,3,4,5,6};
+    float values[] = {1,2,3, 4,5,6};
     VertexArray* in = new VertexArray (2, 3, 4);
     in->set (0, 2, values);
 

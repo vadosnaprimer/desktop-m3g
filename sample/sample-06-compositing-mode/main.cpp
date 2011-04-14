@@ -54,7 +54,7 @@ void quit ()
 int world_time = 0;
 
 static
-void keyboard　(unsigned char key, int x, int y)
+void keyboard (unsigned char key, int x, int y)
 {
     switch (key) {
     case 'f':

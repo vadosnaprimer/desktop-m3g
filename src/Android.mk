@@ -3,13 +3,13 @@ LOCAL_PATH := $(call my-dir)
 # libpng.a用
 include $(CLEAR_VARS)
 LOCAL_MODULE    := prebuild-libpng
-LOCAL_SRC_FILES := external/lib/libpng.a
+LOCAL_SRC_FILES := external/lib/android/libpng.a
 include $(PREBUILT_STATIC_LIBRARY)
 
 # libm3g-reader-writer.a用
 include $(CLEAR_VARS)
 LOCAL_MODULE    := prebuild-libm3g-reader-writer
-LOCAL_SRC_FILES := external/lib/libm3g-reader-writer.a
+LOCAL_SRC_FILES := external/lib/android/libm3g-reader-writer.a
 include $(PREBUILT_STATIC_LIBRARY)
 
 # libm3g.so用

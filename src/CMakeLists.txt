@@ -25,7 +25,7 @@ add_library (m3g SHARED ${M3G_SRCS})
 # =================================
 install (FILES ${M3G_HEADERS}        DESTINATION include/m3g)
 install (FILES ${M3G_CONFIG_HEADER}  DESTINATION include/m3g)
-install (TARGETS m3g LIBRARY DESTINATION lib)
+install (TARGETS m3g LIBRARY DESTINATION lib/linux)
 
 # =================================
 # compile flags
@@ -46,7 +46,7 @@ message (STATUS "M3G_REQUIRED_LIBRARIES = ${M3G_REQUIRED_LIBRARIES}")
 # precompiled libraries
 # =================================
 set (M3G_PRECOMPILED_INCLUDE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/external/include)
-set (M3G_READER_WRITER_LIBRARY   ${CMAKE_CURRENT_SOURCE_DIR}/external/lib/libm3g-reader-writer.a)
+set (M3G_READER_WRITER_LIBRARY   ${CMAKE_CURRENT_SOURCE_DIR}/external/lib/linux/libm3g-reader-writer.a)
 set (M3G_PRECOMPILED_LIBRARIES   ${M3G_READER_WRITER_LIBRARY})
 
 
