@@ -1,0 +1,41 @@
+
+
+
+T.B.D.
+
+
+
+
+Quoted from NDK-BUILD.html
+
+II. Options:
+------------
+
+All parameters to 'ndk-build' are passed directly to the underlying GNU Make
+command that runs the NDK build scripts. Notable uses include:
+
+  ndk-build                  --&gt; rebuild required machine code.
+  ndk-build clean            --&gt; clean all generated binaries.
+
+  ndk-build NDK_DEBUG=1      --&gt; generate debuggable native code.
+
+  ndk-build V=1              --&gt; launch build, displaying build commands.
+
+  ndk-build -B               --&gt; force a complete rebuild.
+
+  ndk-build -B V=1           --&gt; force a complete rebuild and display build
+                                 commands.
+
+  ndk-build NDK_LOG=1        --&gt; display internal NDK log messages
+                                 (used for debugging the NDK itself).
+
+  ndk-build NDK_DEBUG=1      --&gt; force a debuggable build (see below)
+  ndk-build NDK_DEBUG=0      --&gt; force a release build (see below)
+
+  ndk-build NDK_APP_APPLICATION_MK=&lt;file&gt;
+    --&gt; rebuild, using a specific Application.mk pointed to by
+        the NDK_APP_APPLICATION_MK command-line variable.
+
+  ndk-build -C &lt;project&gt;     --&gt; build the native code for the project
+                                 path located at &lt;project&gt;. Useful if you
+                                 don't want to 'cd' to it in your terminal.
