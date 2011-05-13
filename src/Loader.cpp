@@ -2,6 +2,7 @@
 #include "m3g/png-helper.hpp"
 #include "m3g/jpeg-helper.hpp"
 #include "m3g/Config.hpp"
+#include "m3g/M3GReader.hpp"
 #include <iostream>
 #include <fstream>
 #include <algorithm>

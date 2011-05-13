@@ -1,4 +1,4 @@
-project (M3G-TEST-11)
+project (M3G-TEST-20)
 
 cmake_minimum_required (VERSION 2.0)
 cmake_policy (SET CMP0015 OLD)
@@ -7,7 +7,7 @@ cmake_policy (SET CMP0015 OLD)
 find_package (GLUT   REQUIRED)
 
 include_directories (../../bin/include)
-link_directories    (../../bin/lib)
+link_directories    (../../bin/lib/linux)
 set  (LIBS m3g glut GLEW)
 file (GLOB SRCS *.cpp)
 
