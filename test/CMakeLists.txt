@@ -21,7 +21,7 @@ set  (M3G_UNITTEST_REQUIRED_LIBRARIES
 
 # unit-test
 file (GLOB M3G_UNITTEST_SRCS *.cpp)
-#file (GLOB M3G_UNITTEST_SRCS test-main.cpp test-picking-2.cpp)
+
 
 add_executable        (a.out ${M3G_UNITTEST_SRCS})
 target_link_libraries (a.out ${M3G_UNITTEST_REQUIRED_LIBRARIES})

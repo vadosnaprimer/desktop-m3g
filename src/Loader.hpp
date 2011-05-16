@@ -3,7 +3,7 @@
 
 #include <vector>
 #include "m3g/m3g.hpp"
-#include "m3g/M3GReader.hpp"
+#include "m3g/M3GReader-fwd.hpp"
 
 
 namespace m3g {
