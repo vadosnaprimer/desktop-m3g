@@ -6,6 +6,8 @@
 #ifndef __M3G_READER_FWD_HPP__
 #define __M3G_READER_FWD_HPP__
 
+namespace m3g {
+
 class M3GReader;
 
 struct M3GHeaderStruct               ;
@@ -37,6 +39,6 @@ struct M3GVertexArrayStruct          ;
 struct M3GVertexBufferStruct         ;
 struct M3GWorldStruct                ;
 
-
+} // } namesapce m3g
 
 #endif // #ifndef __M3G_READER_FWD_HPP__

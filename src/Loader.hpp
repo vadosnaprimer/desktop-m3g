@@ -7,7 +7,8 @@
 
 
 namespace m3g {
-
+    
+    class M3GReader;
     class Object3D;
 
     /**
@@ -35,42 +36,37 @@ namespace m3g {
     private:
 
         Loader ();
-
         ~Loader ();
 
         std::vector<Object3D*> load_m3g (const char* p, int size);
-
-
         std::vector<Object3D*> load_png (const char* p, int size);
-
-
         std::vector<Object3D*> load_jpg (const char* p, int size);
 
 
-        void parseHeader ();
+        void parseHeader              ();
         void parseAnimationController ();
-        void parseAnimationTrack ();
-        void parseAppearance ();
-        void parseBackground ();
-        void parseCamera ();
-        void parseCompositingMode ();
-        void parseFog ();
-        void parsePolygonMode ();
-        void parseGroup ();
-        void parseImage2D ();
-        void parseTriangleStripArray ();
-        void parseLight ();
-        void parseMaterial ();
-        void parseMesh ();
-        void parseMorphingMesh ();
-        void parseSkinnedMesh ();
-        void parseTexture2D ();
-        void parseSprite3D ();
-        void parseKeyframeSequence ();
-        void parseVertexArray ();
-        void parseVertexBuffer ();
-        void parseWorld ();
-        void parseExternalReference ();
+        void parseAnimationTrack      ();
+        void parseAppearance          ();
+        void parseBackground          ();
+        void parseCamera              ();
+        void parseCompositingMode     ();
+        void parseFog                 ();
+        void parsePolygonMode         ();
+        void parseGroup               ();
+        void parseImage2D             ();
+        void parseTriangleStripArray  ();
+        void parseLight               ();
+        void parseMaterial            ();
+        void parseMesh                ();
+        void parseMorphingMesh        ();
+        void parseSkinnedMesh         ();
+        void parseTexture2D           ();
+        void parseSprite3D            ();
+        void parseKeyframeSequence    ();
+        void parseVertexArray         ();
+        void parseVertexBuffer        ();
+        void parseWorld               ();
+        void parseExternalReference   ();
 
         void setObject3D           (Object3D*            obj       , const M3GObject3DStruct&            object               ) const;
         void setAppearance         (Appearance*          app       , const M3GAppearanceStruct&          appearance           ) const;
@@ -102,9 +98,8 @@ namespace m3g {
 
 
     private:
-        M3GReader*             reader;
+        m3g::M3GReader*        reader;
         std::vector<Object3D*> objs;
-
 
     };
 
