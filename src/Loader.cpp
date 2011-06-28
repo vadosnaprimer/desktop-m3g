@@ -29,7 +29,7 @@ Loader:: ~Loader ()
 std::vector<Object3D*> Loader:: load (int length, const char* p, int offset)
 {
     if (p == NULL) {
-        throw NullPointerException (__FILE__, __func__, "Memory pointer is Null.");
+        throw NullPointerException (__FILE__, __func__, "Pointer is Null.");
     }
     if (length <= 0) {
         throw IllegalArgumentException (__FILE__, __func__, "Length is invalid, len=%d.", length);
@@ -61,7 +61,7 @@ std::vector<Object3D*> Loader:: load (int length, const char* p, int offset)
 std::vector<Object3D*> Loader:: load (const char* file_name)
 {
     if (!file_name) {
-        throw NullPointerException (__FILE__, __func__, "Name is Null.");
+        throw NullPointerException (__FILE__, __func__, "File name is Null.");
     }
 
     ifstream ifs (file_name);
@@ -99,7 +99,7 @@ std::vector<Object3D*> Loader:: load_m3g (const char* p, int size)
     // Section 1 has Header object only.
     reader->startSection ();
     reader->startObject  (&object_type, &object_index);
-    parseHeader ();
+    parseHeader          ();
     reader->endObject    ();
     reader->endSection   ();
 
@@ -134,7 +134,7 @@ std::vector<Object3D*> Loader:: load_m3g (const char* p, int size)
             case M3G_TYPE_WORLD               : parseWorld ()              ; break;
             case M3G_TYPE_EXTERNAL_REFERENCE  : parseExternalReference ()  ; break;
             default: {
-                throw IOException (__FILE__, __func__, "Unknown objecte type = %d", object_type);
+                throw IOException (__FILE__, __func__, "Unknown object type = %d", object_type);
             }
             }
             reader->endObject ();
@@ -152,7 +152,7 @@ std::vector<Object3D*> Loader:: load_m3g (const char* p, int size)
 std::vector<Object3D*> Loader:: load_png (const char* file_ptr, int file_size)
 {
     #ifndef USE_PNG
-    throw NotImplementedException (__FILE__, __func__, "Can't load png, Compiled with USE_PNG=NO.");
+    throw NotImplementedException (__FILE__, __func__, "Can't load png, Because of compiled with USE_PNG=NO.");
     #endif
 
     #ifdef USE_PNG
@@ -163,12 +163,12 @@ std::vector<Object3D*> Loader:: load_png (const char* file_ptr, int file_size)
     
     png_ptr = png_create_read_struct (PNG_LIBPNG_VER_STRING, 0, 0, 0);
     if (!png_ptr) {
-        throw IOException (__FILE__, __func__, "Can't create png struct.");
+        throw IOException (__FILE__, __func__, "Can't create png read struct.");
     }
   
     info_ptr = png_create_info_struct (png_ptr);
     if (!info_ptr) {
-        throw IOException (__FILE__, __func__, "Can't create png struct.");
+        throw IOException (__FILE__, __func__, "Can't create png info struct.");
     }
   
     if (setjmp (png_jmpbuf (png_ptr))) {
@@ -216,7 +216,7 @@ std::vector<Object3D*> Loader:: load_png (const char* file_ptr, int file_size)
 std::vector<Object3D*> Loader:: load_jpg (const char* p, int size)
 {
     #ifndef USE_JPEG
-    throw NotImplementedException (__FILE__, __func__, "Can't load jpeg, Compiled with USE_JPEG=NO.");
+    throw NotImplementedException (__FILE__, __func__, "Can't load jpeg, Because of compiled with USE_JPEG=NO.");
     #endif
 
     #ifdef USE_JPEG
@@ -622,9 +622,9 @@ void Loader:: parseTexture2D ()
     Image2D* image = dynamic_cast<Image2D*>(objs[texture.image_index]);
 
     Texture2D* tex = new Texture2D (image);
-    setObject3D     (tex, obj);
+    setObject3D      (tex, obj);
     setTransformable (tex, tra);
-    setTexture2D    (tex, texture);
+    setTexture2D     (tex, texture);
 
     objs.push_back (tex);
 }
@@ -643,9 +643,9 @@ void Loader:: parseSprite3D ()
     Appearance* app    = dynamic_cast<Appearance*>(objs[sprite.appearance_index]);
 
     Sprite3D* spr = new Sprite3D (scaled, img, app);
-    setObject3D     (spr, obj);
+    setObject3D      (spr, obj);
     setTransformable (spr, tra);
-    setSprite3D     (spr, sprite);
+    setSprite3D      (spr, sprite);
 
     objs.push_back (spr);
 }
@@ -690,7 +690,7 @@ void Loader:: parseVertexBuffer ()
 {
     M3GObject3DStruct       obj;
     M3GVertexBufferStruct   vbuffer;
-    reader->readObject3D    (&obj);
+    reader->readObject3D     (&obj);
     reader->readVertexBuffer (&vbuffer);
             
     VertexBuffer* vbuf = new VertexBuffer ();
@@ -791,16 +791,16 @@ void Loader:: setAnimationTrack (AnimationTrack* anim_track, const M3GAnimationT
 
 void Loader:: setBackground (Background* bg, const M3GBackgroundStruct& bgr) const
 {
-    int    argb   = bgr.background_color;
-    Image2D* img  = dynamic_cast<Image2D*>(objs[bgr.background_image_index]);
-    int    mode_x = bgr.background_image_mode_x;
-    int    mode_y = bgr.background_image_mode_y;
-    int    crop_x = bgr.crop_x;
-    int    crop_y = bgr.crop_y;
-    int    width  = bgr.crop_width;
-    int    height = bgr.crop_height;
-    bool   depth_clear_enable = bgr.depth_clear_enabled;
-    bool   color_clear_enable = bgr.color_clear_enabled;
+    int      argb   = bgr.background_color;
+    Image2D* img    = dynamic_cast<Image2D*>(objs[bgr.background_image_index]);
+    int      mode_x = bgr.background_image_mode_x;
+    int      mode_y = bgr.background_image_mode_y;
+    int      crop_x = bgr.crop_x;
+    int      crop_y = bgr.crop_y;
+    int      width  = bgr.crop_width;
+    int      height = bgr.crop_height;
+    bool     depth_clear_enable = bgr.depth_clear_enabled;
+    bool     color_clear_enable = bgr.color_clear_enabled;
 
     bg->setColor            (argb);
     bg->setColorClearEnable (color_clear_enable);
@@ -824,7 +824,7 @@ void Loader:: setCamera (Camera* cam, const M3GCameraStruct& cmr) const
     case Camera::GENERIC    : cam->setGeneric (&tra)                             ; break;
     case Camera::PARALLEL   : cam->setParallel (fovy, aspect_ratio, near, far)   ; break;
     case Camera::PERSPECTIVE: cam->setPerspective (fovy, aspect_ratio, near, far); break;
-    default: throw IOException (__FILE__, __func__, "Projection type of camera is illegal, proj=%d", projection_type);
+    default: throw IOException (__FILE__, __func__, "Projection type of camera is illegal, type=%d", projection_type);
     }
 }
 
@@ -861,7 +861,7 @@ void Loader:: setFog (Fog* fog, const M3GFogStruct& fg) const
     switch (mode) {
     case Fog::EXPONENTIAL: fog->setDensity (density)  ; break;
     case Fog::LINEAR     : fog->setLinear  (near, far); break;
-    default: throw IOException (__FILE__, __func__, "Mode of fog is invalid, mode=%d.", mode);
+    default: throw IOException (__FILE__, __func__, "Fog mode is invalid, mode=%d.", mode);
     }
 }
 
@@ -919,20 +919,18 @@ void Loader:: setLight (Light* lgh, const M3GLightStruct& light) const
     lgh->setColor        (rgb);
     lgh->setIntensity    (intensity);
     lgh->setMode         (mode);
-    if (mode == Light::SPOT) {
-        lgh->setSpotAngle    (angle);
-        lgh->setSpotExponent (exponent);
-    }
+    lgh->setSpotAngle    (angle);
+    lgh->setSpotExponent (exponent);
 }
 
 void Loader:: setMaterial (Material* mat, const M3GMaterialStruct& material) const
 {
-    int ambient_color  = material.ambient_color;
-    int diffuse_color  = material.diffuse_color;  // argb
-    int emissive_color = material.emissive_color;
-    int specular_color = material.specular_color;
-    float shininess    = material.shininess;
-    bool vertex_color_tracking_enable = material.vertex_color_tracking_enabled;
+    int   ambient_color  = material.ambient_color;
+    int   diffuse_color  = material.diffuse_color;  // argb
+    int   emissive_color = material.emissive_color;
+    int   specular_color = material.specular_color;
+    float shininess      = material.shininess;
+    bool  vertex_color_tracking_enable = material.vertex_color_tracking_enabled;
     
     mat->setColor     (Material::DIFFUSE,  diffuse_color);
     mat->setColor     (Material::AMBIENT,  ambient_color);
@@ -1092,9 +1090,10 @@ void Loader:: setVertexBuffer (VertexBuffer* vbuf, const M3GVertexBufferStruct& 
 
 
     if (positions) {
-        // OpenGL(Desktop-M3G)は1バイト型の座標値に対応していないので
-        if (positions->getComponentType() == 1)
+        // OpenGL(Desktop-M3G)は1バイト型の座標値に対応していないのでここで変換.
+        if (positions->getComponentType() == 1) {
             positions->convert (2);
+        }
         vbuf->setPositions    (positions, position_scale, position_bias);
     }
     if (normals) {
@@ -1108,8 +1107,9 @@ void Loader:: setVertexBuffer (VertexBuffer* vbuf, const M3GVertexBufferStruct& 
         VertexArray* tex_coords        = dynamic_cast<VertexArray*>(objs[vbuffer.texcoords_index[i]]);
         float        texcoord_scale    = vbuffer.texcoord_scale[i];
         float        texcoord_bias[3]  = {vbuffer.texcoord_bias[i][0], vbuffer.texcoord_bias[i][1], vbuffer.texcoord_bias[i][2]};
-        if (tex_coords->getComponentType() == 1)
+        if (tex_coords->getComponentType() == 1) {
             tex_coords->convert (2);
+        }
         vbuf->setTexCoords (i, tex_coords, texcoord_scale, texcoord_bias);
     }
 }
@@ -1119,9 +1119,11 @@ void Loader:: setWorld (World* wld, const M3GWorldStruct& world) const
     Camera*     cam = dynamic_cast<Camera*>(objs[world.active_camera_index]);
     Background* bg  = dynamic_cast<Background*>(objs[world.background_index]);
 
-    if (cam)
+    if (cam) {
         wld->setActiveCamera (cam);
-    if (bg)
+    }
+    if (bg) {
         wld->setBackground   (bg);
+    }
 }
 
