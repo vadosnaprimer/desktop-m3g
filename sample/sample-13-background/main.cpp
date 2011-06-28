@@ -118,7 +118,7 @@ int main (int argc, char** argv)
     wld->setActiveCamera (cam);
     wld->addChild (mesh);
 
-    Image2D*    img = dynamic_cast<Image2D*>(Loader::load("music-is.png")[0]);
+    Image2D*    img = dynamic_cast<Image2D*>(Loader::load("../music-is.png")[0]);
     Background* bg  = new Background;
     bg->setColor (0xff3f8f1f);
     bg->setImage (img);

@@ -152,7 +152,7 @@ int main (int argc, char** argv)
     Appearance* app = new Appearance;
     app->setMaterial (mat);
 
-    Image2D* img = dynamic_cast<Image2D*>(Loader::load ("kingyo.png")[0]);
+    Image2D* img = dynamic_cast<Image2D*>(Loader::load ("../kingyo.png")[0]);
     tex = new Texture2D (img);
     app->setTexture (0, tex);
 

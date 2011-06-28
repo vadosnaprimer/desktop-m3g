@@ -81,10 +81,10 @@ int main (int argc, char** argv)
     TriangleStripArray* tris = new TriangleStripArray (indices, 2, strips);
 
 
-    Image2D*   img0 = dynamic_cast<Image2D*>(Loader::load ("yumemi.png")[0]);
+    Image2D*   img0 = dynamic_cast<Image2D*>(Loader::load ("../yumemi.png")[0]);
     Texture2D* tex0 = new Texture2D (img0);
 
-    Image2D*   img1 = dynamic_cast<Image2D*>(Loader::load ("onnanoko.png")[0]);
+    Image2D*   img1 = dynamic_cast<Image2D*>(Loader::load ("../onnanoko.png")[0]);
     Texture2D* tex1 = new Texture2D (img1);
     tex1->setBlending (Texture2D::FUNC_DECAL);
 

@@ -13,7 +13,7 @@ find_package (GLUT   REQUIRED)
 
 # m3g
 include_directories (../bin/include)
-link_directories    (../bin/lib/linux)
+link_directories    (../../bin/lib/linux)
 set  (M3G_UNITTEST_REQUIRED_LIBRARIES 
         m3g
         UnitTest++

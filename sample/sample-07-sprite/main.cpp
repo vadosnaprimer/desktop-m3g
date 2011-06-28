@@ -105,7 +105,7 @@ int main (int argc, char** argv)
     Background* bg = new Background;
     bg->setColor (0xff1f1f7f);
 
-    Image2D* img    = dynamic_cast<Image2D*>(Loader::load ("moe-small.png")[0]);
+    Image2D* img    = dynamic_cast<Image2D*>(Loader::load ("../mizugi-small.png")[0]);
     int      width  = img->getWidth ();
     int      height = img->getHeight ();
 

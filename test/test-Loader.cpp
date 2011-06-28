@@ -7,7 +7,7 @@ using namespace m3g;
 
 TEST (Loader_load_m3g)
 {
-    std::vector<Object3D*> objs = Loader::load ("simple.m3g");
+    std::vector<Object3D*> objs = Loader::load ("../simple.m3g");
 
     CHECK_EQUAL (12, objs.size());
 
@@ -18,7 +18,7 @@ TEST (Loader_load_m3g)
 
 TEST (Loader_load_png)
 {
-    Image2D* img1 = dynamic_cast<Image2D*>(Loader::load ("indexed.png")[0]);
+    Image2D* img1 = dynamic_cast<Image2D*>(Loader::load ("../indexed.png")[0]);
 
     CHECK (img1 != NULL);
     CHECK_EQUAL (Image2D::RGB, img1->getFormat());
@@ -36,7 +36,7 @@ TEST (Loader_load_png)
 
 TEST (Loader_load_jpeg)
 {
-    Image2D* img1 = dynamic_cast<Image2D*>(Loader::load ("ank.jpeg")[0]);
+    Image2D* img1 = dynamic_cast<Image2D*>(Loader::load ("../ank.jpeg")[0]);
 
     CHECK (img1 != NULL);
     CHECK_EQUAL (Image2D::RGB, img1->getFormat());

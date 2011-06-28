@@ -98,7 +98,7 @@ TEST (Image2D_set)
 
 TEST (Image2D_writePng)
 {
-    Image2D* img = dynamic_cast<Image2D*>(Loader::load ("simple.png")[0]);
+    Image2D* img = dynamic_cast<Image2D*>(Loader::load ("../simple.png")[0]);
     CHECK (img != NULL);
 
     // 目で見て確認
