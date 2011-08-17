@@ -38,6 +38,13 @@ void glOrthof ( GLdouble left, GLdouble right,
 // - Android用OpenGL ES.
 #ifdef USE_GL_ES
 #include <GLES/gl.h>
+
+// quick hack
+inline static
+void glClearDepth ( GLclampf depth)
+{
+    glClearDepthf (depth);
+}
 #endif
 
 #if defined(USE_GL) && defined(USE_GL_ES)

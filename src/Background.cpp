@@ -341,7 +341,7 @@ void Background:: render_xxx (RenderState& state) const
     glDepthMask   (GL_TRUE);
     glColorMask   (GL_TRUE, GL_TRUE, GL_TRUE, GL_TRUE);
     glClearColor  (r,g,b,a);
-    glClearDepthf (1);
+    glClearDepth  (1.f);
 
     if (depth_clear_enable) {
         glClear (GL_DEPTH_BUFFER_BIT);
@@ -425,7 +425,7 @@ void Background:: renderX ()
     glDepthMask   (GL_TRUE);
     glColorMask   (GL_TRUE, GL_TRUE, GL_TRUE, GL_TRUE);
     glClearColor  (0,0,0,0);   // r,g,b,a
-    glClearDepthf (1.0f);
+    glClearDepth  (1.0f);
     glClear       (GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 }
 
