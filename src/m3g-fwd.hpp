@@ -1,11 +1,10 @@
 #ifndef __M3G_FWD_HPP__
 #define __M3G_FWD_HPP__
 
-namespace m3g {
-
 /**
  * M3Gで定義されている全３０クラス＋αの前方宣言をまとめたもの
  */
+namespace m3g {
 class AnimationController;
 class AnimationTrack;
 class Appearance;
@@ -43,3 +42,7 @@ class VertexBuffer;
 class World;
 
 };  // namespace m3g {
+
+
+#endif
+
