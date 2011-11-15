@@ -7,26 +7,27 @@ Brief description
     Desktop-M3G is a free C++ implementation of M3G-1.1 (JSR-184) API.
     It is distributed under MIT license.
     Current version of Desktop-M3G works on Linux and Android.
-    I recommend Ubuntu 11.04. It's same as My PC.
+    I recommend Ubuntu 11.10. It's same as My PC.
 
   = Requirement =
     - OpenGL 1.5 or higher (Linux)
     - OpenGL ES 1.1 or higher (Android)
     - libpng, libjpeg, libz, libm3g-reader-writer
-    Desktop-M3G does not have any method for creating a window and OpenGL context.
-    You need glut or other libraries (SDL, Qt, ...)
+        (libm3g-reader-writer is an another my project, see http://code.google.com/p/m3g-reader-writer/).
+    - glut or any other libraries (SDL, Qt, ...) for creating OpenGL context and windows.
+    - and any other tools (cmake, UnitTest++, ...)
 
 -------------------------------------------
 Related projects
 -------------------------------------------
+   - M3G-Reader-Writer : simple library for reading/writing .m3g format.
    - Java-M3G : Java binding for Desktop-M3G
-   - Ruby-M3G : Ruby binding for Desktop-M3G
+   - Ruby-M3G : Ruby binding for Desktop-M3G (obsoleted)
 
 
 -------------------------------------------
 Make & Install
 -------------------------------------------
-
     - see README.linux  for Linux
     - see README.android for Android
 

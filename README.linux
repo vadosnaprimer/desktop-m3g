@@ -9,13 +9,15 @@ Make & Install
 -------------------------------------------
   For Linux users.
 
-  = libm3g-reader-write.so =
-    libm3g-reader-write.so is a simple library for reading/writing m3g file format.
+  = libm3g-reader-write.a =
+    libm3g-reader-write.a is a simple library for reading/writing m3g file format.
     Because Desktop-M3G does not include this, you need to download and compile it 
     and copy proper files before compiling Desktop-M3G.
     
-    - See http://code.google.com/p/m3g-reader-writer
-    - Copy *.hpp and libm3g-reader-writer.so to following directory.
+    - Compile libm3g-reader-writer.a
+        - http://code.google.com/p/m3g-reader-writer
+        - see README
+    - Copy *.hpp and libm3g-reader-writer.a to following directory.
         - ${Desktop-M3G}/src/external/include/m3g/
         - ${Desktop-M3G}/src/external/lib/linux    (for Linux)
 
@@ -24,7 +26,7 @@ Make & Install
 
       1. cd build/linux/Debug      (for Linux)
       2. cmake -DCMAKE_BUILD_TYPE=Debug ../../..
-           - Makefile will be generated.
+           - will generate Makefile.
       3. make
       4. make install
            - will install Desktop-M3G to ${Desktop-M3G}/bin.
@@ -47,16 +49,16 @@ Test & Samples
 
   = UnitTest =
     You need UnitTest++ (http://unittest-cpp.sourceforge.net/).
-    1. cd test
-    2. cmake .
+    1. cd ${Desktop-M3G}/test/build
+    2. cmake ..
     3. make 
     4. ./a.out
 
   = Samples =
     You can find about 15 samples on samples directory.
     These are good entry points for learning how to use Desktop-M3G.
-    1. cd sample/sample-xxx-yyy
-    2. cmake .
+    1. cd ${Desktop-M3G}/sample/sample-xxx-yyy/build
+    2. cmake ..
     3. make
     4. ./a.out
 

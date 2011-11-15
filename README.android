@@ -24,15 +24,15 @@ Make & Install
         - ${Desktop-M3G}/src/external/include
         - ${Desktop-M3G}/src/external/lib/android  (for Android)
 
-  = libm3g-reader-write.so =
-    libm3g-reader-write.so is a simple library for reading/writing m3g file format.
+  = libm3g-reader-write.a =
+    libm3g-reader-write.a is a simple library for reading/writing m3g file format.
     Because Desktop-M3G does not include this, you need to download and compile it 
     and copy proper files before compiling Desktop-M3G.
     
-    1. Download from http://code.google.com/p/m3g-reader-writer
-    2. Compile
-         - See READE
-    3. Copy *.hpp and libm3g-reader-writer.so to following directory.
+    1 Compile libm3g-reader-writer.a
+        - http://code.google.com/p/m3g-reader-writer
+        - see README
+    2. Copy *.hpp and libm3g-reader-writer.so to following directory.
          - ${Desktop-M3G}/src/external/include/m3g/
          - ${Desktop-M3G}/src/external/lib/android  (for Android)
 
