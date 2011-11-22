@@ -12,8 +12,8 @@ find_package (OpenGL REQUIRED)
 find_package (GLUT   REQUIRED)
 
 # m3g
-include_directories (../bin/include)
-link_directories    (../../bin/lib/linux)
+include_directories (${CMAKE_CURRENT_SOURCE_DIR}/../bin/include)
+link_directories    (${CMAKE_CURRENT_SOURCE_DIR}/../bin/lib/linux)
 set  (M3G_UNITTEST_REQUIRED_LIBRARIES 
         m3g
         UnitTest++

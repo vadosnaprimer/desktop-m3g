@@ -18,9 +18,9 @@ TEST (memswap)
     int buf1[4] = {1,2,3,4};
     int buf2[4] = {5,6,7,8};
     int tmp [4] = {0,0,0,0};
-    memswap ((unsigned char*)buf1,
-             (unsigned char*)buf2,
-             (unsigned char*)tmp,
+    memswap ((char*)buf1,
+             (char*)buf2,
+             (char*)tmp,
              sizeof(buf1));
 
     CHECK_EQUAL (buf1[0], 5);

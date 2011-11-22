@@ -347,8 +347,7 @@ bool SkinnedMesh:: intersect (const Vector& org, const Vector& dir, RayIntersect
     }
 
     Transform trans;
-    bool      pass;
-    pass = getTransformTo (skeleton, &trans);
+    getTransformTo (skeleton, &trans);
 
     Vector org_skel = trans.transform (org).divided_by_w();
     Vector dir_skel = trans.transform3x3 (dir).divided_by_w().normalize();

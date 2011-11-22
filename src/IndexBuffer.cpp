@@ -186,7 +186,7 @@ void IndexBuffer:: render_xxx (RenderState& state) const
 
     glBindBuffer (GL_ELEMENT_ARRAY_BUFFER, gl.indices);
 
-    int offset = 0;
+    long long offset = 0;
     for (int i = 0; i < (int)strip_lengths.size(); i++) {
         glDrawElements (GL_TRIANGLE_STRIP,
                         strip_lengths[i],
