@@ -2,24 +2,13 @@
 Platform specific problem
 -------------------------------------------
   none.
+  I removed dependecy for libm3g-reader-writer, libpng and libjpeg.
+  So you doesn't need them.
 
 
 -------------------------------------------
 Make & Install
 -------------------------------------------
-  For Linux users.
-
-  = libm3g-reader-write.a =
-    libm3g-reader-write.a is a simple library for reading/writing m3g file format.
-    Because Desktop-M3G does not include this, you need to download and compile it 
-    and copy proper files before compiling Desktop-M3G.
-    
-    - Compile libm3g-reader-writer.a
-        - http://code.google.com/p/m3g-reader-writer
-        - see README
-    - Copy *.hpp and libm3g-reader-writer.a to following directory.
-        - ${Desktop-M3G}/src/external/include/m3g/
-        - ${Desktop-M3G}/src/external/lib/linux    (for Linux)
 
   = libm3g.so =
     You need cmake (http://www.cmake.org/).
@@ -49,17 +38,19 @@ Test & Samples
 
   = UnitTest =
     You need UnitTest++ (http://unittest-cpp.sourceforge.net/).
-    1. cd ${Desktop-M3G}/test/build
-    2. cmake ..
-    3. make 
-    4. ./a.out
+
+      1. cd ${Desktop-M3G}/test/build
+      2. cmake ..
+      3. make 
+      4. ./a.out
 
   = Samples =
     You can find about 15 samples on samples directory.
-    These are good entry points for learning how to use Desktop-M3G.
-    1. cd ${Desktop-M3G}/sample/sample-xxx-yyy/build
-    2. cmake ..
-    3. make
-    4. ./a.out
+    They are good entry points for learning how to use Desktop-M3G.
+
+      1. cd ${Desktop-M3G}/sample/sample-xxx-yyy/build
+      2. cmake ..
+      3. make
+      4. ./a.out
 
 

@@ -3,41 +3,16 @@
 -------------------------------------------
 Platform specific problem
 -------------------------------------------
-  Desktop-M3G for Andorid doesn't support libjpeg yet.
-  Please use only PNG format.
- 
+  none.
+  I removed dependecy for libm3g-reader-writer, libpng and libjpeg.
+  So you doesn't need them.
 
 -------------------------------------------
 Make & Install
 -------------------------------------------
 
-  = libpng.so =
-    Unfortunately, Android-SDK does not include libpng.so.
-    So you need to compile it by yourself.
-    Julienr's customized version is easy to use (https://github.com/julienr/libpng-android).
-
-    1. git clone http://github.com/julienr/libpng-android.git
-    2. cd libpng-android
-    3. ./build.sh
-           - will generate libpng.so 
-    4. Copy *.h and libpng.so to following directory.
-        - ${Desktop-M3G}/src/external/include
-        - ${Desktop-M3G}/src/external/lib/android  (for Android)
-
-  = libm3g-reader-write.a =
-    libm3g-reader-write.a is a simple library for reading/writing m3g file format.
-    Because Desktop-M3G does not include this, you need to download and compile it 
-    and copy proper files before compiling Desktop-M3G.
-    
-    1 Compile libm3g-reader-writer.a
-        - http://code.google.com/p/m3g-reader-writer
-        - see README
-    2. Copy *.hpp and libm3g-reader-writer.so to following directory.
-         - ${Desktop-M3G}/src/external/include/m3g/
-         - ${Desktop-M3G}/src/external/lib/android  (for Android)
-
   = libm3g.so =
-    You need ndk-build (http://developer.android.com/sdk/ndk/index.html)
+    You need ndk-build (http://developer.android.com/sdk/ndk/index.html) for compile.
 
       1. cd build/android      (for Android)
       2. ndk-build
@@ -56,7 +31,6 @@ Test & Samples
     It is a big problem.
 
   = Samples =
-    Sorry, There are no samples under Android OS(NDK).
-    Java-M3G has samples for Android OS(Java)
-
-       - See http://code.google.com/p/java-m3g/
+    Sorry, There are no NDK samples under Android OS.
+    Try from Java with Java-M3G.
+    See http://code.google.com/p/java-m3g/

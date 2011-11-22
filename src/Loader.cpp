@@ -1,6 +1,5 @@
 #include "m3g/m3g.hpp"
-#include "m3g/png-helper.hpp"
-#include "m3g/jpeg-helper.hpp"
+#include "m3g/stb_image_reader.hpp"
 #include "m3g/Config.hpp"
 #include "m3g/M3GReader.hpp"
 #include <iostream>
@@ -12,11 +11,8 @@ using namespace m3g;
 
 // M3G(JSR184) identifier
 const unsigned char m3g_sig[12] = {0xab,0x4a,0x53,0x52,0x31,0x38,0x34,0xbb,0x0d,0x0a,0x1a,0x0a};
-const unsigned char png_sig[8]  = {0x89,0x50,0x4e,0x47,0x0d,0x0a,0x1a,0x0a};
-const unsigned char jpg_sig[11] = {0xff,0xd8,0xff,0xe0,0x00,0x10,0x4a,0x46,0x49,0x46,0x00};
 
-
-Loader:: Loader () : reader(0)
+Loader:: Loader () : reader(NULL)
 {
 }
 
@@ -46,14 +42,11 @@ std::vector<Object3D*> Loader:: load (int length, const char* p, int offset)
 
     if (memcmp (p, m3g_sig, sizeof(m3g_sig)) == 0) {
         objs = loader->load_m3g (p, length);
-    } else if (memcmp (p, png_sig, sizeof(png_sig)) == 0) {
-        objs = loader->load_png (p, length);
-    } else if (memcmp (p, jpg_sig, 4) == 0 && memcmp (p+6, jpg_sig+6, 5) == 0) {
-        objs = loader->load_jpg (p, length);
     } else {
-        throw IOException (__FILE__, __func__, "File signature is unknown.");
+        objs = loader->load_image (p, length);
     }
-    
+
+
     delete loader;
     return objs;
 }
@@ -147,125 +140,42 @@ std::vector<Object3D*> Loader:: load_m3g (const char* p, int size)
     return objs;
 }
 
-
-
-std::vector<Object3D*> Loader:: load_png (const char* file_ptr, int file_size)
+/**
+ * (注意) PNG画像は左上が(0,0)でM3Gは左下が(0,0)なので忘れずに上下をひっくり返すこと。
+ */
+std::vector<Object3D*> Loader:: load_image (const char* buffer, int size)
 {
-    #ifndef USE_PNG
-    throw NotImplementedException (__FILE__, __func__, "Can't load png, Because of compiled with USE_PNG=NO.");
-    #endif
-
-    #ifdef USE_PNG
-    png_structp png_ptr;
-    png_infop   info_ptr;
-
-    MemoryReader* my_mem_reader = new MemoryReader (file_ptr, file_size);
-    
-    png_ptr = png_create_read_struct (PNG_LIBPNG_VER_STRING, 0, 0, 0);
-    if (!png_ptr) {
-        throw IOException (__FILE__, __func__, "Can't create png read struct.");
-    }
-  
-    info_ptr = png_create_info_struct (png_ptr);
-    if (!info_ptr) {
-        throw IOException (__FILE__, __func__, "Can't create png info struct.");
-    }
-  
-    if (setjmp (png_jmpbuf (png_ptr))) {
-        png_destroy_read_struct (&png_ptr, &info_ptr, NULL);
-        throw IOException (__FILE__, __func__, "Error at libpng.");
-    }
-
-    png_set_read_fn (png_ptr, my_mem_reader, my_png_read_func);
-    png_read_png (png_ptr, info_ptr, PNG_TRANSFORM_EXPAND, NULL);
-  
-    png_byte**     row_pointers = png_get_rows(png_ptr, info_ptr);
-    int            size         = info_ptr->width * info_ptr->height * info_ptr->channels;
-    unsigned char* pixels       = new unsigned char [size];
-    unsigned char* p            = pixels;
-    for (int y = (int)info_ptr->height-1; y >= 0; y--) {
-        memcpy (p, row_pointers[y], info_ptr->width * info_ptr->channels);
-        p += info_ptr->width * info_ptr->channels;
-    }
-    
-    int format;
-    switch (info_ptr->color_type) {
-    case PNG_COLOR_TYPE_GRAY       : format = Image2D::LUMINANCE;       break;
-    case PNG_COLOR_TYPE_GRAY_ALPHA : format = Image2D::LUMINANCE_ALPHA; break;
-    case PNG_COLOR_TYPE_PALETTE    : format = Image2D::RGB;             break;
-    case PNG_COLOR_TYPE_RGB        : format = Image2D::RGB;             break;
-    case PNG_COLOR_TYPE_RGB_ALPHA  : format = Image2D::RGBA;            break;
-    default: throw IOException (__FILE__, __func__, "Unknown png format=%d.", info_ptr->color_type);
-    }
-
-    Image2D*   img = new Image2D   (format, info_ptr->width, info_ptr->height, pixels);
-
-    png_destroy_read_struct (&png_ptr, &info_ptr, NULL);
-    delete [] pixels;
-
-    delete my_mem_reader;
-    objs.push_back (img);
-
-    #endif // USE_PNG
-
-    return objs;
-}
-
-
-
-std::vector<Object3D*> Loader:: load_jpg (const char* p, int size)
-{
-    #ifndef USE_JPEG
-    throw NotImplementedException (__FILE__, __func__, "Can't load jpeg, Because of compiled with USE_JPEG=NO.");
-    #endif
-
-    #ifdef USE_JPEG
-    jpeg_decompress_struct cinfo;
-    jpeg_error_mgr         jerr;
-
-    cinfo.err = jpeg_std_error (&jerr);
-    jpeg_create_decompress (&cinfo);
-
-    jpeg_memory_src (&cinfo, p, size);
-
-    jpeg_read_header (&cinfo, true);
-    jpeg_start_decompress (&cinfo);
-  
-    int width  = cinfo.output_width;
-    int height = cinfo.output_height;
-    int bpp    = cinfo.output_components;
-
-    JSAMPLE*   pixels = new JSAMPLE [height*width*bpp];
-    JSAMPARRAY rows   = new JSAMPROW [height];
-    for (int i = 0; i < height; i++ ) {
-        rows[i] = pixels + (height-1-i)*width*bpp;
-    }
-
-    while (cinfo.output_scanline < cinfo.output_height) {
-        jpeg_read_scanlines (&cinfo,
-                             rows + cinfo.output_scanline,
-                             cinfo.output_height - cinfo.output_scanline);
+    int width, height, comp;
+    unsigned char* pixels = stbi_load_from_memory ((unsigned char*)buffer, size,
+                                                   &width, &height, &comp, 0);
+    if (pixels == NULL) {
+        throw IOException (__FILE__, __func__, "This file is not m3g or image (png, jpeg, ...).");
     }
 
     int format;
-    switch (cinfo.out_color_space) {
-    case JCS_GRAYSCALE  : format = Image2D::LUMINANCE;       break;
-    case JCS_RGB        : format = Image2D::RGB;             break;
-    default: throw IOException (__FILE__, __func__, "Unknown jpeg format=%d.", cinfo.out_color_space);
+    switch (comp) {
+    case 1 : format = Image2D::LUMINANCE;       break;
+    case 2 : format = Image2D::LUMINANCE_ALPHA; break;
+    case 3 : format = Image2D::RGB;             break;
+    case 4 : format = Image2D::RGBA;            break;
+    default: throw IOException (__FILE__, __func__, "Unknown image format=%d.", comp);
     }
 
-    Image2D*   img = new Image2D   (format, width, height, pixels);
+    unsigned char* tmp = new unsigned char[width*comp];
+    for (int y = 0; y < height/2; y++) {
+        memswap ((char*)&pixels[y*width*comp],
+                 (char*)&pixels[(height-1-y)*width*comp],
+                 (char*)tmp,
+                 width*comp);
+    }
+    delete[] tmp;
 
-    jpeg_finish_decompress (&cinfo);
-    jpeg_destroy_decompress (&cinfo);
-
-    delete [] pixels;
+    objs.push_back (new Image2D (format, width, height, pixels));
     
-    objs.push_back (img);
-    #endif // USE_JPEG
-
+    stbi_image_free (pixels);
     return objs;
 }
+
 
 void Loader:: parseHeader ()
 {

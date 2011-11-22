@@ -3,7 +3,7 @@
 
 #include <vector>
 #include "m3g/m3g.hpp"
-#include "m3g/M3GReader-fwd.hpp"
+#include "m3g/M3GReader.hpp"
 
 
 namespace m3g {
@@ -13,7 +13,7 @@ namespace m3g {
 
     /**
      * @~English  Download and deserializes scene graph nodes and node components, as well as entire scene graphs.
-     * @~Japanese シーングラフとそのノード要素のダウンロード.
+     * @~Japanese M3Gファイルおよび画像ファイルのローダー.
      */
     class Loader : public Object
     {
@@ -38,9 +38,8 @@ namespace m3g {
         Loader ();
         ~Loader ();
 
-        std::vector<Object3D*> load_m3g (const char* p, int size);
-        std::vector<Object3D*> load_png (const char* p, int size);
-        std::vector<Object3D*> load_jpg (const char* p, int size);
+        std::vector<Object3D*> load_m3g   (const char* p, int size);
+        std::vector<Object3D*> load_image (const char* p, int size);
 
 
         void parseHeader              ();

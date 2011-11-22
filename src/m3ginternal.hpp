@@ -1,6 +1,8 @@
 #ifndef __M3G_INTERNAL_HPP__
 #define __M3G_INTERNAL_HPP__
 
+#include <cstring>
+
 namespace m3g {
 
 /**
@@ -13,7 +15,8 @@ namespace m3g {
      *
      */
     inline
-    float clamp(float min, float max, float value) {
+    float clamp(float min, float max, float value)
+    {
         return (value < min) ? min :
             (value > max) ? max :
             value;
@@ -24,6 +27,16 @@ namespace m3g {
      */
     const char* objtype_to_string(int objtype);
 
+    /**
+     *
+     */
+    inline
+    void memswap (char* p, char* q, char* tmp, int size)
+    {
+        memcpy (tmp, p  , size);
+        memcpy (p  , q  , size);
+        memcpy (q  , tmp, size);
+     }
 
 } // namespace m3g {
 

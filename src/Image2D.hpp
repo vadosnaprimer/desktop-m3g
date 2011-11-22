@@ -152,7 +152,7 @@ namespace m3g {
         int   format;
         int   width;
         int   height;
-        char* image;
+        char* image;       // pixelsの方がいいか？
         bool  immutable;
 
     };

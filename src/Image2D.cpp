@@ -2,10 +2,10 @@
 #include "m3g/Image2D.hpp"
 #include "m3g/Exception.hpp"
 #include "m3g/RenderState.hpp"
+#include "m3g/stb_image_writer.hpp"
 #include <iostream>
 #include <fstream>
 #include <cstring>
-#include <png.h>
 using namespace m3g;
 using namespace std;
 
@@ -158,62 +158,11 @@ void Image2D:: writePNG (const char* name) const
     if (name == NULL) {
         throw NullPointerException (__FILE__, __func__, "File name is NULL.");
     }
-
-    png_structp png_ptr;
-    png_infop   info_ptr;
-	
-    FILE* fp = fopen (name, "wb");
-    if (!fp) {
-        throw IOException (__FILE__, __func__, "Can't open file, name=%s.", name);
+    int comp = format_to_bpp(format);
+    int ret  = stbi_write_png (name, width, height, comp, image, width*comp);
+    if (ret == 0) {
+        throw IOException (__FILE__, __func__, "Can't write png, name=%s.", name);
     }
-    png_ptr = png_create_write_struct (PNG_LIBPNG_VER_STRING, 0, 0, 0);
-    if (!png_ptr) {
-        fclose (fp);
-        throw InternalException (__FILE__, __func__, "Can't crate png struct.");
-    }
-
-    info_ptr = png_create_info_struct (png_ptr);
-    if (!info_ptr) {
-        fclose (fp);
-        png_destroy_write_struct (&png_ptr, 0);
-        throw InternalException (__FILE__, __func__, "Can't create info struct.");
-    }
-
-    if (setjmp (png_jmpbuf(png_ptr))) {
-        fclose (fp);
-        png_destroy_write_struct (&png_ptr, &info_ptr);
-        throw InternalException (__FILE__, __func__, "Can't decode png.");
-    }
-
-    png_init_io (png_ptr, fp);
-
-    info_ptr->width     = width;
-    info_ptr->height    = height;
-    info_ptr->bit_depth = 8;
-    switch (format) {
-    case ALPHA          : info_ptr->color_type = PNG_COLOR_TYPE_GRAY      ; break;
-    case LUMINANCE      : info_ptr->color_type = PNG_COLOR_TYPE_GRAY      ; break;
-    case LUMINANCE_ALPHA: info_ptr->color_type = PNG_COLOR_TYPE_GRAY_ALPHA; break;
-    case RGB            : info_ptr->color_type = PNG_COLOR_TYPE_RGB       ; break;
-    case RGBA           : info_ptr->color_type = PNG_COLOR_TYPE_RGB_ALPHA ; break;
-    default: throw InternalException (__FILE__, __func__, "Unknown format=%d.", format);
-    }
-    info_ptr->interlace_type   = PNG_INTERLACE_NONE;
-    info_ptr->compression_type = PNG_COMPRESSION_TYPE_DEFAULT;
-    info_ptr->filter_type      = PNG_FILTER_TYPE_DEFAULT;
-
-    int bpp = format_to_bpp (format);
-    png_byte** row_pointers = (png_byte**)new png_byte* [height];
-    for (int y = 0; y < height; y++) {
-        row_pointers[y] = (png_byte*)&image[(height-1-y)*width*bpp];
-    }
-    png_set_rows  (png_ptr, info_ptr, row_pointers);
-    png_write_png (png_ptr, info_ptr, PNG_TRANSFORM_IDENTITY, 0);
-
-    delete [] row_pointers;
-    png_destroy_write_struct (&png_ptr, 0);
-    fclose (fp);
-    
 }
 
 unsigned int Image2D:: getOpenGLFormat () const

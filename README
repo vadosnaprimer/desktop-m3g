@@ -10,25 +10,27 @@ Brief description
     I recommend Ubuntu 11.10. It's same as My PC.
 
   = Requirement =
-    - OpenGL 1.5 or higher (Linux)
-    - OpenGL ES 1.1 or higher (Android)
-    - libpng, libjpeg, libz, libm3g-reader-writer
-        (libm3g-reader-writer is an another my project, see http://code.google.com/p/m3g-reader-writer/).
-    - glut or any other libraries (SDL, Qt, ...) for creating OpenGL context and windows.
-    - and any other tools (cmake, UnitTest++, ...)
+    - OpenGL 1.5 or higher (for Linux)
+    - OpenGL ES 1.1 or higher (for Android)
+    - libz
+    - and other tools (glut, cmake, UnitTest++, ...)
+
+    I removed dependency for libpng, libjpeg and libm3g-reader-writer.
+    So, you don't need these libraries.
+
 
 -------------------------------------------
 Related projects
 -------------------------------------------
-   - M3G-Reader-Writer : simple library for reading/writing .m3g format.
    - Java-M3G : Java binding for Desktop-M3G
    - Ruby-M3G : Ruby binding for Desktop-M3G (obsoleted)
+   - M3G-Reader-Writer : simple library for reading/writing .m3g format.
 
 
 -------------------------------------------
 Make & Install
 -------------------------------------------
-    - see README.linux  for Linux
+    - see README.linux   for Linux
     - see README.android for Android
 
 

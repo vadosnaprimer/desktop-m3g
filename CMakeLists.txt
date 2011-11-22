@@ -13,8 +13,6 @@ cmake_minimum_required (VERSION 2.0)
 # =================================
 option (USE_GL    "Set ON, if you use OpenGL (default ON)"      ON )
 option (USE_GL_ES "Set ON, if you use OpenGL ES (default OFF)"  OFF)
-option (USE_PNG   "Set ON, if you use PNG format (default ON)"  ON )
-option (USE_JPEG  "Set ON, if you use JPEG format (default ON)" ON )
 configure_file (${CMAKE_CURRENT_SOURCE_DIR}/src/m3g/Config.hpp.in
                 ${CMAKE_CURRENT_BINARY_DIR}/src/m3g/Config.hpp)
 
@@ -45,14 +43,6 @@ endif (CMAKE_BUILD_TYPE STREQUAL "Release")
 
 # libz.so, libpng.so, libjpeg.so, ligGL.so
 find_package (ZLIB   REQUIRED)
-if (USE_PNG)
-  message (STATUS "Linking libpng.so ...")
-  find_package (PNG    REQUIRED)
-endif (USE_PNG)
-if (USE_JPEG)
-  message (STATUS "Linking libjpeg.so ...")
-  find_package (JPEG   REQUIRED)
-endif (USE_JPEG)
 if (USE_GL)
   message (STATUS "Linking libGL.so ...")
   find_package (OpenGL REQUIRED)
@@ -61,13 +51,9 @@ endif (USE_GL)
 
 set (M3G_REQUIRED_LIBRARIES
          ${ZLIB_LIBRARIES}
-         ${PNG_LIBRARIES}
-         ${JPEG_LIBRARIES}
          ${OPENGL_LIBRARIES})
 set (M3G_REQUIRED_INCLUDE_DIR 
          ${ZLIB_INCLUDE_DIR}
-         ${PNG_INCLUDE_DIR}
-         ${JPEG_INCLUDE_DIR}
          ${OPENGL_INCLUDE_DIR})
 
 
@@ -83,7 +69,5 @@ add_subdirectory (src)
 message (STATUS "Generating Config.hpp ...")
 message (STATUS "USE_GL    = ${USE_GL}")
 message (STATUS "USE_GL_ES = ${USE_GL_ES}")
-message (STATUS "USE_PNG   = ${USE_PNG}")
-message (STATUS "USE_JPEG  = ${USE_JPEG}")
 
 
