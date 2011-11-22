@@ -14,7 +14,7 @@ TEST (MorphingMesh_default_value)
     VertexArray*  varry       = new VertexArray (16, 3, 2);
     int           indices[]   = {0,1,2};
     int           strips[]    = {3};
-    TriangleStripArray* tris  = new TriangleStripArray (indices, 1, strips);
+    TriangleStripArray* tris  = new TriangleStripArray (3, indices, 1, strips);
     Appearance*   app         = new Appearance;
 
     float scale  = 1;
@@ -42,7 +42,7 @@ TEST (MorphingMesh_set_variable)
     VertexArray*  varry         = new VertexArray (16, 3, 2);
     int           indices[]   = {0,1,2};
     int           strips[]    = {3};
-    TriangleStripArray* tris  = new TriangleStripArray (indices, 1, strips);
+    TriangleStripArray* tris  = new TriangleStripArray (3, indices, 1, strips);
     Appearance*   app         = new Appearance;
 
     float scale  = 1;
@@ -82,7 +82,7 @@ TEST (MorphingMesh_duplicate)
     VertexArray*  varry         = new VertexArray (16, 3, 2);
     int           indices[]   = {0,1,2};
     int           strips[]    = {3};
-    TriangleStripArray* tris  = new TriangleStripArray (indices, 1, strips);
+    TriangleStripArray* tris  = new TriangleStripArray (3, indices, 1, strips);
     Appearance*   app         = new Appearance;
 
     float scale  = 1;
@@ -123,7 +123,7 @@ TEST (MorphingMesh_getReferences)
     VertexArray*  varry       = new VertexArray (16, 3, 2);
     int           indices[]   = {0,1,2};
     int           strips[]    = {3};
-    TriangleStripArray* tris  = new TriangleStripArray (indices, 1, strips);
+    TriangleStripArray* tris  = new TriangleStripArray (3, indices, 1, strips);
     Appearance*   app         = new Appearance;
 
     float scale  = 1;
@@ -161,7 +161,7 @@ TEST (MorphingMesh_find)
     VertexArray*  varry       = new VertexArray (16, 3, 2);
     int           indices[]   = {0,1,2};
     int           strips[]    = {3};
-    TriangleStripArray* tris  = new TriangleStripArray (indices, 1, strips);
+    TriangleStripArray* tris  = new TriangleStripArray (3, indices, 1, strips);
     Appearance*   app         = new Appearance;
 
     float scale  = 1;

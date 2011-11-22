@@ -2,11 +2,15 @@
 
 
 2011/xx/xx
+   - change TriangleStripArray constructor API
+      - you need to set number of indices explicitly
+      - sorry to break compatibility
    - remove dependency for m3g-reader-writer
        - take all sources from the projects
    - remove dependency for libpng, libjpeg
        - use Sean Barrett's image library
        - is usefull for Android
+
 
 2011/05/17 ver 0.3.3
    - support for Android OS

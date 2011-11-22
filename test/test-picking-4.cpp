@@ -42,7 +42,7 @@ TEST (Group_pick_meshs)
 
     int           indices[] = {0,1,2,3};
     int           strips[]  = {4};
-    TriangleStripArray* tris = new TriangleStripArray (indices, 1, strips);
+    TriangleStripArray* tris = new TriangleStripArray (4, indices, 1, strips);
     Appearance*         app  = new Appearance;
 
     Mesh*               mesh_0 = new Mesh (vertices_0, tris, app);

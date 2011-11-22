@@ -114,9 +114,9 @@ int main (int argc, char** argv)
     vertices->setPositions (positions, scale, bias);
     vertices->setColors (colors);
 
-    int strips[1] = {4};
-    int indices[4] = {0,1,2,3};
-    TriangleStripArray* tris = new TriangleStripArray (indices, 1, strips);
+    int indices[] = {0,1,2,3};
+    int strips [] = {4};
+    TriangleStripArray* tris = new TriangleStripArray (4, indices, 1, strips);
 
     PolygonMode* poly = new PolygonMode ();
     poly->setCulling (PolygonMode::CULL_NONE);

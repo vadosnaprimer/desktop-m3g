@@ -75,10 +75,9 @@ int main (int argc, char** argv)
     vertices->setTexCoords (0, tex_coords, scale, bias);
     vertices->setTexCoords (1, tex_coords, scale, bias);
   
-    int strips[2] = {3, 3};
     int indices[] = {0,1,2, 2,1,3};
-
-    TriangleStripArray* tris = new TriangleStripArray (indices, 2, strips);
+    int strips [] = {3, 3};
+    TriangleStripArray* tris = new TriangleStripArray (6, indices, 2, strips);
 
 
     Image2D*   img0 = dynamic_cast<Image2D*>(Loader::load ("../yumemi.png")[0]);

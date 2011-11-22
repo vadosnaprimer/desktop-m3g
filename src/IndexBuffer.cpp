@@ -12,10 +12,11 @@ const int IndexBuffer:: LINES;
 const int IndexBuffer:: POINT_SPRITES;
 
 
-IndexBuffer:: IndexBuffer (int        t,
+IndexBuffer:: IndexBuffer (int        type_,
+                           int        num_indices,
                            const int* indices,
-                           int        num_strips,
-                           const int* lengths) : type(t), gl(0)
+                           int        num_lengths,
+                           const int* lengths     ) : type(type_), gl(0)
 {
     if (type != TRIANGLES) {
         throw IllegalArgumentException (__FILE__, __func__, "Primitive type is invalid, type=%d.", type);        
@@ -26,19 +27,26 @@ IndexBuffer:: IndexBuffer (int        t,
     if (lengths == NULL) {
         throw NullPointerException (__FILE__, __func__, "Strip lengths is NULL.");
     }
-    if (num_strips < 1 || num_strips > 65535) {
-        throw IllegalArgumentException (__FILE__, __func__, "Number of strips is invalid, num_strips=%d.", num_strips);
+    if (num_lengths < 1) {
+        throw IllegalArgumentException (__FILE__, __func__, "Number of strips is invalid, num_lengths=%d.", num_lengths);
     }
-    int num_indices = 0;
-    for (int i = 0; i < num_strips; i++) {
-        if (lengths[i] > 65535) {
-            throw IllegalArgumentException (__FILE__, __func__, "Number of lengths[%d] is invalid, num=%d > 65535.", i, lengths[i]);
+    int sum = 0;
+    for (int i = 0; i < num_lengths; i++) {
+        int len = lengths[i];
+        if (len < 0 || len > 65535) {
+            throw IndexOutOfBoundsException (__FILE__, __func__, "Strip lengths[%d] is out of index, len=%d.", i, len);
         }
-        num_indices += lengths[i];
+        if (len < 3) {
+            throw IllegalArgumentException (__FILE__, __func__, "Strip lengths[%d] is invalid, len=%d.", i, len);
+        }
+        sum += len;
+    }
+    if (num_indices < sum) {
+        throw IllegalArgumentException (__FILE__, __func__, "Too few indices, indices=%d < sum of lengths=%d.", num_indices, sum);
     }
 
     strip_indices.assign (indices, indices + num_indices);
-    strip_lengths.assign (lengths, lengths + num_strips);
+    strip_lengths.assign (lengths, lengths + num_lengths);
 
     glGenBuffers (1, &gl.indices);
     glBindBuffer (GL_ELEMENT_ARRAY_BUFFER, gl.indices); 
@@ -46,10 +54,10 @@ IndexBuffer:: IndexBuffer (int        t,
 }
 
 
-IndexBuffer:: IndexBuffer (int        t,
+IndexBuffer:: IndexBuffer (int        type_,
                            int        first_index,
-                           int        num_strips,
-                           const int* lengths) : type(t), gl(0)
+                           int        num_lengths,
+                           const int* lengths     ) : type(type_), gl(0)
 {
     if (type != TRIANGLES) {
         throw IllegalArgumentException (__FILE__, __func__, "Primitive type is invalid, type=%d.", type);        
@@ -57,25 +65,30 @@ IndexBuffer:: IndexBuffer (int        t,
     if (lengths == NULL) {
         throw NullPointerException (__FILE__, __func__, "Strip lengths is NULL.");
     }
-    if (first_index < 0 || first_index > 65535) {
-        throw IndexOutOfBoundsException (__FILE__, __func__, "Fist index is invalid, first_idex=%d.", first_index);
+    if (num_lengths <= 0) {
+        throw IllegalArgumentException (__FILE__, __func__, "Number of strips is invalid, num_lengths=%d.", num_lengths);
     }
-    if (num_strips < 1 || num_strips > 65535) {
-        throw IndexOutOfBoundsException (__FILE__, __func__, "Nummber of strip is invalid, num_strips=%d.", num_strips);
-    }
+
     int num_indices = 0;
-    for (int i = 0; i < num_strips; i++) {
-        num_indices += lengths[i];
+    for (int i = 0; i < num_lengths; i++) {
+        int len = lengths[i];
+        if (len < 0 || len > 65535) {
+            throw IndexOutOfBoundsException (__FILE__, __func__, "Strip lengths[%d] is out of index, len=%d.", i, len);
+        }
+        if (len < 3) {
+            throw IllegalArgumentException (__FILE__, __func__, "Strip lengths[%d] is invalid, len=%d.", i, len);
+        }
+        num_indices += len;
     }
-    if (num_indices > 65535) {
-        throw IllegalArgumentException (__FILE__, __func__, "Number of indices is invalid, num=%d > 65535.", num_indices);
+    if (first_index + num_indices > 65535) {
+        throw IllegalArgumentException (__FILE__, __func__, "Number of indices is invalid, num=%d > 65535.", first_index+num_indices);
     }
 
     strip_indices.reserve (num_indices);
     for (int i = 0; i < num_indices; i++) {
         strip_indices.push_back (first_index + i);
     }
-    strip_lengths.assign (lengths, lengths + num_strips);
+    strip_lengths.assign (lengths, lengths + num_lengths);
 
 
     glGenBuffers (1, &gl.indices);
@@ -110,6 +123,7 @@ IndexBuffer* IndexBuffer:: duplicate_xxx (Object3D* obj) const
             lengths[i] = strip_lengths[i];
         }
         ibuf = new IndexBuffer (type, 
+                                num_indices,
                                 indices,
                                 num_lengths,
                                 lengths);

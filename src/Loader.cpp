@@ -363,13 +363,14 @@ void Loader:: parseTriangleStripArray ()
     reader->readTriangleStripArray (&tri_strip);
     
     int  start_index = tri_strip.start_index;
-    int* indices    = (int*)tri_strip.indices;
-    int  num_strips = tri_strip.strip_lengths_count;
-    int* strips     = (int*)tri_strip.strip_lengths;
+    int  num_indices = tri_strip.indices_count;
+    int* indices     = (int*)tri_strip.indices;
+    int  num_strips  = tri_strip.strip_lengths_count;
+    int* strips      = (int*)tri_strip.strip_lengths;
 
     TriangleStripArray* tris;
     if (indices)
-        tris = new TriangleStripArray (indices, num_strips, strips);
+        tris = new TriangleStripArray (num_indices, indices, num_strips, strips);
     else
         tris = new TriangleStripArray (start_index, num_strips, strips);        
 

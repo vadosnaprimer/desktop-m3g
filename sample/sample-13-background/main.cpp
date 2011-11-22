@@ -97,10 +97,9 @@ int main (int argc, char** argv)
     VertexBuffer* vertices = new VertexBuffer ();
     vertices->setPositions (positions, scale, bias);
   
-    int strips[1] = {4};
     int indices[] = {0,1,2,3};
-
-    TriangleStripArray* tris = new TriangleStripArray (indices, 1, strips);
+    int strips [] = {4};
+    TriangleStripArray* tris = new TriangleStripArray (4, indices, 1, strips);
 
     Material* mat = new Material ();
     mat->setColor (Material::DIFFUSE, 0xff7f7fff);

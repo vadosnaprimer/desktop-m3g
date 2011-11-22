@@ -16,7 +16,7 @@ TEST (SkinnedMesh_default_variables)
     VertexBuffer* vbuf        = new VertexBuffer;
     int           indices[]   = {0,1,2};
     int           strips[]    = {3};
-    TriangleStripArray* tris  = new TriangleStripArray (indices, 1, strips);
+    TriangleStripArray* tris  = new TriangleStripArray (3, indices, 1, strips);
     Appearance*   app         = new Appearance;
     Group*        skeleton    = new Group;
     Group*        bone        = new Group;
@@ -49,7 +49,7 @@ TEST (SkinnedMesh_addTransform_getBoneVertices)
     VertexBuffer* vbuf        = new VertexBuffer;
     int           indices[]   = {0,1,2};
     int           strips[]    = {3};
-    TriangleStripArray* tris  = new TriangleStripArray (indices, 1, strips);
+    TriangleStripArray* tris  = new TriangleStripArray (3, indices, 1, strips);
     Appearance*   app         = new Appearance;
 
     // bone0 --> bone1 --> bone2
@@ -139,7 +139,7 @@ TEST (SkinnedMesh_getBoneTransform)
     VertexBuffer* vbuf        = new VertexBuffer;
     int           indices[]   = {0,1,2};
     int           strips[]    = {3};
-    TriangleStripArray* tris  = new TriangleStripArray (indices, 1, strips);
+    TriangleStripArray* tris  = new TriangleStripArray (3, indices, 1, strips);
     Appearance*   app         = new Appearance;
 
     Group*        bone0    = new Group;
@@ -184,7 +184,7 @@ TEST (SkinnedMesh_duplicate)
     VertexBuffer* vbuf        = new VertexBuffer;
     int           indices[]   = {0,1,2};
     int           strips[]    = {3};
-    TriangleStripArray* tris  = new TriangleStripArray (indices, 1, strips);
+    TriangleStripArray* tris  = new TriangleStripArray (3, indices, 1, strips);
     Appearance*   app         = new Appearance;
 
     Group*        bone0    = new Group;
@@ -249,7 +249,7 @@ TEST (SkinnedMesh_find)
     VertexBuffer* vbuf        = new VertexBuffer;
     int           indices[]   = {0,1,2};
     int           strips[]    = {3};
-    TriangleStripArray* tris  = new TriangleStripArray (indices, 1, strips);
+    TriangleStripArray* tris  = new TriangleStripArray (3, indices, 1, strips);
     Appearance*   app         = new Appearance;
     Group*        skeleton    = new Group;
 
@@ -287,7 +287,7 @@ TEST (SkinnedMesh_getReferences)
     VertexBuffer* vbuf        = new VertexBuffer;
     int           indices[]   = {0,1,2};
     int           strips[]    = {3};
-    TriangleStripArray* tris  = new TriangleStripArray (indices, 1, strips);
+    TriangleStripArray* tris  = new TriangleStripArray (3, indices, 1, strips);
     Appearance*   app         = new Appearance;
     Group*        skeleton    = new Group;
 

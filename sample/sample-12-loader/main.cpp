@@ -38,8 +38,7 @@ void reshape (int width, int height)
     Graphics3D* g3d = Graphics3D::getInstance();
     g3d->setViewport (0,0,width,height);
     Camera* cam = wld->getActiveCamera ();
-    //cam->setPerspective (45, width/(float)height, 0.1, 10000);
-    cam->setPerspective (fovy, width/(float)height, near, far);
+    cam->setPerspective (45, width/(float)height, 0.1, 1000);
 }
 
 static
@@ -125,9 +124,9 @@ int main (int argc, char** argv)
     glutInitWindowSize  (300, 300);
     glewInit            ();
 
-    objs = Loader::load ("../simple.m3g");
+    //objs = Loader::load ("../simple.m3g");
     //objs = Loader::load ("../checker-board.m3g");
-    //objs = Loader::load ("../kitune-miko.m3g");
+    objs = Loader::load ("../kitune-miko.m3g");
     //objs = Loader::load ("../mahosyojo-with-sexy-walking.m3g");
 
     for (int i = 0; i < (int)objs.size(); i++) {

@@ -14,9 +14,9 @@ TEST (Mesh_default_variables_1)
 {
     VertexBuffer* vbuf = new VertexBuffer;
     int indices[] = {0,1,2};
-    int strips[] = {3};
-    TriangleStripArray* tris[2] = {new TriangleStripArray (indices, 1, strips),
-                                   new TriangleStripArray (indices, 1, strips)};
+    int strips [] = {3};
+    TriangleStripArray* tris[2] = {new TriangleStripArray (3, indices, 1, strips),
+                                   new TriangleStripArray (3, indices, 1, strips)};
     Appearance*  app[2]  = {new Appearance, new Appearance};
     Mesh* mesh = new Mesh (vbuf, 2, (IndexBuffer**)tris, app);
 
@@ -40,8 +40,8 @@ TEST (Mesh_default_variables_2)
 {
     VertexBuffer* vbuf = new VertexBuffer;
     int indices[] = {0,1,2};
-    int strips[] = {3};
-    TriangleStripArray* tris = new TriangleStripArray (indices, 1, strips);
+    int strips [] = {3};
+    TriangleStripArray* tris = new TriangleStripArray (3, indices, 1, strips);
     Appearance* app = new Appearance;
     Mesh* mesh = new Mesh (vbuf, tris, app);
 
@@ -62,8 +62,8 @@ TEST (Mesh_setAppearance)
     VertexBuffer* vbuf = new VertexBuffer;
     int indices[] = {0,1,2};
     int strips [] = {3};
-    TriangleStripArray* tris[2] = {new TriangleStripArray (indices, 1, strips),
-                                   new TriangleStripArray (indices, 1, strips)};
+    TriangleStripArray* tris[2] = {new TriangleStripArray (3, indices, 1, strips),
+                                   new TriangleStripArray (3, indices, 1, strips)};
     Appearance* apps[2] = {new Appearance,
                            new Appearance};
     Mesh* mesh = new Mesh (vbuf, 2, (IndexBuffer**)tris, apps);
@@ -88,8 +88,8 @@ TEST (Mesh_duplicate)
 {
     VertexBuffer* vbuf = new VertexBuffer;
     int indices[] = {0,1,2};
-    int strips[] = {3};
-    TriangleStripArray* tris = new TriangleStripArray (indices, 1, strips);
+    int strips [] = {3};
+    TriangleStripArray* tris = new TriangleStripArray (3, indices, 1, strips);
     Appearance* app = new Appearance;
     Mesh* mesh0 = new Mesh (vbuf, tris, app);
 
@@ -118,8 +118,8 @@ TEST (Mesh_getReferences)
 {
     VertexBuffer* vbuf = new VertexBuffer;
     int indices[] = {0,1,2};
-    int strips[]  = {3};
-    TriangleStripArray* tris = new TriangleStripArray (indices, 1, strips);
+    int strips [] = {3};
+    TriangleStripArray* tris = new TriangleStripArray (3, indices, 1, strips);
     Appearance*         app  = new Appearance;
     Mesh*               mesh = new Mesh (vbuf, tris, app);
 
@@ -143,8 +143,8 @@ TEST (Mesh_find)
 {
     VertexBuffer* vbuf = new VertexBuffer;
     int indices[] = {0,1,2};
-    int strips[]  = {3};
-    TriangleStripArray* tris = new TriangleStripArray (indices, 1, strips);
+    int strips [] = {3};
+    TriangleStripArray* tris = new TriangleStripArray (3, indices, 1, strips);
     Appearance*         app  = new Appearance;
     Mesh*               mesh = new Mesh (vbuf, tris, app);
 

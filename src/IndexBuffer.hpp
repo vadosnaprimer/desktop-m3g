@@ -51,18 +51,21 @@ namespace m3g {
         /**
          * @~English  Constructs a triangle strip array with explicit indices.
          * @~Japanese ストリップ形式のインデックスを、インデックス配列を明示的に指定しての作成.
-         * @param[in] indices      ストリップで使用する全インデックスの配列
-         * @param[in] num_strips   ストリップの本数
-         * @param[in] srip_lengths ストリップの長さの配列
+         * @param[in] type               ストリップの種類.
+         * @param[in] num_indices        インデックスの総数.
+         * @param[in] indices            インデックスの配列.
+         * @param[in] num_strip_strips   ストリップの総数.
+         * @param[in] srip_lengths       ストリップの長さの配列.
          */
-        IndexBuffer (int type, const int* strip_indices, int num_strips, const int* strip_lengths);
+        IndexBuffer (int type, int num_indices, const int* indices, int num_strip_lengths, const int* strip_lengths);
 
         /**
          * @~English  Constructs a triangle strip array with implicit indices.
          * @~Japanese ストリップ形式のインデックスを、インデックスを暗黙的に指定して作成.
-         * @param[in] indices      使用する最初のインデックス（以下暗黙的に+1ずつずらした値が使われる）
-         * @param[in] num_strips   ストリップの本数
-         * @param[in] srip_lengths ストリップの長さの配列
+         * @param[in] type                ストリップの種類.
+         * @param[in] first_index         最初のインデックス値（以下暗黙的に+1ずつずらした値が使われる）.
+         * @param[in] num_strip_lengths   ストリップの総数.
+         * @param[in] srip_lengths        ストリップの長さの配列.
          */
         IndexBuffer (int type, int first_index, int num_strips, const int* strip_lengths);
 

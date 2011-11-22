@@ -54,7 +54,7 @@ TEST (RayIntersect_set_variable)
 
     int indices[] = {0,1,2,3};
     int strips[]  = {4};
-    IndexBuffer* submesh = new TriangleStripArray (indices, 1, strips);
+    IndexBuffer* submesh = new TriangleStripArray (4, indices, 1, strips);
     Appearance*  app     = new Appearance;
     Mesh*        mesh    = new Mesh (vertices, submesh, app);
 

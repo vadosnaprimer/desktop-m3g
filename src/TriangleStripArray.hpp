@@ -17,20 +17,21 @@ namespace m3g {
         /**
          * @~English  Constructs a triangle strip array with explicit indices.
          * @~Japanese 明示的なインデックスで指定したトライアングルストリップ配列の作成.
-         * @param[in] indices      ストリップで使用する全インデックスの配列
-         * @param[in] num_strips   ストリップの本数
-         * @param[in] srip_lengths ストリップの長さの配列
+         * @param[in] num_indices         ストリップで使用する全インデックスの総数.
+         * @param[in] indices             ストリップで使用する全インデックスの配列
+         * @param[in] num_strip_lengths   ストリップの本数
+         * @param[in] srip_lengths        ストリップの長さの配列
          */
-        TriangleStripArray (const int* indices, int num_strips, const int* strip_lengths);
+        TriangleStripArray (int num_indices, const int* indices, int num_strip_lengths, const int* strip_lengths);
 
         /**
          * @~English  Constructs a triangle strip array with implicit indices.
          * @~Japanese インデックスを暗黙的に指定したトライアングルストリップ配列の作成.
-         * @param[in] indices      使用する最初のインデックス（以下暗黙的に+1ずつずらした値が使われる）
-         * @param[in] num_strips   ストリップの本数
-         * @param[in] srip_lengths ストリップの長さの配列
+         * @param[in] first_index          使用する最初のインデックス（以下暗黙的に+1ずつずらした値が使われる）
+         * @param[in] num_strip_lengths    ストリップの本数
+         * @param[in] srip_lengths         ストリップの長さの配列
          */
-        TriangleStripArray (int first_index, int num_strips, const int* strip_lengths);
+        TriangleStripArray (int first_index, int num_strip_lengths, const int* strip_lengths);
 
 
         /**

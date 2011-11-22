@@ -36,8 +36,8 @@ TEST (Group_pick_mesh_from_screen)
     vertices->setNormals   (normals);
 
     int           indices[] = {0,1,2,3};
-    int           strips[]  = {4};
-    TriangleStripArray* tris = new TriangleStripArray (indices, 1, strips);
+    int           strips [] = {4};
+    TriangleStripArray* tris = new TriangleStripArray (4, indices, 1, strips);
     Appearance*         app  = new Appearance;
     Mesh*               mesh = new Mesh (vertices, tris, app);
 

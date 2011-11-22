@@ -12,19 +12,19 @@ using namespace m3g;
  *       IndexBufferクラスに統合される事が決定している。
  *       それの先取り。
  */
-
-TriangleStripArray:: TriangleStripArray (const int* indices,
-                                         int        num_strips,
-                                         const int* strip_lengths)
-    : IndexBuffer(IndexBuffer::TRIANGLES, indices, num_strips, strip_lengths)
+TriangleStripArray:: TriangleStripArray (int        num_indices,
+                                         const int* indices,
+                                         int        num_lengths,
+                                         const int* lengths     )
+    : IndexBuffer(IndexBuffer::TRIANGLES, num_indices, indices, num_lengths, lengths)
 {
 }
 
 
 TriangleStripArray:: TriangleStripArray (int        first_index,
-                                         int        num_strips,
-                                         const int* strip_lengths)
-    : IndexBuffer(IndexBuffer::TRIANGLES, first_index, num_strips, strip_lengths)
+                                         int        num_lengths,
+                                         const int* lengths     )
+    : IndexBuffer(IndexBuffer::TRIANGLES, first_index, num_lengths, lengths)
 {
 }
 
@@ -51,7 +51,8 @@ TriangleStripArray* TriangleStripArray:: duplicate_xxx (Object3D* obj) const
         for (int i = 0; i < num_lengths; i++) {
             lengths[i] = strip_lengths[i];
         }
-        tris = new TriangleStripArray (indices,
+        tris = new TriangleStripArray (num_indices,
+                                       indices,
                                        num_lengths,
                                        lengths);
     }

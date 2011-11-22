@@ -10,19 +10,17 @@ using namespace m3g;
 TEST (TriangleStripArray_default_variables)
 {
     int indices[] = {0,1,2};
-    int strip_lengths[1] = {3};
-    TriangleStripArray* tris = new TriangleStripArray (indices, 1, strip_lengths);
+    int strips [] = {3};
+    TriangleStripArray* tris = new TriangleStripArray (3, indices, 1, strips);
     
     CHECK_EQUAL (IndexBuffer::TRIANGLES, tris->getPrimitiveType());
 }
 
 TEST (TriangleStripArray_set_variables_explicit)
 {
-    // TriangleStripArray (int* indices, int num_strip_lengths, int* strip_lengths);
-
     int indices[10] = {2,4,6,8,10,12,14,16,18,20};
-    int strip_lengths[3] = {4,3,3};
-    TriangleStripArray* tris = new TriangleStripArray (indices, 3, strip_lengths);
+    int strips [3]  = {4,3,3};
+    TriangleStripArray* tris = new TriangleStripArray (10, indices, 3, strips);
 
     CHECK_EQUAL (12, tris->getIndexCount());
 
