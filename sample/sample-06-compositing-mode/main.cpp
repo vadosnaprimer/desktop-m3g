@@ -98,7 +98,7 @@ int main (int argc, char** argv)
     glutInitWindowSize  (300, 300);
     glewInit            ();
 
-    AnimationController* controller = new AnimationController;
+    AnimationController* controller = new AnimationController ();
 
     KeyframeSequence* keyframe_sequence = new KeyframeSequence (3, 3, KeyframeSequence::LINEAR);
     float values[3][3] = {{0,0,0}, {0,0,-6}, {0,0,0}};
@@ -118,20 +118,20 @@ int main (int argc, char** argv)
 
     float scale   = 1;
     float bias[3] = {0,0,0};
-    VertexBuffer* vertices = new VertexBuffer;
+    VertexBuffer* vertices = new VertexBuffer ();
     vertices->setPositions (positions, scale, bias);
 
     int strips[1] = {4};
     TriangleStripArray* tris = new TriangleStripArray (0, 1, strips);
 
-    cmode = new CompositingMode;
+    cmode = new CompositingMode ();
     cmode->setBlending         (CompositingMode::ALPHA);  // アルファ・ブレンド
     cmode->setDepthWriteEnable (false);                   // デプステストは無効
 
-    Material* mat = new Material;
+    Material* mat = new Material ();
     mat->setColor (Material::DIFFUSE, 0x4f7f7fff);  // 半透明
 
-    Appearance* app = new Appearance;
+    Appearance* app = new Appearance ();
     app->setCompositingMode (cmode);
     app->setMaterial (mat);
 
@@ -151,13 +151,13 @@ int main (int argc, char** argv)
     mesh5->translate (0,0,-5);
 
 
-    CompositingMode* cmode2 = new CompositingMode;
+    CompositingMode* cmode2 = new CompositingMode ();
     cmode2->setBlending (CompositingMode::REPLACE);   // 上書き
 
-    Material* mat2 = new Material;
+    Material* mat2 = new Material ();
     mat2->setColor (Material::DIFFUSE, 0xff7f7f7f);   // 不透明
 
-    Appearance* app2 = new Appearance;
+    Appearance* app2 = new Appearance ();
     app2->setCompositingMode (cmode2);
     app2->setMaterial (mat2);
 
@@ -165,7 +165,7 @@ int main (int argc, char** argv)
     mesh10->addAnimationTrack (animation_track);
 
 
-    Group* grp = new Group;
+    Group* grp = new Group ();
     grp->addChild(mesh1);
     grp->addChild(mesh2);
     grp->addChild(mesh3);
@@ -173,13 +173,13 @@ int main (int argc, char** argv)
     grp->addChild(mesh5);
     grp->addChild(mesh10);
 
-    Camera* cam = new Camera;
+    Camera* cam = new Camera ();
     cam->lookAt (3,0,3, 0,0,-2, 0,1,0);
 
-    Background* bg = new Background;
+    Background* bg = new Background ();
     bg->setColor (0xff3f3f3f);
 
-    wld = new World;
+    wld = new World ();
     wld->addChild (cam);
     wld->setActiveCamera (cam);
     wld->addChild (grp);

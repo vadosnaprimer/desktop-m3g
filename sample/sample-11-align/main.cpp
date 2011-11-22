@@ -97,7 +97,7 @@ int main (int argc, char** argv)
     glutInitWindowSize  (300, 300);
     glewInit            ();
 
-    Background* bg = new Background;
+    Background* bg = new Background ();
     bg->setColor (0xff3f3fff);
 
     VertexArray* positions = new VertexArray (4, 3, 4);
@@ -110,7 +110,7 @@ int main (int argc, char** argv)
 
     float scale = 1;
     float bias[3] = {0,0,0};
-    VertexBuffer* vertices = new VertexBuffer;
+    VertexBuffer* vertices = new VertexBuffer ();
     vertices->setPositions (positions, scale, bias);
     vertices->setColors (colors);
 
@@ -118,17 +118,17 @@ int main (int argc, char** argv)
     int indices[4] = {0,1,2,3};
     TriangleStripArray* tris = new TriangleStripArray (indices, 1, strips);
 
-    PolygonMode* poly = new PolygonMode;
+    PolygonMode* poly = new PolygonMode ();
     poly->setCulling (PolygonMode::CULL_NONE);
 
-    Material* mat = new Material;
+    Material* mat = new Material ();
     mat->setVertexColorTrackingEnable (true);
 
-    Appearance* app = new Appearance;
+    Appearance* app = new Appearance ();
     app->setPolygonMode (poly);
     app->setMaterial (mat);
 
-    Camera* cam = new Camera;
+    Camera* cam = new Camera ();
     cam->lookAt (0,0,15,
                  0,0,0,
                  0,1,0);
@@ -141,7 +141,7 @@ int main (int argc, char** argv)
     Mesh* mesh3 = new Mesh (vertices, tris, app);
     mesh3->translate (-3,0,0);
 
-    wld = new World;
+    wld = new World ();
     wld->addChild (cam);
     wld->setActiveCamera (cam);
     wld->setBackground (bg);

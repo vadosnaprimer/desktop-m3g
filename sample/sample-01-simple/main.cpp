@@ -63,7 +63,7 @@ int main (int argc, char** argv)
 
     float scale   = 1;
     float bias[3] = {0,0,0};
-    VertexBuffer* vertices = new VertexBuffer;
+    VertexBuffer* vertices = new VertexBuffer ();
     vertices->setPositions (positions, scale, bias);
   
     int strips[1] = {4};
@@ -71,19 +71,19 @@ int main (int argc, char** argv)
 
     TriangleStripArray* tris = new TriangleStripArray (indices, 1, strips);
 
-    Material* mat = new Material;
+    Material* mat = new Material ();
     mat->setColor (Material::DIFFUSE, 0xff7f7fff);
 
-    Appearance* app = new Appearance;
+    Appearance* app = new Appearance ();
     app->setMaterial (mat);
 
     Mesh* mesh = new Mesh (vertices, tris, app);
     cout << "GL_MAX_TEXTURE_UNITS = " << GL_MAX_TEXTURE_UNITS << "\n";
   
-    Camera* cam = new Camera;
+    Camera* cam = new Camera ();
     cam->translate (0,0,5);
 
-    wld = new World;
+    wld = new World ();
     wld->addChild (cam);
     wld->setActiveCamera (cam);
     wld->addChild (mesh);

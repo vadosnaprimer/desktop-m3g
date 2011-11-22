@@ -97,36 +97,36 @@ int main (int argc, char** argv)
     glutInitWindowSize  (300, 300);
     glewInit            ();
 
-    Camera* cam = new Camera;
+    Camera* cam = new Camera ();
     cam->lookAt (0,0,5,
                  0,0,0,
                  0,1,0);
 
-    Background* bg = new Background;
+    Background* bg = new Background ();
     bg->setColor (0xff1f1f7f);
 
     Image2D* img    = dynamic_cast<Image2D*>(Loader::load ("../mizugi-small.png")[0]);
     int      width  = img->getWidth ();
     int      height = img->getHeight ();
 
-    CompositingMode* cmp = new CompositingMode;
+    CompositingMode* cmp = new CompositingMode ();
     cmp->setDepthTestEnable (true);
 
-    Appearance* app1 = new Appearance;
+    Appearance* app1 = new Appearance ();
     app1->setCompositingMode (cmp);
 
     Sprite3D*   spr1 = new Sprite3D (true, img, app1);
     spr1->translate (1,0,0);
     spr1->setCrop (0, 0, -width, height);
 
-    Appearance* app2 = new Appearance;
+    Appearance* app2 = new Appearance ();
     app2->setCompositingMode (cmp);
 
     Sprite3D*   spr2 = new Sprite3D (false, img, app2);
     spr2->translate (-1,0,0);
     spr2->setCrop (0, 0, width, height);
 
-    wld = new World;
+    wld = new World ();
     wld->addChild (cam);
     wld->setActiveCamera (cam);
     wld->setBackground (bg);

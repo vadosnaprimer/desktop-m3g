@@ -112,7 +112,7 @@ int main (int argc, char** argv)
     glutInitWindowSize  (300, 300);
     glewInit            ();
 
-    AnimationController* ctrl = new AnimationController;
+    AnimationController* ctrl = new AnimationController ();
 
     KeyframeSequence* keyframe_light_color = new KeyframeSequence (3, 3, KeyframeSequence::LINEAR);
     float light_color[3][3] = {{1,1,1}, {0.5,0.5,0.5}, {1,1,1}};
@@ -139,17 +139,17 @@ int main (int argc, char** argv)
 
     float         scale    = 1;
     float         bias[3]  = {0,0,0};
-    VertexBuffer* vertices = new VertexBuffer;
+    VertexBuffer* vertices = new VertexBuffer ();
     vertices->setPositions (positions, scale, bias);
     vertices->setNormals   (normals);
     vertices->setTexCoords (0, texcoords, scale, bias);
 
     int strips[20] = {42,42,42,42,42,42,42,42,42,42,42,42,42,42,42,42,42,42,42,42};
     TriangleStripArray* tris = new TriangleStripArray (0, 20, strips);
-    Material* mat = new Material;
+    Material* mat = new Material ();
     mat->setColor (Material::DIFFUSE, 0xffffffff);
 
-    Appearance* app = new Appearance;
+    Appearance* app = new Appearance ();
     app->setMaterial (mat);
 
     Image2D* img = dynamic_cast<Image2D*>(Loader::load ("../kingyo.png")[0]);
@@ -158,13 +158,13 @@ int main (int argc, char** argv)
 
     mesh = new Mesh (vertices, tris, app);
 
-    Camera* cam = new Camera;
+    Camera* cam = new Camera ();
     cam->lookAt (0,20,20,
                  0,0,0,
                  0,1,0);
 
     // メッシュは(x,z)平面
-    lgh = new Light;
+    lgh = new Light ();
     lgh->setColor     (0x00ffffff);   // white
     lgh->setIntensity (2);            // 少し強め
     lgh->setMode      (Light::OMNI);
@@ -173,7 +173,7 @@ int main (int argc, char** argv)
     lgh->setSpotAngle (60);
     lgh->addAnimationTrack (animation_light_color);
 
-    wld = new World;
+    wld = new World ();
     wld->addChild (cam);
     wld->setActiveCamera (cam);
     wld->addChild (lgh);

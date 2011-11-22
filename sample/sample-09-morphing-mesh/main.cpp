@@ -92,7 +92,7 @@ int main (int argc, char** argv)
     keyframe_sequence->setDuration   (400);
     keyframe_sequence->setRepeatMode (KeyframeSequence::LOOP);
 
-    AnimationController* animation_controller = new AnimationController;
+    AnimationController* animation_controller = new AnimationController ();
     AnimationTrack*      animation_track      = new AnimationTrack (keyframe_sequence, AnimationTrack::MORPH_WEIGHTS);
     animation_track->setController (animation_controller);
 
@@ -111,20 +111,20 @@ int main (int argc, char** argv)
     float        target2_positions_values[12] = {2,-1,0, 2,-0.5,0, -2,-1,0, -2,-0.5,0};
     target2_positions->set (0, 4, target2_positions_values);
 
-    VertexBuffer* base_vertices = new VertexBuffer;
+    VertexBuffer* base_vertices = new VertexBuffer ();
     base_vertices->setPositions (base_positions, scale, bias);
 
     VertexBuffer* target_vertices[] = {0,0};
 
-    target_vertices[0] = new VertexBuffer;
+    target_vertices[0] = new VertexBuffer ();
     target_vertices[0]->setPositions (target1_positions, scale, bias);
 
-    target_vertices[1] = new VertexBuffer;
+    target_vertices[1] = new VertexBuffer ();
     target_vertices[1]->setPositions (target2_positions, scale, bias);
 
     int strips[1] = {4};
     TriangleStripArray* tris = new TriangleStripArray (0, 1, strips);
-    Appearance* app = new Appearance;
+    Appearance* app = new Appearance ();
 
   
     MorphingMesh* mesh = new MorphingMesh (base_vertices, 2, target_vertices, tris, app);
@@ -134,10 +134,10 @@ int main (int argc, char** argv)
     mesh->addAnimationTrack (animation_track);
 
 
-    Camera* cam = new Camera;
+    Camera* cam = new Camera ();
     cam->translate (0,0,10);
 
-    wld = new World;
+    wld = new World ();
     wld->addChild (cam);
     wld->setActiveCamera (cam);
     wld->addChild (mesh);

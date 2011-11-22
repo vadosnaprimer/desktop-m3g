@@ -78,7 +78,7 @@ int main (int argc, char** argv)
     glutInitWindowSize  (300, 300);
     glewInit            ();
 
-    AnimationController* controller = new AnimationController;
+    AnimationController* controller = new AnimationController ();
 
     KeyframeSequence* keyframe_fog_far = new KeyframeSequence (3, 1, KeyframeSequence::LINEAR);
     float frame_fog_far[3][1] = {{10}, {4}, {10}};
@@ -98,21 +98,21 @@ int main (int argc, char** argv)
 
     float scale   = 1;
     float bias[3] = {0,0,0};
-    VertexBuffer* vertices = new VertexBuffer;
+    VertexBuffer* vertices = new VertexBuffer ();
     vertices->setPositions (positions, scale, bias);
     vertices->setDefaultColor (0xff0000ff);
 
     int strips[1] = {4};
     TriangleStripArray* tris = new TriangleStripArray (0, 1, strips);
 
-    Fog* fog = new Fog;
+    Fog* fog = new Fog ();
     fog->setMode (Fog::LINEAR);
     fog->setLinear (4, 10);
     fog->setColor (0x000000ff);
     fog->addAnimationTrack (animation_fog_far);
 
 
-    Appearance* app = new Appearance;
+    Appearance* app = new Appearance ();
     app->setFog (fog);
 
     Mesh* mesh1 = new Mesh (vertices, tris, app);
@@ -130,20 +130,20 @@ int main (int argc, char** argv)
     Mesh* mesh5 = new Mesh (vertices, tris, app);
     mesh5->translate (0,0,-5);
 
-    Group* grp = new Group;
+    Group* grp = new Group ();
     grp->addChild(mesh1);
     grp->addChild(mesh2);
     grp->addChild(mesh3);
     grp->addChild(mesh4);
     grp->addChild(mesh5);
 
-    Camera* cam = new Camera;
+    Camera* cam = new Camera ();
     cam->lookAt (3,0,3, 0,0,-2, 0,1,0);
 
-    Background* bg = new Background;
+    Background* bg = new Background ();
     bg->setColor (0xff3f3f3f);
 
-    wld = new World;
+    wld = new World ();
     wld->addChild (cam);
     wld->setActiveCamera (cam);
     wld->addChild (grp);

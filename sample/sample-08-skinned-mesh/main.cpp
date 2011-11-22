@@ -104,7 +104,7 @@ int main (int argc, char** argv)
     keyframe_sequence->setValidRange (0, 2);
     keyframe_sequence->setDuration   (200);
 
-    AnimationController* animation_controller = new AnimationController;
+    AnimationController* animation_controller = new AnimationController ();
     AnimationTrack*      animation_track      = new AnimationTrack (keyframe_sequence, AnimationTrack::ORIENTATION);
     animation_track->setController (animation_controller);
 
@@ -114,7 +114,7 @@ int main (int argc, char** argv)
 
     float scale   = 0.001;
     float bias[3] = {0,0,0};
-    VertexBuffer* vertices = new VertexBuffer;
+    VertexBuffer* vertices = new VertexBuffer ();
     vertices->setPositions (positions, scale, bias);
   
     int strips[1] = {42};
@@ -122,8 +122,8 @@ int main (int argc, char** argv)
 
     Appearance* app = new Appearance;
 
-    Group* bone0 = new Group;
-    Group* bone1 = new Group;
+    Group* bone0 = new Group ();
+    Group* bone1 = new Group ();
     bone1->translate (0,10,0);
     bone0->addChild (bone1);
   
@@ -148,10 +148,10 @@ int main (int argc, char** argv)
 
     bone1->addAnimationTrack (animation_track);
 
-    Camera* cam = new Camera;
+    Camera* cam = new Camera ();
     cam->translate (0,10,50);
 
-    wld = new World;
+    wld = new World ();
     wld->addChild (cam);
     wld->setActiveCamera (cam);
     wld->addChild (mesh);

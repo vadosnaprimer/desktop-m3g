@@ -70,7 +70,7 @@ int main (int argc, char** argv)
 
     float scale   = 1;
     float bias[3] = {0,0,0};
-    VertexBuffer* vertices = new VertexBuffer;
+    VertexBuffer* vertices = new VertexBuffer ();
     vertices->setPositions (positions, scale, bias);
     vertices->setTexCoords (0, tex_coords, scale, bias);
     vertices->setTexCoords (1, tex_coords, scale, bias);
@@ -88,7 +88,7 @@ int main (int argc, char** argv)
     Texture2D* tex1 = new Texture2D (img1);
     tex1->setBlending (Texture2D::FUNC_DECAL);
 
-    Appearance* app = new Appearance;
+    Appearance* app = new Appearance ();
     app->setTexture (0, tex0);
     app->setTexture (1, tex1);
 
@@ -96,10 +96,10 @@ int main (int argc, char** argv)
     Mesh* mesh = new Mesh (vertices, tris, app);
     mesh->translate (0,0,2);
   
-    Camera* cam = new Camera;
+    Camera* cam = new Camera ();
     cam->translate (0,0,5);
 
-    wld = new World;
+    wld = new World ();
     wld->addChild (cam);
     wld->setActiveCamera (cam);
     wld->addChild (mesh);

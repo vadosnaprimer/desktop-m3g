@@ -157,7 +157,7 @@ int main (int argc, char** argv)
 
     Background* bg = wld->getBackground ();
     if (bg == NULL) {
-        bg = new Background;
+        bg = new Background ();
         wld->setBackground (bg);
     }
     bg->setColor (0xff3f7fff);

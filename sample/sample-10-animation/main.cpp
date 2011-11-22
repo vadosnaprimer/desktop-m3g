@@ -92,9 +92,9 @@ int main (int argc, char** argv)
     glutInitWindowSize  (300, 300);
     glewInit            ();
 
-    controller_translation = new AnimationController;
+    controller_translation = new AnimationController ();
     controller_translation->setSpeed (1, 0);
-    controller_orientation = new AnimationController;
+    controller_orientation = new AnimationController ();
     controller_orientation->setSpeed (2, 0);
   
     //        x,y,z, w  or angle, axis(x,y,z)
@@ -135,10 +135,10 @@ int main (int argc, char** argv)
     AnimationTrack* animation_mesh_orientation = new AnimationTrack (keyframe_mesh_orientation, AnimationTrack::ORIENTATION);
     animation_mesh_orientation->setController (controller_orientation);
 
-    Background* bg = new Background;
+    Background* bg = new Background ();
     bg->setColor (0xff7f7f7f);
 
-    Camera* cam = new Camera;
+    Camera* cam = new Camera ();
     cam->lookAt (0,0,10,
                  0,0,0,
                  0,1,0);
@@ -149,20 +149,20 @@ int main (int argc, char** argv)
 
     float scale = 1;
     float bias[3] = {0,0,0};
-    VertexBuffer* vertices = new VertexBuffer;
+    VertexBuffer* vertices = new VertexBuffer ();
     vertices->setPositions (positions, scale, bias);
 
     int strips[1]  = {4};
     int indices[4] = {0,1,2,3};
     TriangleStripArray* tris = new TriangleStripArray (indices, 1, strips);
 
-    Material* mat = new Material;
+    Material* mat = new Material ();
     mat->setColor (Material::DIFFUSE, 0xff0000ff);
 
-    PolygonMode* pmode = new PolygonMode;
+    PolygonMode* pmode = new PolygonMode ();
     pmode->setCulling (PolygonMode::CULL_NONE);
 
-    Appearance* app = new Appearance;
+    Appearance* app = new Appearance ();
     app->setMaterial (mat);
     app->setPolygonMode (pmode);
 
@@ -170,7 +170,7 @@ int main (int argc, char** argv)
     mesh->addAnimationTrack (animation_mesh_translation);
     mesh->addAnimationTrack (animation_mesh_orientation);
 
-    wld = new World;
+    wld = new World ();
     wld->addChild (cam);
     wld->setActiveCamera (cam);
     wld->setBackground (bg);
