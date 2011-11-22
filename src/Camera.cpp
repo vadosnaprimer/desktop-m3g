@@ -248,13 +248,26 @@ void Camera:: lookAt  (float from_x, float from_y, float from_z,
                        float to_x, float to_y, float to_z, 
                        float up_x, float up_y, float up_z)
 {
-    Vector from (from_x, from_y, from_z);
+    if (from_x == to_x && from_y == to_y && from_z == to_z) {
+        throw IllegalArgumentException (__FILE__, __func__, "Viewing from(%f,%f,%f) - to(%f,%f,%f) is invalied.",
+                                        from_x, from_y, from_z, to_x, to_y, to_z);
+    }
+    if (up_x == 0 && up_y == 0 && up_z == 0) {
+        throw IllegalArgumentException (__FILE__, __func__, "Up(%f,%f,%f) vector is invalid.", up_x, up_y, up_z);
+    }
+
+    Vector from (from_x     , from_y     , from_z     );
     Vector view (to_x-from_x, to_y-from_y, to_z-from_z);
-    Vector up   (up_x, up_y, up_z);
+    Vector up   (up_x       , up_y       , up_z       );
+    Vector right = cross(view, up);
+    if (right.length() < M3G_EPSILON) {
+        throw IllegalArgumentException (__FILE__, __func__, "Cross product of view and up vector is invalid.");
+    }
 
     view.normalize();
     up.normalize();
-    Vector right = cross(view, up).normalize();
+    right.normalize();
+
     up = cross(right, view);
 
     float m[16] = { right.x, up.x, -view.x, from.x,
@@ -278,6 +291,7 @@ std::ostream& Camera:: print (std::ostream& out) const
         out << ", aspect_ratio=" << aspect_ratio;
         out << ", near="         << near;
         out << ", far="          << far;
+        break;
     case PERSPECTIVE:
         out << "  type=\"PERSPECTIVE\"";
         out << ", fovy="         << fovy;

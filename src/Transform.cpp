@@ -96,7 +96,7 @@ void Transform:: postTranslate (float tx, float ty, float tz)
 void Transform:: set (const float* mat)
 {
     if (mat == NULL) {
-        throw NullPointerException (__FILE__, __func__, "Material is NULL.");
+        throw NullPointerException (__FILE__, __func__, "Matrix is NULL.");
     }
     matrix.set (mat);
 }

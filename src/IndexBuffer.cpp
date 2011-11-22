@@ -31,10 +31,10 @@ IndexBuffer:: IndexBuffer (int        t,
     }
     int num_indices = 0;
     for (int i = 0; i < num_strips; i++) {
+        if (lengths[i] > 65535) {
+            throw IllegalArgumentException (__FILE__, __func__, "Number of lengths[%d] is invalid, num=%d > 65535.", i, lengths[i]);
+        }
         num_indices += lengths[i];
-    }
-    if (num_indices > 65535) {
-        throw IllegalArgumentException (__FILE__, __func__, "Number of indices is invalid, num=%d > 65535.", num_indices);
     }
 
     strip_indices.assign (indices, indices + num_indices);
