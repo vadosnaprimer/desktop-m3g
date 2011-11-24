@@ -15,23 +15,30 @@
 using namespace std;
 using namespace m3g;
 
-Mesh:: Mesh (VertexBuffer* vertices_, int num_submesh,
-             IndexBuffer** submeshes, Appearance** appearances_) : vertices(0)
+Mesh:: Mesh (VertexBuffer* vertices_,
+             int num_submesh   , IndexBuffer** submeshes,
+             int num_appearance, Appearance**  appearances_) : vertices(NULL)
 {
     if (vertices_ == NULL) {
         throw NullPointerException (__FILE__, __func__, "VertexBuffer is NULL.");
     }
-    if (num_submesh == 0) {
-        throw IllegalArgumentException (__FILE__, __func__, "Number of submesh is invalid, num_submesh=%d.", num_submesh);
-    }
     if (submeshes == NULL) {
         throw NullPointerException (__FILE__, __func__, "IndexBuffer is NULL.");
     }
-    if (appearances_ == NULL) {
-        throw NullPointerException (__FILE__, __func__, "Appearances is NULL.");
+    for (int i = 0; i < num_submesh; i++) {
+        if (submeshes[i] == NULL) {
+            throw NullPointerException (__FILE__, __func__, "IndexBuffer[%d] is NULL.", i);
+        }
     }
 
-    initialize (vertices_, num_submesh, submeshes, appearances_);
+    if (num_submesh < 1) {
+        throw IllegalArgumentException (__FILE__, __func__, "Number of submesh is invalid, num_submesh=%d.", num_submesh);
+    }
+    if (appearances_ != NULL && num_appearance < num_submesh) {
+        throw IllegalArgumentException (__FILE__, __func__, "Number of appearances is invalid, apps=%d < ibufs=%d.", num_appearance, num_submesh);        
+    }
+
+    initialize (vertices_, num_submesh, submeshes, num_appearance, appearances_);
 }
 
 Mesh:: Mesh (VertexBuffer* vertices_, IndexBuffer* submesh, Appearance* appearance_)
@@ -42,20 +49,17 @@ Mesh:: Mesh (VertexBuffer* vertices_, IndexBuffer* submesh, Appearance* appearan
     if (submesh == NULL) {
         throw NullPointerException (__FILE__, __func__, "IndexBuffer is NULL.");
     }
-    if (appearance_ == NULL) {
-        throw NullPointerException (__FILE__, __func__, "Appearance is NULL.");
-    }
 
-    initialize (vertices_, 1, &submesh, &appearance_);
+    initialize (vertices_, 1, &submesh, 1, &appearance_);
 }
 
 
-void Mesh:: initialize (VertexBuffer* vertices_, int num_submesh, IndexBuffer** submeshes, Appearance** appearances_)
+void Mesh:: initialize (VertexBuffer* vertices_, int num_submesh, IndexBuffer** submeshes, int num_appearance, Appearance** appearances_)
 {
     vertices = vertices_;
 
-    indices.assign (submeshes, submeshes+num_submesh);
-    appearances.assign (appearances_, appearances_+num_submesh);
+    indices    .assign (submeshes   , submeshes    + num_submesh   );
+    appearances.assign (appearances_, appearances_ + num_appearance);
 }
 
 Mesh:: ~Mesh ()
@@ -74,6 +78,7 @@ Mesh* Mesh:: duplicate_xxx (Object3D* obj) const
         mesh = new Mesh (vertices,
                          indices.size(),
                          (IndexBuffer**)&indices[0],
+                         appearances.size(),
                          (Appearance**)&appearances[0]);        
     }
     Node:: duplicate_xxx (mesh);

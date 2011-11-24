@@ -11,15 +11,17 @@
 #include <iostream>
 using namespace std;
 using namespace m3g;
-//#include <cstdlib>
     
 /**
  * メモ： 仕様書にはBaseのpositionsがNULLでもエラーにしろとは書かれていないが、
  *        それは非常に困るのでここでエラーとしてる。多分仕様書の抜けだと思われる。
  */
-MorphingMesh:: MorphingMesh (VertexBuffer* base, int num_target, VertexBuffer** targets,
-                             int num_submesh, IndexBuffer** submeshes, Appearance** appearances) :
-    Mesh (base, num_submesh, submeshes, appearances), morphed_vertices(0)
+MorphingMesh:: MorphingMesh (VertexBuffer* base                                      ,
+                             int           num_target    , VertexBuffer** targets    ,
+                             int           num_submesh   , IndexBuffer**  submeshes  ,
+                             int           num_appearance, Appearance**   appearances ) :
+    Mesh (base, num_submesh, submeshes, num_appearance, appearances),
+    morphed_vertices(NULL)
 {
     if (num_target < 0) {
         throw IllegalArgumentException (__FILE__, __func__, "Number of target is invalid, num=%d.", num_target);
@@ -40,8 +42,12 @@ MorphingMesh:: MorphingMesh (VertexBuffer* base, int num_target, VertexBuffer** 
     initialize (num_target, targets);
 }
 
-MorphingMesh:: MorphingMesh (VertexBuffer* base, int num_target, VertexBuffer** targets, IndexBuffer* submesh, Appearance* appearance) :
-    Mesh (base, submesh, appearance)
+MorphingMesh:: MorphingMesh (VertexBuffer* base, 
+                             int           num_target, VertexBuffer** targets, 
+                             IndexBuffer*  submesh   ,
+                             Appearance*   appearance ) :
+    Mesh (base, submesh, appearance),
+    morphed_vertices(NULL)
 {
     if (num_target < 0) {
         throw IllegalArgumentException (__FILE__, __func__, "Number of target is invalid, num=%d.", num_target);
@@ -112,6 +118,7 @@ MorphingMesh* MorphingMesh:: duplicate_xxx (Object3D* obj) const
                                  (VertexBuffer**)&morph_targets[0],
                                  indices.size(),
                                  (IndexBuffer**)&indices[0],
+                                 appearances.size(),
                                  (Appearance**)&appearances[0]);
     }
     Mesh:: duplicate_xxx (mesh);

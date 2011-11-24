@@ -426,18 +426,19 @@ void Loader:: parseMesh ()
     reader->readNode          (&node);
     reader->readMesh          (&msh);
     
-    VertexBuffer*        vertices    = dynamic_cast<VertexBuffer*>(objs[msh.vertex_buffer_index]);
-    int                  num_submesh = msh.submesh_count;
+    VertexBuffer*        vertices       = dynamic_cast<VertexBuffer*>(objs[msh.vertex_buffer_index]);
+    int                  num_submesh    = msh.submesh_count;  // ファイルフォーマットで両者が
+    int                  num_appearance = msh.submesh_count;  // 等しいことが保証されている
     vector<IndexBuffer*> submeshs    (num_submesh);
     vector<Appearance*>  appearances (num_submesh);
     for (int i = 0; i < num_submesh; i++) {
         submeshs[i] = dynamic_cast<IndexBuffer*>(objs[msh.index_buffer_index[i]]);
     }
-    for (int i = 0; i < num_submesh; i++) {
+    for (int i = 0; i < num_appearance; i++) {
         appearances[i] = dynamic_cast<Appearance*>(objs[msh.appearance_index[i]]);
     }
 
-    Mesh* mesh = new Mesh (vertices, num_submesh, &submeshs[0], &appearances[0]);
+    Mesh* mesh = new Mesh (vertices, num_submesh, &submeshs[0], num_appearance, &appearances[0]);
     setObject3D      (mesh, obj);
     setTransformable (mesh, tra);
     setNode          (mesh, node);
@@ -459,14 +460,15 @@ void Loader:: parseMorphingMesh ()
     reader->readMesh          (&msh);
     reader->readMorphingMesh  (&morph_msh);
             
-    VertexBuffer*         vertices    = dynamic_cast<VertexBuffer*>(objs[msh.vertex_buffer_index]);
-    int                   num_submesh = msh.submesh_count;
+    VertexBuffer*         vertices       = dynamic_cast<VertexBuffer*>(objs[msh.vertex_buffer_index]);
+    int                   num_submesh    = msh.submesh_count;
+    int                   num_appearance = msh.submesh_count;
     vector<IndexBuffer*>  submeshs    (num_submesh);
     vector<Appearance*>   appearances (num_submesh);
     for (int i = 0; i < num_submesh; i++) {
         submeshs[i] = dynamic_cast<IndexBuffer*>(objs[msh.index_buffer_index[i]]);
     }
-    for (int i = 0; i < num_submesh; i++) {
+    for (int i = 0; i < num_appearance; i++) {
         appearances[i] = dynamic_cast<Appearance*>(objs[msh.appearance_index[i]]);
     }
     int                   num_target  = morph_msh.morph_target_count;
@@ -475,7 +477,10 @@ void Loader:: parseMorphingMesh ()
             targets[i] = dynamic_cast<VertexBuffer*>(objs[morph_msh.morph_target_index[i]]);
          }
     
-    MorphingMesh* mesh = new MorphingMesh (vertices, num_target, &targets[0], num_submesh, &submeshs[0], &appearances[0]);
+    MorphingMesh* mesh = new MorphingMesh (vertices                       ,
+                                           num_target    , &targets[0]    , 
+                                           num_submesh   , &submeshs[0]   ,
+                                           num_appearance, &appearances[0] );
     setObject3D      (mesh, obj);
     setTransformable (mesh, tra);
     setNode          (mesh, node);
@@ -498,8 +503,9 @@ void Loader:: parseSkinnedMesh ()
     reader->readMesh          (&msh);
     reader->readSkinnedMesh   (&skin_msh);
 
-    VertexBuffer*        vertices    = dynamic_cast<VertexBuffer*>(objs[msh.vertex_buffer_index]);
-    int                  num_submesh = msh.submesh_count;
+    VertexBuffer*        vertices       = dynamic_cast<VertexBuffer*>(objs[msh.vertex_buffer_index]);
+    int                  num_submesh    = msh.submesh_count;
+    int                  num_appearance = msh.submesh_count;
     vector<IndexBuffer*> submeshs    (num_submesh);
     vector<Appearance*>  appearances (num_submesh);
     Group*               skeleton    = dynamic_cast<Group*>(objs[skin_msh.skeleton_index]);
@@ -507,11 +513,11 @@ void Loader:: parseSkinnedMesh ()
     for (int i = 0; i < num_submesh; i++) {
         submeshs[i] = dynamic_cast<IndexBuffer*>(objs[msh.index_buffer_index[i]]);
     }
-    for (int i = 0; i < num_submesh; i++) {
+    for (int i = 0; i < num_appearance; i++) {
         appearances[i] = dynamic_cast<Appearance*>(objs[msh.appearance_index[i]]);
     }
     
-    SkinnedMesh* mesh = new SkinnedMesh (vertices, num_submesh, &submeshs[0], &appearances[0], skeleton);
+    SkinnedMesh* mesh = new SkinnedMesh (vertices, num_submesh, &submeshs[0], num_appearance, &appearances[0], skeleton);
     setObject3D      (mesh, obj);
     setTransformable (mesh, tra);
     setNode          (mesh, node);

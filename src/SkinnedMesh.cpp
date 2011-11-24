@@ -48,10 +48,11 @@ using namespace m3g;
 
 
 SkinnedMesh:: SkinnedMesh (VertexBuffer* vertices, 
-                           int num_submesh, IndexBuffer** submeshes, Appearance** appearances_,
-                           Group* skeleton_) :
-    Mesh (vertices, num_submesh, submeshes, appearances_),
-    skeleton(0), skinned_vertices(0)
+                           int           num_submesh   , IndexBuffer** submeshes,
+                           int           num_appearance, Appearance**  appearances_,
+                           Group*        skeleton_) :
+    Mesh (vertices, num_submesh, submeshes, num_appearance, appearances_),
+    skeleton(NULL), skinned_vertices(NULL)
 {
     if (vertices->getPositions(0) == NULL) {
         throw NullPointerException (__FILE__, __func__, "Vertices has no positions.");
@@ -67,8 +68,9 @@ SkinnedMesh:: SkinnedMesh (VertexBuffer* vertices,
 }
 
 SkinnedMesh:: SkinnedMesh (VertexBuffer* vertices, 
-                           IndexBuffer* submesh, Appearance* appearance, 
-                           Group* skeleton_) :
+                           IndexBuffer*  submesh,
+                           Appearance*   appearance, 
+                           Group*        skeleton_) :
     Mesh (vertices, submesh, appearance),
     skeleton(0), skinned_vertices(0)
 {
@@ -132,6 +134,7 @@ SkinnedMesh* SkinnedMesh:: duplicate_xxx (Object3D* obj) const
         mesh = new SkinnedMesh (vertices,
                                 indices.size(),
                                 (IndexBuffer**)&indices[0],
+                                appearances.size(),
                                 (Appearance**)&appearances[0],
                                 skl);
     }

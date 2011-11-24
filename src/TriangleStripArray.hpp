@@ -43,7 +43,7 @@ namespace m3g {
         /**
          * @~English  Creates a duplicate of this Object3D. 
          * @~Japanese このオブジェクトの複製の作成.
-         * @param[in] 複製されたTriangleStripArrayオブジェクト.
+         * @retrun  複製されたTriangleStripArrayオブジェクト.
          */
         TriangleStripArray* duplicate () const;
 

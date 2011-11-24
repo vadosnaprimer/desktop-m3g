@@ -4,7 +4,8 @@
 2011/xx/xx
    - change TriangleStripArray constructor API
       - you need to set number of indices explicitly
-      - sorry to break compatibility
+   - change Mesh constructor API
+      - you need to set number of appearances explicitly
    - remove dependency for m3g-reader-writer
        - take all sources from the projects
    - remove dependency for libpng, libjpeg

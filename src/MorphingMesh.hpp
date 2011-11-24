@@ -14,7 +14,7 @@ namespace m3g {
 
     /**
      * @~English  A scene graph node that represents a vertex morphing polygon mesh.
-     * @~Japanese 頂点モーフィングメッシュを表すシーングラフのノード.
+     * @~Japanese モーフィングメッシュを表すシーングラフのノード.
      */
     class MorphingMesh : public Mesh
     {
@@ -22,23 +22,35 @@ namespace m3g {
         /**
          * @~English  Construct a new MorphingMesh with the given base mesh and morph targets.
          * @~Japanese 指定されたベースメッシュとモーフターゲットを持つ新しいモーフィングメッシュを作成.
+         * @param[in] vertices        頂点バッファーデータ.
+         * @param[in] num_targets     モーフターゲットの個数
+         * @param[in] targets         モーフターゲットの配列
+         * @param[in] num_submesh     頂点インデックスの配列の個数.
+         * @param[in] submeshes       頂点インデックスの配列.
+         * @param[in] num_appearance  アピアランスの配列の個数.
+         * @param[in] appearances     アピアランスの配列.
          */
-        MorphingMesh (VertexBuffer*  base,
-                      int            num_targets,
-                      VertexBuffer** targets,
-                      int            num_submesh,
-                      IndexBuffer**  submeshes,
-                      Appearance**   appearances);
+        MorphingMesh (VertexBuffer*  base          ,
+                      int            num_targets   ,
+                      VertexBuffer** targets       ,
+                      int            num_submesh   ,
+                      IndexBuffer**  submeshes     ,
+                      int            num_appearance,
+                      Appearance**   appearances   );
 
         /**
          * @~English  Constructs a new MorphingMesh with the given base mesh and morph targets.
          * @~Japanese 指定されたベースメッシュとモーフターゲットを持つ新しいモーフィングメッシュを作成.
+         * @param[in] num_targets     モーフターゲットの個数
+         * @param[in] targets         モーフターゲットの配列
+         * @param[in] submesh       頂点インデックス.
+         * @param[in] appearance    アピアランス.
          */
-        MorphingMesh (VertexBuffer*  base, 
+        MorphingMesh (VertexBuffer*  base       , 
                       int            num_targets, 
-                      VertexBuffer** targets,
-                      IndexBuffer*   submesh,
-                      Appearance*    appearance);
+                      VertexBuffer** targets    ,
+                      IndexBuffer*   submesh    ,
+                      Appearance*    appearance  );
 
         /**
          * @~English  Destruct this object.
@@ -49,6 +61,7 @@ namespace m3g {
         /**
          * @~English  Creates a duplicate of this Object3D. 
          * @~Japanese このオブジェクトの複製の作成.
+         * @return 複製したMorphingMeshオブジェクト.
          */
         MorphingMesh* duplicate () const;
 
@@ -57,30 +70,37 @@ namespace m3g {
         /**
          * @~English  Returns the morph target VertxBuffer at the given index.
          * @~Japanese 指定されたインデックスのモーフターゲット頂点バッファーの取得.
+         * @param[in] index  サブメッシュ番号.
+         * @return  サブメッシュ番号で指定された頂点インデックスバッファー.
          */
         VertexBuffer* getMorphTarget (int index) const;
 
         /**
          * @~English  Returns the number of morph targets in this MorphingMesh.
          * @~Japanese このモーフィングメッシュのモーフターゲット数の取得.
+         ＊@return  ターゲット数.
          */
         int getMorphTargetCount () const;
 
         /**
          * @~English  Gets the current morph target weights for this mesh.
          * @~Japanese このメッシュのカレントのモーフターゲットのウェイトの取得.
+         * @param[out] weights  結果を書き込むウェイト値の配列.
          */
         void getWeights (float* weights) const;
 
         /**
          * @~English  Sets the weights for all morph targets in this mesh.
          * @~Japanese このメッシュの全てのモーフターゲットのウエイトの設定.
+         * param[in] num_weights  ウェイト値の配列の総数.
+         * param[in] weights      ウェイト値の配列.
          */
         void setWeights (int num_weights, float* weights);
 
         /**
          * @~English  Print out information of this object.
          * @~Japanese このオブジェクトの情報を表示。デバッグ用.
+         * @param[in] out  表示先のストリーム
          */
         virtual std::ostream& print (std::ostream& out) const;
 
@@ -124,7 +144,7 @@ namespace m3g {
 
         /**
          * @~English  Morph skin, inner use.
-         * @~Japanese スキンを変形させる内部仕様の関数.
+         * @~Japanese スキンを変形させる内部使用の関数.
          */
         void updateMorphedVertices ();
 

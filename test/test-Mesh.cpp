@@ -18,7 +18,7 @@ TEST (Mesh_default_variables_1)
     TriangleStripArray* tris[2] = {new TriangleStripArray (3, indices, 1, strips),
                                    new TriangleStripArray (3, indices, 1, strips)};
     Appearance*  app[2]  = {new Appearance, new Appearance};
-    Mesh* mesh = new Mesh (vbuf, 2, (IndexBuffer**)tris, app);
+    Mesh* mesh = new Mesh (vbuf, 2, (IndexBuffer**)tris, 2, app);
 
     CHECK_EQUAL (vbuf,    mesh->getVertexBuffer());
     CHECK_EQUAL (2,       mesh->getSubmeshCount());
@@ -66,7 +66,7 @@ TEST (Mesh_setAppearance)
                                    new TriangleStripArray (3, indices, 1, strips)};
     Appearance* apps[2] = {new Appearance,
                            new Appearance};
-    Mesh* mesh = new Mesh (vbuf, 2, (IndexBuffer**)tris, apps);
+    Mesh* mesh = new Mesh (vbuf, 2, (IndexBuffer**)tris, 2, apps);
 
     Appearance* app2 = new Appearance;
     mesh->setAppearance (0, NULL);
