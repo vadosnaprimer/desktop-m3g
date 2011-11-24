@@ -7,8 +7,8 @@ using namespace std;
 using namespace m3g;
 
 /**
- * メモ：事実上このクラスは何もせず、IndexBufferが全て処理する。
- *       TriangleStripArrayクラスはM3G-2.0で廃止され、
+ * メモ：このクラスは何もせずIndexBufferが全て処理する。
+ *       事実TriangleStripArrayクラスはM3G-2.0で廃止され、
  *       IndexBufferクラスに統合される事が決定している。
  *       それの先取り。
  */
@@ -41,20 +41,10 @@ TriangleStripArray* TriangleStripArray:: duplicate_xxx (Object3D* obj) const
 {
     TriangleStripArray* tris = dynamic_cast<TriangleStripArray*>(obj);
     if (tris == NULL) {
-        int  num_indices = strip_indices.size();
-        int  num_lengths = strip_lengths.size();
-        int* indices     = new int [strip_indices.size()];
-        int* lengths     = new int [strip_lengths.size()];
-        for (int i = 0; i < num_indices; i++) {
-            indices[i] = strip_indices[i];
-        }
-        for (int i = 0; i < num_lengths; i++) {
-            lengths[i] = strip_lengths[i];
-        }
-        tris = new TriangleStripArray (num_indices,
-                                       indices,
-                                       num_lengths,
-                                       lengths);
+        tris = new TriangleStripArray (strip_indices.size(),
+                                       &strip_indices[0],
+                                       strip_lengths.size(),
+                                       &strip_lengths[0]);
     }
     IndexBuffer:: duplicate_xxx (tris);
 

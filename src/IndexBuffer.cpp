@@ -3,7 +3,7 @@
 #include "m3g/Exception.hpp"
 #include "m3g/RenderState.hpp"
 #include <iostream>
-#include <numeric>
+#include <climits>
 using namespace m3g;
 using namespace std;
 
@@ -33,7 +33,7 @@ IndexBuffer:: IndexBuffer (int        type_,
     int sum = 0;
     for (int i = 0; i < num_lengths; i++) {
         int len = lengths[i];
-        if (len < 0 || len > 65535) {
+        if (len < 0 || len > (int)INT_MAX) {
             throw IndexOutOfBoundsException (__FILE__, __func__, "Strip lengths[%d] is out of index, len=%d.", i, len);
         }
         if (len < 3) {
@@ -50,7 +50,7 @@ IndexBuffer:: IndexBuffer (int        type_,
 
     glGenBuffers (1, &gl.indices);
     glBindBuffer (GL_ELEMENT_ARRAY_BUFFER, gl.indices); 
-    glBufferData (GL_ELEMENT_ARRAY_BUFFER, sizeof(short)*num_indices, &strip_indices[0], GL_STATIC_DRAW);
+    glBufferData (GL_ELEMENT_ARRAY_BUFFER, sizeof(int)*num_indices, &strip_indices[0], GL_STATIC_DRAW);
 }
 
 
@@ -72,7 +72,7 @@ IndexBuffer:: IndexBuffer (int        type_,
     int num_indices = 0;
     for (int i = 0; i < num_lengths; i++) {
         int len = lengths[i];
-        if (len < 0 || len > 65535) {
+        if (len < 0 || len > (int)INT_MAX) {
             throw IndexOutOfBoundsException (__FILE__, __func__, "Strip lengths[%d] is out of index, len=%d.", i, len);
         }
         if (len < 3) {
@@ -80,8 +80,8 @@ IndexBuffer:: IndexBuffer (int        type_,
         }
         num_indices += len;
     }
-    if (first_index + num_indices > 65535) {
-        throw IllegalArgumentException (__FILE__, __func__, "Number of indices is invalid, num=%d > 65535.", first_index+num_indices);
+    if (first_index + num_indices > (int)INT_MAX) {
+        throw IllegalArgumentException (__FILE__, __func__, "Number of indices is invalid, num=%d > INT_MAX.", first_index+num_indices);
     }
 
     strip_indices.reserve (num_indices);
@@ -93,7 +93,7 @@ IndexBuffer:: IndexBuffer (int        type_,
 
     glGenBuffers (1, &gl.indices);
     glBindBuffer (GL_ELEMENT_ARRAY_BUFFER, gl.indices); 
-    glBufferData (GL_ELEMENT_ARRAY_BUFFER, sizeof(short)*num_indices, &strip_indices[0], GL_STATIC_DRAW);
+    glBufferData (GL_ELEMENT_ARRAY_BUFFER, sizeof(int)*num_indices, &strip_indices[0], GL_STATIC_DRAW);
 }
 
 IndexBuffer:: ~IndexBuffer ()
@@ -112,23 +112,11 @@ IndexBuffer* IndexBuffer:: duplicate_xxx (Object3D* obj) const
 {
     IndexBuffer* ibuf = dynamic_cast<IndexBuffer*>(obj);
     if (ibuf == NULL) {
-        int  num_indices = strip_indices.size();
-        int  num_lengths = strip_lengths.size();
-        int* indices     = new int [strip_indices.size()];
-        int* lengths     = new int [strip_lengths.size()];
-        for (int i = 0; i < num_indices; i++) {
-            indices[i] = strip_indices[i];
-        }
-        for (int i = 0; i < num_lengths; i++) {
-            lengths[i] = strip_lengths[i];
-        }
-        ibuf = new IndexBuffer (type, 
-                                num_indices,
-                                indices,
-                                num_lengths,
-                                lengths);
-        delete [] indices;
-        delete [] lengths;
+        ibuf = new IndexBuffer (type,
+                                strip_indices.size(),
+                                &strip_indices[0],
+                                strip_lengths.size(),
+                                &strip_lengths[0]);
     }
     Object3D:: duplicate_xxx (ibuf);
 
@@ -154,7 +142,7 @@ int IndexBuffer:: getIndexCount () const
     case LINES:
     case POINT_SPRITES:
     default:
-        throw InternalException (__FILE__, __func__, "Primitive type is invalid, type=%d\n", type);
+        throw InternalException (__FILE__, __func__, "Primitive type is invalid, type=%d.", type);
     };
     return num;
 }
@@ -179,7 +167,7 @@ void IndexBuffer:: getIndices (int* indices) const
     case LINES:
     case POINT_SPRITES:
     default:
-        throw InternalException (__FILE__, __func__, "Primitive type is invalid, type=%d\n", type);
+        throw InternalException (__FILE__, __func__, "Primitive type is invalid, type=%d.", type);
     };
 
 }
@@ -204,9 +192,9 @@ void IndexBuffer:: render_xxx (RenderState& state) const
     for (int i = 0; i < (int)strip_lengths.size(); i++) {
         glDrawElements (GL_TRIANGLE_STRIP,
                         strip_lengths[i],
-                        GL_UNSIGNED_SHORT,
+                        GL_UNSIGNED_INT,
                         (GLvoid*)offset);
-        offset += strip_lengths[i] * sizeof(short);
+        offset += strip_lengths[i] * sizeof(int);
     }
 }
 

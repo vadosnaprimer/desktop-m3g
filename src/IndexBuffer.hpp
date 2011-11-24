@@ -42,7 +42,7 @@ namespace m3g {
     private:
         
         struct GLData {
-            GLData (unsigned int in) : indices(in) {};
+            GLData (unsigned int idx) : indices(idx) {};
             unsigned int indices;
         };
        
@@ -141,11 +141,11 @@ namespace m3g {
         IndexBuffer (const IndexBuffer& ibuf);
         IndexBuffer& operator= (const IndexBuffer& ibuf);
 
-        // TriangleStripArrayから使用している（修正したいなぁ...)
+
     protected:
-        int                type;
-        std::vector<short> strip_indices;
-        std::vector<short> strip_lengths;
+        int              type;
+        std::vector<int> strip_indices;
+        std::vector<int> strip_lengths;
 
     private:
         GLData gl;
