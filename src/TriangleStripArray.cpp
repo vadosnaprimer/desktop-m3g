@@ -40,13 +40,25 @@ TriangleStripArray* TriangleStripArray:: duplicate () const
 TriangleStripArray* TriangleStripArray:: duplicate_xxx (Object3D* obj) const
 {
     TriangleStripArray* tris = dynamic_cast<TriangleStripArray*>(obj);
+    int  indices_size = strip_indices.size();
+    int* indices      = new int[indices_size];
+    for (int i = 0; i < indices_size; i++) {
+        indices[i] = strip_indices[i];
+    }
+    int  lengths_size = strip_lengths.size();
+    int* lengths      = new int[lengths_size];
+    for (int i = 0; i < lengths_size; i++) {
+        lengths[i] = strip_lengths[i];
+    }
     if (tris == NULL) {
-        tris = new TriangleStripArray (strip_indices.size(),
-                                       &strip_indices[0],
-                                       strip_lengths.size(),
-                                       &strip_lengths[0]);
+        tris = new TriangleStripArray (indices_size,
+                                       indices,
+                                       lengths_size,
+                                       lengths);
     }
     IndexBuffer:: duplicate_xxx (tris);
+    delete[] indices;
+    delete[] lengths;
 
     return tris;
 }

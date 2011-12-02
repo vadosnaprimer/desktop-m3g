@@ -3,7 +3,6 @@
 #include "m3g/Exception.hpp"
 #include "m3g/RenderState.hpp"
 #include <iostream>
-#include <climits>
 using namespace m3g;
 using namespace std;
 
@@ -33,7 +32,7 @@ IndexBuffer:: IndexBuffer (int        type_,
     int sum = 0;
     for (int i = 0; i < num_lengths; i++) {
         int len = lengths[i];
-        if (len < 0 || len > (int)INT_MAX) {
+        if (len < 0 || len > (int)INDEX_MAX) {
             throw IndexOutOfBoundsException (__FILE__, __func__, "Strip lengths[%d] is out of index, len=%d.", i, len);
         }
         if (len < 3) {
@@ -50,7 +49,7 @@ IndexBuffer:: IndexBuffer (int        type_,
 
     glGenBuffers (1, &gl.indices);
     glBindBuffer (GL_ELEMENT_ARRAY_BUFFER, gl.indices); 
-    glBufferData (GL_ELEMENT_ARRAY_BUFFER, sizeof(int)*num_indices, &strip_indices[0], GL_STATIC_DRAW);
+    glBufferData (GL_ELEMENT_ARRAY_BUFFER, sizeof(IndexType)*num_indices, &strip_indices[0], GL_STATIC_DRAW);
 }
 
 
@@ -72,7 +71,7 @@ IndexBuffer:: IndexBuffer (int        type_,
     int num_indices = 0;
     for (int i = 0; i < num_lengths; i++) {
         int len = lengths[i];
-        if (len < 0 || len > (int)INT_MAX) {
+        if (len < 0 || len > (int)INDEX_MAX) {
             throw IndexOutOfBoundsException (__FILE__, __func__, "Strip lengths[%d] is out of index, len=%d.", i, len);
         }
         if (len < 3) {
@@ -80,8 +79,8 @@ IndexBuffer:: IndexBuffer (int        type_,
         }
         num_indices += len;
     }
-    if (first_index + num_indices > (int)INT_MAX) {
-        throw IllegalArgumentException (__FILE__, __func__, "Number of indices is invalid, num=%d > INT_MAX.", first_index+num_indices);
+    if (first_index + num_indices > (int)INDEX_MAX) {
+        throw IllegalArgumentException (__FILE__, __func__, "Number of indices is invalid, num=%d > %d.", first_index+num_indices, INDEX_MAX);
     }
 
     strip_indices.reserve (num_indices);
@@ -93,7 +92,7 @@ IndexBuffer:: IndexBuffer (int        type_,
 
     glGenBuffers (1, &gl.indices);
     glBindBuffer (GL_ELEMENT_ARRAY_BUFFER, gl.indices); 
-    glBufferData (GL_ELEMENT_ARRAY_BUFFER, sizeof(int)*num_indices, &strip_indices[0], GL_STATIC_DRAW);
+    glBufferData (GL_ELEMENT_ARRAY_BUFFER, sizeof(IndexType)*num_indices, &strip_indices[0], GL_STATIC_DRAW);
 }
 
 IndexBuffer:: ~IndexBuffer ()
@@ -111,14 +110,26 @@ IndexBuffer* IndexBuffer:: duplicate () const
 IndexBuffer* IndexBuffer:: duplicate_xxx (Object3D* obj) const
 {
     IndexBuffer* ibuf = dynamic_cast<IndexBuffer*>(obj);
+    int  indices_size = strip_indices.size();
+    int* indices      = new int[indices_size];
+    for (int i = 0; i < indices_size; i++) {
+        indices[i] = strip_indices[i];
+    }
+    int  lengths_size = strip_lengths.size();
+    int* lengths      = new int[lengths_size];
+    for (int i = 0; i < lengths_size; i++) {
+        lengths[i] = strip_lengths[i];
+    }
     if (ibuf == NULL) {
         ibuf = new IndexBuffer (type,
-                                strip_indices.size(),
-                                &strip_indices[0],
-                                strip_lengths.size(),
-                                &strip_lengths[0]);
+                                indices_size,
+                                indices,
+                                lengths_size,
+                                lengths);
     }
     Object3D:: duplicate_xxx (ibuf);
+    delete[] indices;
+    delete[] lengths;
 
     return ibuf;
 }
@@ -192,9 +203,9 @@ void IndexBuffer:: render_xxx (RenderState& state) const
     for (int i = 0; i < (int)strip_lengths.size(); i++) {
         glDrawElements (GL_TRIANGLE_STRIP,
                         strip_lengths[i],
-                        GL_UNSIGNED_INT,
+                        INDEX_TYPE,
                         (GLvoid*)offset);
-        offset += strip_lengths[i] * sizeof(int);
+        offset += strip_lengths[i] * sizeof(IndexType);
     }
 }
 

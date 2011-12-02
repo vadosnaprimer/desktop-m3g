@@ -2,9 +2,9 @@
 
 
 2011/xx/xx
-   - relax maxmum index number from short to uint.
-      - M3G-1.1 specification restricts vertices less than 65,535.
-      - But for desktop use, it is not sufficient.
+   - relax maxmum index number from ushort to int in OpenGL.
+      - M3G-1.1 specification restricts vertices less than 65,535(=USHRT_MAX).
+      - But because it is not enough for desktop use, 
       - Desktop-M3G relaxes this number to 2,147,483,647(=INT_MAX).
    - change TriangleStripArray constructor API
       - you need to set number of indices explicitly

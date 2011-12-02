@@ -10,6 +10,14 @@
 // OpenGLのOS毎の違いを吸収するヘッダーファイル
 // とにかく微妙な差が多すぎる。
 
+// 
+// glDrawElements()に渡せるインデックスのタイプは
+// OpenGLはGL_UNSIGNED_INTまで、OpenGL ES GL_UNSIGNED_SHORT
+
+// indexno
+// OpenGL - INT_MAX
+// OpenGL ES - USHORT_MAX
+
  
 // =====  Ubuntu(Linux系） =====
 // - nVIDIA系は GL_GLEXT_PROTOTYPES を定義して
@@ -23,6 +31,11 @@
 #endif
 #include <GL/gl.h>
 #include <GL/glext.h>
+
+#include <climits>
+typedef int IndexType;
+const int INDEX_MAX  = INT_MAX;
+const int INDEX_TYPE = GL_UNSIGNED_INT;
 
 // quick hack
 inline static
@@ -38,6 +51,12 @@ void glOrthof ( GLdouble left, GLdouble right,
 // - Android用OpenGL ES.
 #ifdef USE_GL_ES
 #include <GLES/gl.h>
+#include <GLES/glext.h>
+
+#include <climits>
+typedef unsigned short IndexType ;
+const int INDEX_MAX  = USHRT_MAX;
+const int INDEX_TYPE = GL_UNSIGNED_SHORT;
 
 // quick hack
 inline static

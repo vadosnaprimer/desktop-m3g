@@ -1,7 +1,7 @@
 #ifndef __M3G_INDEX_BUFFER_HPP__
 #define __M3G_INDEX_BUFFER_HPP__
 
-
+#include "m3g/m3g-gl.hpp"
 #include "m3g/Object3D.hpp"
 #include "m3g/m3ginternal.hpp"
 #include <iosfwd>
@@ -143,9 +143,9 @@ namespace m3g {
 
 
     protected:
-        int              type;
-        std::vector<int> strip_indices;
-        std::vector<int> strip_lengths;
+        int                    type;
+        std::vector<IndexType> strip_indices;
+        std::vector<IndexType> strip_lengths;
 
     private:
         GLData gl;

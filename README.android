@@ -4,8 +4,6 @@
 Platform specific problem
 -------------------------------------------
   none.
-  I removed dependecy for libm3g-reader-writer, libpng and libjpeg.
-  So you doesn't need them.
 
 -------------------------------------------
 Make & Install
@@ -19,7 +17,7 @@ Make & Install
            - will generate Desktop-M3G
 
     You can configure some options by changing build/android/include/m3g/Config.hpp
-    (Default is good, I suppose you don't need to change this)
+    (Default is good, I suppose you don't need to change this config file)
 
 
 -------------------------------------------
