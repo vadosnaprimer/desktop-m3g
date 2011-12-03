@@ -6,8 +6,6 @@ cmake_minimum_required (VERSION 2.0)
 
 # dependend libraries
 find_package (ZLIB   REQUIRED)
-find_package (PNG    REQUIRED)
-find_package (JPEG   REQUIRED)
 find_package (OpenGL REQUIRED)
 find_package (GLUT   REQUIRED)
 

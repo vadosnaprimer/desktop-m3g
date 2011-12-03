@@ -1,5 +1,4 @@
 #include "m3g/m3g.hpp"
-#include <GL/glew.h>
 #include <GL/glut.h>
 #include <iostream>
 #include <vector>
@@ -122,7 +121,6 @@ int main (int argc, char** argv)
     glutInitDisplayMode (GLUT_RGBA | GLUT_DEPTH | GLUT_DOUBLE);
     glutCreateWindow    (argv[0]);
     glutInitWindowSize  (300, 300);
-    glewInit            ();
 
     //objs = Loader::load ("../simple.m3g");
     //objs = Loader::load ("../checker-board.m3g");

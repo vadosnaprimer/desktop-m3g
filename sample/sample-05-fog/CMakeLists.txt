@@ -1,14 +1,15 @@
-project (M3G-TEST-10)
+project (M3G-SAMPLE-05)
 
 cmake_minimum_required (VERSION 2.0)
-cmake_policy (SET CMP0015 OLD)
 
 # dependend libraries
+find_package (OpenGL REQUIRED)
 find_package (GLUT   REQUIRED)
 
-include_directories (../../bin/include)
-link_directories    (../../../bin/lib/linux)
-set  (LIBS m3g glut GLEW)
+include_directories (${CMAKE_CURRENT_SOURCE_DIR}/../../bin/include)
+link_directories    (${CMAKE_CURRENT_SOURCE_DIR}/../../bin/lib/linux)
+
+set  (LIBS m3g glut)
 file (GLOB SRCS *.cpp)
 
 add_executable        (a.out ${SRCS})

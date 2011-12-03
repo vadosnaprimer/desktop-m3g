@@ -1,5 +1,4 @@
 #include "m3g/m3g.hpp"
-#include <GL/glew.h>
 #include <GL/glut.h>
 #include <iostream>
 #include <cstring>
@@ -87,7 +86,6 @@ int main (int argc, char** argv)
     glutInitDisplayMode (GLUT_RGB | GLUT_DOUBLE | GLUT_DEPTH);
     glutCreateWindow    (argv[0]);
     glutInitWindowSize  (300, 300);
-    glewInit            ();
 
     VertexArray* positions         = new VertexArray (4, 3, 2);
     short        position_values[] = {1,-1,0, 1,1,0, -1,-1,0, -1,1,0};

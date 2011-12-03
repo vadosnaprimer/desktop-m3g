@@ -1,6 +1,5 @@
 #include "m3g/m3g.hpp"
 #include "data.hpp"
-#include <GL/glew.h>
 #include <GL/glut.h>
 #include <iostream>
 #include <vector>
@@ -80,7 +79,6 @@ int main (int argc, char** argv)
     glutInitDisplayMode (GLUT_RGBA | GLUT_DEPTH | GLUT_DOUBLE);
     glutCreateWindow    (argv[0]);
     glutInitWindowSize  (300, 300);
-    glewInit ();
 
     //       x,y,z, w                 or angle, axis(x,y,z)
     //q0 = [ 0,0,0.382683, 0.92388    or 45 ,0,0,1 ]
