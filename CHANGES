@@ -1,7 +1,7 @@
 
 
 
-2011/xx/xx
+2011/12/16 ver 0.3.4
    - relax maxmum index number from ushort to int in OpenGL.
       - M3G-1.1 specification restricts vertices less than 65,535(=USHRT_MAX).
       - But because it is not enough for desktop use, 

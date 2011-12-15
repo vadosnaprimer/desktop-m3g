@@ -14,7 +14,8 @@ Make & Install
 
       1. cd build/android      (for Android)
       2. ndk-build
-           - will generate Desktop-M3G
+           - will generate Desktop-M3G under
+           - ${Desktop-M3G}/build/android/libs/armeabi/libm3g.so
 
     You can configure some options by changing build/android/include/m3g/Config.hpp
     (Default is good, I suppose you don't need to change this config file)
